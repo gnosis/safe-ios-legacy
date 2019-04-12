@@ -15,6 +15,10 @@ class MockNotificationService1: NotificationDomainService {
         preconditionFailure()
     }
 
+    func authV2(request: AuthRequestV2) throws {
+        // no-op
+    }
+
     private var expected_send = [SendNotificationRequest]()
     private var actual_send = [SendNotificationRequest]()
     private var send_throws_error: Error?

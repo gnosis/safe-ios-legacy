@@ -20,8 +20,12 @@ class EventRelayTests: XCTestCase {
 
     func test_whenSubscriberDeallocated_thenNotNotified() {
         var callCount = 0
+        let expectation = self.expectation(description: "Finished")
         var temp: BlockSubscriber? = BlockSubscriber {
             callCount += 1
+            if callCount == 1 {
+                expectation.fulfill()
+            }
         }
         relay.subscribe(temp!, for: DomainEvent.self)
         publisher.publish(MyEvent())
@@ -29,6 +33,7 @@ class EventRelayTests: XCTestCase {
         temp = nil
         publisher.publish(MyEvent())
         delay()
+        waitForExpectations(timeout: 1, handler: nil)
         XCTAssertEqual(callCount, 1)
     }
 

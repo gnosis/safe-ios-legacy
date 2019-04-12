@@ -36,6 +36,14 @@ final public class HTTPNotificationService: NotificationDomainService {
         }
     }
 
+    public func authV2(request: AuthRequestV2) throws {
+        let response = try httpClient.execute(request: request)
+        guard response.pushToken == request.pushToken &&
+            response.owner == request.deviceOwnerAddress else {
+                throw NotificationDomainServiceError.validationFailed
+        }
+    }
+
     public func send(notificationRequest: SendNotificationRequest) throws {
         try httpClient.execute(request: notificationRequest)
     }
@@ -132,6 +140,19 @@ extension AuthRequest: JSONRequest {
     public typealias ResponseType = AuthResponse
 
     public struct AuthResponse: Decodable {
+        let pushToken: String
+        let owner: String
+    }
+
+}
+
+extension AuthRequestV2: JSONRequest {
+
+    public var httpMethod: String { return "POST" }
+    public var urlPath: String { return "/api/v2/auth/" }
+    public typealias ResponseType = AuthResponseV2
+
+    public struct AuthResponseV2: Decodable {
         let pushToken: String
         let owner: String
     }

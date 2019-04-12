@@ -663,11 +663,30 @@ public class WalletApplicationService: Assertable {
         precondition(!Thread.isMainThread)
         guard let pushToken = pushTokensService.pushToken() else { return }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        let signature = ethereumService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)!
-        try handleNotificationServiceError {
-            try notificationService.auth(request: AuthRequest(pushToken: pushToken,
-                                                              signature: signature,
-                                                              deviceOwnerAddress: deviceOwnerAddress))
+        if configuration.usesAPIv2 {
+            let buildNumber = SystemInfo.buildNumber ?? 0
+            let versionName = SystemInfo.marketingVersion ?? "0.0.0"
+            let client = "ios"
+            let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
+            let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
+            let signature = ethereumService.sign(message: dataString, by: deviceOwnerAddress)!
+            let request = AuthRequestV2(pushToken: pushToken,
+                                        signature: signature,
+                                        buildNumber: buildNumber,
+                                        versionName: versionName,
+                                        client: client,
+                                        bundle: bundle,
+                                        deviceOwnerAddress: deviceOwnerAddress)
+            try handleNotificationServiceError {
+                try notificationService.authV2(request: request)
+            }
+        } else {
+            let signature = ethereumService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)!
+            try handleNotificationServiceError {
+                try notificationService.auth(request: AuthRequest(pushToken: pushToken,
+                                                                  signature: signature,
+                                                                  deviceOwnerAddress: deviceOwnerAddress))
+            }
         }
     }
 

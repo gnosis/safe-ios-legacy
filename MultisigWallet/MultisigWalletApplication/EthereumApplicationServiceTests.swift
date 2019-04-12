@@ -60,35 +60,41 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     func test_whenObservingBalanceAndItChanges_thenCallsObserver() {
         var observedBalance: BigInt?
         var callCount = 0
+        let expectation = self.expectation(description: "Finished")
         DispatchQueue.global().async {
             try? self.applicationService.observeChangesInBalance(address: Address.safeAddress.value,
                                                                  every: 0.1) { balance in
-                if callCount == 3 {
-                    return true
-                }
                 observedBalance = balance
                 callCount += 1
+                if callCount == 3 {
+                    expectation.fulfill()
+                    return true
+                }
                 return false
             }
         }
         delay(0.1)
         nodeService.eth_getBalance_output = BigInt(2)
         delay(0.1)
-        nodeService.eth_getBalance_output = BigInt(2)
-        delay(0.1)
         nodeService.eth_getBalance_output = BigInt(1)
         delay(0.1)
+        waitForExpectations(timeout: 1, handler: nil)
         XCTAssertEqual(observedBalance, 1)
         XCTAssertEqual(callCount, 3)
     }
 
     func test_whenBalanceThrows_thenContinuesObserving() {
         var callCount = 2
+        let expectation = self.expectation(description: "Finished")
         DispatchQueue.global().async {
             try? self.applicationService.observeChangesInBalance(address: Address.safeAddress.value,
                                                                  every: 0.1) { _ in
                 callCount -= 1
-                return callCount == 0
+                let isFinished = callCount == 0
+                if isFinished {
+                    expectation.fulfill()
+                }
+                return isFinished
             }
         }
         delay(0.1)
@@ -99,6 +105,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         delay(0.1)
         nodeService.shouldThrow = false
         delay(0.1)
+        waitForExpectations(timeout: 1, handler: nil)
         XCTAssertEqual(callCount, 0)
     }
 
