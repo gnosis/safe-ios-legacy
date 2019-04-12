@@ -10,20 +10,24 @@ public struct WalletApplicationServiceConfiguration {
     public var chromeExtensionURL: URL
     public var privacyPolicyURL: URL
     public var termsOfUseURL: URL
+    public var usesAPIv2: Bool
 
     public static let `default` = WalletApplicationServiceConfiguration(transactionURLFormat: "%@",
                                                                         chromeExtensionURL: .example,
                                                                         privacyPolicyURL: .example,
-                                                                        termsOfUseURL: .example)
+                                                                        termsOfUseURL: .example,
+                                                                        usesAPIv2: false)
 
     public init(transactionURLFormat: String,
                 chromeExtensionURL: URL,
                 privacyPolicyURL: URL,
-                termsOfUseURL: URL) {
+                termsOfUseURL: URL,
+                usesAPIv2: Bool = false) {
         self.transactionURLFormat = transactionURLFormat
         self.chromeExtensionURL = chromeExtensionURL
         self.privacyPolicyURL = privacyPolicyURL
         self.termsOfUseURL = termsOfUseURL
+        self.usesAPIv2 = usesAPIv2
     }
 
     internal func transactionURL(`for` hash: String) -> URL {

@@ -34,6 +34,10 @@ public final class MockNotificationService: NotificationDomainService {
         didAuth = true
     }
 
+    public func authV2(request: AuthRequestV2) throws {
+        // no-op
+    }
+
     private func throwIfNeeded() throws {
         if shouldThrowNetworkError {
             throw JSONHTTPClient.Error.networkRequestFailed(URLRequest(url: URL(string: "http://test.url")!), nil, nil)

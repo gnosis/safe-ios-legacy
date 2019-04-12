@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletApplication
+import SafeAppUI
 
 struct AppConfig: Codable {
 
@@ -73,10 +74,11 @@ extension AppConfig {
 extension AppConfig {
 
     var walletApplicationServiceConfiguration: WalletApplicationServiceConfiguration {
-        return .init(transactionURLFormat: transactionWebURLFormat,
-                     chromeExtensionURL: chromeExtensionURL,
-                     privacyPolicyURL: privacyPolicyURL,
-                     termsOfUseURL: termsOfUseURL)
+        return WalletApplicationServiceConfiguration(transactionURLFormat: transactionWebURLFormat,
+                                                     chromeExtensionURL: chromeExtensionURL,
+                                                     privacyPolicyURL: privacyPolicyURL,
+                                                     termsOfUseURL: termsOfUseURL,
+                                                     usesAPIv2: FeatureFlagSettings.instance.isOn("uses_auth_v2"))
     }
 
 }

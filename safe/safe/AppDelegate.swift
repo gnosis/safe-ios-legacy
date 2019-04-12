@@ -62,10 +62,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     }
 
     func configureDependencyInjection() {
+        configureFeatureFlags()
         configureIdentityAccess()
         configureMultisigWallet()
         configureEthereum()
-        configureUI()
         #if DEBUG
         Tracker.shared.append(handler: ConsoleTracker())
         #endif
@@ -249,7 +249,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         // multisig wallet db migrations go here
     }
 
-    func configureUI() {
+    func configureFeatureFlags() {
         if let flags = appConfig.featureFlags {
             FeatureFlagSettings.instance = FeatureFlagSettings(flags: flags)
         }
