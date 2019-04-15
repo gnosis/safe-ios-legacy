@@ -19,6 +19,9 @@
 /* Try again in */
 "app.unlock.tryagain" = "Try again in";
 
+/* App slogan */
+"app_slogan" = "Enter the decentralized web.";
+
 /* Back */
 "back" = "Back";
 
@@ -327,12 +330,6 @@
 /* Restore safe button */
 "onboarding.setup_safe.restore" = "Restore an Existing Safe";
 
-/* App slogan */
-"onboarding.start.description" = "Safely store Ether and ERC20\n tokens with 2-factor authentication.";
-
-/* Set up password button title */
-"onboarding.start.setup_password" = "Set up password";
-
 /* Agree */
 "onboarding.terms.agree" = "Agree";
 
@@ -597,6 +594,9 @@
 
 /* Send */
 "send_title" = "Send %@";
+
+/* Set up password button title */
+"setup_password" = "setup_password";
 
 /* Submit transaction */
 "submit" = "Submit";
