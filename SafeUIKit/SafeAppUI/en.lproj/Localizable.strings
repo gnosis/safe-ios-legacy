@@ -119,6 +119,15 @@
 /* Some error occurred. */
 "generic.error.unknown" = "Error occurred. Please, try again later.";
 
+/* Guidelines */
+"guidelines" = "Guidelines";
+
+/* How this works */
+"how_this_works" = "How this works";
+
+/* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
+"ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
+
 /* Privacy Policy */
 "ios_privacy_policy_link_text" = "Privacy Policy";
 
@@ -303,7 +312,8 @@
 /* Title for new safe screen */
 "new_safe.title" = "Configure";
 
-/* Next button
+/* Next
+   Next button
    Next button title */
 "next" = "Next";
 
@@ -321,15 +331,6 @@
 
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
-
-/* Content paragraphs, separated by '\n' */
-"onboarding.guidelines.content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. A recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
-
-/* How this works */
-"onboarding.guidelines.header" = "How this works";
-
-/* Guidelines */
-"onboarding.guidelines.title" = "Guidelines";
 
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
