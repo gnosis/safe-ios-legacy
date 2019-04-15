@@ -1,3 +1,6 @@
+/* Add token button */
+"add_token" = "Add Token";
+
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
@@ -21,6 +24,9 @@
 
 /* Try again in */
 "app.unlock.tryagain" = "Try again in";
+
+/* Assets tab title */
+"assets_capitalized" = "ASSETS";
 
 /* Back */
 "back" = "Back";
@@ -66,7 +72,7 @@
 "disconnect_extension.review.title" = "Disconnect browser extension";
 
 /* Not enough balance for transaction. */
-"exceeds_funds" = "Insufficient funds to perform this action.";
+"exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
@@ -101,20 +107,14 @@
 /* Some error occurred. */
 "generic.error.unknown" = "Error occurred. Please, try again later.";
 
-/* Menu button title */
-"main.menu" = "Menu";
-
-/* Assets tab title */
-"main.segment.assets" = "Assets";
-
-/* Transactions tab title */
-"main.segment.transactions" = "Transactions";
-
 /* Hide displayed token action. */
 "manage_tokens.hide" = "Hide";
 
 /* Title for Manage Tokens Screen. */
 "manage_tokens.title" = "Tokens";
+
+/* Menu button title */
+"menu" = "Menu";
 
 /* Change browser extension menu item */
 "menu.action.change_browser_extension" = "Replace Browser Extension";
@@ -704,7 +704,7 @@
 "transaction_fee" = "Network fee";
 
 /* Explanatory message */
-"transaction_fee_explanation" = "This is a network fee required by the blockchain to execute the transaction.";
+"transaction_fee_explanation" = "This is the fee required by the blockchain to execute the transaction.";
 
 /* Outgoing transafer */
 "transaction_type_asset_transfer" = "Outgoing transfer";
@@ -738,6 +738,9 @@
 
 /* Wallet recovered */
 "transactions.row.wallet_recovery" = "Recovered Safe";
+
+/* Transactions tab title */
+"transactions_capitalized" = "TRANSACTIONS";
 
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";

@@ -39,7 +39,7 @@
 "confirmed" = "Confirmed";
 
 /* Warning about not enough funds */
-"exceeds_funds" = "Insufficient funds to perform this action.";
+"exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* Error to display if amount of fractional digits is exceded. */
 "ios_token_input_exceded_amount_of_fractional_digits" = "Exceded amount of fractional digits.";
@@ -60,7 +60,7 @@
 "loading_title_text" = "Loading…";
 
 /* Paste from clipboard alert item. */
-"paste_from_clipboard" = "Paste from clipboard";
+"paste_from_clipboard" = "Paste from Clipboard";
 
 /* Recipient's address in address input. */
 "recipients_address" = "Recipient’s address";
