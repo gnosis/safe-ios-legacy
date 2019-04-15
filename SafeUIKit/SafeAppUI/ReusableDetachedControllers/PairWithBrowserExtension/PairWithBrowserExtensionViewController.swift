@@ -24,22 +24,23 @@ public protocol PairWithBrowserExtensionViewControllerDelegate: class {
 public final class PairWithBrowserExtensionViewController: UIViewController {
 
     enum Strings {
-        static let downloadExtension = LocalizedString("new_safe.browser_extension.download_chrome_extension",
+        static let downloadExtension = LocalizedString("ios_open_be_link_text",
                                                        comment: "'Download the' Gnosis Safe Chrome browser exntension.")
-        static let chromeExtension = LocalizedString("new_safe.browser_extension.chrome_extension_substring",
+        static let chromeExtension = LocalizedString("ios_open_be_link_substring",
                                                      comment: "Download the 'Gnosis Safe Chrome browser exntension.'")
-        static let scanQRCode = LocalizedString("new_safe.browser_extension.scan_qr",
+        static let scanQRCode = LocalizedString("install_browser_extension",
                                                 comment: "Scan its QR code.")
-        static let skipSetup = LocalizedString("new_safe.browser_extension.skip",
+        static let skipSetup = LocalizedString("skip_setup_later",
                                                comment: "Skip button text")
-        static let scan = LocalizedString("new_safe.browser_extension.scan",
+        static let scan = LocalizedString("scan",
                                           comment: "Scan button title in extension setup screen")
-        static let browserExtensionExpired = LocalizedString("new_safe.browser_extension.expired",
+        static let browserExtensionExpired = LocalizedString("ios_be_error_network",
                                                              comment: "Browser Extension Expired Message")
-        static let networkError = LocalizedString("new_safe.browser_extension.network_error",
+        static let networkError = LocalizedString("ios_be_error_expired",
                                                   comment: "Network error message")
-        static let invalidCode = LocalizedString("new_safe.browser_extension.invalid_code_error",
+        static let invalidCode = LocalizedString("ios_be_error_invalid",
                                                  comment: "Invalid extension code")
+        static let back = LocalizedString("back", comment: "Back")
     }
 
     @IBOutlet weak var wrapperView: UIView!
@@ -104,7 +105,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
 
     override public func awakeFromNib() {
         super.awakeFromNib()
-        backButtonItem = UIBarButtonItem(title: LocalizedString("back", comment: "Back"),
+        backButtonItem = UIBarButtonItem(title: Strings.back,
                                          style: .plain,
                                          target: self,
                                          action: #selector(back))
@@ -208,7 +209,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     }
 
     private func configureStepsLabels() {
-        let attrStr = NSMutableAttributedString(string: "1. \(Strings.downloadExtension)")
+        let attrStr = NSMutableAttributedString(string: Strings.downloadExtension)
         let range = attrStr.mutableString.range(of: Strings.chromeExtension)
         attrStr.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: range)
         attrStr.addLinkIcon()
@@ -216,7 +217,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         step1Label.isUserInteractionEnabled = true
         step1Label.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                action: #selector(downloadBrowserExtension)))
-        step2Label.text = "2. \(Strings.scanQRCode)"
+        step2Label.text = Strings.scanQRCode
     }
 
     @objc private func downloadBrowserExtension() {

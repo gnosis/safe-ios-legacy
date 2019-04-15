@@ -28,6 +28,9 @@
 /* Back */
 "back" = "Back";
 
+/* Title for add browser extension screen */
+"browser_extension" = "Browser extension";
+
 /* Cancel
    Cancel button. */
 "cancel" = "Cancel";
@@ -52,6 +55,9 @@
 
 /* Confirmation screen description */
 "confirm_password_info" = "Please enter your password again to confirm.";
+
+/* Header for add browser extension screen */
+"connect_browser_extension" = "Connect browser extension";
 
 /* Body text */
 "connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
@@ -82,6 +88,9 @@
 
 /* Title for the header */
 "disconnect_extension.review.title" = "Disconnect browser extension";
+
+/* Description for add browser extension screen */
+"enable_2fa" = "Enable 2-factor authentication by connecting your Safe to the browser extension.";
 
 /* Not enough balance for transaction. */
 "exceeds_funds" = "Insufficient funds to perform this transaction";
@@ -125,8 +134,26 @@
 /* How this works */
 "how_this_works" = "How this works";
 
+/* Scan its QR code. */
+"install_browser_extension" = "2. Install browser extension on your desktop computer and scan its QR code.";
+
+/* Network error message */
+"ios_be_error_expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
+
+/* Invalid extension code */
+"ios_be_error_invalid" = "Failed to pair because of invalid QR code.";
+
+/* Browser Extension Expired Message */
+"ios_be_error_network" = "Failed to pair because of network error. Please try again later.";
+
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
 "ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
+
+/* Download the 'Gnosis Safe Chrome browser exntension.' */
+"ios_open_be_link_substring" = "link to the Chrome browser extension ";
+
+/* 'Download the' Gnosis Safe Chrome browser exntension. */
+"ios_open_be_link_text" = "1. Open the link to the Chrome browser extension on your desktop computer.";
 
 /* Privacy Policy */
 "ios_privacy_policy_link_text" = "Privacy Policy";
@@ -233,39 +260,6 @@
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
 
-/* Download the 'Gnosis Safe Chrome browser exntension.' */
-"new_safe.browser_extension.chrome_extension_substring" = "Gnosis Safe Chrome browser extension.";
-
-/* Description for add browser extension screen */
-"new_safe.browser_extension.description" = "All transactions need to be approved by both this device and the browser extension.";
-
-/* 'Download the' Gnosis Safe Chrome browser exntension. */
-"new_safe.browser_extension.download_chrome_extension" = "Download the Gnosis Safe Chrome browser extension.";
-
-/* Browser Extension Expired Message */
-"new_safe.browser_extension.expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
-
-/* Header for add browser extension screen */
-"new_safe.browser_extension.header" = "Add browser extension";
-
-/* Invalid extension code */
-"new_safe.browser_extension.invalid_code_error" = "Failed to pair because of invalid QR code.";
-
-/* Network error message */
-"new_safe.browser_extension.network_error" = "Failed to pair because of network error. Please try again later.";
-
-/* Scan button title in extension setup screen */
-"new_safe.browser_extension.scan" = "Scan";
-
-/* Scan its QR code. */
-"new_safe.browser_extension.scan_qr" = "Scan its QR code.";
-
-/* Skip button text */
-"new_safe.browser_extension.skip" = "Skip";
-
-/* Title for add browser extension screen */
-"new_safe.browser_extension.title" = "Setup";
-
 /* Title for confirm recovery screen. */
 "new_safe.confirm_recovery.header" = "Enter the following words from your recovery phrase.";
 
@@ -281,8 +275,7 @@
 /* Mobile app button */
 "new_safe.mobile_app" = "Mobile app";
 
-/* Next
-   Next button */
+/* Next */
 "new_safe.next" = "Next";
 
 /* (Optional) */
@@ -302,9 +295,6 @@
 
 /* Next button. */
 "new_safe.setup_recovery.next" = "Next";
-
-/* Title for setup recovery phrase screen. */
-"new_safe.setup_recovery.title" = "Recovery Phrase";
 
 /* Warning for setup recovery phrase screen. */
 "new_safe.setup_recovery.warning" = "Without these, you won’t be able to recover your Safe and its assets.";
@@ -462,6 +452,9 @@
 /* Recovery transaction failed alert's title */
 "recovery.transaction.failed_alert.title" = "Error";
 
+/* Title for setup recovery phrase screen. */
+"recovery_phrase" = "Recovery Phrase";
+
 /* Description */
 "replace_extension.connect.description" = "All transactions will need to be approved by both this device and the new Safe browser extension.";
 
@@ -592,6 +585,9 @@
 /* Save button */
 "save" = "Save";
 
+/* Scan button title in extension setup screen */
+"scan" = "Scan";
+
 /* Send */
 "send_title" = "Send %@";
 
@@ -603,6 +599,9 @@
 
 /* Set up safe options screen title */
 "setup_successful" = "Device setup successful! \n Let's get started.";
+
+/* Skip button text */
+"skip_setup_later" = "Skip and setup later";
 
 /* Submit transaction */
 "submit" = "Submit";

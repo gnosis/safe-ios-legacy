@@ -47,7 +47,7 @@ class NewSafeViewController: UIViewController {
         static let browserExtension = LocalizedString("new_safe.browser_extension",
                                                       comment: "Browser extension button")
         static let optionalText = LocalizedString("new_safe.optional", comment: "(Optional)")
-        static let next = LocalizedString("new_safe.next", comment: "Next button")
+        static let next = LocalizedString("next", comment: "Next button")
     }
 
     @IBOutlet weak var nextButton: UIBarButtonItem!

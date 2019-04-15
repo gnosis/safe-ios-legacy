@@ -154,7 +154,7 @@ class UITestCase: XCTestCase {
 
     func handleSuggestionAlertByCancelling(with expectation: XCTestExpectation) {
         cameraSuggestionHandler = addUIInterruptionMonitor(withDescription: "Suggestion Alert") { alert in
-            guard alert.label == LocalizedString("scanner.camera_access_required.title") else {
+            guard alert.label == LocalizedString("ios_camera_title") else {
                 return false
             }
             XCTAssertExist(alert.buttons[LocalizedString("scanner.camera_access_required.allow")])

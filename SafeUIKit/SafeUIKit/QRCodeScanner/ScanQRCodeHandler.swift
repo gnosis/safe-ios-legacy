@@ -26,14 +26,13 @@ class ScanQRCodeHandler {
     private var didFinishScanning = false
 
     enum Strings {
-        static let cameraAlertTitle = LocalizedString("scanner.camera_access_required.title",
+        static let cameraAlertTitle = LocalizedString("ios_camera_title",
                                                       comment: "Title for alert if camera is not accessable.")
-        static let cameraAlertMessage = LocalizedString("scanner.camera_access_required.message",
+        static let cameraAlertMessage = LocalizedString("ios_camera_message",
                                                         comment: "Message for alert if camera is not accessable.")
         static let cameraAlertCancel = LocalizedString("cancel", comment: "Cancel button title")
-        static let cameraAlertAllow = LocalizedString("scanner.camera_access_required.allow",
-                                                      comment: "Button name to allow camera access")
-        static let invalidCode = LocalizedString(("scanner.error.invalid_code"), comment: "Invalid code")
+        static let cameraAlertAllow = LocalizedString("ios_camera_allow", comment: "Button name to allow camera access")
+        static let invalidCode = LocalizedString(("ios_camera_invalid_qr"), comment: "Invalid code")
     }
 
     func scan() {
