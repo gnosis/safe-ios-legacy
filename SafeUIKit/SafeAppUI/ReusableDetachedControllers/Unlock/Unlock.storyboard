@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,18 +43,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baV-ix-DlQ">
                                         <rect key="frame" x="10" y="278" width="355" height="359"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1G-7q-Z9o">
-                                                <rect key="frame" x="152.5" y="154.5" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Eyx-45-2Yj"/>
-                                                    <constraint firstAttribute="width" constant="50" id="Zfl-mx-bnT"/>
-                                                </constraints>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="touch-id-icon"/>
-                                                <connections>
-                                                    <action selector="loginWithBiometry:" destination="rVK-CN-jIO" eventType="touchUpInside" id="kRe-Fo-hk5"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fz4-D4-HVk" userLabel="Countdown Stack">
                                                 <rect key="frame" x="138" y="154" width="79" height="51.5"/>
                                                 <subviews>
@@ -72,12 +60,35 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="oEw-iV-y4O">
+                                                <rect key="frame" x="149" y="142.5" width="57" height="74.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1G-7q-Z9o">
+                                                        <rect key="frame" x="3.5" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="Eyx-45-2Yj"/>
+                                                            <constraint firstAttribute="width" constant="50" id="Zfl-mx-bnT"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="touch-id-icon"/>
+                                                        <connections>
+                                                            <action selector="loginWithBiometry:" destination="rVK-CN-jIO" eventType="touchUpInside" id="kRe-Fo-hk5"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkN-dM-xRG">
+                                                        <rect key="frame" x="0.0" y="54" width="57" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="oEw-iV-y4O" firstAttribute="centerX" secondItem="baV-ix-DlQ" secondAttribute="centerX" id="5zu-b3-PFu"/>
                                             <constraint firstItem="fz4-D4-HVk" firstAttribute="centerX" secondItem="baV-ix-DlQ" secondAttribute="centerX" id="H32-Ig-J7s"/>
-                                            <constraint firstItem="h1G-7q-Z9o" firstAttribute="centerX" secondItem="baV-ix-DlQ" secondAttribute="centerX" id="ghV-ts-Oa0"/>
-                                            <constraint firstItem="h1G-7q-Z9o" firstAttribute="centerY" secondItem="baV-ix-DlQ" secondAttribute="centerY" id="i0A-zD-VuX"/>
+                                            <constraint firstItem="oEw-iV-y4O" firstAttribute="centerY" secondItem="baV-ix-DlQ" secondAttribute="centerY" id="cKT-0d-qK8"/>
                                             <constraint firstItem="fz4-D4-HVk" firstAttribute="centerY" secondItem="baV-ix-DlQ" secondAttribute="centerY" id="iC7-fn-KRQ"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="tK9-TL-acd"/>
                                         </constraints>
@@ -111,6 +122,8 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="TWI-OQ-quH" id="Zwk-dL-aFQ"/>
+                        <outlet property="biometryExplanationLabel" destination="hkN-dM-xRG" id="qBN-Ue-7gD"/>
+                        <outlet property="biometryStackView" destination="oEw-iV-y4O" id="GPz-ht-r88"/>
                         <outlet property="cancelButton" destination="x1Q-Vf-jPA" id="IKc-3f-i5d"/>
                         <outlet property="contentViewBottomConstraint" destination="u3l-ni-1St" id="xyp-zN-gDU"/>
                         <outlet property="countdownLabel" destination="k6Y-AZ-zil" id="0UI-I6-JvS"/>
@@ -126,7 +139,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="safe-header-logo" width="125" height="125"/>
+        <image name="safe-header-logo" width="71" height="72"/>
         <image name="touch-id-icon" width="85" height="85"/>
     </resources>
 </document>

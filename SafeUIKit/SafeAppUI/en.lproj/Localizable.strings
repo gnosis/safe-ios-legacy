@@ -16,9 +16,6 @@
 /* Info */
 "alert.info.title" = "Information";
 
-/* Cancel */
-"app.unlock.cancel" = "Cancel";
-
 /* Try again in */
 "app.unlock.tryagain" = "Try again in";
 
@@ -66,7 +63,7 @@
 "disconnect_extension.review.title" = "Disconnect browser extension";
 
 /* Not enough balance for transaction. */
-"exceeds_funds" = "Insufficient funds to perform this action.";
+"exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
@@ -356,6 +353,9 @@
 
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
+
+/* Password field placeholder */
+"password" = "Password";
 
 /* Abort safe creation button title */
 "pending_safe.abort_alert.abort" = "Abort";
@@ -704,7 +704,7 @@
 "transaction_fee" = "Network fee";
 
 /* Explanatory message */
-"transaction_fee_explanation" = "This is a network fee required by the blockchain to execute the transaction.";
+"transaction_fee_explanation" = "This is the fee required by the blockchain to execute the transaction.";
 
 /* Outgoing transafer */
 "transaction_type_asset_transfer" = "Outgoing transfer";
@@ -738,6 +738,15 @@
 
 /* Wallet recovered */
 "transactions.row.wallet_recovery" = "Recovered Safe";
+
+/* Try again in */
+"try_again_in" = "Try again in";
+
+/* Face ID button explanation */
+"use_faceid_to_unlock" = "Use Face ID to unlock";
+
+/* Touch ID button explanation */
+"use_touchid_to_unlock" = "Use Touch ID to unlock";
 
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";
