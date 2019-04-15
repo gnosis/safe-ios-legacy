@@ -7,15 +7,12 @@ import SafeUIKit
 extension VerifiableInput {
 
     enum Strings {
-        static let length = LocalizedString("onboarding.set_password.length",
-                                            comment: "Use a minimum of 8 characters.")
-        static let letterAndDigit = LocalizedString("onboarding.set_password.letter_and_digit",
+        static let length = LocalizedString("new_password_min_chars", comment: "Use a minimum of 8 characters.")
+        static let letterAndDigit = LocalizedString("password_validation_one_number_one_letter",
                                                     comment: "At least 1 digit and 1 letter.")
-        static let trippleChars = LocalizedString("onboarding.set_password.no_tripple_chars",
+        static let trippleChars = LocalizedString("password_validation_identical_characters",
                                                   comment: "No triple characters.")
-
-        static let matchPassword = LocalizedString("onboarding.confirm_password.match",
-                                                   comment: "Passwords must match.")
+        static let matchPassword = LocalizedString("passwords_do_not_match", comment: "Passwords must match.")
     }
 
     func configureForNewPassword() {

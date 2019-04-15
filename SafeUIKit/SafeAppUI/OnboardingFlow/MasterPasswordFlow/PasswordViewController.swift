@@ -29,14 +29,13 @@ final class PasswordViewController: UIViewController {
     }
 
     private enum Strings {
-        static let createHeader = LocalizedString("onboarding.set_password.header",
-                                                  comment: "Header for set password screen.")
-        static let confirmHeader = LocalizedString("onboarding.confirm_password.header",
-                                                   comment: "Header for set password screen.")
-        static let description = LocalizedString("onboarding.set_password.description",
-                                                 comment: "Set password screen description.")
-        static let next = LocalizedString("onboarding.set_password.next",
-                                          comment: "Next button title")
+        static let createHeader = LocalizedString("create_password", comment: "Header for set password screen.")
+        static let confirmHeader = LocalizedString("confirm_password", comment: "Header for set password screen.")
+        static let setupInfo = LocalizedString("setup_password_info", comment: "Set password screen description.")
+        static let confirmInfo = LocalizedString("confirm_password_info", comment: "Confirmation screen description")
+        static let nextButtonTitle = LocalizedString("next", comment: "Next button title")
+        static let confirmButtonTitle = LocalizedString("confirm", comment: "Confirm button title")
+        static let passwordPlaceholder = LocalizedString("password", comment: "Password placeholder")
     }
 
     static func create(delegate: PasswordViewControllerDelegate,
@@ -47,11 +46,6 @@ final class PasswordViewController: UIViewController {
         return vc
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        nextButton.title = Strings.next
-    }
-
     @IBAction func proceed(_ sender: Any) {
         verifiableInput.verify()
     }
@@ -59,12 +53,19 @@ final class PasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureKeyboardBehavior()
+
+        verifiableInput.textInput.placeholder = Strings.passwordPlaceholder
+
         if isSetPasswordScreen {
             headerLabel.text = Strings.createHeader
+            descriptionLabel.text = Strings.setupInfo
             verifiableInput.configureForNewPassword()
+            nextButton.title = Strings.nextButtonTitle
             bottomSpaceFromDescriptionToCardViewConstraint.constant = 190
         } else {
             headerLabel.text = Strings.confirmHeader
+            nextButton.title = Strings.confirmButtonTitle
+            descriptionLabel.text = Strings.confirmInfo
             verifiableInput.configureForConfirmPassword(referencePassword: referencePassword)
             bottomSpaceFromDescriptionToCardViewConstraint.constant = 130
         }

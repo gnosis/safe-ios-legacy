@@ -1,6 +1,9 @@
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
+/* Agree */
+"agree" = "Agree";
+
 /* OK */
 "alert.error.ok" = "OK";
 
@@ -41,6 +44,15 @@
 /* Close */
 "close" = "Close";
 
+/* Confirm button title */
+"confirm" = "Confirm";
+
+/* Header for set password screen. */
+"confirm_password" = "Confirm Password";
+
+/* Confirmation screen description */
+"confirm_password_info" = "Please enter your password again to confirm.";
+
 /* Body text */
 "connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
 
@@ -52,6 +64,12 @@
 
 /* Title for the header */
 "connect_extension.review.title" = "Connect browser extension";
+
+/* Header for set password screen. */
+"create_password" = "Create Password";
+
+/* New safe button */
+"create_safe" = "Create a New Safe";
 
 /* Body text */
 "disconnect_extension.intro.body" = "Once this process is complete, you won't need to confirm transactions with browser extension.\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
@@ -100,6 +118,15 @@
 
 /* Some error occurred. */
 "generic.error.unknown" = "Error occurred. Please, try again later.";
+
+/* Privacy Policy */
+"ios_privacy_policy_link_text" = "Privacy Policy";
+
+/* Content (bulleted list). Separate by new line characters '\n' */
+"ios_terms_contents" = "We do not collect demographic data such as age and gender.\nWe collect anonymized app usage data and crash reports to ensure the quality of our app.";
+
+/* Terms of Use */
+"ios_terms_link_text" = "Terms of Use";
 
 /* Menu button title */
 "main.menu" = "Menu";
@@ -191,6 +218,9 @@
 /* Placeholder text for new password field */
 "new_password.placeholder" = "Enter new password";
 
+/* Use a minimum of 8 characters. */
+"new_password_min_chars" = "Use a minimum of 8 characters";
+
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
 
@@ -273,14 +303,12 @@
 /* Title for new safe screen */
 "new_safe.title" = "Configure";
 
-/* Next button */
+/* Next button
+   Next button title */
 "next" = "Next";
 
-/* Header for set password screen. */
-"onboarding.confirm_password.header" = "Confirm Password";
-
-/* Passwords must match. */
-"onboarding.confirm_password.match" = "Passwords must match";
+/* No Thanks */
+"no_thanks" = "No Thanks";
 
 /* Error alert's title */
 "onboarding.error.title" = "Error";
@@ -303,56 +331,21 @@
 /* Guidelines */
 "onboarding.guidelines.title" = "Guidelines";
 
-/* Set password screen description. */
-"onboarding.set_password.description" = "Your confidential password is used to unlock the Safe and confirm transactions.";
-
-/* Header for set password screen. */
-"onboarding.set_password.header" = "Create Password";
-
-/* Use a minimum of 8 characters. */
-"onboarding.set_password.length" = "Use a minimum of 8 characters";
-
-/* At least 1 digit and 1 letter. */
-"onboarding.set_password.letter_and_digit" = "At least 1 number and 1 letter";
-
-/* Next button title */
-"onboarding.set_password.next" = "Next";
-
-/* No triple characters. */
-"onboarding.set_password.no_tripple_chars" = "No triple characters";
-
-/* Set up safe options screen title */
-"onboarding.setup_safe.info" = "Safe is secured.\nPassword setup complete.";
-
-/* New safe button */
-"onboarding.setup_safe.new_safe" = "Create a New Safe";
-
-/* Restore safe button */
-"onboarding.setup_safe.restore" = "Restore an Existing Safe";
-
-/* Agree */
-"onboarding.terms.agree" = "Agree";
-
-/* Content (bulleted list). Separate by new line characters '\n' */
-"onboarding.terms.content" = "We do not collect demographic data such as age or gender.\nWe collect anonymized app usage data and crash reports to ensure the quality of our app.";
-
-/* No Thanks */
-"onboarding.terms.disagree" = "No Thanks";
-
-/* Header label */
-"onboarding.terms.header" = "Please review our Terms of Use and Privacy Policy.";
-
-/* Privacy Policy */
-"onboarding.terms.privacy" = "Privacy Policy";
-
-/* Terms of Use */
-"onboarding.terms.terms" = "Terms of Use";
-
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
 
-/* Password field placeholder */
+/* Password field placeholder
+   Password placeholder */
 "password" = "Password";
+
+/* No triple characters. */
+"password_validation_identical_characters" = "No triple characters";
+
+/* At least 1 digit and 1 letter. */
+"password_validation_one_number_one_letter" = "At least 1 letter and 1 number";
+
+/* Passwords must match. */
+"passwords_do_not_match" = "Sorry, the password doesn't match";
 
 /* Abort safe creation button title */
 "pending_safe.abort_alert.abort" = "Abort";
@@ -374,6 +367,12 @@
 
 /* Pending safe failed alert's title */
 "pending_safe.failed_alert.title" = "Error";
+
+/* Header label */
+"please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
+
+/* Restore safe button */
+"recover_safe" = "Recover an Existing Safe";
 
 /* Invalid contract address */
 "recovery.address.error.invalid_contract" = "Invalid Safe address";
@@ -596,7 +595,13 @@
 "send_title" = "Send %@";
 
 /* Set up password button title */
-"setup_password" = "setup_password";
+"setup_password" = "Setup Password";
+
+/* Set password screen description. */
+"setup_password_info" = "Your confidential password is used to unlock the Safe and confirm transactions.";
+
+/* Set up safe options screen title */
+"setup_successful" = "Device setup successful! \n Let's get started.";
 
 /* Submit transaction */
 "submit" = "Submit";
