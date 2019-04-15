@@ -1,6 +1,9 @@
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
+/* Recovery address validation failed alert's message */
+"address_invalid" = "Address is invalid";
+
 /* Agree */
 "agree" = "Agree";
 
@@ -32,8 +35,15 @@
 "browser_extension" = "Browser extension";
 
 /* Cancel
-   Cancel button. */
+   Cancel button.
+   Cancel safe creation button. */
 "cancel" = "Cancel";
+
+/* Message body of abort alert */
+"cancel_creation_warning" = "If you cancel, all progress will be lost and you won't be able to use this address.";
+
+/* Title of abort safe creation alert */
+"cancel_safe_creation" = "Cancel Safe creation?";
 
 /* Current password placeholder */
 "change_password.current_password" = "Current password";
@@ -44,7 +54,9 @@
 /* Title for change password screen */
 "change_password.title" = "Change Password";
 
-/* Close */
+/* Button to cancel 'abort create' alert
+   Close
+   Ok */
 "close" = "Close";
 
 /* Confirm button title */
@@ -71,11 +83,20 @@
 /* Title for the header */
 "connect_extension.review.title" = "Connect browser extension";
 
+/* Abort safe creation button title */
+"continue_text" = "Continue";
+
 /* Header for set password screen. */
 "create_password" = "Create Password";
 
 /* New safe button */
 "create_safe" = "Create a New Safe";
+
+/* Title for safe creation screen. */
+"create_safe_title" = "Create Safe";
+
+/* Creating safe header for safe creation screen. */
+"creating_your_new_safe" = "Creating your new Safe…";
 
 /* Body text */
 "disconnect_extension.intro.body" = "Once this process is complete, you won't need to confirm transactions with browser extension.\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
@@ -91,6 +112,12 @@
 
 /* Description for add browser extension screen */
 "enable_2fa" = "Enable 2-factor authentication by connecting your Safe to the browser extension.";
+
+/* My Safe Address */
+"enter_safe_address" = "Enter your Safe address";
+
+/* Safe Address */
+"enter_safe_address_field" = "Enter Safe address";
 
 /* Not enough balance for transaction. */
 "exceeds_funds" = "Insufficient funds to perform this transaction";
@@ -137,6 +164,9 @@
 /* Scan its QR code. */
 "install_browser_extension" = "2. Install browser extension on your desktop computer and scan its QR code.";
 
+/* Insufficient funds header for safe creation screen. */
+"insufficient_funds" = "Insufficient funds";
+
 /* Network error message */
 "ios_be_error_expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
 
@@ -157,6 +187,9 @@
 
 /* Privacy Policy */
 "ios_privacy_policy_link_text" = "Privacy Policy";
+
+/* Content paragraphs, separated by '\n' */
+"ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
 
 /* Content (bulleted list). Separate by new line characters '\n' */
 "ios_terms_contents" = "We do not collect demographic data such as age and gender.\nWe collect anonymized app usage data and crash reports to ensure the quality of our app.";
@@ -241,6 +274,12 @@
 
 /* Network fee */
 "network_fee.alert.title" = "Network Fee";
+
+/* Explanatory message */
+"network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
+
+/* Required minimum description for safe creation screen. */
+"network_fee_required" = "A network fee is required to create your new Safe.";
 
 /* Placeholder text for confirm password field */
 "new_password.confirm.placeholder" = "Confirm new password";
@@ -338,18 +377,6 @@
 /* Passwords must match. */
 "passwords_do_not_match" = "Sorry, the password doesn't match";
 
-/* Abort safe creation button title */
-"pending_safe.abort_alert.abort" = "Abort";
-
-/* Button to cancel 'abort create' alert */
-"pending_safe.abort_alert.cancel" = "Close";
-
-/* Message body of abort alert */
-"pending_safe.abort_alert.message" = "If you abort, you will lose access to all funds associated with this address. This cannot be undone.";
-
-/* Title of abort safe creation alert */
-"pending_safe.abort_alert.title" = "Aborting Safe Creation?";
-
 /* Pending safe failed alert's message */
 "pending_safe.failed_alert.message" = "Error: %@ Please try again later.";
 
@@ -365,29 +392,18 @@
 /* Restore safe button */
 "recover_safe" = "Recover an Existing Safe";
 
+/* Recover Safe
+   Recover safe */
+"recover_safe_title" = "Recover Safe";
+
 /* Invalid contract address */
 "recovery.address.error.invalid_contract" = "Invalid Safe address";
-
-/* Recovery address validation failed alert's message */
-"recovery.address.failed_alert.message" = "Failed to find the Safe";
 
 /* OK button title */
 "recovery.address.failed_alert.ok" = "Ok";
 
 /* Recovery address validation failed alert's title */
 "recovery.address.failed_alert.title" = "Error";
-
-/* My Safe Address */
-"recovery.address.header" = "My Safe address";
-
-/* Safe Address */
-"recovery.address.placeholder" = "Safe address";
-
-/* Description for connect browser extension screen */
-"recovery.browser_extension.description" = "If you want access to Safe’s Chrome browser extension after recovery, please download the extension again and scan the QR code in the interface.\nOtherwise, the access to the extension will be lost after recovery.";
-
-/* Header for connect browser extension screen */
-"recovery.browser_extension.header" = "Connect browser extension";
 
 /* Recovery transaction failed to change Safe confirmation count */
 "recovery.failure.failedToChangeConfirmationCount" = "Recovery transaction failed to change Safe confirmation count";
@@ -413,15 +429,6 @@
 /* Cannot recover because couldn't find the Safe with this address */
 "recovery.failure.walletNotFound" = "Cannot recover because couldn't find the Safe with this address";
 
-/* Content paragraphs, separated by '\n' */
-"recovery.guidelines.content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee in ETH will be automatically deducted from the ETH balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount of ETH required to cover the fee.";
-
-/* How this works */
-"recovery.guidelines.header" = "How this works";
-
-/* Recover safe */
-"recovery.guidelines.title" = "Recover Safe";
-
 /* Recovery phrase does not match this Safe's recovery phrase */
 "recovery.phrase.error." = "Recovery phrase does not match Safe's recovery phrase.";
 
@@ -446,14 +453,14 @@
 /* Header of the review transaction screen */
 "recovery.review.header" = "Recover my Safe";
 
-/* Start button title */
-"recovery.start" = "Start";
-
 /* Recovery transaction failed alert's title */
 "recovery.transaction.failed_alert.title" = "Error";
 
 /* Title for setup recovery phrase screen. */
 "recovery_phrase" = "Recovery Phrase";
+
+/* Retry button title. */
+"refresh" = "Refresh";
 
 /* Description */
 "replace_extension.connect.description" = "All transactions will need to be approved by both this device and the new Safe browser extension.";
@@ -519,38 +526,8 @@
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
 
-/* Explanatory message */
-"safe_creation.alert.message" = "This is a transaction fee required by the blockchain to execute the transaction.";
-
-/* Ok */
-"safe_creation.alert.ok" = "Close";
-
-/* Network fee */
-"safe_creation.alert.title" = "Safe opening fee";
-
-/* Cancel safe creation button. */
-"safe_creation.cancel" = "Cancel";
-
-/* Creating safe header for safe creation screen. */
-"safe_creation.creating_safe_header" = "Creating your new safe";
-
 /* Follow its progress on Etherscan.io */
 "safe_creation.etherscan.follow_progress" = "Follow its progress on Etherscan.io";
-
-/* First deposit header for safe creation screen. */
-"safe_creation.first_deposit_header" = "Make your first deposit";
-
-/* Insufficient funds header for safe creation screen. */
-"safe_creation.insufficient_funds_header" = "Insufficient funds";
-
-/* Required minimum description for safe creation screen. */
-"safe_creation.required_minimum_description" = "(This is the Safe opening fee.)";
-
-/* Required minimum header for safe creation screen. */
-"safe_creation.required_minimum_header" = "Required minimum transfer:";
-
-/* Retry button title. */
-"safe_creation.retry" = "Retry";
 
 /* Address label. */
 "safe_creation.safe_address.address" = "Address";
@@ -576,17 +553,20 @@
 /* Generation safe address. */
 "safe_creation.status.generating_safe_address" = "Generating safe address...";
 
-/* Title for safe creation screen. */
-"safe_creation.title" = "SAFE";
-
 /* Waiting for safe description for safe creation screen. */
 "safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";
+
+/* First deposit header for safe creation screen. */
+"safe_creation_fee" = "Safe creation fee";
 
 /* Save button */
 "save" = "Save";
 
 /* Scan button title in extension setup screen */
 "scan" = "Scan";
+
+/* Required minimum header for safe creation screen. */
+"send_this_amount" = "Send at least this amount to your new Safe:";
 
 /* Send */
 "send_title" = "Send %@";
@@ -602,6 +582,9 @@
 
 /* Skip button text */
 "skip_setup_later" = "Skip and setup later";
+
+/* Start button title */
+"start" = "Start";
 
 /* Submit transaction */
 "submit" = "Submit";
@@ -773,4 +756,7 @@
 
 /* Server-provided transaction is invalid */
 "wallet.error.response_invalid_transaction" = "Server-provided transaction is invalid and will be discarded.";
+
+/* Network fee */
+"what_is_network_fee" = "What is the network fee?";
 

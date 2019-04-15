@@ -19,11 +19,11 @@ class AddressInputViewController: BaseInputViewController {
     weak var delegate: AddressInputViewControllerDelegate?
 
     override var headerText: String {
-        return LocalizedString("recovery.address.header", comment: "My Safe Address")
+        return LocalizedString("enter_safe_address", comment: "My Safe Address")
     }
 
     override var actionFailureMessageFormat: String {
-        return LocalizedString("recovery.address.failed_alert.message",
+        return LocalizedString("address_invalid",
                                comment: "Recovery address validation failed alert's message")
     }
 
@@ -35,7 +35,8 @@ class AddressInputViewController: BaseInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addressInput.placeholder = LocalizedString("recovery.address.placeholder", comment: "Safe Address")
+        title = LocalizedString("recover_safe_title", comment: "Recover safe")
+        addressInput.placeholder = LocalizedString("enter_safe_address_field", comment: "Safe Address")
         addressInput.addressInputDelegate = self
     }
 
