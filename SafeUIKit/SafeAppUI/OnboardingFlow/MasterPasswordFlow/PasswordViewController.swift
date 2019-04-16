@@ -28,7 +28,7 @@ final class PasswordViewController: UIViewController {
         return referencePassword == nil
     }
 
-    private enum Strings {
+    enum Strings {
         static let createHeader = LocalizedString("create_password", comment: "Header for set password screen.")
         static let confirmHeader = LocalizedString("confirm_password", comment: "Header for set password screen.")
         static let setupInfo = LocalizedString("setup_password_info", comment: "Set password screen description.")
