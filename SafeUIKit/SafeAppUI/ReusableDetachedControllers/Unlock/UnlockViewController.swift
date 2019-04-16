@@ -17,6 +17,8 @@ public final class UnlockViewController: UIViewController {
     @IBOutlet weak var countdownLabel: CountdownLabel!
     @IBOutlet weak var verifiableInput: VerifiableInput!
     @IBOutlet weak var loginWithBiometryButton: UIButton!
+    @IBOutlet weak var biometryExplanationLabel: UILabel!
+    @IBOutlet weak var biometryStackView: UIStackView!
     public var showsCancelButton: Bool = false
     private var unlockCompletion: ((Bool) -> Void)!
     private var clockService: Clock { return ApplicationServiceRegistry.clock }
@@ -25,8 +27,11 @@ public final class UnlockViewController: UIViewController {
     }
 
     private enum Strings {
-        static let tryAgain = LocalizedString("app.unlock.tryagain", comment: "Try again in")
-        static let cancel = LocalizedString("app.unlock.cancel", comment: "Cancel")
+        static let tryAgain = LocalizedString("try_again_in", comment: "Try again in")
+        static let cancel = LocalizedString("cancel", comment: "Cancel")
+        static let passwordPlaceholder = LocalizedString("password", comment: "Password field placeholder")
+        static let faceIDInfo = LocalizedString("use_faceid_to_unlock", comment: "Face ID button explanation")
+        static let touchIDInfo = LocalizedString("use_touchid_to_unlock", comment: "Touch ID button explanation")
     }
 
     public static func create(completion: ((Bool) -> Void)? = nil) -> UnlockViewController {
@@ -42,16 +47,23 @@ public final class UnlockViewController: UIViewController {
         verifiableInput.isSecure = true
         verifiableInput.style = .dimmed
         verifiableInput.accessibilityIdentifier = "unlock.password"
+        verifiableInput.textInput.placeholder = Strings.passwordPlaceholder
 
         let isFaceID = authenticationService.isAuthenticationMethodSupported(.faceID)
         let biometryIcon = isFaceID ? Asset.UnlockScreen.faceIdIcon.image : Asset.UnlockScreen.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         loginWithBiometryButton.tintColor = .white
+
+        biometryExplanationLabel.text = isFaceID ? Strings.faceIDInfo : Strings.touchIDInfo
+        biometryExplanationLabel.textColor = ColorName.paleGreyThree.color
+        biometryExplanationLabel.font = UIFont.systemFont(ofSize: 15)
+
         updateBiometryButtonVisibility()
 
         tryAgainLabel.textColor = ColorName.paleGreyThree.color
         tryAgainLabel.text = Strings.tryAgain
         tryAgainLabel.font = UIFont.systemFont(ofSize: 15)
+
         countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
                              clock: clockService)
         countdownLabel.textColor = ColorName.paleGreyThree.color
@@ -122,7 +134,7 @@ public final class UnlockViewController: UIViewController {
     }
 
     private func updateBiometryButtonVisibility() {
-        loginWithBiometryButton.isHidden = !ApplicationServiceRegistry
+        biometryStackView.isHidden = !ApplicationServiceRegistry
             .authenticationService
             .isAuthenticationMethodPossible(.biometry)
     }

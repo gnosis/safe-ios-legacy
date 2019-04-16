@@ -16,7 +16,7 @@ protocol SaveMnemonicDelegate: class {
 final class SaveMnemonicViewController: UIViewController {
 
     enum Strings {
-        static let title = LocalizedString("new_safe.setup_recovery.title",
+        static let title = LocalizedString("recovery_phrase",
                                            comment: "Title for setup recovery phrase screen.")
         static let header = LocalizedString("new_safe.setup_recovery.header",
                                             comment: "Header for setup recovery phrase screen.")

@@ -21,9 +21,8 @@ final class StartViewController: UIViewController {
     private var preservedTranslucent: Bool!
 
     private enum Strings {
-        static let description = LocalizedString("onboarding.start.description", comment: "App slogan")
-        static let setupPassword = LocalizedString("onboarding.start.setup_password",
-                                                   comment: "Set up password button title")
+        static let description = LocalizedString("app_slogan", comment: "App slogan")
+        static let setupPassword = LocalizedString("setup_password", comment: "Set up password button title")
     }
 
     static func create(delegate: StartViewControllerDelegate) -> StartViewController {

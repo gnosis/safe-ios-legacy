@@ -1,12 +1,6 @@
 /* Error to display if address is invalid. */
 "address_invalid" = "Address is invalid";
 
-/* OK */
-"alert.error.ok" = "OK";
-
-/* Error */
-"alert.error.title" = "Error";
-
 /* Amount placeholder for token input. */
 "amount" = "Amount";
 
@@ -28,18 +22,33 @@
 /* Checkmark is not checked */
 "button.unchecked" = "Unchecked";
 
-/* Close button on camera */
-"camera.close" = "Close";
-
 /* Cancel alert item.
    Cancel button title */
 "cancel" = "Cancel";
 
+/* Close button on camera */
+"close" = "Close";
+
 /* Confirmed by browser extension. */
 "confirmed" = "Confirmed";
 
+/* Error */
+"error" = "Error";
+
 /* Warning about not enough funds */
-"exceeds_funds" = "Insufficient funds to perform this action.";
+"exceeds_funds" = "Insufficient funds to perform this transaction";
+
+/* Button name to allow camera access */
+"ios_camera_allow" = "Allow Camera";
+
+/* Invalid code */
+"ios_camera_invalid_qr" = "Invalid QR code";
+
+/* Message for alert if camera is not accessable. */
+"ios_camera_message" = "Camera access is required to make full use of Gnosis Safe.";
+
+/* Title for alert if camera is not accessable. */
+"ios_camera_title" = "Camera Access";
 
 /* Error to display if amount of fractional digits is exceded. */
 "ios_token_input_exceded_amount_of_fractional_digits" = "Exceded amount of fractional digits.";
@@ -59,8 +68,11 @@
 /* Loading... */
 "loading_title_text" = "Loading…";
 
+/* OK */
+"ok" = "OK";
+
 /* Paste from clipboard alert item. */
-"paste_from_clipboard" = "Paste from clipboard";
+"paste_from_clipboard" = "Paste from Clipboard";
 
 /* Recipient's address in address input. */
 "recipients_address" = "Recipient’s address";
@@ -85,18 +97,6 @@
 
 /* Scan QR code alert item. */
 "scan_qr_code" = "Scan QR Code";
-
-/* Button name to allow camera access */
-"scanner.camera_access_required.allow" = "Allow Camera";
-
-/* Message for alert if camera is not accessable. */
-"scanner.camera_access_required.message" = "Camera access is required to make full use of Gnosis Safe.";
-
-/* Title for alert if camera is not accessable. */
-"scanner.camera_access_required.title" = "Camera Access";
-
-/* Invalid code */
-"scanner.error.invalid_code" = "Invalid QR code.";
 
 /* Network fee */
 "transaction_fee" = "Network fee";

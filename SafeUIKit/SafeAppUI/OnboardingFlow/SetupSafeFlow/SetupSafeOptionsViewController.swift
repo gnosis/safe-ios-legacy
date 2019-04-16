@@ -14,9 +14,9 @@ protocol SetupSafeOptionsDelegate: class {
 class SetupSafeOptionsViewController: UIViewController {
 
     enum Strings {
-        static let header = LocalizedString("onboarding.setup_safe.info", comment: "Set up safe options screen title")
-        static let newSafe = LocalizedString("onboarding.setup_safe.new_safe", comment: "New safe button")
-        static let restoreSafe = LocalizedString("onboarding.setup_safe.restore", comment: "Restore safe button")
+        static let header = LocalizedString("setup_successful", comment: "Set up safe options screen title")
+        static let newSafe = LocalizedString("create_safe", comment: "New safe button")
+        static let restoreSafe = LocalizedString("recover_safe", comment: "Restore safe button")
     }
 
     @IBOutlet var backgroundView: BackgroundImageView!

@@ -17,13 +17,10 @@ class AbortSafeCreationAlertController: SafeAlertController {
 
     private enum Strings {
 
-        static let title = LocalizedString("pending_safe.abort_alert.title",
-                                           comment: "Title of abort safe creation alert")
-        static let message = LocalizedString("pending_safe.abort_alert.message", comment: "Message body of abort alert")
-        static let abortTitle = LocalizedString("pending_safe.abort_alert.abort",
-                                                comment: "Abort safe creation button title")
-        static let cancelTitle = LocalizedString("pending_safe.abort_alert.cancel",
-                                                 comment: "Button to cancel 'abort create' alert")
+        static let title = LocalizedString("cancel_safe_creation", comment: "Title of abort safe creation alert")
+        static let message = LocalizedString("cancel_creation_warning", comment: "Message body of abort alert")
+        static let abortTitle = LocalizedString("continue_text", comment: "Abort safe creation button title")
+        static let cancelTitle = LocalizedString("close", comment: "Button to cancel 'abort create' alert")
 
     }
 

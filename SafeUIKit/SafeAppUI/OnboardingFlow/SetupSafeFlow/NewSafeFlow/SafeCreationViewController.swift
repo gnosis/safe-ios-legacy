@@ -52,26 +52,26 @@ class SafeCreationViewController: UIViewController {
     weak var delegate: SafeCreationViewControllerDelegate?
 
     enum Strings {
-        static let title = LocalizedString("safe_creation.title", comment: "Title for safe creation screen.")
-        static let cancel = LocalizedString("safe_creation.cancel", comment: "Cancel safe creation button.")
-        static let retry = LocalizedString("safe_creation.retry", comment: "Retry button title.")
+        static let title = LocalizedString("create_safe_title", comment: "Title for safe creation screen.")
+        static let cancel = LocalizedString("cancel", comment: "Cancel safe creation button.")
+        static let retry = LocalizedString("refresh", comment: "Retry button title.")
         enum Header {
-            static let firstDepositHeader = LocalizedString("safe_creation.first_deposit_header",
+            static let firstDepositHeader = LocalizedString("safe_creation_fee",
                                                             comment: "First deposit header for safe creation screen.")
             static let insufficientFundsHeader =
-                LocalizedString("safe_creation.insufficient_funds_header",
+                LocalizedString("insufficient_funds",
                                 comment: "Insufficient funds header for safe creation screen.")
             static let creatingSafeHeader =
-                LocalizedString("safe_creation.creating_safe_header",
+                LocalizedString("creating_your_new_safe",
                                 comment: "Creating safe header for safe creation screen.")
 
         }
         enum FundSafe {
             static let requiredMinimumHeader =
-                LocalizedString("safe_creation.required_minimum_header",
+                LocalizedString("send_this_amount",
                                 comment: "Required minimum header for safe creation screen.")
             static let requredMinimumDescription =
-                LocalizedString("safe_creation.required_minimum_description",
+                LocalizedString("network_fee_required",
                                 comment: "Required minimum description for safe creation screen.")
         }
         static let waitingForSafeDescription =
@@ -289,13 +289,10 @@ class SafeCreationViewController: UIViewController {
 
     // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("safe_creation.alert.title",
-                                                             comment: "Network fee"),
-                                      message: LocalizedString("safe_creation.alert.message",
-                                                               comment: "Explanatory message"),
+        let alert = UIAlertController(title: LocalizedString("what_is_network_fee", comment: "Network fee"),
+                                      message: LocalizedString("network_fee_creation", comment: "Explanatory message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("safe_creation.alert.ok",
-                                                             comment: "Ok"), style: .default))
+        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Ok"), style: .default))
         present(alert, animated: true)
     }
 
