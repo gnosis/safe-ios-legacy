@@ -44,11 +44,11 @@ extension RecoverSafeFlowCoordinator {
 
     func newPairController() -> PairWithBrowserExtensionViewController {
         let controller = PairWithBrowserExtensionViewController.create(delegate: self)
-        controller.screenTitle = nil
-        controller.screenHeader = LocalizedString("recovery.browser_extension.header",
-                                                  comment: "Header for connect browser extension screen")
-        controller.descriptionText = LocalizedString("recovery.browser_extension.description",
-                                                     comment: "Description for connect browser extension screen")
+        controller.screenTitle = LocalizedString("recover_safe_title", comment: "Recover Safe")
+        controller.screenHeader = LocalizedString("connect_browser_extension",
+                                                  comment: "Header for add browser extension screen")
+        controller.descriptionText = LocalizedString("enable_2fa",
+                                                     comment: "Description for add browser extension screen")
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.twoFA
         controller.scanTrackingEvent = RecoverSafeTrackingEvent.twoFAScan
         return controller

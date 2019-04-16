@@ -73,7 +73,7 @@ class UnlockViewControllerTests: SafeTestCase {
         authenticationService.makeBiometricAuthenticationImpossible()
         vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
-        XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
+        XCTAssertTrue(vc.biometryStackView.isHidden)
     }
 
     func test_whenBiometryBecomesUnavailableAfterFailedAuthentication_thenHidesBiometryButton() {
@@ -81,7 +81,7 @@ class UnlockViewControllerTests: SafeTestCase {
         authenticationService.invalidateAuthentication()
         vc.loginWithBiometry(self)
         delay()
-        XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
+        XCTAssertTrue(vc.biometryStackView.isHidden)
     }
 
     func test_whenBiometryFaceID_thenUsesMatchingIcon() {
@@ -164,9 +164,9 @@ extension UnlockViewControllerTests {
     }
 
     private func assertShowsCountdown(line: UInt = #line) {
-        XCTAssertNotNil(vc.countdownLabel, line: line)
-        XCTAssertTrue(vc.loginWithBiometryButton.isHidden, line: line)
-        XCTAssertFalse(vc.verifiableInput.isEnabled, line: line)
+        XCTAssertNotNil(vc.countdownLabel, "Countdown label is nil", line: line)
+        XCTAssertTrue(vc.biometryStackView.isHidden, "Biometry is not hidden", line: line)
+        XCTAssertFalse(vc.verifiableInput.isEnabled, "Verifiable input is enabled", line: line)
     }
 
 }

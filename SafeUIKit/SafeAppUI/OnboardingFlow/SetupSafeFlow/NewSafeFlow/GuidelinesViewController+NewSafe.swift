@@ -7,11 +7,12 @@ import UIKit
 public extension GuidelinesViewController {
 
     private enum Strings {
-        static let title = LocalizedString("onboarding.guidelines.title", comment: "Guidelines")
-        static let header = LocalizedString("onboarding.guidelines.header", comment: "How this works")
-        static let body = LocalizedString("onboarding.guidelines.content",
-                                          comment: "Content paragraphs, separated by '\n'")
-        static let next = LocalizedString("new_safe.next", comment: "Next")
+        static let title = LocalizedString("guidelines", comment: "Guidelines")
+        static let header = LocalizedString("how_this_works", comment: "How this works")
+        static let body =
+            LocalizedString("ios_new_safe_guidelines_content",
+                            comment: "Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'.")
+        static let next = LocalizedString("next", comment: "Next")
     }
 
     static func createNewSafeGuidelines(delegate: GuidelinesViewControllerDelegate? = nil) -> GuidelinesViewController {

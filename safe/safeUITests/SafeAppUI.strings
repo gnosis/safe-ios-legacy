@@ -498,7 +498,7 @@
 "safe_creation.alert.title" = "Safe opening fee";
 
 /* Cancel safe creation button. */
-"safe_creation.cancel" = "Cancel";
+"cancel" = "Cancel";
 
 /* Creating safe header for safe creation screen. */
 "safe_creation.creating_safe_header" = "Creating your new safe";
@@ -519,7 +519,7 @@
 "safe_creation.required_minimum_header" = "Required minimum transfer:";
 
 /* Retry button title. */
-"safe_creation.retry" = "Retry";
+"refresh" = "Retry";
 
 /* Address label. */
 "safe_creation.safe_address.address" = "Address";
@@ -546,7 +546,7 @@
 "safe_creation.status.generating_safe_address" = "Generating safe address...";
 
 /* Title for safe creation screen. */
-"safe_creation.title" = "SAFE";
+"create_safe_title" = "SAFE";
 
 /* Waiting for safe description for safe creation screen. */
 "safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";

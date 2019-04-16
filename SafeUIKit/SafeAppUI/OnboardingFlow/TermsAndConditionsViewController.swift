@@ -25,13 +25,13 @@ public class TermsAndConditionsViewController: UIViewController {
     public weak var delegate: TermsAndConditionsViewControllerDelegate?
 
     private enum Strings {
-        static let header = LocalizedString("onboarding.terms.header", comment: "Header label")
-        static let body = LocalizedString("onboarding.terms.content",
+        static let header = LocalizedString("please_review_terms_and_privacy_policy", comment: "Header label")
+        static let body = LocalizedString("ios_terms_contents",
                                           comment: "Content (bulleted list). Separate by new line characters '\n'")
-        static let privacyLink = LocalizedString("onboarding.terms.privacy", comment: "Privacy Policy")
-        static let termsLink = LocalizedString("onboarding.terms.terms", comment: "Terms of Use")
-        static let disagree = LocalizedString("onboarding.terms.disagree", comment: "No Thanks")
-        static let agree = LocalizedString("onboarding.terms.agree", comment: "Agree")
+        static let privacyLink = LocalizedString("ios_privacy_policy_link_text", comment: "Privacy Policy")
+        static let termsLink = LocalizedString("ios_terms_link_text", comment: "Terms of Use")
+        static let disagree = LocalizedString("no_thanks", comment: "No Thanks")
+        static let agree = LocalizedString("agree", comment: "Agree")
     }
 
     public static func create() -> TermsAndConditionsViewController {

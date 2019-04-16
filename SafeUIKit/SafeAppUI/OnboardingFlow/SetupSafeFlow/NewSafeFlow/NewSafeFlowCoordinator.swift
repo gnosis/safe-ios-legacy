@@ -62,11 +62,11 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
 
     func newPairController() -> PairWithBrowserExtensionViewController {
         let controller = PairWithBrowserExtensionViewController.create(delegate: self)
-        controller.screenTitle = LocalizedString("new_safe.browser_extension.title",
+        controller.screenTitle = LocalizedString("browser_extension",
                                                  comment: "Title for add browser extension screen")
-        controller.screenHeader = LocalizedString("new_safe.browser_extension.header",
+        controller.screenHeader = LocalizedString("connect_browser_extension",
                                                   comment: "Header for add browser extension screen")
-        controller.descriptionText = LocalizedString("new_safe.browser_extension.description",
+        controller.descriptionText = LocalizedString("enable_2fa",
                                                      comment: "Description for add browser extension screen")
         controller.screenTrackingEvent = OnboardingTrackingEvent.twoFA
         controller.scanTrackingEvent = OnboardingTrackingEvent.twoFAScan

@@ -65,7 +65,7 @@
 "scanner.camera_access_required.message" = "Camera access is required to make full use of Gnosis Safe.";
 
 /* Title for alert if camera is not accessable. */
-"scanner.camera_access_required.title" = "Camera Access";
+"ios_camera_title" = "Camera Access";
 
 /* Invalid code */
 "scanner.error.invalid_code" = "Invalid QR code.";

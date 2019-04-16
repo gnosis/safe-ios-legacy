@@ -7,11 +7,11 @@ import Foundation
 public extension GuidelinesViewController {
 
     private enum Strings {
-        static let title = LocalizedString("recovery.guidelines.title", comment: "Recover safe")
-        static let header = LocalizedString("recovery.guidelines.header", comment: "How this works")
-        static let body = LocalizedString("recovery.guidelines.content",
+        static let title = LocalizedString("recover_safe_title", comment: "Recover safe")
+        static let header = LocalizedString("how_this_works", comment: "How this works")
+        static let body = LocalizedString("ios_recovery_intro_content",
                                           comment: "Content paragraphs, separated by '\n'")
-        static let start = LocalizedString("recovery.start", comment: "Start button title")
+        static let start = LocalizedString("start", comment: "Start button title")
     }
 
     static func createRecoverSafeGuidelines(delegate: GuidelinesViewControllerDelegate? = nil)
