@@ -75,9 +75,8 @@ class InputFailedAlertController: SafeAlertController {
 
     private enum Strings {
 
-        static let title = LocalizedString("recovery.address.failed_alert.title",
-                                           comment: "Recovery address validation failed alert's title")
-        static let okTitle = LocalizedString("recovery.address.failed_alert.ok", comment: "OK button title")
+        static let title = LocalizedString("error", comment: "Recovery address validation failed alert's title")
+        static let okTitle = LocalizedString("ok", comment: "OK button title")
 
     }
 

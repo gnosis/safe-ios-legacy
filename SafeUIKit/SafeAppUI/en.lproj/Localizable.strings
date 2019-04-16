@@ -119,6 +119,10 @@
 /* Safe Address */
 "enter_safe_address_field" = "Enter Safe address";
 
+/* Pending safe failed alert's title
+   Recovery address validation failed alert's title */
+"error" = "Error";
+
 /* Not enough balance for transaction. */
 "exceeds_funds" = "Insufficient funds to perform this transaction";
 
@@ -167,6 +171,9 @@
 /* Insufficient funds header for safe creation screen. */
 "insufficient_funds" = "Insufficient funds";
 
+/* Address label. */
+"ios_address" = "Address";
+
 /* Network error message */
 "ios_be_error_expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
 
@@ -191,6 +198,30 @@
 /* Title for new safe screen */
 "ios_configure_title" = "Configure";
 
+/* Deployment accepted by blockchain. */
+"ios_creationFee_accepted" = "This can take a couple minutes...";
+
+/* Awaiting deposit label. */
+"ios_creationFee_awaiting" = "Awaiting your deposit...";
+
+/* Waiting for safe description for safe creation screen. */
+"ios_creationFee_deposit" = "Your deposit is on its way.";
+
+/* Error during safe creation. Retry later. */
+"ios_creationFee_error_status" = "Network error. Please retry later...";
+
+/* Pending safe failed alert's message */
+"ios_creationFee_failed_error" = "Error: %@ Please try again later.";
+
+/* Account received enough funds. */
+"ios_creationFee_funded" = "Account funded";
+
+/* Generation safe address. */
+"ios_creationFee_generating" = "Generating safe address...";
+
+/* Description how to share safe address. */
+"ios_creationFee_share_description" = "Share your address or scan this QR code with the account or person sending funds.";
+
 /* Title for confirm recovery screen. */
 "ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
 
@@ -199,6 +230,9 @@
 
 /* Word #%@ */
 "ios_enterSeed_word" = "Word #%@";
+
+/* Follow its progress on Etherscan.io */
+"ios_follow_progress" = "Follow its progress on Etherscan.io";
 
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
 "ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
@@ -211,6 +245,42 @@
 
 /* Privacy Policy */
 "ios_privacy_policy_link_text" = "Privacy Policy";
+
+/* QR Code label. */
+"ios_qrcode" = "QR Code";
+
+/* Recovery transaction failed to change Safe confirmation count */
+"ios_recovery_error_changecount" = "Recovery transaction failed to change Safe confirmation count";
+
+/* Recovery transaction failed to change Safe owners */
+"ios_recovery_error_changeowners" = "Recovery transaction failed to change Safe owners";
+
+/* Cannot recover because this Safe configuration is not supported */
+"ios_recovery_error_configuration" = "Cannot recover because this Safe configuration is not supported";
+
+/* Invalid contract address */
+"ios_recovery_error_contract" = "Invalid Safe address";
+
+/* Cannot recover because recovery data is invalid */
+"ios_recovery_error_createdata" = "Cannot recover because recovery data is invalid";
+
+/* Cannot recover because recovery transaction is invalid */
+"ios_recovery_error_createtransaction" = "Cannot recover because recovery transaction is invalid";
+
+/* Cannot recover because number of Safe owners is not supported */
+"ios_recovery_error_ownercount" = "Cannot recover because number of Safe owners is not supported";
+
+/* Incorrect recovery phrase */
+"ios_recovery_error_phrase" = "Recovery phrase is incorrect";
+
+/* Recovery phrase does not match this Safe's recovery phrase */
+"ios_recovery_error_phrase_notmatching" = "Recovery phrase does not match Safe's recovery phrase.";
+
+/* Failed to recover because of internal server error */
+"ios_recovery_error_servererror" = "Failed to recover because of internal server error";
+
+/* Cannot recover because couldn't find the Safe with this address */
+"ios_recovery_error_walletnotfound" = "Cannot recover because couldn't find the Safe with this address";
 
 /* Content paragraphs, separated by '\n' */
 "ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
@@ -345,6 +415,9 @@
 /* No Thanks */
 "no_thanks" = "No Thanks";
 
+/* OK button title */
+"ok" = "OK";
+
 /* Error alert's title */
 "onboarding.error.title" = "Error";
 
@@ -373,15 +446,6 @@
 /* Passwords must match. */
 "passwords_do_not_match" = "Sorry, the password doesn't match";
 
-/* Pending safe failed alert's message */
-"pending_safe.failed_alert.message" = "Error: %@ Please try again later.";
-
-/* OK button title */
-"pending_safe.failed_alert.ok" = "OK";
-
-/* Pending safe failed alert's title */
-"pending_safe.failed_alert.title" = "Error";
-
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
 
@@ -392,47 +456,11 @@
    Recover safe */
 "recover_safe_title" = "Recover Safe";
 
-/* Invalid contract address */
-"recovery.address.error.invalid_contract" = "Invalid Safe address";
-
 /* OK button title */
 "recovery.address.failed_alert.ok" = "Ok";
 
-/* Recovery address validation failed alert's title */
-"recovery.address.failed_alert.title" = "Error";
-
-/* Recovery transaction failed to change Safe confirmation count */
-"recovery.failure.failedToChangeConfirmationCount" = "Recovery transaction failed to change Safe confirmation count";
-
-/* Recovery transaction failed to change Safe owners */
-"recovery.failure.failedToChangeOwners" = "Recovery transaction failed to change Safe owners";
-
-/* Cannot recover because recovery transaction is invalid */
-"recovery.failure.failedToCreateValidTransaction" = "Cannot recover because recovery transaction is invalid";
-
-/* Cannot recover because recovery data is invalid */
-"recovery.failure.failedToCreateValidTransactionData" = "Cannot recover because recovery data is invalid";
-
-/* Failed to recover because of internal server error */
-"recovery.failure.internalServerError" = "Failed to recover because of internal server error";
-
-/* Cannot recover because number of Safe owners is not supported */
-"recovery.failure.unsupportedOwnerCount" = "Cannot recover because number of Safe owners is not supported";
-
-/* Cannot recover because this Safe configuration is not supported */
-"recovery.failure.unsupportedWalletConfiguration" = "Cannot recover because this Safe configuration is not supported";
-
-/* Cannot recover because couldn't find the Safe with this address */
-"recovery.failure.walletNotFound" = "Cannot recover because couldn't find the Safe with this address";
-
-/* Recovery phrase does not match this Safe's recovery phrase */
-"recovery.phrase.error." = "Recovery phrase does not match Safe's recovery phrase.";
-
 /* Error format for invalid recovery phrase */
 "recovery.phrase.error.format" = "Failed to use recovery phrase";
-
-/* Incorrect recovery phrase */
-"recovery.phrase.error.invalid_phrase" = "Recovery phrase is incorrect";
 
 /* Recovery Phrase Input screen header */
 "recovery.phrase.header" = "My recovery phrase";
@@ -518,36 +546,6 @@
 
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
-
-/* Follow its progress on Etherscan.io */
-"safe_creation.etherscan.follow_progress" = "Follow its progress on Etherscan.io";
-
-/* Address label. */
-"safe_creation.safe_address.address" = "Address";
-
-/* Description how to share safe address. */
-"safe_creation.safe_address.description" = "Share your address or scan this QR code with the account or person sending funds.";
-
-/* QR Code label. */
-"safe_creation.safe_address.qr_code" = "QR Code";
-
-/* Account received enough funds. */
-"safe_creation.status.account_funded" = "Account funded";
-
-/* Awaiting deposit label. */
-"safe_creation.status.awaiting_deposit" = "Awaiting your deposit...";
-
-/* Deployment accepted by blockchain. */
-"safe_creation.status.deployment_accepted" = "This can take a couple minutes...";
-
-/* Error during safe creation. Retry later. */
-"safe_creation.status.error" = "Network error. Please retry later...";
-
-/* Generation safe address. */
-"safe_creation.status.generating_safe_address" = "Generating safe address...";
-
-/* Waiting for safe description for safe creation screen. */
-"safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";
 
 /* First deposit header for safe creation screen. */
 "safe_creation_fee" = "Safe creation fee";

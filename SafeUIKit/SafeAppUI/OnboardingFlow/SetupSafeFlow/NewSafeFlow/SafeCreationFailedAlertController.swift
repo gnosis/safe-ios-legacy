@@ -8,11 +8,11 @@ class SafeCreationFailedAlertController: SafeAlertController {
 
     private enum Strings {
 
-        static let title = LocalizedString("pending_safe.failed_alert.title",
+        static let title = LocalizedString("error",
                                            comment: "Pending safe failed alert's title")
-        static let message = LocalizedString("pending_safe.failed_alert.message",
+        static let message = LocalizedString("ios_creationFee_failed_error",
                                              comment: "Pending safe failed alert's message")
-        static let okTitle = LocalizedString("pending_safe.failed_alert.ok", comment: "OK button title")
+        static let okTitle = LocalizedString("ok", comment: "OK button title")
 
     }
 

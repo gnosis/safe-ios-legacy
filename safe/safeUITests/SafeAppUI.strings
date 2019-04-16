@@ -339,7 +339,7 @@
 "pending_safe.abort_alert.title" = "Aborting Safe Creation?";
 
 /* Pending safe failed alert's message */
-"pending_safe.failed_alert.message" = "Error: %@ Please try again later.";
+"ios_creationFee_failed_error" = "Error: %@ Please try again later.";
 
 /* OK button title */
 "pending_safe.failed_alert.ok" = "OK";
@@ -348,7 +348,7 @@
 "pending_safe.failed_alert.title" = "Error";
 
 /* Invalid contract address */
-"recovery.address.error.invalid_contract" = "Invalid Safe address";
+"ios_recovery_error_contract" = "Invalid Safe address";
 
 /* Recovery address validation failed alert's message */
 "recovery.address.failed_alert.message" = "Failed to find the Safe";
@@ -372,28 +372,28 @@
 "recovery.browser_extension.header" = "Connect browser extension";
 
 /* Recovery transaction failed to change Safe confirmation count */
-"recovery.failure.failedToChangeConfirmationCount" = "Recovery transaction failed to change Safe confirmation count";
+"ios_recovery_error_changecount" = "Recovery transaction failed to change Safe confirmation count";
 
 /* Recovery transaction failed to change Safe owners */
-"recovery.failure.failedToChangeOwners" = "Recovery transaction failed to change Safe owners";
+"ios_recovery_error_changeowners" = "Recovery transaction failed to change Safe owners";
 
 /* Cannot recover because recovery transaction is invalid */
-"recovery.failure.failedToCreateValidTransaction" = "Cannot recover because recovery transaction is invalid";
+"ios_recovery_error_createtransaction" = "Cannot recover because recovery transaction is invalid";
 
 /* Cannot recover because recovery data is invalid */
-"recovery.failure.failedToCreateValidTransactionData" = "Cannot recover because recovery data is invalid";
+"ios_recovery_error_createdata" = "Cannot recover because recovery data is invalid";
 
 /* Failed to recover because of internal server error */
-"recovery.failure.internalServerError" = "Failed to recover because of internal server error";
+"ios_recovery_error_servererror" = "Failed to recover because of internal server error";
 
 /* Cannot recover because number of Safe owners is not supported */
-"recovery.failure.unsupportedOwnerCount" = "Cannot recover because number of Safe owners is not supported";
+"ios_recovery_error_ownercount" = "Cannot recover because number of Safe owners is not supported";
 
 /* Cannot recover because this Safe configuration is not supported */
-"recovery.failure.unsupportedWalletConfiguration" = "Cannot recover because this Safe configuration is not supported";
+"ios_recovery_error_configuration" = "Cannot recover because this Safe configuration is not supported";
 
 /* Cannot recover because couldn't find the Safe with this address */
-"recovery.failure.walletNotFound" = "Cannot recover because couldn't find the Safe with this address";
+"ios_recovery_error_walletnotfound" = "Cannot recover because couldn't find the Safe with this address";
 
 /* Content paragraphs, separated by '\n' */
 "recovery.guidelines.content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee in ETH will be automatically deducted from the ETH balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount of ETH required to cover the fee.";
@@ -405,13 +405,13 @@
 "recovery.guidelines.title" = "Recover Safe";
 
 /* Recovery phrase does not match this Safe's recovery phrase */
-"recovery.phrase.error." = "Recovery phrase does not match Safe's recovery phrase.";
+"ios_recovery_error_phrase_notmatching" = "Recovery phrase does not match Safe's recovery phrase.";
 
 /* Error format for invalid recovery phrase */
 "recovery.phrase.error.format" = "Failed to use recovery phrase";
 
 /* Incorrect recovery phrase */
-"recovery.phrase.error.invalid_phrase" = "Recovery phrase is incorrect";
+"ios_recovery_error_phrase" = "Recovery phrase is incorrect";
 
 /* Recovery Phrase Input screen header */
 "recovery.phrase.header" = "My recovery phrase";
@@ -504,7 +504,7 @@
 "safe_creation.creating_safe_header" = "Creating your new safe";
 
 /* Follow its progress on Etherscan.io */
-"safe_creation.etherscan.follow_progress" = "Follow its progress on Etherscan.io";
+"ios_follow_progress" = "Follow its progress on Etherscan.io";
 
 /* First deposit header for safe creation screen. */
 "safe_creation.first_deposit_header" = "Make your first deposit";
@@ -522,34 +522,34 @@
 "refresh" = "Retry";
 
 /* Address label. */
-"safe_creation.safe_address.address" = "Address";
+"ios_address" = "Address";
 
 /* Description how to share safe address. */
-"safe_creation.safe_address.description" = "Share your address or scan this QR code with the account or person sending funds.";
+"ios_creationFee_share_description" = "Share your address or scan this QR code with the account or person sending funds.";
 
 /* QR Code label. */
-"safe_creation.safe_address.qr_code" = "QR Code";
+"ios_qrcode" = "QR Code";
 
 /* Account received enough funds. */
-"safe_creation.status.account_funded" = "Account funded";
+"ios_creationFee_funded" = "Account funded";
 
 /* Awaiting deposit label. */
-"safe_creation.status.awaiting_deposit" = "Awaiting your deposit...";
+"ios_creationFee_awaiting" = "Awaiting your deposit...";
 
 /* Deployment accepted by blockchain. */
-"safe_creation.status.deployment_accepted" = "This can take a couple minutes...";
+"ios_creationFee_accepted" = "This can take a couple minutes...";
 
 /* Error during safe creation. Retry later. */
-"safe_creation.status.error" = "Network error. Please retry later...";
+"ios_creationFee_error_status" = "Network error. Please retry later...";
 
 /* Generation safe address. */
-"safe_creation.status.generating_safe_address" = "Generating safe address...";
+"ios_creationFee_generating" = "Generating safe address...";
 
 /* Title for safe creation screen. */
 "create_safe_title" = "SAFE";
 
 /* Waiting for safe description for safe creation screen. */
-"safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";
+"ios_creationFee_deposit" = "Your deposit is on its way.";
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";

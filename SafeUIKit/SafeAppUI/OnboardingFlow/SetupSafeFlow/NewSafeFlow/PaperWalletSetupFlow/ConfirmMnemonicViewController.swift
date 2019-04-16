@@ -15,14 +15,10 @@ protocol ConfirmMnemonicDelegate: class {
 final class ConfirmMnemonicViewController: UIViewController {
 
     enum Strings {
-        static let title = LocalizedString("ios_enterSeed_title",
-                                           comment: "Title for confirm recovery screen.")
-        static let header = LocalizedString("ios_enterSeed_header",
-                                            comment: "Title for confirm recovery screen.")
-        static let next = LocalizedString("next",
-                                          comment: "Next button for confirm recovery screen.")
-        static let wordNumberPlaceholder = LocalizedString("ios_enterSeed_word",
-                                                           comment: "Word #%@")
+        static let title = LocalizedString("ios_enterSeed_title", comment: "Title for confirm recovery screen.")
+        static let header = LocalizedString("ios_enterSeed_header", comment: "Title for confirm recovery screen.")
+        static let next = LocalizedString("next", comment: "Next button for confirm recovery screen.")
+        static let wordNumberPlaceholder = LocalizedString("ios_enterSeed_word", comment: "Word #%@")
     }
 
     var recoveryModeEnabled = false
