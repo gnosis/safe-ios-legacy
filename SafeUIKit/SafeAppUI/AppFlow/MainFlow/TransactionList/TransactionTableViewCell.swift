@@ -15,13 +15,13 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var tokenAmountLabel: AmountLabel!
 
     private enum Strings {
-        static let recoveredSafe = LocalizedString("recovered_safe", comment: "Safe recovered")
+        static let recoveredSafe = LocalizedString("recovered_safe", comment: "Recovered Safe")
         static let replaceRecoveryPhrase = LocalizedString("replace_recovery_phrase",
                                                            comment: "Replace recovery phrase")
         static let replaceBE = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
         static let connectBE = LocalizedString("connect_browser_extension", comment: "Connect browser extension")
         static let disconnectBE = LocalizedString("disconnect_browser_extension",
-                                                  comment: "Dosconnect browser extension")
+                                                  comment: "Disconnect browser extension")
         static let statusFailed = LocalizedString("status_failed", comment: "Failed status")
     }
 

@@ -65,7 +65,7 @@
 /* Title for the header */
 "connect_extension.review.title" = "Connect browser extension";
 
-/* Dosconnect browser extension */
+/* Disconnect browser extension */
 "disconnect_browser_extension" = "Disconnect browser\nextension";
 
 /* Body text */
@@ -119,11 +119,32 @@
 /* Some error occurred. */
 "generic.error.unknown" = "Error occurred. Please, try again later.";
 
+/* 'Submitted' parameter name */
+"header_submitted" = "Submitted";
+
 /* Identicon label. */
 "ios_identicon" = "Identicon";
 
 /* QR Code label. */
 "ios_qr_code" = "QR Code";
+
+/* 'View on Etherscan' button name */
+"ios_view_transaction_on_etherscan" = "View transaction on Etherscan.io";
+
+/* Detail for the header in review screen */
+"layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the browser extension. Future transactions require a confirmation from both devices.";
+
+/* Detail for the header in review screen */
+"layout_disconnect_browser_extension_info_description" = "This transaction disconnects this Safe from the browser extension. Future transactions will not require confirmations.";
+
+/* Detail for the header in review screen */
+"layout_recovered_safe_info_description" = "The existing Safe was recovered.";
+
+/* Detail for the header in review screen */
+"layout_replace_browser_extension_info_description" = "The existing browser extension connection was replaced by the new browser extension.";
+
+/* Detail for the header in review screen */
+"layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
 
 /* Hide displayed token action. */
 "manage_tokens.hide" = "Hide";
@@ -402,7 +423,7 @@
 /* Receive Funds screen title. */
 "receive_funds" = "Receive Funds";
 
-/* Safe recovered */
+/* Recovered Safe */
 "recovered_safe" = "Recovered\nSafe";
 
 /* Invalid contract address */
@@ -613,98 +634,30 @@
 /* Send */
 "send_title" = "Send %@";
 
+/* Settings change */
+"settings_change" = "Settings change";
+
 /* Description for Receive Funds screen. */
 "share_your_address" = "Share your address with contracts or enable senders to scan your QR code to receive Ether and tokens.";
 
-/* Failed status */
+/* 'Status' parameter name */
+"status" = "Status";
+
+/* 'Failed' status
+   Failed status */
 "status_failed" = "Failed";
+
+/* 'Pending' status */
+"status_pending" = "Pending";
+
+/* 'Success' status */
+"status_success" = "Success";
 
 /* Submit transaction */
 "submit" = "Submit";
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
-
-/* Detail for the header in review screen */
-"transaction.details.connect_extension.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
-
-/* Title for the header in review screen */
-"transaction.details.connect_extension.title" = "Connect Browser Extension";
-
-/* Detail for the header in review screen */
-"transaction.details.disconnect_extension.detail" = "This transaction disconnects this Safe from the browser extension. Future transactions will not require confirmations.";
-
-/* Title for the header in review screen */
-"transaction.details.disconnect_extension.title" = "Disconnect Browser Extension";
-
-/* 'View on Etherscan' button name */
-"transaction.details.externalViewer" = "View on Etherscan.io";
-
-/* 'Fee' parameter name */
-"transaction.details.fee" = "Network fee";
-
-/* Detail for the header in review screen */
-"transaction.details.replace_extension.detail" = "The existing browser extension connection was replaced by the new browser extension.";
-
-/* Title for the header in review screen */
-"transaction.details.replace_extension.title" = "Replace browser extension";
-
-/* Detail for the header in review screen */
-"transaction.details.replace_recovery.detail" = "The old recovery phrase was replaced by a new one";
-
-/* Title for the header in review screen */
-"transaction.details.replace_recovery.title" = "Replace recovery phrase";
-
-/* 'Status' parameter name */
-"transaction.details.status" = "Status";
-
-/* 'Failed' status */
-"transaction.details.status.failed" = "Failed";
-
-/* 'Pending' status */
-"transaction.details.status.pending" = "Pending";
-
-/* 'Rejected' status */
-"transaction.details.status.rejected" = "Rejected";
-
-/* 'Success' status */
-"transaction.details.status.success" = "Success";
-
-/* 'Submitted' parameter name */
-"transaction.details.submitted" = "Submitted";
-
-/* Title for the transaction details screen */
-"transaction.details.title" = "Transaction details";
-
-/* 'Type' parameter name */
-"transaction.details.type" = "Type";
-
-/* Connect browser extension */
-"transaction.details.type.connectBrowserExtension" = "Connect browser extension";
-
-/* Disconnect browser extension */
-"transaction.details.type.disconnectBrowserExtension" = "Disconnect browser extension";
-
-/* 'Incoming' transaction type */
-"transaction.details.type.incoming" = "Incoming Transfer";
-
-/* 'Outgoing' transaction type */
-"transaction.details.type.outgoing" = "Outgoing Transfer";
-
-/* Wallet recovery */
-"transaction.details.type.recovery" = "Safe Recovery";
-
-/* Replace browser extension */
-"transaction.details.type.replaceBrowserExtension" = "Replace browser extension";
-
-/* Replace recovery phrase */
-"transaction.details.type.replaceRecoveryPhrase" = "Replace recovery phrase";
-
-/* Detail for the header in review screen */
-"transaction.details.wallet_recovery.detail" = "The Safe was recovered";
-
-/* Title for the header in review screen */
-"transaction.details.wallet_recovery.title" = "Safe recovery";
 
 /* Detail for header in review screen. */
 "transaction.replace_browser_extension.description" = "The existing browser extension connection will be replaced by the new browser extension.";
@@ -721,6 +674,9 @@
 /* Submit */
 "transaction.submit" = "Submit";
 
+/* Title for the transaction details screen */
+"transaction_details" = "Transaction Details";
+
 /* Network fee */
 "transaction_fee" = "Network fee";
 
@@ -735,6 +691,9 @@
 
 /* Transactions tab title */
 "transactions_capitalized" = "TRANSACTIONS";
+
+/* 'Type' parameter name */
+"type" = "Type";
 
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";
