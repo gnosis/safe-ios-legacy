@@ -19,8 +19,6 @@ public class TermsAndConditionsViewController: UIViewController {
     @IBOutlet weak var privacyPolicyButton: UIButton!
     @IBOutlet weak var agreeButton: UIButton!
     @IBOutlet weak var disagreeButton: UIButton!
-    @IBOutlet weak var contentTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var contentLeadingConstraint: NSLayoutConstraint!
 
     public weak var delegate: TermsAndConditionsViewControllerDelegate?
 
@@ -40,12 +38,8 @@ public class TermsAndConditionsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        var headerStyle = HeaderStyle.default
-        headerStyle.leading = contentLeadingConstraint.constant
-        headerStyle.trailing = -contentTrailingConstraint.constant
+        let headerStyle = HeaderStyle.default
         var bodyStyle = ListStyle.default
-        bodyStyle.leading = contentLeadingConstraint.constant
-        bodyStyle.trailing = -contentTrailingConstraint.constant
         bodyStyle.minimumLineHeight = 0
         bodyStyle.paragraphSpacing = 0
         headerLabel.attributedText = .header(from: Strings.header, style: headerStyle)

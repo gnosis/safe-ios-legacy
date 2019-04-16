@@ -75,28 +75,29 @@ class SafeCreationViewController: UIViewController {
                                 comment: "Required minimum description for safe creation screen.")
         }
         static let waitingForSafeDescription =
-            LocalizedString("safe_creation.waiting_for_safe_description",
+            LocalizedString("ios_creationFee_deposit",
                             comment: "Waiting for safe description for safe creation screen.")
+
         enum Status {
-            static let generatingSafeAddress = LocalizedString("safe_creation.status.generating_safe_address",
+            static let generatingSafeAddress = LocalizedString("ios_creationFee_generating",
                                                                comment: "Generation safe address.")
-            static let awaitingDeposit = LocalizedString("safe_creation.status.awaiting_deposit",
+            static let awaitingDeposit = LocalizedString("ios_creationFee_awaiting",
                                                          comment: "Awaiting deposit label.")
-            static let accountFunded = LocalizedString("safe_creation.status.account_funded",
+            static let accountFunded = LocalizedString("ios_creationFee_funded",
                                                        comment: "Account received enough funds.")
-            static let deploymentAccepted = LocalizedString("safe_creation.status.deployment_accepted",
+            static let deploymentAccepted = LocalizedString("ios_creationFee_accepted",
                                                             comment: "Deployment accepted by blockchain.")
-            static let error = LocalizedString("safe_creation.status.error",
+            static let error = LocalizedString("ios_creationFee_error_status",
                                                comment: "Error during safe creation. Retry later.")
         }
         enum SafeAddress {
-            static let description = LocalizedString("safe_creation.safe_address.description",
+            static let description = LocalizedString("ios_creationFee_share_description",
                                                      comment: "Description how to share safe address.")
-            static let address = LocalizedString("safe_creation.safe_address.address", comment: "Address label.")
-            static let qrCode = LocalizedString("safe_creation.safe_address.qr_code", comment: "QR Code label.")
+            static let address = LocalizedString("ios_address", comment: "Address label.")
+            static let qrCode = LocalizedString("ios_qr_code", comment: "QR Code label.")
         }
         enum Etherscan {
-            static let followProgress = LocalizedString("safe_creation.etherscan.follow_progress",
+            static let followProgress = LocalizedString("ios_follow_progress",
                                                         comment: "Follow its progress on Etherscan.io")
         }
     }

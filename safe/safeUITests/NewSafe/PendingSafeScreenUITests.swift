@@ -89,7 +89,7 @@ class PendingSafeScreenUITests: UITestCase {
         XCTAssertFalse(pendingScreen.cancel.isEnabled)
         restartTheApp(serverResponseDelay: 5)
         XCTAssertFalse(pendingScreen.cancel.isEnabled)
-        XCTAssertTrue(pendingScreen.status.label == LocalizedString("safe_creation.status.account_funded"))
+        XCTAssertTrue(pendingScreen.status.label == LocalizedString("ios_creationFee_funded"))
         restartTheApp(serverResponseDelay: 0.1)
         waitUntil(mainScreen.isDisplayed, timeout: 30)
     }
@@ -117,7 +117,7 @@ extension PendingSafeScreenUITests {
     }
 
     private func waitUntilAccountFundedStatus(line: UInt = #line) {
-        waitUntilStatus(LocalizedString("safe_creation.status.account_funded"), timeout: 30, line: line)
+        waitUntilStatus(LocalizedString("ios_creationFee_funded"), timeout: 30, line: line)
     }
 
     private func waitUntilStatus(_ label: String, timeout: TimeInterval = 10, line: UInt = #line) {
@@ -125,11 +125,11 @@ extension PendingSafeScreenUITests {
     }
 
     private func waitUntilDeploymentAcceptedByBlockchainStatus(line: UInt = #line) {
-        waitUntilStatus(LocalizedString("safe_creation.status.deployment_accepted"), line: line)
+        waitUntilStatus(LocalizedString("ios_creationFee_accepted"), line: line)
     }
 
     private func notEnoughFundsLabel() -> String {
-        return LocalizedString("safe_creation.status.awaiting_deposit")
+        return LocalizedString("ios_creationFee_awaiting")
     }
 
     private func addAbortAlertMonitor(cancellingAlert: Bool) -> (NSObjectProtocol, XCTestExpectation) {

@@ -12,7 +12,7 @@ final class SaveMnemonicScreen {
     var title: XCUIElement { return XCUIApplication().navigationBars[LocalizedString("new_safe.setup_recovery.title")] }
     var description: XCUIElement { return XCUIApplication().staticTexts["description"] }
     var mnemonic: XCUIElement { return XCUIApplication().staticTexts["mnemonic"] }
-    var copyButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.setup_recovery.copy")] }
+    var copyButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("ios_showSeed_copy")] }
     var continueButton: XCUIElement {
         return XCUIApplication().buttons[LocalizedString("new_safe.setup_recovery.next")]
     }
