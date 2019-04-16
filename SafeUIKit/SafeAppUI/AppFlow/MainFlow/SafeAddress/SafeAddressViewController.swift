@@ -9,7 +9,6 @@ import MultisigWalletApplication
 final class SafeAddressViewController: UIViewController {
 
     @IBOutlet weak var wrapperView: UIView!
-    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var identiconLabel: UILabel!
     @IBOutlet weak var identiconView: IdenticonView!
@@ -19,13 +18,12 @@ final class SafeAddressViewController: UIViewController {
     @IBOutlet weak var qrCodeView: QRCodeView!
 
     enum Strings {
-        static let title = LocalizedString("safe_address.title", comment: "Title for Address Details screen.")
-        static let header = LocalizedString("safe_address.header", comment: "Header for Address Details screen.")
-        static let description = LocalizedString("safe_address.description",
-                                                 comment: "Description for Address Details screen.")
-        static let identicon = LocalizedString("safe_address.identicon", comment: "Identicon label.")
-        static let address = LocalizedString("safe_address.address", comment: "Safe Address label.")
-        static let qrCode = LocalizedString("safe_address.qr_code", comment: "QR Code label.")
+        static let title = LocalizedString("receive_funds", comment: "Receive Funds screen title.")
+        static let description = LocalizedString("share_your_address",
+                                                 comment: "Description for Receive Funds screen.")
+        static let identicon = LocalizedString("ios_identicon", comment: "Identicon label.")
+        static let address = LocalizedString("address", comment: "Safe Address label.")
+        static let qrCode = LocalizedString("ios_qr_code", comment: "QR Code label.")
     }
 
     static func create() -> SafeAddressViewController {
@@ -57,7 +55,6 @@ final class SafeAddressViewController: UIViewController {
 
     private func configureTexts() {
         title = Strings.title
-        headerLabel.text = Strings.header
         descriptionLabel.text = Strings.description
         identiconLabel.text = Strings.identicon
         addressLabel.text = Strings.address

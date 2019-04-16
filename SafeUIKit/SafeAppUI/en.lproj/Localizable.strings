@@ -4,6 +4,9 @@
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
+/* Safe Address label. */
+"address" = "Address";
+
 /* OK */
 "alert.error.ok" = "OK";
 
@@ -115,6 +118,12 @@
 
 /* Some error occurred. */
 "generic.error.unknown" = "Error occurred. Please, try again later.";
+
+/* Identicon label. */
+"ios_identicon" = "Identicon";
+
+/* QR Code label. */
+"ios_qr_code" = "QR Code";
 
 /* Hide displayed token action. */
 "manage_tokens.hide" = "Hide";
@@ -390,6 +399,9 @@
 /* Pending safe failed alert's title */
 "pending_safe.failed_alert.title" = "Error";
 
+/* Receive Funds screen title. */
+"receive_funds" = "Receive Funds";
+
 /* Safe recovered */
 "recovered_safe" = "Recovered\nSafe";
 
@@ -532,24 +544,6 @@
    Review transaction title */
 "review" = "Review";
 
-/* Safe Address label. */
-"safe_address.address" = "Address";
-
-/* Description for Address Details screen. */
-"safe_address.description" = "Share your address with contacts or enable senders to scan your QR code.";
-
-/* Header for Address Details screen. */
-"safe_address.header" = "Receive Ether and Tokens";
-
-/* Identicon label. */
-"safe_address.identicon" = "Identicon";
-
-/* QR Code label. */
-"safe_address.qr_code" = "QR Code";
-
-/* Title for Address Details screen. */
-"safe_address.title" = "Safe Address";
-
 /* Explanatory message */
 "safe_creation.alert.message" = "This is a transaction fee required by the blockchain to execute the transaction.";
 
@@ -618,6 +612,9 @@
 
 /* Send */
 "send_title" = "Send %@";
+
+/* Description for Receive Funds screen. */
+"share_your_address" = "Share your address with contracts or enable senders to scan your QR code to receive Ether and tokens.";
 
 /* Failed status */
 "status_failed" = "Failed";
