@@ -4,7 +4,9 @@
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
-/* Safe Address label. */
+/* Address label.
+   Safe Address label.
+   Title for safe address section. */
 "address" = "Address";
 
 /* Recovery address validation failed alert's message */
@@ -53,6 +55,10 @@
 
 /* Title of abort safe creation alert */
 "cancel_safe_creation" = "Cancel Safe creation?";
+
+/* Change password
+   Change password menu item */
+"change_password" = "Change Password";
 
 /* Current password placeholder */
 "change_password.current_password" = "Current password";
@@ -175,6 +181,9 @@
 /* Some error occurred. */
 "generic.error.unknown" = "Error occurred. Please, try again later.";
 
+/* Feedback and FAQ menu item */
+"give_feedback" = "Give Feedback";
+
 /* Guidelines */
 "guidelines" = "Guidelines";
 
@@ -189,9 +198,6 @@
 
 /* Insufficient funds header for safe creation screen. */
 "insufficient_funds" = "Insufficient funds";
-
-/* Address label. */
-"ios_address" = "Address";
 
 /* Network error message */
 "ios_be_error_expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
@@ -346,65 +352,21 @@
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
 
+/* Manage Tokens menu item */
+"manage_tokens" = "Manage Tokens";
+
 /* Hide displayed token action. */
 "manage_tokens.hide" = "Hide";
 
 /* Title for Manage Tokens Screen. */
 "manage_tokens.title" = "Tokens";
 
-/* Menu button title */
+/* Menu button title
+   Title for menu screen. */
 "menu" = "Menu";
-
-/* Change browser extension menu item */
-"menu.action.change_browser_extension" = "Replace Browser Extension";
-
-/* Change password menu item */
-"menu.action.change_password" = "Change Password";
-
-/* Change recovery key menu item */
-"menu.action.change_recovery_phrase" = "Replace Recovery Phrase";
-
-/* Connect browser extension menu item. */
-"menu.action.connect_browser_extension" = "Connect Browser Extension";
-
-/* Disconnect browser extension menu item */
-"menu.action.disconnect_browser_extension" = "Disconnect Browser Extension";
-
-/* Feedback and FAQ menu item */
-"menu.action.feedback_and_faq" = "Feedback and FAQs";
-
-/* Manage Tokens menu item */
-"menu.action.manage_tokens" = "Manage Tokens";
-
-/* Privacy policy menu item */
-"menu.action.privacy_policy" = "Privacy Policy";
-
-/* Rate App menu item */
-"menu.action.rate_app" = "Rate App";
-
-/* Resync browser extension menu item */
-"menu.action.resync_browser_extension" = "Resync With Browser Extension";
-
-/* Terms menu item */
-"menu.action.terms" = "Terms";
 
 /* App Version */
 "menu.app_version" = "App Version";
-
-/* Title for portfolio section. */
-"menu.section.portfolio.title" = "Portfolio";
-
-/* Title for safe address section. */
-"menu.section.safe.title" = "Address";
-
-/* Title for security section. */
-"menu.section.security.title" = "Security";
-
-/* Title for support section. */
-"menu.section.support.title" = "Support";
-
-/* Title for menu screen. */
-"menu.title" = "Menu";
 
 /* Start */
 "navigation.start" = "Start";
@@ -486,6 +448,15 @@
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
 
+/* Title for portfolio section. */
+"portfolio" = "Portfolio";
+
+/* Privacy policy menu item */
+"privacy_policy" = "Privacy Policy";
+
+/* Rate App menu item */
+"rate_app" = "Rate App";
+
 /* Receive Funds screen title. */
 "receive_funds" = "Receive Funds";
 
@@ -562,7 +533,8 @@
 /* Replace recovery phrase */
 "replace_phrase.header" = "Replace recovery phrase";
 
-/* Replace recovery phrase */
+/* Change recovery key menu item
+   Replace recovery phrase */
 "replace_recovery_phrase" = "Replace recovery\nphrase";
 
 /* Resend button. */
@@ -586,6 +558,9 @@
 
 /* Scan button title in extension setup screen */
 "scan" = "Scan";
+
+/* Title for security section. */
+"security" = "Security";
 
 /* Required minimum header for safe creation screen. */
 "send_this_amount" = "Send at least this amount to your new Safe:";
@@ -629,6 +604,15 @@
 
 /* Submit transaction */
 "submit" = "Submit";
+
+/* Title for support section. */
+"support" = "Support";
+
+/* Sync with browser extension */
+"sync_with_extension" = "Sync with extension";
+
+/* Terms menu item */
+"terms_of_service" = "Terms of Use";
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";

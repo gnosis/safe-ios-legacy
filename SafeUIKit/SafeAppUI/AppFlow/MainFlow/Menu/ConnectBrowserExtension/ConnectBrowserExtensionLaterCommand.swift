@@ -8,8 +8,7 @@ import MultisigWalletApplication
 final class ConnectBrowserExtensionLaterCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("menu.action.connect_browser_extension",
-                               comment: "Connect browser extension menu item.")
+        return LocalizedString("connect_browser_extension", comment: "Connect browser extension").capitalized
     }
 
     override var isHidden: Bool {

@@ -8,8 +8,7 @@ import MultisigWalletApplication
 class DisconnectBrowserExtensionCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("menu.action.disconnect_browser_extension",
-                               comment: "Disconnect browser extension menu item")
+        return LocalizedString("disconnect_browser_extension", comment: "Disconnect browser extension").capitalized
     }
 
     override var isHidden: Bool {

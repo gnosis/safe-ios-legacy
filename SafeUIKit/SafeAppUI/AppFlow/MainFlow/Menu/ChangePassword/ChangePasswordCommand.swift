@@ -7,7 +7,7 @@ import Foundation
 final class ChangePasswordCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("menu.action.change_password", comment: "Change password menu item")
+        return LocalizedString("change_password", comment: "Change password").capitalized
     }
 
     override init() {
