@@ -69,7 +69,7 @@
 "confirm_password_info" = "Please enter your password again to confirm.";
 
 /* Header for add browser extension screen */
-"connect_browser_extension" = "Connect browser extension";
+"connect_browser_extension" = "Connect browser\nextension";
 
 /* Body text */
 "connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
@@ -175,6 +175,21 @@
 
 /* Browser Extension Expired Message */
 "ios_be_error_network" = "Failed to pair because of network error. Please try again later.";
+
+/* Browser extension button */
+"ios_configure_browser_extension" = "Browser extension";
+
+/* Mobile app button */
+"ios_configure_mobile_app" = "Mobile app";
+
+/* (Optional) */
+"ios_configure_optional" = "(Optional)";
+
+/* Recovery phrase button */
+"ios_configure_recovery_phrase" = "Recovery phrase";
+
+/* Title for new safe screen */
+"ios_configure_title" = "Configure";
 
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
 "ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
@@ -296,9 +311,6 @@
 /* Use a minimum of 8 characters. */
 "new_password_min_chars" = "Use a minimum of 8 characters";
 
-/* Browser extension button */
-"new_safe.browser_extension" = "Browser extension";
-
 /* Title for confirm recovery screen. */
 "new_safe.confirm_recovery.header" = "Enter the following words from your recovery phrase.";
 
@@ -311,17 +323,8 @@
 /* Word #%@ */
 "new_safe.confirm_recovery.word_number" = "Word #%@";
 
-/* Mobile app button */
-"new_safe.mobile_app" = "Mobile app";
-
 /* Next */
 "new_safe.next" = "Next";
-
-/* (Optional) */
-"new_safe.optional" = "(Optional)";
-
-/* Recovery phrase button */
-"new_safe.recovery_phrase" = "Recovery phrase";
 
 /* Make a copy button */
 "new_safe.setup_recovery.copy" = "Make a copy";
@@ -337,9 +340,6 @@
 
 /* Warning for setup recovery phrase screen. */
 "new_safe.setup_recovery.warning" = "Without these, you won’t be able to recover your Safe and its assets.";
-
-/* Title for new safe screen */
-"new_safe.title" = "Configure";
 
 /* Next
    Next button

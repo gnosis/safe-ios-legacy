@@ -41,12 +41,12 @@ public class ShadowWrapperView: UIView {
 class NewSafeViewController: UIViewController {
 
     enum Strings {
-        static let title = LocalizedString("new_safe.title", comment: "Title for new safe screen")
-        static let thisDevice = LocalizedString("new_safe.mobile_app", comment: "Mobile app button")
-        static let recoveryPhrase = LocalizedString("new_safe.recovery_phrase", comment: "Recovery phrase button")
-        static let browserExtension = LocalizedString("new_safe.browser_extension",
+        static let title = LocalizedString("ios_configure_title", comment: "Title for new safe screen")
+        static let thisDevice = LocalizedString("ios_configure_mobile_app", comment: "Mobile app button")
+        static let recoveryPhrase = LocalizedString("ios_configure_recovery_phrase", comment: "Recovery phrase button")
+        static let browserExtension = LocalizedString("ios_configure_browser_extension",
                                                       comment: "Browser extension button")
-        static let optionalText = LocalizedString("new_safe.optional", comment: "(Optional)")
+        static let optionalText = LocalizedString("ios_configure_optional", comment: "(Optional)")
         static let next = LocalizedString("next", comment: "Next button")
     }
 
