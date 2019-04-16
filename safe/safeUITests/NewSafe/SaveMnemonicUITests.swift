@@ -17,7 +17,7 @@ final class SaveMnemonicUITests: UITestCase {
     // NS-101
     func test_contents() {
         XCTAssertTrue(saveMnemonicScreen.isDisplayed)
-        XCTAssertEqual(saveMnemonicScreen.description.label, LocalizedString("new_safe.setup_recovery.description"))
+        XCTAssertEqual(saveMnemonicScreen.description.label, LocalizedString("ios_showSeed_description"))
         XCTAssertExist(saveMnemonicScreen.mnemonic)
         XCTAssertExist(saveMnemonicScreen.copyButton)
         XCTAssertExist(saveMnemonicScreen.continueButton)

@@ -16,22 +16,18 @@ protocol SaveMnemonicDelegate: class {
 final class SaveMnemonicViewController: UIViewController {
 
     enum Strings {
-        static let title = LocalizedString("recovery_phrase",
-                                           comment: "Title for setup recovery phrase screen.")
-        static let header = LocalizedString("new_safe.setup_recovery.header",
-                                            comment: "Header for setup recovery phrase screen.")
-        static let copy = LocalizedString("new_safe.setup_recovery.copy", comment: "Make a copy button")
-        static let description = LocalizedString("new_safe.setup_recovery.description",
+        static let title = LocalizedString("recovery_phrase", comment: "Title for setup recovery phrase screen.")
+        static let header = LocalizedString("ios_showSeed_header", comment: "Header for setup recovery phrase screen.")
+        static let copy = LocalizedString("ios_showSeed_copy", comment: "Make a copy button")
+        static let description = LocalizedString("ios_showSeed_description",
                                                  comment: "Description for setup recovery phrase screen.")
-        static let warning = LocalizedString("new_safe.setup_recovery.warning",
+        static let warning = LocalizedString("ios_showSeed_warning",
                                              comment: "Warning for setup recovery phrase screen.")
-        static let next = LocalizedString("new_safe.setup_recovery.next",
-                                          comment: "Next button.")
+        static let next = LocalizedString("next", comment: "Next button.")
     }
 
     enum RecoveryStrings {
-        static let header = LocalizedString("replace_recovery.new_phrase.title",
-                                            comment: "New recovery phrase")
+        static let header = LocalizedString("ios_showSeed_title", comment: "New recovery phrase")
     }
 
     var recoveryModeEnabled = false

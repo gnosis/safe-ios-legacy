@@ -25,6 +25,12 @@ class SetupSafeOptionsViewController: UIViewController {
     @IBOutlet weak var recoverSafeButton: BigBorderedButton!
     private weak var delegate: SetupSafeOptionsDelegate?
 
+    static func create(delegate: SetupSafeOptionsDelegate) -> SetupSafeOptionsViewController {
+        let vc = StoryboardScene.SetupSafe.setupSafeOptionsViewController.instantiate()
+        vc.delegate = delegate
+        return vc
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.text = Strings.header
@@ -55,12 +61,5 @@ class SetupSafeOptionsViewController: UIViewController {
         }
         delegate?.didSelectRecoverSafe()
     }
-
-    static func create(delegate: SetupSafeOptionsDelegate) -> SetupSafeOptionsViewController {
-        let vc = StoryboardScene.SetupSafe.setupSafeOptionsViewController.instantiate()
-        vc.delegate = delegate
-        return vc
-    }
-
 
 }

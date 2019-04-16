@@ -10,7 +10,7 @@ final class ConfirmMnemonicScreen {
 
     var isDisplayed: Bool { return title.exists }
     var title: XCUIElement {
-        return XCUIApplication().navigationBars[LocalizedString("new_safe.confirm_recovery.title")]
+        return XCUIApplication().navigationBars[LocalizedString("ios_enterSeed_title")]
 
     }
     var firstInput: XCUIElement { return XCUIApplication().otherElements["firstInput"].textFields.firstMatch }

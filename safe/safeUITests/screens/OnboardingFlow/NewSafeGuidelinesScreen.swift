@@ -8,6 +8,6 @@ import CommonTestSupport
 
 final class NewSafeGuidelinesScreen {
 
-    var nextButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.next")] }
+    var nextButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("next")] }
 
 }

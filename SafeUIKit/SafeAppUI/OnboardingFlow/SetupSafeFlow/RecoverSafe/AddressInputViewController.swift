@@ -89,35 +89,35 @@ extension RecoveryApplicationServiceError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .invalidContractAddress:
-            return LocalizedString("recovery.address.error.invalid_contract", comment: "Invalid contract address")
+            return LocalizedString("ios_recovery_error_contract", comment: "Invalid contract address")
         case .recoveryPhraseInvalid:
-            return LocalizedString("recovery.phrase.error.invalid_phrase", comment: "Incorrect recovery phrase")
+            return LocalizedString("ios_recovery_error_phrase", comment: "Incorrect recovery phrase")
         case .recoveryAccountsNotFound:
-            return LocalizedString("recovery.phrase.error.",
+            return LocalizedString("ios_recovery_error_phrase_notmatching",
                                    comment: "Recovery phrase does not match this Safe's recovery phrase")
         case .unsupportedOwnerCount:
-            return LocalizedString("recovery.failure.unsupportedOwnerCount",
+            return LocalizedString("ios_recovery_error_ownercount",
                                    comment: "Cannot recover because number of Safe owners is not supported")
         case .unsupportedWalletConfiguration:
-            return LocalizedString("recovery.failure.unsupportedWalletConfiguration",
+            return LocalizedString("ios_recovery_error_configuration",
                                    comment: "Cannot recover because this Safe configuration is not supported")
         case .failedToChangeOwners:
-            return LocalizedString("recovery.failure.failedToChangeOwners",
+            return LocalizedString("ios_recovery_error_changeowners",
                                    comment: "Recovery transaction failed to change Safe owners")
         case .failedToCreateValidTransactionData:
-            return LocalizedString("recovery.failure.failedToCreateValidTransactionData",
+            return LocalizedString("ios_recovery_error_createdata",
                                    comment: "Cannot recover because recovery data is invalid")
         case .failedToCreateValidTransaction:
-            return LocalizedString("recovery.failure.failedToCreateValidTransaction",
+            return LocalizedString("ios_recovery_error_createtransaction",
                                    comment: "Cannot recover because recovery transaction is invalid")
         case .failedToChangeConfirmationCount:
-            return LocalizedString("recovery.failure.failedToChangeConfirmationCount",
+            return LocalizedString("ios_recovery_error_changecount",
                                    comment: "Recovery transaction failed to change Safe confirmation count")
         case .walletNotFound:
-            return LocalizedString("recovery.failure.walletNotFound",
+            return LocalizedString("ios_recovery_error_walletnotfound",
                                    comment: "Cannot recover because couldn't find the Safe with this address")
         case .internalServerError:
-            return LocalizedString("recovery.failure.internalServerError",
+            return LocalizedString("ios_recovery_error_servererror",
                                    comment: "Failed to recover because of internal server error")
         }
     }

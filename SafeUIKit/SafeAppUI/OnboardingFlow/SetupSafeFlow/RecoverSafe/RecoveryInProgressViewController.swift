@@ -20,7 +20,7 @@ public class RecoveryInProgressViewController: UIViewController {
 
         static let header = LocalizedString("recovery.progress.header", comment: "Header label for progress screen")
         static let progress = LocalizedString("recovery.progress.description", comment: "This can take a while...")
-        static let externalLink = LocalizedString("safe_creation.etherscan.follow_progress",
+        static let externalLink = LocalizedString("ios_follow_progress",
                                                   comment: "Follow its progress on Etherscan.io")
 
     }
