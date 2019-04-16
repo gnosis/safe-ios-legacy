@@ -203,16 +203,16 @@
 "new_safe.browser_extension.title" = "Setup";
 
 /* Title for confirm recovery screen. */
-"new_safe.confirm_recovery.header" = "Enter the following words from your recovery phrase.";
+"ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
 
 /* Next button for confirm recovery screen. */
 "new_safe.confirm_recovery.next" = "Next";
 
 /* Title for confirm recovery screen. */
-"new_safe.confirm_recovery.title" = "Confirm Recovery Phrase";
+"ios_enterSeed_title" = "Confirm Recovery Phrase";
 
 /* Word #%@ */
-"new_safe.confirm_recovery.word_number" = "Word #%@";
+"ios_enterSeed_word" = "Word #%@";
 
 /* Mobile app button */
 "ios_configure_mobile_app" = "Mobile app";
@@ -228,13 +228,13 @@
 "ios_configure_recovery_phrase" = "Recovery phrase";
 
 /* Make a copy button */
-"new_safe.setup_recovery.copy" = "Make a copy";
+"ios_showSeed_copy" = "Make a copy";
 
 /* Description for setup recovery phrase screen. */
-"new_safe.setup_recovery.description" = "If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address.";
+"ios_showSeed_description" = "If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address.";
 
 /* Header for setup recovery phrase screen. */
-"new_safe.setup_recovery.header" = "Stay secure.\nSave this recovery phrase.";
+"ios_showSeed_header" = "Stay secure.\nSave this recovery phrase.";
 
 /* Next button. */
 "new_safe.setup_recovery.next" = "Next";
@@ -243,7 +243,7 @@
 "new_safe.setup_recovery.title" = "Recovery Phrase";
 
 /* Warning for setup recovery phrase screen. */
-"new_safe.setup_recovery.warning" = "Without these, you won’t be able to recover your Safe and its assets.";
+"ios_showSeed_warning" = "Without these, you won’t be able to recover your Safe and its assets.";
 
 /* Title for new safe screen */
 "ios_configure_title" = "Configure";
@@ -465,7 +465,7 @@
 "replace_phrase.header" = "Replace recovery phrase";
 
 /* New recovery phrase */
-"replace_recovery.new_phrase.title" = "New recovery phrase";
+"ios_showSeed_title" = "New recovery phrase";
 
 /* Success */
 "resync.alert.success" = "Resync notification sent successfully";

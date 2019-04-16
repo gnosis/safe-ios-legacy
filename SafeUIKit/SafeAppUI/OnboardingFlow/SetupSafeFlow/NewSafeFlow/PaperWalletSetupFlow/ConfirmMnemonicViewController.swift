@@ -15,13 +15,13 @@ protocol ConfirmMnemonicDelegate: class {
 final class ConfirmMnemonicViewController: UIViewController {
 
     enum Strings {
-        static let title = LocalizedString("new_safe.confirm_recovery.title",
+        static let title = LocalizedString("ios_enterSeed_title",
                                            comment: "Title for confirm recovery screen.")
-        static let header = LocalizedString("new_safe.confirm_recovery.header",
+        static let header = LocalizedString("ios_enterSeed_header",
                                             comment: "Title for confirm recovery screen.")
-        static let next = LocalizedString("new_safe.confirm_recovery.next",
+        static let next = LocalizedString("next",
                                           comment: "Next button for confirm recovery screen.")
-        static let wordNumberPlaceholder = LocalizedString("new_safe.confirm_recovery.word_number",
+        static let wordNumberPlaceholder = LocalizedString("ios_enterSeed_word",
                                                            comment: "Word #%@")
     }
 
@@ -85,7 +85,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)        
+        super.viewWillDisappear(animated)
         keyboardBehavior?.stop()
     }
 

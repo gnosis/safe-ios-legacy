@@ -191,6 +191,15 @@
 /* Title for new safe screen */
 "ios_configure_title" = "Configure";
 
+/* Title for confirm recovery screen. */
+"ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
+
+/* Title for confirm recovery screen. */
+"ios_enterSeed_title" = "Confirm Recovery Phrase";
+
+/* Word #%@ */
+"ios_enterSeed_word" = "Word #%@";
+
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
 "ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
 
@@ -205,6 +214,21 @@
 
 /* Content paragraphs, separated by '\n' */
 "ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
+
+/* Make a copy button */
+"ios_showSeed_copy" = "Make a copy";
+
+/* Description for setup recovery phrase screen. */
+"ios_showSeed_description" = "If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address.";
+
+/* Header for setup recovery phrase screen. */
+"ios_showSeed_header" = "Stay secure.\nSave this recovery phrase.";
+
+/* New recovery phrase */
+"ios_showSeed_title" = "New recovery phrase";
+
+/* Warning for setup recovery phrase screen. */
+"ios_showSeed_warning" = "Without these, you won’t be able to recover your Safe and its assets.";
 
 /* Content (bulleted list). Separate by new line characters '\n' */
 "ios_terms_contents" = "We do not collect demographic data such as age and gender.\nWe collect anonymized app usage data and crash reports to ensure the quality of our app.";
@@ -311,39 +335,11 @@
 /* Use a minimum of 8 characters. */
 "new_password_min_chars" = "Use a minimum of 8 characters";
 
-/* Title for confirm recovery screen. */
-"new_safe.confirm_recovery.header" = "Enter the following words from your recovery phrase.";
-
-/* Next button for confirm recovery screen. */
-"new_safe.confirm_recovery.next" = "Next";
-
-/* Title for confirm recovery screen. */
-"new_safe.confirm_recovery.title" = "Confirm Recovery Phrase";
-
-/* Word #%@ */
-"new_safe.confirm_recovery.word_number" = "Word #%@";
-
-/* Next */
-"new_safe.next" = "Next";
-
-/* Make a copy button */
-"new_safe.setup_recovery.copy" = "Make a copy";
-
-/* Description for setup recovery phrase screen. */
-"new_safe.setup_recovery.description" = "If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address.";
-
-/* Header for setup recovery phrase screen. */
-"new_safe.setup_recovery.header" = "Stay secure.\nSave this recovery phrase.";
-
-/* Next button. */
-"new_safe.setup_recovery.next" = "Next";
-
-/* Warning for setup recovery phrase screen. */
-"new_safe.setup_recovery.warning" = "Without these, you won’t be able to recover your Safe and its assets.";
-
 /* Next
    Next button
-   Next button title */
+   Next button for confirm recovery screen.
+   Next button title
+   Next button. */
 "next" = "Next";
 
 /* No Thanks */
@@ -491,9 +487,6 @@
 
 /* Replace recovery phrase */
 "replace_phrase.header" = "Replace recovery phrase";
-
-/* New recovery phrase */
-"replace_recovery.new_phrase.title" = "New recovery phrase";
 
 /* Resend button. */
 "resend" = "Resend";

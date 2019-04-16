@@ -26,7 +26,7 @@ class BaseInputViewController: UIViewController, EventSubscriber {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        nextButtonItem.title = LocalizedString("new_safe.next", comment: "Next")
+        nextButtonItem.title = LocalizedString("next", comment: "Next")
         activityIndicatorItem = UIBarButtonItem(customView: activityIndicatorView)
     }
 

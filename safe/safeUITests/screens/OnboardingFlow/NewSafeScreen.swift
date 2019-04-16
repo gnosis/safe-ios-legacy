@@ -13,7 +13,7 @@ final class NewSafeScreen {
     var thisDevice: CheckButton { return CheckButton(LocalizedString("ios_configure_mobile_app")) }
     var browserExtension: CheckButton { return CheckButton(LocalizedString("ios_configure_browser_extension")) }
     var paperWallet: CheckButton { return CheckButton(LocalizedString("ios_configure_recovery_phrase")) }
-    var next: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.next")] }
+    var next: XCUIElement { return XCUIApplication().buttons[LocalizedString("next")] }
 
     struct CheckButton {
         let element: XCUIElement
