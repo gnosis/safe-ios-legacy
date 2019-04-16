@@ -36,10 +36,10 @@ enum TransactionStatusParameter: Int {
 
     var stringValue: String {
         switch self {
-        case .failed: return LocalizedString("transaction.details.status.failed", comment: "'Failed' status")
-        case .pending: return LocalizedString("transaction.details.status.pending", comment: "'Pending' status")
-        case .success: return LocalizedString("transaction.details.status.success", comment: "'Success' status")
-        case .rejected: return LocalizedString("transaction.details.status.rejected", comment: "'Rejected' status")
+        case .failed: return LocalizedString("status_failed", comment: "'Failed' status")
+        case .pending: return LocalizedString("status_pending", comment: "'Pending' status")
+        case .success: return LocalizedString("status_success", comment: "'Success' status")
+        case .rejected: return "" // rejected transactions are not displayed
         }
     }
 

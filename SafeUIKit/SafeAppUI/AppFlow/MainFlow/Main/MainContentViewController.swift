@@ -31,7 +31,7 @@ class MainContentViewController: SegmentBarController {
 extension TokensTableViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
-        return SegmentBarItem(title: LocalizedString("main.segment.assets", comment: "Assets tab title"),
+        return SegmentBarItem(title: LocalizedString("assets_capitalized", comment: "Assets tab title"),
                               image: Asset.MainScreenHeader.coins.image)
     }
 
@@ -40,7 +40,7 @@ extension TokensTableViewController: SegmentController {
 extension TransactionsTableViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
-        return SegmentBarItem(title: LocalizedString("main.segment.transactions", comment: "Transactions tab title"),
+        return SegmentBarItem(title: LocalizedString("transactions_capitalized", comment: "Transactions tab title"),
                               image: Asset.MainScreenHeader.arrows.image)
     }
 

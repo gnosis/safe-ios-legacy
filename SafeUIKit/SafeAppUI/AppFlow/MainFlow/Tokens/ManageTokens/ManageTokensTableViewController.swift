@@ -47,6 +47,7 @@ final class ManageTokensTableViewController: UITableViewController {
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundView = BackgroundImageView(frame: tableView.frame)
+        tableView.tableFooterView = UIView()
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
         navigationItem.setLeftBarButton(addButton, animated: false)

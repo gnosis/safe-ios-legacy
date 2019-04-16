@@ -1,5 +1,11 @@
+/* Add token button */
+"add_token" = "Add Token";
+
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
+
+/* Safe Address label. */
+"address" = "Address";
 
 /* Recovery address validation failed alert's message */
 "address_invalid" = "Address is invalid";
@@ -27,6 +33,9 @@
 
 /* App slogan */
 "app_slogan" = "Enter the decentralized web.";
+
+/* Assets tab title */
+"assets_capitalized" = "ASSETS";
 
 /* Back */
 "back" = "Back";
@@ -68,7 +77,8 @@
 /* Confirmation screen description */
 "confirm_password_info" = "Please enter your password again to confirm.";
 
-/* Header for add browser extension screen */
+/* Connect browser extension
+   Header for add browser extension screen */
 "connect_browser_extension" = "Connect browser\nextension";
 
 /* Body text */
@@ -98,6 +108,9 @@
 /* Creating safe header for safe creation screen. */
 "creating_your_new_safe" = "Creating your new Safe…";
 
+/* Disconnect browser extension */
+"disconnect_browser_extension" = "Disconnect browser\nextension";
+
 /* Body text */
 "disconnect_extension.intro.body" = "Once this process is complete, you won't need to confirm transactions with browser extension.\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
 
@@ -109,6 +122,9 @@
 
 /* Title for the header */
 "disconnect_extension.review.title" = "Disconnect browser extension";
+
+/* No transactions yet */
+"empty_safe_transactions_message" = "No transactions yet";
 
 /* Description for add browser extension screen */
 "enable_2fa" = "Enable 2-factor authentication by connecting your Safe to the browser extension.";
@@ -161,6 +177,9 @@
 
 /* Guidelines */
 "guidelines" = "Guidelines";
+
+/* 'Submitted' parameter name */
+"header_submitted" = "Submitted";
 
 /* How this works */
 "how_this_works" = "How this works";
@@ -234,6 +253,9 @@
 /* Follow its progress on Etherscan.io */
 "ios_follow_progress" = "Follow its progress on Etherscan.io";
 
+/* Identicon label. */
+"ios_identicon" = "Identicon";
+
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
 "ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
 
@@ -247,7 +269,7 @@
 "ios_privacy_policy_link_text" = "Privacy Policy";
 
 /* QR Code label. */
-"ios_qrcode" = "QR Code";
+"ios_qr_code" = "QR Code";
 
 /* Recovery transaction failed to change Safe confirmation count */
 "ios_recovery_error_changecount" = "Recovery transaction failed to change Safe confirmation count";
@@ -306,20 +328,32 @@
 /* Terms of Use */
 "ios_terms_link_text" = "Terms of Use";
 
-/* Menu button title */
-"main.menu" = "Menu";
+/* 'View on Etherscan' button name */
+"ios_view_transaction_on_etherscan" = "View transaction on Etherscan.io";
 
-/* Assets tab title */
-"main.segment.assets" = "Assets";
+/* Detail for the header in review screen */
+"layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the browser extension. Future transactions require a confirmation from both devices.";
 
-/* Transactions tab title */
-"main.segment.transactions" = "Transactions";
+/* Detail for the header in review screen */
+"layout_disconnect_browser_extension_info_description" = "This transaction disconnects this Safe from the browser extension. Future transactions will not require confirmations.";
+
+/* Detail for the header in review screen */
+"layout_recovered_safe_info_description" = "The existing Safe was recovered.";
+
+/* Detail for the header in review screen */
+"layout_replace_browser_extension_info_description" = "The existing browser extension connection was replaced by the new browser extension.";
+
+/* Detail for the header in review screen */
+"layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
 
 /* Hide displayed token action. */
 "manage_tokens.hide" = "Hide";
 
 /* Title for Manage Tokens Screen. */
 "manage_tokens.title" = "Tokens";
+
+/* Menu button title */
+"menu" = "Menu";
 
 /* Change browser extension menu item */
 "menu.action.change_browser_extension" = "Replace Browser Extension";
@@ -446,8 +480,14 @@
 /* Passwords must match. */
 "passwords_do_not_match" = "Sorry, the password doesn't match";
 
+/* Pending transactions group header */
+"pending_captalized" = "PENDING";
+
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
+
+/* Receive Funds screen title. */
+"receive_funds" = "Receive Funds";
 
 /* Restore safe button */
 "recover_safe" = "Recover an Existing Safe";
@@ -455,6 +495,9 @@
 /* Recover Safe
    Recover safe */
 "recover_safe_title" = "Recover Safe";
+
+/* Recovered Safe */
+"recovered_safe" = "Recovered\nSafe";
 
 /* OK button title */
 "recovery.address.failed_alert.ok" = "Ok";
@@ -486,6 +529,9 @@
 /* Retry button title. */
 "refresh" = "Refresh";
 
+/* Replace browser extension */
+"replace_browser_extension" = "Replace browser\nextension";
+
 /* Description */
 "replace_extension.connect.description" = "All transactions will need to be approved by both this device and the new Safe browser extension.";
 
@@ -516,6 +562,9 @@
 /* Replace recovery phrase */
 "replace_phrase.header" = "Replace recovery phrase";
 
+/* Replace recovery phrase */
+"replace_recovery_phrase" = "Replace recovery\nphrase";
+
 /* Resend button. */
 "resend" = "Resend";
 
@@ -528,24 +577,6 @@
 /* Review button for Send screen
    Review transaction title */
 "review" = "Review";
-
-/* Safe Address label. */
-"safe_address.address" = "Address";
-
-/* Description for Address Details screen. */
-"safe_address.description" = "Share your address with contacts or enable senders to scan your QR code.";
-
-/* Header for Address Details screen. */
-"safe_address.header" = "Receive Ether and Tokens";
-
-/* Identicon label. */
-"safe_address.identicon" = "Identicon";
-
-/* QR Code label. */
-"safe_address.qr_code" = "QR Code";
-
-/* Title for Address Details screen. */
-"safe_address.title" = "Safe Address";
 
 /* First deposit header for safe creation screen. */
 "safe_creation_fee" = "Safe creation fee";
@@ -562,6 +593,9 @@
 /* Send */
 "send_title" = "Send %@";
 
+/* Settings change */
+"settings_change" = "Settings change";
+
 /* Set up password button title */
 "setup_password" = "Setup Password";
 
@@ -571,98 +605,33 @@
 /* Set up safe options screen title */
 "setup_successful" = "Device setup successful! \n Let's get started.";
 
+/* Description for Receive Funds screen. */
+"share_your_address" = "Share your address with contracts or enable senders to scan your QR code to receive Ether and tokens.";
+
 /* Skip button text */
 "skip_setup_later" = "Skip and setup later";
 
 /* Start button title */
 "start" = "Start";
 
+/* 'Status' parameter name */
+"status" = "Status";
+
+/* 'Failed' status
+   Failed status */
+"status_failed" = "Failed";
+
+/* 'Pending' status */
+"status_pending" = "Pending";
+
+/* 'Success' status */
+"status_success" = "Success";
+
 /* Submit transaction */
 "submit" = "Submit";
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
-
-/* Detail for the header in review screen */
-"transaction.details.connect_extension.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
-
-/* Title for the header in review screen */
-"transaction.details.connect_extension.title" = "Connect Browser Extension";
-
-/* Detail for the header in review screen */
-"transaction.details.disconnect_extension.detail" = "This transaction disconnects this Safe from the browser extension. Future transactions will not require confirmations.";
-
-/* Title for the header in review screen */
-"transaction.details.disconnect_extension.title" = "Disconnect Browser Extension";
-
-/* 'View on Etherscan' button name */
-"transaction.details.externalViewer" = "View on Etherscan.io";
-
-/* 'Fee' parameter name */
-"transaction.details.fee" = "Network fee";
-
-/* Detail for the header in review screen */
-"transaction.details.replace_extension.detail" = "The existing browser extension connection was replaced by the new browser extension.";
-
-/* Title for the header in review screen */
-"transaction.details.replace_extension.title" = "Replace browser extension";
-
-/* Detail for the header in review screen */
-"transaction.details.replace_recovery.detail" = "The old recovery phrase was replaced by a new one";
-
-/* Title for the header in review screen */
-"transaction.details.replace_recovery.title" = "Replace recovery phrase";
-
-/* 'Status' parameter name */
-"transaction.details.status" = "Status";
-
-/* 'Failed' status */
-"transaction.details.status.failed" = "Failed";
-
-/* 'Pending' status */
-"transaction.details.status.pending" = "Pending";
-
-/* 'Rejected' status */
-"transaction.details.status.rejected" = "Rejected";
-
-/* 'Success' status */
-"transaction.details.status.success" = "Success";
-
-/* 'Submitted' parameter name */
-"transaction.details.submitted" = "Submitted";
-
-/* Title for the transaction details screen */
-"transaction.details.title" = "Transaction details";
-
-/* 'Type' parameter name */
-"transaction.details.type" = "Type";
-
-/* Connect browser extension */
-"transaction.details.type.connectBrowserExtension" = "Connect browser extension";
-
-/* Disconnect browser extension */
-"transaction.details.type.disconnectBrowserExtension" = "Disconnect browser extension";
-
-/* 'Incoming' transaction type */
-"transaction.details.type.incoming" = "Incoming Transfer";
-
-/* 'Outgoing' transaction type */
-"transaction.details.type.outgoing" = "Outgoing Transfer";
-
-/* Wallet recovery */
-"transaction.details.type.recovery" = "Safe Recovery";
-
-/* Replace browser extension */
-"transaction.details.type.replaceBrowserExtension" = "Replace browser extension";
-
-/* Replace recovery phrase */
-"transaction.details.type.replaceRecoveryPhrase" = "Replace recovery phrase";
-
-/* Detail for the header in review screen */
-"transaction.details.wallet_recovery.detail" = "The Safe was recovered";
-
-/* Title for the header in review screen */
-"transaction.details.wallet_recovery.title" = "Safe recovery";
 
 /* Detail for header in review screen. */
 "transaction.replace_browser_extension.description" = "The existing browser extension connection will be replaced by the new browser extension.";
@@ -679,6 +648,9 @@
 /* Submit */
 "transaction.submit" = "Submit";
 
+/* Title for the transaction details screen */
+"transaction_details" = "Transaction Details";
+
 /* Network fee */
 "transaction_fee" = "Network fee";
 
@@ -688,38 +660,17 @@
 /* Outgoing transafer */
 "transaction_type_asset_transfer" = "Outgoing transfer";
 
-/* No transactions yet */
-"transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
-
 /* Past transactions group header */
 "transactions.group.past" = "Past";
 
-/* Pending transactions group header */
-"transactions.group.pending_outgoing" = "Pending Outgoing";
-
-/* Connect browser extension */
-"transactions.row.connect_extension" = "Connected\nBrowser Extension";
-
-/* Connect browser extension */
-"transactions.row.disconnect_extension" = "Disconnected\nBrowser Extension";
-
-/* (failed) suffix) */
-"transactions.row.failed" = "(failed)";
-
-/* (rejected) suffix */
-"transactions.row.rejected" = "(rejected)";
-
-/* Browser extension changed */
-"transactions.row.replace_extension" = "New Browser\nExtension";
-
-/* Recovery phrase changed */
-"transactions.row.replace_phrase" = "Replaced\nRecovery Phrase";
-
-/* Wallet recovered */
-"transactions.row.wallet_recovery" = "Recovered Safe";
+/* Transactions tab title */
+"transactions_capitalized" = "TRANSACTIONS";
 
 /* Try again in */
 "try_again_in" = "Try again in";
+
+/* 'Type' parameter name */
+"type" = "Type";
 
 /* Face ID button explanation */
 "use_faceid_to_unlock" = "Use Face ID to unlock";

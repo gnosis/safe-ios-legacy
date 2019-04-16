@@ -14,6 +14,17 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var transactionDateLabel: UILabel!
     @IBOutlet weak var tokenAmountLabel: AmountLabel!
 
+    private enum Strings {
+        static let recoveredSafe = LocalizedString("recovered_safe", comment: "Recovered Safe")
+        static let replaceRecoveryPhrase = LocalizedString("replace_recovery_phrase",
+                                                           comment: "Replace recovery phrase")
+        static let replaceBE = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
+        static let connectBE = LocalizedString("connect_browser_extension", comment: "Connect browser extension")
+        static let disconnectBE = LocalizedString("disconnect_browser_extension",
+                                                  comment: "Disconnect browser extension")
+        static let statusFailed = LocalizedString("status_failed", comment: "Failed status")
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundView = UIView()
@@ -43,20 +54,15 @@ class TransactionTableViewCell: UITableViewCell {
         case .incoming, .outgoing:
             tokenAmountLabel.amount = tx.amountTokenData
         case .walletRecovery:
-            tokenAmountLabel.text = LocalizedString("transactions.row.wallet_recovery",
-                                                    comment: "Wallet recovered")
+            tokenAmountLabel.text = Strings.recoveredSafe
         case .replaceRecoveryPhrase:
-            tokenAmountLabel.text = LocalizedString("transactions.row.replace_phrase",
-                                                    comment: "Recovery phrase changed")
+            tokenAmountLabel.text = Strings.replaceRecoveryPhrase
         case .replaceBrowserExtension:
-            tokenAmountLabel.text = LocalizedString("transactions.row.replace_extension",
-                                                    comment: "Browser extension changed")
+            tokenAmountLabel.text = Strings.replaceBE
         case .connectBrowserExtension:
-            tokenAmountLabel.text = LocalizedString("transactions.row.connect_extension",
-                                                    comment: "Connect browser extension")
+            tokenAmountLabel.text = Strings.connectBE
         case .disconnectBrowserExtension:
-            tokenAmountLabel.text = LocalizedString("transactions.row.disconnect_extension",
-                                                    comment: "Connect browser extension")
+            tokenAmountLabel.text = Strings.disconnectBE
         }
     }
 
@@ -71,8 +77,7 @@ class TransactionTableViewCell: UITableViewCell {
 
     private func addressSuffix(_ transaction: TransactionData) -> String? {
         switch transaction.status {
-        case .rejected: return LocalizedString("transactions.row.rejected", comment: "(rejected) suffix")
-        case .failed: return LocalizedString("transactions.row.failed", comment: "(failed) suffix)")
+        case .failed: return "(\(Strings.statusFailed.lowercased()))"
         default: return nil
         }
     }

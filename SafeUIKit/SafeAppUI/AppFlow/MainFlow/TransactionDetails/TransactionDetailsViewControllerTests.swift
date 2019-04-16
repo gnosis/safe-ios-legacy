@@ -32,7 +32,7 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         typealias Strings = TransactionDetailsViewController.Strings
 
         XCTAssertEqual(controller.transactionTypeView.name, Strings.type)
-        XCTAssertEqual(controller.transactionTypeView.value, Strings.outgoing)
+        XCTAssertEqual(controller.transactionTypeView.value, Strings.outgoingType)
 
         XCTAssertEqual(controller.submittedParameterView.name, Strings.submitted)
         XCTAssertEqual(controller.submittedParameterView.value, controller.string(from: tx.submitted!))

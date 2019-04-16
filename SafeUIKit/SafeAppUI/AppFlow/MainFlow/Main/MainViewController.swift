@@ -25,7 +25,7 @@ final class MainViewController: UIViewController {
     private weak var delegate: (MainViewControllerDelegate & TransactionsTableViewControllerDelegate)?
 
     private enum Strings {
-        static let menu = LocalizedString("main.menu", comment: "Menu button title")
+        static let menu = LocalizedString("menu", comment: "Menu button title")
     }
 
     static func create(delegate: MainViewControllerDelegate & TransactionsTableViewControllerDelegate)

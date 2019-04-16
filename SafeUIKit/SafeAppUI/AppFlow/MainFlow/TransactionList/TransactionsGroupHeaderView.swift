@@ -9,10 +9,11 @@ import SafeUIKit
 class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
 
     internal enum Strings {
-        static let pending = LocalizedString("transactions.group.pending_outgoing",
+        static let pending = LocalizedString("pending_captalized",
                                              comment: "Pending transactions group header")
-        static let today = DateToolsLocalized("Today")
-        static let past = LocalizedString("transactions.group.past", comment: "Past transactions group header")
+        static let today = DateToolsLocalized("Today").capitalized
+        static let past =
+            LocalizedString("transactions.group.past", comment: "Past transactions group header").capitalized
     }
 
     func configure(group: TransactionGroupData) {

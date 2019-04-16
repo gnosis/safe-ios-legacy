@@ -8,7 +8,7 @@ import SafeUIKit
 
 class TransactionsEmptyView: BaseCustomView {
 
-    var text: String = LocalizedString("transactions.empty.text", comment: "No transactions yet") {
+    var text: String = LocalizedString("empty_safe_transactions_message", comment: "No transactions yet") {
         didSet { update() }
     }
 
@@ -39,7 +39,7 @@ class TransactionsEmptyView: BaseCustomView {
     }
 
     override func update() {
-        textLabel.text = text
+        textLabel.text = "¯\\_(ツ)_/¯\n" + text
     }
 
 }

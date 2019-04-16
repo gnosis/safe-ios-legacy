@@ -20,60 +20,49 @@ internal class ClockService {
 public class TransactionDetailsViewController: UIViewController {
 
     internal enum Strings {
-        static let type = LocalizedString("transaction.details.type", comment: "'Type' parameter name")
-        static let submitted = LocalizedString("transaction.details.submitted",
-                                               comment: "'Submitted' parameter name")
-        static let status = LocalizedString("transaction.details.status", comment: "'Status' parameter name")
-        static let fee = LocalizedString("transaction.details.fee", comment: "'Fee' parameter name")
-        static let externalApp = LocalizedString("transaction.details.externalViewer",
-                                                 comment: "'View on Etherscan' button name")
-        static let outgoing = LocalizedString("transaction.details.type.outgoing",
-                                              comment: "'Outgoing' transaction type")
-        static let incoming = LocalizedString("transaction.details.type.incoming",
-                                              comment: "'Incoming' transaction type")
-        static let recovery = LocalizedString("transaction.details.type.recovery", comment: "Wallet recovery")
-        static let replaceRecoveryPhrase = LocalizedString("transaction.details.type.replaceRecoveryPhrase",
-                                                           comment: "Replace recovery phrase")
-        static let replaceBrowserExtension = LocalizedString("transaction.details.type.replaceBrowserExtension",
-                                                             comment: "Replace browser extension")
-        static let connectBrowserExtension = LocalizedString("transaction.details.type.connectBrowserExtension",
-                                                             comment: "Connect browser extension")
-        static let disconnectBrowserExtension = LocalizedString("transaction.details.type.disconnectBrowserExtension",
-                                                                comment: "Disconnect browser extension")
-        static let title = LocalizedString("transaction.details.title",
+        static let title = LocalizedString("transaction_details",
                                            comment: "Title for the transaction details screen")
+        static let type = LocalizedString("type", comment: "'Type' parameter name")
+        static let submitted = LocalizedString("header_submitted",
+                                               comment: "'Submitted' parameter name")
+        static let status = LocalizedString("status", comment: "'Status' parameter name")
+        static let fee = LocalizedString("transaction_fee", comment: "Network fee")
+        static let externalApp = LocalizedString("ios_view_transaction_on_etherscan",
+                                                 comment: "'View on Etherscan' button name")
+        static let outgoingType = LocalizedString("transaction_type_asset_transfer",
+                                                  comment: "Outgoing transafer")
+        static let settingsChangeType = LocalizedString("settings_change", comment: "Settings change")
+
 
         enum ReplaceRecoveryPhrase {
-            static let title = LocalizedString("transaction.details.replace_recovery.title",
-                                               comment: "Title for the header in review screen")
-            static let detail = LocalizedString("transaction.details.replace_recovery.detail",
+            static let title = LocalizedString("replace_recovery_phrase", comment: "Replace recovery phrase")
+                .replacingOccurrences(of: "\n", with: " ")
+            static let detail = LocalizedString("layout_replace_recovery_phrase_transaction_info_description",
                                                 comment: "Detail for the header in review screen")
         }
         enum ReplaceBrowserExtension {
-            static let title = LocalizedString("transaction.details.replace_extension.title",
-                                               comment: "Title for the header in review screen")
-            static let detail = LocalizedString("transaction.details.replace_extension.detail",
+            static let title = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
+                .replacingOccurrences(of: "\n", with: " ")
+            static let detail = LocalizedString("layout_replace_browser_extension_info_description",
                                                 comment: "Detail for the header in review screen")
         }
         enum ConnectBrowserExtension {
-            static let title = LocalizedString("transaction.details.connect_extension.title",
-                                               comment: "Title for the header in review screen")
-            static let detail = LocalizedString("transaction.details.connect_extension.detail",
+            static let title = LocalizedString("connect_browser_extension", comment: "Connect browser extension")
+                .replacingOccurrences(of: "\n", with: " ")
+            static let detail = LocalizedString("layout_connect_browser_extension_info_description",
                                                 comment: "Detail for the header in review screen")
         }
         enum DisconnectBrowserExtension {
-            static let title = LocalizedString("transaction.details.disconnect_extension.title",
-                                               comment: "Title for the header in review screen")
-            static let detail = LocalizedString("transaction.details.disconnect_extension.detail",
+            static let title = LocalizedString("disconnect_browser_extension", comment: "Disconnect browser extension")
+                .replacingOccurrences(of: "\n", with: " ")
+            static let detail = LocalizedString("layout_disconnect_browser_extension_info_description",
                                                 comment: "Detail for the header in review screen")
         }
-
         enum WalletRecovery {
-            static let title = LocalizedString("transaction.details.wallet_recovery.title",
-                                               comment: "Title for the header in review screen")
-            static let detail = LocalizedString("transaction.details.wallet_recovery.detail",
+            static let title = LocalizedString("recovered_safe", comment: "Recovered Safe")
+                .replacingOccurrences(of: "\n", with: " ")
+            static let detail = LocalizedString("layout_recovered_safe_info_description",
                                                 comment: "Detail for the header in review screen")
-
         }
     }
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
@@ -184,13 +173,10 @@ public class TransactionDetailsViewController: UIViewController {
     private func configureType() {
         transactionTypeView.name = Strings.type
         switch transaction.type {
-        case .outgoing: transactionTypeView.value = Strings.outgoing
-        case .incoming: transactionTypeView.value = Strings.incoming
-        case .walletRecovery: transactionTypeView.value = Strings.recovery
-        case .replaceRecoveryPhrase: transactionTypeView.value = Strings.replaceRecoveryPhrase
-        case .replaceBrowserExtension: transactionTypeView.value = Strings.replaceBrowserExtension
-        case .connectBrowserExtension: transactionTypeView.value = Strings.connectBrowserExtension
-        case .disconnectBrowserExtension: transactionTypeView.value = Strings.disconnectBrowserExtension
+        case .outgoing: transactionTypeView.value = Strings.outgoingType
+        case .incoming: transactionTypeView.value = "" // we do not have incomming transactions yet
+        case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension,
+             .disconnectBrowserExtension: transactionTypeView.value = Strings.settingsChangeType
         }
     }
 
