@@ -47,6 +47,9 @@
 /* Close */
 "close" = "Close";
 
+/* Connect browser extension */
+"connect_browser_extension" = "Connect browser\nextension";
+
 /* Body text */
 "connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
 
@@ -59,6 +62,9 @@
 /* Title for the header */
 "connect_extension.review.title" = "Connect browser extension";
 
+/* Dosconnect browser extension */
+"disconnect_browser_extension" = "Disconnect browser\nextension";
+
 /* Body text */
 "disconnect_extension.intro.body" = "Once this process is complete, you won't need to confirm transactions with browser extension.\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
 
@@ -70,6 +76,9 @@
 
 /* Title for the header */
 "disconnect_extension.review.title" = "Disconnect browser extension";
+
+/* No transactions yet */
+"empty_safe_transactions_message" = "No transactions yet";
 
 /* Not enough balance for transaction. */
 "exceeds_funds" = "Insufficient funds to perform this transaction";
@@ -357,6 +366,9 @@
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
 
+/* Pending transactions group header */
+"pending_captalized" = "PENDING";
+
 /* Abort safe creation button title */
 "pending_safe.abort_alert.abort" = "Abort";
 
@@ -377,6 +389,9 @@
 
 /* Pending safe failed alert's title */
 "pending_safe.failed_alert.title" = "Error";
+
+/* Safe recovered */
+"recovered_safe" = "Recovered\nSafe";
 
 /* Invalid contract address */
 "recovery.address.error.invalid_contract" = "Invalid Safe address";
@@ -465,6 +480,9 @@
 /* Recovery transaction failed alert's title */
 "recovery.transaction.failed_alert.title" = "Error";
 
+/* Replace browser extension */
+"replace_browser_extension" = "Replace browser\nextension";
+
 /* Description */
 "replace_extension.connect.description" = "All transactions will need to be approved by both this device and the new Safe browser extension.";
 
@@ -497,6 +515,9 @@
 
 /* New recovery phrase */
 "replace_recovery.new_phrase.title" = "New recovery phrase";
+
+/* Replace recovery phrase */
+"replace_recovery_phrase" = "Replace recovery\nphrase";
 
 /* Resend button. */
 "resend" = "Resend";
@@ -597,6 +618,9 @@
 
 /* Send */
 "send_title" = "Send %@";
+
+/* Failed status */
+"status_failed" = "Failed";
 
 /* Submit transaction */
 "submit" = "Submit";
@@ -709,35 +733,8 @@
 /* Outgoing transafer */
 "transaction_type_asset_transfer" = "Outgoing transfer";
 
-/* No transactions yet */
-"transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
-
 /* Past transactions group header */
 "transactions.group.past" = "Past";
-
-/* Pending transactions group header */
-"transactions.group.pending_outgoing" = "Pending Outgoing";
-
-/* Connect browser extension */
-"transactions.row.connect_extension" = "Connected\nBrowser Extension";
-
-/* Connect browser extension */
-"transactions.row.disconnect_extension" = "Disconnected\nBrowser Extension";
-
-/* (failed) suffix) */
-"transactions.row.failed" = "(failed)";
-
-/* (rejected) suffix */
-"transactions.row.rejected" = "(rejected)";
-
-/* Browser extension changed */
-"transactions.row.replace_extension" = "New Browser\nExtension";
-
-/* Recovery phrase changed */
-"transactions.row.replace_phrase" = "Replaced\nRecovery Phrase";
-
-/* Wallet recovered */
-"transactions.row.wallet_recovery" = "Recovered Safe";
 
 /* Transactions tab title */
 "transactions_capitalized" = "TRANSACTIONS";
