@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,57 +24,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnp-MZ-9Jr" customClass="ShadowWrapperView" customModule="SafeAppUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="263"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mv5-vW-qj2">
-                                        <rect key="frame" x="30" y="50" width="315" height="163"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUi-Ui-sFY" customClass="CheckmarkButton" customModule="SafeUIKit">
-                                                <rect key="frame" x="0.0" y="0.0" width="315" height="41"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <state key="normal" title="Mobile app"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="CheckmarkButton" customModule="SafeUIKit">
-                                                <rect key="frame" x="0.0" y="61" width="315" height="41"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <state key="normal" title="Recovery phrase"/>
-                                                <connections>
-                                                    <action selector="setupRecoveryPhrase:" destination="oT1-O9-HET" eventType="touchUpInside" id="LBK-fq-IA7"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="CheckmarkButton" customModule="SafeUIKit">
-                                                <rect key="frame" x="0.0" y="122" width="315" height="41"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <state key="normal" title="Browser extension"/>
-                                                <connections>
-                                                    <action selector="setupBrowserExtension:" destination="oT1-O9-HET" eventType="touchUpInside" id="7NM-PF-Scy"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SvL-fI-cSR">
-                                        <rect key="frame" x="67" y="209" width="37.5" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                                <rect key="frame" x="0.0" y="64" width="375" height="293"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="mv5-vW-qj2" firstAttribute="top" secondItem="vnp-MZ-9Jr" secondAttribute="top" constant="50" id="5x3-Dt-XRc"/>
-                                    <constraint firstAttribute="trailing" secondItem="mv5-vW-qj2" secondAttribute="trailing" constant="30" id="HsH-ht-aO5"/>
-                                    <constraint firstItem="SvL-fI-cSR" firstAttribute="leading" secondItem="Yn0-3F-SUf" secondAttribute="leading" constant="37" id="Nzh-xP-YhC"/>
-                                    <constraint firstItem="SvL-fI-cSR" firstAttribute="top" secondItem="Yn0-3F-SUf" secondAttribute="baseline" constant="8" id="YPd-uD-RAM"/>
-                                    <constraint firstItem="mv5-vW-qj2" firstAttribute="leading" secondItem="vnp-MZ-9Jr" secondAttribute="leading" constant="30" id="uN5-aP-fbx"/>
-                                    <constraint firstAttribute="bottom" secondItem="mv5-vW-qj2" secondAttribute="bottom" constant="50" id="yu8-r8-kUO"/>
-                                </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mv5-vW-qj2">
+                                <rect key="frame" x="30" y="114" width="315" height="163"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="BUi-Ui-sFY" customClass="CheckmarkButton" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Mobile app"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="CheckmarkButton" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="61" width="315" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Recovery phrase"/>
+                                        <connections>
+                                            <action selector="setupRecoveryPhrase:" destination="oT1-O9-HET" eventType="touchUpInside" id="LBK-fq-IA7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="CheckmarkButton" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="122" width="315" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Browser extension"/>
+                                        <connections>
+                                            <action selector="setupBrowserExtension:" destination="oT1-O9-HET" eventType="touchUpInside" id="7NM-PF-Scy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SvL-fI-cSR">
+                                <rect key="frame" x="70" y="289" width="37.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="top" secondItem="lwB-8g-DNf" secondAttribute="top" id="LxQ-ij-HmC"/>
-                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="leading" secondItem="lwB-8g-DNf" secondAttribute="leading" id="lKO-Qi-Hc4"/>
-                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="trailing" secondItem="lwB-8g-DNf" secondAttribute="trailing" id="m0f-Ie-MzU"/>
+                            <constraint firstItem="lwB-8g-DNf" firstAttribute="trailing" secondItem="vnp-MZ-9Jr" secondAttribute="trailing" id="7cJ-Ht-uhT"/>
+                            <constraint firstItem="mv5-vW-qj2" firstAttribute="top" secondItem="lwB-8g-DNf" secondAttribute="top" constant="50" id="BKH-Lk-K4e"/>
+                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="top" secondItem="lwB-8g-DNf" secondAttribute="top" id="DOv-uJ-gO5"/>
+                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="bottom" secondItem="SvL-fI-cSR" secondAttribute="bottom" constant="50" id="Q8U-YM-lKi"/>
+                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="leading" secondItem="lwB-8g-DNf" secondAttribute="leading" id="R1l-k1-h5Q"/>
+                            <constraint firstItem="mv5-vW-qj2" firstAttribute="leading" secondItem="lwB-8g-DNf" secondAttribute="leading" constant="30" id="SMb-iR-doh"/>
+                            <constraint firstItem="SvL-fI-cSR" firstAttribute="top" secondItem="Yn0-3F-SUf" secondAttribute="bottom" constant="12" id="VhU-5b-Y4o"/>
+                            <constraint firstItem="SvL-fI-cSR" firstAttribute="leading" secondItem="Yn0-3F-SUf" secondAttribute="leading" constant="40" id="nn4-6H-6Uy"/>
+                            <constraint firstItem="lwB-8g-DNf" firstAttribute="trailing" secondItem="mv5-vW-qj2" secondAttribute="trailing" constant="30" id="wSF-fF-Cjt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lwB-8g-DNf"/>
                     </view>
