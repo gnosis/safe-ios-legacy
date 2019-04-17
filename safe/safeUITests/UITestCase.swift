@@ -177,8 +177,8 @@ class UITestCase: XCTestCase {
 
     func handleErrorAlert(with expectation: XCTestExpectation) {
         errorAlertHandler = addUIInterruptionMonitor(withDescription: "Error Alert") { alert in
-            guard alert.label == LocalizedString("onboarding.error.title") else { return false }
-            alert.buttons[LocalizedString("onboarding.fatal.ok")].tap()
+            guard alert.label == LocalizedString("error") else { return false }
+            alert.buttons[LocalizedString("ok")].tap()
             expectation.fulfill()
             return true
         }

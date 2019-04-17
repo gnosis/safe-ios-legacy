@@ -9,8 +9,8 @@ extension RBEIntroViewController {
     class ErrorState: BaseErrorState {
 
         enum Strings {
-            static let errorTitle = LocalizedString("alert.error.title", comment: "Error")
-            static let errorOK = LocalizedString("alert.error.ok", comment: "OK")
+            static let errorTitle = LocalizedString("error", comment: "Error")
+            static let errorOK = LocalizedString("ok", comment: "OK")
         }
 
         override func didEnter(controller: RBEIntroViewController) {

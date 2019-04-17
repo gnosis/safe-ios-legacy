@@ -13,15 +13,6 @@
 /* Agree */
 "agree" = "Agree";
 
-/* OK */
-"alert.error.ok" = "OK";
-
-/* Error */
-"alert.error.title" = "Error";
-
-/* Info */
-"alert.info.title" = "Information";
-
 /* App slogan */
 "app_slogan" = "Enter the decentralized web.";
 
@@ -34,7 +25,8 @@
 /* Balance after transfer */
 "balance_after_transfer" = "Balance after transfer";
 
-/* Title for add browser extension screen */
+/* Browser extension button
+   Title for add browser extension screen */
 "browser_extension" = "Browser extension";
 
 /* Cancel
@@ -121,7 +113,10 @@
 /* Recovery Phrase Input screen header */
 "enter_seed" = "Enter your recovery phrase";
 
-/* Error title
+/* Error
+   Error alert's title
+   Error title
+   Info
    Pending safe failed alert's title
    Recovery address validation failed alert's title
    Recovery transaction failed alert's title */
@@ -129,27 +124,6 @@
 
 /* Not enough balance for transaction. */
 "exceeds_funds" = "Insufficient funds to perform this transaction";
-
-/* Browser extension code is expired. */
-"extension.error.expired" = "Browser extension code is expired. Please, try again.";
-
-/* Application submitted invalid request. */
-"generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
-
-/* Generic error message alert */
-"generic.error.message" = "Operation failed because of an error. Please try again.";
-
-/* Something wrong with the network. */
-"generic.error.network_error" = "Failed to make a network call. Try again later.";
-
-/* Response is invalid or not supported. */
-"generic.error.response_validation_error" = "Server returned invalid response which will be discarded.";
-
-/* Server returned error response. */
-"generic.error.server_error" = "Server returned error, the operation is cancelled. Please, try again later.";
-
-/* Some error occurred. */
-"generic.error.unknown" = "Error occurred. Please, try again later.";
 
 /* Feedback and FAQ menu item */
 "give_feedback" = "Give Feedback";
@@ -183,9 +157,6 @@
 
 /* Browser Extension Expired Message */
 "ios_be_error_network" = "Failed to pair because of network error. Please try again later.";
-
-/* Browser extension button */
-"ios_configure_browser_extension" = "Browser extension";
 
 /* Mobile app button */
 "ios_configure_mobile_app" = "Mobile app";
@@ -235,8 +206,56 @@
 /* Word #%@ */
 "ios_enterSeed_word" = "Word #%@";
 
+/* Blockchain address is unknown for the wallet. */
+"ios_error_address_missing" = "Failed to find safe address. Please try again later.";
+
+/* Wallet creation transaction is not found. */
+"ios_error_creation_tx_missing" = "Failed to find initial safe transaction. Please try again later";
+
+/* Failed to deploy new safe. All funds are lost. */
+"ios_error_deployment_failed" = "Failed to create safe. Your account will be refunded.";
+
+/* Generic error message alert */
+"ios_error_description" = "Operation failed because of an error. Please try again.";
+
+/* Browser extension code is expired. */
+"ios_error_extension_expired" = "Browser extension code is expired. Please, try again.";
+
+/* Application submitted invalid request. */
+"ios_error_generic_client" = "Application submitted invalid request to the server. Try again later.";
+
+/* Something wrong with the network. */
+"ios_error_generic_network" = "Failed to make a network call. Try again later.";
+
+/* Response is invalid or not supported. */
+"ios_error_generic_response" = "Server returned invalid response which will be discarded.";
+
+/* Server returned error response. */
+"ios_error_generic_server" = "Server returned error, the operation is cancelled. Please, try again later.";
+
+/* Some error occurred. */
+"ios_error_generic_unknown" = "Error occurred. Please, try again later.";
+
+/* Internal wallet error. */
+"ios_error_internal" = "Encountered internal safe error.";
+
+/* Server-provided signature of creation transacion is invalid. */
+"ios_error_invalid_signature" = "Server-signed response is invalid and will be discarded.";
+
+/* Server-provided transaction is invalid */
+"ios_error_invalid_transaction" = "Server-provided transaction is invalid and will be discarded.";
+
 /* URL not available message */
 "ios_error_link_unavailable" = "Sorry, the link is unavailable.";
+
+/* Insufficient owners for wallet creation. */
+"ios_error_owner_missing" = "Safe has insufficient number of owners.";
+
+/* Fatal error alert's title */
+"ios_fatal" = "Fatal error";
+
+/* Fatal error alert's message */
+"ios_fatal_description" = "Application failed to perform operation and will be closed.";
 
 /* Follow its progress on Etherscan.io */
 "ios_follow_progress" = "Follow its progress on Etherscan.io";
@@ -252,6 +271,9 @@
 
 /* 'Download the' Gnosis Safe Chrome browser exntension. */
 "ios_open_be_link_text" = "1. Open the link to the Chrome browser extension on your desktop computer.";
+
+/* Past transactions group header */
+"ios_past" = "Past";
 
 /* Privacy Policy */
 "ios_privacy_policy_link_text" = "Privacy Policy";
@@ -381,20 +403,10 @@
 /* No Thanks */
 "no_thanks" = "No Thanks";
 
-/* OK button title */
+/* Fatal error alert's Ok button title
+   OK
+   OK button title */
 "ok" = "OK";
-
-/* Error alert's title */
-"onboarding.error.title" = "Error";
-
-/* Fatal error alert's message */
-"onboarding.fatal.message" = "Application failed to perform operation and will be closed.";
-
-/* Fatal error alert's Ok button title */
-"onboarding.fatal.ok" = "Ok";
-
-/* Fatal error alert's title */
-"onboarding.fatal.title" = "Fatal error";
 
 /* Intro body text */
 "once_process_is_complete" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\n\nPlease have your Safe recovery phrase ready to confirm the recovery.";
@@ -477,9 +489,6 @@
 /* Description for transaction confirmation alert. */
 "resend_to_refresh" = "Resend to refresh the connection.";
 
-/* Success */
-"resync.alert.success" = "Resync notification sent successfully";
-
 /* Review button for Send screen
    Review transaction title */
 "review" = "Review";
@@ -540,7 +549,8 @@
 /* 'Pending' status */
 "status_pending" = "Pending";
 
-/* 'Success' status */
+/* 'Success' status
+   Success */
 "status_success" = "Success";
 
 /* Submit
@@ -553,7 +563,8 @@
 /* Sync with browser extension */
 "sync_with_extension" = "Sync with extension";
 
-/* Title for Manage Tokens Screen. */
+/* Label for Tokens header on main screen.
+   Title for Manage Tokens Screen. */
 "tab_title_assets" = "Tokens";
 
 /* Terms menu item */
@@ -561,9 +572,6 @@
 
 /* Text between stars (*) will be emphasized */
 "this_will_generate_new_seed" = "This will generate a new recovery phrase and invalidate your current one.";
-
-/* Label for Tokens header on main screen. */
-"tokens.label" = "Tokens";
 
 /* Title for the transaction details screen */
 "transaction_details" = "Transaction Details";
@@ -580,9 +588,6 @@
 /* Outgoing transafer */
 "transaction_type_asset_transfer" = "Outgoing transfer";
 
-/* Past transactions group header */
-"transactions.group.past" = "Past";
-
 /* Transactions tab title */
 "transactions_capitalized" = "TRANSACTIONS";
 
@@ -597,27 +602,6 @@
 
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
-
-/* Blockchain address is unknown for the wallet. */
-"wallet.error.address_missing" = "Failed to find safe address. Please try again later.";
-
-/* Wallet creation transaction is not found. */
-"wallet.error.creation_tx_missing" = "Failed to find initial safe transaction. Please try again later";
-
-/* Failed to deploy new safe. All funds are lost. */
-"wallet.error.deployment_failed" = "Failed to create safe. Your account will be refunded.";
-
-/* Internal wallet error. */
-"wallet.error.invalid_state" = "Encountered internal safe error.";
-
-/* Insufficient owners for wallet creation. */
-"wallet.error.owner_missing" = "Safe has insufficient number of owners.";
-
-/* Server-provided signature of creation transacion is invalid. */
-"wallet.error.response_invalid_signature" = "Server-signed response is invalid and will be discarded.";
-
-/* Server-provided transaction is invalid */
-"wallet.error.response_invalid_transaction" = "Server-provided transaction is invalid and will be discarded.";
 
 /* Network fee */
 "what_is_network_fee" = "What is the network fee?";

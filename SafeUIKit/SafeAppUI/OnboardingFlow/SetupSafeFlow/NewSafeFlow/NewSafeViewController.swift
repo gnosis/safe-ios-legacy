@@ -44,7 +44,7 @@ class NewSafeViewController: UIViewController {
         static let title = LocalizedString("ios_configure_title", comment: "Title for new safe screen")
         static let thisDevice = LocalizedString("ios_configure_mobile_app", comment: "Mobile app button")
         static let recoveryPhrase = LocalizedString("ios_configure_recovery_phrase", comment: "Recovery phrase button")
-        static let browserExtension = LocalizedString("ios_configure_browser_extension",
+        static let browserExtension = LocalizedString("browser_extension",
                                                       comment: "Browser extension button")
         static let optionalText = LocalizedString("ios_configure_optional", comment: "(Optional)")
         static let next = LocalizedString("next", comment: "Next button")

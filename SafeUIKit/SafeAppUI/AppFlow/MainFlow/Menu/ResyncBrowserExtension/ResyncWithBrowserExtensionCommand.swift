@@ -35,10 +35,10 @@ class ResyncWithBrowserExtensionCommand: MenuCommand {
     }
 
     func showSuccess(mainFlowCoordinator: MainFlowCoordinator) {
-        let alert = UIAlertController(title: LocalizedString("alert.info.title", comment: "Info"),
-                                      message: LocalizedString("resync.alert.success", comment: "Success"),
+        let alert = UIAlertController(title: LocalizedString("error", comment: "Info"),
+                                      message: LocalizedString("status_success", comment: "Success"),
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: LocalizedString("alert.error.ok", comment: "OK"),
+        let okAction = UIAlertAction(title: LocalizedString("ok", comment: "OK"),
                                      style: .default,
                                      handler: nil)
         alert.addAction(okAction)
@@ -46,10 +46,10 @@ class ResyncWithBrowserExtensionCommand: MenuCommand {
     }
 
     func showError(_ error: Error, mainFlowCoordinator: MainFlowCoordinator) {
-        let alert = UIAlertController(title: LocalizedString("alert.error.title", comment: "Error"),
+        let alert = UIAlertController(title: LocalizedString("error", comment: "Error"),
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: LocalizedString("alert.error.ok", comment: "OK"),
+        let okAction = UIAlertAction(title: LocalizedString("ok", comment: "OK"),
                                      style: .default,
                                      handler: nil)
         alert.addAction(okAction)

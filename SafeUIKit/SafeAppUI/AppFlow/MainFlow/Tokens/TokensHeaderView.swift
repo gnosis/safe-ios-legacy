@@ -33,7 +33,7 @@ final class TokensHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var dashedSeparatorView: DashedSeparatorView!
 
     private enum Strings {
-        static let tokens = LocalizedString("tokens.label", comment: "Label for Tokens header on main screen.")
+        static let tokens = LocalizedString("tab_title_assets", comment: "Label for Tokens header on main screen.")
     }
 
     override func awakeFromNib() {
