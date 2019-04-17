@@ -224,7 +224,7 @@
 "ios_creationFee_share_description" = "Share your address or scan this QR code with the account or person sending funds.";
 
 /* Connect browser extension description */
-"ios_enable_2fa" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transactions will need to be approved by both devices.";
+"ios_enable_2fa" = "For increased security, enable 2-factor authentication between your phone and computer.\n\nAll future transactions will need to be approved by both devices.";
 
 /* Title for confirm recovery screen. */
 "ios_enterSeed_header" = "Enter the following words from your recovery phrase.";

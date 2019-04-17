@@ -68,6 +68,6 @@ class ContentBodyStyle: AttributedStringStyle {
     override var fontColor: UIColor { return ColorName.battleshipGrey.color }
     override var minimumLineHeight: Double { return 25 }
     override var maximumLineHeight: Double { return 25 }
-    override var spacingAfterParagraph: Double { return -12 } // two paragraphs are used in localisation strings
+    override var spacingAfterParagraph: Double { return -10 } // two paragraphs are used in localisation strings
 
 }
