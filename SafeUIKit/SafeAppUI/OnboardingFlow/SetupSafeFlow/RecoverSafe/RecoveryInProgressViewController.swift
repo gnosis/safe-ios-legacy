@@ -18,10 +18,10 @@ public class RecoveryInProgressViewController: UIViewController {
 
     private enum Strings {
 
-        static let header = LocalizedString("recovery.progress.header", comment: "Header label for progress screen")
-        static let progress = LocalizedString("recovery.progress.description", comment: "This can take a while...")
-        static let externalLink = LocalizedString("ios_follow_progress",
-                                                  comment: "Follow its progress on Etherscan.io")
+        static let header = LocalizedString("recovering_safe", comment: "Header label for progress screen")
+        static let progress = LocalizedString("transaction_submitted_safe_being_created",
+                                              comment: "This can take a while...")
+        static let externalLink = LocalizedString("ios_follow_progress", comment: "Follow its progress on Etherscan.io")
 
     }
 

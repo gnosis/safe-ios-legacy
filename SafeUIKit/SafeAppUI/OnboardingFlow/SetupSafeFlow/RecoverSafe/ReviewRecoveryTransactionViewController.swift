@@ -18,10 +18,10 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
 
     private enum Strings {
 
-        static let title = LocalizedString("recovery.review.header",
+        static let title = LocalizedString("recover_safe_title",
                                            comment: "Header of the review transaction screen")
         static let cancel = LocalizedString("cancel", comment: "Cancel")
-        static let submit = LocalizedString("transaction.submit", comment: "Submit")
+        static let submit = LocalizedString("submit", comment: "Submit")
 
     }
 
@@ -210,9 +210,8 @@ class RecoveryFailedAlertController: SafeAlertController {
 
     private enum Strings {
 
-        static let title = LocalizedString("recovery.transaction.failed_alert.title",
-                                           comment: "Recovery transaction failed alert's title")
-        static let okTitle = LocalizedString("recovery.address.failed_alert.ok", comment: "OK button title")
+        static let title = LocalizedString("error", comment: "Recovery transaction failed alert's title")
+        static let okTitle = LocalizedString("ok", comment: "OK button title")
 
     }
 

@@ -17,8 +17,9 @@ protocol ReplaceRecoveryPhraseViewControllerDelegate: class {
 class ReplaceRecoveryPhraseViewController: UIViewController {
 
     private enum Strings {
-        static let header = LocalizedString("replace_phrase.header", comment: "Replace recovery phrase")
-        static let body = LocalizedString("replace_phrase.body", comment: "Text between stars (*) will be emphasized")
+        static let header = LocalizedString("new_seed", comment: "Replace recovery phrase")
+        static let body = LocalizedString("this_will_generate_new_seed",
+                                          comment: "Text between stars (*) will be emphasized")
     }
 
     @IBOutlet var startButtonItem: UIBarButtonItem!
@@ -64,6 +65,7 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
         super.viewDidLoad()
         headerLabel.attributedText = .header(from: Strings.header)
         bodyLabel.attributedText = parsedAttributedBodyText(from: Strings.body, marker: "*")
+        startButtonItem.title = LocalizedString("start", comment: "Start")
         update()
         start()
     }
@@ -135,18 +137,18 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
 
     func showConfirmationAlert() {
 
-        let alert = UIAlertController(title: LocalizedString("replace_phrase.confirm.title",
+        let alert = UIAlertController(title: LocalizedString("ios_replaceseed_confirm_title",
                                                              comment: "Confirmation alert title"),
-                                      message: LocalizedString("replace_phrase.confirm.message",
+                                      message: LocalizedString("ios_replaceseed_confirm_message",
                                                                comment: "Confirmation alert message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("replace_phrase.confirm.yes",
+        alert.addAction(UIAlertAction(title: LocalizedString("ios_replaceseed_confirm_yes",
                                                              comment: "Affirmative response button title"),
                                       style: .default,
                                       handler: SafeAlertController.wrap { [unowned self] in
                                         self.doStart()
         }))
-        alert.addAction(UIAlertAction(title: LocalizedString("replace_phrase.confirm.cancel",
+        alert.addAction(UIAlertAction(title: LocalizedString("cancel",
                                                              comment: "Cancel response button title"),
                                       style: .cancel,
                                       handler: nil))
