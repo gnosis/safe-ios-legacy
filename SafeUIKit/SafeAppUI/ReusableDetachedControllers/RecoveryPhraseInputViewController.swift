@@ -22,16 +22,15 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     private var didCancel = false
 
     override var headerText: String {
-        return LocalizedString("recovery.phrase.header", comment: "Recovery Phrase Input screen header")
+        return LocalizedString("enter_seed", comment: "Recovery Phrase Input screen header")
     }
 
     override var actionFailureMessageFormat: String {
-        return LocalizedString("recovery.phrase.error.format", comment: "Error format for invalid recovery phrase")
+        return LocalizedString("incorrect_seed", comment: "Error format for invalid recovery phrase")
     }
 
     static let maxInputLength: Int = 500
-    var placeholder: String = LocalizedString("recovery.phrase.placeholder",
-                                              comment: "Placeholder for the recovery phrase")
+    var placeholder: String = LocalizedString("enter_recovery", comment: "Placeholder for the recovery phrase")
 
     var screenTrackingEvent: Trackable?
     var text: String? {
@@ -67,6 +66,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         placeholderLeading.constant = insets.left
         placeholderTrailing.constant = insets.right
         placeholderLabel.textColor = ColorName.darkSlateBlue.color.withAlphaComponent(0.7)
+        pasteButton.setTitle(LocalizedString("paste", comment: "Paste"), for: .normal)
         view.setNeedsUpdateConstraints()
         update()
     }

@@ -8,7 +8,7 @@
 "alert.error.title" = "Error";
 
 /* URL not available message */
-"alert.error.url_unavailable" = "Sorry, the link is unavailable.";
+"ios_error_link_unavailable" = "Sorry, the link is unavailable.";
 
 /* Error title */
 "alert.error.url_unavailable.title" = "Oops";
