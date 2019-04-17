@@ -10,9 +10,8 @@ public extension PairWithBrowserExtensionViewController {
         -> PairWithBrowserExtensionViewController {
             let controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
             controller.screenTitle = nil
-            controller.screenHeader = LocalizedString("replace_extension.connect.header", comment: "Scan QR Code")
-            controller.descriptionText = LocalizedString("replace_extension.connect.description",
-                                                         comment: "Description")
+            controller.screenHeader = LocalizedString("scan_qr_code", comment: "Scan QR code")
+            controller.descriptionText = LocalizedString("pairing_info", comment: "Replace BE pairing description.")
             controller.hidesSkipButton = true
             return controller
     }

@@ -397,6 +397,9 @@ Please have your Safe recovery phrase ready to confirm the recovery.";
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
 
+/* Replace BE pairing description. */
+"pairing_info" = "All transactions need to be approved by both this device and the browser extension.";
+
 /* Password field placeholder
    Password placeholder */
 "password" = "Password";
@@ -472,12 +475,6 @@ Please have your Safe recovery phrase ready to confirm the recovery.";
 /* Replace browser extension */
 "replace_browser_extension" = "Replace browser\nextension";
 
-/* Description */
-"replace_extension.connect.description" = "All transactions will need to be approved by both this device and the new Safe browser extension.";
-
-/* Scan QR Code */
-"replace_extension.connect.header" = "Scan QR code";
-
 /* Text between stars (*) will be emphasized */
 "replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
 
@@ -524,6 +521,9 @@ Please have your Safe recovery phrase ready to confirm the recovery.";
 
 /* Scan button title in extension setup screen */
 "scan" = "Scan";
+
+/* Scan QR code */
+"scan_qr_code" = "Scan QR Code";
 
 /* Title for security section. */
 "security" = "Security";
