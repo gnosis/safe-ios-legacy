@@ -1,8 +1,6 @@
-/* Add token button */
+/* Add token button
+   Title for Add Token screen. */
 "add_token" = "Add Token";
-
-/* Title for Add Token screen. */
-"add_token.title" = "Add Token";
 
 /* Address label.
    Safe Address label.
@@ -30,9 +28,6 @@
 /* Info */
 "alert.info.title" = "Information";
 
-/* Try again in */
-"app.unlock.tryagain" = "Try again in";
-
 /* App slogan */
 "app_slogan" = "Enter the decentralized web.";
 
@@ -57,17 +52,9 @@
 "cancel_safe_creation" = "Cancel Safe creation?";
 
 /* Change password
-   Change password menu item */
+   Change password menu item
+   Title for change password screen */
 "change_password" = "Change Password";
-
-/* Current password placeholder */
-"change_password.current_password" = "Current password";
-
-/* Header for change password screen */
-"change_password.header" = "Enter current password";
-
-/* Title for change password screen */
-"change_password.title" = "Change Password";
 
 /* Button to cancel 'abort create' alert
    Close
@@ -77,7 +64,8 @@
 /* Confirm button title */
 "confirm" = "Confirm";
 
-/* Header for set password screen. */
+/* Header for set password screen.
+   Placeholder text for confirm password field */
 "confirm_password" = "Confirm Password";
 
 /* Confirmation screen description */
@@ -114,6 +102,9 @@
 /* Creating safe header for safe creation screen. */
 "creating_your_new_safe" = "Creating your new Safe…";
 
+/* Current password */
+"current_password" = "Current password";
+
 /* Disconnect browser extension */
 "disconnect_browser_extension" = "Disconnect browser\nextension";
 
@@ -134,6 +125,12 @@
 
 /* Description for add browser extension screen */
 "enable_2fa" = "Enable 2-factor authentication by connecting your Safe to the browser extension.";
+
+/* Enter current password */
+"enter_current_password" = "Enter current password";
+
+/* Header for new password screen */
+"enter_new_password" = "Enter new password";
 
 /* My Safe Address */
 "enter_safe_address" = "Enter your Safe address";
@@ -189,6 +186,9 @@
 
 /* 'Submitted' parameter name */
 "header_submitted" = "Submitted";
+
+/* Hide displayed token action. */
+"hide" = "Hide";
 
 /* How this works */
 "how_this_works" = "How this works";
@@ -355,12 +355,6 @@
 /* Manage Tokens menu item */
 "manage_tokens" = "Manage Tokens";
 
-/* Hide displayed token action. */
-"manage_tokens.hide" = "Hide";
-
-/* Title for Manage Tokens Screen. */
-"manage_tokens.title" = "Tokens";
-
 /* Menu button title
    Title for menu screen. */
 "menu" = "Menu";
@@ -386,17 +380,8 @@
 /* Required minimum description for safe creation screen. */
 "network_fee_required" = "A network fee is required to create your new Safe.";
 
-/* Placeholder text for confirm password field */
-"new_password.confirm.placeholder" = "Confirm new password";
-
-/* Confrimation password does not match error */
-"new_password.does_not_match" = "Sorry, the password doesn't match";
-
-/* Header for new password screen */
-"new_password.header" = "Enter new password";
-
 /* Placeholder text for new password field */
-"new_password.placeholder" = "Enter new password";
+"new_password" = "New password";
 
 /* Use a minimum of 8 characters. */
 "new_password_min_chars" = "Use a minimum of 8 characters";
@@ -439,7 +424,8 @@
 /* At least 1 digit and 1 letter. */
 "password_validation_one_number_one_letter" = "At least 1 letter and 1 number";
 
-/* Passwords must match. */
+/* Confrimation password does not match error
+   Passwords must match. */
 "passwords_do_not_match" = "Sorry, the password doesn't match";
 
 /* Pending transactions group header */
@@ -610,6 +596,9 @@
 
 /* Sync with browser extension */
 "sync_with_extension" = "Sync with extension";
+
+/* Title for Manage Tokens Screen. */
+"tab_title_assets" = "Tokens";
 
 /* Terms menu item */
 "terms_of_service" = "Terms of Use";

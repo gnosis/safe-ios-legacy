@@ -32,12 +32,11 @@ final class VerifyCurrentPasswordViewController: UIViewController {
     }
 
     enum Strings {
-        static let title = LocalizedString("change_password.title", comment: "Title for change password screen")
+        static let title = LocalizedString("change_password", comment: "Title for change password screen")
         static let next = LocalizedString("next", comment: "Next button")
-        static let header = LocalizedString("change_password.header", comment: "Header for change password screen")
-        static let tryInText = LocalizedString("app.unlock.tryagain", comment: "Try again in")
-        static let currentPasswordPlaceholder = LocalizedString("change_password.current_password",
-                                                                comment: "Current password placeholder")
+        static let header = LocalizedString("enter_current_password", comment: "Enter current password")
+        static let tryInText = LocalizedString("try_again_in", comment: "Try again in")
+        static let currentPasswordPlaceholder = LocalizedString("current_password", comment: "Current password")
     }
 
     override func viewDidLoad() {
