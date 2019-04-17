@@ -95,7 +95,7 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
         flowCoordinator.didAgree()
         delay(1.25)
         flowCoordinator.masterPasswordFlowCoordinator.didConfirmPassword()
-        delay(0.25)
+        delay(0.5)
         XCTAssertTrue(flowCoordinator.navigationController.topViewController is SetupSafeOptionsViewController)
     }
 
