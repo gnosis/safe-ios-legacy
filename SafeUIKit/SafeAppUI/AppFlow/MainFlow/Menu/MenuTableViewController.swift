@@ -26,27 +26,23 @@ final class MenuTableViewController: UITableViewController {
         [(section: SettingsSection, items: [(item: Any, cellHeight: () -> CGFloat)], title: String)]()
 
     private enum Strings {
-        static let title = LocalizedString("menu.title", comment: "Title for menu screen.")
-        static let safeAddressSectionTitle = LocalizedString("menu.section.safe.title",
-                                                             comment: "Title for safe address section.")
-        static let portfolioSectionTitle = LocalizedString("menu.section.portfolio.title",
-                                                           comment: "Title for portfolio section.")
-        static let securitySectionTitle = LocalizedString("menu.section.security.title",
-                                                          comment: "Title for security section.")
-        static let supportSectionTitle = LocalizedString("menu.section.support.title",
-                                                         comment: "Title for support section.")
-        static let manageTokens = LocalizedString("menu.action.manage_tokens", comment: "Manage Tokens menu item")
-        static let changePassword = LocalizedString("menu.action.change_password",
-                                                    comment: "Change password menu item")
-        static let changeRecoveryPhrase = LocalizedString("menu.action.change_recovery_phrase",
-                                                          comment: "Change recovery key menu item")
-        static let feedback = LocalizedString("menu.action.feedback_and_faq", comment: "Feedback and FAQ menu item")
-        static let terms = LocalizedString("menu.action.terms",
-                                           comment: "Terms menu item")
-        static let privacyPolicy = LocalizedString("menu.action.privacy_policy",
-                                                   comment: "Privacy policy menu item")
-        static let rateApp = LocalizedString("menu.action.rate_app",
-                                             comment: "Rate App menu item")
+        static let title = LocalizedString("menu", comment: "Title for menu screen.")
+        static let safeAddressSectionTitle =
+            LocalizedString("address", comment: "Title for safe address section.").uppercased()
+        static let portfolioSectionTitle =
+            LocalizedString("portfolio", comment: "Title for portfolio section.").uppercased()
+        static let securitySectionTitle =
+            LocalizedString("security", comment: "Title for security section.").uppercased()
+        static let supportSectionTitle = LocalizedString("support", comment: "Title for support section.").uppercased()
+        static let manageTokens = LocalizedString("manage_tokens", comment: "Manage Tokens menu item").capitalized
+        static let changePassword = LocalizedString("change_password", comment: "Change password menu item").capitalized
+        static let changeRecoveryPhrase =
+            LocalizedString("replace_recovery_phrase", comment: "Change recovery key menu item").capitalized
+                .replacingOccurrences(of: "\n", with: " ").capitalized
+        static let feedback = LocalizedString("give_feedback", comment: "Feedback and FAQ menu item").capitalized
+        static let terms = LocalizedString("terms_of_service", comment: "Terms menu item").capitalized
+        static let privacyPolicy = LocalizedString("privacy_policy", comment: "Privacy policy menu item").capitalized
+        static let rateApp = LocalizedString("rate_app", comment: "Rate App menu item").capitalized
     }
 
     struct SafeDescription {

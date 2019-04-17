@@ -38,7 +38,7 @@ class AddTokenTableViewController: UITableViewController {
     private var sectionTokensTitles = [String]()
 
     private enum Strings {
-        static let title = LocalizedString("add_token.title", comment: "Title for Add Token screen.")
+        static let title = LocalizedString("add_token", comment: "Title for Add Token screen.")
     }
 
     static func create(delegate: AddTokenTableViewControllerDelegate) -> UINavigationController {

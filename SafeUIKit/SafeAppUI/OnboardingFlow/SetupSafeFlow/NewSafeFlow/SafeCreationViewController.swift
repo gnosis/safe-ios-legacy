@@ -93,7 +93,7 @@ class SafeCreationViewController: UIViewController {
         enum SafeAddress {
             static let description = LocalizedString("ios_creationFee_share_description",
                                                      comment: "Description how to share safe address.")
-            static let address = LocalizedString("ios_address", comment: "Address label.")
+            static let address = LocalizedString("address", comment: "Address label.")
             static let qrCode = LocalizedString("ios_qr_code", comment: "QR Code label.")
         }
         enum Etherscan {

@@ -30,9 +30,8 @@ final class ManageTokensTableViewController: UITableViewController {
     private(set) var tokens = [TokenData]()
 
     private enum Strings {
-        static let title = LocalizedString("manage_tokens.title",
-                                           comment: "Title for Manage Tokens Screen.")
-        static let hide = LocalizedString("manage_tokens.hide", comment: "Hide displayed token action.")
+        static let title = LocalizedString("tab_title_assets", comment: "Title for Manage Tokens Screen.")
+        static let hide = LocalizedString("hide", comment: "Hide displayed token action.")
     }
 
     override func viewDidLoad() {

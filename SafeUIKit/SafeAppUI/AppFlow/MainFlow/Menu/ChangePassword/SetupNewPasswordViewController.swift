@@ -40,15 +40,15 @@ class SetupNewPasswordViewController: UIViewController {
     }
 
     enum Strings {
-        static let title = LocalizedString("change_password.title", comment: "Title for change password screen")
+        static let title = LocalizedString("change_password", comment: "Change password")
         static let save = LocalizedString("save", comment: "Save button")
-        static let header = LocalizedString("new_password.header", comment: "Header for new password screen")
+        static let header = LocalizedString("enter_new_password", comment: "Header for new password screen")
         static let newPasswordPlaceholder =
-            LocalizedString("new_password.placeholder", comment: "Placeholder text for new password field")
+            LocalizedString("new_password", comment: "Placeholder text for new password field")
         static let confirmPasswordPlaceholder =
-            LocalizedString("new_password.confirm.placeholder", comment: "Placeholder text for confirm password field")
+            LocalizedString("confirm_password", comment: "Placeholder text for confirm password field")
         static let passwordDoesNotMatch =
-            LocalizedString("new_password.does_not_match", comment: "Confrimation password does not match error")
+            LocalizedString("passwords_do_not_match", comment: "Confrimation password does not match error")
     }
 
     override func viewDidLoad() {

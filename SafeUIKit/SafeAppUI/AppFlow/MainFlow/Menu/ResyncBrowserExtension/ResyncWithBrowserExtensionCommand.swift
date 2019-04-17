@@ -8,8 +8,7 @@ import MultisigWalletApplication
 class ResyncWithBrowserExtensionCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("menu.action.resync_browser_extension",
-                               comment: "Resync browser extension menu item")
+        return LocalizedString("sync_with_extension", comment: "Sync with browser extension").capitalized
     }
 
     override var isHidden: Bool {
