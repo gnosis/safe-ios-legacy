@@ -1,15 +1,15 @@
 /* Reason to activate Touch ID or Face ID. */
-"biometry.activation.reason" = "Enable unlocking your master password with %@";
+"ios_biometry_activation" = "Enable unlocking your master password with %@";
 
 /* Description of unlock with Touch ID. */
-"biometry.authentication.reason" = "Unlock your master password with %@";
+"ios_biometry_reason" = "Unlock your master password with %@";
 
 /* Face ID name */
-"biometry.faceID" = "Face ID";
+"ios_faceid" = "Face ID";
 
 /* Unrecognized biometry type */
-"biometry.none" = "None";
+"ios_none" = "None";
 
 /* Touch ID */
-"biometry.touchID" = "Touch ID";
+"ios_touchid" = "Touch ID";
 

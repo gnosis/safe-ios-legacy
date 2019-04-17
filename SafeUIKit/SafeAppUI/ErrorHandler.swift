@@ -77,28 +77,18 @@ extension WalletApplicationServiceError: LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-        case .oneOrMoreOwnersAreMissing:
-            return LocalizedString("ios_error_owner_missing", comment: "Insufficient owners for wallet creation.")
         case .invalidWalletState:
             return LocalizedString("ios_error_internal", comment: "Internal wallet error.")
-        case .missingWalletAddress:
-            return LocalizedString("ios_error_address_missing", comment: "Blockchain address is unknown for the wallet.")
-        case .creationTransactionHashNotFound:
-            return LocalizedString("ios_error_creation_tx_missing", comment: "Wallet creation transaction is not found.")
         case .networkError:
             return LocalizedString("ios_error_generic_network", comment: "Something wrong with the network.")
         case .validationFailed:
             return LocalizedString("ios_error_generic_response", comment: "Response is invalid or not supported.")
         case .exceededExpirationDate:
             return LocalizedString("ios_error_extension_expired", comment: "Browser extension code is expired.")
-        case .unknownError:
-            return LocalizedString("ios_error_generic_unknown", comment: "Some error occurred.")
         case .clientError:
             return LocalizedString("ios_error_generic_client", comment: "Application submitted invalid request.")
         case .serverError:
             return LocalizedString("ios_error_generic_server", comment: "Server returned error response.")
-        case .walletCreationFailed:
-            return LocalizedString("ios_error_deployment_failed", comment: "Failed to deploy new safe. All funds are lost.")
         }
     }
 

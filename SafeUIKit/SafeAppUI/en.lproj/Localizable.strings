@@ -16,6 +16,9 @@
 /* App slogan */
 "app_slogan" = "Enter the decentralized web.";
 
+/* App Version */
+"app_version" = "App version: %@";
+
 /* Assets tab title */
 "assets_capitalized" = "ASSETS";
 
@@ -206,15 +209,6 @@
 /* Word #%@ */
 "ios_enterSeed_word" = "Word #%@";
 
-/* Blockchain address is unknown for the wallet. */
-"ios_error_address_missing" = "Failed to find safe address. Please try again later.";
-
-/* Wallet creation transaction is not found. */
-"ios_error_creation_tx_missing" = "Failed to find initial safe transaction. Please try again later";
-
-/* Failed to deploy new safe. All funds are lost. */
-"ios_error_deployment_failed" = "Failed to create safe. Your account will be refunded.";
-
 /* Generic error message alert */
 "ios_error_description" = "Operation failed because of an error. Please try again.";
 
@@ -233,9 +227,6 @@
 /* Server returned error response. */
 "ios_error_generic_server" = "Server returned error, the operation is cancelled. Please, try again later.";
 
-/* Some error occurred. */
-"ios_error_generic_unknown" = "Error occurred. Please, try again later.";
-
 /* Internal wallet error. */
 "ios_error_internal" = "Encountered internal safe error.";
 
@@ -247,9 +238,6 @@
 
 /* URL not available message */
 "ios_error_link_unavailable" = "Sorry, the link is unavailable.";
-
-/* Insufficient owners for wallet creation. */
-"ios_error_owner_missing" = "Safe has insufficient number of owners.";
 
 /* Fatal error alert's title */
 "ios_fatal" = "Fatal error";
@@ -374,9 +362,6 @@
 /* Menu button title
    Title for menu screen. */
 "menu" = "Menu";
-
-/* App Version */
-"menu.app_version" = "App Version";
 
 /* Explanatory message */
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";

@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import MultisigWalletApplication
 
 final class AppVersionTableViewCell: UITableViewCell {
 
@@ -13,8 +14,12 @@ final class AppVersionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-        appVersionLabel.text = LocalizedString("menu.app_version", comment: "App Version") + " " + appVersion
+        let format = LocalizedString("app_version", comment: "App Version")
+        var appVersion = "unknown"
+        if let version = SystemInfo.marketingVersion, let build = SystemInfo.buildNumber {
+            appVersion = "\(version) (\(build))"
+        }
+        appVersionLabel.text = String(format: format, appVersion)
     }
 
 }
