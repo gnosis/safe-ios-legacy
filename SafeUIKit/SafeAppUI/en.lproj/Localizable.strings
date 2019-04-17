@@ -20,7 +20,7 @@
 "alert.error.title" = "Error";
 
 /* Info */
-"alert.info.title" = "alert.info.title";
+"alert.info.title" = "Information";
 
 /* App slogan */
 "app_slogan" = "Enter the decentralized web.";
@@ -71,16 +71,16 @@
 "connect_browser_extension" = "Connect browser\nextension";
 
 /* Body text */
-"connect_extension.intro.body" = "connect_extension.intro.body";
+"connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
 
 /* Header label */
-"connect_extension.intro.header" = "connect_extension.intro.header";
+"connect_extension.intro.header" = "Connect browser extension";
 
 /* Detail for the header */
-"connect_extension.review.detail" = "connect_extension.review.detail";
+"connect_extension.review.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
 
 /* Title for the header */
-"connect_extension.review.title" = "connect_extension.review.title";
+"connect_extension.review.title" = "Connect browser extension";
 
 /* Abort safe creation button title */
 "continue_text" = "Continue";
@@ -104,16 +104,16 @@
 "disconnect_browser_extension" = "Disconnect browser\nextension";
 
 /* Body text */
-"disconnect_extension.intro.body" = "disconnect_extension.intro.body";
+"disconnect_extension.intro.body" = "Once this process is complete, you won't need to confirm transactions with browser extension.\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
 
 /* Header label */
-"disconnect_extension.intro.header" = "disconnect_extension.intro.header";
+"disconnect_extension.intro.header" = "Disconnect browser extension";
 
 /* Detail for the header */
-"disconnect_extension.review.detail" = "disconnect_extension.review.detail";
+"disconnect_extension.review.detail" = "The existing browser extension connection will be removed.";
 
 /* Title for the header */
-"disconnect_extension.review.title" = "disconnect_extension.review.title";
+"disconnect_extension.review.title" = "Disconnect browser extension";
 
 /* No transactions yet */
 "empty_safe_transactions_message" = "No transactions yet";
@@ -149,37 +149,37 @@
 "exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* Browser extension code is expired. */
-"extension.error.expired" = "extension.error.expired";
+"extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
 /* Balance */
-"fee_calculation.balance" = "fee_calculation.balance";
+"fee_calculation.balance" = "Balance";
 
 /* Current balance */
-"fee_calculation.current_balance" = "fee_calculation.current_balance";
+"fee_calculation.current_balance" = "Current balance";
 
 /* [?] */
-"fee_calculation.fee.info" = "fee_calculation.fee.info";
+"fee_calculation.fee.info" = "[?]";
 
 /* - ETH */
-"fee_calculation.value.loading_eth" = "fee_calculation.value.loading_eth";
+"fee_calculation.value.loading_eth" = "- ETH";
 
 /* Application submitted invalid request. */
-"generic.error.client_error" = "generic.error.client_error";
+"generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
 
 /* Generic error message alert */
-"generic.error.message" = "generic.error.message";
+"generic.error.message" = "Operation failed because of an error. Please try again.";
 
 /* Something wrong with the network. */
-"generic.error.network_error" = "generic.error.network_error";
+"generic.error.network_error" = "Failed to make a network call. Try again later.";
 
 /* Response is invalid or not supported. */
-"generic.error.response_validation_error" = "generic.error.response_validation_error";
+"generic.error.response_validation_error" = "Server returned invalid response which will be discarded.";
 
 /* Server returned error response. */
-"generic.error.server_error" = "generic.error.server_error";
+"generic.error.server_error" = "Server returned error, the operation is cancelled. Please, try again later.";
 
 /* Some error occurred. */
-"generic.error.unknown" = "generic.error.unknown";
+"generic.error.unknown" = "Error occurred. Please, try again later.";
 
 /* Feedback and FAQ menu item */
 "give_feedback" = "Give Feedback";
