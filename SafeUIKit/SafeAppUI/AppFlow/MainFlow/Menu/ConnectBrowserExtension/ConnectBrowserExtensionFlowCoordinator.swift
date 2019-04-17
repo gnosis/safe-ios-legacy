@@ -11,6 +11,15 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
     var transactionID: RBETransactionID!
     var transactionSubmissionHandler = TransactionSubmissionHandler()
 
+    enum Strings {
+        static let connectBE = LocalizedString("connect_browser_extension", comment: "Connect browser extension")
+            .replacingOccurrences(of: "\n", with: " ")
+        static let connectDescription = LocalizedString("ios_enable_2fa",
+                                                        comment: "Connect browser extension description")
+        static let connectDetail = LocalizedString("layout_connect_browser_extension_info_description",
+                                                   comment: "Detail for the header in review screen")
+    }
+
     override func setUp() {
         super.setUp()
         intro = introViewController()
@@ -22,9 +31,10 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
 extension IntroContentView.Content {
 
     static let connectExtension =
-        IntroContentView.Content(header: LocalizedString("connect_extension.intro.header", comment: "Header label"),
-                                 body: LocalizedString("connect_extension.intro.body", comment: "Body text"),
-                                 icon: Asset.ConnectBrowserExtension.connectIntroIcon.image)
+        IntroContentView
+            .Content(header: ConnectBrowserExtensionFlowCoordinator.Strings.connectBE,
+                     body: ConnectBrowserExtensionFlowCoordinator.Strings.connectDescription,
+                     icon: Asset.ConnectBrowserExtension.connectIntroIcon.image)
 
 }
 
@@ -46,8 +56,8 @@ extension ConnectBrowserExtensionFlowCoordinator {
 
     func reviewViewController() -> RBEReviewTransactionViewController {
         let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = LocalizedString("connect_extension.review.title", comment: "Title for the header")
-        vc.detailString = LocalizedString("connect_extension.review.detail", comment: "Detail for the header")
+        vc.titleString = Strings.connectBE
+        vc.detailString = Strings.connectDetail
         vc.screenTrackingEvent = ConnectBrowserExtensionTrackingEvent.review
         vc.successTrackingEvent = ConnectBrowserExtensionTrackingEvent.success
         return vc

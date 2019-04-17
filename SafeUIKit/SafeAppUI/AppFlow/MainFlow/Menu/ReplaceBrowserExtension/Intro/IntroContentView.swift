@@ -25,8 +25,9 @@ public class IntroContentView: NibUIView {
     }
 
     struct Content {
-        var header = LocalizedString("replace_extension.intro.header", comment: "Replace browser extension")
-        var body = LocalizedString("replace_extension.intro.body", comment: "Intro body text")
+        var header = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
+            .replacingOccurrences(of: "\n", with: " ")
+        var body = LocalizedString("once_process_is_complete", comment: "Intro body text")
         var icon = Asset.ReplaceBrowserExtension.introIcon.image
     }
 
@@ -67,6 +68,6 @@ class ContentBodyStyle: AttributedStringStyle {
     override var fontColor: UIColor { return ColorName.battleshipGrey.color }
     override var minimumLineHeight: Double { return 25 }
     override var maximumLineHeight: Double { return 25 }
-    override var spacingAfterParagraph: Double { return 15 }
+    override var spacingAfterParagraph: Double { return -10 } // two paragraphs are used in localisation strings
 
 }

@@ -31,6 +31,9 @@
 /* Back */
 "back" = "Back";
 
+/* Balance after transfer */
+"balance_after_transfer" = "Balance after transfer";
+
 /* Title for add browser extension screen */
 "browser_extension" = "Browser extension";
 
@@ -70,18 +73,6 @@
    Header for add browser extension screen */
 "connect_browser_extension" = "Connect browser\nextension";
 
-/* Body text */
-"connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
-
-/* Header label */
-"connect_extension.intro.header" = "Connect browser extension";
-
-/* Detail for the header */
-"connect_extension.review.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
-
-/* Title for the header */
-"connect_extension.review.title" = "Connect browser extension";
-
 /* Abort safe creation button title */
 "continue_text" = "Continue";
 
@@ -100,20 +91,11 @@
 /* Current password */
 "current_password" = "Current password";
 
+/* Disconnect browser extension description */
+"disconnect_2fa_description" = "Once this process is complete, you won't need to confirm transactions with browser extension.\n\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
+
 /* Disconnect browser extension */
 "disconnect_browser_extension" = "Disconnect browser\nextension";
-
-/* Body text */
-"disconnect_extension.intro.body" = "Once this process is complete, you won't need to confirm transactions with browser extension.\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
-
-/* Header label */
-"disconnect_extension.intro.header" = "Disconnect browser extension";
-
-/* Detail for the header */
-"disconnect_extension.review.detail" = "The existing browser extension connection will be removed.";
-
-/* Title for the header */
-"disconnect_extension.review.title" = "Disconnect browser extension";
 
 /* No transactions yet */
 "empty_safe_transactions_message" = "No transactions yet";
@@ -150,18 +132,6 @@
 
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
-
-/* Balance */
-"fee_calculation.balance" = "Balance";
-
-/* Current balance */
-"fee_calculation.current_balance" = "Current balance";
-
-/* [?] */
-"fee_calculation.fee.info" = "[?]";
-
-/* - ETH */
-"fee_calculation.value.loading_eth" = "- ETH";
 
 /* Application submitted invalid request. */
 "generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
@@ -252,6 +222,9 @@
 
 /* Description how to share safe address. */
 "ios_creationFee_share_description" = "Share your address or scan this QR code with the account or person sending funds.";
+
+/* Connect browser extension description */
+"ios_enable_2fa" = "For increased security, enable 2-factor authentication between your phone and computer.\n\nAll future transactions will need to be approved by both devices.";
 
 /* Title for confirm recovery screen. */
 "ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
@@ -383,18 +356,6 @@
 /* App Version */
 "menu.app_version" = "App Version";
 
-/* Start */
-"navigation.start" = "Start";
-
-/* Explanatory message */
-"network_fee.alert.message" = "This is a network fee required by the blockchain to execute the transaction.";
-
-/* Ok */
-"network_fee.alert.ok" = "Close";
-
-/* Network fee */
-"network_fee.alert.title" = "Network Fee";
-
 /* Explanatory message */
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
 
@@ -435,8 +396,14 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
+/* Intro body text */
+"once_process_is_complete" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\n\nPlease have your Safe recovery phrase ready to confirm the recovery.";
+
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
+
+/* Replace BE pairing description. */
+"pairing_info" = "All transactions need to be approved by both this device and the browser extension.";
 
 /* Password field placeholder
    Password placeholder */
@@ -496,17 +463,8 @@
 /* Replace browser extension */
 "replace_browser_extension" = "Replace browser\nextension";
 
-/* Description */
-"replace_extension.connect.description" = "All transactions will need to be approved by both this device and the new Safe browser extension.";
-
-/* Scan QR Code */
-"replace_extension.connect.header" = "Scan QR code";
-
-/* Intro body text */
-"replace_extension.intro.body" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\nPlease have your Safe recovery phrase ready to confirm the recovery.";
-
-/* Replace browser extension */
-"replace_extension.intro.header" = "Replace browser extension";
+/* Detail for the header in review screen */
+"replace_browser_extension_transaction_info" = "The currently connected browser extension will be replaced with the new browser extension.";
 
 /* Change recovery key menu item
    Replace recovery phrase
@@ -526,6 +484,9 @@
    Review transaction title */
 "review" = "Review";
 
+/* Current balance */
+"safe_balance" = "Safe balance";
+
 /* First deposit header for safe creation screen. */
 "safe_creation_fee" = "Safe creation fee";
 
@@ -534,6 +495,9 @@
 
 /* Scan button title in extension setup screen */
 "scan" = "Scan";
+
+/* Scan QR code */
+"scan_qr_code" = "Scan QR Code";
 
 /* Title for security section. */
 "security" = "Security";
@@ -600,12 +564,6 @@
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
-
-/* Detail for header in review screen. */
-"transaction.replace_browser_extension.description" = "The existing browser extension connection will be replaced by the new browser extension.";
-
-/* Title for the header in review screen. */
-"transaction.replace_browser_extension.title" = "Replace browser extension";
 
 /* Title for the transaction details screen */
 "transaction_details" = "Transaction Details";

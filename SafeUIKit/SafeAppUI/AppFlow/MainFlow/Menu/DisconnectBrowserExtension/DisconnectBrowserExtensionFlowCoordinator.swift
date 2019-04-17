@@ -13,6 +13,16 @@ class DisconnectBrowserExtensionFlowCoordinator: FlowCoordinator {
         return ApplicationServiceRegistry.disconnectExtensionService
     }
 
+    enum Strings {
+        static let disconnectBE = LocalizedString("disconnect_browser_extension",
+                                                  comment: "Disconnect browser extension")
+            .replacingOccurrences(of: "\n", with: " ")
+        static let disconnectDescription = LocalizedString("disconnect_2fa_description",
+                                                           comment: "Disconnect browser extension description")
+        static let disconnectDetail = LocalizedString("layout_disconnect_browser_extension_info_description",
+                                                      comment: "Detail for the header in review screen")
+    }
+
     override func setUp() {
         super.setUp()
         introVC = introViewController()
@@ -24,9 +34,10 @@ class DisconnectBrowserExtensionFlowCoordinator: FlowCoordinator {
 extension IntroContentView.Content {
 
     static let disconnectExtension =
-        IntroContentView.Content(header: LocalizedString("disconnect_extension.intro.header", comment: "Header label"),
-                                 body: LocalizedString("disconnect_extension.intro.body", comment: "Body text"),
-                                 icon: Asset.ConnectBrowserExtension.connectIntroIcon.image)
+        IntroContentView
+            .Content(header: DisconnectBrowserExtensionFlowCoordinator.Strings.disconnectBE,
+                     body: DisconnectBrowserExtensionFlowCoordinator.Strings.disconnectDescription,
+                     icon: Asset.ConnectBrowserExtension.connectIntroIcon.image)
 
 }
 
@@ -50,8 +61,8 @@ extension DisconnectBrowserExtensionFlowCoordinator {
 
     func reviewViewController() -> RBEReviewTransactionViewController {
         let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = LocalizedString("disconnect_extension.review.title", comment: "Title for the header")
-        vc.detailString = LocalizedString("disconnect_extension.review.detail", comment: "Detail for the header")
+        vc.titleString = Strings.disconnectBE
+        vc.detailString = Strings.disconnectDetail
         vc.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.review
         vc.successTrackingEvent = DisconnectBrowserExtensionTrackingEvent.success
         return vc
