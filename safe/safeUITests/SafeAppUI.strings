@@ -453,13 +453,13 @@
 "replace_phrase.confirm.cancel" = "Cancel";
 
 /* Confirmation alert message */
-"replace_phrase.confirm.message" = "This process cannot be undone.";
+"ios_replaceseed_confirm_message" = "This process cannot be undone.";
 
 /* Confirmation alert title */
-"replace_phrase.confirm.title" = "Are you sure you want to change your recovery phrase?";
+"ios_replaceseed_confirm_title" = "Are you sure you want to change your recovery phrase?";
 
 /* Affirmative response button title */
-"replace_phrase.confirm.yes" = "Yes";
+"ios_replaceseed_confirm_yes" = "Yes";
 
 /* Replace recovery phrase */
 "replace_phrase.header" = "Replace recovery phrase";
@@ -651,7 +651,7 @@
 "transaction.replace_browser_extension.title" = "Replace browser extension";
 
 /* Detail for the header in review screen */
-"transaction.replace_recovery.detail" = "The existing recovery phrase will be replaced by a new recovery phrase.";
+"ios_replace_seed_details" = "The existing recovery phrase will be replaced by a new recovery phrase.";
 
 /* Title for the header in review screen */
 "transaction.replace_recovery.title" = "Replace recovery phrase";

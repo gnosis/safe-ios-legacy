@@ -36,6 +36,7 @@
 
 /* Cancel
    Cancel button.
+   Cancel response button title
    Cancel safe creation button. */
 "cancel" = "Cancel";
 
@@ -321,6 +322,18 @@
 /* Content paragraphs, separated by '\n' */
 "ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
 
+/* Detail for the header in review screen */
+"ios_replace_seed_details" = "The existing recovery phrase will be replaced by a new recovery phrase.";
+
+/* Confirmation alert message */
+"ios_replaceseed_confirm_message" = "This process cannot be undone.";
+
+/* Confirmation alert title */
+"ios_replaceseed_confirm_title" = "Are you sure you want to change your recovery phrase?";
+
+/* Affirmative response button title */
+"ios_replaceseed_confirm_yes" = "Yes";
+
 /* Make a copy button */
 "ios_showSeed_copy" = "Make a copy";
 
@@ -394,6 +407,9 @@
 /* Use a minimum of 8 characters. */
 "new_password_min_chars" = "Use a minimum of 8 characters";
 
+/* Replace recovery phrase */
+"new_seed" = "New recovery phrase";
+
 /* Next
    Next button
    Next button for confirm recovery screen.
@@ -437,7 +453,7 @@
 "passwords_do_not_match" = "Sorry, the password doesn't match";
 
 /* Paste */
-"paste" = "paste";
+"paste" = "Paste";
 
 /* Pending transactions group header */
 "pending_captalized" = "PENDING";
@@ -492,26 +508,9 @@
 /* Replace browser extension */
 "replace_extension.intro.header" = "Replace browser extension";
 
-/* Text between stars (*) will be emphasized */
-"replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
-
-/* Cancel response button title */
-"replace_phrase.confirm.cancel" = "Cancel";
-
-/* Confirmation alert message */
-"replace_phrase.confirm.message" = "This process cannot be undone.";
-
-/* Confirmation alert title */
-"replace_phrase.confirm.title" = "Are you sure you want to change your recovery phrase?";
-
-/* Affirmative response button title */
-"replace_phrase.confirm.yes" = "Yes";
-
-/* Replace recovery phrase */
-"replace_phrase.header" = "Replace recovery phrase";
-
 /* Change recovery key menu item
-   Replace recovery phrase */
+   Replace recovery phrase
+   Title for the header in review screen */
 "replace_recovery_phrase" = "Replace recovery\nphrase";
 
 /* Resend button. */
@@ -595,6 +594,9 @@
 /* Terms menu item */
 "terms_of_service" = "Terms of Use";
 
+/* Text between stars (*) will be emphasized */
+"this_will_generate_new_seed" = "This will generate a new recovery phrase and invalidate your current one.";
+
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
 
@@ -603,12 +605,6 @@
 
 /* Title for the header in review screen. */
 "transaction.replace_browser_extension.title" = "Replace browser extension";
-
-/* Detail for the header in review screen */
-"transaction.replace_recovery.detail" = "The existing recovery phrase will be replaced by a new recovery phrase.";
-
-/* Title for the header in review screen */
-"transaction.replace_recovery.title" = "Replace recovery phrase";
 
 /* Title for the transaction details screen */
 "transaction_details" = "Transaction Details";
