@@ -37,6 +37,9 @@
 /* Back */
 "back" = "Back";
 
+/* Balance after transfer */
+"balance_after_transfer" = "Balance after transfer";
+
 /* Title for add browser extension screen */
 "browser_extension" = "Browser extension";
 
@@ -147,18 +150,6 @@
 
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
-
-/* Balance */
-"fee_calculation.balance" = "Balance";
-
-/* Current balance */
-"fee_calculation.current_balance" = "Current balance";
-
-/* [?] */
-"fee_calculation.fee.info" = "[?]";
-
-/* - ETH */
-"fee_calculation.value.loading_eth" = "- ETH";
 
 /* Application submitted invalid request. */
 "generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
@@ -362,18 +353,6 @@
 /* App Version */
 "menu.app_version" = "App Version";
 
-/* Start */
-"navigation.start" = "Start";
-
-/* Explanatory message */
-"network_fee.alert.message" = "This is a network fee required by the blockchain to execute the transaction.";
-
-/* Ok */
-"network_fee.alert.ok" = "Close";
-
-/* Network fee */
-"network_fee.alert.title" = "Network Fee";
-
 /* Explanatory message */
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
 
@@ -410,6 +389,10 @@
 
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
+
+/* Intro body text */
+"once_process_is_complete" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\n\n\
+Please have your Safe recovery phrase ready to confirm the recovery.";
 
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
@@ -495,12 +478,6 @@
 /* Scan QR Code */
 "replace_extension.connect.header" = "Scan QR code";
 
-/* Intro body text */
-"replace_extension.intro.body" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\nPlease have your Safe recovery phrase ready to confirm the recovery.";
-
-/* Replace browser extension */
-"replace_extension.intro.header" = "Replace browser extension";
-
 /* Text between stars (*) will be emphasized */
 "replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
 
@@ -535,6 +512,9 @@
 /* Review button for Send screen
    Review transaction title */
 "review" = "Review";
+
+/* Current balance */
+"safe_balance" = "Safe balance";
 
 /* First deposit header for safe creation screen. */
 "safe_creation_fee" = "Safe creation fee";
@@ -572,7 +552,8 @@
 /* Skip button text */
 "skip_setup_later" = "Skip and setup later";
 
-/* Start button title */
+/* Start
+   Start button title */
 "start" = "Start";
 
 /* 'Status' parameter name */

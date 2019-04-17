@@ -9,11 +9,11 @@ class EthFeeCalculation: FeeCalculation {
 
     enum Strings {
 
-        static let currentBalance = LocalizedString("fee_calculation.current_balance", comment: "Current balance")
+        static let currentBalance = LocalizedString("safe_balance", comment: "Current balance")
         static let networkFee = LocalizedString("transaction_fee", comment: "Network fee")
-        static let balance = LocalizedString("fee_calculation.balance", comment: "Balance")
-        static let loadingEth = LocalizedString("fee_calculation.value.loading_eth", comment: "- ETH")
-        static let feeInfo = LocalizedString("fee_calculation.fee.info", comment: "[?]")
+        static let balance = LocalizedString("balance_after_transfer", comment: "Balance after transfer")
+        static let loadingEth = "- ETH"
+        static let feeInfo = "[?]"
 
     }
 

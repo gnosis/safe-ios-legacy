@@ -38,7 +38,7 @@ public class RBEIntroViewController: UIViewController {
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
     private enum Strings {
-        static let start = LocalizedString("navigation.start", comment: "Start")
+        static let start = LocalizedString("start", comment: "Start")
         static let back = LocalizedString("back", comment: "Back")
     }
 
@@ -167,15 +167,14 @@ public class RBEIntroViewController: UIViewController {
         state.retry(controller: self)
     }
 
-    // duplicated with showTransactionFeeInfo(0
+    // TODO: duplicated with showTransactionFeeInfo
     @objc public func showNetworkFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("network_fee.alert.title",
+        let alert = UIAlertController(title: LocalizedString("transaction_fee",
                                                              comment: "Network fee"),
-                                      message: LocalizedString("network_fee.alert.message",
+                                      message: LocalizedString("transaction_fee_explanation",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("network_fee.alert.ok",
-                                                             comment: "Ok"), style: .default))
+        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
         present(alert, animated: true)
     }
 
