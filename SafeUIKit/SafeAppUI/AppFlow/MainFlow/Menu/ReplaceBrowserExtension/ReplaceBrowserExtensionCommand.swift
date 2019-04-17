@@ -8,7 +8,8 @@ import MultisigWalletApplication
 class ReplaceBrowserExtensionCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("replace_browser_extension", comment: "Replace browser extension").capitalized
+        return LocalizedString("replace_browser_extension", comment: "Replace browser extension")
+            .replacingOccurrences(of: "\n", with: " ").capitalized
     }
 
     override var isHidden: Bool {

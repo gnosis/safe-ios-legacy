@@ -10,7 +10,7 @@ public final class RBEReviewTransactionViewController: ReviewTransactionViewCont
 
     var titleString = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
         .replacingOccurrences(of: "\n", with: " ")
-    var detailString = LocalizedString("layout_replace_browser_extension_info_description",
+    var detailString = LocalizedString("replace_browser_extension_transaction_info",
                                        comment: "Detail for the header in review screen")
     var screenTrackingEvent: Trackable?
     var successTrackingEvent: Trackable?

@@ -464,6 +464,9 @@ Please have your Safe recovery phrase ready to confirm the recovery.";
 /* Replace browser extension */
 "replace_browser_extension" = "Replace browser\nextension";
 
+/* Detail for the header in review screen */
+"replace_browser_extension_transaction_info" = "The currently connected browser extension will be replaced with the new browser extension.";
+
 /* Change recovery key menu item
    Replace recovery phrase
    Title for the header in review screen */
