@@ -25,10 +25,10 @@ final class SupportFlowCoordinator: FlowCoordinator {
     }
 
     private func showURLNotAvailable() {
-        let message = LocalizedString("alert.error.url_unavailable", comment: "URL not available message")
-        let title = LocalizedString("alert.error.url_unavailable.title", comment: "Error title")
+        let message = LocalizedString("ios_error_link_unavailable", comment: "URL not available message")
+        let title = LocalizedString("error", comment: "Error title")
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okTitle = LocalizedString("recovery.address.failed_alert.ok", comment: "OK button title")
+        let okTitle = LocalizedString("ok", comment: "OK button title")
         let okAction = UIAlertAction(title: okTitle, style: .default)
         controller.addAction(okAction)
         rootCoordinator.presentModally(controller)

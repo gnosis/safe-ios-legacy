@@ -19,12 +19,6 @@
 /* Error */
 "alert.error.title" = "Error";
 
-/* URL not available message */
-"alert.error.url_unavailable" = "Sorry, the link is unavailable.";
-
-/* Error title */
-"alert.error.url_unavailable.title" = "Oops";
-
 /* Info */
 "alert.info.title" = "Information";
 
@@ -42,6 +36,7 @@
 
 /* Cancel
    Cancel button.
+   Cancel response button title
    Cancel safe creation button. */
 "cancel" = "Cancel";
 
@@ -132,14 +127,22 @@
 /* Header for new password screen */
 "enter_new_password" = "Enter new password";
 
+/* Placeholder for the recovery phrase */
+"enter_recovery" = "Enter recovery phrase";
+
 /* My Safe Address */
 "enter_safe_address" = "Enter your Safe address";
 
 /* Safe Address */
 "enter_safe_address_field" = "Enter Safe address";
 
-/* Pending safe failed alert's title
-   Recovery address validation failed alert's title */
+/* Recovery Phrase Input screen header */
+"enter_seed" = "Enter your recovery phrase";
+
+/* Error title
+   Pending safe failed alert's title
+   Recovery address validation failed alert's title
+   Recovery transaction failed alert's title */
 "error" = "Error";
 
 /* Not enough balance for transaction. */
@@ -192,6 +195,9 @@
 
 /* How this works */
 "how_this_works" = "How this works";
+
+/* Error format for invalid recovery phrase */
+"incorrect_seed" = "Incorrect recovery phrase";
 
 /* Scan its QR code. */
 "install_browser_extension" = "2. Install browser extension on your desktop computer and scan its QR code.";
@@ -256,6 +262,9 @@
 /* Word #%@ */
 "ios_enterSeed_word" = "Word #%@";
 
+/* URL not available message */
+"ios_error_link_unavailable" = "Sorry, the link is unavailable.";
+
 /* Follow its progress on Etherscan.io */
 "ios_follow_progress" = "Follow its progress on Etherscan.io";
 
@@ -312,6 +321,18 @@
 
 /* Content paragraphs, separated by '\n' */
 "ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
+
+/* Detail for the header in review screen */
+"ios_replace_seed_details" = "The existing recovery phrase will be replaced by a new recovery phrase.";
+
+/* Confirmation alert message */
+"ios_replaceseed_confirm_message" = "This process cannot be undone.";
+
+/* Confirmation alert title */
+"ios_replaceseed_confirm_title" = "Are you sure you want to change your recovery phrase?";
+
+/* Affirmative response button title */
+"ios_replaceseed_confirm_yes" = "Yes";
 
 /* Make a copy button */
 "ios_showSeed_copy" = "Make a copy";
@@ -386,6 +407,9 @@
 /* Use a minimum of 8 characters. */
 "new_password_min_chars" = "Use a minimum of 8 characters";
 
+/* Replace recovery phrase */
+"new_seed" = "New recovery phrase";
+
 /* Next
    Next button
    Next button for confirm recovery screen.
@@ -428,6 +452,9 @@
    Passwords must match. */
 "passwords_do_not_match" = "Sorry, the password doesn't match";
 
+/* Paste */
+"paste" = "Paste";
+
 /* Pending transactions group header */
 "pending_captalized" = "PENDING";
 
@@ -449,36 +476,16 @@
 /* Restore safe button */
 "recover_safe" = "Recover an Existing Safe";
 
-/* Recover Safe
+/* Header of the review transaction screen
+   Recover Safe
    Recover safe */
 "recover_safe_title" = "Recover Safe";
 
 /* Recovered Safe */
 "recovered_safe" = "Recovered\nSafe";
 
-/* OK button title */
-"recovery.address.failed_alert.ok" = "Ok";
-
-/* Error format for invalid recovery phrase */
-"recovery.phrase.error.format" = "Failed to use recovery phrase";
-
-/* Recovery Phrase Input screen header */
-"recovery.phrase.header" = "My recovery phrase";
-
-/* Placeholder for the recovery phrase */
-"recovery.phrase.placeholder" = "HOME BEAT WORD BREAK LEAF HOUSE STUFF KEY HOME BEAT WORD BREAK";
-
-/* This can take a while... */
-"recovery.progress.description" = "This can take a couple minutes…";
-
 /* Header label for progress screen */
-"recovery.progress.header" = "Recovering your Safe";
-
-/* Header of the review transaction screen */
-"recovery.review.header" = "Recover my Safe";
-
-/* Recovery transaction failed alert's title */
-"recovery.transaction.failed_alert.title" = "Error";
+"recovering_safe" = "Recovering your Safe…";
 
 /* Title for setup recovery phrase screen. */
 "recovery_phrase" = "Recovery Phrase";
@@ -501,26 +508,9 @@
 /* Replace browser extension */
 "replace_extension.intro.header" = "Replace browser extension";
 
-/* Text between stars (*) will be emphasized */
-"replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
-
-/* Cancel response button title */
-"replace_phrase.confirm.cancel" = "Cancel";
-
-/* Confirmation alert message */
-"replace_phrase.confirm.message" = "This process cannot be undone.";
-
-/* Confirmation alert title */
-"replace_phrase.confirm.title" = "Are you sure you want to change your recovery phrase?";
-
-/* Affirmative response button title */
-"replace_phrase.confirm.yes" = "Yes";
-
-/* Replace recovery phrase */
-"replace_phrase.header" = "Replace recovery phrase";
-
 /* Change recovery key menu item
-   Replace recovery phrase */
+   Replace recovery phrase
+   Title for the header in review screen */
 "replace_recovery_phrase" = "Replace recovery\nphrase";
 
 /* Resend button. */
@@ -572,7 +562,8 @@
 /* Skip button text */
 "skip_setup_later" = "Skip and setup later";
 
-/* Start button title */
+/* Start
+   Start button title */
 "start" = "Start";
 
 /* 'Status' parameter name */
@@ -588,7 +579,8 @@
 /* 'Success' status */
 "status_success" = "Success";
 
-/* Submit transaction */
+/* Submit
+   Submit transaction */
 "submit" = "Submit";
 
 /* Title for support section. */
@@ -603,6 +595,9 @@
 /* Terms menu item */
 "terms_of_service" = "Terms of Use";
 
+/* Text between stars (*) will be emphasized */
+"this_will_generate_new_seed" = "This will generate a new recovery phrase and invalidate your current one.";
+
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
 
@@ -612,15 +607,6 @@
 /* Title for the header in review screen. */
 "transaction.replace_browser_extension.title" = "Replace browser extension";
 
-/* Detail for the header in review screen */
-"transaction.replace_recovery.detail" = "The existing recovery phrase will be replaced by a new recovery phrase.";
-
-/* Title for the header in review screen */
-"transaction.replace_recovery.title" = "Replace recovery phrase";
-
-/* Submit */
-"transaction.submit" = "Submit";
-
 /* Title for the transaction details screen */
 "transaction_details" = "Transaction Details";
 
@@ -629,6 +615,9 @@
 
 /* Explanatory message */
 "transaction_fee_explanation" = "This is the fee required by the blockchain to execute the transaction.";
+
+/* This can take a while... */
+"transaction_submitted_safe_being_created" = "Your transaction was submitted. Your Safe will be created now. This might take a couple of minutes.";
 
 /* Outgoing transafer */
 "transaction_type_asset_transfer" = "Outgoing transfer";
