@@ -8,10 +8,10 @@ import Common
 
 public final class RBEReviewTransactionViewController: ReviewTransactionViewController {
 
-    var titleString = LocalizedString("transaction.replace_browser_extension.title",
-                                      comment: "Title for the header in review screen.")
-    var detailString = LocalizedString("transaction.replace_browser_extension.description",
-                                       comment: "Detail for header in review screen.")
+    var titleString = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
+        .replacingOccurrences(of: "\n", with: " ")
+    var detailString = LocalizedString("layout_replace_browser_extension_info_description",
+                                       comment: "Detail for the header in review screen")
     var screenTrackingEvent: Trackable?
     var successTrackingEvent: Trackable?
 
