@@ -50,7 +50,7 @@
 "disconnect_extension.review.title" = "Disconnect browser extension";
 
 /* Browser extension code is expired. */
-"extension.error.expired" = "Browser extension code is expired. Please, try again.";
+"ios_error_extension_expired" = "Browser extension code is expired. Please, try again.";
 
 /* Balance */
 "fee_calculation.balance" = "Balance";
@@ -68,22 +68,22 @@
 "fee_calculation.value.loading_eth" = "- ETH";
 
 /* Application submitted invalid request. */
-"generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
+"ios_error_generic_client" = "Application submitted invalid request to the server. Try again later.";
 
 /* Generic error message alert */
-"generic.error.message" = "Operation failed because of an error. Please try again.";
+"ios_error_description" = "Operation failed because of an error. Please try again.";
 
 /* Something wrong with the network. */
-"generic.error.network_error" = "Failed to make a network call. Try again later.";
+"ios_error_generic_network" = "Failed to make a network call. Try again later.";
 
 /* Response is invalid or not supported. */
-"generic.error.response_validation_error" = "Server returned invalid response which will be discarded.";
+"ios_error_generic_response" = "Server returned invalid response which will be discarded.";
 
 /* Server returned error response. */
-"generic.error.server_error" = "Server returned error, the operation is cancelled. Please, try again later.";
+"ios_error_generic_server" = "Server returned error, the operation is cancelled. Please, try again later.";
 
 /* Some error occurred. */
-"generic.error.unknown" = "Error occurred. Please, try again later.";
+"ios_error_generic_unknown" = "Error occurred. Please, try again later.";
 
 /* Menu button title */
 "main.menu" = "Menu";
@@ -258,13 +258,13 @@
 "onboarding.error.title" = "Error";
 
 /* Fatal error alert's message */
-"onboarding.fatal.message" = "Application failed to perform operation and will be closed.";
+"ios_fatal_description" = "Application failed to perform operation and will be closed.";
 
 /* Fatal error alert's Ok button title */
 "onboarding.fatal.ok" = "Ok";
 
 /* Fatal error alert's title */
-"onboarding.fatal.title" = "Fatal error";
+"ios_fatal" = "Fatal error";
 
 /* Content paragraphs, separated by '\n' */
 "onboarding.guidelines.content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. A recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
@@ -691,7 +691,7 @@
 "transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
 
 /* Past transactions group header */
-"transactions.group.past" = "Past";
+"ios_past" = "Past";
 
 /* Pending transactions group header */
 "transactions.group.pending_outgoing" = "Pending Outgoing";
@@ -718,23 +718,23 @@
 "transactions.row.wallet_recovery" = "Recovered Safe";
 
 /* Blockchain address is unknown for the wallet. */
-"wallet.error.address_missing" = "Failed to find safe address. Please try again later.";
+"ios_error_address_missing" = "Failed to find safe address. Please try again later.";
 
 /* Wallet creation transaction is not found. */
-"wallet.error.creation_tx_missing" = "Failed to find initial safe transaction. Please try again later";
+"ios_error_creation_tx_missing" = "Failed to find initial safe transaction. Please try again later";
 
 /* Failed to deploy new safe. All funds are lost. */
-"wallet.error.deployment_failed" = "Failed to create safe. Your account will be refunded.";
+"ios_error_deployment_failed" = "Failed to create safe. Your account will be refunded.";
 
 /* Internal wallet error. */
-"wallet.error.invalid_state" = "Encountered internal safe error.";
+"ios_error_internal" = "Encountered internal safe error.";
 
 /* Insufficient owners for wallet creation. */
-"wallet.error.owner_missing" = "Safe has insufficient number of owners.";
+"ios_error_owner_missing" = "Safe has insufficient number of owners.";
 
 /* Server-provided signature of creation transacion is invalid. */
-"wallet.error.response_invalid_signature" = "Server-signed response is invalid and will be discarded.";
+"ios_error_invalid_signature" = "Server-signed response is invalid and will be discarded.";
 
 /* Server-provided transaction is invalid */
-"wallet.error.response_invalid_transaction" = "Server-provided transaction is invalid and will be discarded.";
+"ios_error_invalid_transaction" = "Server-provided transaction is invalid and will be discarded.";
 

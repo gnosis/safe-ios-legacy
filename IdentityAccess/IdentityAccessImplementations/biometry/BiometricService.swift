@@ -12,9 +12,9 @@ extension BiometryType {
 
     var localizedDescription: String {
         switch self {
-        case .touchID: return LocalizedString("biometry.touchID", comment: "Touch ID")
-        case .faceID: return LocalizedString("biometry.faceID", comment: "Face ID name")
-        case .none: return LocalizedString("biometry.none", comment: "Unrecognized biometry type")
+        case .touchID: return LocalizedString("ios_touchid", comment: "Touch ID")
+        case .faceID: return LocalizedString("ios_faceid", comment: "Face ID name")
+        case .none: return LocalizedString("ios_none", comment: "Unrecognized biometry type")
         }
     }
 
@@ -33,9 +33,9 @@ public final class BiometricService: BiometricAuthenticationService {
     private var context: LAContext
 
     private enum Strings {
-        static let activate = LocalizedString("biometry.activation.reason",
+        static let activate = LocalizedString("ios_biometry_activation",
                                               comment: "Reason to activate Touch ID or Face ID.")
-        static let unlock = LocalizedString("biometry.authentication.reason",
+        static let unlock = LocalizedString("ios_biometry_reason",
                                             comment: "Description of unlock with Touch ID.")
     }
 

@@ -13,7 +13,7 @@ class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
                                              comment: "Pending transactions group header")
         static let today = DateToolsLocalized("Today").capitalized
         static let past =
-            LocalizedString("transactions.group.past", comment: "Past transactions group header").capitalized
+            LocalizedString("ios_past", comment: "Past transactions group header").capitalized
     }
 
     func configure(group: TransactionGroupData) {

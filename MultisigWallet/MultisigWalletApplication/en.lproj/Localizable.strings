@@ -1,0 +1,9 @@
+/* Insufficient funds.\nPlease add %@ to your Safe. */
+"insufficient_funds_please_add" = "Insufficient funds.\nPlease add %@ to your Safe.";
+
+/* Browser extension is already connected. */
+"ios_error_extension_exists" = "Browser extension is already connected.";
+
+/* Browser extension is not connected. */
+"ios_error_extension_notfound" = "Browser extension is not connected.";
+
