@@ -671,7 +671,7 @@ public class WalletApplicationService: Assertable {
             let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
             let signature = ethereumService.sign(message: dataString, by: deviceOwnerAddress)!
             let request = AuthRequestV2(pushToken: pushToken,
-                                        signature: signature,
+                                        signatures: [signature],
                                         buildNumber: buildNumber,
                                         versionName: versionName,
                                         client: client,
