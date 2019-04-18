@@ -38,7 +38,8 @@ public struct AuthRequestV2: Codable, Equatable {
 
     /// Push notification token
     public let pushToken: String
-    /// Signature to authorize receiving of notifications
+    /// Signatures of this request by authorizing addresses (to support multiple wallets with different owners
+    /// existing in the same app with same push token).
     public let signatures: [EthSignature]
     /// Integer build number of the app
     public let buildNumber: Int
