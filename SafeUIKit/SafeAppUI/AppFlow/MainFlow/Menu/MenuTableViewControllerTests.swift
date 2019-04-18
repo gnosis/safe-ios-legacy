@@ -39,7 +39,7 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenCreated_thenConfigured() {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 2)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: portfolioSection), 1)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 3)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 4)
     }
 
 
@@ -73,16 +73,6 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.manageTokensSelected)
     }
 
-    func test_whenSelectingTermsOfUse_thenCallsDelegate() {
-        selectCell(row: 0, section: supportSection)
-        XCTAssertTrue(delegate.didCallTermsOfUse)
-    }
-
-    func test_whenSelectingPrivacy_thenCallsDelegate() {
-        selectCell(row: 1, section: supportSection)
-        XCTAssertTrue(delegate.didCallPrivacyPolicy)
-    }
-
     func test_whenSelectingCell_thenDeselectsIt() {
         selectCell(row: 0, section: safeSection)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
@@ -94,6 +84,21 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenSelectingChangePassword_thenCommandIsCalled() {
         selectCell(row: 1, section: securitySection)
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
+    }
+
+    func test_whenSelectingTerms_thenCallsCommand() {
+        selectCell(row: 0, section: supportSection)
+        XCTAssertTrue(delegate.selectedCommand is TermsCommand)
+    }
+
+    func test_whenSelectingPrivacyPolicy_thenCallsCommand() {
+        selectCell(row: 1, section: supportSection)
+        XCTAssertTrue(delegate.selectedCommand is PrivacyPolicyCommand)
+    }
+
+    func test_whenSelectingLicenses_thenCallsCommand() {
+        selectCell(row: 2, section: supportSection)
+        XCTAssertTrue(delegate.selectedCommand is LicensesCommand)
     }
 
     // MARK: - Tracking
@@ -125,16 +130,6 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
     var manageTokensSelected = false
     func didSelectManageTokens() {
         manageTokensSelected = true
-    }
-
-    var didCallTermsOfUse = false
-    func didSelectTermsOfUse() {
-        didCallTermsOfUse = true
-    }
-
-    var didCallPrivacyPolicy = false
-    func didSelectPrivacyPolicy() {
-        didCallPrivacyPolicy = true
     }
 
     var didCallConnectBrowserExtension = false

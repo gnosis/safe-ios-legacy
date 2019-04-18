@@ -16,8 +16,9 @@ final class AppVersionTableViewCell: UITableViewCell {
         selectionStyle = .none
         let format = LocalizedString("app_version", comment: "App Version")
         var appVersion = "unknown"
-        if let version = SystemInfo.marketingVersion, let build = SystemInfo.buildNumber {
-            appVersion = "\(version) (\(build))"
+        if let version = SystemInfo.marketingVersion, let build = SystemInfo.buildNumber,
+            let label = SystemInfo.bundleLabel {
+            appVersion = "\(version) (\(build)) \(label)"
         }
         appVersionLabel.text = String(format: format, appVersion)
     }

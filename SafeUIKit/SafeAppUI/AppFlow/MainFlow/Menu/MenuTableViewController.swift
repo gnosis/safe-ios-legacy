@@ -8,8 +8,6 @@ import MultisigWalletApplication
 
 protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
-    func didSelectTermsOfUse()
-    func didSelectPrivacyPolicy()
     func didSelectReplaceRecoveryPhrase()
     func didSelectCommand(_ command: MenuCommand)
 }
@@ -34,14 +32,13 @@ final class MenuTableViewController: UITableViewController {
         static let securitySectionTitle =
             LocalizedString("security", comment: "Title for security section.").uppercased()
         static let supportSectionTitle = LocalizedString("support", comment: "Title for support section.").uppercased()
+
         static let manageTokens = LocalizedString("manage_tokens", comment: "Manage Tokens menu item").capitalized
-        static let changePassword = LocalizedString("change_password", comment: "Change password menu item").capitalized
         static let changeRecoveryPhrase =
             LocalizedString("replace_recovery_phrase", comment: "Change recovery key menu item").capitalized
                 .replacingOccurrences(of: "\n", with: " ").capitalized
+
         static let feedback = LocalizedString("give_feedback", comment: "Feedback and FAQ menu item").capitalized
-        static let terms = LocalizedString("terms_of_service", comment: "Terms menu item").capitalized
-        static let privacyPolicy = LocalizedString("privacy_policy", comment: "Privacy policy menu item").capitalized
         static let rateApp = LocalizedString("rate_app", comment: "Rate App menu item").capitalized
     }
 
@@ -57,8 +54,6 @@ final class MenuTableViewController: UITableViewController {
         var name: String
         var hasDisclosure: Bool
     }
-
-    struct AppVersion {}
 
     enum SettingsSection: Hashable {
         case safe
@@ -76,6 +71,14 @@ final class MenuTableViewController: UITableViewController {
 
     var securityCommands: [MenuCommand] {
         return [changePasswordCommand, resyncCommand, replaceCommand, connectCommand, disconnectCommand]
+    }
+
+    let termsCommand = TermsCommand()
+    let privacyPolicyCommand = PrivacyPolicyCommand()
+    let licensesCommand = LicensesCommand()
+
+    var supportCommands: [MenuCommand] {
+        return [termsCommand, privacyPolicyCommand, licensesCommand]
     }
 
     static func create() -> MenuTableViewController {
@@ -136,12 +139,8 @@ final class MenuTableViewController: UITableViewController {
                 },
              title: Strings.securitySectionTitle),
             (section: .support,
-             items: [
-//                menuItem(Strings.feedback),
-                menuItem(Strings.terms),
-                menuItem(Strings.privacyPolicy),
-//                menuItem(Strings.rateApp),
-                (item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
+             items: supportCommands.map { menuItem($0.title, hasDisclosure: $0.hasDisclosure) } +
+                [menuItem("AppVersion", AppVersionTableViewCell.height)],
              title: Strings.supportSectionTitle)
         ]
     }
@@ -192,11 +191,11 @@ final class MenuTableViewController: UITableViewController {
             }
 
         case .portfolio, .security, .support:
-            if menuItems[indexPath.section].items[indexPath.row].item is AppVersion {
+            let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
+            if menuItem.name == "AppVersion" {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AppVersionTableViewCell", for: indexPath)
                 return cell
             }
-            let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
             cell.textLabel?.text = menuItem.name
             cell.accessoryType = menuItem.hasDisclosure ? .disclosureIndicator : .none
@@ -208,7 +207,6 @@ final class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         switch menuItems[indexPath.section].section {
         case .portfolio:
             if let manageTokensItem = menuItem(at: indexPath), manageTokensItem.name == Strings.manageTokens {
@@ -232,10 +230,15 @@ final class MenuTableViewController: UITableViewController {
             default: break
             }
         case .support:
-            if indexPath.row == 0 {
-                delegate?.didSelectTermsOfUse()
-            } else {
-                delegate?.didSelectPrivacyPolicy()
+            let item = menuItem(at: indexPath)!
+            switch item.name {
+            case termsCommand.title:
+                delegate?.didSelectCommand(termsCommand)
+            case privacyPolicyCommand.title:
+                delegate?.didSelectCommand(privacyPolicyCommand)
+            case licensesCommand.title:
+                delegate?.didSelectCommand(licensesCommand)
+            default: break
             }
         default: break
         }

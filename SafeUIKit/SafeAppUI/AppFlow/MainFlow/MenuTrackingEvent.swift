@@ -10,5 +10,6 @@ enum MenuTrackingEvent: String, ScreenTrackingEvent {
     case menu           = "Menu"
     case terms          = "Terms"
     case privacyPolicy  = "PrivacyPolicy"
+    case licenses       = "Licenses"
 
 }

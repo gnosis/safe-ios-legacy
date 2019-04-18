@@ -45,7 +45,6 @@
 "cancel_safe_creation" = "Cancel Safe creation?";
 
 /* Change password
-   Change password menu item
    Title for change password screen */
 "change_password" = "Change Password";
 
@@ -345,6 +344,9 @@
 
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
+
+/* Licenses */
+"licenses" = "Licenses";
 
 /* Manage Tokens menu item */
 "manage_tokens" = "Manage Tokens";
