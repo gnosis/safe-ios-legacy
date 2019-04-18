@@ -55,8 +55,6 @@ final class MenuTableViewController: UITableViewController {
         var hasDisclosure: Bool
     }
 
-    struct AppVersion {}
-
     enum SettingsSection: Hashable {
         case safe
         case portfolio
@@ -142,7 +140,7 @@ final class MenuTableViewController: UITableViewController {
              title: Strings.securitySectionTitle),
             (section: .support,
              items: supportCommands.map { menuItem($0.title, hasDisclosure: $0.hasDisclosure) } +
-                [(item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
+                [menuItem("AppVersion", AppVersionTableViewCell.height)],
              title: Strings.supportSectionTitle)
         ]
     }
@@ -193,11 +191,11 @@ final class MenuTableViewController: UITableViewController {
             }
 
         case .portfolio, .security, .support:
-            if menuItems[indexPath.section].items[indexPath.row].item is AppVersion {
+            let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
+            if menuItem.name == "AppVersion" {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AppVersionTableViewCell", for: indexPath)
                 return cell
             }
-            let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
             cell.textLabel?.text = menuItem.name
             cell.accessoryType = menuItem.hasDisclosure ? .disclosureIndicator : .none
@@ -209,7 +207,6 @@ final class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         switch menuItems[indexPath.section].section {
         case .portfolio:
             if let manageTokensItem = menuItem(at: indexPath), manageTokensItem.name == Strings.manageTokens {
