@@ -66,6 +66,7 @@ public class RecoveryApplicationService {
         return transactionData(tx)
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     public func transactionData(_ tx: Transaction) -> TransactionData {
         let status: TransactionData.Status
         switch tx.status {
@@ -159,7 +160,8 @@ public class RecoveryApplicationService {
         }
         ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
     }
-
+    
+    // swiftlint:disable:next cyclomatic_complexity
     private static func applicationError(from domainError: Error) -> Error {
         switch domainError {
         case RecoveryServiceError.invalidContractAddress:
