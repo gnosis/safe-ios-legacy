@@ -307,6 +307,7 @@
 		5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586421748BC400A3CEA4 /* AddressInputViewController.swift */; };
 		5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586721748C3700A3CEA4 /* AddressInput.swift */; };
 		5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586921748C5200A3CEA4 /* AddressInputTests.swift */; };
+		5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545970522689A63009B4A0B /* LicensesCommand.swift */; };
 		554CACCF221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACCE221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift */; };
 		554CACD1221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */; };
 		554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD4221F08CD0086D303 /* RBEReviewTransactionViewController.swift */; };
@@ -864,6 +865,7 @@
 		5541586421748BC400A3CEA4 /* AddressInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewController.swift; sourceTree = "<group>"; };
 		5541586721748C3700A3CEA4 /* AddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput.swift; sourceTree = "<group>"; };
 		5541586921748C5200A3CEA4 /* AddressInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputTests.swift; sourceTree = "<group>"; };
+		5545970522689A63009B4A0B /* LicensesCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesCommand.swift; sourceTree = "<group>"; };
 		554CACCE221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsTransferReviewTransactionViewController.swift; sourceTree = "<group>"; };
 		554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseReviewTransactionViewController.swift; sourceTree = "<group>"; };
 		554CACD4221F08CD0086D303 /* RBEReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEReviewTransactionViewController.swift; sourceTree = "<group>"; };
@@ -1297,6 +1299,7 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				554596F622689A45009B4A0B /* Licenses */,
 				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
 				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
@@ -1806,6 +1809,14 @@
 				5541586921748C5200A3CEA4 /* AddressInputTests.swift */,
 			);
 			path = AddressInput;
+			sourceTree = "<group>";
+		};
+		554596F622689A45009B4A0B /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				5545970522689A63009B4A0B /* LicensesCommand.swift */,
+			);
+			path = Licenses;
 			sourceTree = "<group>";
 		};
 		555EB6ED216CA55000E06553 /* TextInputs */ = {
@@ -2759,6 +2770,7 @@
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
 				0A8C962F20D2C3E7007D2410 /* BaseCustomButton.swift in Sources */,
+				5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */,
 				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,

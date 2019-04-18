@@ -48,4 +48,9 @@ final class SupportFlowCoordinator: FlowCoordinator {
         openInSafari(ApplicationServiceRegistry.walletService.transactionURL(transactionID))
     }
 
+    func openLicenses() {
+        Tracker.shared.track(event: MenuTrackingEvent.licenses)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.licensesURL)
+    }
+
 }

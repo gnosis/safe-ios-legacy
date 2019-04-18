@@ -39,7 +39,7 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenCreated_thenConfigured() {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 2)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: portfolioSection), 1)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 3)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 4)
     }
 
 
@@ -74,12 +74,12 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     func test_whenSelectingTermsOfUse_thenCallsDelegate() {
-        selectCell(row: 0, section: supportSection)
+        selectCell(row: 1, section: supportSection)
         XCTAssertTrue(delegate.didCallTermsOfUse)
     }
 
     func test_whenSelectingPrivacy_thenCallsDelegate() {
-        selectCell(row: 1, section: supportSection)
+        selectCell(row: 2, section: supportSection)
         XCTAssertTrue(delegate.didCallPrivacyPolicy)
     }
 
@@ -94,6 +94,11 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenSelectingChangePassword_thenCommandIsCalled() {
         selectCell(row: 1, section: securitySection)
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
+    }
+
+    func test_whenSelectingLicenses_thenCallsCommand() {
+        selectCell(row: 0, section: supportSection)
+        XCTAssertTrue(delegate.selectedCommand is LicensesCommand)
     }
 
     // MARK: - Tracking

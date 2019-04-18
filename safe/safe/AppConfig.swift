@@ -16,6 +16,7 @@ struct AppConfig: Codable {
     var chromeExtensionURL: URL
     var termsOfUseURL: URL
     var privacyPolicyURL: URL
+    var licensesURL: URL
     var masterCopyAddresses: [String]
     var multiSendAddress: String
     var featureFlags: [String: Bool]?
@@ -29,6 +30,7 @@ struct AppConfig: Codable {
         case chromeExtensionURL = "chrome_extension_url"
         case termsOfUseURL = "terms_of_use_url"
         case privacyPolicyURL = "privacy_policy_url"
+        case licensesURL = "licenses_url"
         case masterCopyAddresses = "master_copy_addresses"
         case multiSendAddress = "multi_send_contract_addres"
         case featureFlags = "feature_flags"
@@ -78,6 +80,7 @@ extension AppConfig {
                                                      chromeExtensionURL: chromeExtensionURL,
                                                      privacyPolicyURL: privacyPolicyURL,
                                                      termsOfUseURL: termsOfUseURL,
+                                                     licensesURL: licensesURL,
                                                      usesAPIv2: FeatureFlagSettings.instance.isOn("uses_auth_v2"))
     }
 

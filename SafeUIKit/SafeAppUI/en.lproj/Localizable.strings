@@ -346,6 +346,9 @@
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
 
+/* Licenses */
+"licenses" = "Licenses";
+
 /* Manage Tokens menu item */
 "manage_tokens" = "Manage Tokens";
 

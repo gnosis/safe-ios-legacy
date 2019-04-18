@@ -73,9 +73,14 @@ final class MenuTableViewController: UITableViewController {
     let connectCommand = ConnectBrowserExtensionLaterCommand()
     let disconnectCommand = DisconnectBrowserExtensionCommand()
     let resyncCommand = ResyncWithBrowserExtensionCommand()
+    let licensesCommand = LicensesCommand()
 
     var securityCommands: [MenuCommand] {
         return [changePasswordCommand, resyncCommand, replaceCommand, connectCommand, disconnectCommand]
+    }
+
+    var supportCommands: [MenuCommand] {
+        return [licensesCommand]
     }
 
     static func create() -> MenuTableViewController {
@@ -136,12 +141,10 @@ final class MenuTableViewController: UITableViewController {
                 },
              title: Strings.securitySectionTitle),
             (section: .support,
-             items: [
-//                menuItem(Strings.feedback),
-                menuItem(Strings.terms),
-                menuItem(Strings.privacyPolicy),
-//                menuItem(Strings.rateApp),
-                (item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
+             items: supportCommands.map { menuItem($0.title, hasDisclosure: $0.hasDisclosure)} +
+                [menuItem(Strings.terms),
+                 menuItem(Strings.privacyPolicy),
+                 (item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
              title: Strings.supportSectionTitle)
         ]
     }
@@ -232,10 +235,15 @@ final class MenuTableViewController: UITableViewController {
             default: break
             }
         case .support:
-            if indexPath.row == 0 {
+            let item = menuItem(at: indexPath)!
+            switch item.name {
+            case licensesCommand.title:
+                delegate?.didSelectCommand(licensesCommand)
+            case Strings.terms:
                 delegate?.didSelectTermsOfUse()
-            } else {
+            case Strings.privacyPolicy:
                 delegate?.didSelectPrivacyPolicy()
+            default: break
             }
         default: break
         }
