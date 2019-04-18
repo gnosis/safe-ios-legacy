@@ -63,190 +63,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     func configureDependencyInjection() {
         configureFeatureFlags()
-        configureIdentityAccess()
-        configureMultisigWallet()
-        configureEthereum()
+        IdentityAccessConfigurator.configure(with: self)
+        MultisigWalletConfigurator.configure(with: self)
         #if DEBUG
         Tracker.shared.append(handler: ConsoleTracker())
         #endif
         Tracker.shared.append(handler: FirebaseTrackingHandler())
-    }
-
-    private func configureIdentityAccess() {
-        IdentityAccessApplication.ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
-                                                                 for: AuthenticationApplicationService.self)
-        IdentityAccessApplication.ApplicationServiceRegistry.put(service: SystemClockService(), for: Clock.self)
-        IdentityAccessApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        IdentityAccessDomainModel.DomainRegistry.put(service: BiometricService(),
-                                                     for: BiometricAuthenticationService.self)
-        IdentityAccessDomainModel.DomainRegistry.put(service: SystemClockService(), for: Clock.self)
-        let encryptionService = IdentityAccessImplementations.CommonCryptoEncryptionService()
-        IdentityAccessDomainModel.DomainRegistry.put(service: encryptionService,
-                                                     for: IdentityAccessDomainModel.EncryptionService.self)
-        IdentityAccessDomainModel.DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
-        setUpIdentityAccessDatabase()
-    }
-
-    private func configureMultisigWallet() {
-        let walletService = WalletApplicationService(configuration: appConfig.walletApplicationServiceConfiguration)
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: walletService,
-                                                                 for: WalletApplicationService.self)
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: RecoveryApplicationService(),
-                                                                 for: RecoveryApplicationService.self)
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
-                                                                 for: WalletSettingsApplicationService.self)
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
-                                                          logger: LogService.shared)
-        MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(
-            service: HTTPTokenListService(url: appConfig.relayServiceURL, logger: LogService.shared),
-            for: TokenListDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: AccountUpdateDomainService(),
-                                                     for: AccountUpdateDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(),
-                                                     for: SynchronisationDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: System(), for: System.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: DeploymentDomainService(),
-                                                     for: DeploymentDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: TransactionDomainService(),
-                                                     for: TransactionDomainService.self)
-        let config = RecoveryDomainServiceConfig(masterCopyAddresses: appConfig.masterCopyAddresses,
-                                                 multiSendAddress: appConfig.multiSendAddress)
-        MultisigWalletDomainModel.DomainRegistry.put(service: RecoveryDomainService(config: config),
-                                                     for: RecoveryDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: WalletSettingsDomainService(config: config),
-                                                     for: WalletSettingsDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
-                                                     for: ReplaceBrowserExtensionDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: ConnectBrowserExtensionDomainService(),
-                                                     for: ConnectBrowserExtensionDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: DisconnectBrowserExtensionDomainService(),
-                                                     for: DisconnectBrowserExtensionDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: CommunicationDomainService(),
-                                                     for: CommunicationDomainService.self)
-        let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
-
-        // temporal coupling with domain model's services
-        MultisigWalletApplication.ApplicationServiceRegistry
-            .put(service: ReplaceBrowserExtensionApplicationService.create(),
-                 for: ReplaceBrowserExtensionApplicationService.self)
-        MultisigWalletApplication.ApplicationServiceRegistry
-            .put(service: ConnectBrowserExtensionApplicationService.create(),
-                 for: ConnectBrowserExtensionApplicationService.self)
-        MultisigWalletApplication.ApplicationServiceRegistry
-            .put(service: DisconnectBrowserExtensionApplicationService.createDisconnectService(),
-                 for: DisconnectBrowserExtensionApplicationService.self)
-
-        setUpMultisigDatabase()
-    }
-
-    private func configureEthereum() {
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
-                                                                 for: EthereumApplicationService.self)
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-
-        let chainId = EIP155ChainId(rawValue: appConfig.encryptionServiceChainId)!
-        let encryptionService = MultisigWalletImplementations.EncryptionService(chainId: chainId)
-        MultisigWalletDomainModel.DomainRegistry.put(service: encryptionService,
-                                                     for: MultisigWalletDomainModel.EncryptionDomainService.self)
-        let relayService = GnosisTransactionRelayService(url: appConfig.relayServiceURL, logger: LogService.shared)
-        MultisigWalletDomainModel.DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
-
-        secureStore = KeychainService(identifier: defaultBundleIdentifier)
-        MultisigWalletDomainModel.DomainRegistry.put(service:
-            SecureExternallyOwnedAccountRepository(store: secureStore!),
-                                                     for: ExternallyOwnedAccountRepository.self)
-
-        let nodeService = InfuraEthereumNodeService(url: appConfig.nodeServiceConfig.url,
-                                                    chainId: appConfig.nodeServiceConfig.chainId)
-        MultisigWalletDomainModel.DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
-    }
-
-    private func setUpIdentityAccessDatabase() {
-        do {
-            let db = SQLiteDatabase(name: "IdentityAccess",
-                                    fileManager: FileManager.default,
-                                    sqlite: DataProtectionAwareCSQLite3(filesystemGuard: filesystemGuard),
-                                    bundleId: Bundle.main.bundleIdentifier ?? defaultBundleIdentifier)
-            identityAccessDB = db
-            let userRepo = DBSingleUserRepository(db: db)
-            let gatekeeperRepo = DBSingleGatekeeperRepository(db: db)
-            IdentityAccessDomainModel.DomainRegistry.put(service: userRepo, for: SingleUserRepository.self)
-            IdentityAccessDomainModel.DomainRegistry.put(service: gatekeeperRepo, for: SingleGatekeeperRepository.self)
-
-            if !db.exists {
-                try db.create()
-                try userRepo.setUp()
-                gatekeeperRepo.setUp()
-
-                try ApplicationServiceRegistry.authenticationService
-                    .createAuthenticationPolicy(sessionDuration: 60,
-                                                maxPasswordAttempts: 3,
-                                                blockedPeriodDuration: 15)
-            }
-
-            let migrationRepo = DBMigrationRepository(db: db)
-            migrationRepo.setUp()
-            let migrationService = DBMigrationService(repository: migrationRepo)
-            registerIdentityAccessDatabaseMigrations(service: migrationService)
-            migrationService.migrate()
-        } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to set up identity access database", error: e)
-        }
-    }
-
-    private func registerIdentityAccessDatabaseMigrations(service: DBMigrationService) {
-        // identity access db migrations go here
-    }
-
-    private func setUpMultisigDatabase() {
-        do {
-            let db = SQLiteDatabase(name: "MultisigWallet",
-                                    fileManager: FileManager.default,
-                                    sqlite: DataProtectionAwareCSQLite3(filesystemGuard: filesystemGuard),
-                                    bundleId: Bundle.main.bundleIdentifier ?? defaultBundleIdentifier)
-            multisigWalletDB = db
-            let walletRepo = DBWalletRepository(db: db)
-            let portfolioRepo = DBSinglePortfolioRepository(db: db)
-            let accountRepo = DBAccountRepository(db: db)
-            let transactionRepo = DBTransactionRepository(db: db)
-            let tokenListItemRepo = DBTokenListItemRepository(db: db)
-            let monitorRepo = DBRBETransactionMonitorRepository(db: db)
-            MultisigWalletDomainModel.DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
-            MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
-            MultisigWalletDomainModel.DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
-            MultisigWalletDomainModel.DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
-            MultisigWalletDomainModel.DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
-            MultisigWalletDomainModel.DomainRegistry.put(service: monitorRepo,
-                                                         for: RBETransactionMonitorRepository.self)
-
-            if !db.exists {
-                try db.create()
-            }
-            portfolioRepo.setUp()
-            walletRepo.setUp()
-            accountRepo.setUp()
-            transactionRepo.setUp()
-            tokenListItemRepo.setUp()
-            monitorRepo.setUp()
-
-            let migrationRepo = DBMigrationRepository(db: db)
-            migrationRepo.setUp()
-            let migrationService = DBMigrationService(repository: migrationRepo)
-            registerMultisigDatabaseMigrations(service: migrationService)
-            migrationService.migrate()
-        } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
-        }
-    }
-
-    private func registerMultisigDatabaseMigrations(service: DBMigrationService) {
-        // multisig wallet db migrations go here
     }
 
     func configureFeatureFlags() {
@@ -292,11 +114,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     func resetAll() {
         if let db = identityAccessDB {
             try? db.destroy()
-            setUpIdentityAccessDatabase()
+            IdentityAccessConfigurator.setUpIdentityAccessDatabase(with: self)
         }
         if let db = multisigWalletDB {
             try? db.destroy()
-            setUpMultisigDatabase()
+            MultisigWalletConfigurator.setUpMultisigDatabase(with: self)
         }
         if let store = secureStore {
             try? store.destroy()

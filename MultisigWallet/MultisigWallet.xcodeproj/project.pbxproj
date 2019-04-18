@@ -40,6 +40,7 @@
 		0A2DBCBB220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */; };
 		0A2DBCC2220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */; };
 		0A364B2322676C7E002E80B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A364B2522676C7E002E80B7 /* Localizable.strings */; };
+		0A364B5222688ACC002E80B7 /* BaseDeploymentDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A364B5122688ACC002E80B7 /* BaseDeploymentDomainServiceTests.swift */; };
 		0A3BD92A22254FF7007039B4 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD92122254FF6007039B4 /* LocalizedString.swift */; };
 		0A3BD92B22254FF7007039B4 /* RBEStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD92722254FF6007039B4 /* RBEStarter.swift */; };
 		0A3BD92C22254FF7007039B4 /* FeeCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */; };
@@ -455,6 +456,7 @@
 		0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
 		0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A364B2422676C7E002E80B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A364B5122688ACC002E80B7 /* BaseDeploymentDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDeploymentDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A3BD92122254FF6007039B4 /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		0A3BD92722254FF6007039B4 /* RBEStarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBEStarter.swift; sourceTree = "<group>"; };
 		0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeeCalculationError.swift; sourceTree = "<group>"; };
@@ -820,6 +822,7 @@
 				0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */,
 				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
 				0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */,
+				0A364B5122688ACC002E80B7 /* BaseDeploymentDomainServiceTests.swift */,
 				0A5C0D472185B6F300988930 /* AllDeploymentStatesTests.swift */,
 				0A4C38A4212D9705005594DA /* MockDeploymentDomainService.swift */,
 				0A0CF00B2125684000772AB3 /* ErrorStream.swift */,
@@ -1337,6 +1340,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 0AEF8A6A20A08868006A1265;
 			productRefGroup = 0AEF8A7620A08878006A1265 /* Products */;
@@ -1686,6 +1690,7 @@
 				0A8272FF2124447D00EB5C21 /* EventPublisherTests.swift in Sources */,
 				0A1B2A90221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift in Sources */,
 				0A1940382226C2F3005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift in Sources */,
+				0A364B5222688ACC002E80B7 /* BaseDeploymentDomainServiceTests.swift in Sources */,
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
 				0ABCC0FC2177291D00E60E9F /* TransactionDomainServiceTests.swift in Sources */,
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,

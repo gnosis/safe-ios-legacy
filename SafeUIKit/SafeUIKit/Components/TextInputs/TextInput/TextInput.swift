@@ -91,7 +91,7 @@ public class TextInput: UITextField {
     private func updateRightView() {
         if let customRightView = customRightView {
             rightView = customRightView
-            rightViewMode = .always            
+            rightViewMode = .always
         } else if hideClearButton {
             rightView = nil
             rightViewMode = .never

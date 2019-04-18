@@ -42,3 +42,16 @@ class AbortSafeCreationAlertController: SafeAlertController {
     }
 
 }
+
+class TransactionFeeAlertController: SafeAlertController {
+
+    static func create() -> TransactionFeeAlertController {
+        let alert = TransactionFeeAlertController(title: LocalizedString("transaction_fee", comment: "Network fee"),
+                                                  message: LocalizedString("transaction_fee_explanation",
+                                                                           comment: "Explanatory message"),
+                                                  preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
+        return alert
+    }
+
+}

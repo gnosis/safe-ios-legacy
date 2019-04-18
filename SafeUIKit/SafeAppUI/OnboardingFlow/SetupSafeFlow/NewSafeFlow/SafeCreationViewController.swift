@@ -288,13 +288,8 @@ class SafeCreationViewController: UIViewController {
         showTransactionFeeInfo()
     }
 
-    // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("what_is_network_fee", comment: "Network fee"),
-                                      message: LocalizedString("network_fee_creation", comment: "Explanatory message"),
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Ok"), style: .default))
-        present(alert, animated: true)
+        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
     }
 
 }
