@@ -62,12 +62,16 @@ public struct AuthRequestV2: Codable, Equatable {
         case bundle
     }
 
-    /// Creates new request
+    /// Create new request
     ///
     /// - Parameters:
-    ///   - pushToken: push notification token
-    ///   - signature: Sender signature
-    ///   - deviceOwnerAddress: Address of the signer
+    ///   - pushToken: FCM push token
+    ///   - signatures: signatures of the owners that authorize this push token
+    ///   - buildNumber: app build number
+    ///   - versionName: app version number
+    ///   - client: the platform name
+    ///   - bundle: app identifier
+    ///   - deviceOwnerAddress: the address that signs the request
     public init(pushToken: String,
                 signatures: [EthSignature],
                 buildNumber: Int,
