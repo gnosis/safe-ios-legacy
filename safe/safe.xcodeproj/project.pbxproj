@@ -25,6 +25,8 @@
 		0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B5C20A07C2D00E064E1 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A1B2AC5221EFDDA00E92990 /* UIKitFileSystemGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
+		0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A364B3222688473002E80B7 /* MultisigWalletConfigurator.swift */; };
+		0A364B40226886DB002E80B7 /* IdentityAccessConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A364B3F226886DB002E80B7 /* IdentityAccessConfigurator.swift */; };
 		0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */; };
 		0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
@@ -282,6 +284,8 @@
 		0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccess.xcodeproj; path = ../IdentityAccess/IdentityAccess.xcodeproj; sourceTree = "<group>"; };
 		0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitFileSystemGuard.swift; sourceTree = "<group>"; };
 		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A364B3222688473002E80B7 /* MultisigWalletConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultisigWalletConfigurator.swift; sourceTree = "<group>"; };
+		0A364B3F226886DB002E80B7 /* IdentityAccessConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityAccessConfigurator.swift; sourceTree = "<group>"; };
 		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsScreen.swift; sourceTree = "<group>"; };
 		0A537C16207D019800921FB9 /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -620,6 +624,8 @@
 			children = (
 				555C94E320E533C400A0621D /* IntegrationTests */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
+				0A364B3F226886DB002E80B7 /* IdentityAccessConfigurator.swift */,
+				0A364B3222688473002E80B7 /* MultisigWalletConfigurator.swift */,
 				0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */,
 				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
 				0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */,
@@ -1152,6 +1158,8 @@
 			files = (
 				0A1B2AC5221EFDDA00E92990 /* UIKitFileSystemGuard.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
+				0A364B40226886DB002E80B7 /* IdentityAccessConfigurator.swift in Sources */,
+				0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */,
 				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
 				555D33FE2110BD810055D87C /* PushLocalizationStrings.swift in Sources */,
