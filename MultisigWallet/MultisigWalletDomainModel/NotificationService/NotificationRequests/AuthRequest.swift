@@ -39,7 +39,7 @@ public struct AuthRequestV2: Codable, Equatable {
     /// Push notification token
     public let pushToken: String
     /// Signature to authorize receiving of notifications
-    public let signature: EthSignature
+    public let signatures: [EthSignature]
     /// Integer build number of the app
     public let buildNumber: Int
     /// User-facing version string
@@ -54,7 +54,7 @@ public struct AuthRequestV2: Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case pushToken
-        case signature
+        case signatures
         case buildNumber
         case versionName
         case client
@@ -68,14 +68,14 @@ public struct AuthRequestV2: Codable, Equatable {
     ///   - signature: Sender signature
     ///   - deviceOwnerAddress: Address of the signer
     public init(pushToken: String,
-                signature: EthSignature,
+                signatures: [EthSignature],
                 buildNumber: Int,
                 versionName: String,
                 client: String,
                 bundle: String,
                 deviceOwnerAddress: String?) {
         self.pushToken = pushToken
-        self.signature = signature
+        self.signatures = signatures
         self.buildNumber = buildNumber
         self.versionName = versionName
         self.client = client
