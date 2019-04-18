@@ -20,7 +20,7 @@ public class LoadingTitleView: NibUIView {
 
     }
 
-    var text = LocalizedString("loading_title_text", comment: "Loading...")
+    var text = LocalizedString("loading", comment: "Loading...")
     var titleStyle = LabelStyle()
     var spacing: Double = 5
 

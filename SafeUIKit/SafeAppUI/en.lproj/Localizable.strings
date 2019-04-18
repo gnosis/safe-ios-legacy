@@ -263,9 +263,6 @@
 /* Past transactions group header */
 "ios_past" = "Past";
 
-/* Privacy Policy */
-"ios_privacy_policy_link_text" = "Privacy Policy";
-
 /* QR Code label. */
 "ios_qr_code" = "QR Code";
 
@@ -326,17 +323,11 @@
 /* Header for setup recovery phrase screen. */
 "ios_showSeed_header" = "Stay secure.\nSave this recovery phrase.";
 
-/* New recovery phrase */
-"ios_showSeed_title" = "New recovery phrase";
-
 /* Warning for setup recovery phrase screen. */
 "ios_showSeed_warning" = "Without these, you won’t be able to recover your Safe and its assets.";
 
 /* Content (bulleted list). Separate by new line characters '\n' */
 "ios_terms_contents" = "We do not collect demographic data such as age and gender.\nWe collect anonymized app usage data and crash reports to ensure the quality of our app.";
-
-/* Terms of Use */
-"ios_terms_link_text" = "Terms of Use";
 
 /* 'View on Etherscan' button name */
 "ios_view_transaction_on_etherscan" = "View transaction on Etherscan.io";
@@ -375,7 +366,8 @@
 /* Use a minimum of 8 characters. */
 "new_password_min_chars" = "Use a minimum of 8 characters";
 
-/* Replace recovery phrase */
+/* New recovery phrase
+   Replace recovery phrase */
 "new_seed" = "New recovery phrase";
 
 /* Next
@@ -428,7 +420,8 @@
 /* Title for portfolio section. */
 "portfolio" = "Portfolio";
 
-/* Privacy policy menu item */
+/* Privacy Policy
+   Privacy policy menu item */
 "privacy_policy" = "Privacy Policy";
 
 /* Rate App menu item */
@@ -552,7 +545,8 @@
    Title for Manage Tokens Screen. */
 "tab_title_assets" = "Tokens";
 
-/* Terms menu item */
+/* Terms menu item
+   Terms of Use */
 "terms_of_service" = "Terms of Use";
 
 /* Text between stars (*) will be emphasized */

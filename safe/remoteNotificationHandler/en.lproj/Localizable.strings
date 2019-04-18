@@ -1,14 +1,14 @@
+/* Title for confirmation */
+"confirmed" = "Confirmed";
+
 /* Body for confirmation */
 "ios_transaction_confirmed_message" = "You received a signature from browser extension.";
-
-/* Title for confirmation */
-"ios_transaction_confirmed_title" = "Confirmed";
 
 /* Body for rejection */
 "ios_transaction_rejected_message" = "Browser extension declined to sign your transaction.";
 
 /* Title for rejection */
-"ios_transaction_rejected_title" = "Rejected";
+"rejected" = "Rejected";
 
 /* Body for signing request */
 "sign_transaction_request_message" = "You have been requested to sign a transaction";

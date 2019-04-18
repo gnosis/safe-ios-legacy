@@ -19,9 +19,9 @@ struct Rule {
         guard let value = element.value as? String else {
             preconditionFailure("Accessibilty value is missing in Rule element")
         }
-        let inactiveValue = "\(LocalizedString("rule.inactive")) \(element.label)"
-        let errorValue = "\(LocalizedString("rule.error")) \(element.label)"
-        let successValue = "\(LocalizedString("rule.success")) \(element.label)"
+        let inactiveValue = "inactive \(element.label)"
+        let errorValue = "error \(element.label)"
+        let successValue = "success \(element.label)"
         switch value {
         case inactiveValue: return .inactive
         case errorValue: return .error

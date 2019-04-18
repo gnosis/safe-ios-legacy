@@ -27,7 +27,7 @@ final class SaveMnemonicViewController: UIViewController {
     }
 
     enum RecoveryStrings {
-        static let header = LocalizedString("ios_showSeed_title", comment: "New recovery phrase")
+        static let header = LocalizedString("new_seed", comment: "New recovery phrase")
     }
 
     var recoveryModeEnabled = false

@@ -12,9 +12,9 @@ public enum RuleStatus {
 
     var localizedDescription: String {
         switch self {
-        case .error: return LocalizedString("rule.error", comment: "Error status of a rule")
-        case .success: return LocalizedString("rule.success", comment: "Success status of a rule")
-        case .inactive: return LocalizedString("rule.inactive", comment: "Inactive status of a rule")
+        case .error: return "error"
+        case .success: return "success"
+        case .inactive: return "inactive"
         }
     }
 

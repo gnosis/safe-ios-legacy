@@ -32,12 +32,10 @@ enum PushLocalizationStrings {
                                                          comment: "Title for signing request"),
                                 body: NSLocalizedString("sign_transaction_request_message",
                                                         comment: "Body for signing request")),
-        .confirmTransaction: Alert(title: NSLocalizedString("ios_transaction_confirmed_title",
-                                                            comment: "Title for confirmation"),
+        .confirmTransaction: Alert(title: NSLocalizedString("confirmed", comment: "Title for confirmation"),
                                    body: NSLocalizedString("ios_transaction_confirmed_message",
                                                            comment: "Body for confirmation")),
-        .rejectTransaction: Alert(title: NSLocalizedString("ios_transaction_rejected_title",
-                                                           comment: "Title for rejection"),
+        .rejectTransaction: Alert(title: NSLocalizedString("rejected", comment: "Title for rejection"),
                                   body: NSLocalizedString("ios_transaction_rejected_message",
                                                           comment: "Body for rejection"))
     ]

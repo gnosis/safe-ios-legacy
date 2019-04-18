@@ -26,8 +26,8 @@ public class TermsAndConditionsViewController: UIViewController {
         static let header = LocalizedString("please_review_terms_and_privacy_policy", comment: "Header label")
         static let body = LocalizedString("ios_terms_contents",
                                           comment: "Content (bulleted list). Separate by new line characters '\n'")
-        static let privacyLink = LocalizedString("ios_privacy_policy_link_text", comment: "Privacy Policy")
-        static let termsLink = LocalizedString("ios_terms_link_text", comment: "Terms of Use")
+        static let privacyLink = LocalizedString("privacy_policy", comment: "Privacy Policy")
+        static let termsLink = LocalizedString("terms_of_service", comment: "Terms of Use")
         static let disagree = LocalizedString("no_thanks", comment: "No Thanks")
         static let agree = LocalizedString("agree", comment: "Agree")
     }

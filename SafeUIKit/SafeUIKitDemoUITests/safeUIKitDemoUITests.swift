@@ -10,9 +10,9 @@ class SafeUIKitDemoUITests: XCTestCase {
     let app = XCUIApplication()
 
     struct Status {
-        static let inactive = XCLocalizedString("rule.inactive")
-        static let error = XCLocalizedString("rule.error")
-        static let success = XCLocalizedString("rule.success")
+        static let inactive = "inactive"
+        static let error = "error"
+        static let success = "success"
     }
 
     var textInput: XCUIElement {

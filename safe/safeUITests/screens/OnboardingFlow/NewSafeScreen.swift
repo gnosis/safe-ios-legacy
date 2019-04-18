@@ -20,7 +20,7 @@ final class NewSafeScreen {
 
         var enabled: Bool { return element.isEnabled }
         var isChecked: Bool {
-            return hasCheckmark && element.value as? String == LocalizedString("button.checked")
+            return hasCheckmark && element.value as? String == "checked"
         }
         var hasCheckmark: Bool { return element.value != nil }
 
