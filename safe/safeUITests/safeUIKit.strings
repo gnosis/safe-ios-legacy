@@ -47,7 +47,7 @@
 "confirmation_view.rejection_explanation" = "Transaction rejected by the browser extension.";
 
 /* Loading... */
-"loading_title_text" = "Loading…";
+"loading" = "Loading…";
 
 /* Error status of a rule */
 "rule.error" = "Error";

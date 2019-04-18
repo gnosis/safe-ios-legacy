@@ -16,12 +16,6 @@
 /* Transaction approved by the browser extension */
 "browser_extension_approved" = "The browser extension has approved this transaction.";
 
-/* Checkmark is checked */
-"button.checked" = "Checked";
-
-/* Checkmark is not checked */
-"button.unchecked" = "Unchecked";
-
 /* Cancel alert item.
    Cancel button title */
 "cancel" = "Cancel";
@@ -66,7 +60,7 @@
 "ios_transaction_fee_token" = "token";
 
 /* Loading... */
-"loading_title_text" = "Loading…";
+"loading" = "Loading …";
 
 /* OK */
 "ok" = "OK";
@@ -81,16 +75,7 @@
 "rejected" = "Rejected";
 
 /* Transaction rejected by the browser extension. */
-"rejected_by_extension" = "rejected_by_extension";
-
-/* Error status of a rule */
-"rule.error" = "Error";
-
-/* Inactive status of a rule */
-"rule.inactive" = "Inactive";
-
-/* Success status of a rule */
-"rule.success" = "Success";
+"rejected_by_extension" = "The transaction was rejected in the browser extension.";
 
 /* Current balance */
 "safe_balance" = "Safe balance";

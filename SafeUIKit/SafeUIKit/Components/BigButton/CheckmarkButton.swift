@@ -51,8 +51,8 @@ public class CheckmarkButton: UIButton {
 
     private func localizedValue() -> String? {
         switch checkmarkStatus {
-        case .selected: return LocalizedString("button.checked", comment: "Checkmark is checked")
-        case .normal: return LocalizedString("button.unchecked", comment: "Checkmark is not checked")
+        case .selected: return "checked"
+        case .normal: return "unchecked"
         case .disabled: return nil
         }
     }
