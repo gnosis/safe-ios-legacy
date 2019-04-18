@@ -172,7 +172,7 @@
 		0A553D4321C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A553D4221C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift */; };
 		0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */; };
 		0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */; };
-		0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */; };
+		0A5D467B20AD6DBE00AC287E /* SafeAppUIAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467A20AD6DBE00AC287E /* SafeAppUIAlerts.swift */; };
 		0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */; };
 		0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */; };
 		0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */; };
@@ -691,7 +691,7 @@
 		0A553D4221C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseViewController.swift; sourceTree = "<group>"; };
 		0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Testable.swift"; sourceTree = "<group>"; };
-		0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbortSafeCreationAlertController.swift; sourceTree = "<group>"; };
+		0A5D467A20AD6DBE00AC287E /* SafeAppUIAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAppUIAlerts.swift; sourceTree = "<group>"; };
 		0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationFailedAlertController.swift; sourceTree = "<group>"; };
 		0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
 		0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingBehavior.swift; sourceTree = "<group>"; };
@@ -1127,7 +1127,6 @@
 				0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */,
 				0A334E0A209C8E3800ABC6AE /* NewSafeFlowCoordinatorTests.swift */,
 				0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */,
-				0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */,
 				0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */,
 				0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */,
 				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
@@ -1559,6 +1558,7 @@
 				0AF33D37209C6BF800527D25 /* SafeAppUI.h */,
 				0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */,
 				0A334DE2209C892700ABC6AE /* SafeTestCase.swift */,
+				0A5D467A20AD6DBE00AC287E /* SafeAppUIAlerts.swift */,
 				0A334DF3209C8C4A00ABC6AE /* swiftgen.yml */,
 				0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */,
 				0A72D436209C92A20082C0A3 /* TestExtensions.swift */,
@@ -2809,7 +2809,7 @@
 				0A3BD90122254833007039B4 /* UIView+Pin.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */,
-				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,
+				0A5D467B20AD6DBE00AC287E /* SafeAppUIAlerts.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
 				0A3BD8FE22254833007039B4 /* FeeCalculationSection.swift in Sources */,
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,

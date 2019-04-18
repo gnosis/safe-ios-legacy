@@ -265,8 +265,6 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         }
     }
 
-    // TODO: implement corner & error cases testing
-
     typealias SafeContext = (funder: ExternallyOwnedAccount, owners: [ExternallyOwnedAccount], safe: Safe)
 
     private func deployNewSafe(owners: Int = 3, confirmations: Int = 2) throws -> SafeContext {

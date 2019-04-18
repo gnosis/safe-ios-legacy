@@ -38,7 +38,8 @@ struct Safe {
                                                  data: data == nil ? "" : data!.toHexString().addHexPrefix(),
                                                  operation: operation)
         let response = try _test.relayService.estimateTransaction(request: request)
-        // FIXME: gas is adjusted because currently dataGas + txGas is not enough for funding the fees.
+        // Gas is adjusted because server-side gas estimate is
+        // inherently inaccurate: (dataGas + txGas) is not enough for funding the fees.
         let fee = (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas) +
             gasAdjustment) * BigInt(response.gasPrice)
         let nonce = response.nextNonce

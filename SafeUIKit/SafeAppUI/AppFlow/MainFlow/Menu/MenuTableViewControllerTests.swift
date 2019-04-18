@@ -95,7 +95,7 @@ class MenuTableViewControllerTests: XCTestCase {
         selectCell(row: 1, section: securitySection)
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
     }
-    
+
     // MARK: - Tracking
 
     func test_tracking() {

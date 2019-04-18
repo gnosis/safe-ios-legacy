@@ -15,7 +15,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case invalidState
     }
 
-    // FIXME: encapsulate
     public var state: WalletState!
 
     public private(set) var newDraftState: WalletState!
@@ -169,7 +168,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func changeConfirmationCount(_ newValue: Int) {
-        // TODO: guard for state
         confirmationCount = newValue
     }
 

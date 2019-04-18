@@ -160,7 +160,7 @@ public class RecoveryApplicationService {
         }
         ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
     }
-    
+
     // swiftlint:disable:next cyclomatic_complexity
     private static func applicationError(from domainError: Error) -> Error {
         switch domainError {

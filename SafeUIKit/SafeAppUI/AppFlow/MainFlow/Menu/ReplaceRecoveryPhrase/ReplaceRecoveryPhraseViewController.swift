@@ -155,14 +155,8 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("transaction_fee", comment: "Network fee"),
-                                      message: LocalizedString("transaction_fee_explanation",
-                                                               comment: "Explanatory message"),
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
-        present(alert, animated: true, completion: nil)
+        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
     }
 
 }

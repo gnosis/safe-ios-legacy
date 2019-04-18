@@ -50,8 +50,7 @@
 "change_password" = "Change Password";
 
 /* Button to cancel 'abort create' alert
-   Close
-   Ok */
+   Close */
 "close" = "Close";
 
 /* Confirm button title */
@@ -354,9 +353,6 @@
    Title for menu screen. */
 "menu" = "Menu";
 
-/* Explanatory message */
-"network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
-
 /* Required minimum description for safe creation screen. */
 "network_fee_required" = "A network fee is required to create your new Safe.";
 
@@ -581,7 +577,4 @@
 
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
-
-/* Network fee */
-"what_is_network_fee" = "What is the network fee?";
 

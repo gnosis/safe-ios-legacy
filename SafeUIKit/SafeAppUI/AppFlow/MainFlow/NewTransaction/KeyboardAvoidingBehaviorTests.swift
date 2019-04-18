@@ -86,34 +86,6 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
         XCTAssertEqual(scrollView.scrollIndicatorInsets.bottom, 0)
     }
 
-    // FIXME: different expected values for different simulators
-//    func test_whenActiveFieldPresentAndOutOfVisibleArea_scrollsToIt() {
-//        let keyboardFrame = CGRect(x: 0, y: 0, width: 100, height: 50)
-//        let notification = NSNotification(name: UIResponder.keyboardDidShowNotification,
-//                                          object: nil,
-//                                          userInfo: [UIResponder.keyboardFrameEndUserInfoKey:
-//                                            NSValue(cgRect: keyboardFrame),
-//                                                     "suppress_animation": true])
-//        scrollView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-//
-//        let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 5_000))
-//        let textField = UITextField(frame: CGRect(x: 0, y: 2_500, width: 100, height: 40))
-//
-//        contentView.addSubview(textField)
-//        scrollView.addSubview(contentView)
-//        scrollView.contentSize = contentView.bounds.size
-//
-//        behavior.activeTextField = textField
-//
-//        if let window = UIApplication.shared.keyWindow {
-//            window.addSubview(scrollView)
-//        }
-//
-//        behavior.didShowKeyboard(notification)
-//        delay()
-//        XCTAssertEqual(scrollView.contentOffset.y, 2_520)
-//    }
-
     func test_didHideKeyboard_resetsInsets() {
         scrollView.contentInset.bottom = 1
         scrollView.scrollIndicatorInsets.bottom = 1

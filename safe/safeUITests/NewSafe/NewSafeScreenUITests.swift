@@ -11,7 +11,6 @@ class NewSafeScreenUITests: UITestCase {
     override func setUp() {
         super.setUp()
         givenNewSafeSetup()
-    
     }
 
     // NS-001
