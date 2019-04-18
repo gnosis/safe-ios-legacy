@@ -8,8 +8,6 @@ import MultisigWalletApplication
 
 protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
-    func didSelectTermsOfUse()
-    func didSelectPrivacyPolicy()
     func didSelectReplaceRecoveryPhrase()
     func didSelectCommand(_ command: MenuCommand)
 }
@@ -34,14 +32,13 @@ final class MenuTableViewController: UITableViewController {
         static let securitySectionTitle =
             LocalizedString("security", comment: "Title for security section.").uppercased()
         static let supportSectionTitle = LocalizedString("support", comment: "Title for support section.").uppercased()
+
         static let manageTokens = LocalizedString("manage_tokens", comment: "Manage Tokens menu item").capitalized
-        static let changePassword = LocalizedString("change_password", comment: "Change password menu item").capitalized
         static let changeRecoveryPhrase =
             LocalizedString("replace_recovery_phrase", comment: "Change recovery key menu item").capitalized
                 .replacingOccurrences(of: "\n", with: " ").capitalized
+
         static let feedback = LocalizedString("give_feedback", comment: "Feedback and FAQ menu item").capitalized
-        static let terms = LocalizedString("terms_of_service", comment: "Terms menu item").capitalized
-        static let privacyPolicy = LocalizedString("privacy_policy", comment: "Privacy policy menu item").capitalized
         static let rateApp = LocalizedString("rate_app", comment: "Rate App menu item").capitalized
     }
 
@@ -73,14 +70,17 @@ final class MenuTableViewController: UITableViewController {
     let connectCommand = ConnectBrowserExtensionLaterCommand()
     let disconnectCommand = DisconnectBrowserExtensionCommand()
     let resyncCommand = ResyncWithBrowserExtensionCommand()
-    let licensesCommand = LicensesCommand()
 
     var securityCommands: [MenuCommand] {
         return [changePasswordCommand, resyncCommand, replaceCommand, connectCommand, disconnectCommand]
     }
 
+    let termsCommand = TermsCommand()
+    let privacyPolicyCommand = PrivacyPolicyCommand()
+    let licensesCommand = LicensesCommand()
+
     var supportCommands: [MenuCommand] {
-        return [licensesCommand]
+        return [termsCommand, privacyPolicyCommand, licensesCommand]
     }
 
     static func create() -> MenuTableViewController {
@@ -141,10 +141,8 @@ final class MenuTableViewController: UITableViewController {
                 },
              title: Strings.securitySectionTitle),
             (section: .support,
-             items: supportCommands.map { menuItem($0.title, hasDisclosure: $0.hasDisclosure)} +
-                [menuItem(Strings.terms),
-                 menuItem(Strings.privacyPolicy),
-                 (item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
+             items: supportCommands.map { menuItem($0.title, hasDisclosure: $0.hasDisclosure) } +
+                [(item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
              title: Strings.supportSectionTitle)
         ]
     }
@@ -237,12 +235,12 @@ final class MenuTableViewController: UITableViewController {
         case .support:
             let item = menuItem(at: indexPath)!
             switch item.name {
+            case termsCommand.title:
+                delegate?.didSelectCommand(termsCommand)
+            case privacyPolicyCommand.title:
+                delegate?.didSelectCommand(privacyPolicyCommand)
             case licensesCommand.title:
                 delegate?.didSelectCommand(licensesCommand)
-            case Strings.terms:
-                delegate?.didSelectTermsOfUse()
-            case Strings.privacyPolicy:
-                delegate?.didSelectPrivacyPolicy()
             default: break
             }
         default: break

@@ -73,16 +73,6 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.manageTokensSelected)
     }
 
-    func test_whenSelectingTermsOfUse_thenCallsDelegate() {
-        selectCell(row: 1, section: supportSection)
-        XCTAssertTrue(delegate.didCallTermsOfUse)
-    }
-
-    func test_whenSelectingPrivacy_thenCallsDelegate() {
-        selectCell(row: 2, section: supportSection)
-        XCTAssertTrue(delegate.didCallPrivacyPolicy)
-    }
-
     func test_whenSelectingCell_thenDeselectsIt() {
         selectCell(row: 0, section: safeSection)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
@@ -96,8 +86,18 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
     }
 
-    func test_whenSelectingLicenses_thenCallsCommand() {
+    func test_whenSelectingTerms_thenCallsCommand() {
         selectCell(row: 0, section: supportSection)
+        XCTAssertTrue(delegate.selectedCommand is TermsCommand)
+    }
+
+    func test_whenSelectingPrivacyPolicy_thenCallsCommand() {
+        selectCell(row: 1, section: supportSection)
+        XCTAssertTrue(delegate.selectedCommand is PrivacyPolicyCommand)
+    }
+
+    func test_whenSelectingLicenses_thenCallsCommand() {
+        selectCell(row: 2, section: supportSection)
         XCTAssertTrue(delegate.selectedCommand is LicensesCommand)
     }
 
@@ -130,16 +130,6 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
     var manageTokensSelected = false
     func didSelectManageTokens() {
         manageTokensSelected = true
-    }
-
-    var didCallTermsOfUse = false
-    func didSelectTermsOfUse() {
-        didCallTermsOfUse = true
-    }
-
-    var didCallPrivacyPolicy = false
-    func didSelectPrivacyPolicy() {
-        didCallPrivacyPolicy = true
     }
 
     var didCallConnectBrowserExtension = false

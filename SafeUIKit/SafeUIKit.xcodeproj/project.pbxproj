@@ -308,6 +308,8 @@
 		5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586721748C3700A3CEA4 /* AddressInput.swift */; };
 		5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586921748C5200A3CEA4 /* AddressInputTests.swift */; };
 		5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545970522689A63009B4A0B /* LicensesCommand.swift */; };
+		554597082268AB22009B4A0B /* TermsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554597072268AB22009B4A0B /* TermsCommand.swift */; };
+		5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */; };
 		554CACCF221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACCE221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift */; };
 		554CACD1221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */; };
 		554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD4221F08CD0086D303 /* RBEReviewTransactionViewController.swift */; };
@@ -866,6 +868,8 @@
 		5541586721748C3700A3CEA4 /* AddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput.swift; sourceTree = "<group>"; };
 		5541586921748C5200A3CEA4 /* AddressInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputTests.swift; sourceTree = "<group>"; };
 		5545970522689A63009B4A0B /* LicensesCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesCommand.swift; sourceTree = "<group>"; };
+		554597072268AB22009B4A0B /* TermsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCommand.swift; sourceTree = "<group>"; };
+		554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyCommand.swift; sourceTree = "<group>"; };
 		554CACCE221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsTransferReviewTransactionViewController.swift; sourceTree = "<group>"; };
 		554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseReviewTransactionViewController.swift; sourceTree = "<group>"; };
 		554CACD4221F08CD0086D303 /* RBEReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEReviewTransactionViewController.swift; sourceTree = "<group>"; };
@@ -1299,7 +1303,7 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				554596F622689A45009B4A0B /* Licenses */,
+				554596F622689A45009B4A0B /* Support */,
 				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
 				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
@@ -1811,12 +1815,14 @@
 			path = AddressInput;
 			sourceTree = "<group>";
 		};
-		554596F622689A45009B4A0B /* Licenses */ = {
+		554596F622689A45009B4A0B /* Support */ = {
 			isa = PBXGroup;
 			children = (
 				5545970522689A63009B4A0B /* LicensesCommand.swift */,
+				554597072268AB22009B4A0B /* TermsCommand.swift */,
+				554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */,
 			);
-			path = Licenses;
+			path = Support;
 			sourceTree = "<group>";
 		};
 		555EB6ED216CA55000E06553 /* TextInputs */ = {
@@ -2726,6 +2732,7 @@
 				0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */,
 				55DEBC28214BD7AB0017CD4B /* SafeAddressViewController.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
+				5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
 				55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */,
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,
@@ -2809,6 +2816,7 @@
 				0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */,
+				554597082268AB22009B4A0B /* TermsCommand.swift in Sources */,
 				0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */,
 				0A3BD90222254833007039B4 /* EthFeeCalculation.swift in Sources */,
 			);
