@@ -205,6 +205,7 @@ final class MenuTableViewController: UITableViewController {
 
     // MARK: - Table view delegate
 
+    //swiftlint:disable:next cyclomatic_complexity
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch menuItems[indexPath.section].section {

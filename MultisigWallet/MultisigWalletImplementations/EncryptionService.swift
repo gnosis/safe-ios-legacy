@@ -132,18 +132,10 @@ open class EncryptionService: EncryptionDomainService {
         return signature(from: (code.r, code.s, code.v))
     }
 
-    private func signature(from value: (r: BInt, s: BInt, v: BInt)) -> EthSignature {
-        return EthSignature(r: value.r.asString(withBase: 10), s: value.s.asString(withBase: 10), v: Int(value.v))
-    }
-
     private func bintSignature(from signature: EthSignature) -> (r: BInt, s: BInt, v: BInt) {
         return (BInt(signature.r, radix: 10)!,
                 BInt(signature.s, radix: 10)!,
                 BInt(signature.v))
-    }
-
-    private func data(_ value: String) -> Data {
-        return value.data(using: .utf8)!
     }
 
     // MARK: - Contract Address computation
@@ -161,10 +153,6 @@ open class EncryptionService: EncryptionDomainService {
 
     private func rlp(varArgs: [Any]) -> Data {
         return try! RLP.encode(varArgs)
-    }
-
-    public func hash(_ value: Data) -> Data {
-        return Crypto.hashSHA3_256(value)
     }
 
     private func hash(_ tx: EthTransaction) -> Data {
@@ -265,17 +253,62 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - Signing messages
 
+    // ---------- Start ---------------
+    // GH-649 The functions below are under tracking for a crash point. One expression per line to track crash source.
+    // Logging added for better context.
     public func sign(message: String, privateKey: MultisigWalletDomainModel.PrivateKey) -> EthSignature {
-        let signature = rawSignature(of: hash(data(message)), with: privateKey.data)
+        let mesageData = data(message)
+        let messageHash = hash(mesageData)
+        let signature = rawSignature(of: messageHash, with: privateKey.data)
         return ethSignature(from: signature)
     }
 
-    public func ethSignature(from signature: Signature) -> EthSignature {
-        return ethSignature(from: signature.data)
+    private func data(_ value: String) -> Data {
+        guard let data = value.data(using: .utf8) else {
+            let error = NSError(domain: "io.gnosis.safe",
+                                code: -991,
+                                userInfo: [NSLocalizedDescriptionKey: "Data conversion failed",
+                                           "value": value])
+            ApplicationServiceRegistry.logger.error("Data conversion failed", error: error)
+            preconditionFailure("Data conversion failed")
+        }
+        return data
+    }
+
+    public func hash(_ value: Data) -> Data {
+        return Crypto.hashSHA3_256(value)
+    }
+
+    private func rawSignature(of data: Data, with privateKey: Data) -> Data {
+        do {
+            return try Crypto.sign(data, privateKey: privateKey)
+        } catch {
+            let logError = NSError(domain: "io.gnosis.safe",
+                                   code: -992,
+                                   userInfo: [NSLocalizedDescriptionKey: "Signing of data failed!",
+                                              "data": String(data: data, encoding: .utf8) ?? String(describing: data),
+                                              NSUnderlyingErrorKey: error])
+            ApplicationServiceRegistry.logger.error("Signing of data failed", error: logError)
+            preconditionFailure("Signing of dat failed")
+        }
     }
 
     private func ethSignature(from rawSignature: Data) -> EthSignature {
-        return signature(from: signer.calculateRSV(signature: rawSignature))
+        let rsv = signer.calculateRSV(signature: rawSignature)
+        return signature(from: rsv)
+    }
+
+    private func signature(from value: (r: BInt, s: BInt, v: BInt)) -> EthSignature {
+        let rValue = value.r.asString(withBase: 10)
+        let sValue = value.s.asString(withBase: 10)
+        let vValue = Int(value.v)
+        return EthSignature(r: rValue, s: sValue, v: vValue)
+    }
+
+    // ---------- End ---------------
+
+    public func ethSignature(from signature: Signature) -> EthSignature {
+        return ethSignature(from: signature.data)
     }
 
     public func sign(transaction: EthRawTransaction,
@@ -283,10 +316,6 @@ open class EncryptionService: EncryptionDomainService {
         let rlpAppendix: EthSignature? = chainId == .any ? nil : EthSignature(r: "0", s: "0", v: chainId.rawValue)
         let signature = ethSignature(from: rawSignature(of: hash(transaction, rlpAppendix), with: privateKey.data))
         return SignedRawTransaction(rlp(transaction, signature: signature).toHexString().addHexPrefix())
-    }
-
-    private func rawSignature(of data: Data, with privateKey: Data) -> Data {
-        return try! Crypto.sign(data, privateKey: privateKey)
     }
 
     let ERC191MagicByte = Data([0x19])
