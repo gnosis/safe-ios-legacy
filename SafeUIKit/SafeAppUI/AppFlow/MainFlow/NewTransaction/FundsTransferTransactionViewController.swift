@@ -131,7 +131,7 @@ public class FundsTransferTransactionViewController: UIViewController {
         let service = ApplicationServiceRegistry.walletService
         transactionID = service.createNewDraftTransaction()
         service.updateTransaction(transactionID!,
-                                  amount: model.intAmount!,
+                                  amount: model.intAmount ?? 0,
                                   token: tokenID.id,
                                   recipient: model.recipient!)
         delegate?.didCreateDraftTransaction(id: transactionID!)
