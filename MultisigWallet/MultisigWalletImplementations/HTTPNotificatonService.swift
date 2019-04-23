@@ -5,6 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 import Common
+import MultisigWalletApplication
 
 final public class HTTPNotificationService: NotificationDomainService {
 
@@ -38,9 +39,25 @@ final public class HTTPNotificationService: NotificationDomainService {
 
     public func authV2(request: AuthRequestV2) throws {
         let response = try httpClient.execute(request: request)
-        guard response.pushToken == request.pushToken &&
-            response.owner == request.deviceOwnerAddress else {
-                throw NotificationDomainServiceError.validationFailed
+        // check that we received the same owners that we sent
+        let expectedItems: Set<AuthRequestV2.AuthResponseItem> = Set(request.deviceOwnerAddresses.map { address in
+            AuthRequestV2.AuthResponseItem(owner: address,
+                                           pushToken: request.pushToken,
+                                           client: request.client,
+                                           buildNumber: request.buildNumber,
+                                           versionName: request.versionName,
+                                           bundle: request.bundle)
+        })
+        let actualItems = Set(response)
+        guard actualItems == expectedItems else {
+            let message = "authV2: unexpected response. Check that signatures and other data are correct"
+            let error = NSError(domain: "io.gnosis.safe",
+                                code: -801,
+                                userInfo: [NSLocalizedDescriptionKey: message,
+                                           "expected": Array(expectedItems),
+                                           "actual": response])
+            ApplicationServiceRegistry.logger.error(message, error: error)
+            throw NotificationDomainServiceError.validationFailed
         }
     }
 
@@ -150,11 +167,15 @@ extension AuthRequestV2: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v2/auth/" }
-    public typealias ResponseType = AuthResponseV2
+    public typealias ResponseType = [AuthResponseItem]
 
-    public struct AuthResponseV2: Decodable {
-        let pushToken: String
+    public struct AuthResponseItem: Hashable, Equatable, Decodable {
         let owner: String
+        let pushToken: String
+        let client: String
+        let buildNumber: Int
+        let versionName: String
+        let bundle: String
     }
 
 }

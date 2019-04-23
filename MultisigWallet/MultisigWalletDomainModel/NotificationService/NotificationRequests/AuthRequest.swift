@@ -50,8 +50,8 @@ public struct AuthRequestV2: Codable, Equatable {
     /// Bundle identifier of the app
     public let bundle: String
 
-    /// Address of the signer (mobile device wallet owner address).
-    public private(set) var deviceOwnerAddress: String?
+    /// Addresses of the signers (mobile device wallet owner address).
+    public private(set) var deviceOwnerAddresses: [String] = []
 
     enum CodingKeys: String, CodingKey {
         case pushToken
@@ -78,14 +78,15 @@ public struct AuthRequestV2: Codable, Equatable {
                 versionName: String,
                 client: String,
                 bundle: String,
-                deviceOwnerAddress: String?) {
+                deviceOwnerAddresses: [String]) {
         self.pushToken = pushToken
         self.signatures = signatures
         self.buildNumber = buildNumber
         self.versionName = versionName
         self.client = client
         self.bundle = bundle
-        self.deviceOwnerAddress = deviceOwnerAddress
+        self.deviceOwnerAddresses = deviceOwnerAddresses
+        assert(signatures.count == deviceOwnerAddresses.count)
     }
 
 }
