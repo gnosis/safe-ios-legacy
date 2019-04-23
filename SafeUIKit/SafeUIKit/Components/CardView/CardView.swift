@@ -4,7 +4,7 @@
 
 import UIKit
 
-public final class CardView: UIView {
+public class CardView: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)

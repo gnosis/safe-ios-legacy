@@ -4,10 +4,4 @@
 
 import UIKit
 
-class CardViewViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-}
+class CardViewViewController: UIViewController {}
