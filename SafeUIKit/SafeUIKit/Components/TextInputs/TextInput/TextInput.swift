@@ -10,6 +10,7 @@ public class TextInput: UITextField {
     private let clearButton = UIButton(type: .custom)
     private let successImageView = UIImageView()
     private let edgeViewPadding: CGFloat = 14
+    private let fontSize: CGFloat = 16
 
     public var textInputHeight: CGFloat = 50 {
         didSet {
@@ -122,7 +123,7 @@ public class TextInput: UITextField {
     private func commonInit() {
         heightConstraint = heightAnchor.constraint(equalToConstant: textInputHeight)
         heightConstraint.isActive = true
-        font = UIFont.systemFont(ofSize: 16)
+        font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
         configureBorder()
         setupCustomClearButton()
         setupCustomSuccessImage()
