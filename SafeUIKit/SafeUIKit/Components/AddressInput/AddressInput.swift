@@ -28,12 +28,13 @@ public final class AddressInput: VerifiableInput {
     private let textFontSize: CGFloat = 16
     private let addressLabelSidePadding: CGFloat = 12
 
+    private var leadingInputConstraint: NSLayoutConstraint!
+
     public override var text: String? {
         get {
             return addressLabel.text
         }
         set {
-            textInput.leftImage = Asset.AddressInput.addressIconTmp.image
             if newValue != nil {
                 let displayAddress = safeUserInput(newValue)
                 addressLabel.text = displayAddress
@@ -44,16 +45,20 @@ public final class AddressInput: VerifiableInput {
                     let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
                     identicon.seed = displayAddress
                     textInput.leftView = identicon
+                    textInput.leftViewMode = .always
                     let validAddress = addressLabel.formatter.string(from: displayAddress) ?? displayAddress
                     addressInputDelegate?.didRecieveValidAddress(validAddress)
                 } else {
                     addressInputDelegate?.didRecieveInvalidAddress(displayAddress)
+                    textInput.leftView = nil
+                    textInput.leftViewMode = .never
                 }
             } else {
                 addressLabel.address = nil
                 textInput.placeholder = self.placeholder
                 addressInputDelegate?.didClear()
             }
+            leadingInputConstraint.constant = calculateLeadingInputPadding()
         }
     }
 
@@ -112,7 +117,6 @@ public final class AddressInput: VerifiableInput {
 
     private func configureTextInput() {
         textInput.heightConstraint.constant = inputHeight
-        textInput.leftImage = Asset.AddressInput.addressIconTmp.image
         textInput.style = .white
         textInput.showSuccessIndicator = false
         textInput.customRightView = dotsRightView()
@@ -126,6 +130,7 @@ public final class AddressInput: VerifiableInput {
 
     private func configureAddressLabel() {
         addressLabel.font = UIFont.systemFont(ofSize: textFontSize, weight: .medium)
+        addressLabel.textAlignment = .left
         addressLabel.backgroundColor = .clear
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.numberOfLines = 2
@@ -142,17 +147,23 @@ public final class AddressInput: VerifiableInput {
     }
 
     private func pinAddressLabel() {
-        let leftViewRect = textInput.leftViewRect(forBounds: textInput.bounds)
         let rightViewRect = textInput.rightViewRect(forBounds: textInput.bounds)
-        let absoluteLeftPadding = leftViewRect.maxX + addressLabelSidePadding
         let absoluteRightPadding = textInput.bounds.width - rightViewRect.maxX +
             rightViewRect.width + addressLabelSidePadding
+        let absoluteLeftPadding = calculateLeadingInputPadding()
         textInput.addSubview(addressLabel)
+        leadingInputConstraint = addressLabel.leadingAnchor.constraint(equalTo: textInput.leadingAnchor,
+                                                                       constant: absoluteLeftPadding)
         NSLayoutConstraint.activate([
-            addressLabel.leadingAnchor.constraint(equalTo: textInput.leadingAnchor, constant: absoluteLeftPadding),
+            leadingInputConstraint,
             addressLabel.trailingAnchor.constraint(equalTo: textInput.trailingAnchor, constant: -absoluteRightPadding),
             addressLabel.topAnchor.constraint(equalTo: textInput.topAnchor),
             addressLabel.bottomAnchor.constraint(equalTo: textInput.bottomAnchor)])
+    }
+
+    private func calculateLeadingInputPadding() -> CGFloat {
+        let leftViewRect = textInput.leftViewRect(forBounds: textInput.bounds)
+        return leftViewRect.maxX + addressLabelSidePadding
     }
 
     private func validatedAddress(_ address: String) -> String? {
