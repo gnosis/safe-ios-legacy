@@ -35,6 +35,8 @@ public final class AddressInput: VerifiableInput {
             return addressLabel.text
         }
         set {
+            textInput.leftView = nil
+            textInput.leftViewMode = .never
             if newValue != nil {
                 let displayAddress = safeUserInput(newValue)
                 addressLabel.text = displayAddress
@@ -50,8 +52,6 @@ public final class AddressInput: VerifiableInput {
                     addressInputDelegate?.didRecieveValidAddress(validAddress)
                 } else {
                     addressInputDelegate?.didRecieveInvalidAddress(displayAddress)
-                    textInput.leftView = nil
-                    textInput.leftViewMode = .never
                 }
             } else {
                 addressLabel.address = nil
@@ -125,7 +125,7 @@ public final class AddressInput: VerifiableInput {
 
     private func addAddressLabel() {
         configureAddressLabel()
-        pinAddressLabel()
+        pinAddressLabelOnTopOfTextInput()
     }
 
     private func configureAddressLabel() {
@@ -146,7 +146,7 @@ public final class AddressInput: VerifiableInput {
         return imageView
     }
 
-    private func pinAddressLabel() {
+    private func pinAddressLabelOnTopOfTextInput() {
         let rightViewRect = textInput.rightViewRect(forBounds: textInput.bounds)
         let absoluteRightPadding = textInput.bounds.width - rightViewRect.maxX +
             rightViewRect.width + addressLabelSidePadding
