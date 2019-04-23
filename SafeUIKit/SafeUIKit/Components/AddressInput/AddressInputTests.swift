@@ -50,13 +50,6 @@ class AddressInputTests: XCTestCase {
         XCTAssertEqual(input.ruleLabel(by: "invalidAddress")!.status, .error)
     }
 
-    func test_whenClearingInput_thenTextIsSetToNil() {
-        input.text = invalidAddress_tooLong_withPrefix
-        _ = input.textFieldShouldClear(input.textInput)
-        XCTAssertNil(input.text)
-        XCTAssertEqual(input.ruleLabel(by: "invalidAddress")!.status, .inactive)
-    }
-
     func test_whenScanningValidAddress_thenReturnsIt() {
         assertValidAddress(validAddress_withPrefix, expected: validAddress_withPrefix)
         assertValidAddress(validAddress_withoutPrefix, expected: validAddress_withPrefix)

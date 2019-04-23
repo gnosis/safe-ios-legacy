@@ -10,7 +10,7 @@ public final class TokenInput: VerifiableInput {
     public private(set) var decimals: Int = 18
     public private(set) var value: BigInt = 0
     public private(set) var formatter = TokenNumberFormatter()
-    private let textInputHeight: CGFloat = 60
+    private let textInputHeight: CGFloat = 56
 
     var locale = Locale.autoupdatingCurrent {
         didSet {
