@@ -210,9 +210,21 @@ open class EthereumApplicationService: Assertable {
         return receipt!.status == .success
     }
 
+    // GH-649 one expression per line to track crash source. Logging added for better context.
     open func sign(message: String, by address: String) -> EthSignature? {
-        guard let eoa = eoaRepository.find(by: Address(address)) else { return nil }
-        return encryptionService.sign(message: message, privateKey: eoa.privateKey)
+        let repository = DomainRegistry.externallyOwnedAccountRepository
+        let eoaAddress = Address(address)
+        guard let eoa = repository.find(by: eoaAddress) else {
+            let error = NSError(domain: "io.gnosis.safe",
+                                code: -1993,
+                                userInfo: [NSLocalizedDescriptionKey: "EOA not found for address",
+                                           "message": message,
+                                           "address": address])
+            ApplicationServiceRegistry.logger.error("EOA not found for address", error: error)
+            return nil
+        }
+        let service = DomainRegistry.encryptionService
+        return service.sign(message: message, privateKey: eoa.privateKey)
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
