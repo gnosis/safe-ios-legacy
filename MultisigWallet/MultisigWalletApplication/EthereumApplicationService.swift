@@ -216,7 +216,7 @@ open class EthereumApplicationService: Assertable {
         let eoaAddress = Address(address)
         guard let eoa = repository.find(by: eoaAddress) else {
             let error = NSError(domain: "io.gnosis.safe",
-                                code: -1993,
+                                code: -994,
                                 userInfo: [NSLocalizedDescriptionKey: "EOA not found for address",
                                            "message": message,
                                            "address": address])
