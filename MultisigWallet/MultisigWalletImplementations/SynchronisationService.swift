@@ -48,6 +48,10 @@ public class SynchronisationService: SynchronisationDomainService {
             let tokenList = try DomainRegistry.tokenListService.items()
             merger.mergeStoredTokenItems(with: tokenList)
         } catch {
+            // GH-681 Skip logging of the "Request timed out" error, because sync will happen again
+            if error.domain == NSURLErrorDomain && error.code == -1001 {
+                return
+            }
             ApplicationServiceRegistry.logger.error("Failed to sync token list", error: error)
         }
     }
@@ -58,6 +62,10 @@ public class SynchronisationService: SynchronisationDomainService {
         do {
             try DomainRegistry.accountUpdateService.updateAccountsBalances()
         } catch {
+            // GH-680 Skip logging of the posix error (something wrong with the system, nothing we can do)
+            if error.domain == NSPOSIXErrorDomain && error.code == 53 {
+                return
+            }
             ApplicationServiceRegistry.logger.error("Failed to sync account balances", error: error)
         }
     }
@@ -114,6 +122,18 @@ public class SynchronisationService: SynchronisationDomainService {
             repeater.stop()
             syncLoopRepeater = nil
         }
+    }
+
+}
+
+fileprivate extension Error {
+
+    var domain: String {
+        return (self as NSError).domain
+    }
+
+    var code: Int {
+        return (self as NSError).code
     }
 
 }
