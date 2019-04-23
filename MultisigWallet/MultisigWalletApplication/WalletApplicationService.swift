@@ -663,22 +663,48 @@ public class WalletApplicationService: Assertable {
         precondition(!Thread.isMainThread)
         guard let pushToken = pushTokensService.pushToken() else { return }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        let buildNumber = SystemInfo.buildNumber ?? 0
-        let versionName = SystemInfo.marketingVersion ?? "0.0.0"
-        let client = "ios"
-        let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
-        let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
-        let signature = ethereumService.sign(message: dataString, by: deviceOwnerAddress)!
-        let request = AuthRequestV2(pushToken: pushToken,
-                                    signatures: [signature],
-                                    buildNumber: buildNumber,
-                                    versionName: versionName,
-                                    client: client,
-                                    bundle: bundle,
-                                    deviceOwnerAddresses: [deviceOwnerAddress])
-        try handleNotificationServiceError {
-            try notificationService.authV2(request: request)
+        if configuration.usesAPIv2 {
+            let buildNumber = SystemInfo.buildNumber ?? 0
+            let versionName = SystemInfo.marketingVersion ?? "0.0.0"
+            let client = "ios"
+            let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
+            let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
+            let signature = sign(string: dataString, address: deviceOwnerAddress)
+            let request = AuthRequestV2(pushToken: pushToken,
+                                        signatures: [signature],
+                                        buildNumber: buildNumber,
+                                        versionName: versionName,
+                                        client: client,
+                                        bundle: bundle,
+                                        deviceOwnerAddress: deviceOwnerAddress)
+            try handleNotificationServiceError {
+                try notificationService.authV2(request: request)
+            }
+        } else {
+            let dataString = "GNO" + pushToken
+            let signature = sign(string: dataString, address: deviceOwnerAddress)
+            try handleNotificationServiceError {
+                try notificationService.auth(request: AuthRequest(pushToken: pushToken,
+                                                                  signature: signature,
+                                                                  deviceOwnerAddress: deviceOwnerAddress))
+            }
         }
+    }
+
+    // GH-649 The implementation tries to put 1 expression on 1 line to track down crash reason.
+    // Logging added to gather context of the crash.
+    private func sign(string: String, address: String) -> EthSignature {
+        let service = ApplicationServiceRegistry.ethereumService
+        guard let signature = service.sign(message: string, by: address) else {
+            let error = NSError(domain: "io.gnosis.safe",
+                                code: -993,
+                                userInfo: [NSLocalizedDescriptionKey: "Signing failed",
+                                           "signingString": string,
+                                           "signingAddress": address])
+            ApplicationServiceRegistry.logger.error("Signing failed", error: error)
+            preconditionFailure("Signing failed")
+        }
+        return signature
     }
 
     // MARK: - Message Handling
