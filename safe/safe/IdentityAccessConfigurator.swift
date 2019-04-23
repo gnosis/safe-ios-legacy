@@ -46,7 +46,7 @@ class IdentityAccessConfigurator {
 
                 try ApplicationServiceRegistry.authenticationService
                     .createAuthenticationPolicy(sessionDuration: 60,
-                                                maxPasswordAttempts: 3,
+                                                maxPasswordAttempts: 10,
                                                 blockedPeriodDuration: 15)
             }
 
