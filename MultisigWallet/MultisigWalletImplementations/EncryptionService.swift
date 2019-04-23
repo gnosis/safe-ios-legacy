@@ -266,11 +266,11 @@ open class EncryptionService: EncryptionDomainService {
     private func data(_ value: String) -> Data {
         guard let data = value.data(using: .utf8) else {
             let error = NSError(domain: "io.gnosis.safe",
-                                code: -1991,
+                                code: -991,
                                 userInfo: [NSLocalizedDescriptionKey: "Data conversion failed",
                                            "value": value])
             ApplicationServiceRegistry.logger.error("Data conversion failed", error: error)
-            return Data(repeating: 0, count: 32)
+            preconditionFailure("Data conversion failed")
         }
         return data
     }
@@ -284,12 +284,12 @@ open class EncryptionService: EncryptionDomainService {
             return try Crypto.sign(data, privateKey: privateKey)
         } catch {
             let logError = NSError(domain: "io.gnosis.safe",
-                                code: -1992,
-                                userInfo: [NSLocalizedDescriptionKey: "Signing of data failed!",
-                                           "data": String(data: data, encoding: .utf8) ?? String(describing: data),
-                                           NSUnderlyingErrorKey: error])
+                                   code: -992,
+                                   userInfo: [NSLocalizedDescriptionKey: "Signing of data failed!",
+                                              "data": String(data: data, encoding: .utf8) ?? String(describing: data),
+                                              NSUnderlyingErrorKey: error])
             ApplicationServiceRegistry.logger.error("Signing of data failed", error: logError)
-            return Data(repeating: 0, count: 32)
+            preconditionFailure("Signing of dat failed")
         }
     }
 

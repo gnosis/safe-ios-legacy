@@ -697,12 +697,12 @@ public class WalletApplicationService: Assertable {
         let service = ApplicationServiceRegistry.ethereumService
         guard let signature = service.sign(message: string, by: address) else {
             let error = NSError(domain: "io.gnosis.safe",
-                                code: -1993,
+                                code: -993,
                                 userInfo: [NSLocalizedDescriptionKey: "Signing failed",
                                            "signingString": string,
                                            "signingAddress": address])
             ApplicationServiceRegistry.logger.error("Signing failed", error: error)
-            return EthSignature(r: "0", s: "0", v: 27) // valid values for a signature
+            preconditionFailure("Signing failed")
         }
         return signature
     }
