@@ -58,7 +58,7 @@ public final class AddressInput: VerifiableInput {
                 textInput.placeholder = self.placeholder
                 addressInputDelegate?.didClear()
             }
-            leadingInputConstraint.constant = calculateLeadingInputPadding()
+            leadingInputConstraint.constant = calculateInputLeading()
         }
     }
 
@@ -150,7 +150,7 @@ public final class AddressInput: VerifiableInput {
         let rightViewRect = textInput.rightViewRect(forBounds: textInput.bounds)
         let absoluteRightPadding = textInput.bounds.width - rightViewRect.maxX +
             rightViewRect.width + addressLabelSidePadding
-        let absoluteLeftPadding = calculateLeadingInputPadding()
+        let absoluteLeftPadding = calculateInputLeading()
         textInput.addSubview(addressLabel)
         leadingInputConstraint = addressLabel.leadingAnchor.constraint(equalTo: textInput.leadingAnchor,
                                                                        constant: absoluteLeftPadding)
@@ -161,7 +161,7 @@ public final class AddressInput: VerifiableInput {
             addressLabel.bottomAnchor.constraint(equalTo: textInput.bottomAnchor)])
     }
 
-    private func calculateLeadingInputPadding() -> CGFloat {
+    private func calculateInputLeading() -> CGFloat {
         let leftViewRect = textInput.leftViewRect(forBounds: textInput.bounds)
         return leftViewRect.maxX + addressLabelSidePadding
     }
