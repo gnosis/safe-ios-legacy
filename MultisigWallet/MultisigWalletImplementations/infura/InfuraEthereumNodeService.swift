@@ -52,6 +52,10 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         return result
     }
 
+    public func eth_getBlockByHash(hash: String) throws -> EthBlock? {
+        return try execute(request: GetBlockByHashRequest(blockHash: hash))
+    }
+
     public func eth_call(to: MultisigWalletDomainModel.Address, data: Data) throws -> Data {
         return try eth_call(transaction: TransactionCall(to: EthAddress(hex: to.value),
                                                          data: EthData(data)),

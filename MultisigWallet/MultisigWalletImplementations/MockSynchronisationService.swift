@@ -7,6 +7,7 @@ import MultisigWalletDomainModel
 import Common
 
 public final class MockSynchronisationService: SynchronisationDomainService {
+
     public init() {}
 
     public var didSync = false

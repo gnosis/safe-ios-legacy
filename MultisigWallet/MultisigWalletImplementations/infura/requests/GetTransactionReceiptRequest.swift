@@ -19,8 +19,11 @@ struct GetTransactionReceiptRequest: JSONRPCRequest {
         guard let obj = resultObject as? [AnyHashable: Any] else {
             throw JSONRPCError.unexpectedTypeObject(resultObject)
         }
-        guard let status = obj["status"] as? String else { return nil }
-        return TransactionReceipt(hash: transactionHash, status: status == "0x1" ? .success : .failed)
+        guard let status = obj["status"] as? String,
+            let blockHash = obj["blockHash"] as? String else { return nil }
+        return TransactionReceipt(hash: transactionHash,
+                                  status: status == "0x1" ? .success : .failed,
+                                  blockHash: blockHash)
     }
 
 }

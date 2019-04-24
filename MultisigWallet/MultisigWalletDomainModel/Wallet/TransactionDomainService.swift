@@ -86,24 +86,51 @@ public class TransactionDomainService {
 
     public func updatePendingTransactions() throws {
         let transactions = DomainRegistry.transactionRepository.all().filter { $0.status == .pending }
+        let nodeService = DomainRegistry.ethereumNodeService
         var hasUpdates = false
         for tx in transactions {
-            precondition(tx.transactionHash != nil, "Transaction must have a blockchain hash: \(tx)")
-            let receipt = try DomainRegistry.ethereumNodeService
-                .eth_getTransactionReceipt(transaction: tx.transactionHash!)
+            assert(tx.transactionHash != nil, "Transaction must have a blockchain hash: \(tx)")
+            let receipt = try nodeService.eth_getTransactionReceipt(transaction: tx.transactionHash!)
             if let receipt = receipt {
+                let block = try nodeService.eth_getBlockByHash(hash: receipt.blockHash)
+                assert(block != nil, "Transaction receipt must have a block: \(receipt)")
                 if receipt.status == .success {
                     tx.succeed()
                 } else {
                     tx.fail()
                 }
-                DomainRegistry.transactionRepository.save(tx)
+                timestamp(transaction: tx, from: block!)
                 hasUpdates = true
             }
         }
         if hasUpdates {
             DomainRegistry.eventPublisher.publish(TransactionStatusUpdated())
         }
+    }
+
+    public func updateTimestampsOfProcessedTransactions() throws {
+        let transactions = DomainRegistry.transactionRepository.all()
+            .filter { $0.status == .success || $0.status == .failed }
+        let nodeService = DomainRegistry.ethereumNodeService
+        for tx in transactions {
+            assert(tx.transactionHash != nil, "Transaction hash is missing: \(tx)")
+
+            let receipt = try nodeService.eth_getTransactionReceipt(transaction: tx.transactionHash!)
+            assert(receipt != nil, "Transaction must have a receipt: \(tx)")
+
+            let block = try nodeService.eth_getBlockByHash(hash: receipt!.blockHash)
+            assert(block != nil, "Receipt must have block: \(receipt!)")
+
+            timestamp(transaction: tx, from: block!)
+        }
+        if !transactions.isEmpty {
+            DomainRegistry.eventPublisher.publish(TransactionStatusUpdated())
+        }
+    }
+
+    private func timestamp(transaction: Transaction, from block: EthBlock) {
+        transaction.timestampProcessed(at: block.timestamp).timestampUpdated(at: Date())
+        DomainRegistry.transactionRepository.save(transaction)
     }
 
 }

@@ -54,7 +54,7 @@ class IdentityAccessConfigurator {
             migrationRepo.setUp()
             let migrationService = DBMigrationService(repository: migrationRepo)
             registerIdentityAccessDatabaseMigrations(service: migrationService)
-            migrationService.migrate()
+            try migrationService.migrate()
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up identity access database", error: e)
         }

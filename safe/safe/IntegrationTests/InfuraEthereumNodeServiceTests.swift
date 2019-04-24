@@ -57,12 +57,12 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
 
     func test_whenTransactionCompletedSuccess_thenReceiptExists() throws {
         XCTAssertEqual(try service.eth_getTransactionReceipt(transaction: successfulTransactionHash),
-                       TransactionReceipt(hash: successfulTransactionHash, status: .success))
+                       TransactionReceipt(hash: successfulTransactionHash, status: .success, blockHash: "0x1"))
     }
 
     func test_whenTransactionWasDeclined_thenReceiptStatusIsFailed() throws {
         XCTAssertEqual(try service.eth_getTransactionReceipt(transaction: failedTransactionHash),
-                       TransactionReceipt(hash: failedTransactionHash, status: .failed))
+                       TransactionReceipt(hash: failedTransactionHash, status: .failed, blockHash: "0x1"))
     }
 
     func test_whenGettingGasPrice_thenReturnsResult() throws {

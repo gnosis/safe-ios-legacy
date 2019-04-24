@@ -352,11 +352,26 @@ public struct TransactionReceipt: Equatable {
 
     public let hash: TransactionHash
     public let status: TransactionStatus.Code
+    public let blockHash: String
 
-    public init(hash: TransactionHash, status: TransactionStatus.Code) {
+    public init(hash: TransactionHash, status: TransactionStatus.Code, blockHash: String) {
         self.hash = hash
         self.status = status
+        self.blockHash = blockHash
     }
+}
+
+/// Ethereum block
+public struct EthBlock: Equatable {
+
+    public let hash: String
+    public let timestamp: Date
+
+    public init(hash: String, timestamp: Date) {
+        self.hash = hash
+        self.timestamp = timestamp
+    }
+
 }
 
 /// Estimate of transaction fees
