@@ -32,6 +32,7 @@ extension VerifiableInput {
     func configureForConfirmPassword(referencePassword: String) {
         configurePasswordAppearance()
         showErrorsOnly = true
+        adjustsHeightForHiddenRules = true
         addRule(Strings.matchPassword) {
             PasswordValidator.validate(input: $0, equals: referencePassword)
         }

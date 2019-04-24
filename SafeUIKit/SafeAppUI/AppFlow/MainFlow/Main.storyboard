@@ -733,7 +733,7 @@
                                                 <rect key="frame" x="0.0" y="423" width="375" height="75"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-aR-gHb">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-aR-gHb">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="498"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8c-L6-hMu" customClass="TransactionHeaderView" customModule="SafeUIKit">
@@ -744,17 +744,17 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ZQW-Sn-kqY">
-                                                        <rect key="frame" x="0.0" y="91" width="375" height="150"/>
+                                                        <rect key="frame" x="16" y="91" width="343" height="150"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPS-y0-TU7" customClass="AddressInput" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
                                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" placeholder="YES" id="WNz-ay-6Vd"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVX-g8-IFt" customClass="TokenInput" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="90" width="375" height="60"/>
+                                                                <rect key="frame" x="0.0" y="90" width="343" height="60"/>
                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" placeholder="YES" id="FHE-2J-Od3"/>
@@ -791,6 +791,12 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="bVs-ww-1qS" firstAttribute="width" secondItem="E8c-L6-hMu" secondAttribute="width" id="0HA-MY-U86"/>
+                                                    <constraint firstItem="ZQW-Sn-kqY" firstAttribute="leading" secondItem="d1j-aR-gHb" secondAttribute="leading" constant="16" id="1nU-Fo-ETn"/>
+                                                    <constraint firstItem="E8c-L6-hMu" firstAttribute="width" secondItem="d1j-aR-gHb" secondAttribute="width" id="23t-8r-xF8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZQW-Sn-kqY" secondAttribute="trailing" constant="16" id="9fF-xF-Hq2"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

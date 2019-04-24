@@ -1028,27 +1028,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1N-qU-qng" customClass="AddressInput" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="84" width="375" height="50"/>
+                                <rect key="frame" x="16" y="84" width="343" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" placeholder="YES" id="cjD-hJ-ckg"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awm-Jv-niL" customClass="TokenInput" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="151" width="375" height="43"/>
+                                <rect key="frame" x="16" y="151" width="343" height="43"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" placeholder="YES" id="zOY-Fh-57a"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-ma-WBM">
-                                <rect key="frame" x="20" y="224" width="335" height="20.5"/>
+                                <rect key="frame" x="36" y="224" width="303" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaQ-YE-QHs">
-                                <rect key="frame" x="20" y="261.5" width="176" height="30"/>
+                                <rect key="frame" x="36" y="261.5" width="176" height="30"/>
                                 <state key="normal" title="Show address input value"/>
                                 <connections>
                                     <action selector="showValue:" destination="XmW-mS-7Ci" eventType="touchUpInside" id="iS9-ew-kP5"/>
@@ -1064,8 +1064,8 @@
                             <constraint firstItem="m1N-qU-qng" firstAttribute="top" secondItem="Snj-OC-CIv" secondAttribute="top" constant="20" id="O8R-2t-ndP"/>
                             <constraint firstItem="awm-Jv-niL" firstAttribute="leading" secondItem="m1N-qU-qng" secondAttribute="leading" id="PEE-Nc-WFU"/>
                             <constraint firstItem="9IB-ma-WBM" firstAttribute="top" secondItem="awm-Jv-niL" secondAttribute="bottom" constant="30" id="ZO9-2O-8Gi"/>
-                            <constraint firstItem="m1N-qU-qng" firstAttribute="leading" secondItem="Snj-OC-CIv" secondAttribute="leading" id="hbf-zI-tBM"/>
-                            <constraint firstItem="Snj-OC-CIv" firstAttribute="trailing" secondItem="m1N-qU-qng" secondAttribute="trailing" id="iMh-gS-HQO"/>
+                            <constraint firstItem="m1N-qU-qng" firstAttribute="leading" secondItem="Snj-OC-CIv" secondAttribute="leading" constant="16" id="hbf-zI-tBM"/>
+                            <constraint firstItem="Snj-OC-CIv" firstAttribute="trailing" secondItem="m1N-qU-qng" secondAttribute="trailing" constant="16" id="iMh-gS-HQO"/>
                             <constraint firstItem="9IB-ma-WBM" firstAttribute="trailing" secondItem="m1N-qU-qng" secondAttribute="trailing" constant="-20" id="jkE-5a-cjP"/>
                             <constraint firstItem="QaQ-YE-QHs" firstAttribute="leading" secondItem="9IB-ma-WBM" secondAttribute="leading" id="mNZ-xD-HCh"/>
                             <constraint firstItem="QaQ-YE-QHs" firstAttribute="top" secondItem="9IB-ma-WBM" secondAttribute="bottom" constant="17" id="t4s-Uc-TEV"/>
