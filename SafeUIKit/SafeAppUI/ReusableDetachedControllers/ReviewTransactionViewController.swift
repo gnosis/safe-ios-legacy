@@ -68,10 +68,6 @@ public class ReviewTransactionViewController: UITableViewController {
 
         // Otherwise header cell height is smaller than the content height
         //   Alternatives tried: setting cell size when creating the header cell
-        reloadContent()
-    }
-
-    func reloadContent() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
