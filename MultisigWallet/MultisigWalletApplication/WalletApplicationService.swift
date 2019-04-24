@@ -663,31 +663,21 @@ public class WalletApplicationService: Assertable {
         precondition(!Thread.isMainThread)
         guard let pushToken = pushTokensService.pushToken() else { return }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        if configuration.usesAPIv2 {
-            let buildNumber = SystemInfo.buildNumber ?? 0
-            let versionName = SystemInfo.marketingVersion ?? "0.0.0"
-            let client = "ios"
-            let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
-            let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
-            let signature = sign(string: dataString, address: deviceOwnerAddress)
-            let request = AuthRequestV2(pushToken: pushToken,
-                                        signatures: [signature],
-                                        buildNumber: buildNumber,
-                                        versionName: versionName,
-                                        client: client,
-                                        bundle: bundle,
-                                        deviceOwnerAddress: deviceOwnerAddress)
-            try handleNotificationServiceError {
-                try notificationService.authV2(request: request)
-            }
-        } else {
-            let dataString = "GNO" + pushToken
-            let signature = sign(string: dataString, address: deviceOwnerAddress)
-            try handleNotificationServiceError {
-                try notificationService.auth(request: AuthRequest(pushToken: pushToken,
-                                                                  signature: signature,
-                                                                  deviceOwnerAddress: deviceOwnerAddress))
-            }
+        let buildNumber = SystemInfo.buildNumber ?? 0
+        let versionName = SystemInfo.marketingVersion ?? "0.0.0"
+        let client = "ios"
+        let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
+        let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
+        let signature = sign(string: dataString, address: deviceOwnerAddress)
+        let request = AuthRequest(pushToken: pushToken,
+                                  signatures: [signature],
+                                  buildNumber: buildNumber,
+                                  versionName: versionName,
+                                  client: client,
+                                  bundle: bundle,
+                                  deviceOwnerAddresses: [deviceOwnerAddress])
+        try handleNotificationServiceError {
+            try notificationService.auth(request: request)
         }
     }
 

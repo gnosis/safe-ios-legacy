@@ -80,8 +80,7 @@ extension AppConfig {
                                                      chromeExtensionURL: chromeExtensionURL,
                                                      privacyPolicyURL: privacyPolicyURL,
                                                      termsOfUseURL: termsOfUseURL,
-                                                     licensesURL: licensesURL,
-                                                     usesAPIv2: FeatureFlagSettings.instance.isOn("uses_auth_v2"))
+                                                     licensesURL: licensesURL)
     }
 
 }
