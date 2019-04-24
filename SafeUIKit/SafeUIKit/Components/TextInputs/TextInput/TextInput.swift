@@ -51,6 +51,12 @@ public class TextInput: UITextField {
         }
     }
 
+    public var leftPlaceholderImage: UIImage? {
+        didSet {
+            updateImage()
+        }
+    }
+
     /// To use this property the one should set leftImage first containing image placeholder.
     public var leftImageURL: URL? {
         didSet {
@@ -60,7 +66,7 @@ public class TextInput: UITextField {
     }
 
     func updateImageView(url: URL?) {
-        imageView?.kf.setImage(with: url)
+        imageView?.kf.setImage(with: url, placeholder: leftPlaceholderImage)
     }
 
     private var imageView: UIImageView?

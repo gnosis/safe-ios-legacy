@@ -39,6 +39,7 @@ public final class TokenInput: VerifiableInput {
             if usesEthDefaultImage && imageURL == nil {
                 textInput.leftImage = Asset.TokenIcons.eth.image
             } else {
+                textInput.leftPlaceholderImage = Asset.TokenIcons.defaultToken.image
                 textInput.leftImageURL = imageURL
             }
         }

@@ -120,7 +120,6 @@
 /* Error
    Error alert's title
    Error title
-   Info
    Pending safe failed alert's title
    Recovery address validation failed alert's title
    Recovery transaction failed alert's title */
@@ -146,6 +145,9 @@
 
 /* Error format for invalid recovery phrase */
 "incorrect_seed" = "Incorrect recovery phrase";
+
+/* Info */
+"info" = "Info";
 
 /* Scan its QR code. */
 "install_browser_extension" = "2. Install browser extension on your desktop computer and scan its QR code.";
@@ -528,8 +530,7 @@
 /* 'Pending' status */
 "status_pending" = "Pending";
 
-/* 'Success' status
-   Success */
+/* 'Success' status */
 "status_success" = "Success";
 
 /* Submit
@@ -541,6 +542,9 @@
 
 /* Sync with browser extension */
 "sync_with_extension" = "Sync with extension";
+
+/* Success */
+"sync_with_extension_sent" = "Resync notification sent successfully";
 
 /* Label for Tokens header on main screen.
    Title for Manage Tokens Screen. */

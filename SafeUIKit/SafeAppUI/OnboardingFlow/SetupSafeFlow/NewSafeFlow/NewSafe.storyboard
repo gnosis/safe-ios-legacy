@@ -255,17 +255,17 @@ Save this recovery phrase.</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jQ9-6b-oHW">
-                                                <rect key="frame" x="0.0" y="148" width="375" height="130"/>
+                                                <rect key="frame" x="16" y="148" width="343" height="130"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-TH-gJW" customClass="VerifiableInput" customModule="SafeUIKit">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="fqh-lF-sMb"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ddJ-a1-VLt" customClass="VerifiableInput" customModule="SafeUIKit">
-                                                        <rect key="frame" x="0.0" y="80" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="80" width="343" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="hfh-91-Gjp"/>
@@ -281,8 +281,8 @@ Save this recovery phrase.</string>
                                             <constraint firstItem="AxD-ES-jJ0" firstAttribute="leading" secondItem="JGw-OJ-g8w" secondAttribute="leading" constant="20" id="O3b-u8-n9A"/>
                                             <constraint firstItem="AxD-ES-jJ0" firstAttribute="top" secondItem="JGw-OJ-g8w" secondAttribute="top" constant="40" id="T4t-Um-zwQ"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jQ9-6b-oHW" secondAttribute="bottom" constant="60" id="XyT-Ag-8p9"/>
-                                            <constraint firstAttribute="trailing" secondItem="jQ9-6b-oHW" secondAttribute="trailing" id="tS1-c9-8M4"/>
-                                            <constraint firstItem="jQ9-6b-oHW" firstAttribute="leading" secondItem="JGw-OJ-g8w" secondAttribute="leading" id="wE9-sX-Cba"/>
+                                            <constraint firstAttribute="trailing" secondItem="jQ9-6b-oHW" secondAttribute="trailing" constant="16" id="tS1-c9-8M4"/>
+                                            <constraint firstItem="jQ9-6b-oHW" firstAttribute="leading" secondItem="JGw-OJ-g8w" secondAttribute="leading" constant="16" id="wE9-sX-Cba"/>
                                         </constraints>
                                     </view>
                                 </subviews>
