@@ -10,11 +10,12 @@ import Common
 
 class BaseWalletApplicationServiceTests: XCTestCase {
 
+    let service = WalletApplicationService()
+
     let walletRepository = InMemoryWalletRepository()
     let portfolioRepository = InMemorySinglePortfolioRepository()
     let accountRepository = InMemoryAccountRepository()
     let ethereumService = MockEthereumApplicationService()
-    let service = WalletApplicationService()
     let transactionService = TransactionDomainService()
     let notificationService = MockNotificationService()
     let tokensService = MockPushTokensDomainService()
