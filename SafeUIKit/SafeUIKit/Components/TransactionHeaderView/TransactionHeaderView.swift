@@ -49,7 +49,7 @@ public class TransactionHeaderView: BaseCustomView {
 
     public override func update() {
         if let url = assetImageURL {
-            assetImageView.kf.setImage(with: url)
+            assetImageView.kf.setImage(with: url, placeholder: Asset.TokenIcons.defaultToken.image)
         } else {
             assetImageView.image = usesEthImageWhenImageURLIsNil ?
                 Asset.TokenIcons.eth.image : assetImage
