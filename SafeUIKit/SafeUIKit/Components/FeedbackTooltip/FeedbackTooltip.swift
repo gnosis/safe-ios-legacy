@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import Common
 
 public final class FeedbackTooltip: CardView {
 
@@ -15,7 +14,7 @@ public final class FeedbackTooltip: CardView {
     private let verticalPadding: CGFloat = 12
 
     // chars per second
-    private let userReadingSpeed = 10.0
+    private let userReadingSpeed = 10
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,8 +61,8 @@ public final class FeedbackTooltip: CardView {
         UIView.animate(withDuration: 0.3, animations: {
             tooltip.alpha = 1
         }) { finished in
-            DispatchQueue.global().async {
-                Timer.wait(Double(message.count) / tooltip.userReadingSpeed)
+            let timeToShowInMilliseconds = (message.count * 1_000) / tooltip.userReadingSpeed
+            DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(timeToShowInMilliseconds)) {
                 DispatchQueue.main.async {
                     UIView.animate(withDuration: 0.3, animations: {
                         tooltip.alpha = 0
