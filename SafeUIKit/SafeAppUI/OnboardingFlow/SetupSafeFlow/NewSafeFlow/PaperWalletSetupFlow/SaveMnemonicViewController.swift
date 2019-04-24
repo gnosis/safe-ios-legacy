@@ -24,6 +24,7 @@ final class SaveMnemonicViewController: UIViewController {
         static let warning = LocalizedString("ios_showSeed_warning",
                                              comment: "Warning for setup recovery phrase screen.")
         static let next = LocalizedString("next", comment: "Next button.")
+        static let copiedMessage = LocalizedString("copied_to_clipboard", comment: "Copied to clipboard")
     }
 
     enum RecoveryStrings {
@@ -62,8 +63,9 @@ final class SaveMnemonicViewController: UIViewController {
         return controller
     }
 
-    @IBAction func copyToClipboard(_ sender: Any) {
+    @IBAction func copyToClipboard(_ sender: UIButton) {
         UIPasteboard.general.string = mnemonicLabel.text!
+        FeedbackTooltip.show(for: sender, in: view, message: Strings.copiedMessage)
     }
 
     override func viewDidLoad() {

@@ -350,6 +350,8 @@
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
 		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
 		55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */; };
+		55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */; };
+		55BF5747226F46C80032B195 /* FeedbackTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */; };
 		55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */; };
 		55BFA53E21837EB500389732 /* SafeCreationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */; };
 		55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */; };
@@ -906,6 +908,8 @@
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55BAB0E321789285007539CF /* BigBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButton.swift; sourceTree = "<group>"; };
 		55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButtonTests.swift; sourceTree = "<group>"; };
+		55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltip.swift; sourceTree = "<group>"; };
+		55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltipViewController.swift; sourceTree = "<group>"; };
 		55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewControllerTests.swift; sourceTree = "<group>"; };
 		55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewController.swift; sourceTree = "<group>"; };
@@ -1648,6 +1652,7 @@
 				55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */,
 				555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */,
 				552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */,
+				55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */,
 			);
 			path = DetailControllers;
 			sourceTree = "<group>";
@@ -1716,6 +1721,7 @@
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				55BF5735226F3C910032B195 /* FeedbackTooltip */,
 				552DF5C8225C9943008D8AC8 /* CardView */,
 				0ACCA8C3221C11E700D37594 /* LoadingTitleView */,
 				5541586621748C0200A3CEA4 /* AddressInput */,
@@ -1919,6 +1925,14 @@
 				55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */,
 			);
 			path = BorderedButton;
+			sourceTree = "<group>";
+		};
+		55BF5735226F3C910032B195 /* FeedbackTooltip */ = {
+			isa = PBXGroup;
+			children = (
+				55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */,
+			);
+			path = FeedbackTooltip;
 			sourceTree = "<group>";
 		};
 		55C428F8217B424C00BF8922 /* ScanBarButtonItem */ = {
@@ -2567,6 +2581,7 @@
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
 				0AFA766D2182195200A96FDB /* ViewController.swift in Sources */,
 				0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */,
+				55BF5747226F46C80032B195 /* FeedbackTooltipViewController.swift in Sources */,
 				556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
 				0ABA592321AC0B6E009D249F /* LabelsViewController.swift in Sources */,
@@ -2587,6 +2602,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */,
 				5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */,
 				0AD1D1E021A8430300941EA1 /* EthereumAddressFormatter.swift in Sources */,
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,

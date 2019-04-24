@@ -69,6 +69,9 @@
 /* Abort safe creation button title */
 "continue_text" = "Continue";
 
+/* Copied to clipboard */
+"copied_to_clipboard" = "Copied to clipboard";
+
 /* Header for set password screen. */
 "create_password" = "Create Password";
 
