@@ -49,7 +49,7 @@ public class SynchronisationService: SynchronisationDomainService {
             merger.mergeStoredTokenItems(with: tokenList)
         } catch {
             // GH-681 Skip logging of the "Request timed out" error, because sync will happen again
-            if error.domain == NSURLErrorDomain && error.code == -1001 {
+            if error.domain == NSURLErrorDomain && error.code == -1_001 {
                 return
             }
             ApplicationServiceRegistry.logger.error("Failed to sync token list", error: error)
@@ -122,6 +122,10 @@ public class SynchronisationService: SynchronisationDomainService {
             repeater.stop()
             syncLoopRepeater = nil
         }
+    }
+
+    public static func syncProcessedTransactions() throws {
+        try DomainRegistry.transactionService.updateTimestampsOfProcessedTransactions()
     }
 
 }

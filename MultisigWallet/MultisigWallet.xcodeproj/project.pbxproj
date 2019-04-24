@@ -171,6 +171,7 @@
 		0AB08757212D9A0B002F969C /* MockErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */; };
 		0ABCC0F52177290F00E60E9F /* TransactionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */; };
 		0ABCC0FC2177291D00E60E9F /* TransactionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */; };
+		0ABF9AB7226F380200B7C460 /* GetBlockByHashRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF9AB6226F380200B7C460 /* GetBlockByHashRequest.swift */; };
 		0ACA9D02212ACD4000E39BB6 /* MockTransactionRelayService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D01212ACD4000E39BB6 /* MockTransactionRelayService1.swift */; };
 		0ACA9D04212ACD6000E39BB6 /* MockEthereumNodeService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D03212ACD6000E39BB6 /* MockEthereumNodeService1.swift */; };
 		0ACA9D08212ACDB100E39BB6 /* MockNotificationService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D07212ACDB100E39BB6 /* MockNotificationService1.swift */; };
@@ -586,6 +587,7 @@
 		0AB0B5692163881300FB2435 /* TestDependencies.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = TestDependencies.xcfilelist; sourceTree = "<group>"; };
 		0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDomainService.swift; sourceTree = "<group>"; };
 		0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDomainServiceTests.swift; sourceTree = "<group>"; };
+		0ABF9AB6226F380200B7C460 /* GetBlockByHashRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockByHashRequest.swift; sourceTree = "<group>"; };
 		0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorStream.swift; sourceTree = "<group>"; };
 		0ACA9D01212ACD4000E39BB6 /* MockTransactionRelayService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactionRelayService1.swift; sourceTree = "<group>"; };
 		0ACA9D03212ACD6000E39BB6 /* MockEthereumNodeService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService1.swift; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 				0A9E37F120F4A4D20085E8D7 /* GetTransactionReceiptRequest.swift */,
 				0A9E37F620F4A4D20085E8D7 /* JSONRPCRequest+BigIntResponse.swift */,
 				0A9E37F520F4A4D20085E8D7 /* SendRawTransactionRequest.swift */,
+				0ABF9AB6226F380200B7C460 /* GetBlockByHashRequest.swift */,
 			);
 			path = requests;
 			sourceTree = "<group>";
@@ -1770,6 +1773,7 @@
 				0A9E383E20F4AE510085E8D7 /* InfuraEthereumNodeService.swift in Sources */,
 				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
 				555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */,
+				0ABF9AB7226F380200B7C460 /* GetBlockByHashRequest.swift in Sources */,
 				552C600A212B0CCE00BF973A /* SynchronisationService.swift in Sources */,
 				0A9E384220F4AE510085E8D7 /* GetBalanceRequest.swift in Sources */,
 				0A9E384120F4AE510085E8D7 /* GasPriceRequest.swift in Sources */,

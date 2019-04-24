@@ -25,7 +25,7 @@ class AllDeploymentStatesTests: BaseDeploymentDomainServiceTests {
         relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: nil)
         relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: TransactionHash.test1)
 
-        let receipt = TransactionReceipt(hash: TransactionHash.test1, status: .success)
+        let receipt = TransactionReceipt(hash: TransactionHash.test1, status: .success, blockHash: "0x1")
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: nil)
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: nil)
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: receipt)

@@ -62,8 +62,8 @@ class MultisigWalletConfigurator {
             .put(service: DisconnectBrowserExtensionApplicationService.createDisconnectService(),
                  for: DisconnectBrowserExtensionApplicationService.self)
 
-        setUpMultisigDatabase(with: appDelegate)
         configureEthereum(with: appDelegate)
+        setUpMultisigDatabase(with: appDelegate)
     }
 
     class func setUpMultisigDatabase(with appDelegate: AppDelegate) {
@@ -96,18 +96,24 @@ class MultisigWalletConfigurator {
             tokenListItemRepo.setUp()
             monitorRepo.setUp()
 
-            let migrationRepo = DBMigrationRepository(db: db)
-            migrationRepo.setUp()
-            let migrationService = DBMigrationService(repository: migrationRepo)
-            registerMultisigDatabaseMigrations(service: migrationService)
-            migrationService.migrate()
+            migrateAsync(with: appDelegate)
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
         }
     }
 
-    private class func registerMultisigDatabaseMigrations(service: DBMigrationService) {
-        // multisig wallet db migrations go here
+    private class func migrateAsync(with appDelegate: AppDelegate) {
+        DispatchQueue.global.async {
+            do {
+                let migrationRepo = DBMigrationRepository(db: appDelegate.multisigWalletDB!)
+                migrationRepo.setUp()
+                let migrationService = DBMigrationService(repository: migrationRepo)
+                migrationService.register(UpdateProcessedTransactionsMigration())
+                try migrationService.migrate()
+            } catch {
+                ApplicationServiceRegistry.logger.error("Failed to run MultisigWallet migrations", error: error)
+            }
+        }
     }
 
     private class func configureEthereum(with appDelegate: AppDelegate) {

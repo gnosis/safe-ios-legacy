@@ -38,4 +38,8 @@ public class MockEthereumNodeService: EthereumNodeDomainService {
         return eth_call_output
     }
 
+    public func eth_getBlockByHash(hash: String) throws -> EthBlock? {
+        return EthBlock(hash: "0x1", timestamp: Date())
+    }
+
 }

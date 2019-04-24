@@ -22,6 +22,13 @@ public protocol EthereumNodeDomainService {
     /// - Throws: NetworkServiceError
     func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt?
 
+    /// Returns block information based on its hash
+    ///
+    /// - Parameter hash: hash of a block in the block chain
+    /// - Returns: block data
+    /// - Throws: NetworkServiceError
+    func eth_getBlockByHash(hash: String) throws -> EthBlock?
+
     /// Executes call to a contract using the `data` as serialized method call.
     ///
     /// - Parameters:

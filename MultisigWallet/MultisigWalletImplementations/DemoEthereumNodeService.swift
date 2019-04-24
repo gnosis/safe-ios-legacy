@@ -33,7 +33,7 @@ public class DemoEthereumNodeService: EthereumNodeDomainService {
     public func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt? {
         Timer.wait(delay)
         if receiptUpdateCounter == 3 {
-            return TransactionReceipt(hash: transaction, status: .success)
+            return TransactionReceipt(hash: transaction, status: .success, blockHash: "0x1")
         } else {
             receiptUpdateCounter += 1
             return nil
@@ -42,6 +42,10 @@ public class DemoEthereumNodeService: EthereumNodeDomainService {
 
     public func eth_call(to: Address, data: Data) throws -> Data {
         return Data()
+    }
+
+    public func eth_getBlockByHash(hash: String) throws -> EthBlock? {
+        return EthBlock(hash: "0x1", timestamp: Date())
     }
 
 }

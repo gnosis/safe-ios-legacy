@@ -211,8 +211,8 @@ class DeploymentFundedTests: BaseDeploymentDomainServiceTests {
 
 class CreationStartedTests: BaseDeploymentDomainServiceTests {
 
-    let successReceipt = TransactionReceipt(hash: TransactionHash.test1, status: .success)
-    let failedReceipt = TransactionReceipt(hash: TransactionHash.test1, status: .failed)
+    let successReceipt = TransactionReceipt(hash: TransactionHash.test1, status: .success, blockHash: "0x1")
+    let failedReceipt = TransactionReceipt(hash: TransactionHash.test1, status: .failed, blockHash: "0x1")
 
     override func setUp() {
         super.setUp()

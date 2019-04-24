@@ -206,12 +206,45 @@ class TransactionDomainServiceTests: XCTestCase {
         XCTAssertNotNil(tx.processedDate)
     }
 
+    func test_whenNoProcessedTransactions_thenDoesNothing() throws {
+        let stored = [Transaction.pending().timestampProcessed(at: Date())]
+        let expectedTime = stored[0].processedDate!
+        save(stored)
+
+        try service.updateTimestampsOfProcessedTransactions()
+
+        let actualTime = repo.all().first!.processedDate!
+        XCTAssertEqual(actualTime, expectedTime)
+    }
+
+    func test_whenProcessedTransactions_thenUpdatesTimestamp() throws {
+        let stored = [Transaction.success().timestampProcessed(at: Date(timeIntervalSince1970: 0)),
+                      Transaction.failure().timestampProcessed(at: Date(timeIntervalSince1970: 9))]
+                     .sorted { $0.id.id < $1.id.id }
+        let (time0, time1) = (stored[0].processedDate!, stored[1].processedDate!)
+        let (id0, id1) = (stored[0].id, stored[1].id)
+
+        save(stored)
+        nodeService.expect_eth_getTransactionReceipt(transaction: stored[0].transactionHash!, receipt: .success)
+        nodeService.expect_eth_getTransactionReceipt(transaction: stored[1].transactionHash!, receipt: .failed)
+
+        try service.updateTimestampsOfProcessedTransactions()
+
+        let updated = repo.all().sorted { $0.id.id < $1.id.id }
+
+        XCTAssertEqual(updated[0].id, id0) // sanity check
+        XCTAssertGreaterThan(updated[0].processedDate!, time0)
+
+        XCTAssertEqual(updated[1].id, id1)
+        XCTAssertGreaterThan(updated[1].processedDate!, time1)
+    }
+
 }
 
 extension TransactionReceipt {
 
-    static let success = TransactionReceipt(hash: TransactionHash.test1, status: .success)
-    static let failed = TransactionReceipt(hash: TransactionHash.test1, status: .failed)
+    static let success = TransactionReceipt(hash: TransactionHash.test1, status: .success, blockHash: "0x1")
+    static let failed = TransactionReceipt(hash: TransactionHash.test1, status: .failed, blockHash: "0x1")
 
 }
 
