@@ -5,10 +5,29 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+
+`1.2.0`_ - 2019-04-24
+======================
+Added
+-----
+- Tracking of all screen views
+- Change password in menu
+- Localization keys aligned on all screens
+- Firebase performance tracking library added
+- New "Licenses" item in menu
+
+Changed
+-------
+- Setup password screens redesign
+- Push token endpoint changed to /v2/auth
+- App version string in menu
+- Swift 5 update
+- Bug fixes and stability improvements
+
 `1.1.0`_ - 2019-03-19
 ======================
 Added
--------
+-----
 - Manage safe browser extension
 
   + Replace browser extension
@@ -270,6 +289,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.2.0: https://github.com/gnosis/safe-ios/tree/1.2.0
 .. _1.1.0: https://github.com/gnosis/safe-ios/tree/1.1.0
 .. _1.0.1: https://github.com/gnosis/safe-ios/tree/1.0.1
 .. _1.0.0: https://github.com/gnosis/safe-ios/tree/1.0.0
