@@ -30,7 +30,6 @@ public protocol NotificationDomainService {
     /// - Parameter request: auth request to allow receiving notifications.
     /// - Throws: network error or validation error
     func auth(request: AuthRequest) throws
-    func authV2(request: AuthRequestV2) throws
 
     /// Sends message notification to another device.
     /// Pairing should exist for the recipient to receive the notification.

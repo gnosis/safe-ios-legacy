@@ -31,22 +31,14 @@ final public class HTTPNotificationService: NotificationDomainService {
 
     public func auth(request: AuthRequest) throws {
         let response = try httpClient.execute(request: request)
-        guard response.pushToken == request.pushToken &&
-            response.owner == request.deviceOwnerAddress else {
-                throw NotificationDomainServiceError.validationFailed
-        }
-    }
-
-    public func authV2(request: AuthRequestV2) throws {
-        let response = try httpClient.execute(request: request)
         // check that we received the same owners that we sent
-        let expectedItems: Set<AuthRequestV2.AuthResponseItem> = Set(request.deviceOwnerAddresses.map { address in
-            AuthRequestV2.AuthResponseItem(owner: address,
-                                           pushToken: request.pushToken,
-                                           client: request.client,
-                                           buildNumber: request.buildNumber,
-                                           versionName: request.versionName,
-                                           bundle: request.bundle)
+        let expectedItems: Set<AuthRequest.AuthResponseItem> = Set(request.deviceOwnerAddresses.map { address in
+            AuthRequest.AuthResponseItem(owner: address,
+                                         pushToken: request.pushToken,
+                                         client: request.client,
+                                         buildNumber: request.buildNumber,
+                                         versionName: request.versionName,
+                                         bundle: request.bundle)
         })
         let actualItems = Set(response)
         guard actualItems == expectedItems else {
@@ -151,19 +143,6 @@ extension SendNotificationRequest: JSONRequest {
 }
 
 extension AuthRequest: JSONRequest {
-
-    public var httpMethod: String { return "POST" }
-    public var urlPath: String { return "/api/v1/auth/" }
-    public typealias ResponseType = AuthResponse
-
-    public struct AuthResponse: Decodable {
-        let pushToken: String
-        let owner: String
-    }
-
-}
-
-extension AuthRequestV2: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v2/auth/" }

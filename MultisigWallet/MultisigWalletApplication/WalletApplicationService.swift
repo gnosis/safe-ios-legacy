@@ -669,15 +669,15 @@ public class WalletApplicationService: Assertable {
         let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
         let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
         let signature = sign(string: dataString, address: deviceOwnerAddress)
-        let request = AuthRequestV2(pushToken: pushToken,
-                                    signatures: [signature],
-                                    buildNumber: buildNumber,
-                                    versionName: versionName,
-                                    client: client,
-                                    bundle: bundle,
-                                    deviceOwnerAddresses: [deviceOwnerAddress])
+        let request = AuthRequest(pushToken: pushToken,
+                                  signatures: [signature],
+                                  buildNumber: buildNumber,
+                                  versionName: versionName,
+                                  client: client,
+                                  bundle: bundle,
+                                  deviceOwnerAddresses: [deviceOwnerAddress])
         try handleNotificationServiceError {
-            try notificationService.authV2(request: request)
+            try notificationService.auth(request: request)
         }
     }
 

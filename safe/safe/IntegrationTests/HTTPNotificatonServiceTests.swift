@@ -58,9 +58,15 @@ class HTTPNotificatonServiceTests: XCTestCase {
 
     func testAuth() throws {
         let token = "test_token_\(UUID().uuidString)"
-        let signature = encryptionService.sign(message: "GNO" + token, privateKey: deviceEOA.privateKey)
-        let request = AuthRequest(
-            pushToken: token, signature: signature, deviceOwnerAddress: deviceEOA.address.value)
+        let message = "GNO" + token + "1" + "0.0.0" + "ios" + "io.gnosis.safe"
+        let signature = encryptionService.sign(message: message, privateKey: deviceEOA.privateKey)
+        let request = AuthRequest(pushToken: token,
+                                  signatures: [signature],
+                                  buildNumber: 1,
+                                  versionName: "0.0.0",
+                                  client: "ios",
+                                  bundle: "io.gnosis.safe",
+                                  deviceOwnerAddresses: [deviceEOA.address.value])
         try notificationService.auth(request: request)
     }
 
