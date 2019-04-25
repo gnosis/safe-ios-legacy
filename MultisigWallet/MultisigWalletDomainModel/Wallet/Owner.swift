@@ -15,6 +15,8 @@ public struct Owner: Hashable, Codable {
     }
 }
 
+// NOTE: If you change enum values, then you'll need to run DB migration.
+// Adding new ones is OK as long as you don't change old values
 public enum OwnerRole: String, Codable {
     case thisDevice
     case browserExtension

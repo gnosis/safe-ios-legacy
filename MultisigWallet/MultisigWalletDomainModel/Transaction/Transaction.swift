@@ -309,14 +309,16 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
 // MARK: - Supporting types
 
+// NOTE: If you change enum values, then you'll need to run DB migration.
+// Adding new ones is OK as long as you don't change old values
 public enum TransactionType: Int {
 
-    case transfer
-    case walletRecovery
-    case replaceRecoveryPhrase
-    case replaceBrowserExtension
-    case connectBrowserExtension
-    case disconnectBrowserExtension
+    case transfer = 0
+    case walletRecovery = 1
+    case replaceRecoveryPhrase = 2
+    case replaceBrowserExtension = 3
+    case connectBrowserExtension = 4
+    case disconnectBrowserExtension = 5
 
 }
 
@@ -398,19 +400,21 @@ public struct TransactionFeeEstimate: Equatable {
 
 }
 
+// NOTE: If you change enum values, then you'll need to run DB migration.
+// Adding new ones is OK as long as you don't change old values
 public enum WalletOperation: Int, Codable {
 
-    case call
-    case delegateCall
-    case create
+    case call = 0
+    case delegateCall = 1
+    case create = 2
 
 }
 
 public struct TransactionGroup: Equatable {
 
     public enum GroupType: Int, Equatable {
-        case pending
-        case processed
+        case pending = 0
+        case processed = 1
     }
 
     public let type: GroupType
