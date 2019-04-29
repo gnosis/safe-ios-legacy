@@ -190,6 +190,11 @@ public final class AddressInput: VerifiableInput {
         return hasPrefix ? hexPrefix + leadingHexChars : leadingHexChars
     }
 
+    private func update(text: String?) {
+        self.text = text
+        self.textInput.heightConstraint.constant = self.inputHeightWithAddress
+    }
+
 }
 
 // MARK: - UITextFieldDelegate
@@ -201,7 +206,7 @@ public extension AddressInput {
         alertController.addAction(
             UIAlertAction(title: Strings.AlertActions.paste, style: .default) { _ in
                 if let value = UIPasteboard.general.string {
-                    self.text = value
+                    self.update(text: value)
                 }
             })
         alertController.addAction(
@@ -224,8 +229,7 @@ extension AddressInput: ScanQRCodeHandlerDelegate {
 
     func didScanCode(raw: String, converted: String?) {
         DispatchQueue.main.async {
-            self.text = converted
-            self.textInput.heightConstraint.constant = self.inputHeightWithAddress
+            self.update(text: converted)
         }
     }
 

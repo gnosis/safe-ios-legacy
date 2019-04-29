@@ -7,23 +7,25 @@ import Common
 
 public class TransactionStatus: Assertable {
 
+    // NOTE: If you change enum values, then you'll need to run DB migration.
+    // Adding new ones is OK as long as you don't change old values
     public enum Code: Int {
         /// Draft transaction is allowed to change any data
-        case draft
+        case draft = 0
         /// Sigining transaction freezes amount, fees, sender and recipient while still allowing to add signatures
-        case signing
+        case signing = 1
         /// Pending transaction is the one submitted to a blockchain. Transaction parameters are immutable.
         /// Pending transaction is allowed to set hash, if it wasn't set before.
-        case pending
+        case pending = 2
         /// Transaction is rejected by owner (s) and may not be submitted to blockchain.
-        case rejected
+        case rejected = 3
         /// Transaction may become failed when it is rejected by blockchain.
-        case failed
+        case failed = 4
         /// Transaction is successful when it is processed and added to the blockchain
-        case success
+        case success = 5
         /// Discarded transaction should not be shown to the user, but it is still present in the transactions list.
         /// Transaction may become discarded from any other status when user decides to archive the transaction.
-        case discarded
+        case discarded = 6
     }
 
     var code: TransactionStatus.Code { return .draft }

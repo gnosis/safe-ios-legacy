@@ -12,6 +12,8 @@ public final class TokenListItem: IdentifiableEntity<TokenID> {
     public private(set) var sortingId: Int?
     public private(set) var updated: Date
 
+    // NOTE: If you change enum values, then you'll need to run DB migration.
+    // Adding new ones is OK as long as you don't change old values
     public enum TokenListItemStatus: String {
         case regular
         case whitelisted

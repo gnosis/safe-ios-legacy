@@ -65,6 +65,12 @@ public class ReviewTransactionViewController: UITableViewController {
         configureTableView()
         createCells()
         updateSubmitButton()
+
+        // Otherwise header cell height is smaller than the content height
+        // Alternatives tried: setting cell size when creating the header cell
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     private var didRequestSignatures: Bool = false

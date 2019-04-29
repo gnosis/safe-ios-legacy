@@ -35,8 +35,8 @@ class ResyncWithBrowserExtensionCommand: MenuCommand {
     }
 
     func showSuccess(mainFlowCoordinator: MainFlowCoordinator) {
-        let alert = UIAlertController(title: LocalizedString("error", comment: "Info"),
-                                      message: LocalizedString("status_success", comment: "Success"),
+        let alert = UIAlertController(title: LocalizedString("info", comment: "Info"),
+                                      message: LocalizedString("sync_with_extension_sent", comment: "Success"),
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: LocalizedString("ok", comment: "OK"),
                                      style: .default,

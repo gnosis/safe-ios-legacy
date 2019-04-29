@@ -25,16 +25,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="lM1-l8-LAb">
-                                                <rect key="frame" x="0.0" y="43" width="375" height="146.5"/>
+                                                <rect key="frame" x="16" y="43" width="343" height="146.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZW3-Jl-GBM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tat-h4-GE3" customClass="AddressInput" customModule="SafeUIKit">
-                                                        <rect key="frame" x="0.0" y="86.5" width="375" height="60"/>
+                                                        <rect key="frame" x="0.0" y="86.5" width="343" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" placeholder="YES" id="faR-eJ-UcG"/>
@@ -48,8 +48,8 @@
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lM1-l8-LAb" secondAttribute="bottom" id="6g5-bL-frH"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="7Xd-rP-NRs"/>
                                             <constraint firstItem="lM1-l8-LAb" firstAttribute="top" secondItem="Ooo-nj-tka" secondAttribute="top" constant="43" id="Iuc-f5-kkf"/>
-                                            <constraint firstItem="lM1-l8-LAb" firstAttribute="leading" secondItem="Ooo-nj-tka" secondAttribute="leading" id="R58-1y-4wq"/>
-                                            <constraint firstAttribute="trailing" secondItem="lM1-l8-LAb" secondAttribute="trailing" id="cRS-g9-crG"/>
+                                            <constraint firstItem="lM1-l8-LAb" firstAttribute="leading" secondItem="Ooo-nj-tka" secondAttribute="leading" constant="16" id="R58-1y-4wq"/>
+                                            <constraint firstAttribute="trailing" secondItem="lM1-l8-LAb" secondAttribute="trailing" constant="16" id="cRS-g9-crG"/>
                                         </constraints>
                                     </view>
                                 </subviews>

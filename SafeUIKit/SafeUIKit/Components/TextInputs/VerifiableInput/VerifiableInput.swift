@@ -17,11 +17,11 @@ open class VerifiableInput: UIView {
     @IBOutlet public private(set) weak var textInput: TextInput!
     @IBOutlet weak var stackView: UIStackView!
 
-    public weak var delegate: VerifiableInputDelegate?
     /// Indicates whether the view has user input focus
     public private(set) var isActive: Bool = false
+
+    public weak var delegate: VerifiableInputDelegate?
     private static let shakeAnimationKey = "shake"
-    private let padding: CGFloat = 16
     private let spacingViewHeight: CGFloat = 4
 
     private var allRules: [RuleLabel] {
@@ -38,7 +38,13 @@ open class VerifiableInput: UIView {
         }
     }
 
+    // Makes rule text invisible by default. Rules appear only when they error. If true, then
+    // `adjustsHeightForHiddenRules` is applied.
     public var showErrorsOnly: Bool = false
+
+    // If true, the height of input is always the same as if all rules are shown. This is applied only when
+    // `showsErrorOnly` is true.
+    public var adjustsHeightForHiddenRules: Bool = false
 
     public var maxLength: Int = Int.max
 
@@ -127,8 +133,8 @@ open class VerifiableInput: UIView {
     private func pinWrapperToSelf() {
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            wrapperView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            wrapperView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor),
             wrapperView.topAnchor.constraint(equalTo: topAnchor)])
     }
 
@@ -225,7 +231,16 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     private func hideRuleIfNeeded(_ rule: RuleLabel) {
-        rule.isHidden = showErrorsOnly ? rule.status != .error : false
+        let isError = rule.status == .error
+        if showErrorsOnly {
+            if adjustsHeightForHiddenRules {
+                rule.alpha = isError ? 1 : 0
+            } else {
+                rule.isHidden = !isError
+            }
+        } else {
+            rule.isHidden = false
+        }
     }
 
 }

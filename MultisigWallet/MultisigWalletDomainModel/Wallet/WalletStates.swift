@@ -11,17 +11,19 @@ import Foundation
 /// persisted and reloaded even between application launches.
 public class WalletState {
 
+    // NOTE: values of this enum used in the database. If you update them, then DB migration is needed.
+    // Adding new values are OK as long as you don't touch the old ones.
     public enum State: Int {
-        case draft
-        case deploying
-        case waitingForFirstDeposit
-        case notEnoughFunds
-        case creationStarted
-        case finalizingDeployment
-        case readyToUse
-        case recoveryDraft
-        case recoveryInProgress
-        case recoveryPostProcessing
+        case draft = 0
+        case deploying = 1
+        case notEnoughFunds = 2
+        case creationStarted = 3
+        case finalizingDeployment = 4
+        case readyToUse = 5
+        case recoveryDraft = 6
+        case recoveryInProgress = 7
+        case recoveryPostProcessing = 8
+        case waitingForFirstDeposit = 9
     }
 
     public var state: State { preconditionFailure("Not implemented") }
