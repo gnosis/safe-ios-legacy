@@ -28,7 +28,7 @@ open class AppFlowCoordinator: FlowCoordinator {
     }
 
     public init() {
-        super.init(rootViewController: SafeNavigationController())
+        super.init(rootViewController: UINavigationController())
         configureGloabalAppearance()
     }
 
