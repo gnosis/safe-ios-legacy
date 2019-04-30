@@ -65,11 +65,6 @@ final class ManageTokensTableViewController: UITableViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController!.navigationBar.shadowImage = Asset.shadow.image
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.manageTokens)

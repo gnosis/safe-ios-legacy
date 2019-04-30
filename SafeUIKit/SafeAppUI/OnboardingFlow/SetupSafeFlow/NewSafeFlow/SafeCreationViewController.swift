@@ -167,7 +167,7 @@ class SafeCreationViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.shadowImage = Asset.shadow.image
     }
 
     private func configureDescriptionTexts() {

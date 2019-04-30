@@ -97,7 +97,6 @@ final class MenuTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController!.navigationBar.shadowImage = Asset.shadow.image
         generateData()
         tableView.reloadData()
     }

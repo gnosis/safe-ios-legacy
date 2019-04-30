@@ -38,6 +38,12 @@ open class AppFlowCoordinator: FlowCoordinator {
 
         let buttonAppearance = UIButton.appearance()
         buttonAppearance.tintColor = ColorName.aquaBlue.color
+
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.barTintColor = .white
+        navBarAppearance.isTranslucent = false
+        navBarAppearance.setBackgroundImage(UIImage(), for: .default)
+        navBarAppearance.shadowImage = Asset.shadow.image
     }
 
     open override func setUp() {
