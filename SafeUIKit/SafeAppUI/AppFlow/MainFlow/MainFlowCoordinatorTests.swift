@@ -153,38 +153,35 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     // MARK: - MenuTableViewControllerDelegate
 
-    // TODO: test in command
-//    func test_didSelectManageTokens_entersManageTokensFlow() {
-//        createWindow(mainFlowCoordinator.rootViewController)
-//        mainFlowCoordinator.didSelectManageTokens()
-//        delay()
-//        let presented = mainFlowCoordinator.navigationController.presentedViewController
-//        XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
-//    }
+    func test_didSelectManageTokens_entersManageTokensFlow() {
+        createWindow(mainFlowCoordinator.rootViewController)
+        mainFlowCoordinator.didSelectCommand(ManageTokensCommand())
+        delay()
+        let presented = mainFlowCoordinator.navigationController.presentedViewController
+        XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
+    }
 
-    // TODO: test in command
-//    func test_whenSelectingTermsOfUse_thenOpensSafari() {
-//        var config = WalletApplicationServiceConfiguration.default
-//        config.termsOfUseURL = URL(string: "https://gnosis.pm/")!
-//        reconfigureService(with: config)
-//        createWindow(mainFlowCoordinator.rootViewController)
-//        mainFlowCoordinator.didSelectTermsOfUse()
-//        delay()
-//        XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
-//            is SFSafariViewController)
-//    }
+    func test_whenSelectingTermsOfUse_thenOpensSafari() {
+        var config = WalletApplicationServiceConfiguration.default
+        config.termsOfUseURL = URL(string: "https://gnosis.pm/")!
+        reconfigureService(with: config)
+        createWindow(mainFlowCoordinator.rootViewController)
+        mainFlowCoordinator.didSelectCommand(TermsCommand())
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
+            is SFSafariViewController)
+    }
 
-    // TODO: test in command
-//    func test_whenSelectingPrivacyPolicy_thenOpensSafari() {
-//        var config = WalletApplicationServiceConfiguration.default
-//        config.privacyPolicyURL = URL(string: "https://gnosis.pm/")!
-//        reconfigureService(with: config)
-//        createWindow(mainFlowCoordinator.rootViewController)
-//        mainFlowCoordinator.didSelectPrivacyPolicy()
-//        delay()
-//        XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
-//            is SFSafariViewController)
-//    }
+    func test_whenSelectingPrivacyPolicy_thenOpensSafari() {
+        var config = WalletApplicationServiceConfiguration.default
+        config.privacyPolicyURL = URL(string: "https://gnosis.pm/")!
+        reconfigureService(with: config)
+        createWindow(mainFlowCoordinator.rootViewController)
+        mainFlowCoordinator.didSelectCommand(PrivacyPolicyCommand())
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
+            is SFSafariViewController)
+    }
 
     @discardableResult
     private func createTransaction() -> TransactionData {
