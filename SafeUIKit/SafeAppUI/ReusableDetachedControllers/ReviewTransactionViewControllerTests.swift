@@ -129,7 +129,7 @@ extension ReviewTransactionViewControllerTests {
 
     @discardableResult
     func ethDataAndCotroller(_ status: TransactionData.Status = .readyToSubmit) ->
-        (TransactionData, FundsTransferReviewTransactionViewController) {
+        (TransactionData, SendReviewViewController) {
         let data = TransactionData.ethData(status: status)
         let vc = controller(for: data)
         return (data, vc)
@@ -142,11 +142,11 @@ extension ReviewTransactionViewControllerTests {
         return (data, vc)
     }
 
-    func controller(for data: TransactionData) -> FundsTransferReviewTransactionViewController {
+    func controller(for data: TransactionData) -> SendReviewViewController {
         service.transactionData_output = data
         service.requestTransactionConfirmation_output = data
         service.update(account: BaseID(data.amountTokenData.address), newBalance: BigInt(10).power(19))
-        let vc = FundsTransferReviewTransactionViewController(transactionID: data.id, delegate: delegate)
+        let vc = SendReviewViewController(transactionID: data.id, delegate: delegate)
         vc.viewDidLoad()
         return vc
     }

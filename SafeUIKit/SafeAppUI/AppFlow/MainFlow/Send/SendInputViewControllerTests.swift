@@ -9,16 +9,16 @@ import BigInt
 import CommonTestSupport
 import Common
 
-class FundsTransferTransactionViewControllerTests: XCTestCase {
+class SendInputViewControllerTests: XCTestCase {
 
     let walletService = MockWalletApplicationService()
     let walletAddress = "0x1CBFf6551B8713296b0604705B1a3B76D238Ae14"
     let balance = BigInt(1_000)
-    var controller: FundsTransferTransactionViewController!
+    var controller: SendInputViewController!
 
     override func setUp() {
         super.setUp()
-        controller = FundsTransferTransactionViewController.create(tokenID: ethID)
+        controller = SendInputViewController.create(tokenID: ethID)
         walletService.assignAddress(walletAddress)
         walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
@@ -75,7 +75,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
 
 }
 
-class MockFundsTransferDelegate: FundsTransferTransactionViewControllerDelegate {
+class MockFundsTransferDelegate: SendInputViewControllerDelegate {
 
     var didCreateDraftTransaction_input: String?
 

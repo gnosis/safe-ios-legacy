@@ -7,11 +7,11 @@ import MultisigWalletApplication
 import Common
 import SafeUIKit
 
-protocol FundsTransferTransactionViewControllerDelegate: class {
+protocol SendInputViewControllerDelegate: class {
     func didCreateDraftTransaction(id: String)
 }
 
-public class FundsTransferTransactionViewController: UIViewController {
+public class SendInputViewController: UIViewController {
 
     @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -28,17 +28,17 @@ public class FundsTransferTransactionViewController: UIViewController {
     @IBOutlet weak var feeBalanceView: TransactionFeeView!
     @IBOutlet weak var feeBackgroundView: UIView!
 
-    weak var delegate: FundsTransferTransactionViewControllerDelegate?
+    weak var delegate: SendInputViewControllerDelegate?
 
     private var keyboardBehavior: KeyboardAvoidingBehavior!
-    internal var model: FundsTransferTransactionViewModel!
+    internal var model: SendInputViewModel!
     internal var transactionID: String?
 
     private var tokenID: BaseID!
     private let feeTokenID: BaseID = ethID
 
-    public static func create(tokenID: BaseID) -> FundsTransferTransactionViewController {
-        let controller = StoryboardScene.Main.fundsTransferTransactionViewController.instantiate()
+    public static func create(tokenID: BaseID) -> SendInputViewController {
+        let controller = StoryboardScene.Main.sendInputViewController.instantiate()
         controller.tokenID = tokenID
         return controller
     }
@@ -56,11 +56,11 @@ public class FundsTransferTransactionViewController: UIViewController {
         super.viewDidLoad()
         contentView.backgroundColor = .white
         backgroundView.isDimmed = true
-        nextBarButton.title = FundsTransferTransactionViewController.Strings.continue
+        nextBarButton.title = SendInputViewController.Strings.continue
         nextBarButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
 
-        model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
+        model = SendInputViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
 
         navigationItem.title = String(format: Strings.titleFormatString, model.tokenData.code)
 
@@ -151,7 +151,7 @@ public class FundsTransferTransactionViewController: UIViewController {
 
 }
 
-extension FundsTransferTransactionViewController: AddressInputDelegate {
+extension SendInputViewController: AddressInputDelegate {
 
     public func didRecieveInvalidAddress(_ string: String) {}
 
@@ -167,7 +167,7 @@ extension FundsTransferTransactionViewController: AddressInputDelegate {
 
 }
 
-extension FundsTransferTransactionViewController: VerifiableInputDelegate {
+extension SendInputViewController: VerifiableInputDelegate {
 
     public func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         if model.canProceedToSigning {

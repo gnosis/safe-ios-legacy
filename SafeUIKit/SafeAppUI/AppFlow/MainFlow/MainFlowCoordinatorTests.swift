@@ -31,8 +31,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
     func test_whenCreatingNewTransaction_thenOpensFundsTransferVC() {
         mainFlowCoordinator.createNewTransaction(token: ethID.id)
         delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
-            is FundsTransferTransactionViewController)
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is SendInputViewController)
     }
 
     func test_whenOpenMenuRequested_thenOpensIt() {
