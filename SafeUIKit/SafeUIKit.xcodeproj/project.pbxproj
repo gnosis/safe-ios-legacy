@@ -328,7 +328,6 @@
 		556251F9214912AA00F569EE /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251F8214912AA00F569EE /* QRCodeView.swift */; };
 		556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251FA2149135F00F569EE /* QRCodeViewController.swift */; };
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
-		55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
 		5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562E64D216E1C0F00C54D57 /* RuleLabel.swift */; };
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
@@ -350,6 +349,7 @@
 		55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */; };
 		55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */; };
 		55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */; };
+		55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
 		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
 		55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */; };
 		55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */; };
@@ -1310,20 +1310,17 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				55B5DF6222782BF6001A32F4 /* Portfolio */,
-				55B5DF5122782B28001A32F4 /* SelectSafe */,
-				554596F622689A45009B4A0B /* Support */,
-				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
+				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
+				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
 				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
 				0A1940472226CF27005B7440 /* DisconnectBrowserExtension */,
-				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
-				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
+				55B5DF6222782BF6001A32F4 /* Portfolio */,
 				0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */,
 				0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */,
 				0A1940642226DE1E005B7440 /* ResyncBrowserExtension */,
-				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
-				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
+				55B5DF5122782B28001A32F4 /* SelectSafe */,
+				554596F622689A45009B4A0B /* Support */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1827,6 +1824,7 @@
 		554596F622689A45009B4A0B /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 				5545970522689A63009B4A0B /* LicensesCommand.swift */,
 				554597072268AB22009B4A0B /* TermsCommand.swift */,
 				554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */,
@@ -1925,6 +1923,8 @@
 			isa = PBXGroup;
 			children = (
 				55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */,
+				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
+				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
 			);
 			path = SelectSafe;
 			sourceTree = "<group>";
@@ -2868,6 +2868,7 @@
 				55980009225B73E6006D5792 /* ChangePasswordFlowCoordinatorTests.swift in Sources */,
 				0A2D58A52257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift in Sources */,
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
+				55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,
 				0A3BD8ED22254822007039B4 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
@@ -2922,7 +2923,6 @@
 				0A334E5F209C8E6800ABC6AE /* PasswordViewControllerTests.swift in Sources */,
 				0A2D58942257674C001B8BF4 /* GuidelinesViewControllerTests.swift in Sources */,
 				0A2D589D22576FA6001B8BF4 /* ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift in Sources */,
-				55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */,
 				0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */,
 				0A334E5D209C8E6800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
 				0A2D58A122577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift in Sources */,

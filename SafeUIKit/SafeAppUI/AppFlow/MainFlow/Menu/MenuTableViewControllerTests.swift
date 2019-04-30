@@ -46,27 +46,25 @@ class MenuTableViewControllerTests: XCTestCase {
 
 
     func test_whenCreated_thenRowHeightsAreProvided() {
-        // TODO: re-enable
-//        XCTAssertGreaterThan(cellHeight(row: 0, section: safeSection), 44)
-        XCTAssertEqual(cellHeight(row: 0, section: securitySection), 44)
-        XCTAssertEqual(cellHeight(row: 0, section: portfolioSection), 44)
-        XCTAssertEqual(cellHeight(row: 0, section: supportSection), 44)
+        XCTAssertEqual(cellHeight(row: 0, section: safeSection), SafeTableViewCell.height)
+        XCTAssertEqual(cellHeight(row: 0, section: securitySection), MenuItemTableViewCell.height)
+        XCTAssertEqual(cellHeight(row: 0, section: portfolioSection), MenuItemTableViewCell.height)
+        XCTAssertEqual(cellHeight(row: 0, section: supportSection), MenuItemTableViewCell.height)
     }
 
     func test_whenGettingRow_thenCreatesAppropriateCell() {
-//         TODO: re-enable
-//        XCTAssertTrue(cell(row: 0, section: safeSection) is SafeTableViewCell)
+        XCTAssertTrue(cell(row: 0, section: safeSection) is SafeTableViewCell)
         XCTAssertTrue(cell(row: 0, section: securitySection) is MenuItemTableViewCell)
         XCTAssertTrue(cell(row: 0, section: portfolioSection) is MenuItemTableViewCell)
         XCTAssertTrue(cell(row: 0, section: supportSection) is MenuItemTableViewCell)
         XCTAssertTrue(cell(row: 3, section: supportSection) is AppVersionTableViewCell)
     }
 
-//    func test_whenConfiguredSelectedSafeRow_thenAllIsThere() {
-//        let cell = self.cell(row: 0, section: safeSection) as! SafeTableViewCell
-//        XCTAssertNotNil(cell.safeAddressLabel.text)
-//        XCTAssertNotNil(cell.safeIconImageView.image)
-//    }
+    func test_whenConfiguredSelectedSafeRow_thenAllIsThere() {
+        let cell = self.cell(row: 0, section: safeSection) as! SafeTableViewCell
+        XCTAssertNotNil(cell.safeAddressLabel.text)
+        XCTAssertNotNil(cell.safeIconImageView.image)
+    }
 
     func test_whenConfiguredMenuItemRow_thenAllSet() {
         let cell = self.cell(row: 0, section: portfolioSection) as! MenuItemTableViewCell

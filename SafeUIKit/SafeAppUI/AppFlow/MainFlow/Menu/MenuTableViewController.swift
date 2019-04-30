@@ -18,6 +18,10 @@ final class MenuTableViewController: UITableViewController {
 
     weak var delegate: MenuTableViewControllerDelegate?
 
+    private var selectedSafeAddress: String? {
+        return ApplicationServiceRegistry.walletService.selectedWalletAddress
+    }
+
     enum SettingsSection: Hashable {
         case safe
         case portfolio
@@ -107,12 +111,12 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private func generateData() {
-//        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        menuItemSections = [
+        menuItemSections = selectedSafeAddress == nil ? [] : [
             (section: .safe,
              title: Strings.address,
-             items: sectionItems(for: switchSafeCommands)),
-
+             items: [MenuItem(name: "SAFE", hasDisclosure: false, height: SafeTableViewCell.height)])
+        ]
+        menuItemSections += [
             (section: .portfolio,
              title: Strings.portfolio,
              items: sectionItems(for: portfolioCommands)),
@@ -154,6 +158,11 @@ final class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch menuItemSections[indexPath.section].section {
+        case .safe:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTableViewCell",
+                                                     for: indexPath) as! SafeTableViewCell
+            cell.configure(address: selectedSafeAddress!)
+            return cell
         case .safe, .portfolio, .security, .support:
             let item = menuItem(at: indexPath)
             if item.name == "AppVersion" {
