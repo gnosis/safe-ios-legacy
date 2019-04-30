@@ -8,9 +8,9 @@ import Common
 import BigInt
 import MultisigWalletApplication
 
-class FundTransferDemoViewController: BaseDemoViewController {
+class SendInputDemoViewController: BaseDemoViewController {
 
-    var controller: FundsTransferTransactionViewController!
+    var controller: SendInputViewController!
     var navController: UINavigationController!
     override var demoController: UIViewController { return navController }
 

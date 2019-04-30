@@ -8,7 +8,7 @@ import BigInt
 import Common
 import SafeUIKit
 
-class FundsTransferTransactionViewModel {
+class SendInputViewModel {
 
     private (set) var intAmount: BigInt?
     private var intFee: BigInt?
