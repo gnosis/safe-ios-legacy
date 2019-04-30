@@ -15,7 +15,8 @@ final class SafeTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .none
+        selectionStyle = .none        
+//        separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         safeIconImageView.layer.cornerRadius = safeIconImageView.frame.width / 2
         safeIconImageView.clipsToBounds = true
         safeAddressLabel.textColor = ColorName.lightGreyBlue.color

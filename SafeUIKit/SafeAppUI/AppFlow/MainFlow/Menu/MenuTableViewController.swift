@@ -10,10 +10,6 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectCommand(_ command: MenuCommand)
 }
 
-final class MenuItemTableViewCell: UITableViewCell {
-    static let height: CGFloat = 44
-}
-
 final class MenuTableViewController: UITableViewController {
 
     weak var delegate: MenuTableViewControllerDelegate?
@@ -91,8 +87,8 @@ final class MenuTableViewController: UITableViewController {
         title = Strings.title
 
         tableView.backgroundColor = ColorName.paleGreyThree.color
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
-        tableView.separatorStyle = .singleLine
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
@@ -101,6 +97,7 @@ final class MenuTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController!.navigationBar.shadowImage = Asset.shadow.image
         generateData()
         tableView.reloadData()
     }
