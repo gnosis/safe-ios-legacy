@@ -20,7 +20,7 @@ final class MainFlowCoordinator: FlowCoordinator {
         return IdentityAccessApplication.ApplicationServiceRegistry.authenticationService
     }
 
-    private var replaceRecoveryController: ReplaceRecoveryPhraseViewController!
+    var replaceRecoveryController: ReplaceRecoveryPhraseViewController!
 
     var transactionSubmissionHandler = TransactionSubmissionHandler()
 
@@ -137,32 +137,6 @@ extension MainFlowCoordinator: ReviewTransactionViewControllerDelegate {
 }
 
 extension MainFlowCoordinator: MenuTableViewControllerDelegate {
-
-    func didSelectManageTokens() {
-        enter(flow: manageTokensFlowCoordinator)
-    }
-
-    func didSelectTermsOfUse() {
-        SupportFlowCoordinator(from: self).openTermsOfUse()
-    }
-
-    func didSelectPrivacyPolicy() {
-        SupportFlowCoordinator(from: self).openPrivacyPolicy()
-    }
-
-    func didSelectConnectBrowserExtension() {
-        enter(flow: connectExtensionFlowCoordinator)
-    }
-
-    func didSelectChangeBrowserExtension() {
-        preconditionFailure("Not implemented")
-    }
-
-    func didSelectReplaceRecoveryPhrase() {
-        saveCheckpoint()
-        replaceRecoveryController = mnemonicIntroViewController()
-        push(replaceRecoveryController)
-    }
 
     func didSelectCommand(_ command: MenuCommand) {
         command.run(mainFlowCoordinator: self)

@@ -6,6 +6,7 @@ import UIKit
 import BlockiesSwift
 import SafeUIKit
 
+// TODO: rework
 final class SafeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var safeIconImageView: UIImageView!
@@ -31,13 +32,13 @@ final class SafeTableViewCell: UITableViewCell {
             UITapGestureRecognizer(target: self, action: #selector(showQRCode(_:))))
     }
 
-    func configure(safe: MenuTableViewController.SafeDescription, qrCodeShown: Bool) {
-        safeIconImageView.blockiesSeed = safe.address.lowercased()
-        safeAddressLabel.address = safe.address
-        if qrCodeShown {
-            chevronImageView.transform = CGAffineTransform(rotationAngle: .pi)
-        }
-    }
+//    func configure(safe: MenuTableViewController.SafeDescription, qrCodeShown: Bool) {
+//        safeIconImageView.blockiesSeed = safe.address.lowercased()
+//        safeAddressLabel.address = safe.address
+//        if qrCodeShown {
+//            chevronImageView.transform = CGAffineTransform(rotationAngle: .pi)
+//        }
+//    }
 
     @IBAction func share(_ sender: Any) {
         onShare?()

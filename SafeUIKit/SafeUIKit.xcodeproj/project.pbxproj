@@ -348,6 +348,9 @@
 		5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
+		55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */; };
+		55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */; };
+		55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */; };
 		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
 		55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */; };
 		55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */; };
@@ -369,7 +372,6 @@
 		55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5F216F6F8B003D9A53 /* TokenInputTests.swift */; };
 		55D0EC62216F7383003D9A53 /* TokenInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */; };
 		55DE530B217B467900613B90 /* ScanButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DE530A217B467900613B90 /* ScanButtonViewController.swift */; };
-		55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */; };
 		55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */; };
 		55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */; };
 		55DEBC28214BD7AB0017CD4B /* SafeAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC27214BD7AB0017CD4B /* SafeAddressViewController.swift */; };
@@ -906,6 +908,9 @@
 		5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSafeCommand.swift; sourceTree = "<group>"; };
+		55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensCommand.swift; sourceTree = "<group>"; };
+		55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseCommand.swift; sourceTree = "<group>"; };
 		55BAB0E321789285007539CF /* BigBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButton.swift; sourceTree = "<group>"; };
 		55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButtonTests.swift; sourceTree = "<group>"; };
 		55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltip.swift; sourceTree = "<group>"; };
@@ -929,7 +934,6 @@
 		55D0EC5F216F6F8B003D9A53 /* TokenInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputTests.swift; sourceTree = "<group>"; };
 		55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputViewController.swift; sourceTree = "<group>"; };
 		55DE530A217B467900613B90 /* ScanButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButtonViewController.swift; sourceTree = "<group>"; };
-		55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeQRCodeTableViewCell.swift; sourceTree = "<group>"; };
 		55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundHeaderFooterView.swift; sourceTree = "<group>"; };
 		55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionTableViewCell.swift; sourceTree = "<group>"; };
 		55DEBC27214BD7AB0017CD4B /* SafeAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAddressViewController.swift; sourceTree = "<group>"; };
@@ -1042,6 +1046,7 @@
 				0A2D58852257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift */,
 				554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */,
 				0A2D589C22576FA6001B8BF4 /* ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift */,
+				55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */,
 			);
 			path = ReplaceRecoveryPhrase;
 			sourceTree = "<group>";
@@ -1307,6 +1312,8 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				55B5DF6222782BF6001A32F4 /* Portfolio */,
+				55B5DF5122782B28001A32F4 /* SelectSafe */,
 				554596F622689A45009B4A0B /* Support */,
 				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
@@ -1317,7 +1324,6 @@
 				0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */,
 				0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */,
 				0A1940642226DE1E005B7440 /* ResyncBrowserExtension */,
-				55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */,
 				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
 				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
 			);
@@ -1916,6 +1922,22 @@
 				5598FFE4225B73B3006D5792 /* VerifyCurrentPasswordViewControllerTests.swift */,
 			);
 			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		55B5DF5122782B28001A32F4 /* SelectSafe */ = {
+			isa = PBXGroup;
+			children = (
+				55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */,
+			);
+			path = SelectSafe;
+			sourceTree = "<group>";
+		};
+		55B5DF6222782BF6001A32F4 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */,
+			);
+			path = Portfolio;
 			sourceTree = "<group>";
 		};
 		55BAB0E221789285007539CF /* BorderedButton */ = {
@@ -2724,6 +2746,7 @@
 				554CACD1221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
+				55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */,
 				0A3BD8FF22254833007039B4 /* FeeCalculation.swift in Sources */,
 				0A2D588222575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift in Sources */,
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
@@ -2750,7 +2773,6 @@
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
-				55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */,
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
@@ -2761,6 +2783,7 @@
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
+				55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD8FA22254833007039B4 /* FeeCalculationAssetLine+TextStyle.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
@@ -2819,6 +2842,7 @@
 				0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */,
 				0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
+				55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */,
 				0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,

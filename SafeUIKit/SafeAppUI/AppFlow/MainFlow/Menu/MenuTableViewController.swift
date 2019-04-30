@@ -7,8 +7,6 @@ import SafeUIKit
 import MultisigWalletApplication
 
 protocol MenuTableViewControllerDelegate: class {
-    func didSelectManageTokens()
-    func didSelectReplaceRecoveryPhrase()
     func didSelectCommand(_ command: MenuCommand)
 }
 
@@ -20,41 +18,6 @@ final class MenuTableViewController: UITableViewController {
 
     weak var delegate: MenuTableViewControllerDelegate?
 
-    private var menuItems =
-        [(section: SettingsSection, items: [(item: Any, cellHeight: () -> CGFloat)], title: String)]()
-
-    private enum Strings {
-        static let title = LocalizedString("menu", comment: "Title for menu screen.")
-        static let safeAddressSectionTitle =
-            LocalizedString("address", comment: "Title for safe address section.").uppercased()
-        static let portfolioSectionTitle =
-            LocalizedString("portfolio", comment: "Title for portfolio section.").uppercased()
-        static let securitySectionTitle =
-            LocalizedString("security", comment: "Title for security section.").uppercased()
-        static let supportSectionTitle = LocalizedString("support", comment: "Title for support section.").uppercased()
-
-        static let manageTokens = LocalizedString("manage_tokens", comment: "Manage Tokens menu item").capitalized
-        static let changeRecoveryPhrase =
-            LocalizedString("replace_recovery_phrase", comment: "Change recovery key menu item").capitalized
-                .replacingOccurrences(of: "\n", with: " ").capitalized
-
-        static let feedback = LocalizedString("give_feedback", comment: "Feedback and FAQ menu item").capitalized
-        static let rateApp = LocalizedString("rate_app", comment: "Rate App menu item").capitalized
-    }
-
-    struct SafeDescription {
-        var address: String
-    }
-
-    struct SafeQRCode {
-        var address: String
-    }
-
-    struct MenuItem {
-        var name: String
-        var hasDisclosure: Bool
-    }
-
     enum SettingsSection: Hashable {
         case safe
         case portfolio
@@ -62,28 +25,61 @@ final class MenuTableViewController: UITableViewController {
         case support
     }
 
-    private var showQRCode = false
-    let changePasswordCommand = ChangePasswordCommand()
-    let replaceCommand = ReplaceBrowserExtensionCommand()
-    let connectCommand = ConnectBrowserExtensionLaterCommand()
-    let disconnectCommand = DisconnectBrowserExtensionCommand()
-    let resyncCommand = ResyncWithBrowserExtensionCommand()
-
-    var securityCommands: [MenuCommand] {
-        return [changePasswordCommand, resyncCommand, replaceCommand, connectCommand, disconnectCommand]
-    }
-
-    let termsCommand = TermsCommand()
-    let privacyPolicyCommand = PrivacyPolicyCommand()
-    let licensesCommand = LicensesCommand()
-
-    var supportCommands: [MenuCommand] {
-        return [termsCommand, privacyPolicyCommand, licensesCommand]
+    struct MenuItem {
+        var name: String
+        var hasDisclosure: Bool
+        var height: CGFloat
     }
 
     static func create() -> MenuTableViewController {
         return StoryboardScene.Main.menuTableViewController.instantiate()
     }
+
+    private var menuItemSections = [(section: SettingsSection, title: String, items: [MenuItem])]()
+
+    private enum Strings {
+        static let title = LocalizedString("menu", comment: "Title for menu screen.")
+        static let address = LocalizedString("address", comment: "Title for safe address section.").uppercased()
+        static let portfolio = LocalizedString("portfolio", comment: "Title for portfolio section.").uppercased()
+        static let security = LocalizedString("security", comment: "Title for security section.").uppercased()
+        static let support = LocalizedString("support", comment: "Title for support section.").uppercased()
+
+        // not used yet
+        static let feedback = LocalizedString("give_feedback", comment: "Feedback and FAQ menu item").capitalized
+        static let rateApp = LocalizedString("rate_app", comment: "Rate App menu item").capitalized
+    }
+
+    // MARK: - Commands
+
+    let selectSafeCommand = SelectSafeCommand()
+    var switchSafeCommands: [MenuCommand] {
+        return [selectSafeCommand]
+    }
+
+    let manageTokensCommand = ManageTokensCommand()
+    var portfolioCommands: [MenuCommand] {
+        return [manageTokensCommand]
+    }
+
+    let changePasswordCommand = ChangePasswordCommand()
+    let resyncCommand = ResyncWithBrowserExtensionCommand()
+    let replaceRecoveryPhraseCommand = ReplaceRecoveryPhraseCommand()
+    let replaceCommand = ReplaceBrowserExtensionCommand()
+    let connectCommand = ConnectBrowserExtensionLaterCommand()
+    let disconnectCommand = DisconnectBrowserExtensionCommand()
+    var securityCommands: [MenuCommand] {
+        return [changePasswordCommand, resyncCommand, replaceRecoveryPhraseCommand, replaceCommand, connectCommand,
+                disconnectCommand]
+    }
+
+    let termsCommand = TermsCommand()
+    let privacyPolicyCommand = PrivacyPolicyCommand()
+    let licensesCommand = LicensesCommand()
+    var supportCommands: [MenuCommand] {
+        return [termsCommand, privacyPolicyCommand, licensesCommand]
+    }
+
+    // MARK: - VC Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,8 +96,6 @@ final class MenuTableViewController: UITableViewController {
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
         tableView.sectionFooterHeight = 0
-
-        generateData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -116,89 +110,62 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private func generateData() {
-        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        menuItems = [
+//        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+        menuItemSections = [
             (section: .safe,
-             items: [
-                (item: SafeDescription(address: address),
-                 cellHeight: { return SafeTableViewCell.height }),
-                (item: SafeQRCode(address: address),
-                 cellHeight: { return self.showQRCode ? UITableView.automaticDimension : 0 })
-             ],
-             title: Strings.safeAddressSectionTitle),
+             title: Strings.address,
+             items: sectionItems(for: switchSafeCommands)),
+
             (section: .portfolio,
-             items: [menuItem(Strings.manageTokens)],
-             title: Strings.portfolioSectionTitle),
+             title: Strings.portfolio,
+             items: sectionItems(for: portfolioCommands)),
+
             (section: .security,
-             items:
-                [
-                menuItem(Strings.changeRecoveryPhrase)
-                ] +
-                    securityCommands.filter { !$0.isHidden }.map {
-                        menuItem($0.title, hasDisclosure: $0.hasDisclosure)
-                },
-             title: Strings.securitySectionTitle),
+             title: Strings.security,
+             items: sectionItems(for: securityCommands)),
+
             (section: .support,
-             items: supportCommands.map { menuItem($0.title, hasDisclosure: $0.hasDisclosure) } +
-                [menuItem("AppVersion", AppVersionTableViewCell.height)],
-             title: Strings.supportSectionTitle)
+             title: Strings.support,
+             items: sectionItems(for: supportCommands) +
+                [MenuItem(name: "AppVersion", hasDisclosure: false, height: AppVersionTableViewCell.height)])
         ]
     }
 
-    func index(of section: SettingsSection) -> Int? {
-        return menuItems.enumerated().first { offset, item in item.section == section }?.offset
+    private func sectionItems(for commands: [MenuCommand]) -> [MenuItem] {
+        return commands.filter { !$0.isHidden }.map {
+            MenuItem(name: $0.title, hasDisclosure: $0.hasDisclosure, height: $0.height)
+        }
     }
 
-    private func menuItem(_ name: String,
-                          _ height: CGFloat = MenuItemTableViewCell.height,
-                          hasDisclosure: Bool = true) -> (item: Any, cellHeight: () -> CGFloat) {
-        return (item: MenuItem(name: name, hasDisclosure: hasDisclosure), cellHeight: { return height })
+    func index(of section: SettingsSection) -> Int? {
+        return menuItemSections.enumerated().first { offset, item in item.section == section }?.offset
+    }
+
+    private func menuItem(at indexPath: IndexPath) -> MenuItem {
+        return menuItemSections[indexPath.section].items[indexPath.row]
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return menuItems.count
+        return menuItemSections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems[section].items.count
+        return menuItemSections[section].items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch menuItems[indexPath.section].section {
-        case .safe:
-            if let safeDescription = menuItems[indexPath.section].items[indexPath.row].item as? SafeDescription {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTableViewCell", for: indexPath)
-                    as! SafeTableViewCell
-                cell.configure(safe: safeDescription, qrCodeShown: showQRCode)
-                cell.onShare = { [unowned self] in
-                    let activityController = UIActivityViewController(
-                        activityItems: [safeDescription.address], applicationActivities: nil)
-                    self.present(activityController, animated: true)
-                }
-                cell.onShowQRCode = { [unowned self] in
-                    self.showQRCode = !self.showQRCode
-                    self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
-                }
-                return cell
-            } else {
-                let qrCodeItem = menuItems[indexPath.section].items[indexPath.row].item as! SafeQRCode
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SafeQRCodeTableViewCell", for: indexPath)
-                    as! SafeQRCodeTableViewCell
-                cell.configure(code: qrCodeItem)
-                return cell
-            }
-
-        case .portfolio, .security, .support:
-            let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
-            if menuItem.name == "AppVersion" {
+        switch menuItemSections[indexPath.section].section {
+        case .safe, .portfolio, .security, .support:
+            let item = menuItem(at: indexPath)
+            if item.name == "AppVersion" {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AppVersionTableViewCell", for: indexPath)
                 return cell
             }
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
-            cell.textLabel?.text = menuItem.name
-            cell.accessoryType = menuItem.hasDisclosure ? .disclosureIndicator : .none
+            cell.textLabel?.text = item.name
+            cell.accessoryType = item.hasDisclosure ? .disclosureIndicator : .none
             return cell
         }
     }
@@ -208,13 +175,17 @@ final class MenuTableViewController: UITableViewController {
     //swiftlint:disable:next cyclomatic_complexity
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        switch menuItems[indexPath.section].section {
+        let item = menuItem(at: indexPath)
+
+        switch menuItemSections[indexPath.section].section {
         case .portfolio:
-            if let manageTokensItem = menuItem(at: indexPath), manageTokensItem.name == Strings.manageTokens {
-                delegate?.didSelectManageTokens()
+            switch item.name {
+            case manageTokensCommand.title:
+                delegate?.didSelectCommand(manageTokensCommand)
+            default: break
             }
+
         case .security:
-            let item = menuItem(at: indexPath)!
             switch item.name {
             case changePasswordCommand.title:
                 delegate?.didSelectCommand(changePasswordCommand)
@@ -226,12 +197,12 @@ final class MenuTableViewController: UITableViewController {
                 delegate?.didSelectCommand(disconnectCommand)
             case resyncCommand.title:
                 delegate?.didSelectCommand(resyncCommand)
-            case Strings.changeRecoveryPhrase:
-                delegate?.didSelectReplaceRecoveryPhrase()
+            case replaceRecoveryPhraseCommand.title:
+                delegate?.didSelectCommand(replaceRecoveryPhraseCommand)
             default: break
             }
+
         case .support:
-            let item = menuItem(at: indexPath)!
             switch item.name {
             case termsCommand.title:
                 delegate?.didSelectCommand(termsCommand)
@@ -241,22 +212,19 @@ final class MenuTableViewController: UITableViewController {
                 delegate?.didSelectCommand(licensesCommand)
             default: break
             }
+
         default: break
         }
     }
 
-    private func menuItem(at indexPath: IndexPath) -> MenuItem? {
-        return menuItems[indexPath.section].items[indexPath.row].item as? MenuItem
-    }
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return menuItems[indexPath.section].items[indexPath.row].cellHeight()
+        return menuItem(at: indexPath).height
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BackgroundHeaderFooterView")
             as! BackgroundHeaderFooterView
-        view.label.text = menuItems[section].title.uppercased()
+        view.label.text = menuItemSections[section].title.uppercased()
         return view
     }
 
