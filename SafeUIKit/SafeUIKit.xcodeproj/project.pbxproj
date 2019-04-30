@@ -1293,7 +1293,7 @@
 				0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */,
 				55DEBC25214BD74B0017CD4B /* Main */,
 				55DEBC26214BD78B0017CD4B /* SafeAddress */,
-				0A60B50E211312C00066821A /* NewTransaction */,
+				0A60B50E211312C00066821A /* SendInput */,
 				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
 				0A8C961920D2A783007D2410 /* TransactionDetails */,
 				0AF8D53D20D01002001E8423 /* SegmentBar */,
@@ -1324,7 +1324,7 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
-		0A60B50E211312C00066821A /* NewTransaction */ = {
+		0A60B50E211312C00066821A /* SendInput */ = {
 			isa = PBXGroup;
 			children = (
 				554CACCE221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift */,
@@ -1336,7 +1336,7 @@
 				0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */,
 				0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */,
 			);
-			path = NewTransaction;
+			path = SendInput;
 			sourceTree = "<group>";
 		};
 		0A7AE8C22052C20A0044D5DD /* TestTools */ = {
