@@ -111,7 +111,7 @@
         <scene sceneID="miP-OS-lsY">
             <objects>
                 <viewController storyboardIdentifier="SafeAddressViewController" id="Dnc-Q4-Gr8" customClass="SafeAddressViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ytg-sc-63v" customClass="BackgroundImageView" customModule="SafeUIKit">
+                    <view key="view" contentMode="scaleToFill" id="Ytg-sc-63v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -503,7 +503,7 @@
         <scene sceneID="Ud1-YG-cNL">
             <objects>
                 <viewController storyboardIdentifier="TransactionDetailsViewController" id="hMI-YP-Is6" customClass="TransactionDetailsViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="coI-KM-0GS" customClass="BackgroundImageView" customModule="SafeUIKit">
+                    <view key="view" contentMode="scaleToFill" id="coI-KM-0GS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -610,7 +610,6 @@
                     <navigationItem key="navigationItem" title="Transaction details" id="F5R-fq-Lbi"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="backgroundImageView" destination="coI-KM-0GS" id="YO6-qe-ISp"/>
                         <outlet property="settingsHeaderView" destination="qpO-Eo-QR6" id="yY1-Dy-I1U"/>
                         <outlet property="submittedParameterView" destination="1fJ-ed-qN7" id="81l-1z-BXr"/>
                         <outlet property="transactionFeeView" destination="5am-MD-ipW" id="hdM-2A-Gbb"/>
@@ -824,7 +823,7 @@
         <scene sceneID="MPe-Mq-KMG">
             <objects>
                 <viewController storyboardIdentifier="ReplaceRecoveryPhraseViewController" id="LAB-XJ-czS" customClass="ReplaceRecoveryPhraseViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bBl-rU-aqz" customClass="BackgroundImageView" customModule="SafeUIKit">
+                    <view key="view" contentMode="scaleToFill" id="bBl-rU-aqz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
