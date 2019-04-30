@@ -5,7 +5,7 @@
 import Foundation
 import SafeUIKit
 
-final class FundsTransferReviewTransactionViewController: ReviewTransactionViewController {
+final class SendReviewViewController: ReviewTransactionViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

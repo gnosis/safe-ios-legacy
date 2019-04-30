@@ -9,19 +9,19 @@ import BigInt
 import CommonTestSupport
 import Common
 
-class TransactionViewModelTests: XCTestCase {
+class SendInputViewModelTests: XCTestCase {
 
     let walletService = MockWalletApplicationService()
     let walletAddress = "0x1CBFf6551B8713296b0604705B1a3B76D238Ae14"
     let balance = BigInt(1_000)
-    var model: FundsTransferTransactionViewModel!
+    var model: SendInputViewModel!
 
     override func setUp() {
         super.setUp()
         walletService.assignAddress(walletAddress)
         walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        model = FundsTransferTransactionViewModel(tokenID: ethID) { /* empty */ }
+        model = SendInputViewModel(tokenID: ethID) { /* empty */ }
         model.start()
     }
 
@@ -41,7 +41,7 @@ class TransactionViewModelTests: XCTestCase {
 
     func test_whenAmountChangesToSameValue_nothingHappens() {
         var changed: Int = 0
-        model = FundsTransferTransactionViewModel(tokenID: ethID) {
+        model = SendInputViewModel(tokenID: ethID) {
             changed += 1
         }
         model.start()
@@ -54,7 +54,7 @@ class TransactionViewModelTests: XCTestCase {
 
     func test_whenRecipientChangesToSameValue_nothingHappens() {
         var changed: Int = 0
-        model = FundsTransferTransactionViewModel(tokenID: ethID) {
+        model = SendInputViewModel(tokenID: ethID) {
             changed += 1
         }
         model.start()

@@ -7,7 +7,7 @@ import XCTest
 import Common
 import SafeUIKit
 
-class FundsTransferReviewTransactionViewControllerTests: ReviewTransactionViewControllerTests {
+class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
 
     func test_whenLoaded_thenSetsTransactionHeaderAccordingToTransactionData() {
         let (data, vc) = ethDataAndCotroller()
