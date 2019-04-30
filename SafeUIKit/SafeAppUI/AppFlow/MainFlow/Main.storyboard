@@ -19,7 +19,7 @@
         <scene sceneID="5vs-bY-fCF">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="tu4-59-ha9" customClass="MainViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eOZ-6r-5G0" customClass="BackgroundImageView" customModule="SafeUIKit">
+                    <view key="view" contentMode="scaleToFill" id="eOZ-6r-5G0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -99,7 +99,6 @@
                         </view>
                     </navigationItem>
                     <connections>
-                        <outlet property="backgroundView" destination="eOZ-6r-5G0" id="fPq-3F-Me4"/>
                         <outlet property="safeAddressLabel" destination="Pqu-Ky-gxa" id="ufY-ti-E7Q"/>
                         <outlet property="safeIdenticonView" destination="FU0-Jm-jDT" id="hYM-tg-bhS"/>
                     </connections>

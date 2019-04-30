@@ -86,11 +86,8 @@ final class MenuTableViewController: UITableViewController {
 
         title = Strings.title
 
-        let backgroundView = BackgroundImageView(frame: tableView.frame)
-        backgroundView.isDimmed = true
-        tableView.backgroundView = backgroundView
+        tableView.backgroundColor = ColorName.paleGreyThree.color
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = .white
         tableView.separatorStyle = .singleLine
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
         tableView.register(BackgroundHeaderFooterView.self,
@@ -224,7 +221,7 @@ final class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BackgroundHeaderFooterView")
             as! BackgroundHeaderFooterView
-        view.label.text = menuItemSections[section].title.uppercased()
+        view.title = menuItemSections[section].title.uppercased()
         return view
     }
 

@@ -45,7 +45,7 @@ final class ManageTokensTableViewController: UITableViewController {
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundView = BackgroundImageView(frame: tableView.frame)
+        tableView.backgroundColor = ColorName.paleGreyThree.color
         tableView.tableFooterView = UIView()
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))

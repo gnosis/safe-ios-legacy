@@ -6,9 +6,9 @@ import UIKit
 
 open class BackgroundHeaderFooterView: UITableViewHeaderFooterView {
 
-    public static let height: CGFloat = 35
+    public static let height: CGFloat = 46
 
-    public let label = UILabel()
+    private let label = UILabel()
 
     override public init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -20,19 +20,29 @@ open class BackgroundHeaderFooterView: UITableViewHeaderFooterView {
         commonInit()
     }
 
+    public var title: String? {
+        didSet {
+            guard let title = title else {
+                label.attributedText = nil
+                return
+            }
+            let attributes: [NSAttributedString.Key: Any] =
+                [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10, weight: .bold),
+                 NSAttributedString.Key.foregroundColor: ColorName.lightGreyBlue.color,
+                 NSAttributedString.Key.kern: 2]
+            label.attributedText = NSAttributedString(string: title, attributes: attributes)
+        }
+    }
+
     open func commonInit() {
         backgroundView = UIView()
         backgroundView?.backgroundColor = .clear
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
-        NSLayoutConstraint.activate(
-            [
-                label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
-                label.topAnchor.constraint(equalTo: topAnchor, constant: 3),
-                label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3)
-            ])
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)])
     }
 
 }

@@ -18,7 +18,6 @@ protocol MainViewControllerDelegate: class {
 
 final class MainViewController: UIViewController {
 
-    @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var safeIdenticonView: IdenticonView!
     @IBOutlet weak var safeAddressLabel: EthereumAddressLabel!
 
@@ -37,7 +36,8 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundView.isDimmed = true
+
+        view.backgroundColor = ColorName.paleGreyThree.color
         safeAddressLabel.textColor = ColorName.battleshipGrey.color
 
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
