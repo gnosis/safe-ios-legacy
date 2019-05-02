@@ -85,15 +85,14 @@ class AddTokenTableViewController: UITableViewController {
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
         tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
-        tableView.register(AddTokenHeaderView.self, forHeaderFooterViewReuseIdentifier: "AddTokenHeaderView")
+        tableView.register(BackgroundHeaderFooterView.self,
+                           forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
         tableView.sectionFooterHeight = 0
         tableView.separatorStyle = .none
 
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableView.automaticDimension
-        let backgroundView = BackgroundImageView(frame: tableView.frame)
-        backgroundView.isDimmed = true
-        tableView.backgroundView = backgroundView
+        tableView.backgroundColor = ColorName.paleGreyThree.color
 
         tableView.sectionIndexMinimumDisplayRowCount = 15
         tableView.sectionIndexColor = .white
@@ -135,14 +134,14 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view =
-            tableView.dequeueReusableHeaderFooterView(withIdentifier: "AddTokenHeaderView") as! AddTokenHeaderView
-        view.label.text = sectionTokensTitles[section]
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BackgroundHeaderFooterView")
+            as! BackgroundHeaderFooterView
+        view.title = sectionTokensTitles[section]
         return view
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return AddTokenHeaderView.height
+        return BackgroundHeaderFooterView.height
     }
 
 }

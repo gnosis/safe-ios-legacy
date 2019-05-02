@@ -66,7 +66,6 @@ public class TransactionDetailsViewController: UIViewController {
         }
     }
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
-    @IBOutlet weak var backgroundImageView: BackgroundImageView!
     @IBOutlet weak var transferView: TransferView!
     @IBOutlet weak var transactionTypeView: TransactionParameterView!
     @IBOutlet weak var submittedParameterView: TransactionParameterView!
@@ -94,10 +93,10 @@ public class TransactionDetailsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = ColorName.paleGreyThree.color
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .medium
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
-        backgroundImageView.isDimmed = true
         wrapperView.backgroundColor = .white
         reloadData()
     }

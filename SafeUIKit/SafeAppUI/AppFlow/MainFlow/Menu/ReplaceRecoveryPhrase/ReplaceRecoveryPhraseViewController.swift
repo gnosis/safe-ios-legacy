@@ -63,6 +63,7 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = ColorName.paleGreyThree.color
         headerLabel.attributedText = .header(from: Strings.header)
         bodyLabel.attributedText = parsedAttributedBodyText(from: Strings.body, marker: "*")
         startButtonItem.title = LocalizedString("start", comment: "Start")

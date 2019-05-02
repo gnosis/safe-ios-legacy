@@ -18,6 +18,10 @@ class MenuCommand {
         return true
     }
 
+    var height: CGFloat {
+        return MenuItemTableViewCell.height
+    }
+
     var childFlowCoordinator: FlowCoordinator!
 
     func run(mainFlowCoordinator: MainFlowCoordinator) {

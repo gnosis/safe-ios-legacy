@@ -53,9 +53,6 @@ enum Asset {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
   }
-  enum Menu {
-    static let chevron = ImageAsset(name: "chevron")
-  }
   enum Onboarding {
     static let browserExtensionQr = ImageAsset(name: "browser-extension-qr")
     static let errorIcon = ImageAsset(name: "error-icon")
@@ -69,6 +66,7 @@ enum Asset {
     static let scrollBottomGradient = ImageAsset(name: "scroll-bottom-gradient")
   }
   static let replacePhrase = ImageAsset(name: "replacePhrase")
+  static let shadow = ImageAsset(name: "shadow")
   static let shareIcon = ImageAsset(name: "share-icon")
   enum TermsScreen {
     static let squareButtonBorder = ImageAsset(name: "square-button-border")
@@ -92,6 +90,7 @@ enum Asset {
     static let extensionWindow = ImageAsset(name: "extension_window")
     static let rejectedExtension = ImageAsset(name: "rejected_extension")
   }
+  static let transparentBackground = ImageAsset(name: "transparent_background")
   enum UnlockScreen {
     static let faceIdIcon = ImageAsset(name: "face-id-icon")
     static let safeHeaderLogo = ImageAsset(name: "safe-header-logo")
@@ -107,7 +106,6 @@ enum Asset {
     ConnectBrowserExtension.connectIntroIcon,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
-    Menu.chevron,
     Onboarding.browserExtensionQr,
     Onboarding.errorIcon,
     Onboarding.ironSafe,
@@ -117,6 +115,7 @@ enum Asset {
     ReplaceBrowserExtension.introIcon,
     ReplaceBrowserExtension.scrollBottomGradient,
     replacePhrase,
+    shadow,
     shareIcon,
     TermsScreen.squareButtonBorder,
     TransactionDetails.arrowTransaction,
@@ -130,6 +129,7 @@ enum Asset {
     TransactionOverviewIcons.settingTransactionIcon,
     TransactionReview.extensionWindow,
     TransactionReview.rejectedExtension,
+    transparentBackground,
     UnlockScreen.faceIdIcon,
     UnlockScreen.safeHeaderLogo,
     UnlockScreen.touchIdIcon,

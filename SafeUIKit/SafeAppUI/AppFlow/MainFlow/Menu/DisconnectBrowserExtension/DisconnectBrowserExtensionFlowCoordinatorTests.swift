@@ -37,3 +37,32 @@ class DisconnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
     }
 
 }
+
+class MockDisconnectBrowserExtensionApplicationService: DisconnectBrowserExtensionApplicationService {
+
+    override var isAvailable: Bool { return false }
+
+    override func sign(transaction: RBETransactionID, withPhrase phrase: String) throws {
+        // no-op
+    }
+
+    override func create() -> RBETransactionID {
+        return "Some"
+    }
+
+    override func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
+        return RBEEstimationResult(feeCalculation: nil, error: nil)
+    }
+
+    override func start(transaction: RBETransactionID) throws {
+        // no-op
+    }
+
+    override func connect(transaction: RBETransactionID, code: String) throws {
+        // no-op
+    }
+
+    override func startMonitoring(transaction: RBETransactionID) {
+        // no-op
+    }
+}

@@ -154,7 +154,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     func test_didSelectManageTokens_entersManageTokensFlow() {
         createWindow(mainFlowCoordinator.rootViewController)
-        mainFlowCoordinator.didSelectManageTokens()
+        mainFlowCoordinator.didSelectCommand(ManageTokensCommand())
         delay()
         let presented = mainFlowCoordinator.navigationController.presentedViewController
         XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
@@ -165,7 +165,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         config.termsOfUseURL = URL(string: "https://gnosis.pm/")!
         reconfigureService(with: config)
         createWindow(mainFlowCoordinator.rootViewController)
-        mainFlowCoordinator.didSelectTermsOfUse()
+        mainFlowCoordinator.didSelectCommand(TermsCommand())
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
             is SFSafariViewController)
@@ -176,7 +176,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         config.privacyPolicyURL = URL(string: "https://gnosis.pm/")!
         reconfigureService(with: config)
         createWindow(mainFlowCoordinator.rootViewController)
-        mainFlowCoordinator.didSelectPrivacyPolicy()
+        mainFlowCoordinator.didSelectCommand(PrivacyPolicyCommand())
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
             is SFSafariViewController)

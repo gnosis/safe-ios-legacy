@@ -58,7 +58,7 @@ final class StartViewController: UIViewController {
         if let preservedTranslucent = preservedTranslucent {
             navigationController?.navigationBar.isTranslucent = preservedTranslucent
         }
-        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.shadowImage = Asset.shadow.image
     }
 
     @IBAction func setupPassword(_ sender: Any) {

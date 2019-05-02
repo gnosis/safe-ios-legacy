@@ -47,12 +47,12 @@ class AddTokenTableViewControllerTests: XCTestCase {
 
     func test_whenViewForHeaderIsCalled_thenReturnsProperView() {
         let view = controller.tableView(controller.tableView, viewForHeaderInSection: 0)
-        XCTAssertTrue(view is AddTokenHeaderView)
+        XCTAssertTrue(view is BackgroundHeaderFooterView)
     }
 
     func test_whenHeightForHeaderIsCalled_thenRetuensProperHeight() {
         let height = controller.tableView(controller.tableView, heightForHeaderInSection: 0)
-        XCTAssertEqual(height, AddTokenHeaderView.height)
+        XCTAssertEqual(height, BackgroundHeaderFooterView.height)
     }
 
     func test_tracking() {

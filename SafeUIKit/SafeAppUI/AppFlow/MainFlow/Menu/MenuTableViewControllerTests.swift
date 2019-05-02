@@ -13,6 +13,7 @@ class MenuTableViewControllerTests: XCTestCase {
     // swiftlint:disable:next weak_delegate
     let delegate = MockMenuTableViewControllerDelegate()
     let walletService = MockWalletApplicationService()
+    // needed to for commands
     let replaceExtensionService = MockReplaceExtensionApplicationService()
     let connectExtensionService = MockConnectExtensionApplicationService()
     let disconnectExtensionService = MockDisconnectBrowserExtensionApplicationService()
@@ -32,27 +33,31 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     var safeSection: Int { return controller.index(of: .safe)! }
-    var securitySection: Int { return controller.index(of: .security)! }
     var portfolioSection: Int { return controller.index(of: .portfolio)! }
+    var securitySection: Int { return controller.index(of: .security)! }
     var supportSection: Int { return controller.index(of: .support)! }
 
     func test_whenCreated_thenConfigured() {
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 2)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 1)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: securitySection), 4)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: portfolioSection), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 4)
     }
 
 
     func test_whenCreated_thenRowHeightsAreProvided() {
-        XCTAssertGreaterThan(cellHeight(row: 0, section: safeSection), 44)
-        XCTAssertEqual(cellHeight(row: 0, section: portfolioSection), 44)
-        XCTAssertEqual(cellHeight(row: 0, section: supportSection), 44)
+        XCTAssertEqual(cellHeight(row: 0, section: safeSection), SafeTableViewCell.height)
+        XCTAssertEqual(cellHeight(row: 0, section: securitySection), MenuItemTableViewCell.height)
+        XCTAssertEqual(cellHeight(row: 0, section: portfolioSection), MenuItemTableViewCell.height)
+        XCTAssertEqual(cellHeight(row: 0, section: supportSection), MenuItemTableViewCell.height)
     }
 
     func test_whenGettingRow_thenCreatesAppropriateCell() {
         XCTAssertTrue(cell(row: 0, section: safeSection) is SafeTableViewCell)
+        XCTAssertTrue(cell(row: 0, section: securitySection) is MenuItemTableViewCell)
         XCTAssertTrue(cell(row: 0, section: portfolioSection) is MenuItemTableViewCell)
         XCTAssertTrue(cell(row: 0, section: supportSection) is MenuItemTableViewCell)
+        XCTAssertTrue(cell(row: 3, section: supportSection) is AppVersionTableViewCell)
     }
 
     func test_whenConfiguredSelectedSafeRow_thenAllIsThere() {
@@ -68,21 +73,20 @@ class MenuTableViewControllerTests: XCTestCase {
 
     // MARK: - Did select row
 
-    func test_whenSelectingManageTokens_thenCallsDelegate() {
-        selectCell(row: 0, section: portfolioSection)
-        XCTAssertTrue(delegate.manageTokensSelected)
-    }
-
     func test_whenSelectingCell_thenDeselectsIt() {
         selectCell(row: 0, section: safeSection)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
-
     // MARK: - Commands
 
+    func test_whenSelectingManageTokens_thenCommandIsCalled() {
+        selectCell(row: 0, section: portfolioSection)
+        XCTAssertTrue(delegate.selectedCommand is ManageTokensCommand)
+    }
+
     func test_whenSelectingChangePassword_thenCommandIsCalled() {
-        selectCell(row: 1, section: securitySection)
+        selectCell(row: 0, section: securitySection)
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
     }
 
@@ -127,55 +131,9 @@ extension MenuTableViewControllerTests {
 
 final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate {
 
-    var manageTokensSelected = false
-    func didSelectManageTokens() {
-        manageTokensSelected = true
-    }
-
-    var didCallConnectBrowserExtension = false
-    func didSelectConnectBrowserExtension() {
-        didCallConnectBrowserExtension = true
-    }
-
-    var didCallChangeBrowserExtension = false
-    func didSelectChangeBrowserExtension() {
-        didCallChangeBrowserExtension = true
-    }
-
-    func didSelectReplaceRecoveryPhrase() {}
-
     var selectedCommand: MenuCommand?
     func didSelectCommand(_ command: MenuCommand) {
         selectedCommand = command
     }
 
-}
-
-class MockDisconnectBrowserExtensionApplicationService: DisconnectBrowserExtensionApplicationService {
-
-    override var isAvailable: Bool { return false }
-
-    override func sign(transaction: RBETransactionID, withPhrase phrase: String) throws {
-        // no-op
-    }
-
-    override func create() -> RBETransactionID {
-        return "Some"
-    }
-
-    override func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
-        return RBEEstimationResult(feeCalculation: nil, error: nil)
-    }
-
-    override func start(transaction: RBETransactionID) throws {
-        // no-op
-    }
-
-    override func connect(transaction: RBETransactionID, code: String) throws {
-        // no-op
-    }
-
-    override func startMonitoring(transaction: RBETransactionID) {
-        // no-op
-    }
 }

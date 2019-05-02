@@ -325,11 +325,9 @@
 		556251D3214671BE00F569EE /* TokenBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */; };
 		556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */; };
 		556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */; };
-		556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251F32147C34600F569EE /* AddTokenHeaderView.swift */; };
 		556251F9214912AA00F569EE /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251F8214912AA00F569EE /* QRCodeView.swift */; };
 		556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251FA2149135F00F569EE /* QRCodeViewController.swift */; };
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
-		55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
 		5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562E64D216E1C0F00C54D57 /* RuleLabel.swift */; };
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
@@ -348,6 +346,11 @@
 		5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
+		55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */; };
+		55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */; };
+		55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */; };
+		55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
+		55B5DF7722788F4E001A32F4 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF7622788F4E001A32F4 /* MenuItemTableViewCell.swift */; };
 		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
 		55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */; };
 		55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */; };
@@ -369,7 +372,6 @@
 		55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5F216F6F8B003D9A53 /* TokenInputTests.swift */; };
 		55D0EC62216F7383003D9A53 /* TokenInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */; };
 		55DE530B217B467900613B90 /* ScanButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DE530A217B467900613B90 /* ScanButtonViewController.swift */; };
-		55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */; };
 		55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */; };
 		55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */; };
 		55DEBC28214BD7AB0017CD4B /* SafeAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC27214BD7AB0017CD4B /* SafeAddressViewController.swift */; };
@@ -883,7 +885,6 @@
 		555EB71A216DF19800E06553 /* VerifiableInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableInputTests.swift; sourceTree = "<group>"; };
 		555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableInputViewController.swift; sourceTree = "<group>"; };
 		555EB71E216DF48900E06553 /* VerifiableInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifiableInput.xib; sourceTree = "<group>"; };
-		556251F32147C34600F569EE /* AddTokenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenHeaderView.swift; sourceTree = "<group>"; };
 		556251F8214912AA00F569EE /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		556251FA2149135F00F569EE /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		556252052149201500F569EE /* QRCodeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewTests.swift; sourceTree = "<group>"; };
@@ -906,6 +907,10 @@
 		5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSafeCommand.swift; sourceTree = "<group>"; };
+		55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensCommand.swift; sourceTree = "<group>"; };
+		55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseCommand.swift; sourceTree = "<group>"; };
+		55B5DF7622788F4E001A32F4 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		55BAB0E321789285007539CF /* BigBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButton.swift; sourceTree = "<group>"; };
 		55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButtonTests.swift; sourceTree = "<group>"; };
 		55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltip.swift; sourceTree = "<group>"; };
@@ -929,7 +934,6 @@
 		55D0EC5F216F6F8B003D9A53 /* TokenInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputTests.swift; sourceTree = "<group>"; };
 		55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputViewController.swift; sourceTree = "<group>"; };
 		55DE530A217B467900613B90 /* ScanButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButtonViewController.swift; sourceTree = "<group>"; };
-		55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeQRCodeTableViewCell.swift; sourceTree = "<group>"; };
 		55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundHeaderFooterView.swift; sourceTree = "<group>"; };
 		55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionTableViewCell.swift; sourceTree = "<group>"; };
 		55DEBC27214BD7AB0017CD4B /* SafeAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAddressViewController.swift; sourceTree = "<group>"; };
@@ -1042,6 +1046,7 @@
 				0A2D58852257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift */,
 				554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */,
 				0A2D589C22576FA6001B8BF4 /* ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift */,
+				55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */,
 			);
 			path = ReplaceRecoveryPhrase;
 			sourceTree = "<group>";
@@ -1306,19 +1311,18 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				554596F622689A45009B4A0B /* Support */,
-				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
+				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
+				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
+				55B5DF7622788F4E001A32F4 /* MenuItemTableViewCell.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
 				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
 				0A1940472226CF27005B7440 /* DisconnectBrowserExtension */,
-				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
-				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
+				55B5DF6222782BF6001A32F4 /* Portfolio */,
 				0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */,
 				0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */,
 				0A1940642226DE1E005B7440 /* ResyncBrowserExtension */,
-				55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */,
-				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
-				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
+				55B5DF5122782B28001A32F4 /* SelectSafe */,
+				554596F622689A45009B4A0B /* Support */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1682,7 +1686,6 @@
 				550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */,
 				55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */,
 				55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */,
-				556251F32147C34600F569EE /* AddTokenHeaderView.swift */,
 			);
 			path = ManageTokens;
 			sourceTree = "<group>";
@@ -1824,6 +1827,7 @@
 		554596F622689A45009B4A0B /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 				5545970522689A63009B4A0B /* LicensesCommand.swift */,
 				554597072268AB22009B4A0B /* TermsCommand.swift */,
 				554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */,
@@ -1916,6 +1920,24 @@
 				5598FFE4225B73B3006D5792 /* VerifyCurrentPasswordViewControllerTests.swift */,
 			);
 			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		55B5DF5122782B28001A32F4 /* SelectSafe */ = {
+			isa = PBXGroup;
+			children = (
+				55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */,
+				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
+				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
+			);
+			path = SelectSafe;
+			sourceTree = "<group>";
+		};
+		55B5DF6222782BF6001A32F4 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */,
+			);
+			path = Portfolio;
 			sourceTree = "<group>";
 		};
 		55BAB0E221789285007539CF /* BorderedButton */ = {
@@ -2724,6 +2746,7 @@
 				554CACD1221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
+				55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */,
 				0A3BD8FF22254833007039B4 /* FeeCalculation.swift in Sources */,
 				0A2D588222575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift in Sources */,
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
@@ -2750,7 +2773,6 @@
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
-				55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */,
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
@@ -2761,13 +2783,13 @@
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
+				55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD8FA22254833007039B4 /* FeeCalculationAssetLine+TextStyle.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
 				0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */,
 				55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
-				556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
@@ -2810,6 +2832,7 @@
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
 				0A3BD8FE22254833007039B4 /* FeeCalculationSection.swift in Sources */,
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
+				55B5DF7722788F4E001A32F4 /* MenuItemTableViewCell.swift in Sources */,
 				0A3BD8FC22254833007039B4 /* FeeCalculationSpacingLine.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
@@ -2819,6 +2842,7 @@
 				0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */,
 				0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
+				55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */,
 				0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
@@ -2848,6 +2872,7 @@
 				55980009225B73E6006D5792 /* ChangePasswordFlowCoordinatorTests.swift in Sources */,
 				0A2D58A52257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift in Sources */,
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
+				55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,
 				0A3BD8ED22254822007039B4 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
@@ -2902,7 +2927,6 @@
 				0A334E5F209C8E6800ABC6AE /* PasswordViewControllerTests.swift in Sources */,
 				0A2D58942257674C001B8BF4 /* GuidelinesViewControllerTests.swift in Sources */,
 				0A2D589D22576FA6001B8BF4 /* ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift in Sources */,
-				55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */,
 				0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */,
 				0A334E5D209C8E6800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
 				0A2D58A122577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift in Sources */,

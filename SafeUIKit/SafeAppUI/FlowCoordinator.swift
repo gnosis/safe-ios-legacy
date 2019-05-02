@@ -164,19 +164,3 @@ class NavigationControllerTransitionTracker: NSObject, UINavigationControllerDel
         return nil
     }
 }
-
-
-public final class SafeNavigationController: UINavigationController {
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        styleNavBar()
-    }
-
-    func styleNavBar() {
-        navigationBar.barTintColor = .white
-        navigationBar.isTranslucent = false
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-    }
-
-}

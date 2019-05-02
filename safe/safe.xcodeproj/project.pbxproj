@@ -78,7 +78,6 @@
 		0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
-		55247322213FF7A100A77557 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55247321213FF7A000A77557 /* Montserrat-SemiBold.ttf */; };
 		553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
@@ -87,6 +86,7 @@
 		555D33FE2110BD810055D87C /* PushLocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */; };
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
 		55A7B2A320ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */; };
+		55B5DF792278AD2F001A32F4 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */; };
 		55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */; };
 		55CAA003209AF0FB009AE181 /* SaveMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */; };
 		55CAA005209AF204009AE181 /* ConfirmMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */; };
@@ -353,7 +353,6 @@
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
 		0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SafeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		55247321213FF7A000A77557 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F5203C3054009C9BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -367,6 +366,7 @@
 		555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalizationStrings.swift; sourceTree = "<group>"; };
 		558FD81420767F18004F070E /* NewSafeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeScreen.swift; sourceTree = "<group>"; };
 		55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
+		55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicScreen.swift; sourceTree = "<group>"; };
 		55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicUITests.swift; sourceTree = "<group>"; };
@@ -597,7 +597,7 @@
 		55247315213FF79100A77557 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				55247321213FF7A000A77557 /* Montserrat-SemiBold.ttf */,
+				55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1004,7 +1004,7 @@
 			files = (
 				553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */,
 				0A53AD3920595C2300D713AD /* Localizable.strings in Resources */,
-				55247322213FF7A100A77557 /* Montserrat-SemiBold.ttf in Resources */,
+				55B5DF792278AD2F001A32F4 /* Montserrat-Bold.otf in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
 				0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */,
 				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,

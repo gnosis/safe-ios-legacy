@@ -17,7 +17,7 @@ class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
     }
 
     func configure(group: TransactionGroupData) {
-        label.text = name(from: group)?.uppercased()
+        title = name(from: group)?.uppercased()
     }
 
     private func name(from group: TransactionGroupData) -> String? {
