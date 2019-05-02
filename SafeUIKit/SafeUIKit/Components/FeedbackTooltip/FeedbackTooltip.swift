@@ -13,8 +13,7 @@ public final class FeedbackTooltip: CardView {
     private let horizontalPadding: CGFloat = 20
     private let verticalPadding: CGFloat = 12
 
-    // chars per second
-    private let userReadingSpeed = 10
+    private let userReadingSpeedCharsPerSecond: TimeInterval = 10
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,20 +57,16 @@ public final class FeedbackTooltip: CardView {
                                              constant: tooltip.horizontalPadding),
             tooltip.centerXAnchor.constraint(equalTo: superview.centerXAnchor),
             tooltip.bottomAnchor.constraint(equalTo: view.topAnchor, constant: -tooltip.verticalPadding)])
-        UIView.animate(withDuration: 0.3, animations: {
+
+        UIView.animate(withDuration: 0.3) {
             tooltip.alpha = 1
-        }) { finished in
-            let timeToShowInMilliseconds = (message.count * 1_000) / tooltip.userReadingSpeed
-            DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(timeToShowInMilliseconds)) {
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        tooltip.alpha = 0
-                    }) { finished in
-                        tooltip.removeFromSuperview()
-                    }
-                }
-            }
         }
+        let visibleDurationSeconds = TimeInterval(message.count) / tooltip.userReadingSpeedCharsPerSecond
+        UIView.animate(withDuration: 0.3, delay: visibleDurationSeconds, options: [], animations: {
+            tooltip.alpha = 0
+        }, completion: { _ in
+            tooltip.removeFromSuperview()
+        })
     }
 
 }
