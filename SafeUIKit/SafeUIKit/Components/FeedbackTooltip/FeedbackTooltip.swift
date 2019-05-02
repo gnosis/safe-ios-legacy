@@ -58,11 +58,13 @@ public final class FeedbackTooltip: CardView {
             tooltip.centerXAnchor.constraint(equalTo: superview.centerXAnchor),
             tooltip.bottomAnchor.constraint(equalTo: view.topAnchor, constant: -tooltip.verticalPadding)])
 
-        UIView.animate(withDuration: 0.3) {
+        let transitionDuration = 0.3
+        UIView.animate(withDuration: transitionDuration) {
             tooltip.alpha = 1
         }
         let visibleDurationSeconds = TimeInterval(message.count) / tooltip.userReadingSpeedCharsPerSecond
-        UIView.animate(withDuration: 0.3, delay: visibleDurationSeconds, options: [], animations: {
+        let delay = transitionDuration + visibleDurationSeconds
+        UIView.animate(withDuration: transitionDuration, delay: delay, options: [], animations: {
             tooltip.alpha = 0
         }, completion: { _ in
             tooltip.removeFromSuperview()
