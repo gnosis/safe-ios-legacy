@@ -22,7 +22,7 @@ public class TransactionFeeView: BaseCustomView {
     private let displayedDecimals = 5
     private let stackViewSpacing: CGFloat = 8
     private let emptyViewHeight: CGFloat = 6
-    private let paddings: (left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) = (0, 20, 0, 20)
+    private let paddings: (left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) = (16, 25, 16, 25)
     public private(set) var tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
 
     public private(set) var currentBalance: TokenData?
