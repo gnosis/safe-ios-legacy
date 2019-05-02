@@ -31,6 +31,7 @@ public class FeeCalculationView: UIView {
 
     func update() {
         contentView?.removeFromSuperview()
+        calculation.update()
         contentView = calculation.makeView()
         addSubview(contentView)
         wrapAroundDynamicHeightView(contentView, insets: .zero)

@@ -15,6 +15,10 @@ public class FeeCalculationErrorLine: FeeCalculationLine {
         self.text = text
     }
 
+    public func set(error: Error?) {
+        text = error?.localizedDescription ?? ""
+    }
+
     override func makeView() -> UIView {
         let label = UILabel()
         label.attributedText = NSAttributedString(string: text, style: textStyle)

@@ -80,7 +80,7 @@ final class RuleLabel: UIView {
     }
 
     func reset() {
-        _ = rule?("") // triggering rule status update
+        _ = rule?("") // updating rule to give chance to react rule's clients to reset() call
         status = .inactive
     }
 
