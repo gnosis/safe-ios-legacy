@@ -10,6 +10,7 @@ extension FeeCalculationAssetLine {
 
     func set(value: TokenData, displayedDecimals: Int = 5) {
         guard let balance = value.balance else {
+            tooltipSource.message = nil
             set(value: SendEthFeeCalculation.Strings.loading)
             return
         }
@@ -17,6 +18,9 @@ extension FeeCalculationAssetLine {
                                                         decimals: value.decimals,
                                                         displayedDecimals: displayedDecimals)
         set(value: formatter.string(from: balance))
+
+        formatter.displayedDecimals = nil
+        set(tooltip: formatter.string(from: balance))
     }
 
 }

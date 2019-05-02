@@ -24,7 +24,9 @@ class SendEthFeeCalculation: FeeCalculation {
         networkFeeLine = FeeCalculationAssetLine()
             .set(name: Strings.networkFee)
             .set(value: Strings.loading)
-            .set(button: Strings.feeInfo, target: nil, action: Selector(("showTransactionFeeInfo")))
+            .set(button: Strings.feeInfo,
+                 target: nil,
+                 action: #selector(ReviewTransactionViewController.showTransactionFeeInfo))
         resultingBalanceLine = FeeCalculationAssetLine()
             .set(style: .balance)
             .set(name: Strings.resultingBalance)

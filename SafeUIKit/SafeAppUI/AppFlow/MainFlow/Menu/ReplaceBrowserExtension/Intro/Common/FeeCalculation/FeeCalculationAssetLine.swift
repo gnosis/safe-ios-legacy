@@ -4,6 +4,7 @@
 
 import Foundation
 import UIKit
+import SafeUIKit
 
 public class FeeCalculationAssetLine: FeeCalculationLine {
 
@@ -46,6 +47,9 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
 
     var style: Style = .plain
     var asset: AssetInfo = .empty
+    private var tooltip: String?
+
+    public private(set) var tooltipSource: TooltipSource!
 
     override func makeView() -> UIView {
         let textStyle = self.style == .plain ? TextStyle.plain : TextStyle.balance
@@ -87,6 +91,8 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
                                                   style: asset.error == nil ? textStyle.value : textStyle.error)
         let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
         label.setContentHuggingPriority(huggingPriority, for: .horizontal)
+        tooltipSource = TooltipSource(target: label)
+        tooltipSource.message = tooltip
         return label
     }
 
@@ -105,6 +111,12 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     @discardableResult
     func set(value: String) -> FeeCalculationAssetLine {
         self.asset.value = value
+        return self
+    }
+
+    @discardableResult
+    func set(tooltip: String?) -> FeeCalculationAssetLine {
+        self.tooltip = tooltip
         return self
     }
 
