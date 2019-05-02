@@ -201,6 +201,7 @@
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D220480C7B00445AC2 /* Fonts.swift */; };
+		0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */; };
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
 		0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
@@ -737,6 +738,7 @@
 		0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
 		0A9670D220480C7B00445AC2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		0A9670D820480C7B00445AC2 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceView.swift; sourceTree = "<group>"; };
 		0A99436820A0485300E36FD7 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		0A99436A20A0489800E36FD7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
@@ -1435,6 +1437,7 @@
 				5524735621428EC400A77557 /* QRCodeScanner */,
 				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
 				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
+				0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */,
 				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
 				0AF9EBC421A6C4A700C028B3 /* ContainerCell.swift */,
 				0ACCA8C1221C116F00D37594 /* NibUIView.swift */,
@@ -2603,6 +2606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */,
+				0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */,
 				5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */,
 				0AD1D1E021A8430300941EA1 /* EthereumAddressFormatter.swift in Sources */,
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,

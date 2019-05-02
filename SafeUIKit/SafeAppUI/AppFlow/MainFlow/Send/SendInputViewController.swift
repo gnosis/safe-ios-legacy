@@ -13,20 +13,18 @@ protocol SendInputViewControllerDelegate: class {
 
 public class SendInputViewController: UIViewController {
 
-    @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextBarButton: UIBarButtonItem!
-    @IBOutlet weak var transactionHeaderView: TransactionHeaderView!
     @IBOutlet weak var addressInput: AddressInput!
     @IBOutlet weak var tokenInput: TokenInput!
+    @IBOutlet weak var accountBalanceHeaderView: AccountBalanceView!
 
     // Either transactionFeeView or tokenBalanceView and feeBalanceView are visible at the same time
     @IBOutlet weak var transactionFeeView: TransactionFeeView!
 
     @IBOutlet weak var tokenBalanceView: TransactionFeeView!
     @IBOutlet weak var feeBalanceView: TransactionFeeView!
-    @IBOutlet weak var feeBackgroundView: UIView!
 
     weak var delegate: SendInputViewControllerDelegate?
 
@@ -55,7 +53,6 @@ public class SendInputViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         contentView.backgroundColor = .white
-        backgroundView.isDimmed = true
         nextBarButton.title = SendInputViewController.Strings.continue
         nextBarButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
@@ -78,11 +75,13 @@ public class SendInputViewController: UIViewController {
         tokenInput.tokenCode = model.tokenData.code
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
-
-        transactionHeaderView.usesEthImageWhenImageURLIsNil = true
         feeBalanceView.backgroundColor = .clear
-        feeBackgroundView.backgroundColor = .white
         model.start()
+
+        DispatchQueue.main.async {
+            // For unknown reasons, the blockies (identicon) does not show up if updated in the viewDidLoad
+            self.accountBalanceHeaderView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+        }
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -101,14 +100,12 @@ public class SendInputViewController: UIViewController {
     }
 
     func updateFromViewModel() {
-        transactionHeaderView.assetCode = model.tokenData.code
-        transactionHeaderView.assetImageURL = model.tokenData.logoURL
-        transactionHeaderView.assetInfo = model.balance
+        accountBalanceHeaderView.amount = model.tokenData
+
         if tokenID == feeTokenID {
             transactionFeeView.isHidden = false
             tokenBalanceView.isHidden = true
             feeBalanceView.isHidden = true
-            feeBackgroundView.isHidden = true
             transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
                                          transactionFee: model.feeAmountTokenData,
                                          resultingBalance: model.feeResultingBalanceTokenData)
@@ -116,7 +113,6 @@ public class SendInputViewController: UIViewController {
             transactionFeeView.isHidden = true
             tokenBalanceView.isHidden = false
             feeBalanceView.isHidden = false
-            feeBackgroundView.isHidden = false
             tokenBalanceView.configure(currentBalance: model.tokenData,
                                        transactionFee: nil,
                                        resultingBalance: model.resultingTokenData)
