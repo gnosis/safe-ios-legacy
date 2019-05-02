@@ -7,7 +7,7 @@ import CommonImplementations
 import MultisigWalletImplementations
 import Database
 
-class UpdateProcessedTransactionsMigration: Migration {
+class M0001_UpdateProcessedTransactionsMigration: Migration {
 
     convenience init() {
         // DO NOT CHANGE!
