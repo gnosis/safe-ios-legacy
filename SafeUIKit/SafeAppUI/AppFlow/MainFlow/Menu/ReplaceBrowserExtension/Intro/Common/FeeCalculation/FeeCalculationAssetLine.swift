@@ -17,10 +17,12 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
 
         var name: String
         var button: ButtonItem?
-        var value: String
+        var value: String?
+        /// If set, then valueButton is shown instead of value
+        var valueButton: ButtonItem?
         var error: Error?
 
-        static let empty = AssetInfo(name: "", button: nil, value: "", error: nil)
+        static let empty = AssetInfo(name: "", button: nil, value: "", valueButton: nil, error: nil)
 
         static func == (lhs: FeeCalculationAssetLine.AssetInfo, rhs: FeeCalculationAssetLine.AssetInfo) -> Bool {
             return lhs.name == rhs.name &&
@@ -36,6 +38,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         var text: String
         var target: AnyClass?
         var action: Selector?
+        var icon: UIImage?
 
         static func == (lhs: FeeCalculationAssetLine.ButtonItem, rhs: FeeCalculationAssetLine.ButtonItem) -> Bool {
             return lhs.text == rhs.text &&
@@ -86,14 +89,27 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     }
 
     func makeValue(textStyle: TextStyle) -> UIView {
-        let label = UILabel()
-        label.attributedText = NSAttributedString(string: asset.value,
-                                                  style: asset.error == nil ? textStyle.value : textStyle.error)
-        let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
-        label.setContentHuggingPriority(huggingPriority, for: .horizontal)
-        tooltipSource = TooltipSource(target: label)
-        tooltipSource.message = tooltip
-        return label
+        if let valueButton = asset.valueButton {
+            let button = UIButton(type: .custom)
+            button.setAttributedTitle(NSAttributedString(string: valueButton.text, style: textStyle.valueButton),
+                                      for: .normal)
+            if let action = valueButton.action {
+                button.addTarget(valueButton.target, action: action, for: .touchUpInside)
+            }
+            let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
+            button.setContentHuggingPriority(huggingPriority, for: .horizontal)
+            button.contentHorizontalAlignment = .trailing
+            return button
+        } else {
+            let label = UILabel()
+            label.attributedText = NSAttributedString(string: asset.value ?? "",
+                                                      style: asset.error == nil ? textStyle.value : textStyle.error)
+            let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
+            label.setContentHuggingPriority(huggingPriority, for: .horizontal)
+            tooltipSource = TooltipSource(target: label)
+            tooltipSource.message = tooltip
+            return label
+        }
     }
 
     @discardableResult
@@ -122,7 +138,16 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
 
     @discardableResult
     func set(button: String, target: AnyClass? = nil, action: Selector? = nil) -> FeeCalculationAssetLine {
-        self.asset.button = ButtonItem(text: button, target: target, action: action)
+        self.asset.button = ButtonItem(text: button, target: target, action: action, icon: nil)
+        return self
+    }
+
+    @discardableResult
+    func set(valueButton: String,
+             icon: UIImage?,
+             target: AnyClass? = nil,
+             action: Selector? = nil) -> FeeCalculationAssetLine {
+        self.asset.valueButton = ButtonItem(text: valueButton, target: target, action: action, icon: nil)
         return self
     }
 

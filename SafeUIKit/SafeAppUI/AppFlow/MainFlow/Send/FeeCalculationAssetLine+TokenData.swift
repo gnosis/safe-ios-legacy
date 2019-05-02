@@ -23,4 +23,15 @@ extension FeeCalculationAssetLine {
         set(tooltip: formatter.string(from: balance))
     }
 
+    func set(valueButton value: TokenData, displayedDecimals: Int = 5) {
+        guard let balance = value.balance else {
+            set(value: SendEthFeeCalculation.Strings.loading)
+            return
+        }
+        let formatter = TokenNumberFormatter.ERC20Token(code: value.code,
+                                                        decimals: value.decimals,
+                                                        displayedDecimals: displayedDecimals)
+        set(valueButton: formatter.string(from: balance), icon: nil)
+
+    }
 }
