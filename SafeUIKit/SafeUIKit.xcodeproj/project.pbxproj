@@ -193,6 +193,7 @@
 		0A73C6E2227B35F5002EEA32 /* SendEthFeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */; };
 		0A73C6F2227B3605002EEA32 /* SendERC20FeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */; };
 		0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */; };
+		0A73C6FE227B4DF6002EEA32 /* TooltipSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6FD227B4DF6002EEA32 /* TooltipSource.swift */; };
 		0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8BE205284180044D5DD /* H1Label.swift */; };
 		0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
@@ -714,6 +715,7 @@
 		0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEthFeeCalculation.swift; sourceTree = "<group>"; };
 		0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendERC20FeeCalculation.swift; sourceTree = "<group>"; };
 		0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeeCalculationAssetLine+TokenData.swift"; sourceTree = "<group>"; };
+		0A73C6FD227B4DF6002EEA32 /* TooltipSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipSource.swift; sourceTree = "<group>"; };
 		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
 		0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
@@ -1943,6 +1945,7 @@
 			isa = PBXGroup;
 			children = (
 				55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */,
+				0A73C6FD227B4DF6002EEA32 /* TooltipSource.swift */,
 			);
 			path = FeedbackTooltip;
 			sourceTree = "<group>";
@@ -2665,6 +2668,7 @@
 				556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */,
 				55C428FA217B426D00BF8922 /* ScanBarButtonItem.swift in Sources */,
 				55126B5C21AC372D00A9F810 /* TransactionConfirmationView.swift in Sources */,
+				0A73C6FE227B4DF6002EEA32 /* TooltipSource.swift in Sources */,
 				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				550E7CDC21708E1F0032DE6C /* String+Extensions.swift in Sources */,
 				55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */,
