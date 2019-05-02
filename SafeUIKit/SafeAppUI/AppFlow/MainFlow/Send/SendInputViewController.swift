@@ -19,10 +19,10 @@ public class SendInputViewController: UIViewController {
     @IBOutlet weak var addressInput: AddressInput!
     @IBOutlet weak var tokenInput: TokenInput!
     @IBOutlet weak var accountBalanceHeaderView: AccountBalanceView!
+    @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
     // Either transactionFeeView or tokenBalanceView and feeBalanceView are visible at the same time
     @IBOutlet weak var transactionFeeView: TransactionFeeView!
-
     @IBOutlet weak var tokenBalanceView: TransactionFeeView!
     @IBOutlet weak var feeBalanceView: TransactionFeeView!
 
@@ -75,7 +75,11 @@ public class SendInputViewController: UIViewController {
         tokenInput.tokenCode = model.tokenData.code
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
-        feeBalanceView.backgroundColor = .clear
+        if tokenID == feeTokenID {
+            feeCalculationView.calculation = SendEthFeeCalculation()
+        } else {
+            feeCalculationView.calculation = SendERC20FeeCalculation()
+        }
         model.start()
 
         DispatchQueue.main.async {
@@ -102,23 +106,66 @@ public class SendInputViewController: UIViewController {
     func updateFromViewModel() {
         accountBalanceHeaderView.amount = model.tokenData
 
+        let formatter = TokenNumberFormatter.ERC20Token(code: model.feeAmountTokenData.code,
+                                                        decimals: model.feeAmountTokenData.decimals,
+                                                        displayedDecimals: 5)
+
         if tokenID == feeTokenID {
-            transactionFeeView.isHidden = false
-            tokenBalanceView.isHidden = true
-            feeBalanceView.isHidden = true
-            transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
-                                         transactionFee: model.feeAmountTokenData,
-                                         resultingBalance: model.feeResultingBalanceTokenData)
+            let calculation = feeCalculationView.calculation as! SendEthFeeCalculation
+
+
+            let fee = formatter.string(from: model.feeAmountTokenData.balance ?? 0)
+            calculation.networkFeeLine.set(value: fee)
+            let resultingBalance = formatter.string(from: model.feeResultingBalanceTokenData.balance ?? 0)
+            calculation.resultingBalanceLine.set(value: resultingBalance)
+
+            calculation.errorLine.text = ""
+            calculation.resultingBalanceLine.set(error: nil)
+            if model.hasEnoughFunds() == false {
+                let error = FeeCalculationError.insufficientBalance
+                calculation.errorLine.text = error.localizedDescription
+                calculation.resultingBalanceLine.set(error: error)
+            }
+            calculation.update()
+            feeCalculationView.update()
         } else {
-            transactionFeeView.isHidden = true
-            tokenBalanceView.isHidden = false
-            feeBalanceView.isHidden = false
-            tokenBalanceView.configure(currentBalance: model.tokenData,
-                                       transactionFee: nil,
-                                       resultingBalance: model.resultingTokenData)
-            feeBalanceView.configure(currentBalance: nil,
-                                     transactionFee: model.feeAmountTokenData,
-                                     resultingBalance: model.feeResultingBalanceTokenData)
+            let calculation = feeCalculationView.calculation as! SendERC20FeeCalculation
+            formatter.tokenCode = model.resultingTokenData.code
+            formatter.decimals = model.resultingTokenData.decimals
+            let resultingBalance = formatter.string(from: model.resultingTokenData.balance ?? 0)
+            calculation.resultingBalanceLine.set(value: resultingBalance)
+
+            formatter.tokenCode = model.feeAmountTokenData.code
+            formatter.decimals = model.feeAmountTokenData.decimals
+
+            let feeBalance = formatter.string(from: model.feeBalanceTokenData.balance ?? 0)
+            calculation.networkFeeBalance.set(value: feeBalance)
+
+            let fee = formatter.string(from: model.feeAmountTokenData.balance ?? 0)
+            calculation.networkFeeLine.set(value: fee)
+
+            let feeResultingBalance = formatter.string(from: model.feeResultingBalanceTokenData.balance ?? 0)
+            calculation.networkFeeResultingBalanceLine.set(value: feeResultingBalance)
+
+            calculation.errorLine.text = ""
+            calculation.resultingBalanceLine.set(error: nil)
+            calculation.networkFeeBalanceErrorLine.text = ""
+            calculation.networkFeeResultingBalanceLine.set(error: nil)
+            if model.hasEnoughFunds() == false {
+                let error = FeeCalculationError.insufficientBalance
+
+                if (model.resultingTokenData.balance ?? 0) < 0 {
+                    calculation.errorLine.text = error.localizedDescription
+                    calculation.resultingBalanceLine.set(error: error)
+                }
+
+                if (model.feeResultingBalanceTokenData.balance ?? 0) < 0 {
+                    calculation.networkFeeBalanceErrorLine.text = error.localizedDescription
+                    calculation.networkFeeResultingBalanceLine.set(error: error)
+                }
+            }
+            calculation.update()
+            feeCalculationView.update()
         }
         nextBarButton.isEnabled = model.canProceedToSigning
     }
@@ -175,4 +222,75 @@ extension SendInputViewController: VerifiableInputDelegate {
         keyboardBehavior.activeTextField = verifiableInput.textInput
     }
 
+}
+
+class SendEthFeeCalculation: FeeCalculation {
+
+    enum Strings {
+
+        static let currentBalance = LocalizedString("safe_balance", comment: "Current balance")
+        static let networkFee = LocalizedString("transaction_fee", comment: "Network fee")
+        static let resultingBalance = LocalizedString("balance_after_transfer", comment: "Balance after transfer")
+        static let loading = "-"
+        static let feeInfo = "[?]"
+
+    }
+
+    var networkFeeLine: FeeCalculationAssetLine
+    var resultingBalanceLine: FeeCalculationAssetLine
+    var errorLine: FeeCalculationErrorLine
+
+    required init() {
+        networkFeeLine = FeeCalculationAssetLine()
+            .set(name: Strings.networkFee)
+            .set(value: Strings.loading)
+            .set(button: Strings.feeInfo, target: nil, action: Selector(("showTransactionFeeInfo")))
+        resultingBalanceLine = FeeCalculationAssetLine()
+            .set(style: .balance)
+            .set(name: Strings.resultingBalance)
+            .set(value: Strings.loading)
+        errorLine = FeeCalculationErrorLine(text: Strings.loading)
+        super.init()
+        update()
+    }
+
+    func update() {
+        let section = FeeCalculationSection([networkFeeLine, resultingBalanceLine, errorLine])
+        section.border = nil
+        section.insets = .zero
+        elements = [section]
+    }
+
+}
+
+class SendERC20FeeCalculation: SendEthFeeCalculation {
+
+    var networkFeeBalance: FeeCalculationAssetLine
+    var networkFeeResultingBalanceLine: FeeCalculationAssetLine
+    var networkFeeBalanceErrorLine: FeeCalculationErrorLine
+
+    required init() {
+        networkFeeBalance = FeeCalculationAssetLine()
+            .set(name: Strings.currentBalance)
+            .set(value: Strings.loading)
+        networkFeeResultingBalanceLine = FeeCalculationAssetLine()
+            .set(style: .balance)
+            .set(name: Strings.resultingBalance)
+            .set(value: Strings.loading)
+        networkFeeBalanceErrorLine = FeeCalculationErrorLine(text: Strings.loading)
+        super.init()
+    }
+
+    override func update() {
+        let section = FeeCalculationSection([resultingBalanceLine,
+                                             errorLine,
+                                             FeeCalculationSpacingLine(spacing: 20),
+                                             networkFeeBalance,
+                                             networkFeeLine,
+                                             networkFeeResultingBalanceLine,
+                                             networkFeeBalanceErrorLine])
+        section.border = nil
+        section.insets = .zero
+        elements = [section]
+    }
 }

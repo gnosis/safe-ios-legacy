@@ -80,6 +80,7 @@ final class RuleLabel: UIView {
     }
 
     func reset() {
+        _ = rule?("") // triggering rule status update
         status = .inactive
     }
 

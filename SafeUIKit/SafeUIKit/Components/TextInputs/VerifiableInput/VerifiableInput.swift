@@ -54,12 +54,8 @@ open class VerifiableInput: UIView {
             return textInput.text
         }
         set {
-            if newValue != nil {
-                textInput.text = safeUserInput(newValue)
-                validateRules(for: textInput.text!)
-            } else {
-                textInput.text = nil
-            }
+            textInput.text = newValue != nil ? safeUserInput(newValue!) : nil
+            validateRules(for: newValue ?? "")
         }
     }
     public var rigthView: UIView? {

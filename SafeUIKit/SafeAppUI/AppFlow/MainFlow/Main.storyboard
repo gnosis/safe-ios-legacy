@@ -730,7 +730,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-aR-gHb">
-                                                <rect key="frame" x="16" y="0.0" width="343" height="482"/>
+                                                <rect key="frame" x="16" y="0.0" width="343" height="332"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8c-L6-hMu" customClass="AccountBalanceView" customModule="SafeUIKit">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="112"/>
@@ -758,34 +758,13 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-ww-1qS" customClass="TransactionFeeView" customModule="SafeUIKit">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-ww-1qS" customClass="FeeCalculationView" customModule="SafeAppUI" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="257" width="343" height="75"/>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="75" placeholder="YES" id="Wtb-dL-hJK"/>
                                                         </constraints>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vCy-x3-Jy2">
-                                                        <rect key="frame" x="0.0" y="332" width="343" height="150"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2x-kJ-ZE5" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="75"/>
-                                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="75" placeholder="YES" id="R2q-ha-M7A"/>
-                                                                </constraints>
-                                                                <viewLayoutGuide key="safeArea" id="0a0-e3-oco"/>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IjC-BS-KgP" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="75" width="343" height="75"/>
-                                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="75" placeholder="YES" id="zZQ-dN-8GZ"/>
-                                                                </constraints>
-                                                                <viewLayoutGuide key="safeArea" id="vKy-HK-gkH"/>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="bVs-ww-1qS" firstAttribute="width" secondItem="d1j-aR-gHb" secondAttribute="width" id="33D-Gi-VfJ"/>
@@ -832,12 +811,10 @@
                         <outlet property="accountBalanceHeaderView" destination="E8c-L6-hMu" id="Snp-mW-1up"/>
                         <outlet property="addressInput" destination="wPS-y0-TU7" id="zVY-Pf-IKp"/>
                         <outlet property="contentView" destination="bDK-RT-Q7p" id="WbW-2y-e20"/>
-                        <outlet property="feeBalanceView" destination="IjC-BS-KgP" id="M7V-FE-Vrb"/>
+                        <outlet property="feeCalculationView" destination="bVs-ww-1qS" id="PZa-70-pFb"/>
                         <outlet property="nextBarButton" destination="4Qd-5o-2ts" id="DpU-R5-snb"/>
                         <outlet property="scrollView" destination="2gI-Gd-oPe" id="BF1-Ku-r2O"/>
-                        <outlet property="tokenBalanceView" destination="s2x-kJ-ZE5" id="MJ4-5w-bls"/>
                         <outlet property="tokenInput" destination="NVX-g8-IFt" id="Bdb-gQ-KQI"/>
-                        <outlet property="transactionFeeView" destination="bVs-ww-1qS" id="D6W-rL-Vwy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1C-KG-2NE" userLabel="First Responder" sceneMemberID="firstResponder"/>
