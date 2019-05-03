@@ -41,7 +41,7 @@ class TransactionsTableViewControllerRegressionTests: XCTestCase {
             self.controller.resume()
         }
         debug("[test] waiting for updates to finish")
-        wait(for: [controller.updatingFinishedExpectation], timeout: 1.0)
+        wait(for: [controller.updatingFinishedExpectation], timeout: 2.0)
     }
 
     func test_wehnIndexOutOfRange_thenDoesNotCrash() {
