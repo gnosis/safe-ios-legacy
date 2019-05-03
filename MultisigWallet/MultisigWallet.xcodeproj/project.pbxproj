@@ -202,6 +202,8 @@
 		0AEF8AE820A08AC9006A1265 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* libCommon.a */; };
 		0AEF8AE920A08ACE006A1265 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AAA20A088B1006A1265 /* libMultisigWalletImplementations.a */; };
 		0AEF8AEC20A08BAE006A1265 /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A9020A08899006A1265 /* libMultisigWalletApplication.a */; };
+		551D76FE227C7BC9003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
+		551D7703227C7BCE003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
 		5524733421412A6000A77557 /* EthereumKitEthereumServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524733321412A6000A77557 /* EthereumKitEthereumServiceTests.swift */; };
 		552C6006212B0CA200BF973A /* SynchronisationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C5FFA212B0CA200BF973A /* SynchronisationDomainService.swift */; };
 		552C600A212B0CCE00BF973A /* SynchronisationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C6007212B0CCD00BF973A /* SynchronisationService.swift */; };
@@ -222,7 +224,6 @@
 		555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94AD20E3920600A0621D /* MockNotificationService.swift */; };
 		555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */; };
 		556251E62146787700F569EE /* TokenData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251E52146787700F569EE /* TokenData+Extensions.swift */; };
-		55B5DFB2227C6104001A32F4 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
 		55B5DFB3227C6212001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
 		55B5DFB4227C6247001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */; };
 		55B5DFB5227C624A001A32F4 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
@@ -1707,6 +1708,7 @@
 				0A6AE030216CB554002FBE3D /* EthereumContractProxyTests.swift in Sources */,
 				0ADD1DDE213544C50046AF1F /* ERC20TokenContractProxyTests.swift in Sources */,
 				0A19402A2226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift in Sources */,
+				551D7703227C7BCE003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */,
 				0A5C0D482185B6F300988930 /* AllDeploymentStatesTests.swift in Sources */,
 				0ACA9D10212AD37F00E39BB6 /* MockSystem.swift in Sources */,
@@ -1813,7 +1815,6 @@
 				55FB25BB2124772C00E81666 /* HTTPTokenListService.swift in Sources */,
 				0A9E385020F4AE510085E8D7 /* MockTransactionRelayService.swift in Sources */,
 				0A76BE5E20AF167D00D07770 /* InMemoryAccountRepository.swift in Sources */,
-				55B5DFB2227C6104001A32F4 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				552C600B212B0CCE00BF973A /* MockSynchronisationService.swift in Sources */,
 				0A442DF7210B25EE00F19F80 /* MessageCallRequest.swift in Sources */,
 				0A9E384520F4AE510085E8D7 /* JSONRPCRequest+BigIntResponse.swift in Sources */,
@@ -1850,6 +1851,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */,
+				551D76FE227C7BC9003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				55B5DFB7227C6253001A32F4 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
 				0A8A2B9D20FCDC560003BB7E /* TestFixture.swift in Sources */,
 				0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */,

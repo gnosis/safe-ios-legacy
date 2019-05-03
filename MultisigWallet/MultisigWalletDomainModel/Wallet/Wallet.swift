@@ -29,6 +29,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var recoveryPostProcessingState: WalletState!
 
     public private(set) var address: Address?
+
+    /// nil is treated as ETH by default
+    public private(set) var feePaymentTokenAddress: Address?
+
     public private(set) var creationTransactionHash: String?
     public private(set) var minimumDeploymentTransactionAmount: TokenInt?
     public private(set) var confirmationCount: Int = 1
@@ -59,6 +63,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
                             state: WalletState.State,
                             owners: OwnerList,
                             address: Address?,
+                            feePaymentTokenAddress: Address?,
                             minimumDeploymentTransactionAmount: TokenInt?,
                             creationTransactionHash: String?,
                             confirmationCount: Int = 1) {
@@ -68,6 +73,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         owners.forEach { addOwner($0) }
         self.state = self.state(from: state)
         self.address = address
+        self.feePaymentTokenAddress = feePaymentTokenAddress
         self.minimumDeploymentTransactionAmount = minimumDeploymentTransactionAmount
         self.creationTransactionHash = creationTransactionHash
         self.confirmationCount = confirmationCount
@@ -197,4 +203,5 @@ public class Wallet: IdentifiableEntity<WalletID> {
         address = nil
         minimumDeploymentTransactionAmount = nil
     }
+
 }
