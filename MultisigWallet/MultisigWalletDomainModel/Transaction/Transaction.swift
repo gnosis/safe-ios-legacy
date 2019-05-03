@@ -65,7 +65,6 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var data: Data?
     public private(set) var operation: WalletOperation?
     public private(set) var nonce: String?
-    // TODO: remove. walletID is part of accountID
     public let walletID: WalletID
     public let accountID: AccountID
 

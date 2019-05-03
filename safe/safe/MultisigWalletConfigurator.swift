@@ -79,6 +79,8 @@ class MultisigWalletConfigurator {
             let transactionRepo = DBTransactionRepository(db: db)
             let tokenListItemRepo = DBTokenListItemRepository(db: db)
             let monitorRepo = DBRBETransactionMonitorRepository(db: db)
+            let migrationRepo = DBMigrationRepository(db: db)
+            let migrationService = DBMigrationService(repository: migrationRepo)
             DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
             DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
             DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
@@ -88,8 +90,7 @@ class MultisigWalletConfigurator {
 
             if !db.exists {
                 try db.create()
-                skipMigrationsBeforeAndIncluding(M0001_UpdateProcessedTransactionsMigration(),
-                                                 with: appDelegate.multisigWalletDB)
+                skipMigrationsBeforeAndIncluding(WalletMigrations.latest, with: migrationService)
             }
             portfolioRepo.setUp()
             walletRepo.setUp()
@@ -97,8 +98,8 @@ class MultisigWalletConfigurator {
             transactionRepo.setUp()
             tokenListItemRepo.setUp()
             monitorRepo.setUp()
-
-            migrate(with: appDelegate.multisigWalletDB)
+            migrationRepo.setUp()
+            migrate(with: migrationService)
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
         }
@@ -109,35 +110,29 @@ class MultisigWalletConfigurator {
     ///
     /// - Parameters:
     ///   - migration: Latest migration.
-    ///   - db: MultisigWallet Database
-    private class func skipMigrationsBeforeAndIncluding(_ migration: Migration, with db: Database?) {
+    ///   - migrationService: Migration service.
+    private class func skipMigrationsBeforeAndIncluding(_ migration: Migration,
+                                                        with migrationService: DBMigrationService) {
         precondition(Thread.isMainThread)
         do {
-            let migrationService = self.migrationService(db: db!)
-            try migrationService.skipMigraionsBeforeAndIncluding(migration)
+            try migrationService.skipMigrationsBeforeAndIncluding(migration)
         } catch {
             ApplicationServiceRegistry.logger.error("Failed to setup latest MultisigWallet migration", error: error)
         }
     }
 
-    /// This method runs all migrations that have a number higher the highest stored migration number in tbl_migrations.
+    /// This method runs all migrations that have a number higher than the highest stored migration
+    /// number in tbl_migrations.
     ///
-    /// - Parameter db: MultisigWallet Database
-    private class func migrate(with db: Database?) {
+    /// - Parameter migrationService: Migration service.
+    private class func migrate(with migrationService: DBMigrationService) {
         precondition(Thread.isMainThread)
         do {
-            let migrationService = self.migrationService(db: db!)
-            migrationService.register(M0001_UpdateProcessedTransactionsMigration())
+            migrationService.register(WalletMigrations.all)
             try migrationService.migrate()
         } catch {
             ApplicationServiceRegistry.logger.error("Failed to run MultisigWallet migrations", error: error)
         }
-    }
-
-    private class func migrationService(db: Database) -> DBMigrationService {
-        let migrationRepo = DBMigrationRepository(db: db)
-        migrationRepo.setUp()
-        return DBMigrationService(repository: migrationRepo)
     }
 
     private class func configureEthereum(with appDelegate: AppDelegate) {
