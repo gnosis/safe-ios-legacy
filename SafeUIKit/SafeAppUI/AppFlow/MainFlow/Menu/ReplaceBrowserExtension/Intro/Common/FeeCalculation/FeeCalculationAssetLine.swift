@@ -59,6 +59,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         let lineStack = UIStackView(arrangedSubviews: [makeName(textStyle: textStyle),
                                                        makeValue(textStyle: textStyle)])
         lineStack.translatesAutoresizingMaskIntoConstraints = false
+        lineStack.alignment = .firstBaseline
         return lineStack
     }
 
@@ -74,12 +75,16 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         let stack = UIStackView(arrangedSubviews: [label, makeInfoButton(button: buttonData, textStyle: textStyle)])
         stack.spacing = 5
+        stack.alignment = .firstBaseline
         return stack
     }
 
     func makeInfoButton(button buttonData: ButtonItem, textStyle: TextStyle) -> UIButton {
         let button = UIButton(type: .custom)
-        button.setAttributedTitle(NSAttributedString(string: buttonData.text, style: textStyle.info), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: buttonData.text, style: textStyle.info),
+                                  for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: buttonData.text, style: textStyle.infoPressed),
+                                  for: .highlighted)
         button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         if let action = buttonData.action {
             button.addTarget(buttonData.target, action: action, for: .touchUpInside)
@@ -90,14 +95,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
 
     func makeValue(textStyle: TextStyle) -> UIView {
         if let valueButton = asset.valueButton {
-            let button = UIButton(type: .custom)
-            button.setAttributedTitle(NSAttributedString(string: valueButton.text, style: textStyle.valueButton),
-                                      for: .normal)
-            if let action = valueButton.action {
-                button.addTarget(valueButton.target, action: action, for: .touchUpInside)
-            }
-            button.contentHorizontalAlignment = .trailing
-            return button
+            return makeSettingsButton(textStyle: textStyle, item: valueButton)
         } else {
             let label = UILabel()
             label.attributedText = NSAttributedString(string: asset.value ?? "",
@@ -108,6 +106,42 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
             tooltipSource.message = tooltip
             return label
         }
+    }
+
+    private func makeSettingsButton(textStyle: TextStyle, item: ButtonItem) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.setAttributedTitle(NSAttributedString(string: item.text, style: textStyle.valueButton),
+                                  for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: item.text, style: textStyle.valueButtonPressed),
+                                  for: .highlighted)
+        if let action = item.action {
+            button.addTarget(item.target, action: action, for: .touchUpInside)
+        }
+
+        let buttonImageSpace: CGFloat = 7
+        // brilliant trickery to make image appear on the right hand side of the button
+        // h/t https://stackoverflow.com/a/32174204/7822368
+        button.setImage(Asset.TransactionEdit.settings.image, for: .normal)
+        button.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        button.contentHorizontalAlignment = .leading // instead of trailing, because the sides flipped
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -buttonImageSpace, bottom: 0, right: buttonImageSpace)
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: buttonImageSpace, bottom: 0, right: 0)
+
+        // separate dash-line view because the NSAttributedString's dashed underline is too close to the
+        // text vertically and there was no way found to offset it.
+        let dashLine = DashedSeparatorView()
+        dashLine.lineColor = textStyle.valueButton.fontColor
+        dashLine.translatesAutoresizingMaskIntoConstraints = false
+        button.addSubview(dashLine)
+        NSLayoutConstraint.activate([
+            dashLine.heightAnchor.constraint(equalToConstant: 1),
+            dashLine.leadingAnchor.constraint(equalTo: button.titleLabel!.leadingAnchor),
+            dashLine.trailingAnchor.constraint(equalTo: button.titleLabel!.trailingAnchor),
+            dashLine.topAnchor.constraint(equalTo: button.titleLabel!.bottomAnchor, constant: 1)])
+
+        return button
     }
 
     @discardableResult
