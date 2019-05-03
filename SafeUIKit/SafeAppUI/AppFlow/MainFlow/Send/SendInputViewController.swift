@@ -97,15 +97,14 @@ public class SendInputViewController: UIViewController {
         accountBalanceHeaderView.amount = model.tokenData
         if tokenID == feeTokenID {
             let calculation = feeCalculationView.calculation as! SendEthFeeCalculation
-            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData)
+            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance())
             calculation.resultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setBalanceError(feeBalanceError())
         } else {
             let calculation = feeCalculationView.calculation as! SendERC20FeeCalculation
             calculation.resultingBalanceLine.set(value: model.resultingTokenData)
             calculation.setBalanceError(tokenBalanceError())
-            calculation.networkFeeBalance.set(value: model.feeBalanceTokenData)
-            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData)
+            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance())
             calculation.networkFeeResultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setFeeBalanceError(feeBalanceError())
         }
