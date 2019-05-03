@@ -21,6 +21,7 @@ open class VerifiableInput: UIView {
     public private(set) var isActive: Bool = false
 
     public weak var delegate: VerifiableInputDelegate?
+
     private static let shakeAnimationKey = "shake"
     private let spacingViewHeight: CGFloat = 4
 

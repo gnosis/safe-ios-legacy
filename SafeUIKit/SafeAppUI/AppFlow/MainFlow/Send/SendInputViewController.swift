@@ -66,6 +66,7 @@ public class SendInputViewController: UIViewController {
         tokenInput.tokenCode = model.tokenData.code
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
+        tokenInput.textInput.keyboardTargetView = tokenInput.superview
         feeCalculationView.calculation = tokenID == feeTokenID ? SendEthFeeCalculation() : SendERC20FeeCalculation()
         model.start()
         DispatchQueue.main.async {

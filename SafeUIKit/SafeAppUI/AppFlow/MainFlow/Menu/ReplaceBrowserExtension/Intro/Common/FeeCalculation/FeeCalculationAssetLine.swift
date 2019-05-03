@@ -59,30 +59,32 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         let lineStack = UIStackView(arrangedSubviews: [makeName(textStyle: textStyle),
                                                        makeValue(textStyle: textStyle)])
         lineStack.translatesAutoresizingMaskIntoConstraints = false
-        lineStack.heightAnchor.constraint(equalToConstant: CGFloat(lineHeight)).isActive = true
         return lineStack
     }
 
     func makeName(textStyle: TextStyle) -> UIView {
-        let stack = UIStackView()
-        stack.spacing = 8
-        stack.alignment = .bottom
         let label = UILabel()
         label.attributedText = NSAttributedString(string: asset.name, style: textStyle.name)
-        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        stack.addArrangedSubview(label)
-        if let buttonData = asset.button {
-            stack.addArrangedSubview(makeInfoButton(button: buttonData, textStyle: textStyle))
+        // Note, setting compression resistance priority here breaks the stackview alignment when tooltip
+        // is shown from the 'value' label. That's why it was removed, and the name is not shrinking
+        // horizontally.
+        guard let buttonData = asset.button else {
+            return label
         }
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        let stack = UIStackView(arrangedSubviews: [label, makeInfoButton(button: buttonData, textStyle: textStyle)])
+        stack.spacing = 5
         return stack
     }
 
     func makeInfoButton(button buttonData: ButtonItem, textStyle: TextStyle) -> UIButton {
         let button = UIButton(type: .custom)
         button.setAttributedTitle(NSAttributedString(string: buttonData.text, style: textStyle.info), for: .normal)
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         if let action = buttonData.action {
             button.addTarget(buttonData.target, action: action, for: .touchUpInside)
         }
+        button.contentHorizontalAlignment = .left
         return button
     }
 
@@ -94,8 +96,6 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
             if let action = valueButton.action {
                 button.addTarget(valueButton.target, action: action, for: .touchUpInside)
             }
-            let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
-            button.setContentHuggingPriority(huggingPriority, for: .horizontal)
             button.contentHorizontalAlignment = .trailing
             return button
         } else {

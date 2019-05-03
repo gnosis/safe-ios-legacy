@@ -20,6 +20,7 @@ public class TextInput: UITextField {
     }
 
     public var heightConstraint: NSLayoutConstraint!
+    public weak var keyboardTargetView: UIView?
 
     public enum Style {
         case white
