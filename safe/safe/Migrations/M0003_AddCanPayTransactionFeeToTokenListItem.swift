@@ -16,9 +16,8 @@ final class M0003_AddCanPayTransactionFeeToTokenListItem: Migration {
     }
 
     override func setUp(connection: Connection) throws {
-        let sql = "ALTER TABLE tbl_wallets ADD can_pay_transaction_fee BOOLEAN DEFAULT 0;"
+        let sql = "ALTER TABLE tbl_token_list_items ADD can_pay_transaction_fee BOOLEAN DEFAULT 0;"
         try connection.execute(sql: sql)
     }
 
 }
-
