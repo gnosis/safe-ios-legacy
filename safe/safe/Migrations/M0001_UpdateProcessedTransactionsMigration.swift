@@ -7,15 +7,11 @@ import CommonImplementations
 import MultisigWalletImplementations
 import Database
 
-class M0001_UpdateProcessedTransactionsMigration: Migration {
+final class M0001_UpdateProcessedTransactionsMigration: Migration {
 
     convenience init() {
         // DO NOT CHANGE!
         self.init("0001_UpdateProcessedTransactionsMigration")
-    }
-
-    required init(_ id: String) {
-        super.init(id)
     }
 
     override func setUp(connection: Connection) throws {

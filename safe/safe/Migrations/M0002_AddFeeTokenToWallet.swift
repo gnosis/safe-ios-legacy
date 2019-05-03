@@ -13,10 +13,6 @@ final class M0002_AddFeeTokenToWallet: Migration {
         self.init("M0002_AddFeeTokenToWallet")
     }
 
-//    required init(_ id: String) {
-//        super.init(id)
-//    }
-
     override func setUp(connection: Connection) throws {
         let sql = "ALTER TABLE tbl_wallets ADD fee_payment_token_address TEXT;"
         try connection.execute(sql: sql)
