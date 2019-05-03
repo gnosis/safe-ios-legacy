@@ -54,12 +54,8 @@ open class VerifiableInput: UIView {
             return textInput.text
         }
         set {
-            if newValue != nil {
-                textInput.text = safeUserInput(newValue)
-                validateRules(for: textInput.text!)
-            } else {
-                textInput.text = nil
-            }
+            textInput.text = newValue != nil ? safeUserInput(newValue!) : nil
+            validateRules(for: newValue ?? "")
         }
     }
     public var rigthView: UIView? {
@@ -231,6 +227,10 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     private func hideRuleIfNeeded(_ rule: RuleLabel) {
+        guard let text = rule.text, !text.isEmpty else {
+            rule.isHidden = true
+            return
+        }
         let isError = rule.status == .error
         if showErrorsOnly {
             if adjustsHeightForHiddenRules {

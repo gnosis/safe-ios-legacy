@@ -20,17 +20,27 @@ public class EthereumAddressLabel: BaseCustomLabel {
         }
     }
 
+    public var hasFullAddressTooltip: Bool {
+        get { return tooltipSource.isActive }
+        set { tooltipSource.isActive = newValue }
+    }
+
+    private var tooltipSource: TooltipSource!
+
     public override func commonInit() {
         formatter.hexMode = .mixedcased
         formatter.truncationMode = .middle
         formatter.usesHeadTailSplit = true
         formatter.headLength = 2
         formatter.tailLength = 4
+        tooltipSource = TooltipSource(target: self)
+        tooltipSource.isActive = false
         update()
     }
 
     public override func update() {
         text = formattedText()
+        tooltipSource.message = address
     }
 
     private func formattedText() -> String? {

@@ -69,6 +69,10 @@ open class AttributedStringStyle {
         return 0
     }
 
+    open var underlineStyle: NSUnderlineStyle {
+        return NSUnderlineStyle(rawValue: 0)
+    }
+
     open var paragraphStyle: NSParagraphStyle {
         let style = NSMutableParagraphStyle()
         style.alignment = alignment
@@ -105,7 +109,8 @@ public extension NSAttributedString {
         self.init(string: string, attributes: [.font: style.font,
                                                .foregroundColor: style.fontColor,
                                                .paragraphStyle: style.paragraphStyle,
-                                               .kern: NSNumber(value: style.letterSpacing)])
+                                               .kern: NSNumber(value: style.letterSpacing),
+                                               .underlineStyle: NSNumber(value: style.underlineStyle.rawValue)])
     }
 
 }

@@ -5,7 +5,7 @@
 import Foundation
 import UIKit
 
-public class FeeCalculation: ArrayBasedCollection<FeeCalculationSection> {
+open class FeeCalculation: ArrayBasedCollection<FeeCalculationSection> {
 
     public func makeView() -> UIView {
         let backgroundView = UIView()
@@ -25,6 +25,10 @@ public class FeeCalculation: ArrayBasedCollection<FeeCalculationSection> {
     public func addSection(_ build: (FeeCalculationSection) -> FeeCalculationSection) -> FeeCalculation {
         self.elements.append(build(FeeCalculationSection()))
         return self
+    }
+
+    open func update() {
+        // to subclass
     }
 
 }

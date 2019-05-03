@@ -34,7 +34,7 @@ class EthFeeCalculation: FeeCalculation {
         update()
     }
 
-    func update() {
+    override func update() {
         var section = FeeCalculationSection([currentBalance, networkFee, emptyLine, balance])
         if let error = error {
             section.append(error)

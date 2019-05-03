@@ -13,20 +13,13 @@ protocol SendInputViewControllerDelegate: class {
 
 public class SendInputViewController: UIViewController {
 
-    @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextBarButton: UIBarButtonItem!
-    @IBOutlet weak var transactionHeaderView: TransactionHeaderView!
     @IBOutlet weak var addressInput: AddressInput!
     @IBOutlet weak var tokenInput: TokenInput!
-
-    // Either transactionFeeView or tokenBalanceView and feeBalanceView are visible at the same time
-    @IBOutlet weak var transactionFeeView: TransactionFeeView!
-
-    @IBOutlet weak var tokenBalanceView: TransactionFeeView!
-    @IBOutlet weak var feeBalanceView: TransactionFeeView!
-    @IBOutlet weak var feeBackgroundView: UIView!
+    @IBOutlet weak var accountBalanceHeaderView: AccountBalanceView!
+    @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
     weak var delegate: SendInputViewControllerDelegate?
 
@@ -46,16 +39,11 @@ public class SendInputViewController: UIViewController {
     private enum Strings {
         static let titleFormatString = LocalizedString("send_title", comment: "Send")
         static let `continue` = LocalizedString("review", comment: "Review button for Send screen")
-
-        // errors
-        static let notEnoughFunds = LocalizedString("exceeds_funds",
-                                                    comment: "Not enough balance for transaction.")
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         contentView.backgroundColor = .white
-        backgroundView.isDimmed = true
         nextBarButton.title = SendInputViewController.Strings.continue
         nextBarButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
@@ -67,7 +55,7 @@ public class SendInputViewController: UIViewController {
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
 
-        tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
+        tokenInput.addRule("", identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
             self.model.change(amount: $0)
             return self.model.hasEnoughFunds() ?? false
@@ -78,11 +66,12 @@ public class SendInputViewController: UIViewController {
         tokenInput.tokenCode = model.tokenData.code
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
-
-        transactionHeaderView.usesEthImageWhenImageURLIsNil = true
-        feeBalanceView.backgroundColor = .clear
-        feeBackgroundView.backgroundColor = .white
+        feeCalculationView.calculation = tokenID == feeTokenID ? SendEthFeeCalculation() : SendERC20FeeCalculation()
         model.start()
+        DispatchQueue.main.async {
+            // For unknown reasons, the identicon does not show up if updated in the viewDidLoad
+            self.accountBalanceHeaderView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+        }
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -101,30 +90,32 @@ public class SendInputViewController: UIViewController {
     }
 
     func updateFromViewModel() {
-        transactionHeaderView.assetCode = model.tokenData.code
-        transactionHeaderView.assetImageURL = model.tokenData.logoURL
-        transactionHeaderView.assetInfo = model.balance
+        accountBalanceHeaderView.amount = model.tokenData
         if tokenID == feeTokenID {
-            transactionFeeView.isHidden = false
-            tokenBalanceView.isHidden = true
-            feeBalanceView.isHidden = true
-            feeBackgroundView.isHidden = true
-            transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
-                                         transactionFee: model.feeAmountTokenData,
-                                         resultingBalance: model.feeResultingBalanceTokenData)
+            let calculation = feeCalculationView.calculation as! SendEthFeeCalculation
+            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance())
+            calculation.resultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
+            calculation.setBalanceError(feeBalanceError())
         } else {
-            transactionFeeView.isHidden = true
-            tokenBalanceView.isHidden = false
-            feeBalanceView.isHidden = false
-            feeBackgroundView.isHidden = false
-            tokenBalanceView.configure(currentBalance: model.tokenData,
-                                       transactionFee: nil,
-                                       resultingBalance: model.resultingTokenData)
-            feeBalanceView.configure(currentBalance: nil,
-                                     transactionFee: model.feeAmountTokenData,
-                                     resultingBalance: model.feeResultingBalanceTokenData)
+            let calculation = feeCalculationView.calculation as! SendERC20FeeCalculation
+            calculation.resultingBalanceLine.set(value: model.resultingTokenData)
+            calculation.setBalanceError(tokenBalanceError())
+            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance())
+            calculation.networkFeeResultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
+            calculation.setFeeBalanceError(feeBalanceError())
         }
+        feeCalculationView.update()
         nextBarButton.isEnabled = model.canProceedToSigning
+    }
+
+    private func tokenBalanceError() -> Error? {
+        let isNegativeBalance = (model.resultingTokenData.balance ?? 0) < 0
+        return  model.hasEnoughFunds() == false && isNegativeBalance ? FeeCalculationError.insufficientBalance : nil
+    }
+
+    private func feeBalanceError() -> Error? {
+        let isNegativeFeeBalance = (model.feeResultingBalanceTokenData.balance ?? 0) < 0
+        return model.hasEnoughFunds() == false && isNegativeFeeBalance ? FeeCalculationError.insufficientBalance : nil
     }
 
     @IBAction func proceedToSigning(_ sender: Any) {

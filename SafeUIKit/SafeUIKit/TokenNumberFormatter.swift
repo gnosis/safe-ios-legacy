@@ -24,6 +24,7 @@ public final class TokenNumberFormatter {
     public var locale = Locale.autoupdatingCurrent
     var groupingSeparator: String { return locale.groupingSeparator ?? " " }
     var decimalSeparator: String { return locale.decimalSeparator ?? "," }
+    public static let possibleDecimalSeapartors = CharacterSet(charactersIn: ".,٫")
     public var usesGroupingSeparator = false
     public var usesGroupingSeparatorForFractionDigits = false
     public var groupSize = 3
@@ -51,7 +52,6 @@ public final class TokenNumberFormatter {
         return sign + integer + decimalSeparator + adjustedFraction + tokenCurrency
     }
 
-    private static let possibleDecimalSeapartors = CharacterSet(charactersIn: ".,٫")
 
     public func number(from string: String) -> BigInt? {
         var input = string.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "")

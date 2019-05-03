@@ -125,9 +125,6 @@
    Recovery transaction failed alert's title */
 "error" = "Error";
 
-/* Not enough balance for transaction. */
-"exceeds_funds" = "Insufficient funds to perform this transaction";
-
 /* Feedback and FAQ menu item */
 "give_feedback" = "Give Feedback";
 

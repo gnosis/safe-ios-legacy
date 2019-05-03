@@ -10,16 +10,19 @@ extension FeeCalculationAssetLine {
     struct TextStyle {
         var name: AttributedStringStyle
         var value: AttributedStringStyle
+        var valueButton: AttributedStringStyle
         var info: AttributedStringStyle
         var error: AttributedStringStyle
 
         static let plain = TextStyle(name: DefaultStyle(),
                                      value: ValueStyle(),
+                                     valueButton: ValueButtonStyle(),
                                      info: NameButtonStyle(),
                                      error: ErrorStyle())
 
         static let balance = TextStyle(name: NameBalanceStyle(),
                                        value: ValueBalanceStyle(),
+                                       valueButton: ValueButtonStyle(),
                                        info: NameButtonBalanceStyle(),
                                        error: ErrorBalanceStyle())
     }
@@ -54,6 +57,14 @@ extension FeeCalculationAssetLine {
     class ValueStyle: DefaultStyle {
 
         override var alignment: NSTextAlignment { return .right }
+
+    }
+
+    class ValueButtonStyle: NameButtonStyle {
+
+        override var underlineStyle: NSUnderlineStyle {
+            return [.patternDot, .single]
+        }
 
     }
 
