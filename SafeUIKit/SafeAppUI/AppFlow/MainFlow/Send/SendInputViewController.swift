@@ -39,10 +39,6 @@ public class SendInputViewController: UIViewController {
     private enum Strings {
         static let titleFormatString = LocalizedString("send_title", comment: "Send")
         static let `continue` = LocalizedString("review", comment: "Review button for Send screen")
-
-        // errors
-        static let notEnoughFunds = LocalizedString("exceeds_funds",
-                                                    comment: "Not enough balance for transaction.")
     }
 
     public override func viewDidLoad() {
@@ -59,7 +55,7 @@ public class SendInputViewController: UIViewController {
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
 
-        tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
+        tokenInput.addRule("", identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
             self.model.change(amount: $0)
             return self.model.hasEnoughFunds() ?? false

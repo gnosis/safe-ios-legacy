@@ -112,7 +112,7 @@ public final class TokenInput: VerifiableInput {
 
     private func notExcededAmountOfFractionalDigits(_ value: String) -> Bool {
         guard formatter.number(from: value) != nil else { return true }
-        let components = value.components(separatedBy: formatter.decimalSeparator)
+        let components = value.components(separatedBy: TokenNumberFormatter.possibleDecimalSeapartors)
         guard components.count == 2 else { return true }
         let fractionalPart = components[1].removingTrailingZeroes
         return fractionalPart.count <= decimals

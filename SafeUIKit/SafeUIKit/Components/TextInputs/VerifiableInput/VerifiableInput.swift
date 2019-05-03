@@ -227,6 +227,10 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     private func hideRuleIfNeeded(_ rule: RuleLabel) {
+        guard let text = rule.text, !text.isEmpty else {
+            rule.isHidden = true
+            return
+        }
         let isError = rule.status == .error
         if showErrorsOnly {
             if adjustsHeightForHiddenRules {

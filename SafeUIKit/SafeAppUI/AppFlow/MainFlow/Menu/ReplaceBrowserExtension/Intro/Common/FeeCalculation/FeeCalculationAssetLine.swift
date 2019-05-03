@@ -69,12 +69,10 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         stack.alignment = .bottom
         let label = UILabel()
         label.attributedText = NSAttributedString(string: asset.name, style: textStyle.name)
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         stack.addArrangedSubview(label)
         if let buttonData = asset.button {
             stack.addArrangedSubview(makeInfoButton(button: buttonData, textStyle: textStyle))
-        }
-        if asset.error != nil {
-            stack.addArrangedSubview(makeErrorIcon())
         }
         return stack
     }

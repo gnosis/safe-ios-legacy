@@ -32,6 +32,18 @@ public class FeeCalculationErrorLine: FeeCalculationLine {
         return label
     }
 
+    func makeErrorIcon() -> UIView {
+        let image = UIImageView(image: UIImage(named: "estimation-error-icon",
+                                               in: Bundle(for: FeeCalculationLine.self),
+                                               compatibleWith: nil))
+        image.contentMode = .top
+        image.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            image.heightAnchor.constraint(equalToConstant: 18),
+            image.widthAnchor.constraint(equalToConstant: 16)])
+        return image
+    }
+
     class ErrorTextStyle: AttributedStringStyle {
 
         override var fontColor: UIColor { return ColorName.tomato.color }

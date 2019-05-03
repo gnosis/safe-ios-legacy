@@ -1,5 +1,5 @@
 /* Insufficient funds.\nPlease add %@ to your Safe. */
-"insufficient_funds_please_add" = "Insufficient funds.\nPlease add %@ to your Safe.";
+"exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* Browser extension is already connected. */
 "ios_error_extension_exists" = "Browser extension is already connected.";
