@@ -222,13 +222,13 @@
 		555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94AD20E3920600A0621D /* MockNotificationService.swift */; };
 		555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */; };
 		556251E62146787700F569EE /* TokenData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251E52146787700F569EE /* TokenData+Extensions.swift */; };
-		55B5DFA9227C5FFF001A32F4 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
-		55B5DFAA227C5FFF001A32F4 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
-		55B5DFAB227C5FFF001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */; };
-		55B5DFAC227C5FFF001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
-		55B5DFAD227C5FFF001A32F4 /* DBWalletRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */; };
-		55B5DFB0227C6084001A32F4 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */; };
 		55B5DFB2227C6104001A32F4 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
+		55B5DFB3227C6212001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
+		55B5DFB4227C6247001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */; };
+		55B5DFB5227C624A001A32F4 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
+		55B5DFB6227C624F001A32F4 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
+		55B5DFB7227C6253001A32F4 /* DBWalletRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */; };
+		55B5DFBA227C6296001A32F4 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */; };
 		55CC279920F667FB00AC12D6 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279620F667FB00AC12D6 /* AuthRequest.swift */; };
 		55CC279A20F667FB00AC12D6 /* PairingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279720F667FB00AC12D6 /* PairingRequest.swift */; };
 		55CC279C20F6680800AC12D6 /* PairingRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279820F667FB00AC12D6 /* PairingRequestTests.swift */; };
@@ -1796,7 +1796,6 @@
 				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
 				555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */,
 				0ABF9AB7226F380200B7C460 /* GetBlockByHashRequest.swift in Sources */,
-				55B5DFAC227C5FFF001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
 				552C600A212B0CCE00BF973A /* SynchronisationService.swift in Sources */,
 				0A9E384220F4AE510085E8D7 /* GetBalanceRequest.swift in Sources */,
 				0A9E384120F4AE510085E8D7 /* GasPriceRequest.swift in Sources */,
@@ -1805,7 +1804,6 @@
 				0A9E384720F4AE510085E8D7 /* BigInt+Hex.swift in Sources */,
 				0A9E384620F4AE510085E8D7 /* SendRawTransactionRequest.swift in Sources */,
 				0A9E384A20F4AE510085E8D7 /* EthData.swift in Sources */,
-				55B5DFAA227C5FFF001A32F4 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */,
 				0A4A1D7D2136E4C00088F9EC /* DBTokeListItemRepository.swift in Sources */,
 				0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */,
 				0A9E384D20F4AE510085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift in Sources */,
@@ -1816,7 +1814,6 @@
 				0A9E385020F4AE510085E8D7 /* MockTransactionRelayService.swift in Sources */,
 				0A76BE5E20AF167D00D07770 /* InMemoryAccountRepository.swift in Sources */,
 				55B5DFB2227C6104001A32F4 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
-				55B5DFAB227C5FFF001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */,
 				552C600B212B0CCE00BF973A /* MockSynchronisationService.swift in Sources */,
 				0A442DF7210B25EE00F19F80 /* MessageCallRequest.swift in Sources */,
 				0A9E384520F4AE510085E8D7 /* JSONRPCRequest+BigIntResponse.swift in Sources */,
@@ -1824,7 +1821,6 @@
 				0A9E384F20F4AE510085E8D7 /* MockEthereumNodeService.swift in Sources */,
 				0A9E384B20F4AE510085E8D7 /* EthInt.swift in Sources */,
 				0A9E384420F4AE510085E8D7 /* GetTransactionReceiptRequest.swift in Sources */,
-				55B5DFA9227C5FFF001A32F4 /* DBTransactionRepositoryTests.swift in Sources */,
 				0A6B846521B6A28200EDF04C /* WalletIDList+Serialization.swift in Sources */,
 				0AD5294F21B6E567009559ED /* WalletState+DBSerializable.swift in Sources */,
 				0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */,
@@ -1833,13 +1829,11 @@
 				0A9E384820F4AE510085E8D7 /* EthAddress.swift in Sources */,
 				0AD5294B21B6E538009559ED /* TokenInt+DBSerializable.swift in Sources */,
 				0A9E383920F4AE510085E8D7 /* DemoEthereumNodeService.swift in Sources */,
-				55B5DFB0227C6084001A32F4 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */,
 				552C60872130047D00BF973A /* InMemoryTokenListItemRepository.swift in Sources */,
 				0A9E383C20F4AE510085E8D7 /* EthereumKitEthereumService.swift in Sources */,
 				0A9E384C20F4AE510085E8D7 /* TransactionCall.swift in Sources */,
 				55FB25BD21256E0F00E81666 /* MockTokenListService.swift in Sources */,
 				0AD5294D21B6E554009559ED /* Address+DBSerializable.swift in Sources */,
-				55B5DFAD227C5FFF001A32F4 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
 				0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */,
 				0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */,
 				0A9E385120F4AE510085E8D7 /* SecureExternallyOwnedAccountRepository.swift in Sources */,
@@ -1856,12 +1850,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */,
+				55B5DFB7227C6253001A32F4 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
 				0A8A2B9D20FCDC560003BB7E /* TestFixture.swift in Sources */,
 				0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */,
 				5524733421412A6000A77557 /* EthereumKitEthereumServiceTests.swift in Sources */,
+				55B5DFB6227C624F001A32F4 /* DBTransactionRepositoryTests.swift in Sources */,
+				55B5DFBA227C6296001A32F4 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */,
+				55B5DFB4227C6247001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */,
 				552C6011212B0D1300BF973A /* SynchronisationServiceTests.swift in Sources */,
 				0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */,
 				0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */,
+				55B5DFB3227C6212001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
+				55B5DFB5227C624A001A32F4 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */,
 				552C60882130048300BF973A /* TokenListItemRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
