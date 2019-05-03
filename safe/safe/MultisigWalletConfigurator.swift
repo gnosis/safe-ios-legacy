@@ -90,15 +90,15 @@ class MultisigWalletConfigurator {
 
             if !db.exists {
                 try db.create()
+                portfolioRepo.setUp()
+                walletRepo.setUp()
+                accountRepo.setUp()
+                transactionRepo.setUp()
+                tokenListItemRepo.setUp()
+                monitorRepo.setUp()
+                migrationRepo.setUp()
                 skipMigrationsBeforeAndIncluding(WalletMigrations.latest, with: migrationService)
             }
-            portfolioRepo.setUp()
-            walletRepo.setUp()
-            accountRepo.setUp()
-            transactionRepo.setUp()
-            tokenListItemRepo.setUp()
-            monitorRepo.setUp()
-            migrationRepo.setUp()
             migrate(with: migrationService)
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)

@@ -129,7 +129,7 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
 
     func test_whenRequestingNonEthTokenData_thenReturnsIt() {
         givenReadyToUseWallet()
-        tokenItemsRepository.save(TokenListItem(token: Token.gno, status: .whitelisted))
+        tokenItemsRepository.save(TokenListItem(token: Token.gno, status: .whitelisted, canPayTransactionFee: false))
         let account = Account(tokenID: Token.gno.id, walletID: selectedWallet.id, balance: 99)
         accountRepository.save(account)
         let data = service.tokenData(id: Token.gno.id.id)

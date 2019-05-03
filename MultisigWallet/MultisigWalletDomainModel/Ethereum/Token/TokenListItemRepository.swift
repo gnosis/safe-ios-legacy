@@ -68,7 +68,10 @@ public extension TokenListItemRepository {
     ///
     /// - Parameter token: necessary token.
     func whitelist(_ token: Token) {
-        let tokenListItem = TokenListItem(token: token, status: .whitelisted)
+        let existing = find(id: token.id)!
+        let tokenListItem = TokenListItem(token: token,
+                                          status: .whitelisted,
+                                          canPayTransactionFee: existing.canPayTransactionFee)
         save(tokenListItem)
         DomainRegistry.eventPublisher.publish(TokensDisplayListChanged())
         DispatchQueue.global().async {
@@ -80,7 +83,10 @@ public extension TokenListItemRepository {
     ///
     /// - Parameter token: necessary token.
     func blacklist(_ token: Token) {
-        let tokenListItem = TokenListItem(token: token, status: .blacklisted)
+        let existing = find(id: token.id)!
+        let tokenListItem = TokenListItem(token: token,
+                                          status: .blacklisted,
+                                          canPayTransactionFee: existing.canPayTransactionFee)
         save(tokenListItem)
         DomainRegistry.eventPublisher.publish(TokensDisplayListChanged())
     }

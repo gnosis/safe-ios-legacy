@@ -11,13 +11,14 @@ class TokenListItemTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        tokenListItem = TokenListItem(token: Token.Ether, status: .regular)
+        tokenListItem = TokenListItem(token: Token.Ether, status: .regular, canPayTransactionFee: true)
     }
 
     func test_whenCreated_thenHasAllData() {
         XCTAssertEqual(tokenListItem.id.id, "0x0000000000000000000000000000000000000000")
         XCTAssertEqual(tokenListItem.token, Token.Ether)
         XCTAssertEqual(tokenListItem.status, .regular)
+        XCTAssertEqual(tokenListItem.canPayTransactionFee, true)
     }
 
     func test_blacklisting() {

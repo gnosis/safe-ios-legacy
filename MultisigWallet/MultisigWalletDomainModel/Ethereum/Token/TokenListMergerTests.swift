@@ -60,7 +60,7 @@ class TokenListMergerTests: XCTestCase {
         assertTokenItem(itemD, .whitelisted, "D", 1)
 
         // Blacklist token D: D+ --> D-
-        let blacklistedD = TokenListItem(token: itemD.token, status: .blacklisted)
+        let blacklistedD = TokenListItem(token: itemD.token, status: .blacklisted, canPayTransactionFee: false)
         tokenListItemRepository.save(blacklistedD)
         assertTokenItem(itemD, .blacklisted, "D")
 

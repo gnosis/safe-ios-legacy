@@ -14,22 +14,26 @@ CREATE TABLE IF NOT EXISTS tbl_token_list_items (
     id TEXT NOT NULL PRIMARY KEY,
     token TEXT NOT NULL,
     status TEXT NOT NULL,
+    can_pay_transaction_fee BOOLEAN,
     sorting_id INTEGER,
     updated TEXT NOT NULL
 );
 """
-        static let insert = "INSERT OR REPLACE INTO tbl_token_list_items VALUES (?, ?, ?, ?, ?);"
+        static let insert = "INSERT OR REPLACE INTO tbl_token_list_items VALUES (?, ?, ?, ?, ?, ?);"
         static let delete = "DELETE FROM tbl_token_list_items WHERE id = ?;"
         static let find = """
-SELECT id, token, status, sorting_id, updated
+SELECT id, token, status, can_pay_transaction_fee, sorting_id, updated
 FROM tbl_token_list_items
 WHERE id = ?
 ORDER BY rowid
 LIMIT 1;
 """
-        static let all = "SELECT id, token, status, sorting_id, updated FROM tbl_token_list_items ORDER BY token;"
+        static let all = """
+SELECT id, token, status, can_pay_transaction_fee, sorting_id, updated
+FROM tbl_token_list_items ORDER BY token;
+"""
         static let find_by_status = """
-SELECT id, token, status, sorting_id, updated
+SELECT id, token, status, can_pay_transaction_fee, sorting_id, updated
 FROM tbl_token_list_items
 WHERE status = ?
 ORDER BY sorting_id;
@@ -57,6 +61,7 @@ ORDER BY sorting_id;
             tokenListItem.id.id,
             tokenListItem.token.description,
             tokenListItem.status.rawValue,
+            tokenListItem.canPayTransactionFee,
             tokenListItem.sortingId,
             DateFormatter.networkDateFormatter.string(from: tokenListItem.updated)])
     }
@@ -66,21 +71,28 @@ ORDER BY sorting_id;
     }
 
     public func find(id: TokenID) -> TokenListItem? {
-        if id == Token.Ether.id { return TokenListItem(token: .Ether, status: .whitelisted) }
+        if id == Token.Ether.id { return TokenListItem(token: .Ether,
+                                                       status: .whitelisted,
+                                                       canPayTransactionFee: true) }
         return try! db.execute(sql: SQL.find,
                                bindings: [id.id],
                                resultMap: tokenListItemFromResultSet).first as? TokenListItem
     }
 
     private func tokenListItemFromResultSet(_ rs: ResultSet) -> TokenListItem? {
-        guard let tokenString = rs.string(at: 1),
+        guard let tokenString = rs.string(column: "token"),
             let token = Token(tokenString),
-            let statusString = rs.string(at: 2),
+            let statusString = rs.string(column: "status"),
             let status = TokenListItem.TokenListItemStatus(rawValue: statusString),
-            let updatedString = rs.string(at: 4),
+            let canPayTransactionFee = rs.bool(column: "can_pay_transaction_fee"),
+            let updatedString = rs.string(column: "updated"),
             let updated = DateFormatter.networkDateFormatter.date(from: updatedString) else { return nil }
-        let sortingId = rs.int(at: 3)
-        return TokenListItem(token: token, status: status, sortingId: sortingId, updated: updated)
+        let sortingId = rs.int(column: "sorting_id")
+        return TokenListItem(token: token,
+                             status: status,
+                             canPayTransactionFee: canPayTransactionFee,
+                             sortingId: sortingId,
+                             updated: updated)
     }
 
     public func all() -> [TokenListItem] {
