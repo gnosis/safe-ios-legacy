@@ -10,7 +10,7 @@ public final class FeedbackTooltip: CardView {
 
     private let horizontalLabelPadding: CGFloat = 12
     private let verticalLabelPadding: CGFloat = 10
-    private let horizontalPadding: CGFloat = 20
+    private let horizontalPadding: CGFloat = 15
     private let verticalPadding: CGFloat = 12
 
     private let userReadingSpeedCharsPerSecond: TimeInterval = 10
@@ -81,12 +81,32 @@ public final class FeedbackTooltip: CardView {
         tooltip.alpha = 0
         tooltip.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(tooltip)
-        let viewTop = superview.convert(view.bounds, from: view).minY - tooltip.verticalPadding
-        NSLayoutConstraint.activate([
-            tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor,
-                                             constant: tooltip.horizontalPadding),
-            tooltip.centerXAnchor.constraint(equalTo: superview.centerXAnchor),
-            tooltip.bottomAnchor.constraint(equalTo: superview.topAnchor, constant: viewTop)])
+
+        // The idea is to show the tooltip within bounds, with the minimum possible width.
+        //
+        // ||-spacing-|   space for tooltip   |-spacing-||
+        // ||         |<--max tooltip width ->|         ||
+        // ||
+        // ||           +-------+
+        // ||           |tooltip| <-- centered relative to view below
+        // ||           +---V---+
+        // ||        |-----view----|
+        // tooltip.centerX = view.centerX
+        // tooltip.leading > superview.leading + padding
+        // tooltip.trailing < superview.trailing - padding
+        // tooltip.width < max width
+        // tooltip.bottom = view.top + verticalPadding
+        // swiftlint:disable line_length
+        let maxTooltipWidth = superview.bounds.width - 2 * tooltip.horizontalPadding
+        let viewTopInSuperview = superview.convert(view.bounds, from: view).minY
+        let constraints = [tooltip.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                           tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: tooltip.horizontalPadding),
+                           tooltip.trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -tooltip.horizontalPadding),
+                           tooltip.widthAnchor.constraint(lessThanOrEqualToConstant: maxTooltipWidth),
+                           tooltip.bottomAnchor.constraint(equalTo: superview.topAnchor, constant: viewTopInSuperview - tooltip.verticalPadding)]
+        // swiftlint:enable
+        constraints[0].priority = .defaultHigh
+        NSLayoutConstraint.activate(constraints)
 
         tooltip.show()
         let visibleDurationSeconds = TimeInterval(message.count) / tooltip.userReadingSpeedCharsPerSecond

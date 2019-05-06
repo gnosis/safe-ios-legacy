@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -635,7 +636,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-aR-gHb">
-                                                <rect key="frame" x="16" y="0.0" width="343" height="322"/>
+                                                <rect key="frame" x="16" y="0.0" width="343" height="323"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8c-L6-hMu" customClass="AccountBalanceView" customModule="SafeUIKit">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="112"/>
@@ -644,8 +645,8 @@
                                                             <constraint firstAttribute="height" constant="112" id="Rao-Aj-wrs"/>
                                                         </constraints>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZQW-Sn-kqY">
-                                                        <rect key="frame" x="0.0" y="112" width="343" height="135"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZQW-Sn-kqY">
+                                                        <rect key="frame" x="0.0" y="112" width="343" height="211"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPS-y0-TU7" customClass="AddressInput" customModule="SafeUIKit">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
@@ -655,25 +656,22 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVX-g8-IFt" customClass="TokenInput" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="75" width="343" height="60"/>
+                                                                <rect key="frame" x="0.0" y="68" width="343" height="60"/>
                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" placeholder="YES" id="FHE-2J-Od3"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-ww-1qS" customClass="FeeCalculationView" customModule="SafeAppUI" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="136" width="343" height="75"/>
+                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="75" placeholder="YES" id="Wtb-dL-hJK"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-ww-1qS" customClass="FeeCalculationView" customModule="SafeAppUI" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="247" width="343" height="75"/>
-                                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="75" placeholder="YES" id="Wtb-dL-hJK"/>
-                                                        </constraints>
-                                                    </view>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="bVs-ww-1qS" firstAttribute="width" secondItem="d1j-aR-gHb" secondAttribute="width" id="33D-Gi-VfJ"/>
-                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

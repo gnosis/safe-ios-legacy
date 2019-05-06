@@ -87,9 +87,10 @@ class SetupNewPasswordViewController: UIViewController {
     }
 
     private func configureKeyboardBehavior() {
+        confirmNewPasswordInput.avoidKeyboard()
+        newPasswordInput.avoidKeyboard()
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         keyboardBehavior.activeTextField = newPasswordInput.textInput
-        keyboardBehavior.useViewsSuperviewFrame = true
     }
 
     @objc func save() {

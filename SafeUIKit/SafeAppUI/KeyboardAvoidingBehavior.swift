@@ -5,6 +5,12 @@
 import Foundation
 import UIKit
 
+protocol KeyboardAvoidingTargetProvider {
+
+    func targetViewToAvoid() -> UIView?
+
+}
+
 class KeyboardAvoidingBehavior {
 
     private weak var scrollView: UIScrollView!
@@ -26,8 +32,6 @@ class KeyboardAvoidingBehavior {
             activate(activeResponder)
         }
     }
-
-    var useViewsSuperviewFrame = false
 
     init(scrollView: UIScrollView, notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.scrollView = scrollView
@@ -84,10 +88,11 @@ class KeyboardAvoidingBehavior {
 
     private func responderFrame(in parent: UIView) -> CGRect? {
         guard let field = activeResponder else { return nil }
-        let frame = useViewsSuperviewFrame ?
-            parent.convert(field.superview!.bounds, from: field.superview!) :
-            parent.convert(field.bounds, from: field)
-        return frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: -10, right: 0))
+        var frame = parent.convert(field.bounds, from: field)
+        if let delegate = field as? KeyboardAvoidingTargetProvider, let target = delegate.targetViewToAvoid() {
+            frame = parent.convert(target.bounds, from: target)
+        }
+        return frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: -20, right: 0))
     }
 
     @objc func didHideKeyboard(_ notification: NSNotification) {

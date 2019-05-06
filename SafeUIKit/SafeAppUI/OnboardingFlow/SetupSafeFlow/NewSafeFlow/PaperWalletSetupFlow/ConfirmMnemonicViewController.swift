@@ -109,9 +109,10 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     private func configureKeyboardBehavior() {
+        firstWordTextInput.avoidKeyboard()
+        secondWordTextInput.avoidKeyboard()
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         keyboardBehavior.activeTextField = firstWordTextInput.textInput
-        keyboardBehavior.useViewsSuperviewFrame = true
     }
 
     func twoRandomWords() -> (String, String) {
@@ -165,6 +166,22 @@ extension ConfirmMnemonicViewController: VerifiableInputDelegate {
         } else {
             shakeErrors()
         }
+    }
+
+}
+
+extension TextInput: KeyboardAvoidingTargetProvider {
+
+    func targetViewToAvoid() -> UIView? {
+        return keyboardTargetView
+    }
+
+}
+
+extension VerifiableInput {
+
+    func avoidKeyboard() {
+        textInput.keyboardTargetView = self
     }
 
 }
