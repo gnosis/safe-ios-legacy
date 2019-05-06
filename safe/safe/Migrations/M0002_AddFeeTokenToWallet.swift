@@ -4,18 +4,18 @@
 
 import Foundation
 import CommonImplementations
-import MultisigWalletImplementations
 import Database
 
-final class M0001_UpdateProcessedTransactionsMigration: Migration {
+final class M0002_AddFeeTokenToWallet: Migration {
 
     convenience init() {
         // DO NOT CHANGE!
-        self.init("0001_UpdateProcessedTransactionsMigration")
+        self.init("M0002_AddFeeTokenToWallet")
     }
 
     override func setUp(connection: Connection) throws {
-        try SynchronisationService.syncProcessedTransactions()
+        let sql = "ALTER TABLE tbl_wallets ADD fee_payment_token_address TEXT;"
+        try connection.execute(sql: sql)
     }
 
 }

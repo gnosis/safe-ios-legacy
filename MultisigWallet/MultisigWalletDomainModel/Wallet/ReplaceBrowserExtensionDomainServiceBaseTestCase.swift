@@ -98,6 +98,7 @@ extension ReplaceBrowserExtensionDomainServiceBaseTestCase {
                             state: .readyToUse,
                             owners: owners,
                             address: walletAddress,
+                            feePaymentTokenAddress: nil,
                             minimumDeploymentTransactionAmount: nil,
                             creationTransactionHash: nil)
         walletRepo.save(wallet)

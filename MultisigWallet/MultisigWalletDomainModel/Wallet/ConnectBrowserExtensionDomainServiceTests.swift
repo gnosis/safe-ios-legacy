@@ -83,6 +83,7 @@ class BaseBrowserExtensionModificationTestCase: XCTestCase {
                             state: .readyToUse,
                             owners: owners,
                             address: Address.safeAddress,
+                            feePaymentTokenAddress: nil,
                             minimumDeploymentTransactionAmount: 0,
                             creationTransactionHash: nil,
                             confirmationCount: threshold)

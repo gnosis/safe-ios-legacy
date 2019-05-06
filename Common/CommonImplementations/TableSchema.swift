@@ -49,7 +49,7 @@ public struct TableSchema {
     }
 
     public var insertSQL: String {
-        return "INSERT OR REPLACE INTO \(tableName) VALUES (\(fieldAnonymousParameterList));"
+        return "INSERT OR REPLACE INTO \(tableName)(\(fieldNameList)) VALUES (\(anonymousFieldParameterList));"
     }
 
     public var deleteSQL: String {
@@ -76,12 +76,16 @@ public struct TableSchema {
         return list(of: fields.map { $0.name })
     }
 
-    public var fieldAnonymousParameterList: String {
+    public var anonymousFieldParameterList: String {
         return list(of: fields.map { _ in "?" })
     }
 
     public func list(of values: [String]) -> String {
         return values.joined(separator: ", ")
+    }
+
+    public func findSQL(key: String, orderBy: String) -> String {
+        return "SELECT \(fieldNameList) FROM \(tableName) WHERE \(key) = ? ORDER BY \(orderBy);"
     }
 
 }

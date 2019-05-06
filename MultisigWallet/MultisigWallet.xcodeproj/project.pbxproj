@@ -24,7 +24,6 @@
 		0A1B2AAD221EB1A200E92990 /* RBETransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */; };
 		0A1B2AAF221EB1F800E92990 /* RBETransactionMonitorEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */; };
 		0A1B2AB1221EB29600E92990 /* DBRBETransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB0221EB29600E92990 /* DBRBETransactionMonitorRepository.swift */; };
-		0A1B2AB5221EB8BC00E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */; };
 		0A23C80520A1B09100C72483 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80420A1B09100C72483 /* Wallet.swift */; };
 		0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80A20A1B09900C72483 /* WalletTests.swift */; };
 		0A23C80D20A1B34900C72483 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80C20A1B34900C72483 /* Owner.swift */; };
@@ -34,7 +33,6 @@
 		0A23C82920A1DEED00C72483 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD620A08A3F006A1265 /* libDatabase.a */; };
 		0A23C82A20A1DEF400C72483 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD620A08A3F006A1265 /* libDatabase.a */; };
 		0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */; };
-		0A23C83020A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */; };
 		0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */; };
 		0A290E1821BD3558005188EA /* MultiSendContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1721BD3558005188EA /* MultiSendContractProxy.swift */; };
 		0A2DBCBB220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */; };
@@ -80,7 +78,7 @@
 		0A6AE029216CB539002FBE3D /* EthereumContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */; };
 		0A6AE030216CB554002FBE3D /* EthereumContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */; };
 		0A6B846321B6A0FF00EDF04C /* WalletIDList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */; };
-		0A6B846521B6A28200EDF04C /* WalletIDList+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */; };
+		0A6B846521B6A28200EDF04C /* WalletIDList+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846421B6A28200EDF04C /* WalletIDList+DBSerializable.swift */; };
 		0A6EF3CC21BAB13200F1074E /* RecoveryApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */; };
 		0A6EF3D221BAB15E00F1074E /* RecoveryDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */; };
 		0A6EF3D621BAB86600F1074E /* WalletProxyContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */; };
@@ -107,9 +105,7 @@
 		0A8A2B9C20FCDC550003BB7E /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */; };
 		0A8A2B9D20FCDC560003BB7E /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */; };
 		0A8E3C0520B4260600F002F6 /* DBAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */; };
-		0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
 		0A978636221D5727008C1DC9 /* ReplaceBrowserExtensionApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A978635221D5727008C1DC9 /* ReplaceBrowserExtensionApplicationServiceTests.swift */; };
-		0A97864F221D9291008C1DC9 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
 		0A9E380920F4A4F20085E8D7 /* GetSafeCreationStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379C20F4A4D10085E8D7 /* GetSafeCreationStatusRequest.swift */; };
 		0A9E380A20F4A4F20085E8D7 /* EncryptionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379D20F4A4D10085E8D7 /* EncryptionDomainService.swift */; };
 		0A9E380B20F4A4F20085E8D7 /* StartSafeCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */; };
@@ -148,10 +144,8 @@
 		0A9E385020F4AE510085E8D7 /* MockTransactionRelayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */; };
 		0A9E385120F4AE510085E8D7 /* SecureExternallyOwnedAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */; };
 		0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */; };
-		0A9E385320F4AE600085E8D7 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
 		0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EC20F4A4D20085E8D7 /* EthTypesTests.swift */; };
 		0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */; };
-		0A9E385620F4AE600085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */; };
 		0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */; };
 		0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */; };
 		0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */; };
@@ -164,7 +158,6 @@
 		0AAA175320E27398003B35B3 /* BaseInMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175220E27398003B35B3 /* BaseInMemoryRepository.swift */; };
 		0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */; };
 		0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */; };
-		0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
 		0AAAE3E7219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAE3E6219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift */; };
 		0AB084CB21C01EAC00DC3E81 /* WalletSettingsApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB084CA21C01EAC00DC3E81 /* WalletSettingsApplicationService.swift */; };
 		0AB08755212D9857002F969C /* MockEventRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB08751212D9851002F969C /* MockEventRelay.swift */; };
@@ -187,7 +180,6 @@
 		0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */; };
 		0AD1939A21075AB70048CBCB /* EstimateTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */; };
 		0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */; };
-		0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
 		0AD5294421B6E521009559ED /* OwnerList+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5294321B6E521009559ED /* OwnerList+DBSerializable.swift */; };
 		0AD5294B21B6E538009559ED /* TokenInt+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5294A21B6E538009559ED /* TokenInt+DBSerializable.swift */; };
 		0AD5294D21B6E554009559ED /* Address+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5294C21B6E554009559ED /* Address+DBSerializable.swift */; };
@@ -210,6 +202,9 @@
 		0AEF8AE820A08AC9006A1265 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* libCommon.a */; };
 		0AEF8AE920A08ACE006A1265 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AAA20A088B1006A1265 /* libMultisigWalletImplementations.a */; };
 		0AEF8AEC20A08BAE006A1265 /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A9020A08899006A1265 /* libMultisigWalletApplication.a */; };
+		551D76FE227C7BC9003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
+		551D7703227C7BCE003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
+		551D775A22803C4A003B7910 /* Token+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D775922803C4A003B7910 /* Token+DBSerializable.swift */; };
 		5524733421412A6000A77557 /* EthereumKitEthereumServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524733321412A6000A77557 /* EthereumKitEthereumServiceTests.swift */; };
 		552C6006212B0CA200BF973A /* SynchronisationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C5FFA212B0CA200BF973A /* SynchronisationDomainService.swift */; };
 		552C600A212B0CCE00BF973A /* SynchronisationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C6007212B0CCD00BF973A /* SynchronisationService.swift */; };
@@ -230,6 +225,12 @@
 		555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94AD20E3920600A0621D /* MockNotificationService.swift */; };
 		555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */; };
 		556251E62146787700F569EE /* TokenData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251E52146787700F569EE /* TokenData+Extensions.swift */; };
+		55B5DFB3227C6212001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
+		55B5DFB4227C6247001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */; };
+		55B5DFB5227C624A001A32F4 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
+		55B5DFB6227C624F001A32F4 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
+		55B5DFB7227C6253001A32F4 /* DBWalletRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */; };
+		55B5DFBA227C6296001A32F4 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */; };
 		55CC279920F667FB00AC12D6 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279620F667FB00AC12D6 /* AuthRequest.swift */; };
 		55CC279A20F667FB00AC12D6 /* PairingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279720F667FB00AC12D6 /* PairingRequest.swift */; };
 		55CC279C20F6680800AC12D6 /* PairingRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279820F667FB00AC12D6 /* PairingRequestTests.swift */; };
@@ -499,7 +500,7 @@
 		0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxy.swift; sourceTree = "<group>"; };
 		0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxyTests.swift; sourceTree = "<group>"; };
 		0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletIDList.swift; sourceTree = "<group>"; };
-		0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletIDList+Serialization.swift"; sourceTree = "<group>"; };
+		0A6B846421B6A28200EDF04C /* WalletIDList+DBSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletIDList+DBSerializable.swift"; sourceTree = "<group>"; };
 		0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryApplicationService.swift; sourceTree = "<group>"; };
 		0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryDomainService.swift; sourceTree = "<group>"; };
 		0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletProxyContractProxy.swift; sourceTree = "<group>"; };
@@ -625,6 +626,7 @@
 		0AEF8AB920A088C3006A1265 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0AEF8AF620A08F7D006A1265 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
+		551D775922803C4A003B7910 /* Token+DBSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+DBSerializable.swift"; sourceTree = "<group>"; };
 		5524733321412A6000A77557 /* EthereumKitEthereumServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKitEthereumServiceTests.swift; sourceTree = "<group>"; };
 		552C5FFA212B0CA200BF973A /* SynchronisationDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronisationDomainService.swift; sourceTree = "<group>"; };
 		552C6007212B0CCD00BF973A /* SynchronisationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronisationService.swift; sourceTree = "<group>"; };
@@ -934,12 +936,12 @@
 				0A9E37F220F4A4D20085E8D7 /* EstimateGasRequest.swift */,
 				0A9E37F320F4A4D20085E8D7 /* GasPriceRequest.swift */,
 				0A9E37F720F4A4D20085E8D7 /* GetBalanceRequest.swift */,
+				0ABF9AB6226F380200B7C460 /* GetBlockByHashRequest.swift */,
 				0A9E37F420F4A4D20085E8D7 /* GetTransactionCountRequest.swift */,
-				0A442DF6210B25EE00F19F80 /* MessageCallRequest.swift */,
 				0A9E37F120F4A4D20085E8D7 /* GetTransactionReceiptRequest.swift */,
 				0A9E37F620F4A4D20085E8D7 /* JSONRPCRequest+BigIntResponse.swift */,
+				0A442DF6210B25EE00F19F80 /* MessageCallRequest.swift */,
 				0A9E37F520F4A4D20085E8D7 /* SendRawTransactionRequest.swift */,
-				0ABF9AB6226F380200B7C460 /* GetBlockByHashRequest.swift */,
 			);
 			path = requests;
 			sourceTree = "<group>";
@@ -1058,46 +1060,11 @@
 		0AEF8AAB20A088B1006A1265 /* MultisigWalletImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				552C6008212B0CCD00BF973A /* MockSynchronisationService.swift */,
-				552C6007212B0CCD00BF973A /* SynchronisationService.swift */,
-				552C6009212B0CCE00BF973A /* SynchronisationServiceTests.swift */,
-				0A9E380220F4A4D20085E8D7 /* DemoEthereumNodeService.swift */,
-				0A9E380820F4A4D20085E8D7 /* EncryptionService.swift */,
-				0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */,
-				0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */,
-				5524733321412A6000A77557 /* EthereumKitEthereumServiceTests.swift */,
-				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
-				0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */,
-				0A9E37E620F4A4D20085E8D7 /* infura */,
-				0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */,
-				0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
-				55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */,
-				55FB2594212301A800E81666 /* TokenListItemRepositoryTests.swift */,
-				0A4A1D7C2136E4C00088F9EC /* DBTokeListItemRepository.swift */,
-				0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */,
-				0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */,
-				0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */,
-				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
-				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
-				0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */,
-				0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */,
-				0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */,
-				0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */,
-				0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */,
-				0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */,
-				0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
-				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
-				0A1B2AB0221EB29600E92990 /* DBRBETransactionMonitorRepository.swift */,
-				0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */,
-				0AD5294E21B6E567009559ED /* WalletState+DBSerializable.swift */,
-				0AD5294C21B6E554009559ED /* Address+DBSerializable.swift */,
-				0AD5294A21B6E538009559ED /* TokenInt+DBSerializable.swift */,
-				0AD5294321B6E521009559ED /* OwnerList+DBSerializable.swift */,
-				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
 				0AEF8AB920A088C3006A1265 /* Tests-Info.plist */,
-				555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */,
-				55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */,
-				55FB25BC21256E0F00E81666 /* MockTokenListService.swift */,
+				55B5DFA4227C5FAD001A32F4 /* DatabaseRepositories */,
+				0A9E37E620F4A4D20085E8D7 /* infura */,
+				55B5DFAF227C6048001A32F4 /* MockRepositories */,
+				55B5DFB1227C609E001A32F4 /* Services */,
 			);
 			path = MultisigWalletImplementations;
 			sourceTree = "<group>";
@@ -1124,12 +1091,80 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		551D776122803E51003B7910 /* DBSerializable */ = {
+			isa = PBXGroup;
+			children = (
+				0AD5294321B6E521009559ED /* OwnerList+DBSerializable.swift */,
+				551D775922803C4A003B7910 /* Token+DBSerializable.swift */,
+				0AD5294A21B6E538009559ED /* TokenInt+DBSerializable.swift */,
+				0A6B846421B6A28200EDF04C /* WalletIDList+DBSerializable.swift */,
+				0AD5294E21B6E567009559ED /* WalletState+DBSerializable.swift */,
+			);
+			path = DBSerializable;
+			sourceTree = "<group>";
+		};
 		552C5FF9212B0CA200BF973A /* SynchronisationService */ = {
 			isa = PBXGroup;
 			children = (
 				552C5FFA212B0CA200BF973A /* SynchronisationDomainService.swift */,
 			);
 			path = SynchronisationService;
+			sourceTree = "<group>";
+		};
+		55B5DFA4227C5FAD001A32F4 /* DatabaseRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				551D776122803E51003B7910 /* DBSerializable */,
+				0AD5294C21B6E554009559ED /* Address+DBSerializable.swift */,
+				0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */,
+				0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */,
+				0A1B2AB0221EB29600E92990 /* DBRBETransactionMonitorRepository.swift */,
+				0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */,
+				0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */,
+				0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
+				0A4A1D7C2136E4C00088F9EC /* DBTokeListItemRepository.swift */,
+				0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */,
+				0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */,
+				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
+				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
+				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
+				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
+				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
+			);
+			path = DatabaseRepositories;
+			sourceTree = "<group>";
+		};
+		55B5DFAF227C6048001A32F4 /* MockRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */,
+				0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
+				55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */,
+				55FB2594212301A800E81666 /* TokenListItemRepositoryTests.swift */,
+			);
+			path = MockRepositories;
+			sourceTree = "<group>";
+		};
+		55B5DFB1227C609E001A32F4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0A9E380220F4A4D20085E8D7 /* DemoEthereumNodeService.swift */,
+				0A9E380820F4A4D20085E8D7 /* EncryptionService.swift */,
+				0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */,
+				0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */,
+				5524733321412A6000A77557 /* EthereumKitEthereumServiceTests.swift */,
+				0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */,
+				555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */,
+				55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */,
+				0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */,
+				0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */,
+				552C6008212B0CCD00BF973A /* MockSynchronisationService.swift */,
+				55FB25BC21256E0F00E81666 /* MockTokenListService.swift */,
+				0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */,
+				552C6007212B0CCD00BF973A /* SynchronisationService.swift */,
+				552C6009212B0CCE00BF973A /* SynchronisationServiceTests.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		55CC279520F667FB00AC12D6 /* NotificationRequests */ = {
@@ -1671,7 +1706,6 @@
 				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
 				0A8A2B9B20FCDC540003BB7E /* TestFixture.swift in Sources */,
 				552C6012212B0D1B00BF973A /* TokenListMergerTests.swift in Sources */,
-				0A97864F221D9291008C1DC9 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				0ACA9D0B212ACDDD00E39BB6 /* MockEncryptionService1.swift in Sources */,
 				0A73F3182133FDE000F65DAE /* ErrorStreamTests.swift in Sources */,
 				0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */,
@@ -1685,6 +1719,7 @@
 				0A6AE030216CB554002FBE3D /* EthereumContractProxyTests.swift in Sources */,
 				0ADD1DDE213544C50046AF1F /* ERC20TokenContractProxyTests.swift in Sources */,
 				0A19402A2226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift in Sources */,
+				551D7703227C7BCE003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */,
 				0A5C0D482185B6F300988930 /* AllDeploymentStatesTests.swift in Sources */,
 				0ACA9D10212AD37F00E39BB6 /* MockSystem.swift in Sources */,
@@ -1770,6 +1805,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551D775A22803C4A003B7910 /* Token+DBSerializable.swift in Sources */,
 				0A9E383E20F4AE510085E8D7 /* InfuraEthereumNodeService.swift in Sources */,
 				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
 				555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */,
@@ -1798,7 +1834,7 @@
 				0A9E384F20F4AE510085E8D7 /* MockEthereumNodeService.swift in Sources */,
 				0A9E384B20F4AE510085E8D7 /* EthInt.swift in Sources */,
 				0A9E384420F4AE510085E8D7 /* GetTransactionReceiptRequest.swift in Sources */,
-				0A6B846521B6A28200EDF04C /* WalletIDList+Serialization.swift in Sources */,
+				0A6B846521B6A28200EDF04C /* WalletIDList+DBSerializable.swift in Sources */,
 				0AD5294F21B6E567009559ED /* WalletState+DBSerializable.swift in Sources */,
 				0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */,
 				0A9E383D20F4AE510085E8D7 /* GnosisTransactionRelayService.swift in Sources */,
@@ -1827,19 +1863,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */,
+				551D76FE227C7BC9003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
+				55B5DFB7227C6253001A32F4 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
 				0A8A2B9D20FCDC560003BB7E /* TestFixture.swift in Sources */,
-				0A23C83020A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
-				0A9E385320F4AE600085E8D7 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
-				0A9E385620F4AE600085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */,
-				0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */,
 				0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */,
 				5524733421412A6000A77557 /* EthereumKitEthereumServiceTests.swift in Sources */,
+				55B5DFB6227C624F001A32F4 /* DBTransactionRepositoryTests.swift in Sources */,
+				55B5DFBA227C6296001A32F4 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */,
+				55B5DFB4227C6247001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */,
 				552C6011212B0D1300BF973A /* SynchronisationServiceTests.swift in Sources */,
-				0A1B2AB5221EB8BC00E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */,
 				0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */,
 				0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */,
-				0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */,
-				0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
+				55B5DFB3227C6212001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
+				55B5DFB5227C624A001A32F4 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */,
 				552C60882130048300BF973A /* TokenListItemRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@ public final class TokenListItem: IdentifiableEntity<TokenID> {
 
     public let token: Token
     public private(set) var status: TokenListItemStatus
+    public private(set) var canPayTransactionFee: Bool
     public private(set) var sortingId: Int?
     public private(set) var updated: Date
 
@@ -20,9 +21,14 @@ public final class TokenListItem: IdentifiableEntity<TokenID> {
         case blacklisted
     }
 
-    public init(token: Token, status: TokenListItemStatus, sortingId: Int? = nil, updated: Date = Date()) {
+    public init(token: Token,
+                status: TokenListItemStatus,
+                canPayTransactionFee: Bool,
+                sortingId: Int? = nil,
+                updated: Date = Date()) {
         self.token = token
         self.status = status
+        self.canPayTransactionFee = canPayTransactionFee
         self.sortingId = sortingId
         self.updated = updated
         super.init(id: token.id)
@@ -51,6 +57,7 @@ extension TokenListItem: Decodable {
         case decimals
         case address
         case logoUrl = "logoUri"
+        case canPayTransactionFee = "gas"
     }
 
     public convenience init(from decoder: Decoder) throws {
@@ -62,9 +69,11 @@ extension TokenListItem: Decodable {
         let address = Address(addressValue)
         let logoUrl = try values.decode(String.self, forKey: .logoUrl)
         let `default` = try values.decode(Bool.self, forKey: .default)
+        let canPayTransactionFee = try values.decode(Bool.self, forKey: .canPayTransactionFee)
+
         let token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: logoUrl)
         let status: TokenListItemStatus = `default` ? .whitelisted : .regular
-        self.init(token: token, status: status)
+        self.init(token: token, status: status, canPayTransactionFee: canPayTransactionFee)
     }
 
 }

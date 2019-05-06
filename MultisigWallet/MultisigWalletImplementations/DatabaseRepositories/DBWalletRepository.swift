@@ -15,6 +15,7 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                      "state INTEGER NOT NULL",
                      "owners TEXT NOT NULL",
                      "address TEXT",
+                     "fee_payment_token_address TEXT",
                      "minimum_deployment_tx_amount TEXT",
                      "creation_tx_hash TEXT",
                      "confirmation_count INTEGER NOT NULL")
@@ -25,6 +26,7 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                          object.state,
                          object.owners,
                          object.address,
+                         object.feePaymentTokenAddress,
                          object.minimumDeploymentTransactionAmount]) +
             [object.creationTransactionHash,
              object.confirmationCount]
@@ -41,6 +43,7 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                             state: state,
                             owners: OwnerList(serializedValue: ownersString),
                             address: Address(serializedValue: rs["address"]),
+                            feePaymentTokenAddress: Address(serializedValue: rs["fee_payment_token_address"]),
                             minimumDeploymentTransactionAmount: minimumDeploymentAmount,
                             creationTransactionHash: rs["creation_tx_hash"],
                             confirmationCount: confirmationCount)

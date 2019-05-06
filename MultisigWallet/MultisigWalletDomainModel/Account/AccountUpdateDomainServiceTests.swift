@@ -117,7 +117,7 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
         var account = Account(tokenID: Token.Ether.id, walletID: walletRepository.selectedWallet()!.id, balance: 0)
         accountRepository.save(account)
-        let ethItem = TokenListItem(token: Token.Ether, status: .whitelisted)
+        let ethItem = TokenListItem(token: Token.Ether, status: .whitelisted, canPayTransactionFee: false)
         tokenListItemRepository.save(ethItem)
         nodeService.eth_getBalance_output = 100
 
@@ -208,9 +208,9 @@ private extension AccountUpdateDomainServiceTests {
         wallet.changeAddress(Address.safeAddress)
         wallet.state = wallet.readyToUseState
         walletRepository.save(wallet)
-        let tokenItem1 = TokenListItem(token: Token.gno, status: .whitelisted)
+        let tokenItem1 = TokenListItem(token: Token.gno, status: .whitelisted, canPayTransactionFee: false)
         tokenListItemRepository.save(tokenItem1)
-        let tokenItem2 = TokenListItem(token: Token.mgn, status: .regular)
+        let tokenItem2 = TokenListItem(token: Token.mgn, status: .regular, canPayTransactionFee: false)
         tokenListItemRepository.save(tokenItem2)
     }
 

@@ -60,7 +60,7 @@ class TokenListMergerTests: XCTestCase {
         assertTokenItem(itemD, .whitelisted, "D", 1)
 
         // Blacklist token D: D+ --> D-
-        let blacklistedD = TokenListItem(token: itemD.token, status: .blacklisted)
+        let blacklistedD = TokenListItem(token: itemD.token, status: .blacklisted, canPayTransactionFee: false)
         tokenListItemRepository.save(blacklistedD)
         assertTokenItem(itemD, .blacklisted, "D")
 
@@ -127,6 +127,21 @@ class TokenListMergerTests: XCTestCase {
         assertTokenItem(itemD, .whitelisted, "D_1", 1)
     }
 
+    func test_canPayTransactionFeeUpdates() throws {
+        XCTAssertEqual(allItems.count, 0)
+        tokenListService.json = TokenListStub.json
+        merger.mergeStoredTokenItems(with: try tokenListService.items())
+        XCTAssertTrue(itemA.canPayTransactionFee)
+        XCTAssertFalse(itemB.canPayTransactionFee)
+        XCTAssertTrue(itemD.canPayTransactionFee)
+
+        tokenListService.json = TokenListStub.json1
+        merger.mergeStoredTokenItems(with: try tokenListService.items())
+        XCTAssertTrue(itemA.canPayTransactionFee)
+        XCTAssertTrue(itemB.canPayTransactionFee)
+        XCTAssertFalse(itemD.canPayTransactionFee)
+    }
+
 }
 
 private extension TokenListMergerTests {
@@ -161,7 +176,8 @@ fileprivate struct TokenListStub {
             "symbol": "A",
             "decimals": 4,
             "logoUri": "https://test.com/A_Token.png",
-            "default": true
+            "default": true,
+            "gas": true
         },
         {
             "address": "0xb3a4bc89d8517e0e2c9b66703d09d3029ffa1e6d",
@@ -169,7 +185,8 @@ fileprivate struct TokenListStub {
             "symbol": "B",
             "decimals": 4,
             "logoUri": "https://test.com/B_Token.png",
-            "default": false
+            "default": false,
+            "gas": false
         },
         {
             "address": "0x5f92161588c6178130ede8cbdc181acec66a9731",
@@ -177,7 +194,8 @@ fileprivate struct TokenListStub {
             "symbol": "C",
             "decimals": 4,
             "logoUri": "https://test.com/C_Token.png",
-            "default": false
+            "default": false,
+            "gas": false
         },
         {
             "address": "0xb63d06025d580a94d59801f2513f5d309c079559",
@@ -185,7 +203,8 @@ fileprivate struct TokenListStub {
             "symbol": "D",
             "decimals": 4,
             "logoUri": "https://test.com/D_Token.png",
-            "default": true
+            "default": true,
+            "gas": true
         }
     ]
 }
@@ -200,7 +219,8 @@ fileprivate struct TokenListStub {
             "symbol": "A_1",
             "decimals": 4,
             "logoUri": "https://test.com/A_Token.png",
-            "default": true
+            "default": true,
+            "gas": true
         },
         {
             "address": "0xb3a4bc89d8517e0e2c9b66703d09d3029ffa1e6d",
@@ -208,7 +228,8 @@ fileprivate struct TokenListStub {
             "symbol": "B_1",
             "decimals": 4,
             "logoUri": "https://test.com/B_Token.png",
-            "default": true
+            "default": true,
+            "gas": true
         },
         {
             "address": "0x5f92161588c6178130ede8cbdc181acec66a9731",
@@ -216,7 +237,8 @@ fileprivate struct TokenListStub {
             "symbol": "C_1",
             "decimals": 4,
             "logoUri": "https://test.com/C_Token.png",
-            "default": false
+            "default": false,
+            "gas": false
         },
         {
             "address": "0xb63d06025d580a94d59801f2513f5d309c079559",
@@ -224,7 +246,8 @@ fileprivate struct TokenListStub {
             "symbol": "D_1",
             "decimals": 4,
             "logoUri": "https://test.com/D_Token.png",
-            "default": false
+            "default": false,
+            "gas": false
         }
     ]
 }
@@ -239,7 +262,8 @@ fileprivate struct TokenListStub {
             "symbol": "A_1",
             "decimals": 4,
             "logoUri": "https://test.com/A_Token.png",
-            "default": false
+            "default": false,
+            "gas": false
         },
         {
             "address": "0xb3a4bc89d8517e0e2c9b66703d09d3029ffa1e6d",
@@ -247,7 +271,8 @@ fileprivate struct TokenListStub {
             "symbol": "B_1",
             "decimals": 4,
             "logoUri": "https://test.com/B_Token.png",
-            "default": false
+            "default": false,
+            "gas": false
         },
         {
             "address": "0x5f92161588c6178130ede8cbdc181acec66a9731",
@@ -255,7 +280,8 @@ fileprivate struct TokenListStub {
             "symbol": "C_1",
             "decimals": 4,
             "logoUri": "https://test.com/C_Token.png",
-            "default": true
+            "default": true,
+            "gas": true
         },
         {
             "address": "0xb63d06025d580a94d59801f2513f5d309c079559",
@@ -263,7 +289,8 @@ fileprivate struct TokenListStub {
             "symbol": "D_2",
             "decimals": 4,
             "logoUri": "https://test.com/D_Token.png",
-            "default": true
+            "default": true,
+            "gas": true
         }
     ]
 }
