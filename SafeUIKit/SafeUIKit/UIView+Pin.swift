@@ -5,7 +5,7 @@
 import Foundation
 import UIKit
 
-extension UIView {
+public extension UIView {
 
     func wrapAroundDynamicHeightView(_ contentView: UIView) {
         NSLayoutConstraint.activate([

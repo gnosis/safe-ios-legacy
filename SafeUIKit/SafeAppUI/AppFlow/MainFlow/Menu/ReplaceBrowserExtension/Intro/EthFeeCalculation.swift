@@ -4,6 +4,7 @@
 
 import Foundation
 import UIKit
+import SafeUIKit
 
 class EthFeeCalculation: FeeCalculation {
 
@@ -39,7 +40,7 @@ class EthFeeCalculation: FeeCalculation {
         if let error = error {
             section.append(error)
         }
-        elements = [section]
+        set(contents: [section])
     }
 
 }

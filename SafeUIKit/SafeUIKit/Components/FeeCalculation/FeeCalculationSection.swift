@@ -7,11 +7,11 @@ import UIKit
 
 public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
 
-    var backgroundColor: UIColor = .white
-    var insets = UIEdgeInsets(top: 22, left: 16, bottom: 22, right: 16)
-    var border: (width: Double, color: UIColor)? = (1, ColorName.silver.color)
+    public var backgroundColor: UIColor = .white
+    public var insets = UIEdgeInsets(top: 22, left: 16, bottom: 22, right: 16)
+    public var border: (width: Double, color: UIColor)? = (1, ColorName.silver.color)
 
-    public func makeView() -> UIView {
+    func makeView() -> UIView {
         let backgroundView = UIView()
         backgroundView.backgroundColor = backgroundColor
         backgroundView.translatesAutoresizingMaskIntoConstraints = false

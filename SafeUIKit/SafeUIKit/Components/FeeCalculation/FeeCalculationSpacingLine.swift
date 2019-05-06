@@ -7,9 +7,9 @@ import UIKit
 
 public class FeeCalculationSpacingLine: FeeCalculationLine {
 
-    var spacing: Double
+    public var spacing: Double
 
-    init(spacing: Double) {
+    public init(spacing: Double) {
         self.spacing = spacing
     }
 

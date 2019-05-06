@@ -57,6 +57,7 @@ enum Asset {
   static let closeIcon = ImageAsset(name: "close-icon")
   static let error = ImageAsset(name: "error")
   static let qrCode = ImageAsset(name: "qr-code")
+  static let settings = ImageAsset(name: "settings")
   static let shareLink = ImageAsset(name: "share-link")
   enum TextInputs {
     static let clearIcon = ImageAsset(name: "clear-icon")
@@ -85,6 +86,7 @@ enum Asset {
     closeIcon,
     error,
     qrCode,
+    settings,
     shareLink,
     TextInputs.clearIcon,
     TextInputs.defaultIcon,

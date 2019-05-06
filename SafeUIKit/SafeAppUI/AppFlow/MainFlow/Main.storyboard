@@ -662,7 +662,7 @@
                                                                     <constraint firstAttribute="height" constant="60" placeholder="YES" id="FHE-2J-Od3"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-ww-1qS" customClass="FeeCalculationView" customModule="SafeAppUI" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-ww-1qS" customClass="FeeCalculationView" customModule="SafeUIKit">
                                                                 <rect key="frame" x="0.0" y="136" width="343" height="75"/>
                                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>

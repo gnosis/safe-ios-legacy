@@ -3,15 +3,14 @@
 //
 
 import Foundation
-import SafeUIKit
 
 public class FeeCalculationErrorLine: FeeCalculationLine {
 
-    var text: String
+    public var text: String
     var textStyle = ErrorTextStyle()
-    var iconEnabled: Bool = false
+    public var iconEnabled: Bool = false
 
-    init(text: String) {
+    public init(text: String) {
         self.text = text
     }
 
@@ -56,7 +55,7 @@ public class FeeCalculationErrorLine: FeeCalculationLine {
         return text == rhs.text
     }
 
-    func enableIcon() -> FeeCalculationErrorLine {
+    public func enableIcon() -> FeeCalculationErrorLine {
         iconEnabled = true
         return self
     }

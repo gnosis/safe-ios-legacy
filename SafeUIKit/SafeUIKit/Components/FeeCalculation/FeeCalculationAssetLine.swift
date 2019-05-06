@@ -4,27 +4,26 @@
 
 import Foundation
 import UIKit
-import SafeUIKit
 
 public class FeeCalculationAssetLine: FeeCalculationLine {
 
-    enum Style {
+    public enum Style {
         case plain
         case balance
     }
 
-    struct AssetInfo: Equatable {
+    public struct AssetInfo: Equatable {
 
-        var name: String
-        var button: ButtonItem?
-        var value: String?
+        public var name: String
+        public var button: ButtonItem?
+        public var value: String?
         /// If set, then valueButton is shown instead of value
-        var valueButton: ButtonItem?
-        var error: Error?
+        public var valueButton: ButtonItem?
+        public var error: Error?
 
-        static let empty = AssetInfo(name: "", button: nil, value: "", valueButton: nil, error: nil)
+        public static let empty = AssetInfo(name: "", button: nil, value: "", valueButton: nil, error: nil)
 
-        static func == (lhs: FeeCalculationAssetLine.AssetInfo, rhs: FeeCalculationAssetLine.AssetInfo) -> Bool {
+        public static func == (lhs: FeeCalculationAssetLine.AssetInfo, rhs: FeeCalculationAssetLine.AssetInfo) -> Bool {
             return lhs.name == rhs.name &&
                 lhs.button == rhs.button &&
                 lhs.value == rhs.value &&
@@ -33,14 +32,14 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
 
     }
 
-    struct ButtonItem: Equatable {
+    public struct ButtonItem: Equatable {
 
-        var text: String
-        var target: AnyClass?
-        var action: Selector?
-        var icon: UIImage?
+        public var text: String
+        public var target: AnyClass?
+        public var action: Selector?
+        public var icon: UIImage?
 
-        static func == (lhs: FeeCalculationAssetLine.ButtonItem, rhs: FeeCalculationAssetLine.ButtonItem) -> Bool {
+        public static func == (lhs: FeeCalculationAssetLine.ButtonItem, rhs: FeeCalculationAssetLine.ButtonItem) -> Bool {
             return lhs.text == rhs.text &&
                 lhs.target === rhs.target &&
                 String(describing: lhs.action) == String(describing: rhs.action)
@@ -48,8 +47,8 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
 
     }
 
-    var style: Style = .plain
-    var asset: AssetInfo = .empty
+    public var style: Style = .plain
+    public var asset: AssetInfo = .empty
     private var tooltip: String?
 
     public private(set) var tooltipSource: TooltipSource!
@@ -121,7 +120,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         let buttonImageSpace: CGFloat = 7
         // brilliant trickery to make image appear on the right hand side of the button
         // h/t https://stackoverflow.com/a/32174204/7822368
-        button.setImage(Asset.TransactionEdit.settings.image, for: .normal)
+        button.setImage(Asset.settings.image, for: .normal)
         button.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
@@ -145,46 +144,46 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     }
 
     @discardableResult
-    func set(style: Style) -> FeeCalculationAssetLine {
+    public func set(style: Style) -> FeeCalculationAssetLine {
         self.style = style
         return self
     }
 
     @discardableResult
-    func set(name: String) -> FeeCalculationAssetLine {
+    public func set(name: String) -> FeeCalculationAssetLine {
         self.asset.name = name
         return self
     }
 
     @discardableResult
-    func set(value: String) -> FeeCalculationAssetLine {
+    public func set(value: String) -> FeeCalculationAssetLine {
         self.asset.value = value
         return self
     }
 
     @discardableResult
-    func set(tooltip: String?) -> FeeCalculationAssetLine {
+    public func set(tooltip: String?) -> FeeCalculationAssetLine {
         self.tooltip = tooltip
         return self
     }
 
     @discardableResult
-    func set(button: String, target: AnyClass? = nil, action: Selector? = nil) -> FeeCalculationAssetLine {
+    public func set(button: String, target: AnyClass? = nil, action: Selector? = nil) -> FeeCalculationAssetLine {
         self.asset.button = ButtonItem(text: button, target: target, action: action, icon: nil)
         return self
     }
 
     @discardableResult
-    func set(valueButton: String,
-             icon: UIImage?,
-             target: AnyClass? = nil,
-             action: Selector? = nil) -> FeeCalculationAssetLine {
+    public func set(valueButton: String,
+                    icon: UIImage?,
+                    target: AnyClass? = nil,
+                    action: Selector? = nil) -> FeeCalculationAssetLine {
         self.asset.valueButton = ButtonItem(text: valueButton, target: target, action: action, icon: nil)
         return self
     }
 
     @discardableResult
-    func set(error: Error?) -> FeeCalculationAssetLine {
+    public func set(error: Error?) -> FeeCalculationAssetLine {
         self.asset.error = error
         return self
     }

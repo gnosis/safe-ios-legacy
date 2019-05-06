@@ -3,31 +3,30 @@
 //
 
 import UIKit
-import SafeUIKit
 
-final class DashedSeparatorView: BaseCustomView {
+public final class DashedSeparatorView: BaseCustomView {
 
-    var lineColor: UIColor = ColorName.lightGreyBlue.color {
+    public var lineColor: UIColor = ColorName.lightGreyBlue.color {
         didSet {
             update()
         }
     }
-    var lineWidth: CGFloat = 1.0 {
+    public var lineWidth: CGFloat = 1.0 {
         didSet {
             update()
         }
     }
 
-    override class var layerClass: AnyClass {
+    public override class var layerClass: AnyClass {
         return CAShapeLayer.classForCoder()
     }
 
-    override func commonInit() {
+    public override func commonInit() {
         clipsToBounds = true
         update()
     }
 
-    override func update() {
+    public override func update() {
         let line = layer as! CAShapeLayer
         line.strokeColor = lineColor.cgColor
         line.lineWidth = lineWidth

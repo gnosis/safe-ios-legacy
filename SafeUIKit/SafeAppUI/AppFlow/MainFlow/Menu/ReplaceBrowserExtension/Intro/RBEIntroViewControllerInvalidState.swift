@@ -5,6 +5,7 @@
 import Foundation
 import UIKit
 import MultisigWalletApplication
+import SafeUIKit
 
 extension RBEIntroViewController {
 

@@ -77,7 +77,6 @@ enum Asset {
   }
   enum TransactionEdit {
     static let scanQrCopy = ImageAsset(name: "scan_qr_copy")
-    static let settings = ImageAsset(name: "settings")
     static let shape = ImageAsset(name: "shape")
     static let `switch` = ImageAsset(name: "switch")
   }
@@ -122,7 +121,6 @@ enum Asset {
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
     TransactionEdit.scanQrCopy,
-    TransactionEdit.settings,
     TransactionEdit.shape,
     TransactionEdit.`switch`,
     TransactionOverviewIcons.error,

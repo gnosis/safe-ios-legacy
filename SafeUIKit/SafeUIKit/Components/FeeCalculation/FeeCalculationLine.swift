@@ -7,7 +7,9 @@ import UIKit
 
 public class FeeCalculationLine: Equatable {
 
-    var lineHeight: Double = 25
+    public var lineHeight: Double = 25
+
+    public init() {}
 
     func makeView() -> UIView {
         return UIView()

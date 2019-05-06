@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="18.5" width="166.5" height="58.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="rdg-vr-Eia">
-                            <rect key="frame" x="52" y="22" width="62" height="14"/>
+                            <rect key="frame" x="52.5" y="22.5" width="62" height="14"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coins" translatesAutoresizingMaskIntoConstraints="NO" id="wh1-6U-9wa">
                                     <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
@@ -44,7 +44,7 @@
                         <constraint firstItem="rdg-vr-Eia" firstAttribute="centerY" secondItem="Hvn-Xg-BaP" secondAttribute="centerY" id="nJ4-uV-eih"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQN-YF-XQW" customClass="DashedSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQN-YF-XQW" customClass="DashedSeparatorView" customModule="SafeUIKit">
                     <rect key="frame" x="0.0" y="77" width="333" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -72,6 +72,6 @@
         </view>
     </objects>
     <resources>
-        <image name="coins" width="14" height="10"/>
+        <image name="coins" width="13" height="9"/>
     </resources>
 </document>

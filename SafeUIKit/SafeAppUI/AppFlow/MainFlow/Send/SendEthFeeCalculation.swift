@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import SafeUIKit
 
 class SendEthFeeCalculation: FeeCalculation {
 
@@ -31,7 +32,7 @@ class SendEthFeeCalculation: FeeCalculation {
             .set(style: .balance)
             .set(name: Strings.resultingBalance)
             .set(value: Strings.loading)
-        errorLine = FeeCalculationErrorLine(text: Strings.loading)
+        errorLine = FeeCalculationErrorLine(text: "")
         super.init()
         update()
     }
@@ -45,7 +46,7 @@ class SendEthFeeCalculation: FeeCalculation {
         let section = FeeCalculationSection([networkFeeLine, resultingBalanceLine, errorLine])
         section.border = nil
         section.insets = .zero
-        elements = [section]
+        set(contents: [section])
     }
 
 }

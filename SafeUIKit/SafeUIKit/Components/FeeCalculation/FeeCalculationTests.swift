@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import SafeAppUI
+@testable import SafeUIKit
 
 class FeeCalculationTests: XCTestCase {
 

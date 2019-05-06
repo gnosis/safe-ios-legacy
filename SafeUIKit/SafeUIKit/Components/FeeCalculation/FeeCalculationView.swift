@@ -7,12 +7,12 @@ import UIKit
 
 public class FeeCalculationView: UIView {
 
-    var calculation = FeeCalculation() {
+    public var calculation = FeeCalculation() {
         didSet {
             update()
         }
     }
-    var contentView: UIView!
+    public var contentView: UIView!
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +29,7 @@ public class FeeCalculationView: UIView {
         self.calculation = calculation
     }
 
-    func update() {
+    public func update() {
         contentView?.removeFromSuperview()
         calculation.update()
         contentView = calculation.makeView()

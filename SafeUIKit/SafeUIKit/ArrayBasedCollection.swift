@@ -10,6 +10,10 @@ open class ArrayBasedCollection<ElementType>: MutableCollection, RangeReplaceabl
 
     required public init() {}
 
+    public func set(contents: [ElementType]) {
+        elements = contents
+    }
+
     // Collection / Mutable Collection
 
     private func isInBounds(index: Int) -> Bool {
