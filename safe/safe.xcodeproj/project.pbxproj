@@ -33,7 +33,7 @@
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
 		0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC58A209CA2E500BA7A06 /* libCommon.a */; };
-		0A7A4D84227063CF00706B43 /* 0001_UpdateProcessedTransactionsMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A4D83227063CF00706B43 /* 0001_UpdateProcessedTransactionsMigration.swift */; };
+		0A7A4D84227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A4D83227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift */; };
 		0A814EEB225369C90099C45E /* NewSafeGuidelinesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */; };
 		0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84BBDE21060F6100708DE5 /* AppConfig.swift */; };
 		0A84BBF42106168600708DE5 /* AppConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A84BBE82106168600708DE5 /* AppConfig.json */; };
@@ -87,6 +87,7 @@
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
 		55A7B2A320ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */; };
 		55B5DF792278AD2F001A32F4 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */; };
+		55B5DF98227C567D001A32F4 /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF97227C567D001A32F4 /* Migrations.swift */; };
 		55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */; };
 		55CAA003209AF0FB009AE181 /* SaveMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */; };
 		55CAA005209AF204009AE181 /* ConfirmMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */; };
@@ -297,7 +298,7 @@
 		0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A5DC58A209CA2E500BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A7A4D83227063CF00706B43 /* 0001_UpdateProcessedTransactionsMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 0001_UpdateProcessedTransactionsMigration.swift; sourceTree = "<group>"; };
+		0A7A4D83227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0001_UpdateProcessedTransactionsMigration.swift; sourceTree = "<group>"; };
 		0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewSafeGuidelinesScreen.swift; path = safeUITests/screens/OnboardingFlow/NewSafeGuidelinesScreen.swift; sourceTree = SOURCE_ROOT; };
 		0A84BBDE21060F6100708DE5 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		0A84BBE82106168600708DE5 /* AppConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AppConfig.json; path = ../AppConfig.json; sourceTree = "<group>"; };
@@ -367,6 +368,7 @@
 		558FD81420767F18004F070E /* NewSafeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeScreen.swift; sourceTree = "<group>"; };
 		55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
 		55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		55B5DF97227C567D001A32F4 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
 		55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicScreen.swift; sourceTree = "<group>"; };
 		55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicUITests.swift; sourceTree = "<group>"; };
@@ -501,7 +503,8 @@
 		0A7A4D902270644100706B43 /* Migrations */ = {
 			isa = PBXGroup;
 			children = (
-				0A7A4D83227063CF00706B43 /* 0001_UpdateProcessedTransactionsMigration.swift */,
+				0A7A4D83227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift */,
+				55B5DF97227C567D001A32F4 /* Migrations.swift */,
 			);
 			path = Migrations;
 			sourceTree = "<group>";
@@ -1171,11 +1174,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A1B2AC5221EFDDA00E92990 /* UIKitFileSystemGuard.swift in Sources */,
+				55B5DF98227C567D001A32F4 /* Migrations.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				0A364B40226886DB002E80B7 /* IdentityAccessConfigurator.swift in Sources */,
 				0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */,
 				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,
-				0A7A4D84227063CF00706B43 /* 0001_UpdateProcessedTransactionsMigration.swift in Sources */,
+				0A7A4D84227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
 				555D33FE2110BD810055D87C /* PushLocalizationStrings.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
