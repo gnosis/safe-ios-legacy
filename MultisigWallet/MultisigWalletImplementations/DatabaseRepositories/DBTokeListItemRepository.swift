@@ -57,7 +57,7 @@ public class DBTokenListItemRepository: DBEntityRepository<TokenListItem, TokenI
 
     public func whitelisted() -> [TokenListItem] {
         return find(key: "status",
-                    keyValue: TokenListItem.TokenListItemStatus.whitelisted.rawValue,
+                    value: TokenListItem.TokenListItemStatus.whitelisted.rawValue,
                     orderBy: "sorting_id")
     }
 
