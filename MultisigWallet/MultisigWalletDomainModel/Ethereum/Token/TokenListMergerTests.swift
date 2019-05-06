@@ -127,6 +127,21 @@ class TokenListMergerTests: XCTestCase {
         assertTokenItem(itemD, .whitelisted, "D_1", 1)
     }
 
+    func test_canPayTransactionFeeUpdates() throws {
+        XCTAssertEqual(allItems.count, 0)
+        tokenListService.json = TokenListStub.json
+        merger.mergeStoredTokenItems(with: try tokenListService.items())
+        XCTAssertTrue(itemA.canPayTransactionFee)
+        XCTAssertFalse(itemB.canPayTransactionFee)
+        XCTAssertTrue(itemD.canPayTransactionFee)
+
+        tokenListService.json = TokenListStub.json1
+        merger.mergeStoredTokenItems(with: try tokenListService.items())
+        XCTAssertTrue(itemA.canPayTransactionFee)
+        XCTAssertTrue(itemB.canPayTransactionFee)
+        XCTAssertFalse(itemD.canPayTransactionFee)
+    }
+
 }
 
 private extension TokenListMergerTests {

@@ -61,7 +61,7 @@ public final class TokenListMerger {
     private func updateTokenItemWithTokenInfoOnly(_ item: TokenListItem, with latestItem: TokenListItem) {
         let updatedItem = TokenListItem(token: latestItem.token,
                                         status: item.status,
-                                        canPayTransactionFee: item.canPayTransactionFee,
+                                        canPayTransactionFee: latestItem.canPayTransactionFee,
                                         sortingId: item.sortingId)
         repository.save(updatedItem)
     }
