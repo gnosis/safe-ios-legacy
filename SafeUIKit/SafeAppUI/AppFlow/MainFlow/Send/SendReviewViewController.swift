@@ -30,7 +30,6 @@ final class SendReviewViewController: ReviewTransactionViewController {
 
     override func createCells() {
         let indexPath = IndexPathIterator()
-        cells[indexPath.next()] = transferHeaderCell()
         cells[indexPath.next()] = transferViewCell()
         if tx.amountTokenData.isEther {
             feeCellIndexPath = indexPath.next()
@@ -68,6 +67,7 @@ final class SendReviewViewController: ReviewTransactionViewController {
         cell.transferView.fromAddress = tx.sender
         cell.transferView.toAddress = tx.recipient
         cell.transferView.tokenData = tx.amountTokenData
+        cell.transferView.balanceData = tx.amountTokenData.withBalance(balance(of: tx.amountTokenData))
         return cell
     }
 
