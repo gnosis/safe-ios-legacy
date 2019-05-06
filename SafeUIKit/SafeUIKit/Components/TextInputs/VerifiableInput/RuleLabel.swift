@@ -26,6 +26,10 @@ final class RuleLabel: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
 
+    var text: String? {
+        return label.text
+    }
+
     private var rule: ((String) -> Bool)?
     private (set) var status: RuleStatus = .inactive {
         didSet {
@@ -80,6 +84,7 @@ final class RuleLabel: UIView {
     }
 
     func reset() {
+        _ = rule?("") // updating rule to give chance to react rule's clients to reset() call
         status = .inactive
     }
 

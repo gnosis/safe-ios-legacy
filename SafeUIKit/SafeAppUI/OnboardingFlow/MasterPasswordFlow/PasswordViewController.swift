@@ -63,9 +63,9 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
     }
 
     private func configureKeyboardBehavior() {
+        verifiableInput.avoidKeyboard()
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         keyboardBehavior.activeTextField = verifiableInput.textInput
-        keyboardBehavior.useViewsSuperviewFrame = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

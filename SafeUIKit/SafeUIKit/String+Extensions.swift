@@ -22,11 +22,6 @@ extension String {
         return result
     }
 
-    var removingDecimalSeparator: String {
-        guard let decimalSeparator = Locale.current.decimalSeparator else { return self }
-        return self.replacingOccurrences(of: decimalSeparator, with: "")
-    }
-
     var hasNonDecimalDigitCharacters: Bool {
         return rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) != nil
     }

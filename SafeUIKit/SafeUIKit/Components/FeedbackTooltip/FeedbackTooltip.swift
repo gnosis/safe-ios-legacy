@@ -10,11 +10,13 @@ public final class FeedbackTooltip: CardView {
 
     private let horizontalLabelPadding: CGFloat = 12
     private let verticalLabelPadding: CGFloat = 10
-    private let horizontalPadding: CGFloat = 20
+    private let horizontalPadding: CGFloat = 15
     private let verticalPadding: CGFloat = 12
 
-    // chars per second
-    private let userReadingSpeed = 10
+    private let userReadingSpeedCharsPerSecond: TimeInterval = 10
+    private let appearanceDuration: TimeInterval = 0.3
+
+    public private(set) var isVisible: Bool = false
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +41,10 @@ public final class FeedbackTooltip: CardView {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissTooltip))
+        addGestureRecognizer(tapRecognizer)
+        isUserInteractionEnabled = true
+        label.isUserInteractionEnabled = true
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalLabelPadding),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalLabelPadding),
@@ -46,32 +52,70 @@ public final class FeedbackTooltip: CardView {
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -verticalLabelPadding)])
     }
 
+    @objc func dismissTooltip() {
+        hide()
+    }
+
     // swiftlint:disable multiline_arguments multiple_closures_with_trailing_closure
-    public static func show(for view: UIView, in superview: UIView, message: String) {
+    private func show() {
+        isVisible = true
+        UIView.animate(withDuration: appearanceDuration, delay: 0, options: [.allowUserInteraction], animations: {
+            self.alpha = 1
+        }, completion: nil)
+    }
+
+    public func hide() {
+        isVisible = false
+        layer.removeAllAnimations()
+        UIView.animate(withDuration: appearanceDuration, delay: 0, options: [], animations: {
+            self.alpha = 0
+        }, completion: { _ in
+            self.removeFromSuperview()
+        })
+    }
+
+    @discardableResult
+    public static func show(for view: UIView, in superview: UIView, message: String) -> FeedbackTooltip {
         let tooltip = FeedbackTooltip()
         tooltip.label.text = message
         tooltip.alpha = 0
         tooltip.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(tooltip)
-        NSLayoutConstraint.activate([
-            tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor,
-                                             constant: tooltip.horizontalPadding),
-            tooltip.centerXAnchor.constraint(equalTo: superview.centerXAnchor),
-            tooltip.bottomAnchor.constraint(equalTo: view.topAnchor, constant: -tooltip.verticalPadding)])
-        UIView.animate(withDuration: 0.3, animations: {
-            tooltip.alpha = 1
-        }) { finished in
-            let timeToShowInMilliseconds = (message.count * 1_000) / tooltip.userReadingSpeed
-            DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(timeToShowInMilliseconds)) {
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        tooltip.alpha = 0
-                    }) { finished in
-                        tooltip.removeFromSuperview()
-                    }
-                }
-            }
+
+        // The idea is to show the tooltip within bounds, with the minimum possible width.
+        //
+        // ||-spacing-|   space for tooltip   |-spacing-||
+        // ||         |<--max tooltip width ->|         ||
+        // ||
+        // ||           +-------+
+        // ||           |tooltip| <-- centered relative to view below
+        // ||           +---V---+
+        // ||        |-----view----|
+        // tooltip.centerX = view.centerX
+        // tooltip.leading > superview.leading + padding
+        // tooltip.trailing < superview.trailing - padding
+        // tooltip.width < max width
+        // tooltip.bottom = view.top + verticalPadding
+        // swiftlint:disable line_length
+        let maxTooltipWidth = superview.bounds.width - 2 * tooltip.horizontalPadding
+        let viewTopInSuperview = superview.convert(view.bounds, from: view).minY
+        let constraints = [tooltip.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                           tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: tooltip.horizontalPadding),
+                           tooltip.trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -tooltip.horizontalPadding),
+                           tooltip.widthAnchor.constraint(lessThanOrEqualToConstant: maxTooltipWidth),
+                           tooltip.bottomAnchor.constraint(equalTo: superview.topAnchor, constant: viewTopInSuperview - tooltip.verticalPadding)]
+        // swiftlint:enable
+        constraints[0].priority = .defaultHigh
+        NSLayoutConstraint.activate(constraints)
+
+        tooltip.show()
+        let visibleDurationSeconds = TimeInterval(message.count) / tooltip.userReadingSpeedCharsPerSecond
+        // using asyncAfter instead of UIView.animation with delay because the latter blocks user interaction
+        // even if the .allowUserInteraction passed as an option
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(Int(visibleDurationSeconds * 1_000))) {
+            tooltip.hide()
         }
+        return tooltip
     }
 
 }

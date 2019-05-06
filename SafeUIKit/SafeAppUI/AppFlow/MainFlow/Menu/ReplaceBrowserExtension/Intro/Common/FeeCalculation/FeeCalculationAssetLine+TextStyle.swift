@@ -10,17 +10,26 @@ extension FeeCalculationAssetLine {
     struct TextStyle {
         var name: AttributedStringStyle
         var value: AttributedStringStyle
+        var valueButton: AttributedStringStyle
+        var valueButtonPressed: AttributedStringStyle
         var info: AttributedStringStyle
+        var infoPressed: AttributedStringStyle
         var error: AttributedStringStyle
 
         static let plain = TextStyle(name: DefaultStyle(),
                                      value: ValueStyle(),
+                                     valueButton: ValueButtonStyle(),
+                                     valueButtonPressed: ValueButtonPressedStyle(),
                                      info: NameButtonStyle(),
+                                     infoPressed: NameButtonPressedStyle(),
                                      error: ErrorStyle())
 
         static let balance = TextStyle(name: NameBalanceStyle(),
                                        value: ValueBalanceStyle(),
+                                       valueButton: ValueButtonStyle(),
+                                       valueButtonPressed: ValueButtonPressedStyle(),
                                        info: NameButtonBalanceStyle(),
+                                       infoPressed: NameButtonBalancePressedStyle(),
                                        error: ErrorBalanceStyle())
     }
 
@@ -45,15 +54,40 @@ extension FeeCalculationAssetLine {
 
     }
 
+    class NameButtonPressedStyle: NameButtonStyle {
+
+        override var fontColor: UIColor { return .darkText }
+
+    }
+
     class NameButtonBalanceStyle: NameButtonStyle {
 
         override var fontWeight: UIFont.Weight { return .bold }
 
     }
 
+    class NameButtonBalancePressedStyle: NameButtonBalanceStyle {
+
+        override var fontColor: UIColor { return .darkText }
+
+    }
+
     class ValueStyle: DefaultStyle {
 
         override var alignment: NSTextAlignment { return .right }
+
+    }
+
+    class ValueButtonStyle: NameButtonStyle {
+
+        override var minimumLineHeight: Double { return 20 }
+        override var maximumLineHeight: Double { return 20 }
+
+    }
+
+    class ValueButtonPressedStyle: ValueButtonStyle {
+
+        override var fontColor: UIColor { return UIColor.darkText }
 
     }
 

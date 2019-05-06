@@ -190,6 +190,11 @@
 		0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D436209C92A20082C0A3 /* TestExtensions.swift */; };
 		0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D437209C92A20082C0A3 /* TestExtensionsTests.swift */; };
+		0A73C6E2227B35F5002EEA32 /* SendEthFeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */; };
+		0A73C6F2227B3605002EEA32 /* SendERC20FeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */; };
+		0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */; };
+		0A73C6FE227B4DF6002EEA32 /* TooltipSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6FD227B4DF6002EEA32 /* TooltipSource.swift */; };
+		0A73C725227C9EC4002EEA32 /* DashedSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C724227C9EC4002EEA32 /* DashedSeparatorView.swift */; };
 		0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8BE205284180044D5DD /* H1Label.swift */; };
 		0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
@@ -201,6 +206,7 @@
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D220480C7B00445AC2 /* Fonts.swift */; };
+		0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */; };
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
 		0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
@@ -709,6 +715,11 @@
 		0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecoverSafe.storyboard; sourceTree = "<group>"; };
 		0A72D436209C92A20082C0A3 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		0A72D437209C92A20082C0A3 /* TestExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensionsTests.swift; sourceTree = "<group>"; };
+		0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEthFeeCalculation.swift; sourceTree = "<group>"; };
+		0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendERC20FeeCalculation.swift; sourceTree = "<group>"; };
+		0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeeCalculationAssetLine+TokenData.swift"; sourceTree = "<group>"; };
+		0A73C6FD227B4DF6002EEA32 /* TooltipSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipSource.swift; sourceTree = "<group>"; };
+		0A73C724227C9EC4002EEA32 /* DashedSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedSeparatorView.swift; sourceTree = "<group>"; };
 		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
 		0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
@@ -739,6 +750,7 @@
 		0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
 		0A9670D220480C7B00445AC2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		0A9670D820480C7B00445AC2 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceView.swift; sourceTree = "<group>"; };
 		0A99436820A0485300E36FD7 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		0A99436A20A0489800E36FD7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
@@ -1330,13 +1342,16 @@
 		0A60B50E211312C00066821A /* Send */ = {
 			isa = PBXGroup;
 			children = (
-				0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */,
-				554CACCE221F04B80086D303 /* SendReviewViewController.swift */,
-				554CACD6221F19430086D303 /* SendReviewViewControllerTests.swift */,
-				0AD5091E2110AABD008507CB /* SendInputViewModel.swift */,
-				0AD5091B211091E4008507CB /* SendInputViewModelTests.swift */,
+				0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */,
+				0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */,
+				0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */,
 				0AD998AF20D3FEBD00E6F3CA /* SendInputViewController.swift */,
 				0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */,
+				0AD5091E2110AABD008507CB /* SendInputViewModel.swift */,
+				0AD5091B211091E4008507CB /* SendInputViewModelTests.swift */,
+				554CACCE221F04B80086D303 /* SendReviewViewController.swift */,
+				554CACD6221F19430086D303 /* SendReviewViewControllerTests.swift */,
+				0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */,
 			);
 			path = Send;
 			sourceTree = "<group>";
@@ -1439,6 +1454,7 @@
 				5524735621428EC400A77557 /* QRCodeScanner */,
 				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
 				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
+				0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */,
 				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
 				0AF9EBC421A6C4A700C028B3 /* ContainerCell.swift */,
 				0ACCA8C1221C116F00D37594 /* NibUIView.swift */,
@@ -1597,6 +1613,7 @@
 				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
 				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
 				55247302213E8D7600A77557 /* TokensHeaderView.swift */,
+				0A73C724227C9EC4002EEA32 /* DashedSeparatorView.swift */,
 				55247304213E8EC600A77557 /* TokensHeaderView.xib */,
 			);
 			path = Tokens;
@@ -1953,6 +1970,7 @@
 			isa = PBXGroup;
 			children = (
 				55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */,
+				0A73C6FD227B4DF6002EEA32 /* TooltipSource.swift */,
 			);
 			path = FeedbackTooltip;
 			sourceTree = "<group>";
@@ -2625,6 +2643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */,
+				0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */,
 				5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */,
 				0AD1D1E021A8430300941EA1 /* EthereumAddressFormatter.swift in Sources */,
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
@@ -2674,6 +2693,7 @@
 				556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */,
 				55C428FA217B426D00BF8922 /* ScanBarButtonItem.swift in Sources */,
 				55126B5C21AC372D00A9F810 /* TransactionConfirmationView.swift in Sources */,
+				0A73C6FE227B4DF6002EEA32 /* TooltipSource.swift in Sources */,
 				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				550E7CDC21708E1F0032DE6C /* String+Extensions.swift in Sources */,
 				55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */,
@@ -2763,6 +2783,7 @@
 				0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */,
 				0A3BD8FD22254833007039B4 /* FeeCalculationLine.swift in Sources */,
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
+				0A73C6E2227B35F5002EEA32 /* SendEthFeeCalculation.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				5598000B225B74A4006D5792 /* Authenticator.swift in Sources */,
 				0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */,
@@ -2776,6 +2797,7 @@
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
+				0A73C725227C9EC4002EEA32 /* DashedSeparatorView.swift in Sources */,
 				0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */,
 				0A6EF3C221BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift in Sources */,
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
@@ -2834,6 +2856,7 @@
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
 				55B5DF7722788F4E001A32F4 /* MenuItemTableViewCell.swift in Sources */,
 				0A3BD8FC22254833007039B4 /* FeeCalculationSpacingLine.swift in Sources */,
+				0A73C6F2227B3605002EEA32 /* SendERC20FeeCalculation.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
 				0ACCA8C0221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift in Sources */,
@@ -2853,6 +2876,7 @@
 				0A3BD90022254833007039B4 /* ArrayBasedCollection.swift in Sources */,
 				0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */,
 				0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */,
+				0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */,
 				0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* SendInputViewModel.swift in Sources */,

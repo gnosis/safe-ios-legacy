@@ -15,6 +15,10 @@ public class FeeCalculationErrorLine: FeeCalculationLine {
         self.text = text
     }
 
+    public func set(error: Error?) {
+        text = error?.localizedDescription ?? ""
+    }
+
     override func makeView() -> UIView {
         let label = UILabel()
         label.attributedText = NSAttributedString(string: text, style: textStyle)
@@ -26,6 +30,18 @@ public class FeeCalculationErrorLine: FeeCalculationLine {
             return stack
         }
         return label
+    }
+
+    func makeErrorIcon() -> UIView {
+        let image = UIImageView(image: UIImage(named: "estimation-error-icon",
+                                               in: Bundle(for: FeeCalculationLine.self),
+                                               compatibleWith: nil))
+        image.contentMode = .top
+        image.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            image.heightAnchor.constraint(equalToConstant: 18),
+            image.widthAnchor.constraint(equalToConstant: 16)])
+        return image
     }
 
     class ErrorTextStyle: AttributedStringStyle {
