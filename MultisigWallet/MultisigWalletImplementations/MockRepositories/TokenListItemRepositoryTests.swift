@@ -13,11 +13,11 @@ class BaseTokenListItemRepositoryTests: XCTestCase {
 
     func do_test_Find_Remove_All_Save() {
         let eth = Token.Ether
-        let item = TokenListItem(token: eth, status: .whitelisted)
+        let item = TokenListItem(token: eth, status: .whitelisted, canPayTransactionFee: false)
         repository.save(item)
         XCTAssertEqual(repository.find(id: eth.id), item)
         XCTAssertEqual(repository.all().count, 1)
-        let item2 = TokenListItem(token: Token.gno, status: .regular)
+        let item2 = TokenListItem(token: Token.gno, status: .regular, canPayTransactionFee: false)
         repository.save(item2)
         let all = repository.all()
         XCTAssertEqual(all.count, 2)
@@ -31,9 +31,9 @@ class BaseTokenListItemRepositoryTests: XCTestCase {
     }
 
     func do_test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder() {
-        let gno = TokenListItem(token: Token.gno, status: .whitelisted)
-        let rdn = TokenListItem(token: Token.rdn, status: .regular)
-        let mgn = TokenListItem(token: Token.mgn, status: .whitelisted)
+        let gno = TokenListItem(token: Token.gno, status: .whitelisted, canPayTransactionFee: false)
+        let rdn = TokenListItem(token: Token.rdn, status: .regular, canPayTransactionFee: false)
+        let mgn = TokenListItem(token: Token.mgn, status: .whitelisted, canPayTransactionFee: false)
         repository.save(gno)
         repository.save(rdn)
         repository.save(mgn)
@@ -52,13 +52,13 @@ class BaseTokenListItemRepositoryTests: XCTestCase {
         XCTAssertEqual(savedGNO_1.sortingId, 0)
 
         // Updating status of whitelisted token should remove its sorting id
-        let blacklistedGNO = TokenListItem(token: Token.gno, status: .blacklisted)
+        let blacklistedGNO = TokenListItem(token: Token.gno, status: .blacklisted, canPayTransactionFee: false)
         repository.save(blacklistedGNO)
         let savedGNO_2 = repository.find(id: Token.gno.id)!
         XCTAssertEqual(savedGNO_2.sortingId, nil)
 
         // New whitelisted token takes next available sorting id
-        let whitelistedRDN = TokenListItem(token: Token.rdn, status: .whitelisted)
+        let whitelistedRDN = TokenListItem(token: Token.rdn, status: .whitelisted, canPayTransactionFee: false)
         repository.save(whitelistedRDN)
         let savedRDN_2 = repository.find(id: Token.rdn.id)!
         XCTAssertEqual(savedRDN_2.sortingId, 2)

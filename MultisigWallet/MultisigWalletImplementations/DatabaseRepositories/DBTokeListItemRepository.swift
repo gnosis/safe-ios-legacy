@@ -5,89 +5,49 @@
 import Foundation
 import Database
 import MultisigWalletDomainModel
+import CommonImplementations
 
-public class DBTokenListItemRepository: TokenListItemRepository {
+public class DBTokenListItemRepository: DBEntityRepository<TokenListItem, TokenID>, TokenListItemRepository {
 
-    struct SQL {
-        static let createTable = """
-CREATE TABLE IF NOT EXISTS tbl_token_list_items (
-    id TEXT NOT NULL PRIMARY KEY,
-    token TEXT NOT NULL,
-    status TEXT NOT NULL,
-    can_pay_transaction_fee BOOLEAN,
-    sorting_id INTEGER,
-    updated TEXT NOT NULL
-);
-"""
-        static let insert = "INSERT OR REPLACE INTO tbl_token_list_items VALUES (?, ?, ?, ?, ?, ?);"
-        static let delete = "DELETE FROM tbl_token_list_items WHERE id = ?;"
-        static let find = """
-SELECT id, token, status, can_pay_transaction_fee, sorting_id, updated
-FROM tbl_token_list_items
-WHERE id = ?
-ORDER BY rowid
-LIMIT 1;
-"""
-        static let all = """
-SELECT id, token, status, can_pay_transaction_fee, sorting_id, updated
-FROM tbl_token_list_items ORDER BY token;
-"""
-        static let find_by_status = """
-SELECT id, token, status, can_pay_transaction_fee, sorting_id, updated
-FROM tbl_token_list_items
-WHERE status = ?
-ORDER BY sorting_id;
-"""
-
+    public override var table: TableSchema {
+        return .init("tbl_token_list_items",
+                     "id TEXT NOT NULL PRIMARY KEY",
+                     "token TEXT NOT NULL",
+                     "status TEXT NOT NULL",
+                     "can_pay_transaction_fee BOOLEAN",
+                     "sorting_id INTEGER",
+                     "updated TEXT NOT NULL")
     }
 
-    private let db: Database
-
-    public init(db: Database) {
-        self.db = db
+    public override func insertionBindings(_ object: TokenListItem) -> [SQLBindable?] {
+        return bindable([object.id,
+                         object.token,
+                         object.status.rawValue,
+                         object.canPayTransactionFee,
+                         object.sortingId,
+                         object.updated])
     }
 
-    public func setUp() {
-        try! db.execute(sql: SQL.createTable)
-    }
-
-    public func save(_ tokenListItem: TokenListItem) {
+    public override func save(_ tokenListItem: TokenListItem) {
         prepareToSave(tokenListItem)
-        doSave(tokenListItem)
+        super.save(tokenListItem)
     }
 
-    private func doSave(_ tokenListItem: TokenListItem) {
-        try! db.execute(sql: SQL.insert, bindings: [
-            tokenListItem.id.id,
-            tokenListItem.token.description,
-            tokenListItem.status.rawValue,
-            tokenListItem.canPayTransactionFee,
-            tokenListItem.sortingId,
-            DateFormatter.networkDateFormatter.string(from: tokenListItem.updated)])
-    }
-
-    public func remove(_ tokenListItem: TokenListItem) {
-        try! db.execute(sql: SQL.delete, bindings: [tokenListItem.id.id])
-    }
-
-    public func find(id: TokenID) -> TokenListItem? {
+    public override func find(id: TokenID) -> TokenListItem? {
         if id == Token.Ether.id { return TokenListItem(token: .Ether,
                                                        status: .whitelisted,
                                                        canPayTransactionFee: true) }
-        return try! db.execute(sql: SQL.find,
-                               bindings: [id.id],
-                               resultMap: tokenListItemFromResultSet).first as? TokenListItem
+        return super.find(id: id)
     }
 
-    private func tokenListItemFromResultSet(_ rs: ResultSet) -> TokenListItem? {
+    public override func objectFromResultSet(_ rs: ResultSet) throws -> TokenListItem? {
         guard let tokenString = rs.string(column: "token"),
             let token = Token(tokenString),
             let statusString = rs.string(column: "status"),
             let status = TokenListItem.TokenListItemStatus(rawValue: statusString),
-            let canPayTransactionFee = rs.bool(column: "can_pay_transaction_fee"),
-            let updatedString = rs.string(column: "updated"),
-            let updated = DateFormatter.networkDateFormatter.date(from: updatedString) else { return nil }
+            let canPayTransactionFee = rs.bool(column: "can_pay_transaction_fee") else { return nil }
         let sortingId = rs.int(column: "sorting_id")
+        let updated = Date(serializedValue: rs.string(column: "updated")) ?? Date()
         return TokenListItem(token: token,
                              status: status,
                              canPayTransactionFee: canPayTransactionFee,
@@ -95,14 +55,10 @@ ORDER BY sorting_id;
                              updated: updated)
     }
 
-    public func all() -> [TokenListItem] {
-        return try! db.execute(sql: SQL.all, resultMap: tokenListItemFromResultSet).compactMap { $0 }
-    }
-
     public func whitelisted() -> [TokenListItem] {
-        return try! db.execute(sql: SQL.find_by_status,
-                               bindings: [TokenListItem.TokenListItemStatus.whitelisted.rawValue],
-                               resultMap: tokenListItemFromResultSet).compactMap { $0 }
+        return find(key: "status",
+                    keyValue: TokenListItem.TokenListItemStatus.whitelisted.rawValue,
+                    orderBy: "sorting_id")
     }
 
 }

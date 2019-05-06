@@ -55,35 +55,6 @@ public struct Token {
 
 extension Token: Equatable {}
 
-// MARK: - Token from a String
-
-public extension Token {
-
-    fileprivate static let separator = "~~~"
-
-    init?(_ value: String) {
-        let components = value.components(separatedBy: Token.separator)
-        guard components.count == 5 else { return nil }
-        guard let decimals = Int(components[2]) else { return nil }
-        self.init(code: components[0],
-                  name: components[1],
-                  decimals: decimals,
-                  address: Address(components[3]),
-                  logoUrl: components[4])
-    }
-
-}
-
-// MARK: - Token conversion into a String
-
-extension Token: CustomStringConvertible {
-
-    public var description: String {
-        return [code, name, String(decimals), address.value, logoUrl].joined(separator: Token.separator)
-    }
-
-}
-
 /// Token Int type for representing tokens amount
 public typealias TokenInt = BigInt
 
@@ -110,31 +81,6 @@ public extension TokenAmount {
     /// - Returns: token amount value object
     static func ether(_ amount: TokenInt) -> TokenAmount {
         return TokenAmount(amount: amount, token: .Ether)
-    }
-
-}
-
-// MARK: - TokenAmount from String conversion
-
-extension TokenAmount {
-
-    fileprivate static let separator = "==="
-
-    public init?(_ value: String) {
-        let components = value.components(separatedBy: TokenAmount.separator)
-        guard let amount = TokenInt(components[0]), let token = Token(components[1]), components.count == 2 else {
-            return nil
-        }
-        self.init(amount: amount, token: token)
-    }
-}
-
-// MARK: - TokenAmount conversion into a String
-
-extension TokenAmount: CustomStringConvertible {
-
-    public var description: String {
-        return [String(amount), token.description].joined(separator: TokenAmount.separator)
     }
 
 }

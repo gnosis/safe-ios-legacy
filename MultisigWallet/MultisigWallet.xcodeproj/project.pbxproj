@@ -78,7 +78,7 @@
 		0A6AE029216CB539002FBE3D /* EthereumContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */; };
 		0A6AE030216CB554002FBE3D /* EthereumContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */; };
 		0A6B846321B6A0FF00EDF04C /* WalletIDList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */; };
-		0A6B846521B6A28200EDF04C /* WalletIDList+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */; };
+		0A6B846521B6A28200EDF04C /* WalletIDList+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846421B6A28200EDF04C /* WalletIDList+DBSerializable.swift */; };
 		0A6EF3CC21BAB13200F1074E /* RecoveryApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */; };
 		0A6EF3D221BAB15E00F1074E /* RecoveryDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */; };
 		0A6EF3D621BAB86600F1074E /* WalletProxyContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */; };
@@ -204,6 +204,7 @@
 		0AEF8AEC20A08BAE006A1265 /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A9020A08899006A1265 /* libMultisigWalletApplication.a */; };
 		551D76FE227C7BC9003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
 		551D7703227C7BCE003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
+		551D775A22803C4A003B7910 /* Token+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D775922803C4A003B7910 /* Token+DBSerializable.swift */; };
 		5524733421412A6000A77557 /* EthereumKitEthereumServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524733321412A6000A77557 /* EthereumKitEthereumServiceTests.swift */; };
 		552C6006212B0CA200BF973A /* SynchronisationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C5FFA212B0CA200BF973A /* SynchronisationDomainService.swift */; };
 		552C600A212B0CCE00BF973A /* SynchronisationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C6007212B0CCD00BF973A /* SynchronisationService.swift */; };
@@ -499,7 +500,7 @@
 		0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxy.swift; sourceTree = "<group>"; };
 		0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxyTests.swift; sourceTree = "<group>"; };
 		0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletIDList.swift; sourceTree = "<group>"; };
-		0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletIDList+Serialization.swift"; sourceTree = "<group>"; };
+		0A6B846421B6A28200EDF04C /* WalletIDList+DBSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletIDList+DBSerializable.swift"; sourceTree = "<group>"; };
 		0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryApplicationService.swift; sourceTree = "<group>"; };
 		0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryDomainService.swift; sourceTree = "<group>"; };
 		0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletProxyContractProxy.swift; sourceTree = "<group>"; };
@@ -625,6 +626,7 @@
 		0AEF8AB920A088C3006A1265 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0AEF8AF620A08F7D006A1265 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
+		551D775922803C4A003B7910 /* Token+DBSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+DBSerializable.swift"; sourceTree = "<group>"; };
 		5524733321412A6000A77557 /* EthereumKitEthereumServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKitEthereumServiceTests.swift; sourceTree = "<group>"; };
 		552C5FFA212B0CA200BF973A /* SynchronisationDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronisationDomainService.swift; sourceTree = "<group>"; };
 		552C6007212B0CCD00BF973A /* SynchronisationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronisationService.swift; sourceTree = "<group>"; };
@@ -1089,6 +1091,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		551D776122803E51003B7910 /* DBSerializable */ = {
+			isa = PBXGroup;
+			children = (
+				0AD5294321B6E521009559ED /* OwnerList+DBSerializable.swift */,
+				551D775922803C4A003B7910 /* Token+DBSerializable.swift */,
+				0AD5294A21B6E538009559ED /* TokenInt+DBSerializable.swift */,
+				0A6B846421B6A28200EDF04C /* WalletIDList+DBSerializable.swift */,
+				0AD5294E21B6E567009559ED /* WalletState+DBSerializable.swift */,
+			);
+			path = DBSerializable;
+			sourceTree = "<group>";
+		};
 		552C5FF9212B0CA200BF973A /* SynchronisationService */ = {
 			isa = PBXGroup;
 			children = (
@@ -1100,6 +1114,7 @@
 		55B5DFA4227C5FAD001A32F4 /* DatabaseRepositories */ = {
 			isa = PBXGroup;
 			children = (
+				551D776122803E51003B7910 /* DBSerializable */,
 				0AD5294C21B6E554009559ED /* Address+DBSerializable.swift */,
 				0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */,
 				0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */,
@@ -1113,12 +1128,8 @@
 				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
 				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
 				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
-				0AD5294321B6E521009559ED /* OwnerList+DBSerializable.swift */,
 				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
 				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
-				0AD5294A21B6E538009559ED /* TokenInt+DBSerializable.swift */,
-				0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */,
-				0AD5294E21B6E567009559ED /* WalletState+DBSerializable.swift */,
 			);
 			path = DatabaseRepositories;
 			sourceTree = "<group>";
@@ -1794,6 +1805,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551D775A22803C4A003B7910 /* Token+DBSerializable.swift in Sources */,
 				0A9E383E20F4AE510085E8D7 /* InfuraEthereumNodeService.swift in Sources */,
 				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
 				555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */,
@@ -1822,7 +1834,7 @@
 				0A9E384F20F4AE510085E8D7 /* MockEthereumNodeService.swift in Sources */,
 				0A9E384B20F4AE510085E8D7 /* EthInt.swift in Sources */,
 				0A9E384420F4AE510085E8D7 /* GetTransactionReceiptRequest.swift in Sources */,
-				0A6B846521B6A28200EDF04C /* WalletIDList+Serialization.swift in Sources */,
+				0A6B846521B6A28200EDF04C /* WalletIDList+DBSerializable.swift in Sources */,
 				0AD5294F21B6E567009559ED /* WalletState+DBSerializable.swift in Sources */,
 				0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */,
 				0A9E383D20F4AE510085E8D7 /* GnosisTransactionRelayService.swift in Sources */,
