@@ -291,6 +291,7 @@
 		55126B6721AC380900A9F810 /* ProgressViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6421AC37FC00A9F810 /* ProgressViewTests.swift */; };
 		55126B6921AC38A900A9F810 /* TransactionConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */; };
 		551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */; };
+		551D778F22819D2A003B7910 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D778E22819D2A003B7910 /* PaymentMethodViewController.swift */; };
 		55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55247302213E8D7600A77557 /* TokensHeaderView.swift */; };
 		55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55247304213E8EC600A77557 /* TokensHeaderView.xib */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
@@ -864,6 +865,7 @@
 		55126B6421AC37FC00A9F810 /* ProgressViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewTests.swift; sourceTree = "<group>"; };
 		55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationViewController.swift; sourceTree = "<group>"; };
 		551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeePaymentMethodCommand.swift; sourceTree = "<group>"; };
+		551D778E22819D2A003B7910 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
 		55247302213E8D7600A77557 /* TokensHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensHeaderView.swift; sourceTree = "<group>"; };
 		55247304213E8EC600A77557 /* TokensHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensHeaderView.xib; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
@@ -1918,6 +1920,7 @@
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
 				558682CA2192F9840060F1DE /* PairWithBrowserExtension */,
 				55DFBCF52135901D004B2AC4 /* Unlock */,
+				551D778E22819D2A003B7910 /* PaymentMethodViewController.swift */,
 			);
 			path = ReusableDetachedControllers;
 			sourceTree = "<group>";
@@ -2798,6 +2801,7 @@
 				0A6EF3C421BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift in Sources */,
 				55980001225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift in Sources */,
 				0AE950CA20D29C930099B79D /* TokenAmountTransactionParameterView.swift in Sources */,
+				551D778F22819D2A003B7910 /* PaymentMethodViewController.swift in Sources */,
 				0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */,
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
 				0A73C6E2227B35F5002EEA32 /* SendEthFeeCalculation.swift in Sources */,

@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import CommonTestSupport
+import Common
 
 class MenuTableViewControllerTests: XCTestCase {
 
@@ -39,7 +40,7 @@ class MenuTableViewControllerTests: XCTestCase {
 
     func test_whenCreated_thenConfigured() {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 1)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: securitySection), 4)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: securitySection), 5)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: portfolioSection), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 4)
     }
@@ -66,6 +67,12 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertNotNil(cell.safeIconImageView.image)
     }
 
+    func test_whenConfiguredFeePaymentMethodRow_thenAllIsThere() {
+        let cell = self.cell(row: 0, section: securitySection)
+        XCTAssertEqual(cell.textLabel?.text, FeePaymentMethodCommand().title)
+        XCTAssertEqual(cell.detailTextLabel?.text, TokenData.Ether.code)
+    }
+
     func test_whenConfiguredMenuItemRow_thenAllSet() {
         let cell = self.cell(row: 0, section: portfolioSection) as! MenuItemTableViewCell
         XCTAssertNotNil(cell.textLabel?.text)
@@ -85,8 +92,13 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.selectedCommand is ManageTokensCommand)
     }
 
-    func test_whenSelectingChangePassword_thenCommandIsCalled() {
+    func test_whenSelectingFeePaymentMethod_thenCommandIsCalled() {
         selectCell(row: 0, section: securitySection)
+        XCTAssertTrue(delegate.selectedCommand is FeePaymentMethodCommand)
+    }
+
+    func test_whenSelectingChangePassword_thenCommandIsCalled() {
+        selectCell(row: 1, section: securitySection)
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
     }
 

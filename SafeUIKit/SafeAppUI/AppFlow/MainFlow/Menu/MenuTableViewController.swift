@@ -26,6 +26,10 @@ final class MenuTableViewController: UITableViewController {
         return ApplicationServiceRegistry.walletService.selectedWalletAddress
     }
 
+    private var feePaymentMethodCode: String {
+        return ApplicationServiceRegistry.walletService.feePaymentTokenData.code
+    }
+
     enum SettingsSection: Hashable {
         case safe
         case portfolio
@@ -60,32 +64,22 @@ final class MenuTableViewController: UITableViewController {
 
     // MARK: - Commands
 
-    let selectSafeCommand = SelectSafeCommand()
     var switchSafeCommands: [MenuCommand] {
-        return [selectSafeCommand]
+        return [SelectSafeCommand()]
     }
 
-    let manageTokensCommand = ManageTokensCommand()
     var portfolioCommands: [MenuCommand] {
-        return [manageTokensCommand]
+        return [ManageTokensCommand()]
     }
 
-    let changePasswordCommand = ChangePasswordCommand()
-    let resyncCommand = ResyncWithBrowserExtensionCommand()
-    let replaceRecoveryPhraseCommand = ReplaceRecoveryPhraseCommand()
-    let replaceCommand = ReplaceBrowserExtensionCommand()
-    let connectCommand = ConnectBrowserExtensionLaterCommand()
-    let disconnectCommand = DisconnectBrowserExtensionCommand()
     var securityCommands: [MenuCommand] {
-        return [changePasswordCommand, resyncCommand, replaceRecoveryPhraseCommand, replaceCommand, connectCommand,
-                disconnectCommand]
+        return [FeePaymentMethodCommand(), ChangePasswordCommand(), ResyncWithBrowserExtensionCommand(),
+                ReplaceRecoveryPhraseCommand(), ReplaceBrowserExtensionCommand(),
+                ConnectBrowserExtensionLaterCommand(), DisconnectBrowserExtensionCommand()]
     }
 
-    let termsCommand = TermsCommand()
-    let privacyPolicyCommand = PrivacyPolicyCommand()
-    let licensesCommand = LicensesCommand()
     var supportCommands: [MenuCommand] {
-        return [termsCommand, privacyPolicyCommand, licensesCommand]
+        return [TermsCommand(), PrivacyPolicyCommand(), LicensesCommand()]
     }
 
     // MARK: - VC Lifecycle
@@ -183,6 +177,9 @@ final class MenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
             cell.textLabel?.text = item.name
             cell.accessoryType = item.hasDisclosure ? .disclosureIndicator : .none
+            if item.command is FeePaymentMethodCommand {
+                cell.detailTextLabel?.text = feePaymentMethodCode
+            }
             return cell
         }
     }
