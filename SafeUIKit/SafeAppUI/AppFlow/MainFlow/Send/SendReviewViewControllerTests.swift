@@ -12,6 +12,7 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
     func test_whenLoaded_thenSetsTransferViewAccordingToTransactionData() {
         let (data, vc) = ethDataAndCotroller()
         let transferViewCell = vc.cellForRow(0) as! TransferViewCell
+
         XCTAssertEqual(transferViewCell.transferView.fromAddress, data.sender)
         XCTAssertEqual(transferViewCell.transferView.toAddress, data.recipient)
         XCTAssertEqual(transferViewCell.transferView.tokenData, data.amountTokenData)
@@ -20,13 +21,14 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
 
     func test_whenLoadedForEth_thenHasCorrectFees() {
         let (data, vc) = ethDataAndCotroller()
-        let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
-        let calculation = cell.feeCalculationView.calculation as! SendEthFeeCalculation
+
         let balance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
         let resultingBalance = balance - data.amountTokenData.balance! - data.feeTokenData.balance!
-        let formatter = TokenNumberFormatter.ERC20Token(code: data.amountTokenData.code,
-                                                        decimals: data.amountTokenData.decimals,
-                                                        displayedDecimals: 5)
+        let formatter = TokenNumberFormatter.create(data: data.amountTokenData)
+
+        let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
+        let calculation = cell.feeCalculationView.calculation as! SendEthFeeCalculation
+
         XCTAssertEqual(calculation.networkFeeLine.asset.value,
                        formatter.string(from: data.feeTokenData.withNonNegativeBalance().balance!))
         XCTAssertEqual(calculation.resultingBalanceLine.asset.value,
@@ -35,18 +37,17 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
 
     func test_whenLoadedForToken_thenHasCorrectFees() {
         let (data, vc) = tokenDataAndCotroller()
-        let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
-        let calculation = cell.feeCalculationView.calculation as! SendERC20FeeCalculation
+
         let tokenBalance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
         let tokenResultingBalance = tokenBalance - data.amountTokenData.balance!
+        let tokenFormatter = TokenNumberFormatter.create(data: data.amountTokenData)
+
         let feeBalance = service.accountBalance(tokenID: BaseID(data.feeTokenData.address))!
         let feeResultingBalance = feeBalance - data.feeTokenData.balance!
-        let tokenFormatter = TokenNumberFormatter.ERC20Token(code: data.amountTokenData.code,
-                                                             decimals: data.amountTokenData.decimals,
-                                                             displayedDecimals: 5)
-        let feeFormatter = TokenNumberFormatter.ERC20Token(code: data.feeTokenData.code,
-                                                           decimals: data.feeTokenData.decimals,
-                                                           displayedDecimals: 5)
+        let feeFormatter = TokenNumberFormatter.create(data: data.feeTokenData)
+
+        let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
+        let calculation = cell.feeCalculationView.calculation as! SendERC20FeeCalculation
 
         XCTAssertEqual(calculation.resultingBalanceLine.asset.value,
                        tokenFormatter.string(from: tokenResultingBalance))
@@ -89,4 +90,13 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
         }
     }
 
+}
+
+extension TokenNumberFormatter {
+
+    static func create(data: TokenData) -> TokenNumberFormatter {
+        return TokenNumberFormatter.ERC20Token(code: data.code,
+                                               decimals: data.decimals,
+                                               displayedDecimals: 5)
+    }
 }
