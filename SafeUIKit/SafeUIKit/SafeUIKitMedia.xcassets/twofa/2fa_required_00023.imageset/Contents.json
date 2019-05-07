@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "2fa_required_00023@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "2fa_required_00023@2x.png",
       "scale" : "2x"
     },
     {

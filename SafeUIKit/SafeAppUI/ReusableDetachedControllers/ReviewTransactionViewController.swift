@@ -37,7 +37,7 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     /// To control how frequent a user can send confirmation requests
-    private let scheduler = OneOperationWaitingScheduler(interval: 30)
+    private let scheduler = OneOperationWaitingScheduler(interval: 3)
 
     internal class IndexPathIterator {
         private var index: Int = 0
@@ -50,7 +50,6 @@ public class ReviewTransactionViewController: UITableViewController {
     internal var feeCellIndexPath: IndexPath!
     private var hasUpdatedFee: Bool = false {
         didSet {
-            guard oldValue != hasUpdatedFee else { return }
             DispatchQueue.main.async {
                 self.updateSubmitButton()
                 self.updateEtherFeeBalanceCell()
@@ -102,14 +101,12 @@ public class ReviewTransactionViewController: UITableViewController {
     private func disableSubmit() {
         DispatchQueue.main.async {
             self.submitButton.isEnabled = false
-            self.navigationItem.hidesBackButton = true
         }
     }
 
     private func enableSubmit() {
         DispatchQueue.main.async {
             self.submitButton.isEnabled = true
-            self.navigationItem.hidesBackButton = false
         }
     }
 
@@ -205,8 +202,8 @@ public class ReviewTransactionViewController: UITableViewController {
             guard let `self` = self else { return }
             do {
                 self.tx = try ApplicationServiceRegistry.walletService.estimateTransactionIfNeeded(self.tx.id)
-                self.hasUpdatedFee = true
                 try self.doRequestConfirmationsAction(action)
+                self.hasUpdatedFee = true
             } catch let error {
                 DispatchQueue.main.sync {
                     self.enableSubmit()
@@ -238,12 +235,15 @@ public class ReviewTransactionViewController: UITableViewController {
     // MARK: - Submitting transaction
 
     @objc internal func submit() {
-        guard tx.status == .readyToSubmit else {
+        if tx.status == .rejected {
+            ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
+            doRequest()
+        } else if tx.status == .readyToSubmit {
+            delegate.wantsToSubmitTransaction { [unowned self] allowed in
+                if allowed { self.doSubmit() }
+            }
+        } else {
             showTransactionNeedsConfirmationAlert()
-            return
-        }
-        delegate.wantsToSubmitTransaction { [unowned self] allowed in
-            if allowed { self.doSubmit() }
         }
     }
 

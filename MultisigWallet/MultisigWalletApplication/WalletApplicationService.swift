@@ -561,6 +561,15 @@ public class WalletApplicationService: Assertable {
         return tx.signatures.count >= wallet.confirmationCount - 1 // When submititg we add device signature.
     }
 
+    /// Makes transaction estimate-able again
+    public func resetTransaction(_ id: String) {
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+        tx.reset()
+        tx.change(fee: nil)
+        tx.change(feeEstimate: nil)
+        DomainRegistry.transactionRepository.save(tx)
+    }
+
     public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         guard tx.feeEstimate == nil ||

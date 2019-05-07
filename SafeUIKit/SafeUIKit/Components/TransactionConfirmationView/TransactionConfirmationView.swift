@@ -36,17 +36,18 @@ public class TransactionConfirmationView: BaseCustomView {
                                                           comment: "Transaction rejected by the browser extension.")
         static let submit = LocalizedString("submit", comment: "Submit transaction")
         static let resend = LocalizedString("request_confirmation", comment: "Resend if needed")
+        static let requestAgain = LocalizedString("resend", comment: "Resend")
 
     }
 
     public enum Images {
 
-        static let requiredAnimationImages = (0..<39).compactMap { index in
+        static let requiredAnimationImages = (0...40).compactMap { index in
             UIImage(named: String(format: "2fa_required_%05d", index),
                     in: Bundle(for: TransactionConfirmationView.self),
                     compatibleWith: nil)
         }
-        static let requiredAnimationDuration: TimeInterval = 1.32
+        static let requiredAnimationDuration: TimeInterval = 1.353
         static let rejected = Asset.Confirmation.rejected.image
         static let confirmed = Asset.Confirmation.confirmed.image
 
@@ -67,6 +68,8 @@ public class TransactionConfirmationView: BaseCustomView {
 
     public override func commonInit() {
         safeUIKit_loadFromNib(forClass: TransactionConfirmationView.self)
+        titleLabel.textColor = ColorName.darkSlateBlue.color
+        detailLabel.textColor = ColorName.darkSlateBlue.color
         update()
     }
 
@@ -80,13 +83,15 @@ public class TransactionConfirmationView: BaseCustomView {
         titleLabel.text = nil
         detailLabel.text = nil
 
+        imageView.stopAnimating()
+        imageView.animationImages = nil
+        imageView.image = nil
+
         button.setTitle(Strings.submit, for: .normal)
         button.style = .filled
         button.isHidden = false
 
-        imageView.stopAnimating()
-        imageView.animationImages = nil
-        imageView.image = nil
+        if showsOnlyButton { return }
 
         switch status {
         case .undefined, .pending:
@@ -106,7 +111,7 @@ public class TransactionConfirmationView: BaseCustomView {
             titleLabel.text = Strings.rejected
             detailLabel.text = Strings.rejectionExplanation
             imageView.image = Images.rejected
-            button.isHidden = true
+            button.setTitle(Strings.requestAgain, for: .normal)
         }
     }
 

@@ -141,7 +141,14 @@ class PendingTransactionStatus: TransactionStatus {
 }
 
 class RejectedTransactionStatus: TransactionStatus {
+
     override var code: TransactionStatus.Code { return .rejected }
+
+    override func reset(_ tx: Transaction) {
+        tx.resetParameters()
+        tx.change(status: .draft)
+    }
+
 }
 
 class FailedTransactionStatus: TransactionStatus {
