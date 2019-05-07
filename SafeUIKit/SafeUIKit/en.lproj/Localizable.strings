@@ -80,6 +80,9 @@
 /* Resend if needed */
 "request_confirmation" = "Resend confirmation request";
 
+/* Resend */
+"resend" = "Resend";
+
 /* Current balance */
 "safe_balance" = "Safe balance";
 

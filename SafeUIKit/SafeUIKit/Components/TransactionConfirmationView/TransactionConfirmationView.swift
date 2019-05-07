@@ -36,6 +36,7 @@ public class TransactionConfirmationView: BaseCustomView {
                                                           comment: "Transaction rejected by the browser extension.")
         static let submit = LocalizedString("submit", comment: "Submit transaction")
         static let resend = LocalizedString("request_confirmation", comment: "Resend if needed")
+        static let requestAgain = LocalizedString("resend", comment: "Resend")
 
     }
 
@@ -106,7 +107,7 @@ public class TransactionConfirmationView: BaseCustomView {
             titleLabel.text = Strings.rejected
             detailLabel.text = Strings.rejectionExplanation
             imageView.image = Images.rejected
-            button.isHidden = true
+            button.setTitle(Strings.requestAgain, for: .normal)
         }
     }
 

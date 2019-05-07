@@ -38,6 +38,7 @@ final public class StandardButton: BaseCustomButton {
         layer.borderWidth = 0
         layer.cornerRadius = 10
         layer.shadowOpacity = 0
+        backgroundColor = .clear
         backgroundColorForState = [UIControl.State.normal.rawValue: .clear]
         switch style {
         case .bordered:
