@@ -24,6 +24,10 @@ public class MockWalletApplicationService: WalletApplicationService {
         return walletAddress
     }
 
+    public override var feePaymentTokenData: TokenData {
+        return TokenData.Ether
+    }
+
     private var deploymentAmount: BigInt?
 
     public override var minimumDeploymentAmount: BigInt? {

@@ -14,13 +14,21 @@ final class MenuItemTableViewCell: UITableViewCell {
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         commonInit()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        textLabel?.text = nil
+        detailTextLabel?.text = nil
     }
 
     private func commonInit() {
         textLabel?.textColor = ColorName.darkSlateBlue.color
         textLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        detailTextLabel?.textColor = ColorName.lightGreyBlue.color
+        detailTextLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         let separatorView = UIView()
         separatorView.backgroundColor = ColorName.paleGreyThree.color
         separatorView.translatesAutoresizingMaskIntoConstraints = false

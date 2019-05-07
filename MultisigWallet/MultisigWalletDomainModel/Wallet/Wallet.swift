@@ -177,6 +177,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
         confirmationCount = newValue
     }
 
+    public func changeFeePaymentToken(_ newValue: Address) {
+        feePaymentTokenAddress = newValue
+    }
+
     private func assertOwnerExists(_ role: OwnerRole) {
         try! assertNotNil(owner(role: role), Error.ownerNotFound)
     }
