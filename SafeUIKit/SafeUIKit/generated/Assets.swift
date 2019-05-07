@@ -117,6 +117,7 @@ enum Asset {
     static let _2faRequired00037 = ImageAsset(name: "2fa_required_00037")
     static let _2faRequired00038 = ImageAsset(name: "2fa_required_00038")
     static let _2faRequired00039 = ImageAsset(name: "2fa_required_00039")
+    static let _2faRequired00040 = ImageAsset(name: "2fa_required_00040")
   }
 
   // swiftlint:disable trailing_comma
@@ -183,6 +184,7 @@ enum Asset {
     Twofa._2faRequired00037,
     Twofa._2faRequired00038,
     Twofa._2faRequired00039,
+    Twofa._2faRequired00040,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

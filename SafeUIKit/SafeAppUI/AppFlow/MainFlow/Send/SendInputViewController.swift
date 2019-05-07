@@ -54,6 +54,7 @@ public class SendInputViewController: UIViewController {
 
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
+        addressInput.spacingAfterInput = 0
 
         tokenInput.addRule("", identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }

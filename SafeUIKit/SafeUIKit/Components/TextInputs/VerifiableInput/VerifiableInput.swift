@@ -16,6 +16,8 @@ open class VerifiableInput: UIView {
     @IBOutlet var wrapperView: UIView!
     @IBOutlet public private(set) weak var textInput: TextInput!
     @IBOutlet weak var stackView: UIStackView!
+    private var spacingConstraint: NSLayoutConstraint!
+    private var spacingView: UIView!
 
     /// Indicates whether the view has user input focus
     public private(set) var isActive: Bool = false
@@ -23,7 +25,6 @@ open class VerifiableInput: UIView {
     public weak var delegate: VerifiableInputDelegate?
 
     private static let shakeAnimationKey = "shake"
-    private let spacingViewHeight: CGFloat = 4
 
     private var allRules: [RuleLabel] {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
@@ -46,6 +47,13 @@ open class VerifiableInput: UIView {
     // If true, the height of input is always the same as if all rules are shown. This is applied only when
     // `showsErrorOnly` is true.
     public var adjustsHeightForHiddenRules: Bool = false
+
+    /// Adds additional spacing after the text input.
+    public var spacingAfterInput: CGFloat = 4 {
+        didSet {
+            updateSpacingView()
+        }
+    }
 
     public var maxLength: Int = Int.max
 
@@ -148,9 +156,16 @@ open class VerifiableInput: UIView {
 
     private func addSpacingIfNeeded() {
         guard allRules.isEmpty else { return }
-        let spacingView = UIView()
-        spacingView.addConstraint(spacingView.heightAnchor.constraint(equalToConstant: spacingViewHeight))
+        spacingView = UIView()
+        spacingConstraint = spacingView.heightAnchor.constraint(equalToConstant: spacingAfterInput)
+        spacingConstraint.isActive = true
         stackView.addArrangedSubview(spacingView)
+    }
+
+    private func updateSpacingView() {
+        spacingConstraint?.constant = spacingAfterInput
+        spacingView.isHidden = spacingAfterInput == 0
+        setNeedsUpdateConstraints()
     }
 
     open override func becomeFirstResponder() -> Bool {

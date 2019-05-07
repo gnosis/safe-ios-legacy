@@ -51,6 +51,7 @@ class TransactionFeeAlertController: SafeAlertController {
                                                                            comment: "Explanatory message"),
                                                   preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
+        alert.view.tintColor = ColorName.darkSkyBlue.color
         return alert
     }
 

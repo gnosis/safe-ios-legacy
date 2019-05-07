@@ -27,11 +27,7 @@ final class MainFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         let mainVC = MainViewController.create(delegate: self)
-        mainVC.navigationItem.backBarButtonItem =
-            UIBarButtonItem(title: LocalizedString("back", comment: "Back"),
-                            style: .plain,
-                            target: nil,
-                            action: nil)
+        mainVC.navigationItem.backBarButtonItem = backButton()
         push(mainVC)
     }
 
@@ -48,6 +44,13 @@ final class MainFlowCoordinator: FlowCoordinator {
     private func openTransactionReviewScreen(_ id: String) {
         let reviewVC = SendReviewViewController(transactionID: id, delegate: self)
         push(reviewVC)
+    }
+
+    private func backButton() -> UIBarButtonItem {
+        return UIBarButtonItem(title: LocalizedString("back", comment: "Back"),
+                               style: .plain,
+                               target: nil,
+                               action: nil)
     }
 
 }
@@ -69,6 +72,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
         saveCheckpoint()
         let transactionVC = SendInputViewController.create(tokenID: BaseID(token))
         transactionVC.delegate = self
+        transactionVC.navigationItem.backBarButtonItem = backButton()
         push(transactionVC) {
             transactionVC.willBeRemoved()
         }

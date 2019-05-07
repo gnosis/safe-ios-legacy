@@ -24,11 +24,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="278"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="299"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvr-yN-nlZ" customClass="CardView" customModule="SafeUIKit" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="278"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="263"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="okr-1X-XHu">
@@ -70,18 +70,18 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Uvr-yN-nlZ" secondAttribute="trailing" id="O0B-wS-vMg"/>
-                <constraint firstAttribute="bottomMargin" secondItem="Uvr-yN-nlZ" secondAttribute="bottom" id="Ph4-Zs-wfa"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="okr-1X-XHu" secondAttribute="bottom" constant="27" id="7VK-of-te4"/>
                 <constraint firstAttribute="trailing" secondItem="okr-1X-XHu" secondAttribute="trailing" constant="20" id="R0O-9D-79A"/>
-                <constraint firstItem="okr-1X-XHu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="drf-Gf-23A"/>
-                <constraint firstAttribute="topMargin" secondItem="Uvr-yN-nlZ" secondAttribute="top" id="gfX-Vh-q2J"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="okr-1X-XHu" secondAttribute="bottom" constant="20" id="iGe-7d-f6q"/>
-                <constraint firstItem="okr-1X-XHu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="itn-FD-pQZ"/>
-                <constraint firstItem="Uvr-yN-nlZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oRf-Sq-X7P"/>
+                <constraint firstItem="okr-1X-XHu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="drf-Gf-23A"/>
+                <constraint firstItem="Uvr-yN-nlZ" firstAttribute="bottom" secondItem="okr-1X-XHu" secondAttribute="bottom" constant="27" id="eLz-JU-KQ3"/>
+                <constraint firstItem="Uvr-yN-nlZ" firstAttribute="trailing" secondItem="okr-1X-XHu" secondAttribute="trailing" constant="20" id="gSR-zE-Nuj"/>
+                <constraint firstItem="Uvr-yN-nlZ" firstAttribute="leading" secondItem="okr-1X-XHu" secondAttribute="leading" constant="-20" id="hbb-LS-oGi"/>
+                <constraint firstItem="okr-1X-XHu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="itn-FD-pQZ"/>
+                <constraint firstItem="Uvr-yN-nlZ" firstAttribute="top" secondItem="okr-1X-XHu" secondAttribute="top" constant="-20" id="xfZ-nG-kjP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="64" y="-6.2968515742128943"/>
+            <point key="canvasLocation" x="64" y="3.1484257871064472"/>
         </view>
     </objects>
     <resources>
