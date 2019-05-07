@@ -10,12 +10,24 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectCommand(_ command: MenuCommand)
 }
 
+final class VoidCommand: MenuCommand {
+
+    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+        // no-op
+    }
+
+}
+
 final class MenuTableViewController: UITableViewController {
 
     weak var delegate: MenuTableViewControllerDelegate?
 
     private var selectedSafeAddress: String? {
         return ApplicationServiceRegistry.walletService.selectedWalletAddress
+    }
+
+    private var feePaymentMethodCode: String {
+        return ApplicationServiceRegistry.walletService.feePaymentTokenData.code
     }
 
     enum SettingsSection: Hashable {
@@ -29,6 +41,7 @@ final class MenuTableViewController: UITableViewController {
         var name: String
         var hasDisclosure: Bool
         var height: CGFloat
+        var command: MenuCommand
     }
 
     static func create() -> MenuTableViewController {
@@ -51,32 +64,22 @@ final class MenuTableViewController: UITableViewController {
 
     // MARK: - Commands
 
-    let selectSafeCommand = SelectSafeCommand()
     var switchSafeCommands: [MenuCommand] {
-        return [selectSafeCommand]
+        return [SelectSafeCommand()]
     }
 
-    let manageTokensCommand = ManageTokensCommand()
     var portfolioCommands: [MenuCommand] {
-        return [manageTokensCommand]
+        return [ManageTokensCommand()]
     }
 
-    let changePasswordCommand = ChangePasswordCommand()
-    let resyncCommand = ResyncWithBrowserExtensionCommand()
-    let replaceRecoveryPhraseCommand = ReplaceRecoveryPhraseCommand()
-    let replaceCommand = ReplaceBrowserExtensionCommand()
-    let connectCommand = ConnectBrowserExtensionLaterCommand()
-    let disconnectCommand = DisconnectBrowserExtensionCommand()
     var securityCommands: [MenuCommand] {
-        return [changePasswordCommand, resyncCommand, replaceRecoveryPhraseCommand, replaceCommand, connectCommand,
-                disconnectCommand]
+        return [FeePaymentMethodCommand(), ChangePasswordCommand(), ResyncWithBrowserExtensionCommand(),
+                ReplaceRecoveryPhraseCommand(), ReplaceBrowserExtensionCommand(),
+                ConnectBrowserExtensionLaterCommand(), DisconnectBrowserExtensionCommand()]
     }
 
-    let termsCommand = TermsCommand()
-    let privacyPolicyCommand = PrivacyPolicyCommand()
-    let licensesCommand = LicensesCommand()
     var supportCommands: [MenuCommand] {
-        return [termsCommand, privacyPolicyCommand, licensesCommand]
+        return [TermsCommand(), PrivacyPolicyCommand(), LicensesCommand()]
     }
 
     // MARK: - VC Lifecycle
@@ -110,7 +113,10 @@ final class MenuTableViewController: UITableViewController {
         menuItemSections = selectedSafeAddress == nil ? [] : [
             (section: .safe,
              title: Strings.address,
-             items: [MenuItem(name: "SAFE", hasDisclosure: false, height: SafeTableViewCell.height)])
+             items: [MenuItem(name: "SAFE",
+                              hasDisclosure: false,
+                              height: SafeTableViewCell.height,
+                              command: VoidCommand())])
         ]
         menuItemSections += [
             (section: .portfolio,
@@ -124,13 +130,16 @@ final class MenuTableViewController: UITableViewController {
             (section: .support,
              title: Strings.support,
              items: sectionItems(for: supportCommands) +
-                [MenuItem(name: "AppVersion", hasDisclosure: false, height: AppVersionTableViewCell.height)])
+                [MenuItem(name: "AppVersion",
+                          hasDisclosure: false,
+                          height: AppVersionTableViewCell.height,
+                          command: VoidCommand())])
         ]
     }
 
     private func sectionItems(for commands: [MenuCommand]) -> [MenuItem] {
         return commands.filter { !$0.isHidden }.map {
-            MenuItem(name: $0.title, hasDisclosure: $0.hasDisclosure, height: $0.height)
+            MenuItem(name: $0.title, hasDisclosure: $0.hasDisclosure, height: $0.height, command: $0)
         }
     }
 
@@ -168,6 +177,9 @@ final class MenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
             cell.textLabel?.text = item.name
             cell.accessoryType = item.hasDisclosure ? .disclosureIndicator : .none
+            if item.command is FeePaymentMethodCommand {
+                cell.detailTextLabel?.text = feePaymentMethodCode
+            }
             return cell
         }
     }
@@ -178,45 +190,7 @@ final class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = menuItem(at: indexPath)
-
-        switch menuItemSections[indexPath.section].section {
-        case .portfolio:
-            switch item.name {
-            case manageTokensCommand.title:
-                delegate?.didSelectCommand(manageTokensCommand)
-            default: break
-            }
-
-        case .security:
-            switch item.name {
-            case changePasswordCommand.title:
-                delegate?.didSelectCommand(changePasswordCommand)
-            case connectCommand.title:
-                delegate?.didSelectCommand(connectCommand)
-            case replaceCommand.title:
-                delegate?.didSelectCommand(replaceCommand)
-            case disconnectCommand.title:
-                delegate?.didSelectCommand(disconnectCommand)
-            case resyncCommand.title:
-                delegate?.didSelectCommand(resyncCommand)
-            case replaceRecoveryPhraseCommand.title:
-                delegate?.didSelectCommand(replaceRecoveryPhraseCommand)
-            default: break
-            }
-
-        case .support:
-            switch item.name {
-            case termsCommand.title:
-                delegate?.didSelectCommand(termsCommand)
-            case privacyPolicyCommand.title:
-                delegate?.didSelectCommand(privacyPolicyCommand)
-            case licensesCommand.title:
-                delegate?.didSelectCommand(licensesCommand)
-            default: break
-            }
-
-        default: break
-        }
+        delegate?.didSelectCommand(item.command)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

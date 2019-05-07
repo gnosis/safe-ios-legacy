@@ -112,4 +112,10 @@ class WalletTests: XCTestCase {
         XCTAssertNil(wallet.minimumDeploymentTransactionAmount)
     }
 
+    func test_whenUpdatingFeePaymentToken_thenSavesChanges() {
+        XCTAssertNil(wallet.feePaymentTokenAddress)
+        wallet.changeFeePaymentToken(Address.one)
+        XCTAssertEqual(wallet.feePaymentTokenAddress, Address.one)
+    }
+
 }

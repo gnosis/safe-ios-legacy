@@ -46,6 +46,14 @@ public class WalletApplicationService: Assertable {
         return selectedWallet?.address?.value
     }
 
+    public var feePaymentTokenData: TokenData {
+        guard let tokenAddress = selectedWallet?.feePaymentTokenAddress,
+            let data = tokenData(id: tokenAddress.value) else {
+            return TokenData.Ether
+        }
+        return data
+    }
+
     public var minimumDeploymentAmount: BigInt? {
         return selectedWallet?.minimumDeploymentTransactionAmount
     }
@@ -315,6 +323,10 @@ public class WalletApplicationService: Assertable {
         try? DomainRegistry.accountUpdateService.updateAccountsBalances()
     }
 
+    /// Return Token data for token address
+    ///
+    /// - Parameter id: Token address
+    /// - Returns: TokenData
     public func tokenData(id: String) -> TokenData? {
         guard let token = self.token(id: id) else { return nil }
         let balance = accountBalance(tokenID: token.id)

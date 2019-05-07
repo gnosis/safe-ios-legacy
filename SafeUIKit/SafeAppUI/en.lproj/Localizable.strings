@@ -125,6 +125,9 @@
    Recovery transaction failed alert's title */
 "error" = "Error";
 
+/* Fee Payment Method */
+"fee_payment_method" = "Fee Payment Method";
+
 /* Feedback and FAQ menu item */
 "give_feedback" = "Give Feedback";
 

@@ -5,6 +5,7 @@
 import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
+import Common
 
 class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
@@ -97,6 +98,27 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         wallet.updateMinimumTransactionAmount(100)
         walletRepository.save(wallet)
         XCTAssertEqual(service.minimumDeploymentAmount, 100)
+    }
+
+    func test_whenFeePaymentTokenIsNil_thenReturnsEther() {
+        givenDraftWallet()
+        XCTAssertEqual(service.feePaymentTokenData, TokenData.Ether)
+    }
+
+    func test_whenFeePaymentTokenIsNotKnown_thenReturnsEther() {
+        givenDraftWallet()
+        let wallet = walletRepository.selectedWallet()!
+        wallet.changeFeePaymentToken(Token.gno.address)
+        XCTAssertEqual(service.feePaymentTokenData, TokenData.Ether)
+    }
+
+    func test_whenFeePaymentTokenIsKnown_thenReturnsIt() {
+        let item = TokenListItem(token: Token.gno, status: .whitelisted, canPayTransactionFee: true)
+        tokenItemsRepository.save(item)
+        givenDraftWallet()
+        let wallet = walletRepository.selectedWallet()!
+        wallet.changeFeePaymentToken(Token.gno.address)
+        XCTAssertEqual(service.feePaymentTokenData, TokenData(token: Token.gno, balance: nil))
     }
 
 }
