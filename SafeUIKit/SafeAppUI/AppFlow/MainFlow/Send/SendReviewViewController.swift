@@ -55,7 +55,7 @@ final class SendReviewViewController: ReviewTransactionViewController {
 
     private func feeCalculationCell() -> UITableViewCell {
         let cell = FeeCalculationCell(frame: .zero)
-        let amountBalance = self.balance(of: tx.amountTokenData)
+        let amountBalance = balance(of: tx.amountTokenData)
         let amountResultingBalance = amountBalance - abs(tx.amountTokenData.balance ?? 0)
 
         if tx.amountTokenData.address == tx.feeTokenData.address {
@@ -64,7 +64,7 @@ final class SendReviewViewController: ReviewTransactionViewController {
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(amountResultingBalance))
             cell.feeCalculationView.calculation = calculation
         } else {
-            let feeBalance = self.balance(of: tx.feeTokenData)
+            let feeBalance = balance(of: tx.feeTokenData)
             let feeResultingBalance = feeBalance - abs(tx.feeTokenData.balance ?? 0)
             let calculation = SendERC20FeeCalculation()
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(amountResultingBalance))

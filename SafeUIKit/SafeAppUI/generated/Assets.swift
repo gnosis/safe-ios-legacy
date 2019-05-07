@@ -86,10 +86,6 @@ enum Asset {
     static let settingTransaction = ImageAsset(name: "setting_transaction")
     static let settingTransactionIcon = ImageAsset(name: "setting_transaction_icon")
   }
-  enum TransactionReview {
-    static let extensionWindow = ImageAsset(name: "extension_window")
-    static let rejectedExtension = ImageAsset(name: "rejected_extension")
-  }
   static let transparentBackground = ImageAsset(name: "transparent_background")
   enum UnlockScreen {
     static let faceIdIcon = ImageAsset(name: "face-id-icon")
@@ -127,8 +123,6 @@ enum Asset {
     TransactionOverviewIcons.receive,
     TransactionOverviewIcons.settingTransaction,
     TransactionOverviewIcons.settingTransactionIcon,
-    TransactionReview.extensionWindow,
-    TransactionReview.rejectedExtension,
     transparentBackground,
     UnlockScreen.faceIdIcon,
     UnlockScreen.safeHeaderLogo,

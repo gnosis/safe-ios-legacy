@@ -77,11 +77,17 @@
 /* Transaction rejected by the browser extension. */
 "rejected_by_extension" = "The transaction was rejected in the browser extension.";
 
+/* Resend if needed */
+"request_confirmation" = "Resend confirmation request";
+
 /* Current balance */
 "safe_balance" = "Safe balance";
 
 /* Scan QR code alert item. */
 "scan_qr_code" = "Scan QR Code";
+
+/* Submit transaction */
+"submit" = "Submit";
 
 /* Network fee */
 "transaction_fee" = "Network fee";

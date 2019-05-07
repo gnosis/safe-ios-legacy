@@ -6,10 +6,16 @@ import UIKit
 
 public class TransactionConfirmationView: BaseCustomView {
 
-    @IBOutlet weak var progressView: ProgressView!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var browserExtensionImageView: UIImageView!
-    @IBOutlet weak var browserExtensionLabel: UILabel!
+    @IBOutlet weak var cardView: CardView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet public weak var button: StandardButton!
+
+    @IBOutlet weak var informationStack: UIStackView!
+    @IBOutlet weak var contentStackLeading: NSLayoutConstraint!
+    @IBOutlet weak var contentStackTrailing: NSLayoutConstraint!
+    private let defatulContentHorizontalPadding: CGFloat = 20
 
     public enum Status {
         case undefined
@@ -28,9 +34,32 @@ public class TransactionConfirmationView: BaseCustomView {
                                                          comment: "Transaction approved by the browser extension")
         static let rejectionExplanation = LocalizedString("rejected_by_extension",
                                                           comment: "Transaction rejected by the browser extension.")
+        static let submit = LocalizedString("submit", comment: "Submit transaction")
+        static let resend = LocalizedString("request_confirmation", comment: "Resend if needed")
+
+    }
+
+    public enum Images {
+
+        static let requiredAnimationImages = (0..<39).compactMap { index in
+            UIImage(named: String(format: "2fa_required_%05d", index),
+                    in: Bundle(for: TransactionConfirmationView.self),
+                    compatibleWith: nil)
+        }
+        static let requiredAnimationDuration: TimeInterval = 1.32
+        static let rejected = Asset.Confirmation.rejected.image
+        static let confirmed = Asset.Confirmation.confirmed.image
+
     }
 
     public var status: Status = .undefined {
+        didSet {
+            update()
+        }
+    }
+
+    /// When true, only button is shown. Otherwise, the title, detail text, image, and button are shown.
+    public var showsOnlyButton: Bool = false {
         didSet {
             update()
         }
@@ -42,72 +71,43 @@ public class TransactionConfirmationView: BaseCustomView {
     }
 
     public override func update() {
+        informationStack.isHidden = showsOnlyButton
+        cardView.isHidden = showsOnlyButton
+        contentStackLeading.constant = showsOnlyButton ? 0 : defatulContentHorizontalPadding
+        contentStackTrailing.constant = showsOnlyButton ? 0 : defatulContentHorizontalPadding
+        setNeedsUpdateConstraints()
+
+        titleLabel.text = nil
+        detailLabel.text = nil
+
+        button.setTitle(Strings.submit, for: .normal)
+        button.style = .filled
+        button.isHidden = false
+
+        imageView.stopAnimating()
+        imageView.animationImages = nil
+        imageView.image = nil
+
         switch status {
-        case .undefined:
-            setUndefined()
-        case .pending:
-            setPending()
+        case .undefined, .pending:
+            titleLabel.text = Strings.awaitingConfirmation
+            detailLabel.text = Strings.confirmationExplanation
+            imageView.animationImages = Images.requiredAnimationImages
+            imageView.animationDuration = Images.requiredAnimationDuration
+            imageView.startAnimating()
+            button.style = .plain
+            button.setTitle(Strings.resend, for: .normal)
         case .confirmed:
-            setConfirmed()
+            titleLabel.text = Strings.confirmed
+            detailLabel.text = Strings.approvedExplanation
+            imageView.image = Images.confirmed
+            button.setTitle(Strings.submit, for: .normal)
         case .rejected:
-            setRejected()
+            titleLabel.text = Strings.rejected
+            detailLabel.text = Strings.rejectionExplanation
+            imageView.image = Images.rejected
+            button.isHidden = true
         }
-    }
-
-    private func setUndefined() {
-        updateView(isError: false,
-                   isIntermediate: false,
-                   progress: 0,
-                   statusText: Strings.awaitingConfirmation,
-                   extensionText: Strings.confirmationExplanation,
-                   extensionImage: Asset.BrowserExtension.awaiting.image)
-        progressView.stopAnimating()
-        statusLabel.textColor = .black
-    }
-
-    private func setPending() {
-        updateView(isError: false,
-                   isIntermediate: true,
-                   progress: 0,
-                   statusText: Strings.awaitingConfirmation,
-                   extensionText: Strings.confirmationExplanation,
-                   extensionImage: Asset.BrowserExtension.awaiting.image)
-        progressView.beginAnimating()
-    }
-
-    private func setConfirmed() {
-        progressView.stopAnimating()
-        updateView(isError: false,
-                   isIntermediate: false,
-                   progress: 1.0,
-                   statusText: Strings.confirmed,
-                   extensionText: nil,
-                   extensionImage: nil)
-    }
-
-    private func setRejected() {
-        progressView.stopAnimating()
-        updateView(isError: true,
-                   isIntermediate: false,
-                   progress: 0,
-                   statusText: Strings.rejected,
-                   extensionText: Strings.rejectionExplanation,
-                   extensionImage: Asset.BrowserExtension.rejected.image)
-        statusLabel.textColor = ColorName.tomato.color
-    }
-
-    private func updateView(isError: Bool,
-                            isIntermediate: Bool,
-                            progress: Double,
-                            statusText: String?,
-                            extensionText: String?,
-                            extensionImage: UIImage?) {
-        progressView.isError = isError
-        progressView.isIndeterminate = isIntermediate
-        progressView.progress = progress
-        statusLabel.text = statusText
-        browserExtensionLabel.text = extensionText
-        browserExtensionImageView.image = extensionImage
     }
 
 }

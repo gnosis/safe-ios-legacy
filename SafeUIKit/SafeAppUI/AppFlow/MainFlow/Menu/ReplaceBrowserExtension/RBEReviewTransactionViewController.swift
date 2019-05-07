@@ -37,6 +37,7 @@ public final class RBEReviewTransactionViewController: ReviewTransactionViewCont
         cells[indexPath.next()] = SpacingCell()
         feeCellIndexPath = indexPath.next()
         cells[feeCellIndexPath] = etherTransactionFeeCell()
+        cells[indexPath.next()] = confirmationCell
     }
 
     private func replaceBrowserExtensionHeaderCell() -> UITableViewCell {

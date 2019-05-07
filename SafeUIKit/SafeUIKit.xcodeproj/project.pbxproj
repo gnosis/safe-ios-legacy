@@ -189,7 +189,6 @@
 		0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A8274E821A432DD00A73D32 /* TransactionsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8274E721A432DD00A73D32 /* TransactionsEmptyView.swift */; };
-		0A8C962F20D2C3E7007D2410 /* BaseCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C962E20D2C3E7007D2410 /* BaseCustomButton.swift */; };
 		0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -240,6 +239,7 @@
 		0AD89983228031FC008AE325 /* FeeCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD89971228031D0008AE325 /* FeeCalculationTests.swift */; };
 		0AD899852280325E008AE325 /* DashedSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899842280325D008AE325 /* DashedSeparatorView.swift */; };
 		0AD8998722803858008AE325 /* FeeCalculationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8998622803858008AE325 /* FeeCalculationCell.swift */; };
+		0AD8998A228042CD008AE325 /* BaseCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD89989228042CC008AE325 /* BaseCustomButton.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */; };
 		0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989520D3B43200E6F3CA /* BaseCustomViewTests.swift */; };
@@ -287,7 +287,6 @@
 		55126B5C21AC372D00A9F810 /* TransactionConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B5721AC372D00A9F810 /* TransactionConfirmationView.swift */; };
 		55126B5E21AC372D00A9F810 /* TransactionConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55126B5921AC372D00A9F810 /* TransactionConfirmationView.xib */; };
 		55126B6021AC376F00A9F810 /* TransactionConfirmationCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B5A21AC372D00A9F810 /* TransactionConfirmationCellTests.swift */; };
-		55126B6121AC377600A9F810 /* TransactionConfirmationViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B5821AC372D00A9F810 /* TransactionConfirmationViewTests.swift */; };
 		55126B6521AC37FC00A9F810 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6321AC37FC00A9F810 /* ProgressView.swift */; };
 		55126B6721AC380900A9F810 /* ProgressViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6421AC37FC00A9F810 /* ProgressViewTests.swift */; };
 		55126B6921AC38A900A9F810 /* TransactionConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */; };
@@ -358,8 +357,7 @@
 		55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */; };
 		55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
 		55B5DF7722788F4E001A32F4 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF7622788F4E001A32F4 /* MenuItemTableViewCell.swift */; };
-		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
-		55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */; };
+		55BAB0E521789285007539CF /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* StandardButton.swift */; };
 		55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */; };
 		55BF5747226F46C80032B195 /* FeedbackTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */; };
 		55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */; };
@@ -723,7 +721,6 @@
 		0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		0A8274E721A432DD00A73D32 /* TransactionsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsEmptyView.swift; sourceTree = "<group>"; };
-		0A8C962E20D2C3E7007D2410 /* BaseCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomButton.swift; sourceTree = "<group>"; };
 		0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseTestCase.swift; sourceTree = "<group>"; };
 		0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerStateTransitionTests.swift; sourceTree = "<group>"; };
 		0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseState.swift; sourceTree = "<group>"; };
@@ -809,6 +806,7 @@
 		0AD89981228031E8008AE325 /* ArrayBasedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayBasedCollection.swift; sourceTree = "<group>"; };
 		0AD899842280325D008AE325 /* DashedSeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedSeparatorView.swift; sourceTree = "<group>"; };
 		0AD8998622803858008AE325 /* FeeCalculationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationCell.swift; sourceTree = "<group>"; };
+		0AD89989228042CC008AE325 /* BaseCustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCustomButton.swift; sourceTree = "<group>"; };
 		0AD9989520D3B43200E6F3CA /* BaseCustomViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomViewTests.swift; sourceTree = "<group>"; };
 		0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParticipantViewTests.swift; sourceTree = "<group>"; };
 		0AD998A120D3E5BA00E6F3CA /* IdenticonViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonViewTests.swift; sourceTree = "<group>"; };
@@ -859,7 +857,6 @@
 		550E7CE021708FBC0032DE6C /* TokenBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBounds.swift; sourceTree = "<group>"; };
 		55126B5621AC372D00A9F810 /* TransactionConfirmationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationCell.swift; sourceTree = "<group>"; };
 		55126B5721AC372D00A9F810 /* TransactionConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationView.swift; sourceTree = "<group>"; };
-		55126B5821AC372D00A9F810 /* TransactionConfirmationViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationViewTests.swift; sourceTree = "<group>"; };
 		55126B5921AC372D00A9F810 /* TransactionConfirmationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionConfirmationView.xib; sourceTree = "<group>"; };
 		55126B5A21AC372D00A9F810 /* TransactionConfirmationCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationCellTests.swift; sourceTree = "<group>"; };
 		55126B6321AC37FC00A9F810 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -925,8 +922,7 @@
 		55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensCommand.swift; sourceTree = "<group>"; };
 		55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseCommand.swift; sourceTree = "<group>"; };
 		55B5DF7622788F4E001A32F4 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
-		55BAB0E321789285007539CF /* BigBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButton.swift; sourceTree = "<group>"; };
-		55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButtonTests.swift; sourceTree = "<group>"; };
+		55BAB0E321789285007539CF /* StandardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltip.swift; sourceTree = "<group>"; };
 		55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltipViewController.swift; sourceTree = "<group>"; };
 		55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
@@ -1441,6 +1437,7 @@
 				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
 				0AF9EBC421A6C4A700C028B3 /* ContainerCell.swift */,
 				0ACCA8C1221C116F00D37594 /* NibUIView.swift */,
+				0AD89989228042CC008AE325 /* BaseCustomButton.swift */,
 				0ACCA8C8221C125C00D37594 /* AttributedStringStyle.swift */,
 				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
 				0AD899842280325D008AE325 /* DashedSeparatorView.swift */,
@@ -1543,7 +1540,6 @@
 		0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */ = {
 			isa = PBXGroup;
 			children = (
-				0A8C962E20D2C3E7007D2410 /* BaseCustomButton.swift */,
 				0AD9989520D3B43200E6F3CA /* BaseCustomViewTests.swift */,
 				0AE950CC20D29CAF0099B79D /* HorizontalSeparatorView.swift */,
 				0AD998A320D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift */,
@@ -1723,7 +1719,6 @@
 			children = (
 				55126B5621AC372D00A9F810 /* TransactionConfirmationCell.swift */,
 				55126B5721AC372D00A9F810 /* TransactionConfirmationView.swift */,
-				55126B5821AC372D00A9F810 /* TransactionConfirmationViewTests.swift */,
 				55126B5921AC372D00A9F810 /* TransactionConfirmationView.xib */,
 				55126B5A21AC372D00A9F810 /* TransactionConfirmationCellTests.swift */,
 			);
@@ -1962,8 +1957,7 @@
 		55BAB0E221789285007539CF /* BorderedButton */ = {
 			isa = PBXGroup;
 			children = (
-				55BAB0E321789285007539CF /* BigBorderedButton.swift */,
-				55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */,
+				55BAB0E321789285007539CF /* StandardButton.swift */,
 			);
 			path = BorderedButton;
 			sourceTree = "<group>";
@@ -2669,7 +2663,7 @@
 				0AD8997E228031D0008AE325 /* FeeCalculation.swift in Sources */,
 				556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */,
 				5539C13721A55AF2006BF834 /* TransactionHeaderCell.swift in Sources */,
-				55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */,
+				55BAB0E521789285007539CF /* StandardButton.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */,
 				0AD8997D228031D0008AE325 /* FeeCalculationSection.swift in Sources */,
@@ -2696,6 +2690,7 @@
 				0AD8997C228031D0008AE325 /* FeeCalculationLine.swift in Sources */,
 				0AD89982228031E8008AE325 /* ArrayBasedCollection.swift in Sources */,
 				55E8AFE3219B3521002930A1 /* TransferView.swift in Sources */,
+				0AD8998A228042CD008AE325 /* BaseCustomButton.swift in Sources */,
 				0ACCA8C9221C125C00D37594 /* AttributedStringStyle.swift in Sources */,
 				0AFDB43821AC16B000F31840 /* FullEthereumAddressLabel.swift in Sources */,
 				555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */,
@@ -2732,7 +2727,6 @@
 				0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */,
 				0AFDB43A21AC42BE00F31840 /* FullEthereumAddressLabelTests.swift in Sources */,
 				0A2D589622576A78001B8BF4 /* TimeProfiler.swift in Sources */,
-				55126B6121AC377600A9F810 /* TransactionConfirmationViewTests.swift in Sources */,
 				0A2D589522576A63001B8BF4 /* TestTrackingHandler.swift in Sources */,
 				552473642142AD6900A77557 /* IdenticonViewTests.swift in Sources */,
 				55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */,
@@ -2745,7 +2739,6 @@
 				5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				55E8AFE5219B353C002930A1 /* TransferViewTests.swift in Sources */,
-				55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */,
 				0ABA592121AC09CC009D249F /* EthereumAddressLabelTests.swift in Sources */,
 				55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */,
 				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
@@ -2845,7 +2838,6 @@
 				0A334E2A209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
-				0A8C962F20D2C3E7007D2410 /* BaseCustomButton.swift in Sources */,
 				5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */,
 				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,

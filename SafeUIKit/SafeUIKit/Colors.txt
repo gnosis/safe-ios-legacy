@@ -12,3 +12,4 @@ lightGreyBlue: #a2a8ba
 lightBlueGrey58: #c6d2d9
 darkSlateBlue: #21435a
 silver: #d1d1d6
+darkSkyBlue: #28b2fa

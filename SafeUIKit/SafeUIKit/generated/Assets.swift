@@ -55,6 +55,10 @@ enum Asset {
   static let checkmarkNormal = ImageAsset(name: "checkmark-normal")
   static let checkmarkSelected = ImageAsset(name: "checkmark-selected")
   static let closeIcon = ImageAsset(name: "close-icon")
+  enum Confirmation {
+    static let confirmed = ImageAsset(name: "Confirmed")
+    static let rejected = ImageAsset(name: "Rejected")
+  }
   static let error = ImageAsset(name: "error")
   static let qrCode = ImageAsset(name: "qr-code")
   static let settings = ImageAsset(name: "settings")
@@ -72,6 +76,48 @@ enum Asset {
   enum TransferView {
     static let arrowDown = ImageAsset(name: "arrow-down")
   }
+  enum Twofa {
+    static let _2faRequired00000 = ImageAsset(name: "2fa_required_00000")
+    static let _2faRequired00001 = ImageAsset(name: "2fa_required_00001")
+    static let _2faRequired00002 = ImageAsset(name: "2fa_required_00002")
+    static let _2faRequired00003 = ImageAsset(name: "2fa_required_00003")
+    static let _2faRequired00004 = ImageAsset(name: "2fa_required_00004")
+    static let _2faRequired00005 = ImageAsset(name: "2fa_required_00005")
+    static let _2faRequired00006 = ImageAsset(name: "2fa_required_00006")
+    static let _2faRequired00007 = ImageAsset(name: "2fa_required_00007")
+    static let _2faRequired00008 = ImageAsset(name: "2fa_required_00008")
+    static let _2faRequired00009 = ImageAsset(name: "2fa_required_00009")
+    static let _2faRequired00010 = ImageAsset(name: "2fa_required_00010")
+    static let _2faRequired00011 = ImageAsset(name: "2fa_required_00011")
+    static let _2faRequired00012 = ImageAsset(name: "2fa_required_00012")
+    static let _2faRequired00013 = ImageAsset(name: "2fa_required_00013")
+    static let _2faRequired00014 = ImageAsset(name: "2fa_required_00014")
+    static let _2faRequired00015 = ImageAsset(name: "2fa_required_00015")
+    static let _2faRequired00016 = ImageAsset(name: "2fa_required_00016")
+    static let _2faRequired00017 = ImageAsset(name: "2fa_required_00017")
+    static let _2faRequired00018 = ImageAsset(name: "2fa_required_00018")
+    static let _2faRequired00019 = ImageAsset(name: "2fa_required_00019")
+    static let _2faRequired00020 = ImageAsset(name: "2fa_required_00020")
+    static let _2faRequired00021 = ImageAsset(name: "2fa_required_00021")
+    static let _2faRequired00022 = ImageAsset(name: "2fa_required_00022")
+    static let _2faRequired00023 = ImageAsset(name: "2fa_required_00023")
+    static let _2faRequired00024 = ImageAsset(name: "2fa_required_00024")
+    static let _2faRequired00025 = ImageAsset(name: "2fa_required_00025")
+    static let _2faRequired00026 = ImageAsset(name: "2fa_required_00026")
+    static let _2faRequired00027 = ImageAsset(name: "2fa_required_00027")
+    static let _2faRequired00028 = ImageAsset(name: "2fa_required_00028")
+    static let _2faRequired00029 = ImageAsset(name: "2fa_required_00029")
+    static let _2faRequired00030 = ImageAsset(name: "2fa_required_00030")
+    static let _2faRequired00031 = ImageAsset(name: "2fa_required_00031")
+    static let _2faRequired00032 = ImageAsset(name: "2fa_required_00032")
+    static let _2faRequired00033 = ImageAsset(name: "2fa_required_00033")
+    static let _2faRequired00034 = ImageAsset(name: "2fa_required_00034")
+    static let _2faRequired00035 = ImageAsset(name: "2fa_required_00035")
+    static let _2faRequired00036 = ImageAsset(name: "2fa_required_00036")
+    static let _2faRequired00037 = ImageAsset(name: "2fa_required_00037")
+    static let _2faRequired00038 = ImageAsset(name: "2fa_required_00038")
+    static let _2faRequired00039 = ImageAsset(name: "2fa_required_00039")
+  }
 
   // swiftlint:disable trailing_comma
   static let allColors: [ColorAsset] = [
@@ -84,6 +130,8 @@ enum Asset {
     checkmarkNormal,
     checkmarkSelected,
     closeIcon,
+    Confirmation.confirmed,
+    Confirmation.rejected,
     error,
     qrCode,
     settings,
@@ -95,6 +143,46 @@ enum Asset {
     TokenIcons.eth,
     TokenIcons.defaultToken,
     TransferView.arrowDown,
+    Twofa._2faRequired00000,
+    Twofa._2faRequired00001,
+    Twofa._2faRequired00002,
+    Twofa._2faRequired00003,
+    Twofa._2faRequired00004,
+    Twofa._2faRequired00005,
+    Twofa._2faRequired00006,
+    Twofa._2faRequired00007,
+    Twofa._2faRequired00008,
+    Twofa._2faRequired00009,
+    Twofa._2faRequired00010,
+    Twofa._2faRequired00011,
+    Twofa._2faRequired00012,
+    Twofa._2faRequired00013,
+    Twofa._2faRequired00014,
+    Twofa._2faRequired00015,
+    Twofa._2faRequired00016,
+    Twofa._2faRequired00017,
+    Twofa._2faRequired00018,
+    Twofa._2faRequired00019,
+    Twofa._2faRequired00020,
+    Twofa._2faRequired00021,
+    Twofa._2faRequired00022,
+    Twofa._2faRequired00023,
+    Twofa._2faRequired00024,
+    Twofa._2faRequired00025,
+    Twofa._2faRequired00026,
+    Twofa._2faRequired00027,
+    Twofa._2faRequired00028,
+    Twofa._2faRequired00029,
+    Twofa._2faRequired00030,
+    Twofa._2faRequired00031,
+    Twofa._2faRequired00032,
+    Twofa._2faRequired00033,
+    Twofa._2faRequired00034,
+    Twofa._2faRequired00035,
+    Twofa._2faRequired00036,
+    Twofa._2faRequired00037,
+    Twofa._2faRequired00038,
+    Twofa._2faRequired00039,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

@@ -39,7 +39,8 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         public var action: Selector?
         public var icon: UIImage?
 
-        public static func == (lhs: FeeCalculationAssetLine.ButtonItem, rhs: FeeCalculationAssetLine.ButtonItem) -> Bool {
+        public static func == (lhs: FeeCalculationAssetLine.ButtonItem,
+                               rhs: FeeCalculationAssetLine.ButtonItem) -> Bool {
             return lhs.text == rhs.text &&
                 lhs.target === rhs.target &&
                 String(describing: lhs.action) == String(describing: rhs.action)

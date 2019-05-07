@@ -22,6 +22,9 @@ public class ReviewTransactionViewController: UITableViewController {
 
     /// Confirmation cell is always last if present
     internal let confirmationCell = TransactionConfirmationCell()
+    internal var submitButton: UIButton! {
+        return confirmationCell.confirmationView.button
+    }
 
     var hasBrowserExtension: Bool {
         return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
@@ -29,7 +32,6 @@ public class ReviewTransactionViewController: UITableViewController {
 
     /// To control how frequent a user can send confirmation requests
     private let scheduler = OneOperationWaitingScheduler(interval: 30)
-    private var submitButtonItem: UIBarButtonItem!
 
     internal class IndexPathIterator {
         private var index: Int = 0
@@ -54,17 +56,19 @@ public class ReviewTransactionViewController: UITableViewController {
         self.init()
         tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
         self.delegate = delegate
-        submitButtonItem = UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         title = Strings.title
-        navigationItem.rightBarButtonItem = submitButtonItem
+        submitButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
         disableSubmit()
         configureTableView()
         createCells()
         updateSubmitButton()
+        if !hasBrowserExtension {
+            confirmationCell.confirmationView.showsOnlyButton = true
+        }
 
         // Otherwise header cell height is smaller than the content height
         // Alternatives tried: setting cell size when creating the header cell
@@ -90,13 +94,17 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func disableSubmit() {
-        submitButtonItem.isEnabled = false
-        navigationItem.hidesBackButton = true
+        DispatchQueue.main.async {
+            self.submitButton.isEnabled = false
+            self.navigationItem.hidesBackButton = true
+        }
     }
 
     private func enableSubmit() {
-        submitButtonItem.isEnabled = true
-        navigationItem.hidesBackButton = false
+        DispatchQueue.main.async {
+            self.submitButton.isEnabled = true
+            self.navigationItem.hidesBackButton = false
+        }
     }
 
     // MARK: - Table view data source
@@ -112,9 +120,6 @@ public class ReviewTransactionViewController: UITableViewController {
     // MARK: - Table view delegate
 
     override public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !hasBrowserExtension && cells[indexPath] is TransactionConfirmationCell {
-            return 0
-        }
         return UITableView.automaticDimension
     }
 
@@ -137,15 +142,15 @@ public class ReviewTransactionViewController: UITableViewController {
         precondition(Thread.isMainThread)
         switch tx.status {
         case .waitingForConfirmation:
-            confirmationCell.transactionConfirmationView.status = .pending
+            confirmationCell.confirmationView.status = .pending
         case .readyToSubmit:
-            confirmationCell.transactionConfirmationView.status = .confirmed
+            confirmationCell.confirmationView.status = .confirmed
             didConfirm()
         case .rejected:
-            confirmationCell.transactionConfirmationView.status = .rejected
+            confirmationCell.confirmationView.status = .rejected
             didReject()
         default:
-            confirmationCell.transactionConfirmationView.status = .undefined
+            confirmationCell.confirmationView.status = .undefined
         }
     }
 
@@ -159,7 +164,7 @@ public class ReviewTransactionViewController: UITableViewController {
 
     private func updateSubmitButton() {
         precondition(Thread.isMainThread)
-        if self.hasUpdatedFee && self.tx.status != .rejected {
+        if self.hasUpdatedFee {
             self.enableSubmit()
         } else {
             self.disableSubmit()
