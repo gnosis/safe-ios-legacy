@@ -290,6 +290,7 @@
 		55126B6521AC37FC00A9F810 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6321AC37FC00A9F810 /* ProgressView.swift */; };
 		55126B6721AC380900A9F810 /* ProgressViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6421AC37FC00A9F810 /* ProgressViewTests.swift */; };
 		55126B6921AC38A900A9F810 /* TransactionConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */; };
+		551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */; };
 		55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55247302213E8D7600A77557 /* TokensHeaderView.swift */; };
 		55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55247304213E8EC600A77557 /* TokensHeaderView.xib */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
@@ -862,6 +863,7 @@
 		55126B6321AC37FC00A9F810 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		55126B6421AC37FC00A9F810 /* ProgressViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewTests.swift; sourceTree = "<group>"; };
 		55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationViewController.swift; sourceTree = "<group>"; };
+		551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeePaymentMethodCommand.swift; sourceTree = "<group>"; };
 		55247302213E8D7600A77557 /* TokensHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensHeaderView.swift; sourceTree = "<group>"; };
 		55247304213E8EC600A77557 /* TokensHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensHeaderView.xib; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
@@ -1323,6 +1325,7 @@
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
 				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
 				0A1940472226CF27005B7440 /* DisconnectBrowserExtension */,
+				551D777D22819AD8003B7910 /* FeePaymentMethod */,
 				55B5DF6222782BF6001A32F4 /* Portfolio */,
 				0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */,
 				0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */,
@@ -1732,6 +1735,14 @@
 				55126B6421AC37FC00A9F810 /* ProgressViewTests.swift */,
 			);
 			path = ProgressView;
+			sourceTree = "<group>";
+		};
+		551D777D22819AD8003B7910 /* FeePaymentMethod */ = {
+			isa = PBXGroup;
+			children = (
+				551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */,
+			);
+			path = FeePaymentMethod;
 			sourceTree = "<group>";
 		};
 		5524734F21428E4C00A77557 /* Components */ = {
@@ -2779,6 +2790,7 @@
 				0A3BD95B22255C40007039B4 /* ConnectBrowserExtensionLaterCommand.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A2D58802257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift in Sources */,
+				551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */,
 				0A6EF3C821BA8CC100F1074E /* AddressInputViewController.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
 				0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */,

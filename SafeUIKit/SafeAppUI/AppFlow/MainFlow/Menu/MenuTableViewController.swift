@@ -10,6 +10,14 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectCommand(_ command: MenuCommand)
 }
 
+final class VoidCommand: MenuCommand {
+
+    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+        // no-op
+    }
+
+}
+
 final class MenuTableViewController: UITableViewController {
 
     weak var delegate: MenuTableViewControllerDelegate?
@@ -29,6 +37,7 @@ final class MenuTableViewController: UITableViewController {
         var name: String
         var hasDisclosure: Bool
         var height: CGFloat
+        var command: MenuCommand
     }
 
     static func create() -> MenuTableViewController {
@@ -110,7 +119,10 @@ final class MenuTableViewController: UITableViewController {
         menuItemSections = selectedSafeAddress == nil ? [] : [
             (section: .safe,
              title: Strings.address,
-             items: [MenuItem(name: "SAFE", hasDisclosure: false, height: SafeTableViewCell.height)])
+             items: [MenuItem(name: "SAFE",
+                              hasDisclosure: false,
+                              height: SafeTableViewCell.height,
+                              command: VoidCommand())])
         ]
         menuItemSections += [
             (section: .portfolio,
@@ -124,13 +136,16 @@ final class MenuTableViewController: UITableViewController {
             (section: .support,
              title: Strings.support,
              items: sectionItems(for: supportCommands) +
-                [MenuItem(name: "AppVersion", hasDisclosure: false, height: AppVersionTableViewCell.height)])
+                [MenuItem(name: "AppVersion",
+                          hasDisclosure: false,
+                          height: AppVersionTableViewCell.height,
+                          command: VoidCommand())])
         ]
     }
 
     private func sectionItems(for commands: [MenuCommand]) -> [MenuItem] {
         return commands.filter { !$0.isHidden }.map {
-            MenuItem(name: $0.title, hasDisclosure: $0.hasDisclosure, height: $0.height)
+            MenuItem(name: $0.title, hasDisclosure: $0.hasDisclosure, height: $0.height, command: $0)
         }
     }
 
@@ -178,45 +193,7 @@ final class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = menuItem(at: indexPath)
-
-        switch menuItemSections[indexPath.section].section {
-        case .portfolio:
-            switch item.name {
-            case manageTokensCommand.title:
-                delegate?.didSelectCommand(manageTokensCommand)
-            default: break
-            }
-
-        case .security:
-            switch item.name {
-            case changePasswordCommand.title:
-                delegate?.didSelectCommand(changePasswordCommand)
-            case connectCommand.title:
-                delegate?.didSelectCommand(connectCommand)
-            case replaceCommand.title:
-                delegate?.didSelectCommand(replaceCommand)
-            case disconnectCommand.title:
-                delegate?.didSelectCommand(disconnectCommand)
-            case resyncCommand.title:
-                delegate?.didSelectCommand(resyncCommand)
-            case replaceRecoveryPhraseCommand.title:
-                delegate?.didSelectCommand(replaceRecoveryPhraseCommand)
-            default: break
-            }
-
-        case .support:
-            switch item.name {
-            case termsCommand.title:
-                delegate?.didSelectCommand(termsCommand)
-            case privacyPolicyCommand.title:
-                delegate?.didSelectCommand(privacyPolicyCommand)
-            case licensesCommand.title:
-                delegate?.didSelectCommand(licensesCommand)
-            default: break
-            }
-
-        default: break
-        }
+        delegate?.didSelectCommand(item.command)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
