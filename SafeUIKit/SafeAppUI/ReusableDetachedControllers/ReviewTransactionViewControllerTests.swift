@@ -12,17 +12,19 @@ import CommonTestSupport
 
 class ReviewTransactionViewControllerTests: ReviewTransactionViewControllerBaseTestCase {
 
+    let accountBalance = BigInt(10).power(19)
+
     // MARK: - Layout
 
     func test_whenBrowserExtensionIsNotPaired_thenHidesTransactionReviewCell() {
         let (_, vc) = ethDataAndCotroller()
-        XCTAssertTrue(vc.cellForRow(2) is TransactionConfirmationCell)
+        XCTAssertTrue(!vc.isShowing2FA)
     }
 
     func test_whenBrowserExtensionIsPaired_thenShowsTransactionReviewCell() {
-        let (_, vc) = ethDataAndCotroller()
         service.addOwner(address: "test", type: .browserExtension)
-        XCTAssertTrue(vc.cellForRow(2) is TransactionConfirmationCell)
+        let (_, vc) = ethDataAndCotroller()
+        XCTAssertTrue(vc.isShowing2FA)
     }
 
     // MARK: - Transaction Review Cell states
@@ -31,35 +33,27 @@ class ReviewTransactionViewControllerTests: ReviewTransactionViewControllerBaseT
         let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
         vc.viewDidAppear(false)
         delay()
-        XCTAssertEqual(vc.confirmationCell.confirmationView.status, .pending)
+        XCTAssertEqual(vc.confirmationStatus, .pending)
     }
 
     func test_whenTransactionIsReadyToSubmit_thenConfirmationCellIsConfirmed() {
         let (_, vc) = ethDataAndCotroller(.readyToSubmit)
         vc.viewDidAppear(false)
         delay()
-        XCTAssertEqual(vc.confirmationCell.confirmationView.status, .confirmed)
+        XCTAssertEqual(vc.confirmationStatus, .confirmed)
     }
 
     func test_whenTransactionIsRejected_thenConfirmationCellIsRejected() {
         let (_, vc) = ethDataAndCotroller(.rejected)
         vc.viewDidAppear(false)
         delay()
-        XCTAssertEqual(vc.confirmationCell.confirmationView.status, .rejected)
+        XCTAssertEqual(vc.confirmationStatus, .rejected)
     }
 
     func test_whenTransactionIsOther_thenConfirmationCellIsUndefined() {
         let (_, vc) = ethDataAndCotroller(.pending)
         vc.viewDidAppear(false)
-        XCTAssertEqual(vc.confirmationCell.confirmationView.status, .undefined)
-    }
-
-    func test_whenUpdatingWithNewTransactionData_thenIgnoresIt() {
-        let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
-        XCTAssertEqual(vc.cellCount(), 3)
-        let (newData, _) = tokenDataAndCotroller(.waitingForConfirmation)
-        vc.update(with: newData)
-        XCTAssertEqual(vc.cellCount(), 3)
+        XCTAssertEqual(vc.confirmationStatus, .undefined)
     }
 
     // MARK: - Requesting signatures
@@ -135,7 +129,7 @@ extension ReviewTransactionViewControllerTests {
 
     func tokenDataAndCotroller(_ status: TransactionData.Status = .readyToSubmit) ->
         (TransactionData, ReviewTransactionViewController) {
-        let data = TransactionData.tokenData(status: status)
+        let data = TransactionData.mixedTokenData(status: status)
         let vc = controller(for: data)
         return (data, vc)
     }
@@ -143,7 +137,7 @@ extension ReviewTransactionViewControllerTests {
     func controller(for data: TransactionData) -> SendReviewViewController {
         service.transactionData_output = data
         service.requestTransactionConfirmation_output = data
-        service.update(account: BaseID(data.amountTokenData.address), newBalance: BigInt(10).power(19))
+        service.update(account: BaseID(data.amountTokenData.address), newBalance: accountBalance)
         let vc = SendReviewViewController(transactionID: data.id, delegate: delegate)
         vc.viewDidLoad()
         return vc

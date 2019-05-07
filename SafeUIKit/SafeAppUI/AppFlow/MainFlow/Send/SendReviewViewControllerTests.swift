@@ -15,6 +15,45 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
         XCTAssertEqual(transferViewCell.transferView.fromAddress, data.sender)
         XCTAssertEqual(transferViewCell.transferView.toAddress, data.recipient)
         XCTAssertEqual(transferViewCell.transferView.tokenData, data.amountTokenData)
+        XCTAssertEqual(transferViewCell.transferView.balanceData, data.amountTokenData.withBalance(accountBalance))
+    }
+
+    func test_whenLoadedForEth_thenHasCorrectFees() {
+        let (data, vc) = ethDataAndCotroller()
+        let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
+        let calculation = cell.feeCalculationView.calculation as! SendEthFeeCalculation
+        let balance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
+        let resultingBalance = balance - data.amountTokenData.balance! - data.feeTokenData.balance!
+        let formatter = TokenNumberFormatter.ERC20Token(code: data.amountTokenData.code,
+                                                        decimals: data.amountTokenData.decimals,
+                                                        displayedDecimals: 5)
+        XCTAssertEqual(calculation.networkFeeLine.asset.value,
+                       formatter.string(from: data.feeTokenData.withNonNegativeBalance().balance!))
+        XCTAssertEqual(calculation.resultingBalanceLine.asset.value,
+                       formatter.string(from: resultingBalance))
+    }
+
+    func test_whenLoadedForToken_thenHasCorrectFees() {
+        let (data, vc) = tokenDataAndCotroller()
+        let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
+        let calculation = cell.feeCalculationView.calculation as! SendERC20FeeCalculation
+        let tokenBalance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
+        let tokenResultingBalance = tokenBalance - data.amountTokenData.balance!
+        let feeBalance = service.accountBalance(tokenID: BaseID(data.feeTokenData.address))!
+        let feeResultingBalance = feeBalance - data.feeTokenData.balance!
+        let tokenFormatter = TokenNumberFormatter.ERC20Token(code: data.amountTokenData.code,
+                                                             decimals: data.amountTokenData.decimals,
+                                                             displayedDecimals: 5)
+        let feeFormatter = TokenNumberFormatter.ERC20Token(code: data.feeTokenData.code,
+                                                           decimals: data.feeTokenData.decimals,
+                                                           displayedDecimals: 5)
+
+        XCTAssertEqual(calculation.resultingBalanceLine.asset.value,
+                       tokenFormatter.string(from: tokenResultingBalance))
+        XCTAssertEqual(calculation.networkFeeLine.asset.value,
+                       feeFormatter.string(from: data.feeTokenData.balance!))
+        XCTAssertEqual(calculation.networkFeeResultingBalanceLine.asset.value,
+                       feeFormatter.string(from: feeResultingBalance))
     }
 
     // MARK: - Tracking

@@ -25,6 +25,12 @@ public class ReviewTransactionViewController: UITableViewController {
     internal var submitButton: UIButton! {
         return confirmationCell.confirmationView.button
     }
+    internal var isShowing2FA: Bool {
+        return !confirmationCell.confirmationView.showsOnlyButton
+    }
+    internal var confirmationStatus: TransactionConfirmationView.Status {
+        return confirmationCell.confirmationView.status
+    }
 
     var hasBrowserExtension: Bool {
         return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
