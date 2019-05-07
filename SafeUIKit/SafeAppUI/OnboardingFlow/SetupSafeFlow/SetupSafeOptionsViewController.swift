@@ -21,8 +21,8 @@ class SetupSafeOptionsViewController: UIViewController {
 
     @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var newSafeButton: BigBorderedButton!
-    @IBOutlet weak var recoverSafeButton: BigBorderedButton!
+    @IBOutlet weak var newSafeButton: StandardButton!
+    @IBOutlet weak var recoverSafeButton: StandardButton!
     private weak var delegate: SetupSafeOptionsDelegate?
 
     static func create(delegate: SetupSafeOptionsDelegate) -> SetupSafeOptionsViewController {

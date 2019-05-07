@@ -6,7 +6,9 @@ import UIKit
 
 public class TransactionConfirmationCell: ContainerCell {
 
-    public let transactionConfirmationView = TransactionConfirmationView()
-    public override var cellContentView: UIView { return transactionConfirmationView }
+    public let confirmationView = TransactionConfirmationView()
+    public override var cellContentView: UIView { return confirmationView }
+    public override var horizontalMargin: CGFloat { return 16 }
+    public override var verticalMargin: CGFloat { return 16 }
 
 }

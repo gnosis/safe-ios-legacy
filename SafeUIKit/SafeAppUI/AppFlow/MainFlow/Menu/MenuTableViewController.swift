@@ -159,7 +159,7 @@ final class MenuTableViewController: UITableViewController {
                                                      for: indexPath) as! SafeTableViewCell
             cell.configure(address: selectedSafeAddress!)
             return cell
-        case .safe, .portfolio, .security, .support:
+        case .portfolio, .security, .support:
             let item = menuItem(at: indexPath)
             if item.name == "AppVersion" {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AppVersionTableViewCell", for: indexPath)

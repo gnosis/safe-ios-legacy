@@ -14,7 +14,7 @@ final class StartViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: BackgroundImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var setupPasswordButton: BigBorderedButton!
+    @IBOutlet weak var setupPasswordButton: StandardButton!
     private weak var delegate: StartViewControllerDelegate!
 
     private var preservedNavBarColor: UIColor!

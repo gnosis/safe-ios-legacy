@@ -77,7 +77,6 @@ enum Asset {
   }
   enum TransactionEdit {
     static let scanQrCopy = ImageAsset(name: "scan_qr_copy")
-    static let settings = ImageAsset(name: "settings")
     static let shape = ImageAsset(name: "shape")
     static let `switch` = ImageAsset(name: "switch")
   }
@@ -86,10 +85,6 @@ enum Asset {
     static let receive = ImageAsset(name: "receive")
     static let settingTransaction = ImageAsset(name: "setting_transaction")
     static let settingTransactionIcon = ImageAsset(name: "setting_transaction_icon")
-  }
-  enum TransactionReview {
-    static let extensionWindow = ImageAsset(name: "extension_window")
-    static let rejectedExtension = ImageAsset(name: "rejected_extension")
   }
   static let transparentBackground = ImageAsset(name: "transparent_background")
   enum UnlockScreen {
@@ -122,15 +117,12 @@ enum Asset {
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
     TransactionEdit.scanQrCopy,
-    TransactionEdit.settings,
     TransactionEdit.shape,
     TransactionEdit.`switch`,
     TransactionOverviewIcons.error,
     TransactionOverviewIcons.receive,
     TransactionOverviewIcons.settingTransaction,
     TransactionOverviewIcons.settingTransactionIcon,
-    TransactionReview.extensionWindow,
-    TransactionReview.rejectedExtension,
     transparentBackground,
     UnlockScreen.faceIdIcon,
     UnlockScreen.safeHeaderLogo,

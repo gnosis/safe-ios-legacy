@@ -36,7 +36,7 @@ public class AccountBalanceView: BaseCustomView {
             heightAnchor.constraint(equalTo: stackView.heightAnchor)])
         stackView.alignment = .center
         stackView.spacing = 14
-        addressLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        addressLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         addressLabel.textColor = ColorName.darkSlateBlue.color
         addressLabel.hasFullAddressTooltip = true
         balanceLabel.font = UIFont.systemFont(ofSize: 17)

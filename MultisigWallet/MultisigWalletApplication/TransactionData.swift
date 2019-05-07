@@ -43,7 +43,7 @@ public struct TransactionGroupData: Collection {
 
 }
 
-public struct TransactionData {
+public struct TransactionData: Equatable {
 
     public enum TransactionType {
         case outgoing

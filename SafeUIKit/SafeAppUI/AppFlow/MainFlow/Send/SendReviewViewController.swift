@@ -30,37 +30,18 @@ final class SendReviewViewController: ReviewTransactionViewController {
 
     override func createCells() {
         let indexPath = IndexPathIterator()
-        cells[indexPath.next()] = transferHeaderCell()
         cells[indexPath.next()] = transferViewCell()
-        if tx.amountTokenData.isEther {
-            feeCellIndexPath = indexPath.next()
-            cells[feeCellIndexPath] = etherTransactionFeeCell()
-        } else {
-            cells[indexPath.next()] = tokenBalanceCell()
-            feeCellIndexPath = indexPath.next()
-            cells[feeCellIndexPath] = etherFeeBalanceCell()
-        }
+        feeCellIndexPath = indexPath.next()
+        cells[feeCellIndexPath] = feeCalculationCell()
         cells[indexPath.next()] = confirmationCell
     }
 
     override func updateEtherFeeBalanceCell() {
         precondition(Thread.isMainThread)
-        if tx.amountTokenData.isEther {
-            cells[feeCellIndexPath] = etherTransactionFeeCell()
-        } else {
-            cells[feeCellIndexPath] = etherFeeBalanceCell()
-        }
+        cells[feeCellIndexPath] = feeCalculationCell()
         if feeCellIndexPath.row < tableView.numberOfRows(inSection: feeCellIndexPath.section) {
             tableView.reloadRows(at: [feeCellIndexPath], with: .none)
         }
-    }
-
-    private func transferHeaderCell() -> UITableViewCell {
-        let cell = TransactionHeaderCell(frame: .zero)
-        cell.configure(imageURL: tx.amountTokenData.logoURL,
-                       code: tx.amountTokenData.code,
-                       info: Strings.outgoingTransfer)
-        return cell
     }
 
     private func transferViewCell() -> UITableViewCell {
@@ -68,23 +49,32 @@ final class SendReviewViewController: ReviewTransactionViewController {
         cell.transferView.fromAddress = tx.sender
         cell.transferView.toAddress = tx.recipient
         cell.transferView.tokenData = tx.amountTokenData
+        cell.transferView.balanceData = tx.amountTokenData.withBalance(balance(of: tx.amountTokenData))
         return cell
     }
 
-    private func tokenBalanceCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.amountTokenData)
-        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0)
-        return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
-                       transactionFee: nil,
-                       resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
-    }
+    private func feeCalculationCell() -> UITableViewCell {
+        let cell = FeeCalculationCell(frame: .zero)
+        let amountBalance = balance(of: tx.amountTokenData)
+        var amountResultingBalance = amountBalance - abs(tx.amountTokenData.balance ?? 0)
 
-    private func etherFeeBalanceCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.feeTokenData)
-        let resultingBalance = balance - abs(tx.feeTokenData.balance ?? 0)
-        return feeCell(currentBalance: nil,
-                       transactionFee: tx.feeTokenData,
-                       resultingBalance: tx.feeTokenData.withBalance(resultingBalance))
+        if tx.amountTokenData.address == tx.feeTokenData.address {
+            amountResultingBalance -= (tx.feeTokenData.withNonNegativeBalance().balance ?? 0)
+            let calculation = SendEthFeeCalculation()
+            calculation.networkFeeLine.set(value: tx.feeTokenData.withNonNegativeBalance())
+            calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(amountResultingBalance))
+            cell.feeCalculationView.calculation = calculation
+        } else {
+            let feeBalance = balance(of: tx.feeTokenData)
+            let feeResultingBalance = feeBalance - abs(tx.feeTokenData.balance ?? 0)
+            let calculation = SendERC20FeeCalculation()
+            calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(amountResultingBalance))
+            calculation.networkFeeLine.set(value: tx.feeTokenData.withNonNegativeBalance())
+            calculation.networkFeeResultingBalanceLine.set(value: tx.feeTokenData.withBalance(feeResultingBalance))
+            cell.feeCalculationView.calculation = calculation
+        }
+        cell.feeCalculationView.update()
+        return cell
     }
 
 }

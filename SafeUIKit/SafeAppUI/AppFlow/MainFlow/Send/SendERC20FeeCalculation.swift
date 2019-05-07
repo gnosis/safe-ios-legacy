@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import SafeUIKit
 
 class SendERC20FeeCalculation: SendEthFeeCalculation {
 
@@ -13,7 +14,7 @@ class SendERC20FeeCalculation: SendEthFeeCalculation {
         networkFeeResultingBalanceLine = FeeCalculationAssetLine()
             .set(name: Strings.resultingBalance)
             .set(value: Strings.loading)
-        networkFeeBalanceErrorLine = FeeCalculationErrorLine(text: Strings.loading)
+        networkFeeBalanceErrorLine = FeeCalculationErrorLine(text: "")
         super.init()
     }
 
@@ -31,6 +32,6 @@ class SendERC20FeeCalculation: SendEthFeeCalculation {
                                              errorLine])
         section.border = nil
         section.insets = .zero
-        elements = [section]
+        set(contents: [section])
     }
 }

@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 
 final class TokensHeaderView: UITableViewHeaderFooterView {
 
