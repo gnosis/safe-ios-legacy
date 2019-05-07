@@ -240,6 +240,8 @@
 		0AD899852280325E008AE325 /* DashedSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899842280325D008AE325 /* DashedSeparatorView.swift */; };
 		0AD8998722803858008AE325 /* FeeCalculationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8998622803858008AE325 /* FeeCalculationCell.swift */; };
 		0AD8998A228042CD008AE325 /* BaseCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD89989228042CC008AE325 /* BaseCustomButton.swift */; };
+		0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899A92281C74B008AE325 /* SuccessViewController.swift */; };
+		0AD899BA2281CADD008AE325 /* SuccessViewController+SendSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899B92281CADD008AE325 /* SuccessViewController+SendSuccess.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */; };
 		0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989520D3B43200E6F3CA /* BaseCustomViewTests.swift */; };
@@ -807,6 +809,8 @@
 		0AD899842280325D008AE325 /* DashedSeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedSeparatorView.swift; sourceTree = "<group>"; };
 		0AD8998622803858008AE325 /* FeeCalculationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationCell.swift; sourceTree = "<group>"; };
 		0AD89989228042CC008AE325 /* BaseCustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCustomButton.swift; sourceTree = "<group>"; };
+		0AD899A92281C74B008AE325 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
+		0AD899B92281CADD008AE325 /* SuccessViewController+SendSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuccessViewController+SendSuccess.swift"; sourceTree = "<group>"; };
 		0AD9989520D3B43200E6F3CA /* BaseCustomViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomViewTests.swift; sourceTree = "<group>"; };
 		0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParticipantViewTests.swift; sourceTree = "<group>"; };
 		0AD998A120D3E5BA00E6F3CA /* IdenticonViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonViewTests.swift; sourceTree = "<group>"; };
@@ -1345,6 +1349,7 @@
 				0AD5091B211091E4008507CB /* SendInputViewModelTests.swift */,
 				554CACCE221F04B80086D303 /* SendReviewViewController.swift */,
 				554CACD6221F19430086D303 /* SendReviewViewControllerTests.swift */,
+				0AD899B92281CADD008AE325 /* SuccessViewController+SendSuccess.swift */,
 				0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */,
 			);
 			path = Send;
@@ -1905,6 +1910,7 @@
 				0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */,
 				55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */,
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
+				0AD899A92281C74B008AE325 /* SuccessViewController.swift */,
 				558682CA2192F9840060F1DE /* PairWithBrowserExtension */,
 				55DFBCF52135901D004B2AC4 /* Unlock */,
 			);
@@ -2813,6 +2819,7 @@
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
 				0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */,
+				0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */,
 				55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
@@ -2835,6 +2842,7 @@
 				0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */,
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
+				0AD899BA2281CADD008AE325 /* SuccessViewController+SendSuccess.swift in Sources */,
 				0A334E2A209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,

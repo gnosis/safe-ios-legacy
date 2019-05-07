@@ -128,8 +128,15 @@ extension MainFlowCoordinator: ReviewTransactionViewControllerDelegate {
     }
 
     func didFinishReview() {
-        popToLastCheckpoint()
-        showTransactionList()
+        let popAction = { [unowned self] in
+            self.popToLastCheckpoint()
+            self.showTransactionList()
+        }
+        if navigationController.topViewController is SendReviewViewController {
+            push(SuccessViewController.createSendSuccess(action: popAction))
+        } else {
+            popAction()
+        }
     }
 
     internal func showTransactionList() {
