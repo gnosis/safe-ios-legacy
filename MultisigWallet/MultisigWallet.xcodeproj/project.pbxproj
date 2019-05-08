@@ -184,6 +184,9 @@
 		0AD5294B21B6E538009559ED /* TokenInt+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5294A21B6E538009559ED /* TokenInt+DBSerializable.swift */; };
 		0AD5294D21B6E554009559ED /* Address+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5294C21B6E554009559ED /* Address+DBSerializable.swift */; };
 		0AD5294F21B6E567009559ED /* WalletState+DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5294E21B6E567009559ED /* WalletState+DBSerializable.swift */; };
+		0AD899D52282C886008AE325 /* SafeCreation2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899D42282C886008AE325 /* SafeCreation2Request.swift */; };
+		0AD899E32283060E008AE325 /* GnosisSafeContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899E22283060E008AE325 /* GnosisSafeContractProxy.swift */; };
+		0AD899E922830A78008AE325 /* GnosisSafeContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899E822830A78008AE325 /* GnosisSafeContractProxyTests.swift */; };
 		0ADD1DD12135432A0046AF1F /* ERC20TokenContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD1DD02135432A0046AF1F /* ERC20TokenContractProxy.swift */; };
 		0ADD1DDE213544C50046AF1F /* ERC20TokenContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD1DDD213544C50046AF1F /* ERC20TokenContractProxyTests.swift */; };
 		0AEDED5621676156005B6DD0 /* SafeOwnerManagerContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */; };
@@ -611,6 +614,9 @@
 		0AD5294A21B6E538009559ED /* TokenInt+DBSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TokenInt+DBSerializable.swift"; sourceTree = "<group>"; };
 		0AD5294C21B6E554009559ED /* Address+DBSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+DBSerializable.swift"; sourceTree = "<group>"; };
 		0AD5294E21B6E567009559ED /* WalletState+DBSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletState+DBSerializable.swift"; sourceTree = "<group>"; };
+		0AD899D42282C886008AE325 /* SafeCreation2Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreation2Request.swift; sourceTree = "<group>"; };
+		0AD899E22283060E008AE325 /* GnosisSafeContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisSafeContractProxy.swift; sourceTree = "<group>"; };
+		0AD899E822830A78008AE325 /* GnosisSafeContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisSafeContractProxyTests.swift; sourceTree = "<group>"; };
 		0ADD1DD02135432A0046AF1F /* ERC20TokenContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20TokenContractProxy.swift; sourceTree = "<group>"; };
 		0ADD1DDD213544C50046AF1F /* ERC20TokenContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20TokenContractProxyTests.swift; sourceTree = "<group>"; };
 		0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeOwnerManagerContractProxy.swift; sourceTree = "<group>"; };
@@ -895,6 +901,7 @@
 			isa = PBXGroup;
 			children = (
 				0A9E37A320F4A4D10085E8D7 /* SafeCreationTransactionRequest.swift */,
+				0AD899D42282C886008AE325 /* SafeCreation2Request.swift */,
 				0A9E379C20F4A4D10085E8D7 /* GetSafeCreationStatusRequest.swift */,
 				0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */,
 				0A442DEA210B1DC200F19F80 /* SubmitTransactionRequest.swift */,
@@ -1009,6 +1016,8 @@
 				0A290E1721BD3558005188EA /* MultiSendContractProxy.swift */,
 				0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */,
 				0AEDED5C216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift */,
+				0AD899E22283060E008AE325 /* GnosisSafeContractProxy.swift */,
+				0AD899E822830A78008AE325 /* GnosisSafeContractProxyTests.swift */,
 				0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */,
 				0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */,
 			);
@@ -1640,11 +1649,13 @@
 				555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */,
 				55E2FED1213D539F005F8074 /* MockAccountUpdateService.swift in Sources */,
 				0A9E380E20F4A4F20085E8D7 /* SafeCreationTransactionRequest.swift in Sources */,
+				0AD899E32283060E008AE325 /* GnosisSafeContractProxy.swift in Sources */,
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A3BD9662225606D007039B4 /* ConnectBrowserExtensionDomainService.swift in Sources */,
 				0A9E380D20F4A4F20085E8D7 /* ExternallyOwnedAccount.swift in Sources */,
 				0A7F3A8C2126BD890062CB1E /* RetryWithIncreasingDelay.swift in Sources */,
 				0A6B846321B6A0FF00EDF04C /* WalletIDList.swift in Sources */,
+				0AD899D52282C886008AE325 /* SafeCreation2Request.swift in Sources */,
 				552C6010212B0D0C00BF973A /* TokenListMerger.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
 				0ABCC0F52177290F00E60E9F /* TransactionDomainService.swift in Sources */,
@@ -1735,6 +1746,7 @@
 				0A55567F218057A70023825E /* SubmitTransactionRequestTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */,
+				0AD899E922830A78008AE325 /* GnosisSafeContractProxyTests.swift in Sources */,
 				0ACA9D26212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift in Sources */,
 				0A7F3A9D2126C60A0062CB1E /* RepeaterTests.swift in Sources */,
 				0A442DC5210A05A400F19F80 /* MessageTests.swift in Sources */,

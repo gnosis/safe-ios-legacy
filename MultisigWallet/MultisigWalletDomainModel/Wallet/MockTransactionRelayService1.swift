@@ -96,4 +96,8 @@ class MockTransactionRelayService1: TransactionRelayDomainService {
         preconditionFailure("not implemented")
     }
 
+    func createSafeCreationTransaction_v2(request: SafeCreation2Request) throws -> SafeCreation2Request.Response {
+        preconditionFailure("not implemented")
+    }
+
 }

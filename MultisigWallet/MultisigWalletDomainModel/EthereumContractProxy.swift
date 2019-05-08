@@ -15,6 +15,10 @@ public class EthereumContractProxy {
         self.contract = contract
     }
 
+    public convenience init() {
+        self.init(.zero)
+    }
+
     func method(_ selector: String) -> Data {
         return encryptionService.hash(selector.data(using: .ascii)!).prefix(4)
     }
