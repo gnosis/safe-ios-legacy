@@ -1,7 +1,7 @@
 lightish_blue: #426bf2
 battleship_grey: #65707e
-pale_grey_three: #f4f5f9
-pale_grey: #e4e8f1
+pale_grey_three: #efeff4
+pale_grey: #f4f5f9
 tomato_15: #f0252527
 aqua_blue: #00b8e0
 tomato: #f02525

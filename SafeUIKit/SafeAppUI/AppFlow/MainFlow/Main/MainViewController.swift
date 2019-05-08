@@ -37,7 +37,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = ColorName.paleGreyThree.color
+        view.backgroundColor = ColorName.paleGrey.color
         safeAddressLabel.textColor = ColorName.battleshipGrey.color
 
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }

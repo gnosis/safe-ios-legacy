@@ -4,7 +4,7 @@
 
 import UIKit
 
-class PaymentMethodViewController: UIViewController {
+class PaymentMethodViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

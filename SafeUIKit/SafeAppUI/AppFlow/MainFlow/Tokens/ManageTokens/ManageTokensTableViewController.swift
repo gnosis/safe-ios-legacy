@@ -40,13 +40,12 @@ final class ManageTokensTableViewController: UITableViewController {
         title = Strings.title
         navigationItem.rightBarButtonItem = editButtonItem
 
-        let bundle = Bundle(for: TokenBalanceTableViewCell.self)
-        tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
-                           forCellReuseIdentifier: "TokenBalanceTableViewCell")
-        tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = ColorName.paleGreyThree.color
+        tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
+                           forCellReuseIdentifier: "BasicTableViewCell")
+        tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
+        tableView.backgroundColor = ColorName.paleGrey.color
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
         navigationItem.setLeftBarButton(addButton, animated: false)
@@ -93,10 +92,9 @@ final class ManageTokensTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: "TokenBalanceTableViewCell", for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(tokenData: tokens[indexPath.row])
-        cell.displayBalance = false
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
+                                                 for: indexPath) as! BasicTableViewCell
+        cell.configure(tokenData: tokens[indexPath.row], displayBalance: false, displayFullName: false)
         return cell
     }
 

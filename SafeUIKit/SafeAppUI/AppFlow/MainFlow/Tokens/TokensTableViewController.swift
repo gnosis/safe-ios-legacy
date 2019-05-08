@@ -60,11 +60,11 @@ final class TokensTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "TokensHeaderView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "TokensHeaderView")
         tableView.register(EmptyFooter.self, forHeaderFooterViewReuseIdentifier: "EmptyFooter")
-        tableView.register(UINib(nibName: "TokenBalanceTableViewCell",
-                                 bundle: Bundle(for: TokenBalanceTableViewCell.self)),
-                           forCellReuseIdentifier: "TokenBalanceTableViewCell")
-        tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(UINib(nibName: "BasicTableViewCell",
+                                 bundle: Bundle(for: BasicTableViewCell.self)),
+                           forCellReuseIdentifier: "BasicTableViewCell")
+        tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
+        tableView.separatorStyle = .none
 
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
@@ -99,11 +99,9 @@ final class TokensTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TokenBalanceTableViewCell",
-                                                 for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(tokenData: tokenData(for: indexPath))
-        cell.displayName = .nameOnly
-        cell.withDisclosure = true
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
+                                                 for: indexPath) as! BasicTableViewCell
+        cell.configure(tokenData: tokenData(for: indexPath), displayBalance: true, displayFullName: false)
         return cell
     }
 

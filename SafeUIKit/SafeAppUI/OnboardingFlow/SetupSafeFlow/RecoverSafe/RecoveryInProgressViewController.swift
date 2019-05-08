@@ -44,7 +44,7 @@ public class RecoveryInProgressViewController: UIViewController {
         headerLabel.attributedText = .header(from: Strings.header, style: headerStyle)
         progressLabel.text = Strings.progress
         openExternalButton.setTitle(Strings.externalLink, for: .normal)
-        progressView.trackTintColor = ColorName.paleGrey.color
+        progressView.trackTintColor = ColorName.lightGreyBlue.color
         progressView.progressTintColor = ColorName.aquaBlue.color
         progressView.progress = 0
         resumeRecovery()

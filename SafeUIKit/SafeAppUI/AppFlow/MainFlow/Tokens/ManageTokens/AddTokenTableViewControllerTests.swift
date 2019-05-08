@@ -29,14 +29,14 @@ class AddTokenTableViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 2)
 
         let firstCell = cell(at: 0, 0)
-        XCTAssertEqual(firstCell.tokenCodeLabel.text, "GNO (Gnosis)")
-        XCTAssertNil(firstCell.tokenBalanceLabel.text)
+        XCTAssertEqual(firstCell.leftTextLabel.text, "GNO (Gnosis)")
+        XCTAssertNil(firstCell.rightTextLabel.text)
 
         let secondCell = cell(at: 0, 1)
-        XCTAssertEqual(secondCell.tokenCodeLabel.text, "MGN (Magnolia)")
+        XCTAssertEqual(secondCell.leftTextLabel.text, "MGN (Magnolia)")
 
         let thirdCell = cell(at: 0, 2)
-        XCTAssertEqual(thirdCell.tokenCodeLabel.text, "RDN (Raiden)")
+        XCTAssertEqual(thirdCell.leftTextLabel.text, "RDN (Raiden)")
     }
 
     func test_whenCellIsSelected_thenDelegateIsCalled() {
@@ -64,8 +64,8 @@ class AddTokenTableViewControllerTests: XCTestCase {
 
 private extension AddTokenTableViewControllerTests {
 
-    func cell(at row: Int, _ section: Int) -> TokenBalanceTableViewCell {
-        return controller.tableView.cellForRow(at: IndexPath(row: row, section: section)) as! TokenBalanceTableViewCell
+    func cell(at row: Int, _ section: Int) -> BasicTableViewCell {
+        return controller.tableView.cellForRow(at: IndexPath(row: row, section: section)) as! BasicTableViewCell
     }
 
     func selectSell(at row: Int, _ section: Int) {

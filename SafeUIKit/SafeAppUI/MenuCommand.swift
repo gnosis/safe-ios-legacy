@@ -19,7 +19,7 @@ class MenuCommand {
     }
 
     var height: CGFloat {
-        return MenuItemTableViewCell.height
+        return 46
     }
 
     var childFlowCoordinator: FlowCoordinator!
