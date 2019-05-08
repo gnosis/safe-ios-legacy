@@ -72,6 +72,10 @@ enum Asset {
   enum TermsScreen {
     static let squareButtonBorder = ImageAsset(name: "square-button-border")
   }
+  enum TokenIcons {
+    static let eth = ImageAsset(name: "ETH")
+    static let defaultToken = ImageAsset(name: "default-token")
+  }
   enum TransactionDetails {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
     static let externalLink = ImageAsset(name: "external_link")
@@ -116,6 +120,8 @@ enum Asset {
     shadow,
     shareIcon,
     TermsScreen.squareButtonBorder,
+    TokenIcons.eth,
+    TokenIcons.defaultToken,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
     TransactionEdit.scanQrCopy,
