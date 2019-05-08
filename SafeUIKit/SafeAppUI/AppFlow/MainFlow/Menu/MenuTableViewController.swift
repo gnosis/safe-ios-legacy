@@ -92,7 +92,9 @@ final class MenuTableViewController: UITableViewController {
         tableView.backgroundColor = ColorName.paleGreyThree.color
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
-        tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
+        tableView.register(UINib(nibName: "BasicTableViewCell",
+                                 bundle: Bundle(for: BasicTableViewCell.self)),
+                           forCellReuseIdentifier: "BasicTableViewCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
         tableView.sectionFooterHeight = 0
@@ -174,12 +176,11 @@ final class MenuTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AppVersionTableViewCell", for: indexPath)
                 return cell
             }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
-            cell.textLabel?.text = item.name
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
+                                                     for: indexPath) as! BasicTableViewCell
             cell.accessoryType = item.hasDisclosure ? .disclosureIndicator : .none
-            if item.command is FeePaymentMethodCommand {
-                cell.detailTextLabel?.text = feePaymentMethodCode
-            }
+            let details = item.command is FeePaymentMethodCommand ? feePaymentMethodCode : nil
+            cell.configure(text: item.name, details: details)
             return cell
         }
     }
@@ -206,6 +207,18 @@ final class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return BackgroundHeaderFooterView.height
+    }
+
+}
+
+fileprivate extension BasicTableViewCell {
+
+    func configure(text: String, details: String?) {
+        leftImageView?.removeFromSuperview()
+        leftTextLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        leftTextLabel.text = text
+        rightTextLabel.textColor = ColorName.lightGreyBlue.color
+        rightTextLabel.text = details
     }
 
 }

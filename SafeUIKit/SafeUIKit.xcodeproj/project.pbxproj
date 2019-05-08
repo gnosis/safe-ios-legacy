@@ -362,7 +362,6 @@
 		55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */; };
 		55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */; };
 		55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
-		55B5DF7722788F4E001A32F4 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF7622788F4E001A32F4 /* MenuItemTableViewCell.swift */; };
 		55BAB0E521789285007539CF /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* StandardButton.swift */; };
 		55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */; };
 		55BF5747226F46C80032B195 /* FeedbackTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */; };
@@ -933,7 +932,6 @@
 		55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSafeCommand.swift; sourceTree = "<group>"; };
 		55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensCommand.swift; sourceTree = "<group>"; };
 		55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseCommand.swift; sourceTree = "<group>"; };
-		55B5DF7622788F4E001A32F4 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		55BAB0E321789285007539CF /* StandardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltip.swift; sourceTree = "<group>"; };
 		55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltipViewController.swift; sourceTree = "<group>"; };
@@ -1331,7 +1329,6 @@
 			children = (
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
-				55B5DF7622788F4E001A32F4 /* MenuItemTableViewCell.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
 				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
 				0A1940472226CF27005B7440 /* DisconnectBrowserExtension */,
@@ -2885,7 +2882,6 @@
 				0A5D467B20AD6DBE00AC287E /* SafeAppUIAlerts.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
-				55B5DF7722788F4E001A32F4 /* MenuItemTableViewCell.swift in Sources */,
 				0A73C6F2227B3605002EEA32 /* SendERC20FeeCalculation.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,

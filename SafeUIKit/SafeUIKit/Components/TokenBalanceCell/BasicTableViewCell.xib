@@ -56,10 +56,11 @@
                     <constraint firstItem="fFa-Xd-WMO" firstAttribute="centerY" secondItem="zfz-xa-mpY" secondAttribute="centerY" constant="-1" id="Dqo-L2-2rU"/>
                     <constraint firstAttribute="bottom" secondItem="sWi-Qo-xbp" secondAttribute="bottom" id="HU7-cL-TDI"/>
                     <constraint firstItem="sWi-Qo-xbp" firstAttribute="leading" secondItem="zfz-xa-mpY" secondAttribute="leading" id="Jz3-dv-XNx"/>
-                    <constraint firstItem="63H-I3-5yS" firstAttribute="centerY" secondItem="fFa-Xd-WMO" secondAttribute="centerY" id="Oay-r5-SXX"/>
                     <constraint firstItem="fFa-Xd-WMO" firstAttribute="leading" secondItem="zfz-xa-mpY" secondAttribute="leading" constant="24" id="akD-LA-407"/>
                     <constraint firstAttribute="trailingMargin" secondItem="63H-I3-5yS" secondAttribute="trailing" id="rOa-TA-cwS"/>
+                    <constraint firstItem="63H-I3-5yS" firstAttribute="leading" secondItem="zfz-xa-mpY" secondAttribute="leading" priority="750" constant="16" id="rmk-Tl-76k"/>
                     <constraint firstAttribute="trailing" secondItem="sWi-Qo-xbp" secondAttribute="trailing" constant="-50" id="uTs-Ps-v5w"/>
+                    <constraint firstItem="63H-I3-5yS" firstAttribute="centerY" secondItem="zfz-xa-mpY" secondAttribute="centerY" constant="-1" id="vO0-t5-3dP"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
