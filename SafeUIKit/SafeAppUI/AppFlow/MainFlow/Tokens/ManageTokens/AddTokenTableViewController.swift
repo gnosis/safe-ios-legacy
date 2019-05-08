@@ -82,17 +82,15 @@ class AddTokenTableViewController: UITableViewController {
 
     private func configureTableView() {
         tableView.tableFooterView = UIView()
-        let bundle = Bundle(for: TokenBalanceTableViewCell.self)
-        tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
-                           forCellReuseIdentifier: "TokenBalanceTableViewCell")
+        tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
+                           forCellReuseIdentifier: "BasicTableViewCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
         tableView.sectionFooterHeight = 0
         tableView.separatorStyle = .none
 
-        tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = ColorName.paleGreyThree.color
+        tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
+        tableView.backgroundColor = ColorName.paleGrey.color
 
         tableView.sectionIndexMinimumDisplayRowCount = 15
         tableView.sectionIndexColor = .white
@@ -109,12 +107,12 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TokenBalanceTableViewCell",
-                                                 for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(tokenData: token(for: indexPath))
-        cell.displayBalance = false
-        cell.displayName = .full
-        cell.withDisclosure = false
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
+                                                 for: indexPath) as! BasicTableViewCell
+        cell.configure(tokenData: token(for: indexPath),
+                       displayBalance: false,
+                       displayFullName: true,
+                       accessoryType: .none)
         cell.withTrailingSpace = true
         return cell
     }

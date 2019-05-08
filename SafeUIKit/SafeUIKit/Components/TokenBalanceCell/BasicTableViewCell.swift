@@ -11,6 +11,13 @@ open class BasicTableViewCell: UITableViewCell {
     @IBOutlet public private(set) weak var rightTextLabel: UILabel!
     @IBOutlet public private(set) weak var separatorView: UIView!
 
+    /// Used if table view section index should be displayed
+    public var withTrailingSpace: Bool = false {
+        didSet {
+            backgroundColor = withTrailingSpace ? .clear : .white
+        }
+    }
+
     open override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
@@ -27,7 +34,7 @@ open class BasicTableViewCell: UITableViewCell {
         leftTextLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         rightTextLabel.textColor = ColorName.darkSlateBlue.color
         rightTextLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        separatorView.backgroundColor = ColorName.paleGreyThree.color
+        separatorView.backgroundColor = ColorName.paleGrey.color
         let selectedView = UIView()
         selectedView.backgroundColor = ColorName.paleGreyThree.color
         selectedBackgroundView = selectedView

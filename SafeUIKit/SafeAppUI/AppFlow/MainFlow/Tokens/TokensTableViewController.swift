@@ -63,8 +63,7 @@ final class TokensTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "BasicTableViewCell",
                                  bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
-        tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
         tableView.separatorStyle = .none
 
         let refreshControl = UIRefreshControl()
@@ -102,7 +101,7 @@ final class TokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
                                                  for: indexPath) as! BasicTableViewCell
-        cell.configure(tokenData: tokenData(for: indexPath))
+        cell.configure(tokenData: tokenData(for: indexPath), displayBalance: true, displayFullName: false)
         return cell
     }
 
@@ -135,10 +134,6 @@ final class TokensTableViewController: UITableViewController {
         return sections[section].footerHeight
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return BasicTableViewCell.height
-    }
-
 }
 
 extension TokensTableViewController: EventSubscriber {
@@ -163,35 +158,6 @@ extension TokensTableViewController: EventSubscriber {
             super.init(coder: aDecoder)
         }
 
-    }
-
-}
-
-fileprivate extension BasicTableViewCell {
-
-    static var height: CGFloat {
-        return 60
-    }
-
-    func configure(tokenData: TokenData) {
-        accessibilityIdentifier = tokenData.name
-        accessoryType = .disclosureIndicator
-        if tokenData.code == "ETH" {
-            leftImageView.image = Asset.TokenIcons.eth.image
-        } else if let url = tokenData.logoURL {
-            leftImageView.kf.setImage(with: url, placeholder: Asset.TokenIcons.defaultToken.image)
-        } else {
-            leftImageView.image = Asset.TokenIcons.defaultToken.image
-        }
-        leftTextLabel.text = tokenData.code
-        rightTextLabel.text = formattedBalance(tokenData)
-    }
-
-    private func formattedBalance(_ tokenData: TokenData) -> String {
-        guard let balance = tokenData.balance else { return "--" }
-        let formatter = TokenNumberFormatter.ERC20Token(decimals: tokenData.decimals)
-        formatter.displayedDecimals = 8
-        return formatter.string(from: balance)
     }
 
 }

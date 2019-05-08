@@ -7,6 +7,7 @@ import XCTest
 import MultisigWalletApplication
 import CommonTestSupport
 import Common
+import SafeUIKit
 
 class MenuTableViewControllerTests: XCTestCase {
 
@@ -47,17 +48,18 @@ class MenuTableViewControllerTests: XCTestCase {
 
 
     func test_whenCreated_thenRowHeightsAreProvided() {
+        let menuCommandHeigt = MenuCommand().height
         XCTAssertEqual(cellHeight(row: 0, section: safeSection), SafeTableViewCell.height)
-        XCTAssertEqual(cellHeight(row: 0, section: securitySection), MenuItemTableViewCell.height)
-        XCTAssertEqual(cellHeight(row: 0, section: portfolioSection), MenuItemTableViewCell.height)
-        XCTAssertEqual(cellHeight(row: 0, section: supportSection), MenuItemTableViewCell.height)
+        XCTAssertEqual(cellHeight(row: 0, section: securitySection), menuCommandHeigt)
+        XCTAssertEqual(cellHeight(row: 0, section: portfolioSection), menuCommandHeigt)
+        XCTAssertEqual(cellHeight(row: 0, section: supportSection), menuCommandHeigt)
     }
 
     func test_whenGettingRow_thenCreatesAppropriateCell() {
         XCTAssertTrue(cell(row: 0, section: safeSection) is SafeTableViewCell)
-        XCTAssertTrue(cell(row: 0, section: securitySection) is MenuItemTableViewCell)
-        XCTAssertTrue(cell(row: 0, section: portfolioSection) is MenuItemTableViewCell)
-        XCTAssertTrue(cell(row: 0, section: supportSection) is MenuItemTableViewCell)
+        XCTAssertTrue(cell(row: 0, section: securitySection) is BasicTableViewCell)
+        XCTAssertTrue(cell(row: 0, section: portfolioSection) is BasicTableViewCell)
+        XCTAssertTrue(cell(row: 0, section: supportSection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 3, section: supportSection) is AppVersionTableViewCell)
     }
 
@@ -68,14 +70,14 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     func test_whenConfiguredFeePaymentMethodRow_thenAllIsThere() {
-        let cell = self.cell(row: 0, section: securitySection)
-        XCTAssertEqual(cell.textLabel?.text, FeePaymentMethodCommand().title)
-        XCTAssertEqual(cell.detailTextLabel?.text, TokenData.Ether.code)
+        let cell = self.cell(row: 0, section: securitySection)  as! BasicTableViewCell
+        XCTAssertEqual(cell.leftTextLabel.text, FeePaymentMethodCommand().title)
+        XCTAssertEqual(cell.rightTextLabel.text, TokenData.Ether.code)
     }
 
     func test_whenConfiguredMenuItemRow_thenAllSet() {
-        let cell = self.cell(row: 0, section: portfolioSection) as! MenuItemTableViewCell
-        XCTAssertNotNil(cell.textLabel?.text)
+        let cell = self.cell(row: 0, section: portfolioSection) as! BasicTableViewCell
+        XCTAssertNotNil(cell.leftTextLabel.text)
     }
 
     // MARK: - Did select row
