@@ -62,11 +62,15 @@
 /* Confirmation screen description */
 "confirm_password_info" = "Please enter your password again to confirm.";
 
+/* Congratulations! */
+"congratulations" = "Congratulations!";
+
 /* Connect browser extension
    Header for add browser extension screen */
 "connect_browser_extension" = "Connect browser\nextension";
 
-/* Abort safe creation button title */
+/* Abort safe creation button title
+   Continue */
 "continue_text" = "Continue";
 
 /* Copied to clipboard */
@@ -565,6 +569,9 @@
 
 /* Explanatory message */
 "transaction_fee_explanation" = "This is the fee required by the blockchain to execute the transaction.";
+
+/* Explanation text */
+"transaction_has_been_submitted" = "Your transaction has been submitted.";
 
 /* This can take a while... */
 "transaction_submitted_safe_being_created" = "Your transaction was submitted. Your Safe will be created now. This might take a couple of minutes.";

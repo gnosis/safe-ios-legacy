@@ -55,18 +55,18 @@ public final class UnlockViewController: UIViewController {
         loginWithBiometryButton.tintColor = .white
 
         biometryExplanationLabel.text = isFaceID ? Strings.faceIDInfo : Strings.touchIDInfo
-        biometryExplanationLabel.textColor = ColorName.paleGreyThree.color
+        biometryExplanationLabel.textColor = ColorName.paleGrey.color
         biometryExplanationLabel.font = UIFont.systemFont(ofSize: 15)
 
         updateBiometryButtonVisibility()
 
-        tryAgainLabel.textColor = ColorName.paleGreyThree.color
+        tryAgainLabel.textColor = ColorName.paleGrey.color
         tryAgainLabel.text = Strings.tryAgain
         tryAgainLabel.font = UIFont.systemFont(ofSize: 15)
 
         countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
                              clock: clockService)
-        countdownLabel.textColor = ColorName.paleGreyThree.color
+        countdownLabel.textColor = ColorName.paleGrey.color
         countdownLabel.font = UIFont.systemFont(ofSize: 20)
         countdownLabel.accessibilityIdentifier = "countdown"
 

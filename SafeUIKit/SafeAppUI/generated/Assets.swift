@@ -46,6 +46,7 @@ struct ColorAsset {
 enum Asset {
   static let chevronHighlighted = ImageAsset(name: "Chevron-highlighted")
   static let chevron = ImageAsset(name: "Chevron")
+  static let congratulations = ImageAsset(name: "congratulations")
   enum ConnectBrowserExtension {
     static let connectIntroIcon = ImageAsset(name: "connect-intro-icon")
   }
@@ -70,6 +71,10 @@ enum Asset {
   static let shareIcon = ImageAsset(name: "share-icon")
   enum TermsScreen {
     static let squareButtonBorder = ImageAsset(name: "square-button-border")
+  }
+  enum TokenIcons {
+    static let eth = ImageAsset(name: "ETH")
+    static let defaultToken = ImageAsset(name: "default-token")
   }
   enum TransactionDetails {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
@@ -99,6 +104,7 @@ enum Asset {
   static let allImages: [ImageAsset] = [
     chevronHighlighted,
     chevron,
+    congratulations,
     ConnectBrowserExtension.connectIntroIcon,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
@@ -114,6 +120,8 @@ enum Asset {
     shadow,
     shareIcon,
     TermsScreen.squareButtonBorder,
+    TokenIcons.eth,
+    TokenIcons.defaultToken,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
     TransactionEdit.scanQrCopy,

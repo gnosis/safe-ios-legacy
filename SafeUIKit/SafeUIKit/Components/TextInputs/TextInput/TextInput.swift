@@ -180,7 +180,7 @@ public class TextInput: UITextField {
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
             }
         case .gray:
-            backgroundColor = ColorName.paleGreyThree.color
+            backgroundColor = ColorName.paleGrey.color
             textColor = ColorName.battleshipGrey.color
             tintColor = ColorName.dodgerBlue.color
             clearButton.tintColor = ColorName.lightGreyBlue.color

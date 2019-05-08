@@ -27,14 +27,12 @@ class TokensTableViewControllerTests: SafeTestCase {
         let firstCell = cell(at: 0, 0)
         let secondCell = cell(at: 0, 1)
         let thirdCell = cell(at: 1, 1)
-        XCTAssertEqual(firstCell.tokenCodeLabel.text, "Ether")
-        XCTAssertEqual(firstCell.tokenBalanceCodeLabel.text, "ETH")
-        XCTAssertEqual(firstCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01")
-        XCTAssertEqual(secondCell.tokenCodeLabel.text, "Gnosis")
-        XCTAssertEqual(secondCell.tokenBalanceCodeLabel.text, "GNO")
-        XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "1.00")
-        XCTAssertEqual(thirdCell.tokenCodeLabel.text, "Magnolia")
-        XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
+        XCTAssertEqual(firstCell.leftTextLabel.text, "ETH")
+        XCTAssertEqual(firstCell.rightTextLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01")
+        XCTAssertEqual(secondCell.leftTextLabel.text, "GNO")
+        XCTAssertEqual(secondCell.rightTextLabel.text?.replacingOccurrences(of: ",", with: "."), "1.00")
+        XCTAssertEqual(thirdCell.leftTextLabel.text, "MGN")
+        XCTAssertEqual(thirdCell.rightTextLabel.text, "--")
     }
 
     func test_whenUpdated_thenSyncs() {
@@ -80,8 +78,8 @@ class TokensTableViewControllerTests: SafeTestCase {
 
 private extension TokensTableViewControllerTests {
 
-    func cell(at row: Int, _ section: Int) -> TokenBalanceTableViewCell {
-        return controller.tableView.cellForRow(at: IndexPath(row: row, section: section)) as! TokenBalanceTableViewCell
+    func cell(at row: Int, _ section: Int) -> BasicTableViewCell {
+        return controller.tableView.cellForRow(at: IndexPath(row: row, section: section)) as! BasicTableViewCell
     }
 
 }

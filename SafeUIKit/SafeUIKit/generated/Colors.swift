@@ -59,12 +59,12 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5ea"></span>
   /// Alpha: 100% <br/> (0xe5e5eaff)
   static let paleLilac = ColorName(rgbaValue: 0xe5e5eaff)
-  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e4e8f1"></span>
-  /// Alpha: 100% <br/> (0xe4e8f1ff)
-  static let paleGrey = ColorName(rgbaValue: 0xe4e8f1ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f4f5f9"></span>
   /// Alpha: 100% <br/> (0xf4f5f9ff)
-  static let paleGreyThree = ColorName(rgbaValue: 0xf4f5f9ff)
+  static let paleGrey = ColorName(rgbaValue: 0xf4f5f9ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#efeff4"></span>
+  /// Alpha: 100% <br/> (0xefeff4ff)
+  static let paleGreyThree = ColorName(rgbaValue: 0xefeff4ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#d1d1d6"></span>
   /// Alpha: 100% <br/> (0xd1d1d6ff)
   static let silver = ColorName(rgbaValue: 0xd1d1d6ff)

@@ -33,7 +33,7 @@ final class SafeAddressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = ColorName.paleGreyThree.color
+        view.backgroundColor = ColorName.paleGrey.color
 
         configureTexts()
         configureWrapperView()
