@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import Common
 
 /// Screen representing the final step ('done') in transaction flows.
 /// Screen is displayed without navigation bar (it hides and restores it automatically).
@@ -26,6 +27,8 @@ class SuccessViewController: UIViewController {
     private(set) var actionTitle: String?
     /// Button tap handler
     private(set) var action = { }
+    /// Tracked on view appearance
+    private(set) var screenTrackingEvent: Trackable?
 
     // We remember previous navigationBar.isHidden to restore it on exit.
     private var hadNavigationBarHidden = false
@@ -35,12 +38,14 @@ class SuccessViewController: UIViewController {
     static func create(title: String?,
                        detail: String?,
                        image: UIImage?,
+                       screenTrackingEvent: Trackable?,
                        actionTitle: String?,
                        action: @escaping () -> Void) -> SuccessViewController {
         let controller = StoryboardScene.Main.successViewController.instantiate()
         controller.title = title
         controller.detail = detail
         controller.image = image
+        controller.screenTrackingEvent = screenTrackingEvent
         controller.actionTitle = actionTitle
         controller.action = action
         return controller
@@ -61,6 +66,9 @@ class SuccessViewController: UIViewController {
         super.viewWillAppear(animated)
         _navigationController = navigationController
         _navigationController?.setNavigationBarHidden(true, animated: true)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

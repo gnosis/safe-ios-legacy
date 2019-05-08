@@ -132,8 +132,8 @@ extension MainFlowCoordinator: ReviewTransactionViewControllerDelegate {
             self.popToLastCheckpoint()
             self.showTransactionList()
         }
-        if navigationController.topViewController is SendReviewViewController {
-            push(SuccessViewController.createSendSuccess(action: popAction))
+        if let reviewVC = navigationController.topViewController as? SendReviewViewController {
+            push(SuccessViewController.createSendSuccess(token: reviewVC.tx.amountTokenData, action: popAction))
         } else {
             popAction()
         }
