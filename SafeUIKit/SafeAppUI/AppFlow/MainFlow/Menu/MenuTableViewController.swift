@@ -89,7 +89,7 @@ final class MenuTableViewController: UITableViewController {
 
         title = Strings.title
 
-        tableView.backgroundColor = ColorName.paleGreyThree.color
+        tableView.backgroundColor = ColorName.paleGrey.color
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "BasicTableViewCell",
