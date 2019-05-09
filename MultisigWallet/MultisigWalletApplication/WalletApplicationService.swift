@@ -49,7 +49,7 @@ public class WalletApplicationService: Assertable {
     public var feePaymentTokenData: TokenData {
         guard let tokenAddress = selectedWallet?.feePaymentTokenAddress,
             let data = tokenData(id: tokenAddress.value) else {
-            return TokenData.Ether
+            return tokenData(id: Token.Ether.id.id)!
         }
         return data
     }
@@ -348,8 +348,8 @@ public class WalletApplicationService: Assertable {
     public func visibleTokens(withEth: Bool) -> [TokenData] {
         guard let wallet = selectedWallet else { return [] }
         let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
-            guard let account = DomainRegistry.accountRepository.find(
-                id: AccountID(tokenID: $0.id, walletID: wallet.id)) else { return nil }
+            guard let account = DomainRegistry.accountRepository
+                .find(id: AccountID(tokenID: $0.id, walletID: wallet.id)) else { return nil }
             return TokenData(token: $0.token, balance: account.balance)
         }
         guard withEth else { return tokens }
@@ -394,8 +394,8 @@ public class WalletApplicationService: Assertable {
     /// - Returns: token data array.
     public func paymentTokens() -> [TokenData] {
         guard let wallet = selectedWallet else { return [] }
-        let ethAccount = DomainRegistry.accountRepository.find(
-            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))!
+        let ethAccount = DomainRegistry.accountRepository
+            .find(id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))!
         let ethData = TokenData(token: Token.Ether, balance: ethAccount.balance)
         let paymentTokens: [TokenData] = DomainRegistry.tokenListItemRepository.paymentTokens().map {
             let account = DomainRegistry.accountRepository.find(id: AccountID(tokenID: $0.id, walletID: wallet.id))

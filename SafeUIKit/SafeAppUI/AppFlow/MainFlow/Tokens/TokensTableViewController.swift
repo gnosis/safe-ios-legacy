@@ -60,8 +60,7 @@ final class TokensTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "TokensHeaderView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "TokensHeaderView")
         tableView.register(EmptyFooter.self, forHeaderFooterViewReuseIdentifier: "EmptyFooter")
-        tableView.register(UINib(nibName: "BasicTableViewCell",
-                                 bundle: Bundle(for: BasicTableViewCell.self)),
+        tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
         tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
         tableView.separatorStyle = .none
@@ -82,7 +81,7 @@ final class TokensTableViewController: UITableViewController {
         trackEvent(MainTrackingEvent.assets)
     }
 
-    @objc func update() {
+    @objc private func update() {
         DispatchQueue.global().async {
             ApplicationServiceRegistry.walletService.syncBalances()
         }
