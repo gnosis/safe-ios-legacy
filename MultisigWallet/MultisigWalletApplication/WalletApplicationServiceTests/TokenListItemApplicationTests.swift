@@ -60,6 +60,13 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         XCTAssertTrue(Set<TokenData>(hiddenTokens).isDisjoint(with: Set<TokenData>(visibleTokens)))
     }
 
+    func test_whenGettingPaymentTokens_thenReturnsThem() {
+        givenReadyToUseWallet()
+        sync()
+        let paymentTokens = service.paymentTokens()
+        XCTAssertFalse(paymentTokens.isEmpty)
+    }
+
     func test_whenWhitelisting_thenWorks() {
         sync()
         let hiddenTokens = service.hiddenTokens()
