@@ -29,11 +29,11 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                          object.owners,
                          object.address,
                          object.feePaymentTokenAddress,
-                         object.minimumDeploymentTransactionAmount]) +
-            [object.creationTransactionHash,
-             object.confirmationCount] +
-            bindable([object.masterCopyAddress]) +
-            [object.contractVersion]
+                         object.minimumDeploymentTransactionAmount,
+                         object.creationTransactionHash,
+                         object.confirmationCount,
+                         object.masterCopyAddress,
+                         object.contractVersion])
     }
 
     public override func objectFromResultSet(_ rs: ResultSet) -> Wallet? {
