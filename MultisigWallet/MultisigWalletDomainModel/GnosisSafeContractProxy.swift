@@ -9,6 +9,7 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
 
     // to handle buggy Web3Py behavior. https://github.com/gnosis/bivrost-kotlin/issues/49
     public let encodesEmptyDataAsZero = true
+    private static let setupSignature = "setup(address[],uint256,address,bytes,address,uint256,address)"
 
     public func setup(owners: [Address],
                       threshold: Int,
@@ -33,7 +34,7 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
             [encodeBytes(data),
              // due to a Web3Py behavior, the empty data appends 32-byte zero.
              encodesEmptyDataAsZero && data.isEmpty ? encodeUInt(0) : Data()]
-        return invocation("setup(address[],uint256,address,bytes,address,uint256,address)", args: items)
+        return invocation(GnosisSafeContractProxy.setupSignature, args: items)
     }
 
     public func decodeSetup(from data: Data) ->
@@ -44,7 +45,7 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
         paymentToken: Address,
         payment: BigInt,
         paymentReceiver: Address)? {
-            let selector = method("setup(address[],uint256,address,bytes,address,uint256,address)")
+            let selector = method(GnosisSafeContractProxy.setupSignature)
             guard data.starts(with: selector) else { return nil }
             // Sample bytes breakdown:
 //        0x
@@ -64,27 +65,27 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
 //        0000000000000000000000000000000000000000000000000000000000000000 // data length (bytes)
 //        0000000000000000000000000000000000000000000000000000000000000000 // data = 0
 
-            let k32Bytes = 32
+            let uint256ByteCount = 32
             var input = data
             input.removeFirst(selector.count)
-            let addressArrayOffset = decodeUInt(input); input.removeFirst(k32Bytes)
-            let threshold = Int(decodeUInt(input)); input.removeFirst(k32Bytes)
-            let to = decodeAddress(input); input.removeFirst(k32Bytes)
-            let dataOffset = decodeUInt(input); input.removeFirst(k32Bytes)
-            let paymentToken = decodeAddress(input); input.removeFirst(k32Bytes)
-            let payment = BigInt(decodeUInt(input)); input.removeFirst(k32Bytes)
-            let paymentReceiver = decodeAddress(input); input.removeFirst(k32Bytes)
+            let addressArrayOffset = decodeUInt(input); input.removeFirst(uint256ByteCount)
+            let threshold = Int(decodeUInt(input)); input.removeFirst(uint256ByteCount)
+            let to = decodeAddress(input); input.removeFirst(uint256ByteCount)
+            let dataOffset = decodeUInt(input); input.removeFirst(uint256ByteCount)
+            let paymentToken = decodeAddress(input); input.removeFirst(uint256ByteCount)
+            let payment = BigInt(decodeUInt(input)); input.removeFirst(uint256ByteCount)
+            let paymentReceiver = decodeAddress(input); input.removeFirst(uint256ByteCount)
 
             var addressArrayData = data.advanced(by: selector.count).advanced(by: Int(addressArrayOffset))
-            let addressArrayLength = Int(decodeUInt(addressArrayData)); addressArrayData.removeFirst(k32Bytes)
+            let addressArrayLength = Int(decodeUInt(addressArrayData)); addressArrayData.removeFirst(uint256ByteCount)
             let owners: [Address] = (0..<addressArrayLength).map { _ in
                 let address = decodeAddress(addressArrayData)
-                addressArrayData.removeFirst(k32Bytes)
+                addressArrayData.removeFirst(uint256ByteCount)
                 return address
             }
 
             var dataArgumentData = data.advanced(by: selector.count).advanced(by: Int(dataOffset))
-            let dataArgumentLength = Int(decodeUInt(dataArgumentData)); dataArgumentData.removeFirst(k32Bytes)
+            let dataArgumentLength = Int(decodeUInt(dataArgumentData)); dataArgumentData.removeFirst(uint256ByteCount)
             let data = dataArgumentData.prefix(dataArgumentLength)
 
             return (owners, threshold, to, data, paymentToken, payment, paymentReceiver)
