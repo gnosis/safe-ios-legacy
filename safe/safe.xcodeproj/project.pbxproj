@@ -74,6 +74,7 @@
 		0ACB1A402099EEFA00EBE267 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */; };
 		0ACB1A422099EF2300EBE267 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A412099EF2300EBE267 /* Springboard.swift */; };
 		0ACB1A442099F3F500EBE267 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A432099F3F500EBE267 /* CameraScreen.swift */; };
+		0AD899F322845D33008AE325 /* M0004_AddColumnsToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899F222845D33008AE325 /* M0004_AddColumnsToWallet.swift */; };
 		0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A3C20A08262006A1265 /* libDatabase.a */; };
 		0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
@@ -349,6 +350,7 @@
 		0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestCase.swift; sourceTree = "<group>"; };
 		0ACB1A412099EF2300EBE267 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		0ACB1A432099F3F500EBE267 /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
+		0AD899F222845D33008AE325 /* M0004_AddColumnsToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0004_AddColumnsToWallet.swift; sourceTree = "<group>"; };
 		0AEF8A3C20A08262006A1265 /* libDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF281D62074C23400D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				0A7A4D83227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift */,
 				551D76F1227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift */,
 				551D770C227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift */,
+				0AD899F222845D33008AE325 /* M0004_AddColumnsToWallet.swift */,
 				55B5DF97227C567D001A32F4 /* Migrations.swift */,
 			);
 			path = Migrations;
@@ -1186,6 +1189,7 @@
 				0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */,
 				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,
 				551D76F2227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift in Sources */,
+				0AD899F322845D33008AE325 /* M0004_AddColumnsToWallet.swift in Sources */,
 				0A7A4D84227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift in Sources */,
 				551D770D227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
