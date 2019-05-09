@@ -44,4 +44,8 @@ public class InMemoryTokenListItemRepository: TokenListItemRepository {
         }
     }
 
+    public func paymentTokens() -> [TokenListItem] {
+        return Array(items.values).filter { $0.canPayTransactionFee }.sorted { $0.token.code < $1.token.code }
+    }
+
 }

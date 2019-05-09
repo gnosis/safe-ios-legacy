@@ -45,7 +45,7 @@ fileprivate struct TokenListTestResponse {
       "description": "An open source protocol that provides an abstract layer for accessing underlying blockchains, enabling your application to work on different blockchains.",
       "decimals": 18,
       "websiteUri": "https://www.arcblock.io",
-      "gas": false,
+      "gas": true,
       "priceOracles": []
     },
     {
@@ -69,7 +69,7 @@ fileprivate struct TokenListTestResponse {
       "description": "Decentralized Marketplace for AI.",
       "decimals": 8,
       "websiteUri": "https://singularitynet.io",
-      "gas": false,
+      "gas": true,
       "priceOracles": []
     },
     {
@@ -93,7 +93,7 @@ fileprivate struct TokenListTestResponse {
       "description": "Combining high-tech sensors, blockchain protocol and smart contracts, we are building a universally verifiable, community-driven ecosystem to assure the quality, safety & origins of products.",
       "decimals": 18,
       "websiteUri": "https://ambrosus.com/index.html",
-      "gas": false,
+      "gas": true,
       "priceOracles": []
     },
     {

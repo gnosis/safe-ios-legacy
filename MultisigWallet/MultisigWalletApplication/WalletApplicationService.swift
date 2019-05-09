@@ -389,6 +389,21 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.tokenListItemRepository.rearrange(tokens: tokens.map { $0.token() })
     }
 
+    /// Returns tokens that can pay transaction fees.
+    ///
+    /// - Returns: token data array.
+    public func paymentTokens() -> [TokenData] {
+        guard let wallet = selectedWallet else { return [] }
+        let ethAccount = DomainRegistry.accountRepository.find(
+            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))!
+        let ethData = TokenData(token: Token.Ether, balance: ethAccount.balance)
+        let paymentTokens: [TokenData] = DomainRegistry.tokenListItemRepository.paymentTokens().map {
+            let account = DomainRegistry.accountRepository.find(id: AccountID(tokenID: $0.id, walletID: wallet.id))
+            return TokenData(token: $0.token, balance: account?.balance)
+        }
+        return [ethData] + paymentTokens
+    }
+
     // MARK: - Accounts
 
     public func accountBalance(tokenID: BaseID) -> BigInt? {

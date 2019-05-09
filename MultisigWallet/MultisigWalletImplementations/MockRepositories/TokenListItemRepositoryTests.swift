@@ -69,6 +69,20 @@ class BaseTokenListItemRepositoryTests: XCTestCase {
         XCTAssertTrue(whitelistedTokens[0].sortingId! < whitelistedTokens[1].sortingId!)
     }
 
+    func do_test_whenGettingPaymentTokens_thenReturnsThemSorted() {
+        let rdn = TokenListItem(token: Token.rdn, status: .regular, canPayTransactionFee: true)
+        let mgn = TokenListItem(token: Token.mgn, status: .whitelisted, canPayTransactionFee: false)
+        let gno = TokenListItem(token: Token.gno, status: .whitelisted, canPayTransactionFee: true)
+        repository.save(rdn)
+        repository.save(mgn)
+        repository.save(gno)
+
+        let paymentTokens = repository.paymentTokens()
+        XCTAssertEqual(paymentTokens.count, 2)
+        XCTAssertEqual(paymentTokens[0], gno)
+        XCTAssertEqual(paymentTokens[1], rdn)
+    }
+
 }
 
 
@@ -85,6 +99,10 @@ class InMemoryTokenListItemRepositoryTests: BaseTokenListItemRepositoryTests {
 
     func test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder() {
         do_test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder()
+    }
+
+    func test_whenGettingPaymentTokens_thenReturnsThemSorted() {
+        do_test_whenGettingPaymentTokens_thenReturnsThemSorted()
     }
 
 }
@@ -119,6 +137,10 @@ class DBTokenListItemRepositoryTests: BaseTokenListItemRepositoryTests {
 
     func test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder() {
         do_test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder()
+    }
+
+    func test_whenGettingPaymentTokens_thenReturnsThemSorted() {
+        do_test_whenGettingPaymentTokens_thenReturnsThemSorted()
     }
 
 }

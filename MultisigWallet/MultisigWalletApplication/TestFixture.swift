@@ -46,4 +46,10 @@ extension Token {
                            address: Address("0x8aa852b299c748a5ab8bd2764309f8c3c756bd3b"),
                            logoUrl: "")
 
+    static let dai = Token(code: "DAI",
+                           name: "DAI Coin",
+                           decimals: 18,
+                           address: Address("0xef77ce798401dac8120f77dc2debd5455eddacf9"),
+                           logoUrl: "")
+
 }
