@@ -68,6 +68,41 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         return (Address(safeAddress), recoveryKey)
     }
 
+    func test_safeCreation2() throws {
+        let deviceKey = encryptionService.generateExternallyOwnedAccount()
+        let browserExtensionKey = encryptionService.generateExternallyOwnedAccount()
+        let recoveryKey = encryptionService.generateExternallyOwnedAccount()
+        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccount(from: recoveryKey, at: 1)
+
+        let owners = [deviceKey, browserExtensionKey, recoveryKey, derivedKeyFromRecovery].map { $0.address }
+        // 0xd0Dab4E640D95E9E8A47545598c33e31bDb53C7c GNO
+        // 0x62f25065BA60CA3A2044344955A3B2530e355111 DAI
+        // 0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d LOVE
+        // 0xc778417E063141139Fce010982780140Aa0cD5Ab WETH
+        // 0x0 - ETH
+        let paymentToken = Address("0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d")
+        let request = SafeCreation2Request(saltNonce: 1,
+                                           owners: owners,
+                                           confirmationCount: 2,
+                                           paymentToken: paymentToken)
+        let response = try relayService.createSafeCreationTransaction_v2(request: request)
+
+        let safeContractProxy = GnosisSafeContractProxy()
+        let expectedSetupData = safeContractProxy.setup(owners: owners,
+                                                        threshold: 2,
+                                                        to: .zero,
+                                                        data: Data(),
+                                                        paymentToken: paymentToken,
+                                                        payment: BigInt(response.payment),
+                                                        paymentReceiver: .zero)
+        XCTAssertEqual(response.setupDataValue,
+                       expectedSetupData,
+                       "Expected data '\(expectedSetupData.toHexString())' " +
+                       "but actual '\(response.setupDataValue.toHexString())'")
+        XCTAssertEqual(response.paymentReceiverAddress, .zero)
+        XCTAssertEqual(response.paymentTokenAddress, paymentToken)
+    }
+
     func test_whenGettingGasPrice_thenReturnsIt() throws {
         let response = try relayService.gasPrice()
         let stringInts = [response.fast, response.fastest, response.standard, response.safeLow]

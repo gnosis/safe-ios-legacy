@@ -22,6 +22,11 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
             return try httpClient.execute(request: request)
     }
 
+    public func createSafeCreationTransaction_v2(request: SafeCreation2Request) throws
+        -> SafeCreation2Request.Response {
+            return try httpClient.execute(request: request)
+    }
+
     public func startSafeCreation(address: Address) throws {
         try httpClient.execute(request: StartSafeCreationRequest(safeAddress: address.value))
     }
@@ -59,6 +64,14 @@ extension SafeCreationTransactionRequest: JSONRequest {
 
 }
 
+extension SafeCreation2Request: JSONRequest {
+
+    public var httpMethod: String { return "POST" }
+    public var urlPath: String { return "/api/v2/safes/" }
+
+    public typealias ResponseType = Response
+
+}
 
 extension StartSafeCreationRequest: JSONRequest {
 
