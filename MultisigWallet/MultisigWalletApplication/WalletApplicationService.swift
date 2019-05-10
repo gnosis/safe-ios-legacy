@@ -404,6 +404,18 @@ public class WalletApplicationService: Assertable {
         return [ethData] + paymentTokens
     }
 
+    /// Changes payment token for the selected wallet.
+    /// New payment token is whitelisted to be displayed on Assets screen.
+    ///
+    /// - Parameter token: token data.
+    public func changePaymentToken(_ token: TokenData) {
+        let wallet = selectedWallet!
+        wallet.changeFeePaymentToken(Address(token.address))
+        DomainRegistry.walletRepository.save(wallet)
+        guard !token.isEther else { return }
+        whitelist(token: token)
+    }
+
     // MARK: - Accounts
 
     public func accountBalance(tokenID: BaseID) -> BigInt? {

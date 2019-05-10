@@ -14,6 +14,7 @@ class PaymentMethodViewController: UITableViewController {
     }
 
     private var tokens = [TokenData]()
+    var paymentToken: TokenData!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +29,11 @@ class PaymentMethodViewController: UITableViewController {
         tableView.separatorStyle = .none
 
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(updateBalances), for: .valueChanged)
         tableView.refreshControl = refreshControl
 
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
-        notify()
+        updateData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -40,10 +41,18 @@ class PaymentMethodViewController: UITableViewController {
         trackEvent(MenuTrackingEvent.feePaymentMethod)
     }
 
-    @objc private func update() {
+    @objc private func updateBalances() {
         DispatchQueue.global().async {
             ApplicationServiceRegistry.walletService.syncBalances()
         }
+    }
+
+    private func updateData() {
+        precondition(Thread.isMainThread)
+        tokens = ApplicationServiceRegistry.walletService.paymentTokens()
+        paymentToken = ApplicationServiceRegistry.walletService.feePaymentTokenData
+        self.tableView.reloadData()
+        self.tableView.refreshControl?.endRefreshing()
     }
 
     // MARK: - Table view data source
@@ -60,12 +69,28 @@ class PaymentMethodViewController: UITableViewController {
                        displayBalance: true,
                        displayFullName: false,
                        accessoryType: .none)
-        if tokenData == ApplicationServiceRegistry.walletService.feePaymentTokenData {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: 11))
-        }
+        cell.accessoryView = tokenData == paymentToken ? checkmarkImageView() : emptyImageView()
+        cell.rightTextLabel.text! += "\t" // padding
         return cell
+    }
+
+    private func checkmarkImageView() -> UIImageView {
+        let checkmarkImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 13))
+        checkmarkImageView.contentMode = .scaleAspectFit
+        checkmarkImageView.image = Asset.checkmark.image
+        return checkmarkImageView
+    }
+
+    private func emptyImageView() -> UIImageView {
+        return UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 13))
+    }
+
+    // MARK: - Table view delegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        ApplicationServiceRegistry.walletService.changePaymentToken(tokens[indexPath.row])
+        updateData()
     }
 
 }
@@ -73,10 +98,8 @@ class PaymentMethodViewController: UITableViewController {
 extension PaymentMethodViewController: EventSubscriber {
 
     func notify() {
-        tokens = ApplicationServiceRegistry.walletService.paymentTokens()
         DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.tableView.refreshControl?.endRefreshing()
+            self.updateData()
         }
     }
 

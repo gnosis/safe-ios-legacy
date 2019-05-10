@@ -102,23 +102,47 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
     func test_whenFeePaymentTokenIsNil_thenReturnsEther() {
         givenDraftWallet()
-        XCTAssertEqual(service.feePaymentTokenData, TokenData.Ether)
+        XCTAssertEqual(service.feePaymentTokenData.address, TokenData.Ether.address)
     }
 
     func test_whenFeePaymentTokenIsNotKnown_thenReturnsEther() {
-        givenDraftWallet()
+        let item = createWalletWithFeeTokenItem(Token.gno, tokenItemStatus: .whitelisted)
+        tokenItemsRepository.remove(item)
         let wallet = walletRepository.selectedWallet()!
-        wallet.changeFeePaymentToken(Token.gno.address)
-        XCTAssertEqual(service.feePaymentTokenData, TokenData.Ether)
+        XCTAssertEqual(wallet.feePaymentTokenAddress, Token.gno.address)
+        XCTAssertEqual(service.feePaymentTokenData.address, TokenData.Ether.address)
     }
 
     func test_whenFeePaymentTokenIsKnown_thenReturnsIt() {
-        let item = TokenListItem(token: Token.gno, status: .whitelisted, canPayTransactionFee: true)
+        createWalletWithFeeTokenItem(Token.gno, tokenItemStatus: .whitelisted)
+        service.changePaymentToken(TokenData(token: Token.gno, balance: nil))
+        XCTAssertEqual(service.feePaymentTokenData, TokenData(token: Token.gno, balance: nil))
+    }
+
+    func test_whenChangingPaymentToken_thenItIsWhitelisted() {
+        createWalletWithFeeTokenItem(Token.gno, tokenItemStatus: .regular)
+        let gnoTokenData = TokenData(token: Token.gno, balance: nil)
+        service.changePaymentToken(gnoTokenData)
+        let whitelistedAddresses = service.visibleTokens(withEth: false).map { $0.address }
+        XCTAssertTrue(whitelistedAddresses.contains(gnoTokenData.address))
+    }
+
+    func test_whenChangingPaymentTokenAsEther_thenItIsNotWhitelisted() {
+        createWalletWithFeeTokenItem(Token.gno, tokenItemStatus: .regular)
+        let ethTokenData = TokenData(token: Token.Ether, balance: nil)
+        service.changePaymentToken(ethTokenData)
+        let whitelistedAddresses = service.visibleTokens(withEth: false).map { $0.address }
+        XCTAssertFalse(whitelistedAddresses.contains(ethTokenData.address))
+    }
+
+    @discardableResult
+    private func createWalletWithFeeTokenItem(_ token: Token,
+                                              tokenItemStatus: TokenListItem.TokenListItemStatus) -> TokenListItem {
+        let item = TokenListItem(token: token, status: tokenItemStatus, canPayTransactionFee: true)
         tokenItemsRepository.save(item)
         givenDraftWallet()
-        let wallet = walletRepository.selectedWallet()!
-        wallet.changeFeePaymentToken(Token.gno.address)
-        XCTAssertEqual(service.feePaymentTokenData, TokenData(token: Token.gno, balance: nil))
+        service.changePaymentToken(TokenData(token: token, balance: nil))
+        return item
     }
 
 }
