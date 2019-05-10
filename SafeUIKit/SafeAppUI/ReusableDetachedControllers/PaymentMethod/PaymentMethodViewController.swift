@@ -22,7 +22,9 @@ class PaymentMethodViewController: UITableViewController {
         title = Strings.title
 
         tableView.backgroundColor = ColorName.paleGrey.color
-
+        let bundle = Bundle(for: PaymentMethodViewController.self)
+        tableView.register(UINib(nibName: "PaymentMethodHeaderView", bundle: bundle),
+                           forHeaderFooterViewReuseIdentifier: "PaymentMethodHeaderView")
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
         tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
@@ -91,6 +93,14 @@ class PaymentMethodViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         ApplicationServiceRegistry.walletService.changePaymentToken(tokens[indexPath.row])
         updateData()
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodHeaderView")
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return PaymentMethodHeaderView.height
     }
 
 }
