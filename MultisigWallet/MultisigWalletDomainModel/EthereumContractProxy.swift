@@ -46,7 +46,7 @@ public class EthereumContractProxy {
         return Address(uintValue)
     }
 
-    func encodeAddress(_ value: Address) -> Data {
+    public func encodeAddress(_ value: Address) -> Data {
         return encodeUInt(BigUInt(Data(ethHex: value.value)))
     }
 

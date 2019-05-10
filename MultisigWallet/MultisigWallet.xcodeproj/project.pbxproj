@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A028ED421AEB02200431D25 /* SendTransactionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028ED321AEB02200431D25 /* SendTransactionMessage.swift */; };
+		0A08641422856FBD00B2D891 /* SafeContractMetadataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08641322856FBD00B2D891 /* SafeContractMetadataRepository.swift */; };
+		0A08641A228576B000B2D891 /* SafeContractMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A086419228576B000B2D891 /* SafeContractMetadata.swift */; };
+		0A08641C22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08641B22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift */; };
 		0A0CEFFF2125656200772AB3 /* DeploymentDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */; };
 		0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF00B2125684000772AB3 /* ErrorStream.swift */; };
 		0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */; };
@@ -187,6 +190,7 @@
 		0AD899D52282C886008AE325 /* SafeCreation2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899D42282C886008AE325 /* SafeCreation2Request.swift */; };
 		0AD899E32283060E008AE325 /* GnosisSafeContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899E22283060E008AE325 /* GnosisSafeContractProxy.swift */; };
 		0AD899E922830A78008AE325 /* GnosisSafeContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899E822830A78008AE325 /* GnosisSafeContractProxyTests.swift */; };
+		0AD89A0022847243008AE325 /* GetStorageAtRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899FF22847243008AE325 /* GetStorageAtRequest.swift */; };
 		0ADD1DD12135432A0046AF1F /* ERC20TokenContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD1DD02135432A0046AF1F /* ERC20TokenContractProxy.swift */; };
 		0ADD1DDE213544C50046AF1F /* ERC20TokenContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD1DDD213544C50046AF1F /* ERC20TokenContractProxyTests.swift */; };
 		0AEDED5621676156005B6DD0 /* SafeOwnerManagerContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */; };
@@ -431,6 +435,9 @@
 
 /* Begin PBXFileReference section */
 		0A028ED321AEB02200431D25 /* SendTransactionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionMessage.swift; sourceTree = "<group>"; };
+		0A08641322856FBD00B2D891 /* SafeContractMetadataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeContractMetadataRepository.swift; sourceTree = "<group>"; };
+		0A086419228576B000B2D891 /* SafeContractMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeContractMetadata.swift; sourceTree = "<group>"; };
+		0A08641B22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySafeContractMetadataRepository.swift; sourceTree = "<group>"; };
 		0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainService.swift; sourceTree = "<group>"; };
 		0A0CF00B2125684000772AB3 /* ErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStream.swift; sourceTree = "<group>"; };
 		0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainServiceTests.swift; sourceTree = "<group>"; };
@@ -617,6 +624,7 @@
 		0AD899D42282C886008AE325 /* SafeCreation2Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreation2Request.swift; sourceTree = "<group>"; };
 		0AD899E22283060E008AE325 /* GnosisSafeContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisSafeContractProxy.swift; sourceTree = "<group>"; };
 		0AD899E822830A78008AE325 /* GnosisSafeContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisSafeContractProxyTests.swift; sourceTree = "<group>"; };
+		0AD899FF22847243008AE325 /* GetStorageAtRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStorageAtRequest.swift; sourceTree = "<group>"; };
 		0ADD1DD02135432A0046AF1F /* ERC20TokenContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20TokenContractProxy.swift; sourceTree = "<group>"; };
 		0ADD1DDD213544C50046AF1F /* ERC20TokenContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20TokenContractProxyTests.swift; sourceTree = "<group>"; };
 		0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeOwnerManagerContractProxy.swift; sourceTree = "<group>"; };
@@ -864,6 +872,8 @@
 				0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */,
 				0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */,
 				0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */,
+				0A08641322856FBD00B2D891 /* SafeContractMetadataRepository.swift */,
+				0A086419228576B000B2D891 /* SafeContractMetadata.swift */,
 				0A553D4421C0164100647CFF /* WalletSettingsDomainService.swift */,
 				0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */,
 				0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */,
@@ -944,6 +954,7 @@
 				0A9E37F320F4A4D20085E8D7 /* GasPriceRequest.swift */,
 				0A9E37F720F4A4D20085E8D7 /* GetBalanceRequest.swift */,
 				0ABF9AB6226F380200B7C460 /* GetBlockByHashRequest.swift */,
+				0AD899FF22847243008AE325 /* GetStorageAtRequest.swift */,
 				0A9E37F420F4A4D20085E8D7 /* GetTransactionCountRequest.swift */,
 				0A9E37F120F4A4D20085E8D7 /* GetTransactionReceiptRequest.swift */,
 				0A9E37F620F4A4D20085E8D7 /* JSONRPCRequest+BigIntResponse.swift */,
@@ -1070,7 +1081,7 @@
 			isa = PBXGroup;
 			children = (
 				0AEF8AB920A088C3006A1265 /* Tests-Info.plist */,
-				55B5DFA4227C5FAD001A32F4 /* DatabaseRepositories */,
+				55B5DFA4227C5FAD001A32F4 /* Repositories */,
 				0A9E37E620F4A4D20085E8D7 /* infura */,
 				55B5DFAF227C6048001A32F4 /* MockRepositories */,
 				55B5DFB1227C609E001A32F4 /* Services */,
@@ -1120,7 +1131,7 @@
 			path = SynchronisationService;
 			sourceTree = "<group>";
 		};
-		55B5DFA4227C5FAD001A32F4 /* DatabaseRepositories */ = {
+		55B5DFA4227C5FAD001A32F4 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				551D776122803E51003B7910 /* DBSerializable */,
@@ -1139,8 +1150,9 @@
 				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
 				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
 				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
+				0A08641B22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift */,
 			);
-			path = DatabaseRepositories;
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		55B5DFAF227C6048001A32F4 /* MockRepositories */ = {
@@ -1635,6 +1647,7 @@
 				552C6013212B106F00BF973A /* MockEventPublisher.swift in Sources */,
 				0A553D4521C0164100647CFF /* WalletSettingsDomainService.swift in Sources */,
 				0A442DF5210B1DC200F19F80 /* SubmitTransactionRequest.swift in Sources */,
+				0A08641A228576B000B2D891 /* SafeContractMetadata.swift in Sources */,
 				0ADD1DD12135432A0046AF1F /* ERC20TokenContractProxy.swift in Sources */,
 				0A442DE1210B124B00F19F80 /* TransactionSentMessage.swift in Sources */,
 				55FB2591212300D400E81666 /* TokenListItemRepository.swift in Sources */,
@@ -1701,6 +1714,7 @@
 				0A8272F221243B0300EB5C21 /* EventPublisher.swift in Sources */,
 				0A9E381020F4A4F20085E8D7 /* EthereumNodeDomainService.swift in Sources */,
 				0A112191219C522B00EEDC27 /* TransactionStatus.swift in Sources */,
+				0A08641422856FBD00B2D891 /* SafeContractMetadataRepository.swift in Sources */,
 				0A6AE029216CB539002FBE3D /* EthereumContractProxy.swift in Sources */,
 				0A8135122123122A00B0B302 /* WalletStates.swift in Sources */,
 				55CC279920F667FB00AC12D6 /* AuthRequest.swift in Sources */,
@@ -1845,6 +1859,7 @@
 				0A8E3C0520B4260600F002F6 /* DBAccountRepository.swift in Sources */,
 				0A9E384F20F4AE510085E8D7 /* MockEthereumNodeService.swift in Sources */,
 				0A9E384B20F4AE510085E8D7 /* EthInt.swift in Sources */,
+				0AD89A0022847243008AE325 /* GetStorageAtRequest.swift in Sources */,
 				0A9E384420F4AE510085E8D7 /* GetTransactionReceiptRequest.swift in Sources */,
 				0A6B846521B6A28200EDF04C /* WalletIDList+DBSerializable.swift in Sources */,
 				0AD5294F21B6E567009559ED /* WalletState+DBSerializable.swift in Sources */,
@@ -1861,6 +1876,7 @@
 				0AD5294D21B6E554009559ED /* Address+DBSerializable.swift in Sources */,
 				0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */,
 				0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */,
+				0A08641C22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift in Sources */,
 				0A9E385120F4AE510085E8D7 /* SecureExternallyOwnedAccountRepository.swift in Sources */,
 				0A9E384020F4AE510085E8D7 /* EstimateGasRequest.swift in Sources */,
 				0A9E384E20F4AE510085E8D7 /* MockEncryptionService.swift in Sources */,

@@ -35,10 +35,8 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
         DomainRegistry.put(service: DeploymentDomainService(), for: DeploymentDomainService.self)
         DomainRegistry.put(service: TransactionDomainService(), for: TransactionDomainService.self)
-        let recoveryConfig = RecoveryDomainServiceConfig(masterCopyAddresses: config.masterCopyAddresses,
-                                                         multiSendAddress: config.multiSendAddress)
-        DomainRegistry.put(service: RecoveryDomainService(config: recoveryConfig), for: RecoveryDomainService.self)
-        DomainRegistry.put(service: WalletSettingsDomainService(config: recoveryConfig),
+        DomainRegistry.put(service: RecoveryDomainService(), for: RecoveryDomainService.self)
+        DomainRegistry.put(service: WalletSettingsDomainService(),
                            for: WalletSettingsDomainService.self)
         DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
                            for: ReplaceBrowserExtensionDomainService.self)
@@ -47,6 +45,8 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: DisconnectBrowserExtensionDomainService(),
                            for: DisconnectBrowserExtensionDomainService.self)
         DomainRegistry.put(service: CommunicationDomainService(), for: CommunicationDomainService.self)
+        DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata),
+                           for: SafeContractMetadataRepository.self)
 
         let relay = EventRelay(publisher: DomainRegistry.eventPublisher)
         ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)

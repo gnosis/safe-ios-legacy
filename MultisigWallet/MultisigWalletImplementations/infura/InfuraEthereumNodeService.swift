@@ -34,6 +34,12 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         return try execute(request: GetTransactionCountRequest(address, blockNumber))
     }
 
+    public func eth_getStorageAt(address: MultisigWalletDomainModel.Address, position: Int) throws -> Data {
+        return try execute(request: GetStorageAtRequest(address: EthAddress(hex: address.value),
+                                                        position: position,
+                                                        blockNumber: .latest))
+    }
+
     public func eth_sendRawTransaction(rawTransaction: SignedRawTransaction) throws -> TransactionHash {
         return try execute(request: SendRawTransactionRequest(rawTransaction.value))
     }

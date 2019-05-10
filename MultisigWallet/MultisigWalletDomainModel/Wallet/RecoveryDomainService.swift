@@ -20,25 +20,9 @@ public enum RecoveryServiceError: Error {
     case internalServerError
 }
 
-public struct RecoveryDomainServiceConfig {
-
-    var validMasterCopyAddresses: [Address]
-    var multiSendContractAddress: Address
-
-    public init(masterCopyAddresses: [String], multiSendAddress: String) {
-        validMasterCopyAddresses = masterCopyAddresses.map { Address($0.lowercased()) }
-        multiSendContractAddress = Address(multiSendAddress)
-    }
-
-}
-
 public class RecoveryDomainService: Assertable {
 
-    public let config: RecoveryDomainServiceConfig
-
-    public init(config: RecoveryDomainServiceConfig) {
-        self.config = config
-    }
+    public init() {}
 
     // MARK: - Creating Draft Wallet
 
@@ -103,7 +87,7 @@ public class RecoveryDomainService: Assertable {
         let contract = WalletProxyContractProxy(address)
         let masterCopyAddress = try contract.masterCopyAddress()
         try assertNotNil(masterCopyAddress, RecoveryServiceError.invalidContractAddress)
-        try assertTrue(config.validMasterCopyAddresses.contains(masterCopyAddress!),
+        try assertTrue(DomainRegistry.safeContractMetadataRepository.isValidMasterCopy(address: masterCopyAddress!),
                        RecoveryServiceError.invalidContractAddress)
     }
 
@@ -165,7 +149,8 @@ public class RecoveryDomainService: Assertable {
         if let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) {
             DomainRegistry.transactionRepository.remove(tx)
         }
-        RecoveryTransactionBuilder(multiSendContractAddress: config.multiSendContractAddress).main()
+        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+        RecoveryTransactionBuilder(multiSendContractAddress: multiSendAddress).main()
     }
 
     public func isRecoveryTransactionReadyToSubmit() -> Bool {
