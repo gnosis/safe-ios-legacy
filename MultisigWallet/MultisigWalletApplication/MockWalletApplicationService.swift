@@ -318,6 +318,16 @@ public class MockWalletApplicationService: WalletApplicationService {
         return tokensOutput
     }
 
+    public var paymentTokensOutput = [TokenData]()
+    public override func paymentTokens() -> [TokenData] {
+        return paymentTokensOutput
+    }
+
+    public var changedPaymentToken: TokenData?
+    public override func changePaymentToken(_ token: TokenData) {
+        changedPaymentToken = token
+    }
+
     public var whitelistInput: TokenData?
     public override func whitelist(token tokenData: TokenData) {
         whitelistInput = tokenData

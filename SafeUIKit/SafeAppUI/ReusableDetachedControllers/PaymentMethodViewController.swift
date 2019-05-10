@@ -41,7 +41,7 @@ class PaymentMethodViewController: UITableViewController {
         trackEvent(MenuTrackingEvent.feePaymentMethod)
     }
 
-    @objc private func updateBalances() {
+    @objc func updateBalances() {
         DispatchQueue.global().async {
             ApplicationServiceRegistry.walletService.syncBalances()
         }
