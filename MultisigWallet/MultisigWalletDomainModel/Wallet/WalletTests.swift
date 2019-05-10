@@ -118,4 +118,14 @@ class WalletTests: XCTestCase {
         XCTAssertEqual(wallet.feePaymentTokenAddress, Address.one)
     }
 
+    func test_whenChangingMasterCopy_thenChanges() {
+        wallet.changeMasterCopy(Address.zero)
+        XCTAssertEqual(wallet.masterCopyAddress, .zero)
+    }
+
+    func test_whenChangingContractVersion_thenChanges() {
+        wallet.changeContractVersion("some")
+        XCTAssertEqual(wallet.contractVersion, "some")
+    }
+
 }

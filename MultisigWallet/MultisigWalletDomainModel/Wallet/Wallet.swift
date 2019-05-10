@@ -38,6 +38,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var confirmationCount: Int = 1
     public private(set) var deploymentFee: BigInt?
     public private(set) var owners = OwnerList()
+    public private(set) var masterCopyAddress: Address?
+    public private(set) var contractVersion: String?
 
     public var isDeployable: Bool {
         return state.isDeployable
@@ -66,7 +68,9 @@ public class Wallet: IdentifiableEntity<WalletID> {
                             feePaymentTokenAddress: Address?,
                             minimumDeploymentTransactionAmount: TokenInt?,
                             creationTransactionHash: String?,
-                            confirmationCount: Int = 1) {
+                            confirmationCount: Int = 1,
+                            masterCopyAddress: Address? = nil,
+                            contractVersion: String? = nil) {
         self.init(id: id)
         initStates()
         self.state = newDraftState
@@ -77,6 +81,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
         self.minimumDeploymentTransactionAmount = minimumDeploymentTransactionAmount
         self.creationTransactionHash = creationTransactionHash
         self.confirmationCount = confirmationCount
+        self.masterCopyAddress = masterCopyAddress
+        self.contractVersion = contractVersion
     }
 
     private func state(from walletState: WalletState.State) -> WalletState {
@@ -188,6 +194,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func updateMinimumTransactionAmount(_ newValue: TokenInt) {
         try! assertTrue(state.canChangeAddress, Error.invalidState)
         minimumDeploymentTransactionAmount = newValue
+    }
+
+    public func changeMasterCopy(_ newValue: Address?) {
+        masterCopyAddress = newValue
+    }
+
+    public func changeContractVersion(_ newValue: String?) {
+        contractVersion = newValue
     }
 
     public func resume() {

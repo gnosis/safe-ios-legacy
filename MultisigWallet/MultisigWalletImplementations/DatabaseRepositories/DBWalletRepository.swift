@@ -18,7 +18,9 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                      "fee_payment_token_address TEXT",
                      "minimum_deployment_tx_amount TEXT",
                      "creation_tx_hash TEXT",
-                     "confirmation_count INTEGER NOT NULL")
+                     "confirmation_count INTEGER NOT NULL",
+                     "master_copy_address TEXT",
+                     "contract_version TEXT")
     }
 
     public override func insertionBindings(_ object: Wallet) -> [SQLBindable?] {
@@ -27,9 +29,11 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                          object.owners,
                          object.address,
                          object.feePaymentTokenAddress,
-                         object.minimumDeploymentTransactionAmount]) +
-            [object.creationTransactionHash,
-             object.confirmationCount]
+                         object.minimumDeploymentTransactionAmount,
+                         object.creationTransactionHash,
+                         object.confirmationCount,
+                         object.masterCopyAddress,
+                         object.contractVersion])
     }
 
     public override func objectFromResultSet(_ rs: ResultSet) -> Wallet? {
@@ -46,7 +50,9 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                             feePaymentTokenAddress: Address(serializedValue: rs["fee_payment_token_address"]),
                             minimumDeploymentTransactionAmount: minimumDeploymentAmount,
                             creationTransactionHash: rs["creation_tx_hash"],
-                            confirmationCount: confirmationCount)
+                            confirmationCount: confirmationCount,
+                            masterCopyAddress: Address(serializedValue: rs["master_copy_address"]),
+                            contractVersion: rs["contract_version"])
         return wallet
     }
 
