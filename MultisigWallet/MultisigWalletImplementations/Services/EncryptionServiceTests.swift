@@ -18,6 +18,8 @@ class EncryptionServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
+        DomainRegistry.put(service: MockSafeContractMetadataRepository(), for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: InMemoryWalletRepository(), for: WalletRepository.self)
     }
 
     func test_extensionCodeWithValidJson() {
@@ -449,6 +451,44 @@ class MockEthereumService: EthereumService {
 
     func createAddress(publicKey: Data) -> String {
         return address
+    }
+
+}
+
+typealias mAddress = MultisigWalletDomainModel.Address
+
+class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
+
+    var multiSendContractAddress: mAddress { return .zero }
+
+    var proxyFactoryAddress: mAddress { return .one }
+
+    func isValidMasterCopy(address: mAddress) -> Bool {
+        return true
+    }
+
+    func isValidProxyFactory(address: mAddress) -> Bool {
+        return true
+    }
+
+    func isValidPaymentRecevier(address: mAddress) -> Bool {
+        return true
+    }
+
+    func version(masterCopyAddress: mAddress) -> String? {
+        return nil
+    }
+
+    func deploymentCode(masterCopyAddress: mAddress) -> Data? {
+        return nil
+    }
+
+    func EIP712SafeAppTxTypeHash(masterCopyAddress: mAddress) -> Data? {
+        return nil
+    }
+
+    func EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: mAddress) -> Data? {
+        return nil
     }
 
 }
