@@ -27,16 +27,16 @@ open class BackgroundHeaderFooterView: UITableViewHeaderFooterView {
                 return
             }
             let attributes: [NSAttributedString.Key: Any] =
-                [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10, weight: .bold),
-                 NSAttributedString.Key.foregroundColor: ColorName.lightGreyBlue.color,
-                 NSAttributedString.Key.kern: 2]
+                [.font: UIFont.systemFont(ofSize: 10, weight: .bold),
+                 .foregroundColor: ColorName.lightGreyBlue.color,
+                 .kern: 2]
             label.attributedText = NSAttributedString(string: title, attributes: attributes)
         }
     }
 
     open func commonInit() {
         backgroundView = UIView()
-        backgroundView?.backgroundColor = .clear
+        backgroundView!.backgroundColor = .clear
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
         NSLayoutConstraint.activate([

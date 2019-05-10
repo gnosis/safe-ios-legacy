@@ -28,6 +28,8 @@ class PaymentMethodViewController: UITableViewController {
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
         tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = PaymentMethodHeaderView.estimatedHeight
         tableView.separatorStyle = .none
 
         let refreshControl = UIRefreshControl()
@@ -97,10 +99,6 @@ class PaymentMethodViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodHeaderView")
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return PaymentMethodHeaderView.height
     }
 
 }
