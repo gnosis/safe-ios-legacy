@@ -24,8 +24,8 @@ class SafeTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        configureIdentityAccessModule()
         configureMultisigWalletModule()
+        configureIdentityAccessModule()
         configureEthereumModule()
     }
 

@@ -23,19 +23,8 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     public var signedMessage: String?
     public var signingAddress: String?
 
-    public var createSafeCreationTransaction_input: (owners: [Address], confirmationCount: Int)?
-    public var createSafeCreationTransaction_output: SafeCreationTransactionData!
-
-    open override func createSafeCreationTransaction(owners: [Address],
-                                                     confirmationCount: Int) throws -> SafeCreationTransactionData {
-        createSafeCreationTransaction_input = (owners, confirmationCount)
-        if shouldThrow {
-            throw Error.error
-        }
-        return createSafeCreationTransaction_output
-    }
-
     public var observeChangesInBalance_input: (account: String, observer: (BigInt) -> Bool)?
+
     open override func observeChangesInBalance(address: String,
                                                every interval: TimeInterval,
                                                block didUpdateBalanceBlock: @escaping (BigInt) -> Bool) {

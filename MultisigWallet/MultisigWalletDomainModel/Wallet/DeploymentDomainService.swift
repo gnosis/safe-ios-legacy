@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import BigInt
 
 /// Implements business logic required to deploy a multisignature wallet. Deployment is a multi-step process,
 /// with every step could take significant amount of time. Nevertheless, the service itself is stateless and
@@ -71,14 +72,19 @@ public class DeploymentDomainService {
 
     func deploymentStarted(_ event: DeploymentStarted) {
         handleError { wallet in
-            let s = DomainRegistry.encryptionService.ecdsaRandomS()
-            let request = SafeCreationTransactionRequest(owners: wallet.allOwners().map { $0.address },
-                                                         confirmationCount: wallet.confirmationCount,
-                                                         ecdsaRandomS: s)
-            let response = try DomainRegistry.transactionRelayService.createSafeCreationTransaction(request: request)
+            let owners = wallet.allOwners().map { $0.address }
+            let request = SafeCreation2Request(saltNonce: DomainRegistry.encryptionService.randomSaltNonce(),
+                                               owners: owners,
+                                               confirmationCount: wallet.confirmationCount,
+                                               paymentToken: .zero)
+            let response = try DomainRegistry.transactionRelayService.createSafeCreationTransaction_v2(request: request)
             try responseValidator.validate(response, request: request)
-            wallet.changeAddress(response.walletAddress)
-            wallet.updateMinimumTransactionAmount(response.deploymentFee)
+            wallet.changeAddress(response.safeAddress)
+            wallet.updateMinimumTransactionAmount(TokenInt(response.payment))
+            wallet.changeMasterCopy(response.masterCopyAddress)
+            let version = DomainRegistry.safeContractMetadataRepository.version(masterCopyAddress:
+                response.masterCopyAddress)
+            wallet.changeContractVersion(version)
             wallet.proceed()
         }
     }

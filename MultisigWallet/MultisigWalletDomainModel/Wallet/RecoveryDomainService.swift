@@ -100,13 +100,21 @@ public class RecoveryDomainService: Assertable {
 
     private func pullWalletData() throws {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let contract = SafeOwnerManagerContractProxy(wallet.address!)
-        let existingOwnerAddresses = try contract.getOwners()
-        let confirmationCount = try contract.getThreshold()
+        let ownerContract = SafeOwnerManagerContractProxy(wallet.address!)
+        let existingOwnerAddresses = try ownerContract.getOwners()
+        let confirmationCount = try ownerContract.getThreshold()
         for address in existingOwnerAddresses {
             wallet.addOwner(Owner(address: address, role: .unknown))
         }
         wallet.changeConfirmationCount(confirmationCount)
+        let proxyContract = WalletProxyContractProxy(wallet.address!)
+        guard let masterCopy = try proxyContract.masterCopyAddress() else {
+            throw RecoveryServiceError.invalidContractAddress
+        }
+        wallet.changeMasterCopy(masterCopy)
+        let metadataRepository = DomainRegistry.safeContractMetadataRepository
+        let version = metadataRepository.version(masterCopyAddress: masterCopy)
+        wallet.changeContractVersion(version)
         DomainRegistry.walletRepository.save(wallet)
     }
 

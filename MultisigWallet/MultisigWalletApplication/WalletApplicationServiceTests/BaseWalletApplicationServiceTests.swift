@@ -67,8 +67,6 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         ApplicationServiceRegistry.put(service: logger, for: Logger.self)
         ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
 
-        ethereumService.createSafeCreationTransaction_output =
-            SafeCreationTransactionData(safe: Address.safeAddress.value, payment: 100)
         ethereumService.prepareToGenerateExternallyOwnedAccount(address: Address.deviceAddress.value,
                                                                 mnemonic: ["a", "b"])
     }

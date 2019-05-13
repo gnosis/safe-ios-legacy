@@ -32,6 +32,10 @@ class MockEncryptionService1: EncryptionDomainService {
         return 3
     }
 
+    func randomSaltNonce() -> BigUInt {
+        return 1
+    }
+
     private var expected_sign = [(message: String, privateKey: PrivateKey, signature: EthSignature)]()
     private var actual_sign = [(message: String, privateKey: PrivateKey)]()
 

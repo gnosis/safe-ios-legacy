@@ -33,7 +33,7 @@ class SendInputViewModel {
     private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
     private let updateBlock: () -> Void
 
-    init(tokenID: BaseID, onUpdate: @escaping () -> Void) {
+    init(tokenID: BaseID, processEventsOnMainThread: Bool = false, onUpdate: @escaping () -> Void) {
         self.tokenID = tokenID
         canProceedToSigning = false
         updateBlock = onUpdate
@@ -43,6 +43,9 @@ class SendInputViewModel {
         inputQueue = OperationQueue()
         inputQueue.maxConcurrentOperationCount = 1
         inputQueue.qualityOfService = .userInitiated
+        if processEventsOnMainThread {
+            inputQueue.underlyingQueue = .main
+        }
     }
 
     func start() {

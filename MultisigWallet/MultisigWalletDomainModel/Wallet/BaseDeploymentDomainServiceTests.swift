@@ -24,6 +24,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
     let system = MockSystem()
     let syncService = MockSynchronisationService()
     let communicationService = CommunicationDomainService()
+    let metadataRepo = InMemorySafeContractMetadataRepository(metadata: .testMetadata())
     var wallet: Wallet!
 
     override func setUp() {
@@ -43,6 +44,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: system, for: System.self)
         DomainRegistry.put(service: syncService, for: SynchronisationDomainService.self)
         DomainRegistry.put(service: communicationService, for: CommunicationDomainService.self)
+        DomainRegistry.put(service: metadataRepo, for: SafeContractMetadataRepository.self)
     }
 
     func start() {
@@ -139,6 +141,18 @@ extension BaseDeploymentDomainServiceTests {
         XCTAssertTrue(wallet.state === wallet.newDraftState, line: line)
     }
 
+    @discardableResult
+    internal func expectSafeCreationTransaction() ->
+        (request: SafeCreation2Request, response: SafeCreation2Request.Response) {
+            let request = SafeCreation2Request(saltNonce: 1,
+                                               owners: wallet.allOwners().map { $0.address },
+                                               confirmationCount: wallet.confirmationCount,
+                                               paymentToken: .zero)
+            let response = SafeCreation2Request.Response.testResponse(from: request)
+            relayService.expect_createSafeCreationTransaction(request, response)
+            return (request, response)
+    }
+
 }
 
 extension SendNotificationRequest {
@@ -167,13 +181,44 @@ extension DeploymentDomainServiceConfiguration.Parameters {
                                                                                 retryDelay: 0)
 }
 
-extension SafeCreationTransactionRequest {
+extension SafeContractMetadata {
 
-    static func testRequest(_ wallet: Wallet, _ encryptionService: EncryptionDomainService) ->
-        SafeCreationTransactionRequest {
-            return SafeCreationTransactionRequest(owners: wallet.allOwners().map { $0.address },
-                                                  confirmationCount: wallet.confirmationCount,
-                                                  ecdsaRandomS: encryptionService.ecdsaRandomS())
+    static func testMetadata() -> SafeContractMetadata {
+        let txTypeHash = Data(repeating: 1, count: 32)
+        let domainTypeHash = Data(repeating: 2, count: 32)
+        let proxyCode = Data(repeating: 3, count: 180)
+        return SafeContractMetadata(multiSendContractAddress: .testAccount1,
+                                    proxyFactoryAddress: .testAccount2,
+                                    safeFunderAddress: .testAccount3,
+                                    metadata: [MasterCopyMetadata(address: .testAccount4,
+                                                                  version: "1.0.0",
+                                                                  txTypeHash: txTypeHash,
+                                                                  domainSeparatorHash: domainTypeHash,
+                                                                  proxyCode: proxyCode)])
+    }
+
+}
+
+extension SafeCreation2Request {
+
+    static func testRequest() -> SafeCreation2Request {
+        let owners = [Address.deviceAddress, Address.paperWalletAddress, Address.extensionAddress]
+        let paymentToken = Address.zero
+        return SafeCreation2Request(saltNonce: 1,
+                                    owners: owners,
+                                    confirmationCount: 1,
+                                    paymentToken: paymentToken)
+    }
+
+    static func setupData(payment: TokenInt, receiver: Address = .zero) -> String {
+        let request = testRequest()
+        return GnosisSafeContractProxy().setup(owners: request.owners.map { Address($0) },
+                                               threshold: request.threshold,
+                                               to: .zero,
+                                               data: Data(),
+                                               paymentToken: Address(request.paymentToken),
+                                               payment: payment,
+                                               paymentReceiver: receiver).toHexString().addHexPrefix()
     }
 
     func toString() -> String {
@@ -182,25 +227,43 @@ extension SafeCreationTransactionRequest {
 
 }
 
-extension SafeCreationTransactionRequest.Response {
-    static let testResponse = SafeCreationTransactionRequest.Response(signature: .testSignature,
-                                                                      tx: .testTransaction,
-                                                                      safe: Address.safeAddress.value,
-                                                                      payment: "100")
-}
+extension SafeCreation2Request.Response {
 
+    static func testResponse(from request: SafeCreation2Request = .testRequest()) -> SafeCreation2Request.Response {
+        return testResponse(from: .init(safe: Address.safeAddress.value,
+                                        masterCopy: Address.testAccount4.value,
+                                        proxyFactory: Address.testAccount2.value,
+                                        paymentToken: request.paymentToken,
+                                        payment: 100,
+                                        paymentReceiver: Address.zero.value,
+                                        setupData: SafeCreation2Request.setupData(payment: 100),
+                                        gasEstimated: 50,
+                                        gasPriceEstimated: 2),
+                            request)
+    }
 
-extension SafeCreationTransactionRequest.Response.Signature {
-    static let testSignature = SafeCreationTransactionRequest.Response.Signature(r: "0", s: "0", v: "27")
-}
+    static func testResponse(from response: SafeCreation2Request.Response, _ request: SafeCreation2Request)
+        -> SafeCreation2Request.Response {
+            let contract = GnosisSafeContractProxy()
+            let metadataRepo = DomainRegistry.safeContractMetadataRepository
+            let hash: (Data) -> Data = DomainRegistry.encryptionService.hash
+            let address = Address("0x" + hash(
+                Data([0xff]) +
+                    contract.encodeAddress(response.proxyFactoryAddress).suffix(20) +
+                    hash(hash(response.setupDataValue) + contract.encodeUInt(TokenInt(request.saltNonce)!)) +
+                    hash(metadataRepo.deploymentCode(masterCopyAddress: response.masterCopyAddress)!)
+                ).advanced(by: 12).prefix(20).toHexString())
+            return .init(safe: address.value,
+                         masterCopy: response.masterCopy,
+                         proxyFactory: response.proxyFactory,
+                         paymentToken: response.paymentToken,
+                         payment: response.payment,
+                         paymentReceiver: response.paymentReceiver,
+                         setupData: response.setupData,
+                         gasEstimated: response.gasEstimated,
+                         gasPriceEstimated: response.gasPriceEstimated)
+    }
 
-extension SafeCreationTransactionRequest.Response.Transaction {
-    static let testTransaction = SafeCreationTransactionRequest.Response.Transaction(from: Address.testAccount1.value,
-                                                                                     value: 100,
-                                                                                     data: "0x01",
-                                                                                     gas: "100",
-                                                                                     gasPrice: "100",
-                                                                                     nonce: 0)
 }
 
 extension ExternallyOwnedAccount {

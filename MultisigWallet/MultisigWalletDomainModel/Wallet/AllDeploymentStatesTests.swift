@@ -13,17 +13,21 @@ class AllDeploymentStatesTests: BaseDeploymentDomainServiceTests {
     func test_whenSuccessfulFromService_thenArrivesAtReadyToUseState() {
         givenDraftWalletWithAllOwners()
 
-        let response = SafeCreationTransactionRequest.Response.testResponse
-        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), response)
+        encryptionService.always_return_hash(Data(repeating: 3, count: 32))
 
-        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.deploymentFee / 2)
-        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.deploymentFee)
+        let response = SafeCreation2Request.Response.testResponse()
+        let safeAddress = response.safeAddress
+        let fee = response.deploymentFee
+        relayService.expect_createSafeCreationTransaction(.testRequest(), response)
 
-        relayService.expect_startSafeCreation(address: response.walletAddress)
+        nodeService.expect_eth_getBalance(account: safeAddress, balance: fee / 2)
+        nodeService.expect_eth_getBalance(account: safeAddress, balance: fee)
 
-        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: nil)
-        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: nil)
-        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: TransactionHash.test1)
+        relayService.expect_startSafeCreation(address: response.safeAddress)
+
+        relayService.expect_safeCreationTransactionHash(address: safeAddress, hash: nil)
+        relayService.expect_safeCreationTransactionHash(address: safeAddress, hash: nil)
+        relayService.expect_safeCreationTransactionHash(address: safeAddress, hash: TransactionHash.test1)
 
         let receipt = TransactionReceipt(hash: TransactionHash.test1, status: .success, blockHash: "0x1")
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: nil)

@@ -48,6 +48,7 @@ public protocol EncryptionDomainService {
     ///
     /// - Returns: valid random 's' value
     func ecdsaRandomS() -> BigUInt
+    func randomSaltNonce() -> BigUInt
 
     /// Signs string data using the private key.
     ///

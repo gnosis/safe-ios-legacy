@@ -36,6 +36,10 @@ public class MockEncryptionService: EncryptionDomainService {
         return BigUInt("1809251394333065553493296640760748560207343510400633813116524750123642650623")
     }
 
+    public func randomSaltNonce() -> BigUInt {
+        return 1
+    }
+
     public func sign(message: String, privateKey: PrivateKey) -> EthSignature {
         sign_input = (message, privateKey)
         return sign_output

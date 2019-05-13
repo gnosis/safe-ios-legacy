@@ -30,7 +30,7 @@ public class InMemorySafeContractMetadataRepository: SafeContractMetadataReposit
     }
 
     public func isValidPaymentRecevier(address: Address) -> Bool {
-        return metadata.safeFunderAddress.value.lowercased() == address.value.lowercased()
+        return metadata.safeFunderAddress.value.lowercased() == address.value.lowercased() || address.isZero
     }
 
     public func version(masterCopyAddress: Address) -> String? {

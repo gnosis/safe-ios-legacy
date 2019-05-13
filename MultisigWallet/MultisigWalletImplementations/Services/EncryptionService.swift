@@ -247,6 +247,10 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - random numbers
 
+    open func randomSaltNonce() -> BigUInt {
+        return BigUInt.randomInteger(lessThan: BigUInt(2).power(256) + 1)
+    }
+
     open func ecdsaRandomS() -> BigUInt {
         return BigUInt.randomInteger(lessThan: ECDSASignatureBounds.sRange.upperBound)
     }
