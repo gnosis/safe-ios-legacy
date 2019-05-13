@@ -41,7 +41,7 @@ public class InfoLabel: UILabel {
     }
 
     public func setInfoText(_ text: String) {
-        let attributedString = NSMutableAttributedString(string: "\(text) \(infoSuffix)")
+        let attributedString = NSMutableAttributedString(string: "\(text)\u{00A0}\(infoSuffix)")
         let textRange = attributedString.mutableString.range(of: text)
         let infoRange = attributedString.mutableString.range(of: infoSuffix)
         attributedString.addAttribute(.foregroundColor, value: ColorName.battleshipGrey.color, range: textRange)
