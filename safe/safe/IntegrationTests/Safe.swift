@@ -15,12 +15,44 @@ struct Safe {
 
     var creationFee: TokenInt!
     var address: Address!
+    var confirmations: Int
+    var owners: [ExternallyOwnedAccount]
+    let walletID: WalletID
+
+    init(owners: [ExternallyOwnedAccount], confirmations: Int) {
+        self.confirmations = confirmations
+        self.owners = owners
+
+        let repo = DomainRegistry.walletRepository
+        // create owner list with max 4 owners
+        var roles = [OwnerRole.thisDevice, .browserExtension, .paperWallet, .paperWalletDerived]
+        var eoas = self.owners
+        var ownerList = [Owner]()
+        while !roles.isEmpty && !eoas.isEmpty {
+            let eoa = eoas.removeFirst()
+            let role = roles.removeFirst()
+            ownerList.append(Wallet.createOwner(address: eoa.address.value, role: role))
+        }
+        let wallet = Wallet(id: repo.nextID(),
+                            state: .deploying,
+                            owners: OwnerList(ownerList),
+                            address: nil,
+                            feePaymentTokenAddress: nil,
+                            minimumDeploymentTransactionAmount: nil,
+                            creationTransactionHash: nil,
+                            confirmationCount: confirmations,
+                            masterCopyAddress: nil,
+                            contractVersion: nil)
+        repo.save(wallet)
+        walletID = wallet.id
+    }
 
     var _test: GnosisTransactionRelayServiceTests!
 
     var gasAdjustment: BigInt = 0
 
     var proxy: SafeOwnerManagerContractProxy { return SafeOwnerManagerContractProxy(address) }
+
 
     func prepareAddOwnerTx(_ owner: ExternallyOwnedAccount, threshold: Int) throws -> Transaction {
         let data = proxy.addOwner(owner.address, newThreshold: threshold)
@@ -45,8 +77,8 @@ struct Safe {
         let nonce = response.nextNonce
         let tx = Transaction(id: TransactionID(),
                              type: type,
-                             walletID: WalletID(),
-                             accountID: AccountID(tokenID: Token.Ether.id, walletID: WalletID()))
+                             walletID: walletID,
+                             accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
         tx.change(sender: address)
             .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas,
                                                         dataGas: response.dataGas,
@@ -71,6 +103,13 @@ struct Safe {
         let tx = try _test.waitForSafeCreationTransaction(address)
         let reciept = try _test.waitForTransaction(tx)!
         assert(reciept.status == .success)
+        let proxy = WalletProxyContractProxy(address)
+        let wallet = DomainRegistry.walletRepository.find(id: walletID)!
+        wallet.changeAddress(address)
+        try wallet.changeMasterCopy(proxy.masterCopyAddress())
+        // hack: now re-save as deployed safe
+        wallet.state = wallet.readyToUseState
+        DomainRegistry.walletRepository.save(wallet)
     }
 
     func sign(_ tx: Transaction, by account: ExternallyOwnedAccount) {

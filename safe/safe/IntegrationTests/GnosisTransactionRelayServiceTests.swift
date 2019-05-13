@@ -15,6 +15,8 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
 
     var relayService: GnosisTransactionRelayService!
     let ethService = EthereumKitEthereumService()
+    let walletRepo = InMemoryWalletRepository()
+    var metadataRepo: InMemorySafeContractMetadataRepository!
     var config: AppConfig!
 
     enum Error: String, LocalizedError, Hashable {
@@ -25,6 +27,9 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         super.setUp()
         config = try! AppConfig.loadFromBundle()!
         relayService = GnosisTransactionRelayService(url: config.relayServiceURL, logger: MockLogger())
+        metadataRepo = InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata)
+        DomainRegistry.put(service: metadataRepo, for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
     }
 
     func test_safeCreation() throws {
@@ -50,9 +55,6 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                           paymentToken: paymentToken)
         let response = try relayService.createSafeCreationTransaction(request: request)
 
-        let metadataRepo = InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata)
-        DomainRegistry.put(service: metadataRepo, for: SafeContractMetadataRepository.self)
-        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
 
         let validator = SafeCreationResponseValidator()
         XCTAssertNoThrow(try validator.validate(response, request: request))
@@ -241,7 +243,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         let owners = ["<private keys of owners>"]
             .map(createEOA)
         let funder = provisionFundingAccount()
-        var safe = Safe()
+        var safe = Safe(owners: owners, confirmations: 1)
         safe._test = self
         safe.address = Address(safeAddress)
         safe.creationFee = TokenInt(1e10)
@@ -313,7 +315,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                           confirmationCount: confirmations,
                                           paymentToken: .zero)
         let response = try relayService.createSafeCreationTransaction(request: request)
-        var safe = Safe()
+        var safe = Safe(owners: owners, confirmations: confirmations)
         safe._test = self
         safe.address = response.safeAddress
         safe.creationFee = response.deploymentFee
