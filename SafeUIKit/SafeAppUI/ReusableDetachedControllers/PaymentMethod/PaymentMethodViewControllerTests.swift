@@ -14,6 +14,7 @@ class PaymentMethodViewControllerTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         walletService.paymentTokensOutput = [TokenData.eth, TokenData.gno, TokenData.mgn, TokenData.mgn2]
+        controller.viewDidLoad()
     }
 
     func test_whenCreated_thenLoadsData() {

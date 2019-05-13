@@ -22,7 +22,7 @@ class PaymentMethodViewController: UIViewController {
     private var tokens = [TokenData]()
     var paymentToken: TokenData!
 
-    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     var topViewHeightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
