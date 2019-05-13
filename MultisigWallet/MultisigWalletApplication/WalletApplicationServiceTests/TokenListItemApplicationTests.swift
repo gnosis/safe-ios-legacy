@@ -39,14 +39,16 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         givenReadyToUseWallet()
         XCTAssertEqual(accountRepository.all().count, 1)
         sync()
-        XCTAssertTrue(accountRepository.all().count > 1)
-        let tokensWithEth = service.visibleTokens(withEth: true)
-        XCTAssertEqual(tokensWithEth.count, accountRepository.all().count)
-        XCTAssertEqual(tokensWithEth[0].code, Token.Ether.code)
-        XCTAssertEqual(tokensWithEth[0].name, Token.Ether.name)
-        XCTAssertEqual(tokensWithEth[0].decimals, Token.Ether.decimals)
+        let allAccounts = accountRepository.all()
+        XCTAssertTrue(allAccounts.count > 1)
+        let visibleTokens = service.visibleTokens(withEth: true)
+        let visibleAccounts = allAccounts.filter { visibleTokens.map { $0.address }.contains($0.id.tokenID.id) }
+        XCTAssertEqual(visibleTokens.count, visibleAccounts.count)
+        XCTAssertEqual(visibleTokens[0].code, Token.Ether.code)
+        XCTAssertEqual(visibleTokens[0].name, Token.Ether.name)
+        XCTAssertEqual(visibleTokens[0].decimals, Token.Ether.decimals)
         let tokensWithoutEth = service.visibleTokens(withEth: false)
-        XCTAssertEqual(tokensWithoutEth.count, accountRepository.all().count - 1)
+        XCTAssertEqual(tokensWithoutEth.count, visibleAccounts.count - 1)
     }
 
     func test_whenGettingHiddenTokens_thenReturnsThem() {
@@ -58,6 +60,13 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         XCTAssertFalse(visibleTokens.isEmpty)
         XCTAssertEqual(hiddenTokens.count, tokenItemsRepository.all().count - visibleTokens.count)
         XCTAssertTrue(Set<TokenData>(hiddenTokens).isDisjoint(with: Set<TokenData>(visibleTokens)))
+    }
+
+    func test_whenGettingPaymentTokens_thenReturnsThem() {
+        givenReadyToUseWallet()
+        sync()
+        let paymentTokens = service.paymentTokens()
+        XCTAssertFalse(paymentTokens.isEmpty)
     }
 
     func test_whenWhitelisting_thenWorks() {

@@ -36,6 +36,11 @@ public protocol TokenListItemRepository {
     /// - Returns: token list items.
     func whitelisted() -> [TokenListItem]
 
+    /// Return payment tokens sorted by tokec code.
+    ///
+    /// - Returns: token list items.
+    func paymentTokens() -> [TokenListItem]
+
 }
 
 public enum TokensListError: String, LocalizedError {
