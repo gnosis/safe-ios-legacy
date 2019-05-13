@@ -75,6 +75,7 @@
                 <outlet property="leftImageView" destination="fFa-Xd-WMO" id="la9-Hj-X8j"/>
                 <outlet property="leftTextLabel" destination="8JA-Yj-geB" id="usW-Hm-GnT"/>
                 <outlet property="rightTextLabel" destination="eAR-ip-ccr" id="V73-OJ-K9K"/>
+                <outlet property="rightTrailingConstraint" destination="rOa-TA-cwS" id="tp9-vo-t0v"/>
                 <outlet property="separatorView" destination="sWi-Qo-xbp" id="w58-iR-zBe"/>
             </connections>
             <point key="canvasLocation" x="-298" y="10.5"/>

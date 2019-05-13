@@ -14,8 +14,8 @@ final class PaymentMethodHeaderView: UITableViewHeaderFooterView {
     private enum Strings {
         static let description = LocalizedString("this_payment_will_be_used",
                                                  comment: "Fee payment method description")
-        static let feeMethod = LocalizedString("fee_method", comment: "Fee Payment Method")
-        static let balance = LocalizedString("balance", comment: "Balance")
+        static let feeMethod = LocalizedString("fee_method", comment: "Fee Payment Method").uppercased()
+        static let balance = LocalizedString("balance", comment: "Balance").uppercased()
     }
 
     @IBOutlet weak var descriptionInfoLabel: InfoLabel!

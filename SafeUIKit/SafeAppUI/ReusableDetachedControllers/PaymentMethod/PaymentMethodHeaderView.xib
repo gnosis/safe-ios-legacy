@@ -27,16 +27,16 @@
                     <rect key="frame" x="0.0" y="113" width="468" height="46"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOL-nF-h7V">
-                            <rect key="frame" x="24" y="0.0" width="384" height="46"/>
+                            <rect key="frame" x="24" y="0.0" width="388" height="46"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="FEE PAYMENT METHOD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ttb-u8-oPJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="334" height="46"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="338" height="46"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BALANCE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8d-F5-7OG">
-                                    <rect key="frame" x="334" y="0.0" width="50" height="46"/>
+                                    <rect key="frame" x="338" y="0.0" width="50" height="46"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="NOL-nF-h7V" secondAttribute="trailing" constant="60" id="Jcx-gD-67x"/>
+                        <constraint firstAttribute="trailing" secondItem="NOL-nF-h7V" secondAttribute="trailing" constant="56" id="Jcx-gD-67x"/>
                         <constraint firstAttribute="bottom" secondItem="NOL-nF-h7V" secondAttribute="bottom" id="UIE-wv-j9a"/>
                         <constraint firstItem="NOL-nF-h7V" firstAttribute="top" secondItem="OEi-9D-QNb" secondAttribute="top" id="qYh-3a-31B"/>
                         <constraint firstAttribute="height" constant="46" id="wDh-Am-wqW"/>
