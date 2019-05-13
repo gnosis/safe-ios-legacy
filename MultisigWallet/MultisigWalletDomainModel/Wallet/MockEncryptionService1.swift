@@ -28,10 +28,6 @@ class MockEncryptionService1: EncryptionDomainService {
         return expected_contractAddress[actual_contractAddress.count - 1].address
     }
 
-    func ecdsaRandomS() -> BigUInt {
-        return 3
-    }
-
     func randomSaltNonce() -> BigUInt {
         return 1
     }

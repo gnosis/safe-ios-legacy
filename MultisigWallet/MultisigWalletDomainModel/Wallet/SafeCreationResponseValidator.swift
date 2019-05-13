@@ -27,7 +27,7 @@ public class SafeCreationResponseValidator: Assertable {
 
     public init () {}
 
-    func validate(_ response: SafeCreation2Request.Response, request: SafeCreation2Request) throws {
+    public func validate(_ response: SafeCreationRequest.Response, request: SafeCreationRequest) throws {
         try assertEqual(response.paymentToken, request.paymentToken, SafeCreationValidationError.invalidPaymentToken)
         try assertTrue(repository.isValidMasterCopy(address: response.masterCopyAddress),
                        SafeCreationValidationError.invalidMasterCopy)
@@ -43,8 +43,8 @@ public class SafeCreationResponseValidator: Assertable {
                         SafeCreationValidationError.invalidAddress)
     }
 
-    private func expectedSetupData(from response: SafeCreation2Request.Response,
-                                   request: SafeCreation2Request) -> Data {
+    private func expectedSetupData(from response: SafeCreationRequest.Response,
+                                   request: SafeCreationRequest) -> Data {
         return contract.setup(owners: request.owners.map { Address($0) },
                               threshold: request.threshold,
                               to: .zero,
@@ -54,7 +54,7 @@ public class SafeCreationResponseValidator: Assertable {
                               paymentReceiver: response.paymentReceiverAddress)
     }
 
-    private func address(from response: SafeCreation2Request.Response, request: SafeCreation2Request) -> Address {
+    private func address(from response: SafeCreationRequest.Response, request: SafeCreationRequest) -> Address {
         let hash: (Data) -> Data = DomainRegistry.encryptionService.hash(_:)
 
         // To learn more about create2 data, read the EIP 1014:
@@ -75,40 +75,6 @@ public class SafeCreationResponseValidator: Assertable {
         precondition(preimage.count == 85, "Preimage must always be 85 bytes")
 
         return Address("0x" + hash(preimage).advanced(by: 12).prefix(20).toHexString())
-    }
-
-}
-
-extension SafeCreationTransactionRequest.Response.Signature {
-
-    var isValid: Bool {
-        guard let v = Int(v) else { return false }
-        return ECDSASignatureBounds.isWithinBounds(r: r, s: s, v: v)
-    }
-
-    var ethSignature: EthSignature {
-        return EthSignature(r: r, s: s, v: Int(v)!)
-    }
-
-}
-
-extension SafeCreationTransactionRequest.Response.Transaction {
-
-    var ethTransaction: EthTransaction {
-        return (from, value, data, gas, gasPrice, nonce)
-    }
-
-}
-
-extension SafeCreationTransactionRequest.Response {
-
-    var recoveredContractAddress: String? {
-        return DomainRegistry.encryptionService.contractAddress(from: signature.ethSignature,
-                                                                for: tx.ethTransaction)
-    }
-
-    var intPayment: BigInt? {
-        return BigInt(payment)
     }
 
 }

@@ -73,11 +73,11 @@ public class DeploymentDomainService {
     func deploymentStarted(_ event: DeploymentStarted) {
         handleError { wallet in
             let owners = wallet.allOwners().map { $0.address }
-            let request = SafeCreation2Request(saltNonce: DomainRegistry.encryptionService.randomSaltNonce(),
-                                               owners: owners,
-                                               confirmationCount: wallet.confirmationCount,
-                                               paymentToken: .zero)
-            let response = try DomainRegistry.transactionRelayService.createSafeCreationTransaction_v2(request: request)
+            let request = SafeCreationRequest(saltNonce: DomainRegistry.encryptionService.randomSaltNonce(),
+                                              owners: owners,
+                                              confirmationCount: wallet.confirmationCount,
+                                              paymentToken: .zero)
+            let response = try DomainRegistry.transactionRelayService.createSafeCreationTransaction(request: request)
             try responseValidator.validate(response, request: request)
             wallet.changeAddress(response.safeAddress)
             wallet.updateMinimumTransactionAmount(TokenInt(response.payment))

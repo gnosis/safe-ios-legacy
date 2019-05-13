@@ -38,69 +38,33 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccount(from: recoveryKey, at: 1)
 
         let owners = [deviceKey, browserExtensionKey, recoveryKey, derivedKeyFromRecovery].map { $0.address }
-        let ecdsaRandomS = encryptionService.ecdsaRandomS()
-        let request = SafeCreationTransactionRequest(owners: owners, confirmationCount: 2, ecdsaRandomS: ecdsaRandomS)
-        let response = try relayService.createSafeCreationTransaction(request: request)
-
-        XCTAssertEqual(response.signature.s, request.s)
-        let signature = EthSignature(r: response.signature.r,
-                                     s: response.signature.s,
-                                     v: Int(response.signature.v) ?? 0)
-        let transaction = (response.tx.from,
-                           response.tx.value,
-                           response.tx.data,
-                           response.tx.gas,
-                           response.tx.gasPrice,
-                           response.tx.nonce)
-        guard let safeAddress = encryptionService.contractAddress(from: signature, for: transaction) else {
-            XCTFail("Can't extract safe address from server response")
-            return nil
-        }
-        XCTAssertEqual(safeAddress, response.safe)
-
-        try transfer(to: safeAddress, amount: response.payment)
-
-        try relayService.startSafeCreation(address: Address(safeAddress))
-        let txHash = try waitForSafeCreationTransaction(Address(safeAddress))
-        XCTAssertFalse(txHash.value.isEmpty)
-        let receipt = try waitForTransaction(txHash)!
-        XCTAssertEqual(receipt.status, .success)
-        return (Address(safeAddress), recoveryKey)
-    }
-
-    func test_safeCreation2() throws {
-        let deviceKey = encryptionService.generateExternallyOwnedAccount()
-        let browserExtensionKey = encryptionService.generateExternallyOwnedAccount()
-        let recoveryKey = encryptionService.generateExternallyOwnedAccount()
-        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccount(from: recoveryKey, at: 1)
-
-        let owners = [deviceKey, browserExtensionKey, recoveryKey, derivedKeyFromRecovery].map { $0.address }
         // 0xd0Dab4E640D95E9E8A47545598c33e31bDb53C7c GNO
         // 0x62f25065BA60CA3A2044344955A3B2530e355111 DAI
         // 0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d LOVE
         // 0xc778417E063141139Fce010982780140Aa0cD5Ab WETH
         // 0x0 - ETH
-        let paymentToken = Address("0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d")
-        let request = SafeCreation2Request(saltNonce: 1,
-                                           owners: owners,
-                                           confirmationCount: 2,
-                                           paymentToken: paymentToken)
-        let response = try relayService.createSafeCreationTransaction_v2(request: request)
+        let paymentToken = Address.zero
+        let request = SafeCreationRequest(saltNonce: 1,
+                                          owners: owners,
+                                          confirmationCount: 2,
+                                          paymentToken: paymentToken)
+        let response = try relayService.createSafeCreationTransaction(request: request)
 
-        let safeContractProxy = GnosisSafeContractProxy()
-        let expectedSetupData = safeContractProxy.setup(owners: owners,
-                                                        threshold: 2,
-                                                        to: .zero,
-                                                        data: Data(),
-                                                        paymentToken: paymentToken,
-                                                        payment: BigInt(response.payment),
-                                                        paymentReceiver: .zero)
-        XCTAssertEqual(response.setupDataValue,
-                       expectedSetupData,
-                       "Expected data '\(expectedSetupData.toHexString())' " +
-                       "but actual '\(response.setupDataValue.toHexString())'")
-        XCTAssertEqual(response.paymentReceiverAddress, .zero)
-        XCTAssertEqual(response.paymentTokenAddress, paymentToken)
+        let metadataRepo = InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata)
+        DomainRegistry.put(service: metadataRepo, for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+
+        let validator = SafeCreationResponseValidator()
+        XCTAssertNoThrow(try validator.validate(response, request: request))
+
+        try transfer(to: response.safe, amount: String(response.payment))
+
+        try relayService.startSafeCreation(address: response.safeAddress)
+        let txHash = try waitForSafeCreationTransaction(response.safeAddress)
+        XCTAssertFalse(txHash.value.isEmpty)
+        let receipt = try waitForTransaction(txHash)!
+        XCTAssertEqual(receipt.status, .success)
+        return (response.safeAddress, recoveryKey)
     }
 
     func test_whenGettingGasPrice_thenReturnsIt() throws {
@@ -343,14 +307,15 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
     }
 
     func prepareSafeCreation(_ owners: [ExternallyOwnedAccount], confirmations: Int = 2) throws -> Safe {
-        let ecdsaRandomS = encryptionService.ecdsaRandomS()
-        let request = SafeCreationTransactionRequest(owners: owners.map { $0.address },
-                                                     confirmationCount: confirmations,
-                                                     ecdsaRandomS: ecdsaRandomS)
+        let saltNonce = encryptionService.randomSaltNonce()
+        let request = SafeCreationRequest(saltNonce: saltNonce,
+                                          owners: owners.map { $0.address },
+                                          confirmationCount: confirmations,
+                                          paymentToken: .zero)
         let response = try relayService.createSafeCreationTransaction(request: request)
         var safe = Safe()
         safe._test = self
-        safe.address = response.walletAddress
+        safe.address = response.safeAddress
         safe.creationFee = response.deploymentFee
         return safe
     }

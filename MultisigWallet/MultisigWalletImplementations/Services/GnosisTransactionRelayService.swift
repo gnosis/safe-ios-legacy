@@ -17,13 +17,8 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
         httpClient = JSONHTTPClient(url: url, logger: logger)
     }
 
-    public func createSafeCreationTransaction(request: SafeCreationTransactionRequest) throws
-        -> SafeCreationTransactionRequest.Response {
-            return try httpClient.execute(request: request)
-    }
-
-    public func createSafeCreationTransaction_v2(request: SafeCreation2Request) throws
-        -> SafeCreation2Request.Response {
+    public func createSafeCreationTransaction(request: SafeCreationRequest) throws
+        -> SafeCreationRequest.Response {
             return try httpClient.execute(request: request)
     }
 
@@ -33,7 +28,7 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
 
     public func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
         let response = try httpClient.execute(request: GetSafeCreationStatusRequest(safeAddress: address.value))
-        guard let hash = response.safeDeployedTxHash else { return nil }
+        guard let hash = response.txHash else { return nil }
         let data = Data(ethHex: hash)
         guard data.count == TransactionHash.size else {
             throw NetworkServiceError.serverError
@@ -55,16 +50,7 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
 
 }
 
-extension SafeCreationTransactionRequest: JSONRequest {
-
-    public var httpMethod: String { return "POST" }
-    public var urlPath: String { return "/api/v1/safes/" }
-
-    public typealias ResponseType = Response
-
-}
-
-extension SafeCreation2Request: JSONRequest {
+extension SafeCreationRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v2/safes/" }
@@ -76,7 +62,7 @@ extension SafeCreation2Request: JSONRequest {
 extension StartSafeCreationRequest: JSONRequest {
 
     public var httpMethod: String { return "PUT" }
-    public var urlPath: String { return "/api/v1/safes/\(safeAddress)/funded/" }
+    public var urlPath: String { return "/api/v2/safes/\(safeAddress)/funded/" }
 
     public struct EmptyResponse: Codable {}
 
@@ -86,7 +72,7 @@ extension StartSafeCreationRequest: JSONRequest {
 extension GetSafeCreationStatusRequest: JSONRequest {
 
     public var httpMethod: String { return "GET" }
-    public var urlPath: String { return "/api/v1/safes/\(safeAddress)/funded/" }
+    public var urlPath: String { return "/api/v2/safes/\(safeAddress)/funded/" }
 
     public typealias ResponseType = Resposne
 

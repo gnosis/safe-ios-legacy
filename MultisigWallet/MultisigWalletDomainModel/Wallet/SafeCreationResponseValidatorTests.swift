@@ -10,7 +10,7 @@ class SafeCreationResponseValidatorTests: XCTestCase {
 
     let validator = SafeCreationResponseValidator()
     let metadata = SafeContractMetadata.testMetadata()
-    let request = SafeCreation2Request.testRequest()
+    let request = SafeCreationRequest.testRequest()
     let encryptionService = EncryptionService(chainId: .any, ethereumService: EthereumKitEthereumService())
     let metadataRepo = InMemorySafeContractMetadataRepository(metadata: SafeContractMetadata.testMetadata())
 
@@ -77,29 +77,29 @@ class SafeCreationResponseValidatorTests: XCTestCase {
     }
 
     func test_paymentReceiver_txOriginAddressZero() {
-        let baseResponse = SafeCreation2Request.Response(safe: Address.safeAddress.value, // will be replaced
-                                                         masterCopy: Address.testAccount4.value,
-                                                         proxyFactory: Address.testAccount2.value,
-                                                         paymentToken: request.paymentToken,
-                                                         payment: 100,
-                                                         paymentReceiver: Address.zero.value, // tested value
-                                                         setupData: SafeCreation2Request.setupData(payment: 100),
-                                                         gasEstimated: 50,
-                                                         gasPriceEstimated: 2)
+        let baseResponse = SafeCreationRequest.Response(safe: Address.safeAddress.value, // will be replaced
+                                                        masterCopy: Address.testAccount4.value,
+                                                        proxyFactory: Address.testAccount2.value,
+                                                        paymentToken: request.paymentToken,
+                                                        payment: 100,
+                                                        paymentReceiver: Address.zero.value, // tested value
+                                                        setupData: SafeCreationRequest.setupData(payment: 100),
+                                                        gasEstimated: 50,
+                                                        gasPriceEstimated: 2)
         XCTAssertNoThrow(try validator.validate(.testResponse(from: baseResponse, request), request: request))
     }
 
     func test_paymentReceiver_funderAddress() {
-        let setupData = SafeCreation2Request.setupData(payment: 100, receiver: metadata.safeFunderAddress)
-        let baseResponse = SafeCreation2Request.Response(safe: Address.safeAddress.value, // will be replaced
-                                                         masterCopy: Address.testAccount4.value,
-                                                         proxyFactory: Address.testAccount2.value,
-                                                         paymentToken: request.paymentToken,
-                                                         payment: 100,
-                                                         paymentReceiver: metadata.safeFunderAddress.value,
-                                                         setupData: setupData,
-                                                         gasEstimated: 50,
-                                                         gasPriceEstimated: 2)
+        let setupData = SafeCreationRequest.setupData(payment: 100, receiver: metadata.safeFunderAddress)
+        let baseResponse = SafeCreationRequest.Response(safe: Address.safeAddress.value, // will be replaced
+                                                        masterCopy: Address.testAccount4.value,
+                                                        proxyFactory: Address.testAccount2.value,
+                                                        paymentToken: request.paymentToken,
+                                                        payment: 100,
+                                                        paymentReceiver: metadata.safeFunderAddress.value,
+                                                        setupData: setupData,
+                                                        gasEstimated: 50,
+                                                        gasPriceEstimated: 2)
         XCTAssertNoThrow(try validator.validate(.testResponse(from: baseResponse, request), request: request))
     }
 
@@ -125,7 +125,7 @@ class SafeCreationResponseValidatorTests: XCTestCase {
                            paymentToken: request.paymentToken,
                            payment: 100,
                            paymentReceiver: Address.zero.value,
-                           setupData: SafeCreation2Request.setupData(payment: 100),
+                           setupData: SafeCreationRequest.setupData(payment: 100),
                            gasEstimated: 50,
                            gasPriceEstimated: 2))
     }
@@ -171,9 +171,9 @@ class SafeCreationResponseValidatorTests: XCTestCase {
         let repo = InMemorySafeContractMetadataRepository(metadata: metadata)
         DomainRegistry.put(service: repo, for: SafeContractMetadataRepository.self)
 
-        let request = try JSONDecoder().decode(SafeCreation2Request.self,
+        let request = try JSONDecoder().decode(SafeCreationRequest.self,
                                                from: requestJSON.data(using: .utf8)!)
-        let response = try JSONDecoder().decode(SafeCreation2Request.Response.self,
+        let response = try JSONDecoder().decode(SafeCreationRequest.Response.self,
                                                 from: responseJSON.data(using: .utf8)!)
 
         XCTAssertNoThrow(try validator.validate(response, request: request))
@@ -184,7 +184,7 @@ class SafeCreationResponseValidatorTests: XCTestCase {
 extension SafeCreationResponseValidatorTests {
 
     private func assertThrows(_ expectedError: SafeCreationValidationError,
-                              _ response: SafeCreation2Request.Response,
+                              _ response: SafeCreationRequest.Response,
                               line: UInt = #line) {
         XCTAssertThrowsError(try validator.validate(response, request: request),
                              "Wrong or no error",

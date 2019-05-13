@@ -15,7 +15,7 @@ class AllDeploymentStatesTests: BaseDeploymentDomainServiceTests {
 
         encryptionService.always_return_hash(Data(repeating: 3, count: 32))
 
-        let response = SafeCreation2Request.Response.testResponse()
+        let response = SafeCreationRequest.Response.testResponse()
         let safeAddress = response.safeAddress
         let fee = response.deploymentFee
         relayService.expect_createSafeCreationTransaction(.testRequest(), response)

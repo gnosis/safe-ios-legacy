@@ -44,10 +44,9 @@ public protocol EncryptionDomainService {
     /// - Returns: contract address, or nil if signature-transaction pair is invalid
     func contractAddress(from: EthSignature, for transaction: EthTransaction) -> String?
 
-    /// Generates random 's' component of the EthSignature.
+    /// Generates random number for safe creation transaction
     ///
-    /// - Returns: valid random 's' value
-    func ecdsaRandomS() -> BigUInt
+    /// - Returns: valid random uint256 value
     func randomSaltNonce() -> BigUInt
 
     /// Signs string data using the private key.

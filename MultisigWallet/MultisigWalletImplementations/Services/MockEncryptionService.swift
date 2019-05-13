@@ -32,10 +32,6 @@ public class MockEncryptionService: EncryptionDomainService {
                                       publicKey: PublicKey(data: Data()))
     }
 
-    public func ecdsaRandomS() -> BigUInt {
-        return BigUInt("1809251394333065553493296640760748560207343510400633813116524750123642650623")
-    }
-
     public func randomSaltNonce() -> BigUInt {
         return 1
     }

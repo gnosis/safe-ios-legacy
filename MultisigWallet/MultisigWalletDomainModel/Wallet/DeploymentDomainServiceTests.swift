@@ -48,7 +48,7 @@ class DeployingWalletTests: BaseDeploymentDomainServiceTests {
 
     func test_whenFetchedTransactionData_thenUpdatesAddressAndFee() {
         givenDraftWalletWithAllOwners()
-        let response = SafeCreation2Request.Response.testResponse()
+        let response = SafeCreationRequest.Response.testResponse()
         relayService.expect_createSafeCreationTransaction(.testRequest(), response)
         start()
         wallet = walletRepository.find(id: wallet.id)!

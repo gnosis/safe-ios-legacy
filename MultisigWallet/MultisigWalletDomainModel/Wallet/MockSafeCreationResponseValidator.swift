@@ -6,8 +6,8 @@
 
 class MockSafeCreationResponseValidator: SafeCreationResponseValidator {
 
-    override func validate(_ response: SafeCreation2Request.Response,
-                           request: SafeCreation2Request) throws {
+    override func validate(_ response: SafeCreationRequest.Response,
+                           request: SafeCreationRequest) throws {
         // empty
     }
 

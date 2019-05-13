@@ -8,12 +8,12 @@ import XCTest
 class MockTransactionRelayService1: TransactionRelayDomainService {
 
     private var expected_createSafeCreationTransaction:
-        [(request: SafeCreation2Request, response: SafeCreation2Request.Response)] = []
-    private var actual_createSafeCreationTransaction: [SafeCreation2Request] = []
+        [(request: SafeCreationRequest, response: SafeCreationRequest.Response)] = []
+    private var actual_createSafeCreationTransaction: [SafeCreationRequest] = []
     private var createSafeCreationTransaction_throws_error: Error?
 
-    func expect_createSafeCreationTransaction(_ request: SafeCreation2Request,
-                                              _ response: SafeCreation2Request.Response) {
+    func expect_createSafeCreationTransaction(_ request: SafeCreationRequest,
+                                              _ response: SafeCreationRequest.Response) {
         expected_createSafeCreationTransaction.append((request, response))
     }
 
@@ -21,7 +21,7 @@ class MockTransactionRelayService1: TransactionRelayDomainService {
         createSafeCreationTransaction_throws_error = error
     }
 
-    func createSafeCreationTransaction_v2(request: SafeCreation2Request) throws -> SafeCreation2Request.Response {
+    func createSafeCreationTransaction(request: SafeCreationRequest) throws -> SafeCreationRequest.Response {
             actual_createSafeCreationTransaction.append(request)
             if let error = createSafeCreationTransaction_throws_error {
                 throw error

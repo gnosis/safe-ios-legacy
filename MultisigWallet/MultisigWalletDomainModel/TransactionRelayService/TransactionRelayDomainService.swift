@@ -12,7 +12,7 @@ public protocol TransactionRelayDomainService {
     /// - Parameter request: parameters for the new safe
     /// - Returns: creation arguments from which to derive safe address
     /// - Throws: network error or request error
-    func createSafeCreationTransaction_v2(request: SafeCreation2Request) throws -> SafeCreation2Request.Response
+    func createSafeCreationTransaction(request: SafeCreationRequest) throws -> SafeCreationRequest.Response
 
     /// Starts safe deployment. Safe must have enough funds for transaction deployment.
     ///

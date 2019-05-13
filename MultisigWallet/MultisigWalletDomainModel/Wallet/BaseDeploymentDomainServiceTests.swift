@@ -143,12 +143,12 @@ extension BaseDeploymentDomainServiceTests {
 
     @discardableResult
     internal func expectSafeCreationTransaction() ->
-        (request: SafeCreation2Request, response: SafeCreation2Request.Response) {
-            let request = SafeCreation2Request(saltNonce: 1,
-                                               owners: wallet.allOwners().map { $0.address },
-                                               confirmationCount: wallet.confirmationCount,
-                                               paymentToken: .zero)
-            let response = SafeCreation2Request.Response.testResponse(from: request)
+        (request: SafeCreationRequest, response: SafeCreationRequest.Response) {
+            let request = SafeCreationRequest(saltNonce: 1,
+                                              owners: wallet.allOwners().map { $0.address },
+                                              confirmationCount: wallet.confirmationCount,
+                                              paymentToken: .zero)
+            let response = SafeCreationRequest.Response.testResponse(from: request)
             relayService.expect_createSafeCreationTransaction(request, response)
             return (request, response)
     }
@@ -199,15 +199,15 @@ extension SafeContractMetadata {
 
 }
 
-extension SafeCreation2Request {
+extension SafeCreationRequest {
 
-    static func testRequest() -> SafeCreation2Request {
+    static func testRequest() -> SafeCreationRequest {
         let owners = [Address.deviceAddress, Address.paperWalletAddress, Address.extensionAddress]
         let paymentToken = Address.zero
-        return SafeCreation2Request(saltNonce: 1,
-                                    owners: owners,
-                                    confirmationCount: 1,
-                                    paymentToken: paymentToken)
+        return SafeCreationRequest(saltNonce: 1,
+                                   owners: owners,
+                                   confirmationCount: 1,
+                                   paymentToken: paymentToken)
     }
 
     static func setupData(payment: TokenInt, receiver: Address = .zero) -> String {
@@ -227,23 +227,23 @@ extension SafeCreation2Request {
 
 }
 
-extension SafeCreation2Request.Response {
+extension SafeCreationRequest.Response {
 
-    static func testResponse(from request: SafeCreation2Request = .testRequest()) -> SafeCreation2Request.Response {
+    static func testResponse(from request: SafeCreationRequest = .testRequest()) -> SafeCreationRequest.Response {
         return testResponse(from: .init(safe: Address.safeAddress.value,
                                         masterCopy: Address.testAccount4.value,
                                         proxyFactory: Address.testAccount2.value,
                                         paymentToken: request.paymentToken,
                                         payment: 100,
                                         paymentReceiver: Address.zero.value,
-                                        setupData: SafeCreation2Request.setupData(payment: 100),
+                                        setupData: SafeCreationRequest.setupData(payment: 100),
                                         gasEstimated: 50,
                                         gasPriceEstimated: 2),
                             request)
     }
 
-    static func testResponse(from response: SafeCreation2Request.Response, _ request: SafeCreation2Request)
-        -> SafeCreation2Request.Response {
+    static func testResponse(from response: SafeCreationRequest.Response, _ request: SafeCreationRequest)
+        -> SafeCreationRequest.Response {
             let contract = GnosisSafeContractProxy()
             let metadataRepo = DomainRegistry.safeContractMetadataRepository
             let hash: (Data) -> Data = DomainRegistry.encryptionService.hash
