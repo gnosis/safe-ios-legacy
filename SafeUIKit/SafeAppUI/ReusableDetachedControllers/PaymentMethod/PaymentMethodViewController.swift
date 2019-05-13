@@ -9,12 +9,26 @@ import Common
 
 class PaymentMethodViewController: UITableViewController {
 
-    private enum Strings {
+    enum Strings {
         static let title = LocalizedString("fee_payment_method", comment: "Fee Payment Method")
+        enum Alert {
+            static let title = LocalizedString("transaction_fee", comment: "Network fee")
+            static let description = LocalizedString("transaction_fee_description_token_payment",
+                                                     comment: "Fee payment method description")
+            static let close = LocalizedString("close", comment: "Close")
+        }
     }
 
     private var tokens = [TokenData]()
     var paymentToken: TokenData!
+
+    init() {
+        super.init(style: .grouped)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +119,16 @@ class PaymentMethodViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodHeaderView")
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodHeaderView")
+            as! PaymentMethodHeaderView
+        view.onTextSelected = { [unowned self] in
+            let alert = UIAlertController(title: Strings.Alert.title,
+                                          message: Strings.Alert.description,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Strings.Alert.close, style: .cancel))
+            self.present(alert, animated: true)
+        }
+        return view
     }
 
 }

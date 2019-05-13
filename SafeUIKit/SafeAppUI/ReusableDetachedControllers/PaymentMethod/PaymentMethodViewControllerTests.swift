@@ -44,6 +44,14 @@ class PaymentMethodViewControllerTests: SafeTestCase {
         XCTAssertNil(walletService.changedPaymentToken)
     }
 
+    func test_whenSelectingDescriptionInHeadr_thenShowsAlert() {
+        createWindow(controller)
+        let headerView = controller.tableView(controller.tableView,
+                                              viewForHeaderInSection: 0) as! PaymentMethodHeaderView
+        headerView.onTextSelected!()
+        XCTAssertAlertShown(message: PaymentMethodViewController.Strings.Alert.description, actionCount: 1)
+    }
+
     private func selectRow(_ row: Int) {
         controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: row, section: 0))
     }

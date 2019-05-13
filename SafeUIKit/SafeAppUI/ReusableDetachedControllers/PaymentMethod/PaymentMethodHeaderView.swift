@@ -9,6 +9,15 @@ final class PaymentMethodHeaderView: UITableViewHeaderFooterView {
 
     static let estimatedHeight: CGFloat = 140
 
+    var onTextSelected: (() -> Void)?
+
+    private enum Strings {
+        static let description = LocalizedString("this_payment_will_be_used",
+                                                 comment: "Fee payment method description")
+        static let feeMethod = LocalizedString("fee_method", comment: "Fee Payment Method")
+        static let balance = LocalizedString("balance", comment: "Balance")
+    }
+
     @IBOutlet weak var descriptionInfoLabel: InfoLabel!
     @IBOutlet weak var headingView: UIView!
     @IBOutlet weak var feePaymentMethodLabel: UILabel!
@@ -19,15 +28,15 @@ final class PaymentMethodHeaderView: UITableViewHeaderFooterView {
         backgroundView = UIView()
         backgroundView!.backgroundColor = .white
         headingView.backgroundColor = ColorName.paleGrey.color
-        descriptionInfoLabel.setInfoText("A network fee is required to create your new Safe.")
+        descriptionInfoLabel.setInfoText(Strings.description)
         descriptionInfoLabel.delegate = self
         let headingAttributes: [NSAttributedString.Key: Any] =
             [.font: UIFont.systemFont(ofSize: 10, weight: .bold),
              .foregroundColor: ColorName.lightGreyBlue.color,
              .kern: 2]
-        feePaymentMethodLabel.attributedText = NSAttributedString(string: "FEE PAYMENT METHOD",
+        feePaymentMethodLabel.attributedText = NSAttributedString(string: Strings.feeMethod,
                                                                   attributes: headingAttributes)
-        balanceLabel.attributedText = NSAttributedString(string: "BALANCE",
+        balanceLabel.attributedText = NSAttributedString(string: Strings.balance,
                                                          attributes: headingAttributes)
     }
 
@@ -36,7 +45,7 @@ final class PaymentMethodHeaderView: UITableViewHeaderFooterView {
 extension PaymentMethodHeaderView: InfoLabelDelegate {
 
     func didTap() {
-        print("DID TAP")
+        onTextSelected?()
     }
 
 }
