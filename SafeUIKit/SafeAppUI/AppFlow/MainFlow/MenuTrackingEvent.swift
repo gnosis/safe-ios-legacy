@@ -11,6 +11,6 @@ enum MenuTrackingEvent: String, ScreenTrackingEvent {
     case terms                  = "Terms"
     case privacyPolicy          = "PrivacyPolicy"
     case licenses               = "Licenses"
-    case feePaymentMethod       = "FeePaymentMethod"
+    case feePaymentMethod       = "PaymentMethod"
 
 }
