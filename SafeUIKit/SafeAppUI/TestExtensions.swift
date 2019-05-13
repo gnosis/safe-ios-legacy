@@ -50,6 +50,14 @@ extension TokenData {
         decimals: 18,
         balance: nil)
 
+    static let mgn2 = TokenData(
+        address: "0x152Af9AD40ccEF2060CD14356647Ee1773A43437",
+        code: "MGN",
+        name: "Magnolia",
+        logoURL: "",
+        decimals: 18,
+        balance: 0)
+
     static let rdn = TokenData(
         address: "0x8aa852b299c748a5ab8bd2764309f8c3c756bd3b",
         code: "RDN",

@@ -75,6 +75,11 @@ class PaymentMethodViewController: UITableViewController {
                        accessoryType: .none)
         cell.accessoryView = tokenData == paymentToken ? checkmarkImageView() : emptyImageView()
         cell.rightTextLabel.text! += "\t" // padding
+        if tokenData.balance ?? 0 == 0 {
+            cell.selectionStyle = .none
+            cell.leftTextLabel.textColor = ColorName.darkSlateBlue.color.withAlphaComponent(0.5)
+            cell.rightTextLabel.textColor = ColorName.darkSlateBlue.color.withAlphaComponent(0.5)
+        }
         return cell
     }
 
@@ -93,7 +98,9 @@ class PaymentMethodViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        ApplicationServiceRegistry.walletService.changePaymentToken(tokens[indexPath.row])
+        let tokenData = tokens[indexPath.row]
+        guard tokenData.balance ?? 0 > 0 else { return }
+        ApplicationServiceRegistry.walletService.changePaymentToken(tokenData)
         updateData()
     }
 

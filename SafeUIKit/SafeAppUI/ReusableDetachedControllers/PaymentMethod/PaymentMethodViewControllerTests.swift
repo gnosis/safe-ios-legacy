@@ -13,12 +13,12 @@ class PaymentMethodViewControllerTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        walletService.paymentTokensOutput = [TokenData.eth, TokenData.gno, TokenData.mgn]
+        walletService.paymentTokensOutput = [TokenData.eth, TokenData.gno, TokenData.mgn, TokenData.mgn2]
     }
 
     func test_whenCreated_thenLoadsData() {
         createWindow(controller)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 4)
     }
 
     func test_tracking() {
@@ -33,8 +33,19 @@ class PaymentMethodViewControllerTests: SafeTestCase {
 
     func test_whenSelectingRow_thenChangesPaymentToken() {
         XCTAssertNil(walletService.changedPaymentToken)
-        controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+        selectRow(1) // gno with non-zero balance
         XCTAssertNotNil(walletService.changedPaymentToken)
+    }
+
+    func test_whenSelectingTokenWithNoBance_thenDoesNothing() {
+        selectRow(2) // mgn with nil balance
+        XCTAssertNil(walletService.changedPaymentToken)
+        selectRow(3) // mgn2 with zero balance
+        XCTAssertNil(walletService.changedPaymentToken)
+    }
+
+    private func selectRow(_ row: Int) {
+        controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: row, section: 0))
     }
 
 }
