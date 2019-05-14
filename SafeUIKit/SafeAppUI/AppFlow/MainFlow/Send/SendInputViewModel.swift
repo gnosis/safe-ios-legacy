@@ -43,6 +43,7 @@ class SendInputViewModel {
         inputQueue = OperationQueue()
         inputQueue.maxConcurrentOperationCount = 1
         inputQueue.qualityOfService = .userInitiated
+        // for unit testing purposes
         if processEventsOnMainThread {
             inputQueue.underlyingQueue = .main
         }

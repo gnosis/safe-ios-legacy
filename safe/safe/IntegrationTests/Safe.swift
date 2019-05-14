@@ -53,7 +53,6 @@ struct Safe {
 
     var proxy: SafeOwnerManagerContractProxy { return SafeOwnerManagerContractProxy(address) }
 
-
     func prepareAddOwnerTx(_ owner: ExternallyOwnedAccount, threshold: Int) throws -> Transaction {
         let data = proxy.addOwner(owner.address, newThreshold: threshold)
         return try prepareTx(to: address, data: data)
@@ -107,7 +106,7 @@ struct Safe {
         let wallet = DomainRegistry.walletRepository.find(id: walletID)!
         wallet.changeAddress(address)
         try wallet.changeMasterCopy(proxy.masterCopyAddress())
-        // hack: now re-save as deployed safe
+        // changing of certain properties is possible only in readyToUse state
         wallet.state = wallet.readyToUseState
         DomainRegistry.walletRepository.save(wallet)
     }
