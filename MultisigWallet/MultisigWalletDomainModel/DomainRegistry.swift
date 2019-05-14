@@ -34,6 +34,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: TokenListItemRepository.self)
     }
 
+    public static var safeContractMetadataRepository: SafeContractMetadataRepository {
+        return service(for: SafeContractMetadataRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {

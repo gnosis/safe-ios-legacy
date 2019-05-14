@@ -5,6 +5,7 @@
 import Foundation
 import MultisigWalletApplication
 import SafeAppUI
+import MultisigWalletDomainModel
 
 struct AppConfig: Codable {
 
@@ -17,8 +18,7 @@ struct AppConfig: Codable {
     var termsOfUseURL: URL
     var privacyPolicyURL: URL
     var licensesURL: URL
-    var masterCopyAddresses: [String]
-    var multiSendAddress: String
+    var safeContractMetadata: SafeContractMetadata
     var featureFlags: [String: Bool]?
 
     enum CodingKeys: String, CodingKey {
@@ -31,9 +31,8 @@ struct AppConfig: Codable {
         case termsOfUseURL = "terms_of_use_url"
         case privacyPolicyURL = "privacy_policy_url"
         case licensesURL = "licenses_url"
-        case masterCopyAddresses = "master_copy_addresses"
-        case multiSendAddress = "multi_send_contract_addres"
         case featureFlags = "feature_flags"
+        case safeContractMetadata = "safe_contract_metadata"
     }
 
 }
@@ -81,6 +80,63 @@ extension AppConfig {
                                                      privacyPolicyURL: privacyPolicyURL,
                                                      termsOfUseURL: termsOfUseURL,
                                                      licensesURL: licensesURL)
+    }
+
+}
+
+extension SafeContractMetadata: Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case multiSendContractAddress = "multi_send_contract_address"
+        case proxyFactoryAddress = "proxy_factory_address"
+        case safeFunderAddress = "safe_funder_address"
+        case metadata = "contract_metadata"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        try self.init(multiSendContractAddress: Address(values.decode(String.self, forKey: .multiSendContractAddress)),
+                      proxyFactoryAddress: Address(values.decode(String.self, forKey: .proxyFactoryAddress)),
+                      safeFunderAddress: Address(values.decode(String.self, forKey: .safeFunderAddress)),
+                      metadata: values.decode([MasterCopyMetadata].self, forKey: .metadata))
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(multiSendContractAddress.value, forKey: .multiSendContractAddress)
+        try container.encode(proxyFactoryAddress.value, forKey: .proxyFactoryAddress)
+        try container.encode(safeFunderAddress.value, forKey: .safeFunderAddress)
+        try container.encode(metadata, forKey: .metadata)
+    }
+
+}
+
+extension MasterCopyMetadata: Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case address = "master_copy"
+        case version = "version"
+        case txTypeHash = "tx_type_hash"
+        case domainSeparatorHash = "domain_separator_type_hash"
+        case proxyCode = "proxy_code"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        try self.init(address: Address(values.decode(String.self, forKey: .address)),
+                      version: values.decode(String.self, forKey: .version),
+                      txTypeHash: Data(ethHex: values.decode(String.self, forKey: .txTypeHash)),
+                      domainSeparatorHash: Data(ethHex: values.decode(String.self, forKey: .domainSeparatorHash)),
+                      proxyCode: Data(ethHex: values.decode(String.self, forKey: .proxyCode)))
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(address.value, forKey: .address)
+        try container.encode(version, forKey: .version)
+        try container.encode(txTypeHash.toHexString().addHexPrefix(), forKey: .txTypeHash)
+        try container.encode(domainSeparatorHash.toHexString().addHexPrefix(), forKey: .domainSeparatorHash)
+        try container.encode(proxyCode.toHexString().addHexPrefix(), forKey: .proxyCode)
     }
 
 }

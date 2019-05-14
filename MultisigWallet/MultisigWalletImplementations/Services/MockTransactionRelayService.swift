@@ -24,19 +24,6 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         self.maxDeviation = fabs(maxDeviation)
     }
 
-    public var createSafeCreationTransaction_input: SafeCreationTransactionRequest?
-
-    public func createSafeCreationTransaction(request: SafeCreationTransactionRequest)
-        throws -> SafeCreationTransactionRequest.Response {
-            createSafeCreationTransaction_input = request
-            Timer.wait(randomizedNetworkResponseDelay)
-            // Please do not change data here. Or you will need to update StubEncryptionService to fix related UI tests.
-            return .init(signature: .init(r: "222", s: request.s, v: "27"),
-                         tx: .init(from: "", value: 0, data: "0x0001", gas: "10", gasPrice: "100", nonce: 0),
-                         safe: "0x8c89eb758AF5Ee056Bc251328105F8893B057A05",
-                         payment: "100")
-    }
-
     public var startSafeCreation_input: Address?
 
     public func startSafeCreation(address: Address) throws {
@@ -88,8 +75,8 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         if shouldThrow { throw TestError.error }
     }
 
-    public func createSafeCreationTransaction_v2(request: SafeCreation2Request) throws
-        -> SafeCreation2Request.Response {
+    public func createSafeCreationTransaction(request: SafeCreationRequest) throws
+        -> SafeCreationRequest.Response {
             preconditionFailure("not implemented")
     }
 

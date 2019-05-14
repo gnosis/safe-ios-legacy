@@ -7,20 +7,12 @@ import Foundation
 /// Intermediate service that sends transactions to the blockchain.
 public protocol TransactionRelayDomainService {
 
-    /// Creates new transaction to create wallet (safe)
-    ///
-    /// - Parameter request: transaction creation request
-    /// - Returns: parameters of created transaction
-    /// - Throws: network error or request error
-    func createSafeCreationTransaction(
-        request: SafeCreationTransactionRequest) throws -> SafeCreationTransactionRequest.Response
-
     /// Creates a new transaction waiting for enough funds on the future safe's address.
     ///
     /// - Parameter request: parameters for the new safe
     /// - Returns: creation arguments from which to derive safe address
     /// - Throws: network error or request error
-    func createSafeCreationTransaction_v2(request: SafeCreation2Request) throws -> SafeCreation2Request.Response
+    func createSafeCreationTransaction(request: SafeCreationRequest) throws -> SafeCreationRequest.Response
 
     /// Starts safe deployment. Safe must have enough funds for transaction deployment.
     ///

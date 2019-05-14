@@ -8,11 +8,7 @@ import BigInt
 
 public class WalletSettingsDomainService {
 
-    public let config: RecoveryDomainServiceConfig
-
-    public init(config: RecoveryDomainServiceConfig) {
-        self.config = config
-    }
+    public init() {}
 
     public func createReplaceRecoveryPhraseTransaction() -> TransactionID {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
@@ -22,7 +18,8 @@ public class WalletSettingsDomainService {
                              walletID: wallet.id,
                              accountID: accountID)
         tx.change(sender: wallet.address!)
-        tx.change(recipient: DomainRegistry.encryptionService.address(from: config.multiSendContractAddress.value)!)
+        let multiSendAddess = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+        tx.change(recipient: DomainRegistry.encryptionService.address(from: multiSendAddess.value)!)
         tx.change(amount: .ether(0))
         tx.change(operation: .delegateCall)
         DomainRegistry.transactionRepository.save(tx)
@@ -51,8 +48,8 @@ public class WalletSettingsDomainService {
                                                  old: oldOwner2,
                                                  new: fakeNewOwner2)
                 ownerList.replace(oldOwner2, with: fakeNewOwner2)
-
-                let multiSendProxy = MultiSendContractProxy(config.multiSendContractAddress)
+                let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+                let multiSendProxy = MultiSendContractProxy(multiSendAddress)
                 let data = multiSendProxy.multiSend([(.call, wallet.address!, 0, owner1Data),
                                                      (.call, wallet.address!, 0, owner2Data)])
 
@@ -136,7 +133,8 @@ public class WalletSettingsDomainService {
                                              new: newOwner2)
             ownerList.replace(oldOwner2, with: newOwner2)
 
-            let multiSendProxy = MultiSendContractProxy(config.multiSendContractAddress)
+            let multiSendAddess = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+            let multiSendProxy = MultiSendContractProxy(multiSendAddess)
             let data = multiSendProxy.multiSend([(.call, wallet.address!, 0, owner1Data),
                                                  (.call, wallet.address!, 0, owner2Data)])
 

@@ -82,20 +82,6 @@ open class EthereumApplicationService: Assertable {
         return account.applicationServiceData
     }
 
-    open func createSafeCreationTransaction(owners: [Address], confirmationCount: Int) throws
-        -> SafeCreationTransactionData {
-            let request = SafeCreationTransactionRequest(owners: owners,
-                                                         confirmationCount: confirmationCount,
-                                                         ecdsaRandomS: encryptionService.ecdsaRandomS())
-            let response = try handleRelayServiceErrors {
-                try relayService.createSafeCreationTransaction(request: request)
-            }
-            try validateSignature(in: response, for: request)
-            try validateSafeAddress(in: response)
-            guard let payment = BigInt(response.payment) else { throw Error.invalidTransaction }
-            return SafeCreationTransactionData(safe: response.safe, payment: payment)
-    }
-
     @discardableResult
     private func handleNodeServiceErrors<T>(_ block: () throws -> T) throws -> T {
         do {
@@ -105,27 +91,6 @@ open class EthereumApplicationService: Assertable {
         } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, _) {
             throw self.error(from: response)
         }
-    }
-
-    private func validateSignature(in response: SafeCreationTransactionRequest.Response,
-                                   for request: SafeCreationTransactionRequest) throws {
-        try assertEqual(response.signature.s, request.s, Error.invalidSignature)
-        guard let v = Int(response.signature.v) else { throw Error.invalidSignature }
-        try assertTrue(ECDSASignatureBounds.isWithinBounds(r: response.signature.r,
-                                                           s: response.signature.s,
-                                                           v: v), Error.invalidSignature)
-    }
-
-    private func validateSafeAddress(in response: SafeCreationTransactionRequest.Response) throws {
-        let signature = EthSignature(r: response.signature.r, s: response.signature.s, v: Int(response.signature.v)!)
-        let transaction = (response.tx.from,
-                           response.tx.value,
-                           response.tx.data,
-                           response.tx.gas,
-                           response.tx.gasPrice,
-                           response.tx.nonce)
-        let safeAddress: String? = encryptionService.contractAddress(from: signature, for: transaction)
-        try assertEqual(safeAddress, response.safe, Error.invalidSignature)
     }
 
     open func startSafeCreation(address: Address) throws {

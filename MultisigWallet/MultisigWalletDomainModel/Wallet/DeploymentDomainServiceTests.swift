@@ -13,14 +13,17 @@ class DeploymentServiceEventSubscriptionTests: BaseDeploymentDomainServiceTests 
     func test_whenStartsTwice_thenDoesNotDuplicateEventHandling() {
         eventPublisher.addFilter(DeploymentStarted.self)
 
+        encryptionService.always_return_hash(Data(repeating: 7, count: 32))
+
         givenDraftWalletWithAllOwners()
-        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
+        expectSafeCreationTransaction()
         start()
 
         portfolioRepository.remove(portfolioRepository.portfolio()!)
         walletRepository.remove(wallet)
-        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
+
         givenDraftWalletWithAllOwners()
+        expectSafeCreationTransaction()
         start()
 
         relayService.verify()
@@ -32,23 +35,24 @@ class DeployingWalletTests: BaseDeploymentDomainServiceTests {
 
     override func setUp() {
         super.setUp()
+        encryptionService.always_return_hash(Data(repeating: 7, count: 32))
         eventPublisher.addFilter(DeploymentStarted.self)
     }
 
     func test_whenInDraft_thenFetchesCreationTransactionData() {
         givenDraftWalletWithAllOwners()
-        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
+        expectSafeCreationTransaction()
         start()
         relayService.verify()
     }
 
     func test_whenFetchedTransactionData_thenUpdatesAddressAndFee() {
         givenDraftWalletWithAllOwners()
-        let response = SafeCreationTransactionRequest.Response.testResponse
-        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), response)
+        let response = SafeCreationRequest.Response.testResponse()
+        relayService.expect_createSafeCreationTransaction(.testRequest(), response)
         start()
         wallet = walletRepository.find(id: wallet.id)!
-        XCTAssertEqual(wallet.address, response.walletAddress)
+        XCTAssertEqual(wallet.address, response.safeAddress)
         XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, response.deploymentFee)
     }
 
@@ -80,14 +84,14 @@ class DeployingWalletTests: BaseDeploymentDomainServiceTests {
 
     func test_whenResumes_thenMovesToNextState() {
         givenFundedWallet(with: 50)
-        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
+        relayService.expect_createSafeCreationTransaction(.testRequest(), .testResponse())
         start()
         XCTAssertTrue(wallet.state === wallet.notEnoughFundsState)
     }
 
     func test_whenEmptyAccount_thenMovesToFirstDeposit() {
         givenConfiguredWallet()
-        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
+        relayService.expect_createSafeCreationTransaction(.testRequest(), .testResponse())
         start()
         XCTAssertTrue(wallet.state === wallet.waitingForFirstDepositState)
     }

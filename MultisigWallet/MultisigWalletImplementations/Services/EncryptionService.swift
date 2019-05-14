@@ -247,8 +247,8 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - random numbers
 
-    open func ecdsaRandomS() -> BigUInt {
-        return BigUInt.randomInteger(lessThan: ECDSASignatureBounds.sRange.upperBound)
+    open func randomSaltNonce() -> BigUInt {
+        return BigUInt.randomInteger(lessThan: BigUInt(2).power(256) + 1)
     }
 
     // MARK: - Signing messages
@@ -320,11 +320,30 @@ open class EncryptionService: EncryptionDomainService {
 
     let ERC191MagicByte = Data([0x19])
     let ERC191Version1Byte = Data([0x01])
-    let EIP712SafeAppDomainSeparatorTypeHash =
+    let DefaultEIP712SafeAppDomainSeparatorTypeHash =
         Data(ethHex: "0x035aff83d86937d35b32e04f0ddc6ff469290eef2f1b692d8a815c89404d4749")
-    let EIP712SafeAppTxTypeHash =
+    let DefaultEIP712SafeAppTxTypeHash =
         Data(ethHex: "0x14d461bc7412367e924637b363c7bf29b8f47e2f84869f4426e5633d8af47b20")
 
+    func txTypeHash(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
+        let metadataRepository = DomainRegistry.safeContractMetadataRepository
+        if let wallet = DomainRegistry.walletRepository.find(id: transaction.walletID),
+            let masterCopy = wallet.masterCopyAddress,
+            let result = metadataRepository.EIP712SafeAppTxTypeHash(masterCopyAddress: masterCopy) {
+            return result
+        }
+        return DefaultEIP712SafeAppTxTypeHash
+    }
+
+    func domainSeparatorTypeHash(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
+        let metadataRepository = DomainRegistry.safeContractMetadataRepository
+        if let wallet = DomainRegistry.walletRepository.find(id: transaction.walletID),
+            let masterCopy = wallet.masterCopyAddress,
+            let result = metadataRepository.EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: masterCopy) {
+            return result
+        }
+        return DefaultEIP712SafeAppDomainSeparatorTypeHash
+    }
 
     public func hash(of transaction: MultisigWalletDomainModel.Transaction) -> Data {
         return hash(hashData(transaction))
@@ -342,7 +361,7 @@ open class EncryptionService: EncryptionDomainService {
     func valueData(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
         let shouldRefundReceiver = false
         return [
-            EIP712SafeAppTxTypeHash,
+            txTypeHash(transaction),
             transaction.ethTo.data,
             transaction.ethValue.data,
             hash(transaction.data ?? Data()),
@@ -358,7 +377,7 @@ open class EncryptionService: EncryptionDomainService {
 
     func domainData(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
         return [
-            EIP712SafeAppDomainSeparatorTypeHash,
+            domainSeparatorTypeHash(transaction),
             transaction.sender!.data
         ].reduce(Data()) { $0 + $1 }
     }

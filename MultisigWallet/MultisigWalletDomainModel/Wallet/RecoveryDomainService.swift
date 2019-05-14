@@ -20,25 +20,9 @@ public enum RecoveryServiceError: Error {
     case internalServerError
 }
 
-public struct RecoveryDomainServiceConfig {
-
-    var validMasterCopyAddresses: [Address]
-    var multiSendContractAddress: Address
-
-    public init(masterCopyAddresses: [String], multiSendAddress: String) {
-        validMasterCopyAddresses = masterCopyAddresses.map { Address($0.lowercased()) }
-        multiSendContractAddress = Address(multiSendAddress)
-    }
-
-}
-
 public class RecoveryDomainService: Assertable {
 
-    public let config: RecoveryDomainServiceConfig
-
-    public init(config: RecoveryDomainServiceConfig) {
-        self.config = config
-    }
+    public init() {}
 
     // MARK: - Creating Draft Wallet
 
@@ -103,7 +87,7 @@ public class RecoveryDomainService: Assertable {
         let contract = WalletProxyContractProxy(address)
         let masterCopyAddress = try contract.masterCopyAddress()
         try assertNotNil(masterCopyAddress, RecoveryServiceError.invalidContractAddress)
-        try assertTrue(config.validMasterCopyAddresses.contains(masterCopyAddress!),
+        try assertTrue(DomainRegistry.safeContractMetadataRepository.isValidMasterCopy(address: masterCopyAddress!),
                        RecoveryServiceError.invalidContractAddress)
     }
 
@@ -116,13 +100,21 @@ public class RecoveryDomainService: Assertable {
 
     private func pullWalletData() throws {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let contract = SafeOwnerManagerContractProxy(wallet.address!)
-        let existingOwnerAddresses = try contract.getOwners()
-        let confirmationCount = try contract.getThreshold()
+        let ownerContract = SafeOwnerManagerContractProxy(wallet.address!)
+        let existingOwnerAddresses = try ownerContract.getOwners()
+        let confirmationCount = try ownerContract.getThreshold()
         for address in existingOwnerAddresses {
             wallet.addOwner(Owner(address: address, role: .unknown))
         }
         wallet.changeConfirmationCount(confirmationCount)
+        let proxyContract = WalletProxyContractProxy(wallet.address!)
+        guard let masterCopy = try proxyContract.masterCopyAddress() else {
+            throw RecoveryServiceError.invalidContractAddress
+        }
+        wallet.changeMasterCopy(masterCopy)
+        let metadataRepository = DomainRegistry.safeContractMetadataRepository
+        let version = metadataRepository.version(masterCopyAddress: masterCopy)
+        wallet.changeContractVersion(version)
         DomainRegistry.walletRepository.save(wallet)
     }
 
@@ -165,7 +157,8 @@ public class RecoveryDomainService: Assertable {
         if let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) {
             DomainRegistry.transactionRepository.remove(tx)
         }
-        RecoveryTransactionBuilder(multiSendContractAddress: config.multiSendContractAddress).main()
+        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+        RecoveryTransactionBuilder(multiSendContractAddress: multiSendAddress).main()
     }
 
     public func isRecoveryTransactionReadyToSubmit() -> Bool {

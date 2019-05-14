@@ -21,7 +21,7 @@ class SendInputViewModelTests: XCTestCase {
         walletService.assignAddress(walletAddress)
         walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        model = SendInputViewModel(tokenID: ethID) { /* empty */ }
+        model = SendInputViewModel(tokenID: ethID, processEventsOnMainThread: true) { /* empty */ }
         model.start()
     }
 

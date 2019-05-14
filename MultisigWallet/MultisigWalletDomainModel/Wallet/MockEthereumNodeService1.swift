@@ -80,4 +80,8 @@ class MockEthereumNodeService1: EthereumNodeDomainService {
         return EthBlock(hash: "0x1", timestamp: Date())
     }
 
+    func eth_getStorageAt(address: Address, position: Int) throws -> Data {
+        return Data()
+    }
+
 }
