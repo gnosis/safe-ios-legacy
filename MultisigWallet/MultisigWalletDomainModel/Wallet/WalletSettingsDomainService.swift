@@ -48,8 +48,8 @@ public class WalletSettingsDomainService {
                                                  old: oldOwner2,
                                                  new: fakeNewOwner2)
                 ownerList.replace(oldOwner2, with: fakeNewOwner2)
-                let multiSendAddess = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-                let multiSendProxy = MultiSendContractProxy(multiSendAddess)
+                let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+                let multiSendProxy = MultiSendContractProxy(multiSendAddress)
                 let data = multiSendProxy.multiSend([(.call, wallet.address!, 0, owner1Data),
                                                      (.call, wallet.address!, 0, owner2Data)])
 
