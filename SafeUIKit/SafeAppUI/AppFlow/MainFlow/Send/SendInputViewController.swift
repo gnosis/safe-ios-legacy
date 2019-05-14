@@ -28,7 +28,7 @@ public class SendInputViewController: UIViewController {
     internal var transactionID: String?
 
     private var tokenID: BaseID!
-    private let feeTokenID: BaseID = ethID
+    private var feeTokenID: BaseID!
 
     public static func create(tokenID: BaseID) -> SendInputViewController {
         let controller = StoryboardScene.Main.sendInputViewController.instantiate()
@@ -68,7 +68,10 @@ public class SendInputViewController: UIViewController {
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
         tokenInput.textInput.keyboardTargetView = tokenInput.superview
+
+        feeTokenID = BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
         feeCalculationView.calculation = tokenID == feeTokenID ? SendEthFeeCalculation() : SendERC20FeeCalculation()
+
         model.start()
         DispatchQueue.main.async {
             // For unknown reasons, the identicon does not show up if updated in the viewDidLoad
