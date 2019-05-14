@@ -21,12 +21,15 @@ public struct EstimateTransactionRequest: Encodable {
     /// Data, as hex string
     public let data: String?
     public let operation: WalletOperation
+    /// Fee payment method token address. Nil is treated as Ether.
+    public let gasToken: String?
 
     public init(safe: Address,
                 to: Address?,
                 value: String,
                 data: String?,
-                operation: WalletOperation) {
+                operation: WalletOperation,
+                gasToken: String?) {
         self.safe = safe.value
         self.to = to?.value
         precondition(BigInt(value) != nil, "value must be a valid integer base 10, as String")
@@ -38,6 +41,7 @@ public struct EstimateTransactionRequest: Encodable {
             self.data = nil
         }
         self.operation = operation
+        self.gasToken = gasToken
     }
 
     public struct Response: Decodable {

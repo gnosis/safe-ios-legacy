@@ -117,7 +117,8 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
                      to: tx.ethTo,
                      value: String(tx.ethValue),
                      data: tx.ethData,
-                     operation: tx.operation!)
+                     operation: tx.operation!,
+                     gasToken: requiredWallet.feePaymentTokenAddress?.value)
     }
 
     public func accountBalance(for transactionID: TransactionID) -> TokenAmount {
@@ -146,7 +147,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     func validateOwners() throws {
-        try assertNotNil(requiredWallet.owner(role: .browserExtension) ,
+        try assertNotNil(requiredWallet.owner(role: .browserExtension),
                          ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected)
     }
 

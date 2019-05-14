@@ -83,7 +83,8 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                                  to: safeAddress,
                                                  value: "1",
                                                  data: "",
-                                                 operation: .call)
+                                                 operation: .call,
+                                                 gasToken: nil)
         let response = try relayService.estimateTransaction(request: request)
         let ints = [response.safeTxGas, response.gasPrice, response.dataGas, response.operationalGas]
         ints.forEach { XCTAssertNotEqual($0, 0, "Response: \(response)") }

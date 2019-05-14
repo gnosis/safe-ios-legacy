@@ -46,7 +46,7 @@ public class SubmitTransactionRequest: Encodable {
         safeTxGas = String(transaction.feeEstimate!.gas)
         dataGas = String(transaction.feeEstimate!.dataGas)
         gasPrice = String(transaction.feeEstimate!.gasPrice.amount)
-        gasToken = nil
+        gasToken = transaction.feeEstimate!.gasPrice.token.id.id
         nonce = transaction.nonce!
     }
 

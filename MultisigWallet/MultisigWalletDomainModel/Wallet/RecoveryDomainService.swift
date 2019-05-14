@@ -680,12 +680,14 @@ class RecoveryTransactionBuilder {
     }
 
     private func estimate() -> EstimateTransactionRequest.Response? {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let formattedRecipient = DomainRegistry.encryptionService.address(from: transaction.ethTo.value)!
         let estimationRequest = EstimateTransactionRequest(safe: transaction.sender!,
                                                            to: formattedRecipient,
                                                            value: String(transaction.ethValue),
                                                            data: transaction.ethData,
-                                                           operation: transaction.operation!)
+                                                           operation: transaction.operation!,
+                                                           gasToken: wallet.feePaymentTokenAddress?.value)
         do {
             return try DomainRegistry.transactionRelayService.estimateTransaction(request: estimationRequest)
         } catch let error {

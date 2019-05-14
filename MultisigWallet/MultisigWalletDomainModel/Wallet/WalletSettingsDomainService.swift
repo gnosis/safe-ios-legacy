@@ -59,7 +59,8 @@ public class WalletSettingsDomainService {
                                                                    to: formattedRecipient,
                                                                    value: String(0),
                                                                    data: "0x" + data.toHexString(),
-                                                                   operation: .delegateCall)
+                                                                   operation: .delegateCall,
+                                                                   gasToken: wallet.feePaymentTokenAddress?.value)
                 let estimateResponse = try DomainRegistry
                     .transactionRelayService.estimateTransaction(request: estimationRequest)
 
@@ -144,7 +145,8 @@ public class WalletSettingsDomainService {
                                                                to: formattedRecipient,
                                                                value: String(0),
                                                                data: "0x" + data.toHexString(),
-                                                               operation: .delegateCall)
+                                                               operation: .delegateCall,
+                                                               gasToken: wallet.feePaymentTokenAddress?.value)
             let estimateResponse = try DomainRegistry
                 .transactionRelayService.estimateTransaction(request: estimationRequest)
 
