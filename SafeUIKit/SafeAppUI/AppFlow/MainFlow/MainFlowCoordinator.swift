@@ -11,6 +11,13 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     private let manageTokensFlowCoordinator = ManageTokensFlowCoordinator()
     private let connectExtensionFlowCoordinator = ConnectBrowserExtensionFlowCoordinator()
+    let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
+    let setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
+
+    private var lockedViewController: UIViewController!
+    var replaceRecoveryController: ReplaceRecoveryPhraseViewController!
+
+    private let transactionSubmissionHandler = TransactionSubmissionHandler()
 
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
@@ -20,58 +27,18 @@ open class MainFlowCoordinator: FlowCoordinator {
         return IdentityAccessApplication.ApplicationServiceRegistry.authenticationService
     }
 
-    var replaceRecoveryController: ReplaceRecoveryPhraseViewController!
-
-    var transactionSubmissionHandler = TransactionSubmissionHandler()
-
-    public init() {
-        super.init(rootViewController: UINavigationController())
-        configureGloabalAppearance()
+    private var shouldLockWhenAppActive: Bool {
+        return authenticationService.isUserRegistered  && !authenticationService.isUserAuthenticated
     }
 
-    open override func setUp() {
-        super.setUp()
-        showInitialScreen()
-    }
-
-    func showMainScreen() {
-        let mainVC = MainViewController.create(delegate: self)
-        mainVC.navigationItem.backBarButtonItem = backButton()
-        push(mainVC)
-    }
-
-    open func receive(message: [AnyHashable: Any]) {
-        guard let transactionID = walletService.receive(message: message) else { return }
-        if let vc = navigationController.topViewController as? ReviewTransactionViewController {
-            let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
-            vc.update(with: tx)
-        } else if let tx = walletService.transactionData(transactionID), tx.status != .rejected {
-            openTransactionReviewScreen(transactionID)
-        }
-    }
-
-    private func openTransactionReviewScreen(_ id: String) {
-        let reviewVC = SendReviewViewController(transactionID: id, delegate: self)
-        push(reviewVC)
-    }
-
-    private func backButton() -> UIBarButtonItem {
-        return UIBarButtonItem(title: LocalizedString("back", comment: "Back"),
-                               style: .plain,
-                               target: nil,
-                               action: nil)
-    }
-
-    // FROM AppFlowCoordinator
-
-    private var lockedViewController: UIViewController!
     private var applicationRootViewController: UIViewController? {
         get { return UIApplication.shared.keyWindow?.rootViewController }
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
 
-    private var shouldLockWhenAppActive: Bool {
-        return authenticationService.isUserRegistered  && !authenticationService.isUserAuthenticated
+    public init() {
+        super.init(rootViewController: UINavigationController())
+        configureGloabalAppearance()
     }
 
     private func configureGloabalAppearance() {
@@ -88,7 +55,8 @@ open class MainFlowCoordinator: FlowCoordinator {
         navBarAppearance.shadowImage = Asset.shadow.image
     }
 
-    func showInitialScreen() {
+    open override func setUp() {
+        super.setUp()
         if walletService.hasReadyToUseWallet {
             showMainScreen()
         } else {
@@ -97,8 +65,8 @@ open class MainFlowCoordinator: FlowCoordinator {
         lockedViewController = rootViewController
 
         if authenticationService.isUserRegistered {
-            applicationRootViewController = unlockController { [unowned self] success in
-                guard success else { return }
+            applicationRootViewController = UnlockViewController.create { [unowned self] success in
+                if !success { return }
                 self.applicationRootViewController = self.lockedViewController
             }
         } else {
@@ -106,8 +74,18 @@ open class MainFlowCoordinator: FlowCoordinator {
         }
     }
 
-    private func unlockController(completion: @escaping (Bool) -> Void) -> UIViewController {
-        return UnlockViewController.create(completion: completion)
+    func showMainScreen() {
+        let mainVC = MainViewController.create(delegate: self)
+        mainVC.navigationItem.backBarButtonItem = backButton()
+        push(mainVC)
+    }
+
+    func showOnboarding() {
+        if authenticationService.isUserRegistered {
+            enterSetupSafeFlow()
+        } else {
+            push(StartViewController.create(delegate: self))
+        }
     }
 
     open func appEntersForeground() {
@@ -116,7 +94,7 @@ open class MainFlowCoordinator: FlowCoordinator {
                 return
         }
         lockedViewController = rootVC
-        applicationRootViewController = unlockController { [unowned self] success in
+        applicationRootViewController = UnlockViewController.create { [unowned self] success in
             guard success else { return }
             self.applicationRootViewController = self.lockedViewController
         }
@@ -134,35 +112,36 @@ open class MainFlowCoordinator: FlowCoordinator {
         }
     }
 
-    // FROM onboardingFlowCoordinator
-    let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
-    let setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
-
-    func showOnboarding() {
-        if isUserRegistered {
-            enterSetupSafeFlow()
-        } else {
-            push(StartViewController.create(delegate: self))
+    open func receive(message: [AnyHashable: Any]) {
+        guard let transactionID = walletService.receive(message: message) else { return }
+        if let vc = navigationController.topViewController as? ReviewTransactionViewController {
+            let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
+            vc.update(with: tx)
+        } else if let tx = walletService.transactionData(transactionID), tx.status != .rejected {
+            openTransactionReviewScreen(transactionID)
         }
     }
 
-    private var isUserRegistered: Bool {
-        return ApplicationServiceRegistry.authenticationService.isUserRegistered
+    fileprivate func openTransactionReviewScreen(_ id: String) {
+        let reviewVC = SendReviewViewController(transactionID: id, delegate: self)
+        push(reviewVC)
     }
 
-    private func enterSetupSafeFlow() {
+    fileprivate func backButton() -> UIBarButtonItem {
+        return UIBarButtonItem(title: LocalizedString("back", comment: "Back"),
+                               style: .plain,
+                               target: nil,
+                               action: nil)
+    }
+
+    fileprivate func enterSetupSafeFlow() {
         enter(flow: setupSafeFlowCoordinator) { [unowned self] in
-            self.exitOnboarding()
+            self.clearNavigationStack()
+            self.showMainScreen()
         }
     }
 
-    func  exitOnboarding() {
-        clearNavigationStack()
-        showMainScreen()
-    }
 }
-
-
 
 extension MainFlowCoordinator: StartViewControllerDelegate {
 
@@ -200,7 +179,6 @@ extension MainFlowCoordinator: TermsAndConditionsViewControllerDelegate {
     }
 
 }
-
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
 

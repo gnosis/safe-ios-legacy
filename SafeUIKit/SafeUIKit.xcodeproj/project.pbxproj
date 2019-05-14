@@ -86,7 +86,7 @@
 		0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */; };
 		0A334E52209C8E6800ABC6AE /* UnlockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */; };
 		0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */; };
-		0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */; };
+		0A334E55209C8E6800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */; };
 		0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */; };
 		0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */; };
 		0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */; };
@@ -161,7 +161,7 @@
 		0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */; };
 		0A5D467B20AD6DBE00AC287E /* SafeAppUIAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467A20AD6DBE00AC287E /* SafeAppUIAlerts.swift */; };
 		0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */; };
-		0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */; };
+		0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */; };
 		0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */; };
 		0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */; };
 		0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5102113152F0066821A /* MainViewControllerTests.swift */; };
@@ -626,7 +626,7 @@
 		0A334DEC209C894D00ABC6AE /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeAppUIMedia.xcassets; sourceTree = "<group>"; };
 		0A334DF3209C8C4A00ABC6AE /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
-		0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorOnboardingTests.swift; sourceTree = "<group>"; };
 		0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeViewController.swift; sourceTree = "<group>"; };
 		0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeViewControllerTests.swift; sourceTree = "<group>"; };
@@ -650,7 +650,7 @@
 		0A334E19209C8E3800ABC6AE /* StartViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E1A209C8E3800ABC6AE /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockViewControllerTests.swift; sourceTree = "<group>"; };
-		0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorAppTests.swift; sourceTree = "<group>"; };
 		0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
 		0A334E26209C8E3800ABC6AE /* Unlock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unlock.storyboard; sourceTree = "<group>"; };
 		0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockViewController.swift; sourceTree = "<group>"; };
@@ -1299,8 +1299,8 @@
 				0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */,
 				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
-				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
-				0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */,
+				0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */,
+				0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */,
 				55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */,
 				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
 				0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */,
@@ -2912,7 +2912,7 @@
 				55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,
 				0A3BD8ED22254822007039B4 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
-				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
+				0A334E55209C8E6800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift in Sources */,
 				554CACD7221F19430086D303 /* SendReviewViewControllerTests.swift in Sources */,
 				0A3BD8F122254822007039B4 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
 				0A3BD8EE22254822007039B4 /* RBEIntroViewControllerInvalidStateTests.swift in Sources */,
@@ -2971,7 +2971,7 @@
 				0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,
 				0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */,
-				0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */,
+				0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */,
 				0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				0A334DC2209C6D8D00ABC6AE /* SetupSafeOptionsViewControllerTests.swift in Sources */,
 				0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */,

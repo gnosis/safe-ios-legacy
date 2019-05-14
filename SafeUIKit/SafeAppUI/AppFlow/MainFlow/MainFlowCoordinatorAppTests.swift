@@ -7,7 +7,7 @@ import XCTest
 import CommonTestSupport
 import Common
 
-class AppFlowCoordinatorTests: SafeTestCase {
+class MainFlowCoordinatorAppTests: SafeTestCase {
 
     var flowCoordinator: MainFlowCoordinator!
     let password = "MyPassword"
@@ -106,7 +106,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
             return
         }
         XCTAssertTrue(type(of: flowCoordinator.rootViewController!) == type(of: rootVC))
-        flowCoordinator.exitOnboarding()
+        flowCoordinator.setupSafeFlowCoordinator.exitFlow()
         XCTAssertTrue((UIApplication.rootViewController as? UINavigationController)?.topViewController
             is MainViewController)
     }
@@ -118,7 +118,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
 
 }
 
-extension AppFlowCoordinatorTests {
+extension MainFlowCoordinatorAppTests {
 
     private func createFlowCoordinator() {
         flowCoordinator = MainFlowCoordinator()

@@ -8,7 +8,7 @@ import CommonTestSupport
 import SafariServices
 import MultisigWalletApplication
 
-class OnboardingFlowCoordinatorTests: SafeTestCase {
+class MainFlowCoordinatorOnboardingTests: SafeTestCase {
 
     var flowCoordinator: MainFlowCoordinator!
 
@@ -102,10 +102,10 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
     func test_whenSetupSafeFlowExits_thenOnboardingFlowExits() {
         try? authenticationService.registerUser(password: "password")
         let testFC = TestFlowCoordinator()
-        var finished = false
-        testFC.enter(flow: flowCoordinator) { finished = true }
+        testFC.enter(flow: flowCoordinator)
+        flowCoordinator.showOnboarding()
         flowCoordinator.setupSafeFlowCoordinator.exitFlow()
-        XCTAssertTrue(finished)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is MainViewController)
     }
 
 }
