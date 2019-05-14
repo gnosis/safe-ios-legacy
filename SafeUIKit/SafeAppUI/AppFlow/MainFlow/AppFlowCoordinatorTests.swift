@@ -9,7 +9,7 @@ import Common
 
 class AppFlowCoordinatorTests: SafeTestCase {
 
-    var flowCoordinator: AppFlowCoordinator!
+    var flowCoordinator: MainFlowCoordinator!
     let password = "MyPassword"
 
     override func setUp() {
@@ -20,7 +20,9 @@ class AppFlowCoordinatorTests: SafeTestCase {
 
     func test_startViewController_whenUserNotRegistered_thenPresentingOnboarding() {
         let testFC = TestFlowCoordinator()
-        testFC.enter(flow: OnboardingFlowCoordinator())
+        let mainFC = MainFlowCoordinator()
+        testFC.enter(flow: mainFC)
+        mainFC.showOnboarding()
         let expectedController = testFC.topViewController
 
         authenticationService.unregisterUser()
@@ -103,8 +105,8 @@ class AppFlowCoordinatorTests: SafeTestCase {
             XCTFail()
             return
         }
-        XCTAssertTrue(type(of: flowCoordinator.onboardingFlowCoordinator.rootViewController!) == type(of: rootVC))
-        flowCoordinator.onboardingFlowCoordinator.exitFlow()
+        XCTAssertTrue(type(of: flowCoordinator.rootViewController!) == type(of: rootVC))
+        flowCoordinator.exitOnboarding()
         XCTAssertTrue((UIApplication.rootViewController as? UINavigationController)?.topViewController
             is MainViewController)
     }
@@ -119,7 +121,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
 extension AppFlowCoordinatorTests {
 
     private func createFlowCoordinator() {
-        flowCoordinator = AppFlowCoordinator()
+        flowCoordinator = MainFlowCoordinator()
         flowCoordinator.setUp()
     }
 

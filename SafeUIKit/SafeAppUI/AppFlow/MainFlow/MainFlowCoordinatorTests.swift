@@ -15,8 +15,8 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        mainFlowCoordinator = MainFlowCoordinator(rootViewController: UINavigationController())
-        mainFlowCoordinator.setUp()
+        mainFlowCoordinator = MainFlowCoordinator()
+        mainFlowCoordinator.showMainScreen()
     }
 
     func test_whenSetupCalled_thenShowsMainScreen() {
