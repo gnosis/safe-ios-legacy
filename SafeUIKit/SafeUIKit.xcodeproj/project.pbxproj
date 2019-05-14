@@ -1294,25 +1294,25 @@
 		0A4DF82520CE701E0095C00D /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
+				55DEBC25214BD74B0017CD4B /* Main */,
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
-				0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */,
-				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
-				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
 				0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */,
 				0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */,
+				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
 				55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */,
-				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
-				0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */,
-				55DEBC25214BD74B0017CD4B /* Main */,
-				55DEBC26214BD78B0017CD4B /* SafeAddress */,
-				0A60B50E211312C00066821A /* Send */,
-				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
-				0A8C961920D2A783007D2410 /* TransactionDetails */,
-				0AF8D53D20D01002001E8423 /* SegmentBar */,
 				0A4EEA6B20D11109005CDAC0 /* Menu */,
+				0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */,
+				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
+				55DEBC26214BD78B0017CD4B /* SafeAddress */,
+				0AF8D53D20D01002001E8423 /* SegmentBar */,
+				0A60B50E211312C00066821A /* Send */,
+				0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */,
 				0AF8D53A20D00FDB001E8423 /* Tokens */,
+				0A8C961920D2A783007D2410 /* TransactionDetails */,
 				0AF8D53C20D00FF6001E8423 /* TransactionList */,
+				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
