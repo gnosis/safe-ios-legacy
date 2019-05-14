@@ -10,6 +10,7 @@ open class BasicTableViewCell: UITableViewCell {
     @IBOutlet public private(set) weak var leftTextLabel: UILabel!
     @IBOutlet public private(set) weak var rightTextLabel: UILabel!
     @IBOutlet public private(set) weak var separatorView: UIView!
+    @IBOutlet public private(set) weak var rightTrailingConstraint: NSLayoutConstraint!
 
     /// Used if table view section index should be displayed
     public var withTrailingSpace: Bool = false {

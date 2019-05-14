@@ -25,6 +25,9 @@
 /* Back */
 "back" = "Back";
 
+/* Balance */
+"balance" = "Balance";
+
 /* Balance after transfer */
 "balance_after_transfer" = "Balance after transfer";
 
@@ -128,6 +131,9 @@
    Recovery address validation failed alert's title
    Recovery transaction failed alert's title */
 "error" = "Error";
+
+/* Fee Payment Method */
+"fee_method" = "Fee Payment Method";
 
 /* Fee Payment Method */
 "fee_payment_method" = "Fee Payment Method";
@@ -558,6 +564,9 @@
    Terms of Use */
 "terms_of_service" = "Terms of Use";
 
+/* Fee payment method description */
+"this_payment_will_be_used" = "This payment method will be used to pay network fees in all transactions.";
+
 /* Text between stars (*) will be emphasized */
 "this_will_generate_new_seed" = "This will generate a new recovery phrase and invalidate your current one.";
 
@@ -566,6 +575,9 @@
 
 /* Network fee */
 "transaction_fee" = "Network fee";
+
+/* Fee payment method description */
+"transaction_fee_description_token_payment" = "This is the fee required by the blockchain to execute the transaction. You can pay this fee in the payment token of your choice.";
 
 /* Explanatory message */
 "transaction_fee_explanation" = "This is the fee required by the blockchain to execute the transaction.";

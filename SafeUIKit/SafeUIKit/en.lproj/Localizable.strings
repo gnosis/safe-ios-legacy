@@ -60,7 +60,7 @@
 "ios_transaction_fee_token" = "token";
 
 /* Loading... */
-"loading" = "Loading …";
+"loading" = "Loading…";
 
 /* OK */
 "ok" = "OK";

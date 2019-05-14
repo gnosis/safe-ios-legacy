@@ -41,16 +41,9 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertTrue(walletService.didSync)
     }
 
-    func test_whenSelectingRow_thenDeselectsIt() {
-        createWindow(controller)
-        controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertNil(controller.tableView.indexPathForSelectedRow)
-    }
-
     func test_whenSelectingRow_thenCallsDelegate() {
         let delegate = MockMainViewControllerDelegate()
         controller.delegate = delegate
-        createWindow(controller)
         controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssertTrue(delegate.didCallCreateNewTransaction)
     }
