@@ -30,14 +30,11 @@ final class PaymentMethodHeaderView: UITableViewHeaderFooterView {
         headingView.backgroundColor = ColorName.paleGrey.color
         descriptionInfoLabel.setInfoText(Strings.description)
         descriptionInfoLabel.delegate = self
-        let headingAttributes: [NSAttributedString.Key: Any] =
-            [.font: UIFont.systemFont(ofSize: 10, weight: .bold),
-             .foregroundColor: ColorName.lightGreyBlue.color,
-             .kern: 2]
+        let headerStyle = TableHeaderStyle()
         feePaymentMethodLabel.attributedText = NSAttributedString(string: Strings.feeMethod,
-                                                                  attributes: headingAttributes)
+                                                                  style: headerStyle)
         balanceLabel.attributedText = NSAttributedString(string: Strings.balance,
-                                                         attributes: headingAttributes)
+                                                         style: headerStyle)
     }
 
 }

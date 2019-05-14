@@ -327,6 +327,7 @@
 		5549B2A522859F4700F3B5B7 /* PaymentMethodHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549B2A422859F4700F3B5B7 /* PaymentMethodHeaderView.swift */; };
 		5549B2A722859F5F00F3B5B7 /* PaymentMethodHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5549B2A622859F5F00F3B5B7 /* PaymentMethodHeaderView.xib */; };
 		5549B2CA2285C62300F3B5B7 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549B2C92285C62300F3B5B7 /* InfoLabel.swift */; };
+		5549B2CC228AB51D00F3B5B7 /* TableHeaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549B2CB228AB51D00F3B5B7 /* TableHeaderStyle.swift */; };
 		554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACCE221F04B80086D303 /* SendReviewViewController.swift */; };
 		554CACD1221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */; };
 		554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD4221F08CD0086D303 /* RBEReviewTransactionViewController.swift */; };
@@ -903,6 +904,7 @@
 		5549B2A422859F4700F3B5B7 /* PaymentMethodHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodHeaderView.swift; sourceTree = "<group>"; };
 		5549B2A622859F5F00F3B5B7 /* PaymentMethodHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentMethodHeaderView.xib; sourceTree = "<group>"; };
 		5549B2C92285C62300F3B5B7 /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
+		5549B2CB228AB51D00F3B5B7 /* TableHeaderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderStyle.swift; sourceTree = "<group>"; };
 		554CACCE221F04B80086D303 /* SendReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReviewViewController.swift; sourceTree = "<group>"; };
 		554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseReviewTransactionViewController.swift; sourceTree = "<group>"; };
 		554CACD4221F08CD0086D303 /* RBEReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEReviewTransactionViewController.swift; sourceTree = "<group>"; };
@@ -2032,6 +2034,7 @@
 			isa = PBXGroup;
 			children = (
 				55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */,
+				5549B2CB228AB51D00F3B5B7 /* TableHeaderStyle.swift */,
 			);
 			path = BackgroundHeaderFooterView;
 			sourceTree = "<group>";
@@ -2699,6 +2702,7 @@
 				0AB3F13A21F73A5500D351C7 /* CollectionUIModel.swift in Sources */,
 				5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */,
 				0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */,
+				5549B2CC228AB51D00F3B5B7 /* TableHeaderStyle.swift in Sources */,
 				55E8B000219C4A93002930A1 /* TransactionFeeView.swift in Sources */,
 				5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */,
 				550E7CDE21708E540032DE6C /* UITextField+TokenInput.swift in Sources */,

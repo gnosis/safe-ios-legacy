@@ -26,11 +26,7 @@ open class BackgroundHeaderFooterView: UITableViewHeaderFooterView {
                 label.attributedText = nil
                 return
             }
-            let attributes: [NSAttributedString.Key: Any] =
-                [.font: UIFont.systemFont(ofSize: 10, weight: .bold),
-                 .foregroundColor: ColorName.lightGreyBlue.color,
-                 .kern: 2]
-            label.attributedText = NSAttributedString(string: title, attributes: attributes)
+            label.attributedText = NSAttributedString(string: title, style: TableHeaderStyle())
         }
     }
 

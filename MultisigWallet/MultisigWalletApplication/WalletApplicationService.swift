@@ -412,7 +412,7 @@ public class WalletApplicationService: Assertable {
         let wallet = selectedWallet!
         wallet.changeFeePaymentToken(Address(token.address))
         DomainRegistry.walletRepository.save(wallet)
-        guard !token.isEther else { return }
+        if token.isEther { return }
         whitelist(token: token)
     }
 

@@ -8,28 +8,13 @@ public protocol InfoLabelDelegate: class {
     func didTap()
 }
 
-public class InfoLabel: UILabel {
+public class InfoLabel: BaseCustomLabel {
 
     public weak var delegate: InfoLabelDelegate?
 
     public var infoSuffix = "[?]"
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        commonInit()
-    }
-
-    private func commonInit() {
+    public override func commonInit() {
         font = UIFont.systemFont(ofSize: 17)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
         addGestureRecognizer(tapRecognizer)
@@ -41,6 +26,7 @@ public class InfoLabel: UILabel {
     }
 
     public func setInfoText(_ text: String) {
+        // Non-braking space is used with info suffix to make it always next to the last word when the line splits.
         let attributedString = NSMutableAttributedString(string: "\(text)\u{00A0}\(infoSuffix)")
         let textRange = attributedString.mutableString.range(of: text)
         let infoRange = attributedString.mutableString.range(of: infoSuffix)
