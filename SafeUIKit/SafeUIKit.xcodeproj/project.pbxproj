@@ -69,7 +69,6 @@
 		0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DE2209C892700ABC6AE /* SafeTestCase.swift */; };
 		0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DEC209C894D00ABC6AE /* libIdentityAccessImplementations.a */; };
 		0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */; };
-		0A334E2A209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFA209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift */; };
 		0A334E2B209C8E3800ABC6AE /* NewSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */; };
 		0A334E2C209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */; };
 		0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */; };
@@ -82,13 +81,12 @@
 		0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E16209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift */; };
 		0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E17209C8E3800ABC6AE /* PasswordValidator.swift */; };
 		0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E1A209C8E3800ABC6AE /* PasswordViewController.swift */; };
-		0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */; };
 		0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */; };
 		0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E26209C8E3800ABC6AE /* Unlock.storyboard */; };
 		0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */; };
 		0A334E52209C8E6800ABC6AE /* UnlockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */; };
 		0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */; };
-		0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */; };
+		0A334E55209C8E6800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */; };
 		0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */; };
 		0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */; };
 		0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */; };
@@ -163,7 +161,7 @@
 		0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */; };
 		0A5D467B20AD6DBE00AC287E /* SafeAppUIAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467A20AD6DBE00AC287E /* SafeAppUIAlerts.swift */; };
 		0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */; };
-		0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */; };
+		0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */; };
 		0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */; };
 		0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */; };
 		0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5102113152F0066821A /* MainViewControllerTests.swift */; };
@@ -633,8 +631,7 @@
 		0A334DEC209C894D00ABC6AE /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeAppUIMedia.xcassets; sourceTree = "<group>"; };
 		0A334DF3209C8C4A00ABC6AE /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
-		0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		0A334DFA209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorOnboardingTests.swift; sourceTree = "<group>"; };
 		0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeViewController.swift; sourceTree = "<group>"; };
 		0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeViewControllerTests.swift; sourceTree = "<group>"; };
@@ -657,9 +654,8 @@
 		0A334E17209C8E3800ABC6AE /* PasswordValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		0A334E19209C8E3800ABC6AE /* StartViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E1A209C8E3800ABC6AE /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
-		0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockViewControllerTests.swift; sourceTree = "<group>"; };
-		0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorAppTests.swift; sourceTree = "<group>"; };
 		0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
 		0A334E26209C8E3800ABC6AE /* Unlock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unlock.storyboard; sourceTree = "<group>"; };
 		0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockViewController.swift; sourceTree = "<group>"; };
@@ -1134,8 +1130,6 @@
 			isa = PBXGroup;
 			children = (
 				0A334E10209C8E3800ABC6AE /* MasterPasswordFlow */,
-				0A334DFA209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift */,
-				0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */,
 				0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */,
 				0A334E13209C8E3800ABC6AE /* StartViewController.swift */,
 				0A334E19209C8E3800ABC6AE /* StartViewControllerTests.swift */,
@@ -1197,8 +1191,6 @@
 		0A334E20209C8E3800ABC6AE /* AppFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
-				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
 				0A4DF82520CE701E0095C00D /* MainFlow */,
 			);
 			path = AppFlow;
@@ -1312,22 +1304,25 @@
 		0A4DF82520CE701E0095C00D /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
+				55DEBC25214BD74B0017CD4B /* Main */,
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
-				0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */,
-				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
+				0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */,
+				0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
 				55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */,
-				0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */,
-				55DEBC25214BD74B0017CD4B /* Main */,
-				55DEBC26214BD78B0017CD4B /* SafeAddress */,
-				0A60B50E211312C00066821A /* Send */,
-				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
-				0A8C961920D2A783007D2410 /* TransactionDetails */,
-				0AF8D53D20D01002001E8423 /* SegmentBar */,
 				0A4EEA6B20D11109005CDAC0 /* Menu */,
+				0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */,
+				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
+				55DEBC26214BD78B0017CD4B /* SafeAddress */,
+				0AF8D53D20D01002001E8423 /* SegmentBar */,
+				0A60B50E211312C00066821A /* Send */,
+				0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */,
 				0AF8D53A20D00FDB001E8423 /* Tokens */,
+				0A8C961920D2A783007D2410 /* TransactionDetails */,
 				0AF8D53C20D00FF6001E8423 /* TransactionList */,
+				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -1591,7 +1586,6 @@
 				0A334DD9209C70F000ABC6AE /* Localizable.strings */,
 				0A334DD0209C700700ABC6AE /* LocalizedString.swift */,
 				0A2FAA512201A64000793B7B /* DateToolsLocalized.swift */,
-				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
 				0AF33D37209C6BF800527D25 /* SafeAppUI.h */,
 				0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */,
 				0A334DE2209C892700ABC6AE /* SafeTestCase.swift */,
@@ -2895,11 +2889,9 @@
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
 				0AD899BA2281CADD008AE325 /* SuccessViewController+SendSuccess.swift in Sources */,
-				0A334E2A209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
 				5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */,
-				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
@@ -2955,7 +2947,7 @@
 				55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,
 				0A3BD8ED22254822007039B4 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
-				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
+				0A334E55209C8E6800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift in Sources */,
 				554CACD7221F19430086D303 /* SendReviewViewControllerTests.swift in Sources */,
 				0A3BD8F122254822007039B4 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
 				0A3BD8EE22254822007039B4 /* RBEIntroViewControllerInvalidStateTests.swift in Sources */,
@@ -3014,7 +3006,7 @@
 				0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,
 				0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */,
-				0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */,
+				0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */,
 				0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				0A334DC2209C6D8D00ABC6AE /* SetupSafeOptionsViewControllerTests.swift in Sources */,
 				0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */,

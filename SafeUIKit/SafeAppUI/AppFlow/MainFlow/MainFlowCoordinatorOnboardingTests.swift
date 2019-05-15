@@ -8,18 +8,18 @@ import CommonTestSupport
 import SafariServices
 import MultisigWalletApplication
 
-class OnboardingFlowCoordinatorTests: SafeTestCase {
+class MainFlowCoordinatorOnboardingTests: SafeTestCase {
 
-    var flowCoordinator: OnboardingFlowCoordinator!
+    var flowCoordinator: MainFlowCoordinator!
 
     override func setUp() {
         super.setUp()
-        flowCoordinator = OnboardingFlowCoordinator(rootViewController: UINavigationController())
+        flowCoordinator = MainFlowCoordinator()
     }
 
     func test_whenUserNotRegistered_thenShowsStartScreen() {
         authenticationService.unregisterUser()
-        flowCoordinator.setUp()
+        flowCoordinator.showOnboarding()
         XCTAssertTrue(flowCoordinator.navigationController.topViewController is StartViewController)
     }
 
@@ -30,7 +30,7 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
 
     private func pressSetupPasswordButton() {
         authenticationService.unregisterUser()
-        flowCoordinator.setUp()
+        flowCoordinator.showOnboarding()
         createWindow(flowCoordinator.rootViewController)
         flowCoordinator.didStart()
         delay(0.25)
@@ -80,7 +80,7 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
         let expectedController = testFC.topViewController
 
         try? authenticationService.registerUser(password: "password")
-        flowCoordinator.setUp()
+        flowCoordinator.showOnboarding()
 
         XCTAssertNotNil(flowCoordinator.navigationController.topViewController)
         XCTAssertTrue(type(of: flowCoordinator.navigationController.topViewController) == type(of: expectedController))
@@ -102,10 +102,10 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
     func test_whenSetupSafeFlowExits_thenOnboardingFlowExits() {
         try? authenticationService.registerUser(password: "password")
         let testFC = TestFlowCoordinator()
-        var finished = false
-        testFC.enter(flow: flowCoordinator) { finished = true }
+        testFC.enter(flow: flowCoordinator)
+        flowCoordinator.showOnboarding()
         flowCoordinator.setupSafeFlowCoordinator.exitFlow()
-        XCTAssertTrue(finished)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is MainViewController)
     }
 
 }
