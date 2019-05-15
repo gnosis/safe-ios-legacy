@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E13-LE-lAG">
-                                <rect key="frame" x="16" y="277" width="382" height="55.5"/>
+                                <rect key="frame" x="16" y="259" width="382" height="55.5"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">No Safes added yet. 
@@ -69,11 +69,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="browser-extension-qr" translatesAutoresizingMaskIntoConstraints="NO" id="Qlt-ex-y0w">
-                                <rect key="frame" x="157" y="144" width="100" height="100"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-safes" translatesAutoresizingMaskIntoConstraints="NO" id="Qlt-ex-y0w">
+                                <rect key="frame" x="146" y="144" width="90" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="l0L-wT-xA4"/>
-                                    <constraint firstAttribute="height" constant="100" id="xhv-51-y9R"/>
+                                    <constraint firstAttribute="width" constant="90" id="l0L-wT-xA4"/>
+                                    <constraint firstAttribute="height" constant="90" id="xhv-51-y9R"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -82,11 +82,11 @@
                             <constraint firstItem="Qlt-ex-y0w" firstAttribute="top" secondItem="8Uu-Zb-CVY" secondAttribute="top" constant="100" id="DsE-4p-bCA"/>
                             <constraint firstItem="8Uu-Zb-CVY" firstAttribute="bottom" secondItem="6KL-Tt-fre" secondAttribute="bottom" constant="35" id="OZe-0q-kpv"/>
                             <constraint firstItem="8Uu-Zb-CVY" firstAttribute="trailing" secondItem="E13-LE-lAG" secondAttribute="trailing" constant="16" id="Ocq-0P-cpX"/>
-                            <constraint firstItem="Qlt-ex-y0w" firstAttribute="centerX" secondItem="b3x-LP-Xv8" secondAttribute="centerX" id="Yh5-Fx-Wpl"/>
+                            <constraint firstItem="Qlt-ex-y0w" firstAttribute="centerX" secondItem="b3x-LP-Xv8" secondAttribute="centerX" constant="-16" id="Yh5-Fx-Wpl"/>
                             <constraint firstItem="E13-LE-lAG" firstAttribute="leading" secondItem="8Uu-Zb-CVY" secondAttribute="leading" constant="16" id="ZhP-f1-kwg"/>
                             <constraint firstItem="8Uu-Zb-CVY" firstAttribute="trailing" secondItem="6KL-Tt-fre" secondAttribute="trailing" constant="16" id="ekq-Us-XnU"/>
                             <constraint firstItem="6KL-Tt-fre" firstAttribute="leading" secondItem="8Uu-Zb-CVY" secondAttribute="leading" constant="16" id="f4v-DA-nWs"/>
-                            <constraint firstItem="E13-LE-lAG" firstAttribute="top" secondItem="Qlt-ex-y0w" secondAttribute="bottom" constant="33" id="yyW-JU-5Q9"/>
+                            <constraint firstItem="E13-LE-lAG" firstAttribute="top" secondItem="Qlt-ex-y0w" secondAttribute="bottom" constant="25" id="yyW-JU-5Q9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Uu-Zb-CVY"/>
                     </view>
@@ -103,6 +103,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="browser-extension-qr" width="125" height="95"/>
+        <image name="no-safes" width="90" height="90"/>
     </resources>
 </document>
