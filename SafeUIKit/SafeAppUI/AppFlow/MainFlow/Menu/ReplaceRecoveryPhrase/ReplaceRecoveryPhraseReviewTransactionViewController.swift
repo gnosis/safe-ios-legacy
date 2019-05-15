@@ -7,7 +7,8 @@ import Foundation
 final class ReplaceRecoveryPhraseReviewTransactionViewController: ReviewTransactionViewController {
 
     enum ReplaceRecoveryPhraseStrings {
-        static let title = LocalizedString("replace_recovery_phrase", comment: "Title for the header in review screen")
+        static let title = LocalizedString("ios_replace_recovery_phrase",
+                                           comment: "Title for the header in review screen")
             .replacingOccurrences(of: "\n", with: " ")
         static let detail = LocalizedString("ios_replace_seed_details",
                                             comment: "Detail for the header in review screen")

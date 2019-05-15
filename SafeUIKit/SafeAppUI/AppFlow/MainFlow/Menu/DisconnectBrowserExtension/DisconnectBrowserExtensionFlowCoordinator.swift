@@ -14,7 +14,7 @@ class DisconnectBrowserExtensionFlowCoordinator: FlowCoordinator {
     }
 
     enum Strings {
-        static let disconnectBE = LocalizedString("disconnect_browser_extension",
+        static let disconnectBE = LocalizedString("ios_disconnect_browser_extension",
                                                   comment: "Disconnect browser extension")
             .replacingOccurrences(of: "\n", with: " ")
         static let disconnectDescription = LocalizedString("disconnect_2fa_description",

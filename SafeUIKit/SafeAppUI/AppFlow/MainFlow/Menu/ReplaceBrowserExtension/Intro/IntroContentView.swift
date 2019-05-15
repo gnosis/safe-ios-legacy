@@ -25,7 +25,7 @@ public class IntroContentView: NibUIView {
     }
 
     struct Content {
-        var header = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
+        var header = LocalizedString("ios_replace_browser_extension", comment: "Replace browser extension")
             .replacingOccurrences(of: "\n", with: " ")
         var body = LocalizedString("once_process_is_complete", comment: "Intro body text")
         var icon = Asset.ReplaceBrowserExtension.introIcon.image

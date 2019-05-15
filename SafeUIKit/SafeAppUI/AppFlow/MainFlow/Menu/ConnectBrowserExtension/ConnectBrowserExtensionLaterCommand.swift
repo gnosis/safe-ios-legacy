@@ -8,7 +8,7 @@ import MultisigWalletApplication
 final class ConnectBrowserExtensionLaterCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("connect_browser_extension", comment: "Connect browser extension")
+        return LocalizedString("ios_connect_browser_extension", comment: "Connect browser extension")
             .replacingOccurrences(of: "\n", with: " ").capitalized
     }
 
