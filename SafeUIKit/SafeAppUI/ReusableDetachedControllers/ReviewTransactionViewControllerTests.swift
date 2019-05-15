@@ -165,13 +165,16 @@ class MockReviewTransactionViewControllerDelegate: ReviewTransactionViewControll
 
     var requestedToSubmit = false
     var shouldAllowToSubmit = true
-    func wantsToSubmitTransaction(_ completion: @escaping (_ allowed: Bool) -> Void) {
+
+    func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
+                                                                 completion: @escaping (Bool) -> Void) {
         requestedToSubmit = true
         completion(shouldAllowToSubmit)
     }
 
     var finished = false
-    func didFinishReview() {
+
+    func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
         finished = true
     }
 

@@ -99,11 +99,12 @@ extension DisconnectBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewCont
 
 extension DisconnectBrowserExtensionFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
-    func wantsToSubmitTransaction(_ completion: @escaping (Bool) -> Void) {
+    func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
+                                                                 completion: @escaping (Bool) -> Void) {
         completion(true)
     }
 
-    func didFinishReview() {
+    func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
         applicationService.startMonitoring(transaction: transactionID)
         exitFlow()
     }

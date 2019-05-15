@@ -11,10 +11,9 @@ final class ReplaceRecoveryPhraseCommand: MenuCommand {
             .replacingOccurrences(of: "\n", with: " ").capitalized
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        mainFlowCoordinator.saveCheckpoint()
-        mainFlowCoordinator.replaceRecoveryController = mainFlowCoordinator.mnemonicIntroViewController()
-        mainFlowCoordinator.push(mainFlowCoordinator.replaceRecoveryController)
+    override init() {
+        super.init()
+        childFlowCoordinator = ReplaceRecoveryPhraseFlowCoordinator()
     }
 
 }
