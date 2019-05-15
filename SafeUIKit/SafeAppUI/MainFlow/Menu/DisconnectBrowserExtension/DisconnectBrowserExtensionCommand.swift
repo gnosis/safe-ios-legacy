@@ -8,7 +8,7 @@ import MultisigWalletApplication
 class DisconnectBrowserExtensionCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("disconnect_browser_extension", comment: "Disconnect browser extension")
+        return LocalizedString("ios_disconnect_browser_extension", comment: "Disconnect browser extension")
             .replacingOccurrences(of: "\n", with: " ").capitalized
     }
 

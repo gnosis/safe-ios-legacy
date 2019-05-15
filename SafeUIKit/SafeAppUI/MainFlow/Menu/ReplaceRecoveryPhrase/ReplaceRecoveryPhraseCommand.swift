@@ -7,7 +7,7 @@ import Foundation
 final class ReplaceRecoveryPhraseCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("replace_recovery_phrase", comment: "Change recovery key menu item")
+        return LocalizedString("ios_replace_recovery_phrase", comment: "Change recovery key menu item")
             .replacingOccurrences(of: "\n", with: " ").capitalized
     }
 
