@@ -94,23 +94,6 @@ class MainFlowCoordinatorAppTests: SafeTestCase {
             is MainViewController)
     }
 
-    func test_whenOnboardingFlowExits_thenEntersMainScreen() throws {
-        authenticationService.allowAuthentication()
-        _ = try Authenticator.instance.authenticate(.password(password))
-        walletService.createNewDraftWallet()
-        walletService.update(account: ethID, newBalance: 100)
-        walletService.assignAddress("address")
-        createFlowCoordinator()
-        guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else {
-            XCTFail()
-            return
-        }
-        XCTAssertTrue(type(of: flowCoordinator.rootViewController!) == type(of: rootVC))
-        flowCoordinator.setupSafeFlowCoordinator.exitFlow()
-        XCTAssertTrue((UIApplication.rootViewController as? UINavigationController)?.topViewController
-            is MainViewController)
-    }
-
     func test_whenReceivingRemoteMessage_delegatesToMainFlowCoordinator() {
         flowCoordinator.receive(message: ["key": "value"])
         XCTAssertNotNil(walletService.receive_input)

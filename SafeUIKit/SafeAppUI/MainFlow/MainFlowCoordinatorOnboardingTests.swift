@@ -74,16 +74,11 @@ class MainFlowCoordinatorOnboardingTests: SafeTestCase {
     }
 
     func test_startViewController_whenMasterPasswordIsSet_thenNewSafeFlowStarted() {
-        let testFC = TestFlowCoordinator()
-        let setupSafeFC = SetupSafeFlowCoordinator()
-        testFC.enter(flow: setupSafeFC)
-        let expectedController = testFC.topViewController
-
         try? authenticationService.registerUser(password: "password")
         flowCoordinator.showOnboarding()
 
         XCTAssertNotNil(flowCoordinator.navigationController.topViewController)
-        XCTAssertTrue(type(of: flowCoordinator.navigationController.topViewController) == type(of: expectedController))
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is OnboardingCreateOrRestoreViewController)
     }
 
     func test_whenDidConfirmPassword_thenSetupSafeIsShown() {
@@ -96,16 +91,7 @@ class MainFlowCoordinatorOnboardingTests: SafeTestCase {
         delay(1.25)
         flowCoordinator.masterPasswordFlowCoordinator.didConfirmPassword()
         delay(0.5)
-        XCTAssertTrue(flowCoordinator.navigationController.topViewController is SetupSafeOptionsViewController)
-    }
-
-    func test_whenSetupSafeFlowExits_thenOnboardingFlowExits() {
-        try? authenticationService.registerUser(password: "password")
-        let testFC = TestFlowCoordinator()
-        testFC.enter(flow: flowCoordinator)
-        flowCoordinator.showOnboarding()
-        flowCoordinator.setupSafeFlowCoordinator.exitFlow()
-        XCTAssertTrue(flowCoordinator.navigationController.topViewController is MainViewController)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is OnboardingCreateOrRestoreViewController)
     }
 
 }

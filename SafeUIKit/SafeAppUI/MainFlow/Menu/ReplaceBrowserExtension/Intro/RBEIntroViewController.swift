@@ -39,7 +39,6 @@ public class RBEIntroViewController: UIViewController {
 
     private enum Strings {
         static let start = LocalizedString("start", comment: "Start")
-        static let back = LocalizedString("back", comment: "Back")
     }
 
     public static func create() -> RBEIntroViewController {
@@ -58,7 +57,7 @@ public class RBEIntroViewController: UIViewController {
 
     func commonInit() {
         startButtonItem = UIBarButtonItem(title: Strings.start, style: .done, target: self, action: #selector(start))
-        backButtonItem = UIBarButtonItem(title: Strings.back, style: .plain, target: self, action: #selector(back))
+        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
         retryButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(retry))
         formatter.displayedDecimals = 5
     }

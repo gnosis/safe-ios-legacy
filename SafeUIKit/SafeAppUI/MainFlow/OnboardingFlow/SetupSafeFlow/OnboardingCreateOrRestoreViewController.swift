@@ -6,12 +6,13 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 
-protocol SetupSafeOptionsDelegate: class {
+protocol OnboardingCreateOrRestoreViewControllerDelegate: class {
     func didSelectNewSafe()
     func didSelectRecoverSafe()
+    func openMenu()
 }
 
-class SetupSafeOptionsViewController: UIViewController {
+class OnboardingCreateOrRestoreViewController: UIViewController {
 
     enum Strings {
         static let header = LocalizedString("setup_successful", comment: "Set up safe options screen title")
@@ -23,20 +24,39 @@ class SetupSafeOptionsViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var newSafeButton: StandardButton!
     @IBOutlet weak var recoverSafeButton: StandardButton!
-    private weak var delegate: SetupSafeOptionsDelegate?
+    private weak var delegate: OnboardingCreateOrRestoreViewControllerDelegate?
 
-    static func create(delegate: SetupSafeOptionsDelegate) -> SetupSafeOptionsViewController {
-        let vc = StoryboardScene.SetupSafe.setupSafeOptionsViewController.instantiate()
-        vc.delegate = delegate
-        return vc
+    static func create(delegate: OnboardingCreateOrRestoreViewControllerDelegate)
+        -> OnboardingCreateOrRestoreViewController {
+            let vc = StoryboardScene.SetupSafe.setupSafeOptionsViewController.instantiate()
+            vc.delegate = delegate
+            return vc
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerLabel.text = Strings.header
-        headerLabel.textColor = .white
+        headerLabel.attributedText = NSAttributedString(string: Strings.header, style: HeaderStyle())
+        newSafeButton.style = .filled
         newSafeButton.setTitle(Strings.newSafe, for: .normal)
+        recoverSafeButton.style = .plain
         recoverSafeButton.setTitle(Strings.restoreSafe, for: .normal)
+        navigationItem.setRightBarButton(UIBarButtonItem.menuButton(target: self, action: #selector(openMenu)),
+                                         animated: false)
+
+    }
+
+    @objc func openMenu(_ sender: Any) {
+        delegate?.openMenu()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.shadowImage = Asset.shadow.image
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +80,17 @@ class SetupSafeOptionsViewController: UIViewController {
             ApplicationServiceRegistry.recoveryService.prepareForRecovery()
         }
         delegate?.didSelectRecoverSafe()
+    }
+
+
+    class HeaderStyle: AttributedStringStyle {
+
+        override var minimumLineHeight: Double { return 32 }
+        override var maximumLineHeight: Double { return 32 }
+        override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+        override var fontSize: Double { return 20 }
+        override var alignment: NSTextAlignment { return .center }
+
     }
 
 }

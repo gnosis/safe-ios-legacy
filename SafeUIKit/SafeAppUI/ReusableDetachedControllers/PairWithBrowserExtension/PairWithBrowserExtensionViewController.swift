@@ -40,7 +40,6 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
                                                   comment: "Network error message")
         static let invalidCode = LocalizedString("ios_be_error_invalid",
                                                  comment: "Invalid extension code")
-        static let back = LocalizedString("back", comment: "Back")
     }
 
     @IBOutlet weak var wrapperView: UIView!
@@ -105,10 +104,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
 
     override public func awakeFromNib() {
         super.awakeFromNib()
-        backButtonItem = UIBarButtonItem(title: Strings.back,
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(back))
+        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
     }
 
     override public func viewDidLoad() {

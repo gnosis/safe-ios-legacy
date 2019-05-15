@@ -11,8 +11,9 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     private let manageTokensFlowCoordinator = ManageTokensFlowCoordinator()
     let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
-    let setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
     let sendFlowCoordinator = SendFlowCoordinator()
+    let newSafeFlowCoordinator = NewSafeFlowCoordinator()
+    let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionFlowCoordinator = IncomingTransactionFlowCoordinator()
 
     private var lockedViewController: UIViewController!
@@ -82,7 +83,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     func showOnboarding() {
         if authenticationService.isUserRegistered {
-            enterSetupSafeFlow()
+            showCreateOrRestore()
         } else {
             push(StartViewController.create(delegate: self))
         }
@@ -123,10 +124,12 @@ open class MainFlowCoordinator: FlowCoordinator {
         }
     }
 
-    fileprivate func enterSetupSafeFlow() {
-        enter(flow: setupSafeFlowCoordinator) { [unowned self] in
-            self.clearNavigationStack()
-            self.showMainScreen()
+    func showCreateOrRestore() {
+        push(OnboardingCreateOrRestoreViewController.create(delegate: self))
+
+        if newSafeFlowCoordinator.isSafeCreationInProgress ||
+            ApplicationServiceRegistry.walletService.isWalletDeployable {
+            didSelectNewSafe()
         }
     }
 
@@ -181,12 +184,31 @@ extension MainFlowCoordinator: TermsAndConditionsViewControllerDelegate {
         dismissModal { [unowned self] in
             self.enter(flow: self.masterPasswordFlowCoordinator) {
                 self.clearNavigationStack()
-                self.enterSetupSafeFlow()
+                self.showCreateOrRestore()
             }
         }
     }
 
 }
+
+extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
+
+    func didSelectNewSafe() {
+        enter(flow: newSafeFlowCoordinator) { [unowned self] in
+            self.clearNavigationStack()
+            self.showMainScreen()
+        }
+    }
+
+    func didSelectRecoverSafe() {
+        enter(flow: recoverSafeFlowCoordinator) { [unowned self] in
+            self.clearNavigationStack()
+            self.showMainScreen()
+        }
+    }
+
+}
+
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
 
