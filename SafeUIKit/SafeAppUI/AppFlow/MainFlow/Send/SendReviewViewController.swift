@@ -36,7 +36,7 @@ final class SendReviewViewController: ReviewTransactionViewController {
         cells[indexPath.next()] = confirmationCell
     }
 
-    override func updateEtherFeeBalanceCell() {
+    override func updateTransactionFeeCell() {
         precondition(Thread.isMainThread)
         cells[feeCellIndexPath] = feeCalculationCell()
         if feeCellIndexPath.row < tableView.numberOfRows(inSection: feeCellIndexPath.section) {
@@ -49,25 +49,25 @@ final class SendReviewViewController: ReviewTransactionViewController {
         cell.transferView.fromAddress = tx.sender
         cell.transferView.toAddress = tx.recipient
         cell.transferView.tokenData = tx.amountTokenData
-        cell.transferView.balanceData = tx.amountTokenData.withBalance(balance(of: tx.amountTokenData))
+        cell.transferView.balanceData = tx.amountTokenData.withBalance(balance(of: tx.amountTokenData)!)
         return cell
     }
 
     private func feeCalculationCell() -> UITableViewCell {
         let cell = FeeCalculationCell(frame: .zero)
-        let amountBalance = balance(of: tx.amountTokenData)
+        let amountBalance = balance(of: tx.amountTokenData)!
         var amountResultingBalance = amountBalance - abs(tx.amountTokenData.balance ?? 0)
 
         if tx.amountTokenData.address == tx.feeTokenData.address {
             amountResultingBalance -= (tx.feeTokenData.withNonNegativeBalance().balance ?? 0)
-            let calculation = SendEthFeeCalculation()
+            let calculation = SameTransferAndPaymentTokensFeeCalculation()
             calculation.networkFeeLine.set(value: tx.feeTokenData.withNonNegativeBalance())
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(amountResultingBalance))
             cell.feeCalculationView.calculation = calculation
         } else {
-            let feeBalance = balance(of: tx.feeTokenData)
+            let feeBalance = balance(of: tx.feeTokenData) ?? 0
             let feeResultingBalance = feeBalance - abs(tx.feeTokenData.balance ?? 0)
-            let calculation = SendERC20FeeCalculation()
+            let calculation = DifferentTransferAndPaymentTokensFeeCalculation()
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(amountResultingBalance))
             calculation.networkFeeLine.set(value: tx.feeTokenData.withNonNegativeBalance())
             calculation.networkFeeResultingBalanceLine.set(value: tx.feeTokenData.withBalance(feeResultingBalance))

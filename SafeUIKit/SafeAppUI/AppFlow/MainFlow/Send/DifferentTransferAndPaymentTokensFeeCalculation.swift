@@ -5,7 +5,7 @@
 import Foundation
 import SafeUIKit
 
-class SendERC20FeeCalculation: SendEthFeeCalculation {
+class DifferentTransferAndPaymentTokensFeeCalculation: SameTransferAndPaymentTokensFeeCalculation {
 
     var networkFeeResultingBalanceLine: FeeCalculationAssetLine
     var networkFeeBalanceErrorLine: FeeCalculationErrorLine

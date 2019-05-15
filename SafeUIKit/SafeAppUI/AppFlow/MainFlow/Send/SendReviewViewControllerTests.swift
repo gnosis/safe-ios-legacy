@@ -27,7 +27,7 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
         let formatter = TokenNumberFormatter.create(data: data.amountTokenData)
 
         let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
-        let calculation = cell.feeCalculationView.calculation as! SendEthFeeCalculation
+        let calculation = cell.feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
 
         XCTAssertEqual(calculation.networkFeeLine.asset.value,
                        formatter.string(from: data.feeTokenData.withNonNegativeBalance().balance!))
@@ -47,7 +47,7 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
         let feeFormatter = TokenNumberFormatter.create(data: data.feeTokenData)
 
         let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
-        let calculation = cell.feeCalculationView.calculation as! SendERC20FeeCalculation
+        let calculation = cell.feeCalculationView.calculation as! DifferentTransferAndPaymentTokensFeeCalculation
 
         XCTAssertEqual(calculation.resultingBalanceLine.asset.value,
                        tokenFormatter.string(from: tokenResultingBalance))

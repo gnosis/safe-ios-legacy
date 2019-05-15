@@ -392,9 +392,7 @@ public struct TransactionFeeEstimate: Equatable {
     }
 
     public var total: TokenAmount {
-        return TokenAmount(amount: gasPrice.amount * (TokenInt(gas) +
-            TokenInt(dataGas) +
-            TokenInt(operationalGas)),
+        return TokenAmount(amount: gasPrice.amount * (TokenInt(gas) + TokenInt(dataGas) + TokenInt(operationalGas)),
                            token: gasPrice.token)
     }
 

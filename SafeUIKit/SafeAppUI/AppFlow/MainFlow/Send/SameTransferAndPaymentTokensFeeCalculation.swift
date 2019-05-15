@@ -5,7 +5,7 @@
 import Foundation
 import SafeUIKit
 
-class SendEthFeeCalculation: FeeCalculation {
+class SameTransferAndPaymentTokensFeeCalculation: FeeCalculation {
 
     enum Strings {
 

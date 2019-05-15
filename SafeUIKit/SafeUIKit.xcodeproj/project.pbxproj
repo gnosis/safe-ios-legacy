@@ -179,8 +179,8 @@
 		0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D436209C92A20082C0A3 /* TestExtensions.swift */; };
 		0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D437209C92A20082C0A3 /* TestExtensionsTests.swift */; };
-		0A73C6E2227B35F5002EEA32 /* SendEthFeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */; };
-		0A73C6F2227B3605002EEA32 /* SendERC20FeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */; };
+		0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6E1227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift */; };
+		0A73C6F2227B3605002EEA32 /* DifferentTransferAndPaymentTokensFeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6F1227B3605002EEA32 /* DifferentTransferAndPaymentTokensFeeCalculation.swift */; };
 		0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */; };
 		0A73C6FE227B4DF6002EEA32 /* TooltipSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73C6FD227B4DF6002EEA32 /* TooltipSource.swift */; };
 		0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8BE205284180044D5DD /* H1Label.swift */; };
@@ -721,8 +721,8 @@
 		0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecoverSafe.storyboard; sourceTree = "<group>"; };
 		0A72D436209C92A20082C0A3 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		0A72D437209C92A20082C0A3 /* TestExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensionsTests.swift; sourceTree = "<group>"; };
-		0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEthFeeCalculation.swift; sourceTree = "<group>"; };
-		0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendERC20FeeCalculation.swift; sourceTree = "<group>"; };
+		0A73C6E1227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameTransferAndPaymentTokensFeeCalculation.swift; sourceTree = "<group>"; };
+		0A73C6F1227B3605002EEA32 /* DifferentTransferAndPaymentTokensFeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferentTransferAndPaymentTokensFeeCalculation.swift; sourceTree = "<group>"; };
 		0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeeCalculationAssetLine+TokenData.swift"; sourceTree = "<group>"; };
 		0A73C6FD227B4DF6002EEA32 /* TooltipSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipSource.swift; sourceTree = "<group>"; };
 		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
@@ -1355,8 +1355,8 @@
 			isa = PBXGroup;
 			children = (
 				0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */,
-				0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */,
-				0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */,
+				0A73C6F1227B3605002EEA32 /* DifferentTransferAndPaymentTokensFeeCalculation.swift */,
+				0A73C6E1227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift */,
 				0AD998AF20D3FEBD00E6F3CA /* SendInputViewController.swift */,
 				0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */,
 				0AD5091E2110AABD008507CB /* SendInputViewModel.swift */,
@@ -2844,7 +2844,7 @@
 				551D778F22819D2A003B7910 /* PaymentMethodViewController.swift in Sources */,
 				0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */,
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
-				0A73C6E2227B35F5002EEA32 /* SendEthFeeCalculation.swift in Sources */,
+				0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				5598000B225B74A4006D5792 /* Authenticator.swift in Sources */,
 				0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */,
@@ -2913,7 +2913,7 @@
 				0A5D467B20AD6DBE00AC287E /* SafeAppUIAlerts.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
-				0A73C6F2227B3605002EEA32 /* SendERC20FeeCalculation.swift in Sources */,
+				0A73C6F2227B3605002EEA32 /* DifferentTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
 				0ACCA8C0221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift in Sources */,

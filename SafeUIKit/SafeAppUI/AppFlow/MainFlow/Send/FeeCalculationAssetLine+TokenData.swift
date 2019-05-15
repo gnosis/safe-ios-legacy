@@ -11,7 +11,7 @@ extension FeeCalculationAssetLine {
     func set(value: TokenData, displayedDecimals: Int = 5) {
         guard let balance = value.balance else {
             tooltipSource?.message = nil
-            set(value: SendEthFeeCalculation.Strings.loading)
+            set(value: SameTransferAndPaymentTokensFeeCalculation.Strings.loading)
             return
         }
         let formatter = TokenNumberFormatter.ERC20Token(code: value.code,
@@ -26,7 +26,7 @@ extension FeeCalculationAssetLine {
     func set(valueButton value: TokenData, displayedDecimals: Int = 5) {
         guard let balance = value.balance else {
             tooltipSource?.message = nil
-            set(value: SendEthFeeCalculation.Strings.loading)
+            set(value: SameTransferAndPaymentTokensFeeCalculation.Strings.loading)
             return
         }
         let formatter = TokenNumberFormatter.ERC20Token(code: value.code,
