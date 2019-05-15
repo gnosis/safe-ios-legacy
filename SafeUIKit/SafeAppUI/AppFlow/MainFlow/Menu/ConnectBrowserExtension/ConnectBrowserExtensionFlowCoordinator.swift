@@ -12,7 +12,7 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
     var transactionSubmissionHandler = TransactionSubmissionHandler()
 
     enum Strings {
-        static let connectBE = LocalizedString("connect_browser_extension", comment: "Connect browser extension")
+        static let connectBE = LocalizedString("ios_connect_browser_extension", comment: "Connect browser extension")
             .replacingOccurrences(of: "\n", with: " ")
         static let connectDescription = LocalizedString("ios_enable_2fa",
                                                         comment: "Connect browser extension description")

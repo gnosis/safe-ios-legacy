@@ -68,10 +68,6 @@
 /* Congratulations! */
 "congratulations" = "Congratulations!";
 
-/* Connect browser extension
-   Header for add browser extension screen */
-"connect_browser_extension" = "Connect browser\nextension";
-
 /* Abort safe creation button title
    Continue */
 "continue_text" = "Continue";
@@ -96,9 +92,6 @@
 
 /* Disconnect browser extension description */
 "disconnect_2fa_description" = "Once this process is complete, you won't need to confirm transactions with browser extension.\n\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
-
-/* Disconnect browser extension */
-"disconnect_browser_extension" = "Disconnect browser\nextension";
 
 /* No transactions yet */
 "empty_safe_transactions_message" = "No transactions yet";
@@ -186,6 +179,10 @@
 /* Title for new safe screen */
 "ios_configure_title" = "Configure";
 
+/* Connect browser extension
+   Header for add browser extension screen */
+"ios_connect_browser_extension" = "Connect browser\nextension";
+
 /* Deployment accepted by blockchain. */
 "ios_creationFee_accepted" = "This can take a couple minutes...";
 
@@ -209,6 +206,9 @@
 
 /* Description how to share safe address. */
 "ios_creationFee_share_description" = "Share your address or scan this QR code with the account or person sending funds.";
+
+/* Disconnect browser extension */
+"ios_disconnect_browser_extension" = "Disconnect browser\nextension";
 
 /* Connect browser extension description */
 "ios_enable_2fa" = "For increased security, enable 2-factor authentication between your phone and computer.\n\nAll future transactions will need to be approved by both devices.";
@@ -279,6 +279,9 @@
 /* QR Code label. */
 "ios_qr_code" = "QR Code";
 
+/* Recovered Safe */
+"ios_recovered_safe" = "Recovered\nSafe";
+
 /* Recovery transaction failed to change Safe confirmation count */
 "ios_recovery_error_changecount" = "Recovery transaction failed to change Safe confirmation count";
 
@@ -314,6 +317,14 @@
 
 /* Content paragraphs, separated by '\n' */
 "ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
+
+/* Replace browser extension */
+"ios_replace_browser_extension" = "Replace browser\nextension";
+
+/* Change recovery key menu item
+   Replace recovery phrase
+   Title for the header in review screen */
+"ios_replace_recovery_phrase" = "Replace recovery\nphrase";
 
 /* Detail for the header in review screen */
 "ios_replace_seed_details" = "The existing recovery phrase will be replaced by a new recovery phrase.";
@@ -451,9 +462,6 @@
    Recover safe */
 "recover_safe_title" = "Recover Safe";
 
-/* Recovered Safe */
-"recovered_safe" = "Recovered\nSafe";
-
 /* Header label for progress screen */
 "recovering_safe" = "Recovering your Safe…";
 
@@ -463,16 +471,8 @@
 /* Retry button title. */
 "refresh" = "Refresh";
 
-/* Replace browser extension */
-"replace_browser_extension" = "Replace browser\nextension";
-
 /* Detail for the header in review screen */
 "replace_browser_extension_transaction_info" = "The currently connected browser extension will be replaced with the new browser extension.";
-
-/* Change recovery key menu item
-   Replace recovery phrase
-   Title for the header in review screen */
-"replace_recovery_phrase" = "Replace recovery\nphrase";
 
 /* Resend button. */
 "resend" = "Resend";

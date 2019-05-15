@@ -8,7 +8,7 @@ import Common
 
 public final class RBEReviewTransactionViewController: ReviewTransactionViewController {
 
-    var titleString = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
+    var titleString = LocalizedString("ios_replace_browser_extension", comment: "Replace browser extension")
         .replacingOccurrences(of: "\n", with: " ")
     var detailString = LocalizedString("replace_browser_extension_transaction_info",
                                        comment: "Detail for the header in review screen")
