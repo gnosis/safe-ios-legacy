@@ -46,6 +46,7 @@ struct ColorAsset {
 enum Asset {
   static let chevronHighlighted = ImageAsset(name: "Chevron-highlighted")
   static let chevron = ImageAsset(name: "Chevron")
+  static let checkmark = ImageAsset(name: "checkmark")
   static let congratulations = ImageAsset(name: "congratulations")
   enum ConnectBrowserExtension {
     static let connectIntroIcon = ImageAsset(name: "connect-intro-icon")
@@ -104,6 +105,7 @@ enum Asset {
   static let allImages: [ImageAsset] = [
     chevronHighlighted,
     chevron,
+    checkmark,
     congratulations,
     ConnectBrowserExtension.connectIntroIcon,
     MainScreenHeader.arrows,
