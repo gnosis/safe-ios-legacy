@@ -35,31 +35,32 @@ public class TransactionDetailsViewController: UIViewController {
 
 
         enum ReplaceRecoveryPhrase {
-            static let title = LocalizedString("replace_recovery_phrase", comment: "Replace recovery phrase")
+            static let title = LocalizedString("ios_replace_recovery_phrase", comment: "Replace recovery phrase")
                 .replacingOccurrences(of: "\n", with: " ")
             static let detail = LocalizedString("layout_replace_recovery_phrase_transaction_info_description",
                                                 comment: "Detail for the header in review screen")
         }
         enum ReplaceBrowserExtension {
-            static let title = LocalizedString("replace_browser_extension", comment: "Replace browser extension")
+            static let title = LocalizedString("ios_replace_browser_extension", comment: "Replace browser extension")
                 .replacingOccurrences(of: "\n", with: " ")
             static let detail = LocalizedString("layout_replace_browser_extension_info_description",
                                                 comment: "Detail for the header in review screen")
         }
         enum ConnectBrowserExtension {
-            static let title = LocalizedString("connect_browser_extension", comment: "Connect browser extension")
+            static let title = LocalizedString("ios_connect_browser_extension", comment: "Connect browser extension")
                 .replacingOccurrences(of: "\n", with: " ")
             static let detail = LocalizedString("layout_connect_browser_extension_info_description",
                                                 comment: "Detail for the header in review screen")
         }
         enum DisconnectBrowserExtension {
-            static let title = LocalizedString("disconnect_browser_extension", comment: "Disconnect browser extension")
+            static let title = LocalizedString("ios_disconnect_browser_extension",
+                                               comment: "Disconnect browser extension")
                 .replacingOccurrences(of: "\n", with: " ")
             static let detail = LocalizedString("layout_disconnect_browser_extension_info_description",
                                                 comment: "Detail for the header in review screen")
         }
         enum WalletRecovery {
-            static let title = LocalizedString("recovered_safe", comment: "Recovered Safe")
+            static let title = LocalizedString("ios_recovered_safe", comment: "Recovered Safe")
                 .replacingOccurrences(of: "\n", with: " ")
             static let detail = LocalizedString("layout_recovered_safe_info_description",
                                                 comment: "Detail for the header in review screen")
