@@ -17,12 +17,11 @@ extension RBEIntroViewController {
             controller.enableRetry()
             controller.reloadData()
             if let calculationError = error as? FeeCalculationError, calculationError == .insufficientBalance {
-                controller.feeCalculation.balance.set(error: calculationError)
-                controller.feeCalculation.error = FeeCalculationErrorLine(text: calculationError.localizedDescription)
+                controller.feeCalculation.setBalanceError(calculationError)
             } else {
-                controller.feeCalculation.error = FeeCalculationErrorLine(text: error.localizedDescription).enableIcon()
+                controller.feeCalculation.errorLine =
+                    FeeCalculationErrorLine(text: error.localizedDescription).enableIcon()
             }
-            controller.feeCalculation.update()
             controller.feeCalculationView.update()
         }
     }

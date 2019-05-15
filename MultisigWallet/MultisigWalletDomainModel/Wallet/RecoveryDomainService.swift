@@ -552,7 +552,8 @@ class RecoveryTransactionBuilder {
     }
 
     fileprivate func calculateFees(basedOn estimationResponse: EstimateTransactionRequest.Response) {
-        let feeToken = DomainRegistry.tokenListItemRepository.find(id: TokenID(estimationResponse.gasToken))!.token
+        let feeToken = DomainRegistry.tokenListItemRepository
+            .find(id: TokenID(estimationResponse.gasToken))?.token ?? Token.Ether
         let gasPrice = TokenAmount(amount: TokenInt(estimationResponse.gasPrice), token: feeToken)
         let estimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
                                               dataGas: estimationResponse.dataGas,

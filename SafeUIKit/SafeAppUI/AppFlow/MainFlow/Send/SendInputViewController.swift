@@ -70,7 +70,8 @@ public class SendInputViewController: UIViewController {
         tokenInput.textInput.keyboardTargetView = tokenInput.superview
 
         feeTokenID = BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
-        feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() : DifferentTransferAndPaymentTokensFeeCalculation()
+        feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() :
+            DifferentTransferAndPaymentTokensFeeCalculation()
 
         model.start()
         DispatchQueue.main.async {

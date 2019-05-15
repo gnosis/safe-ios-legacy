@@ -48,7 +48,7 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
 
     func test_whenLoading_thenHasEmptyCalculation() {
         vc.loadViewIfNeeded()
-        XCTAssertEqual(vc.feeCalculationView.calculation, EthFeeCalculation())
+        XCTAssertEqual(vc.feeCalculationView.calculation, OwnerModificationFeeCalculation())
     }
 
     func test_whenNotCreatedTransaction_thenCreatesItAndEstimatesIt() {

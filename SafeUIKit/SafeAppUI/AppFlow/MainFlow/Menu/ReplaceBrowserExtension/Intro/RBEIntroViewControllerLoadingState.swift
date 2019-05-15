@@ -13,7 +13,7 @@ extension RBEIntroViewController {
             controller.startIndicateLoading()
             controller.showStart()
             controller.disableStart()
-            controller.feeCalculation = EthFeeCalculation()
+            controller.feeCalculation = OwnerModificationFeeCalculation()
             reload(controller: controller)
         }
 
