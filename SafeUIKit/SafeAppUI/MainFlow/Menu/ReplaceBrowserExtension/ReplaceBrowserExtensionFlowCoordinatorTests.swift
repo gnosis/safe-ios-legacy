@@ -69,7 +69,7 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     func test_whenFinishes_thenStartsMonitoring() {
         fc.transactionID = "some"
-        fc.didFinishReview()
+        fc.reviewTransactionViewControllerDidFinishReview(ReviewTransactionViewController())
         XCTAssertTrue(mockApplicationService.didStartMonitoring)
     }
 

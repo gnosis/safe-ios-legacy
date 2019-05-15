@@ -43,9 +43,10 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     func test_whenDraftTransactionCreated_thenOpensTransactionReviewVC() {
         let data = createTransaction()
-        mainFlowCoordinator.didCreateDraftTransaction(id: data.id)
+        let fc = SendFlowCoordinator(rootViewController: UINavigationController())
+        fc.didCreateDraftTransaction(id: data.id)
         delay()
-        let vc = mainFlowCoordinator.navigationController.topViewController as? ReviewTransactionViewController
+        let vc = fc.navigationController.topViewController as? ReviewTransactionViewController
         XCTAssertNotNil(vc)
         XCTAssertEqual(vc?.tx.id, "some")
     }
@@ -57,13 +58,14 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     func test_whenReceivingRemoteMessageAndReviewScreenNotOpened_thenOpensIt() {
         let data = createTransaction()
+        mainFlowCoordinator.incomingTransactionFlowCoordinator.transactionID = data.id
         mainFlowCoordinator.receive(message: ["key": "value"])
         delay()
         let vc = mainFlowCoordinator.navigationController.topViewController
             as? ReviewTransactionViewController
         XCTAssertNotNil(vc)
         XCTAssertEqual(vc?.tx.id, data.id)
-        XCTAssertTrue(vc?.delegate === mainFlowCoordinator)
+        XCTAssertTrue(vc?.delegate === mainFlowCoordinator.incomingTransactionFlowCoordinator)
     }
 
     func test_whenAlreadyOpenedReviewTransaction_thenJustUpdatesIt() {
@@ -80,12 +82,22 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     func test_whenReviewTransactionFinished_thenPopsBack() {
         delay()
-        let vc = mainFlowCoordinator.navigationController.topViewController
-        mainFlowCoordinator.createNewTransaction(token: ethID.id)
+        let mainFC = mainFlowCoordinator!
+        let sendFC = mainFC.sendFlowCoordinator
+        let data = createTransaction()
+        let vc = mainFC.navigationController.topViewController
+        mainFC.createNewTransaction(token: data.amountTokenData.address)
         delay()
-        mainFlowCoordinator.didFinishReview()
+        mainFC.sendFlowCoordinator.didCreateDraftTransaction(id: data.id)
         delay()
-        XCTAssertTrue(vc === mainFlowCoordinator.navigationController.topViewController)
+        let reviewVC = sendFC.navigationController.topViewController as! ReviewTransactionViewController
+        sendFC.reviewTransactionViewControllerDidFinishReview(reviewVC)
+        delay()
+        XCTAssertTrue(mainFC.navigationController.topViewController is SuccessViewController)
+        let successVC = mainFC.navigationController.topViewController as! SuccessViewController
+        successVC.action()
+        delay()
+        XCTAssertTrue(vc === mainFC.navigationController.topViewController)
     }
 
     func test_whenUserIsAuthenticated_thenTransactionCanSubmit() throws {
@@ -93,7 +105,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         authenticationService.allowAuthentication()
         _ = try authenticationService.authenticateUser(.password("pass"))
         let exp = expectation(description: "submit")
-        mainFlowCoordinator.wantsToSubmitTransaction { success in
+        TransactionSubmissionHandler().submitTransaction(from: mainFlowCoordinator) { success in
             XCTAssertTrue(success)
             exp.fulfill()
         }
@@ -105,9 +117,9 @@ class MainFlowCoordinatorTests: SafeTestCase {
         let exp = expectation(description: "submit")
         try authenticationService.registerUser(password: "111111A")
         authenticationService.allowAuthentication()
-        mainFlowCoordinator.wantsToSubmitTransaction { success in
-            XCTAssertTrue(success)
-            exp.fulfill()
+        TransactionSubmissionHandler().submitTransaction(from: mainFlowCoordinator) { success in
+                XCTAssertTrue(success)
+                exp.fulfill()
         }
         delay()
         let vc = mainFlowCoordinator.navigationController.topViewController?.presentedViewController
@@ -191,7 +203,8 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_tracking() {
-        let vc = mainFlowCoordinator.saveMnemonicViewController()
+        let fc = ReplaceRecoveryPhraseFlowCoordinator(rootViewController: UINavigationController())
+        let vc = fc.saveMnemonicViewController()
         vc.recoveryModeEnabled = true
         ethereumService.prepareToGenerateExternallyOwnedAccount(address: "some", mnemonic: ["one", "two"])
         vc.loadViewIfNeeded()
@@ -199,7 +212,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         let enterPhraseEvent = vc.screenTrackingEvent as? ReplaceRecoveryPhraseTrackingEvent
         XCTAssertEqual(enterPhraseEvent, .showSeed)
 
-        let confirmPhraseEvent = mainFlowCoordinator.confirmMnemonicViewController(vc).screenTrackingEvent
+        let confirmPhraseEvent = fc.confirmMnemonicViewController(vc).screenTrackingEvent
             as? ReplaceRecoveryPhraseTrackingEvent
         XCTAssertEqual(confirmPhraseEvent, .enterSeed)
     }

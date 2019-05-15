@@ -22,8 +22,9 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        intro = introViewController()
-        push(intro)
+        let vc = introViewController()
+        push(vc)
+        intro = vc
     }
 
 }
@@ -90,11 +91,12 @@ extension ConnectBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
 
 extension ConnectBrowserExtensionFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
-    func wantsToSubmitTransaction(_ completion: @escaping (Bool) -> Void) {
+    func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
+                                                                 completion: @escaping (Bool) -> Void) {
         transactionSubmissionHandler.submitTransaction(from: self, completion: completion)
     }
 
-    func didFinishReview() {
+    func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
         ApplicationServiceRegistry.connectExtensionService.startMonitoring(transaction: transactionID)
         exitFlow()
     }

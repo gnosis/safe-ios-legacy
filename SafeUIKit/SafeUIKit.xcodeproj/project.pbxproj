@@ -140,6 +140,10 @@
 		0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */; };
 		0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F1220B1CE800E340DB /* MenuCommand.swift */; };
 		0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */; };
+		0A3FB8C2228B163D00270573 /* SendFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8C1228B163D00270573 /* SendFlowCoordinator.swift */; };
+		0A3FB8D2228B16F100270573 /* UIBarButtonItem+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D1228B16F100270573 /* UIBarButtonItem+Back.swift */; };
+		0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D3228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift */; };
+		0A3FB8D6228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
 		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
@@ -676,6 +680,10 @@
 		0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionCommand.swift; sourceTree = "<group>"; };
 		0A3D1551220B38B100E340DB /* libReplaceBrowserExtensionFacade.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReplaceBrowserExtensionFacade.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3D1553220B393A00E340DB /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
+		0A3FB8C1228B163D00270573 /* SendFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A3FB8D1228B16F100270573 /* UIBarButtonItem+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Back.swift"; sourceTree = "<group>"; };
+		0A3FB8D3228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingTransactionFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1055,12 +1063,13 @@
 		0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */ = {
 			isa = PBXGroup;
 			children = (
-				0A553D4221C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift */,
-				0A2D58A022577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift */,
-				0A2D58852257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift */,
+				55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */,
+				0A3FB8D3228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift */,
 				554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */,
 				0A2D589C22576FA6001B8BF4 /* ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift */,
-				55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */,
+				0A2D58852257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift */,
+				0A553D4221C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift */,
+				0A2D58A022577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift */,
 			);
 			path = ReplaceRecoveryPhrase;
 			sourceTree = "<group>";
@@ -1178,14 +1187,6 @@
 			path = MasterPasswordFlow;
 			sourceTree = "<group>";
 		};
-		0A334E20209C8E3800ABC6AE /* AppFlow */ = {
-			isa = PBXGroup;
-			children = (
-				0A4DF82520CE701E0095C00D /* MainFlow */,
-			);
-			path = AppFlow;
-			sourceTree = "<group>";
-		};
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1295,13 +1296,16 @@
 			isa = PBXGroup;
 			children = (
 				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
-				55DEBC25214BD74B0017CD4B /* Main */,
+				0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */,
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
+				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
 				0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */,
 				0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
 				55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */,
+				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
+				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
 				0A4EEA6B20D11109005CDAC0 /* Menu */,
 				0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */,
 				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
@@ -1313,6 +1317,7 @@
 				0A8C961920D2A783007D2410 /* TransactionDetails */,
 				0AF8D53C20D00FF6001E8423 /* TransactionList */,
 				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
+				0A3FB8D1228B16F100270573 /* UIBarButtonItem+Back.swift */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -1339,6 +1344,7 @@
 		0A60B50E211312C00066821A /* Send */ = {
 			isa = PBXGroup;
 			children = (
+				0A3FB8C1228B163D00270573 /* SendFlowCoordinator.swift */,
 				0A73C6F3227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift */,
 				0A73C6F1227B3605002EEA32 /* SendERC20FeeCalculation.swift */,
 				0A73C6E1227B35F5002EEA32 /* SendEthFeeCalculation.swift */,
@@ -1560,8 +1566,8 @@
 			children = (
 				5598000A225B74A4006D5792 /* Authenticator.swift */,
 				558682C92192F95C0060F1DE /* ReusableDetachedControllers */,
-				0A334E20209C8E3800ABC6AE /* AppFlow */,
 				0A334E70209C918A00ABC6AE /* Config.xcconfig */,
+				0A4DF82520CE701E0095C00D /* MainFlow */,
 				0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */,
 				0A334E69209C8F8500ABC6AE /* ErrorHandlerTests.swift */,
 				0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */,
@@ -2000,16 +2006,6 @@
 				55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */,
 			);
 			path = BackgroundHeaderFooterView;
-			sourceTree = "<group>";
-		};
-		55DEBC25214BD74B0017CD4B /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
-				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
-				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		55DEBC26214BD78B0017CD4B /* SafeAddress */ = {
@@ -2776,7 +2772,9 @@
 				0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */,
 				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* SendInputViewController.swift in Sources */,
+				0A3FB8D2228B16F100270573 /* UIBarButtonItem+Back.swift in Sources */,
 				5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */,
+				0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
@@ -2807,6 +2805,7 @@
 				0A73C6E2227B35F5002EEA32 /* SendEthFeeCalculation.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				5598000B225B74A4006D5792 /* Authenticator.swift in Sources */,
+				0A3FB8D6228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift in Sources */,
 				0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */,
 				55CA308F2227DB0900E7AEA7 /* UIViewController+Tracking.swift in Sources */,
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
@@ -2891,6 +2890,7 @@
 				0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */,
 				0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */,
 				0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */,
+				0A3FB8C2228B163D00270573 /* SendFlowCoordinator.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* SendInputViewModel.swift in Sources */,
 				554597082268AB22009B4A0B /* TermsCommand.swift in Sources */,

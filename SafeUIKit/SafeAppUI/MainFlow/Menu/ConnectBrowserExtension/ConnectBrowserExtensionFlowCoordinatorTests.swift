@@ -52,17 +52,17 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
     func test_whenWantsToSubmit_thenUsesHandler() {
         let testableHandler = TestableTransactionSubmissionHandler()
         fc.transactionSubmissionHandler = testableHandler
-        fc.wantsToSubmitTransaction { _ in }
+        fc.reviewTransactionViewControllerWantsToSubmitTransaction(ReviewTransactionViewController()) { _ in }
         XCTAssertTrue(testableHandler.didSubmit)
     }
 
     func test_whenFinishesReview_thenStartsMonitoring() {
-        fc.didFinishReview()
+        fc.reviewTransactionViewControllerDidFinishReview(ReviewTransactionViewController())
         XCTAssertTrue(mockApplicationService.didStartMonitoring)
     }
 
     func test_whenFinishesReview_thenExitsFlo() {
-        fc.didFinishReview()
+        fc.reviewTransactionViewControllerDidFinishReview(ReviewTransactionViewController())
         XCTAssertTrue(fc.didExit)
     }
 
