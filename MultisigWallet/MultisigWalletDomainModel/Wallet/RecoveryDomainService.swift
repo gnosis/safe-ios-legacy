@@ -170,7 +170,7 @@ public class RecoveryDomainService: Assertable {
             return false
         }
         guard let estimate = tx.feeEstimate else { return false }
-        let requiredBalance = estimate.total
+        let requiredBalance = estimate.totalDisplayedToUser
         return balance >= requiredBalance.amount
     }
 
@@ -559,7 +559,7 @@ class RecoveryTransactionBuilder {
                                               dataGas: estimationResponse.dataGas,
                                               operationalGas: estimationResponse.operationalGas,
                                               gasPrice: gasPrice)
-        transaction.change(fee: estimate.total)
+        transaction.change(fee: estimate.totalSubmittedToBlockchain)
             .change(feeEstimate: estimate)
             .change(nonce: String(estimationResponse.nextNonce))
     }

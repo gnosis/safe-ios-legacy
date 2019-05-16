@@ -107,11 +107,11 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
                                               operationalGas: response.operationalGas,
                                               gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
                                                                     token: feeToken))
-        tx.change(fee: estimate.total)
+        tx.change(fee: estimate.totalSubmittedToBlockchain)
             .change(feeEstimate: estimate)
             .change(nonce: String(response.nextNonce))
         repository.save(tx)
-        return estimate.total
+        return estimate.totalDisplayedToUser
     }
 
     private func estimationRequest(for tx: Transaction) -> EstimateTransactionRequest {

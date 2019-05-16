@@ -106,7 +106,7 @@ public class RecoveryApplicationService {
         let zeroGasPrice = TokenAmount(amount: 0, token: paymentToken)
         let zeroFeeEstimate = TransactionFeeEstimate(gas: 0, dataGas: 0, operationalGas: 0, gasPrice: zeroGasPrice)
         let feeEstimate = tx.feeEstimate ?? zeroFeeEstimate
-        let feeTokenData = TokenData(token: paymentToken, balance: -feeEstimate.total.amount)
+        let feeTokenData = TokenData(token: paymentToken, balance: -feeEstimate.totalDisplayedToUser.amount)
         return TransactionData(id: tx.id.id,
                                sender: tx.sender!.value,
                                recipient: tx.recipient!.value,

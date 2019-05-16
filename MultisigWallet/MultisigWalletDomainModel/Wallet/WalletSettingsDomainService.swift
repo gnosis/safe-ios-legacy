@@ -93,7 +93,7 @@ public class WalletSettingsDomainService {
             return false
         }
         guard let estimate = tx.feeEstimate else { return false }
-        let requiredBalance = estimate.total
+        let requiredBalance = estimate.totalDisplayedToUser
         return balance >= requiredBalance.amount
     }
 
