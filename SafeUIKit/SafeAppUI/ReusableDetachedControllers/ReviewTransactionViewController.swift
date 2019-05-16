@@ -9,8 +9,9 @@ import Common
 import BigInt
 
 public protocol ReviewTransactionViewControllerDelegate: class {
-    func wantsToSubmitTransaction(_ completion: @escaping (_ allowed: Bool) -> Void)
-    func didFinishReview()
+    func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
+                                                                 completion: @escaping (_ allowed: Bool) -> Void)
+    func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController)
 }
 
 public class ReviewTransactionViewController: UITableViewController {
@@ -221,7 +222,7 @@ public class ReviewTransactionViewController: UITableViewController {
             switch self.tx.status {
             case .success, .pending, .failed, .discarded:
                 didSubmit()
-                self.delegate.didFinishReview()
+                self.delegate.reviewTransactionViewControllerDidFinishReview(self)
             default:
                 self.updateConfirmationCell()
             }
@@ -239,7 +240,7 @@ public class ReviewTransactionViewController: UITableViewController {
             ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
             doRequest()
         } else if tx.status == .readyToSubmit {
-            delegate.wantsToSubmitTransaction { [unowned self] allowed in
+            delegate.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [unowned self] allowed in
                 if allowed { self.doSubmit() }
             }
         } else {

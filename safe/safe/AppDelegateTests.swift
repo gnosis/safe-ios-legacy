@@ -69,7 +69,7 @@ class AppDelegateTests: XCTestCase {
     }
 }
 
-class MockCoordinator: AppFlowCoordinator {
+class MockCoordinator: MainFlowCoordinator {
 
     var didBecomeActive = false
 
