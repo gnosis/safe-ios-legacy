@@ -170,7 +170,7 @@ public class RecoveryDomainService: Assertable {
             return false
         }
         guard let estimate = tx.feeEstimate else { return false }
-        let requiredBalance = estimate.total
+        let requiredBalance = estimate.totalDisplayedToUser
         return balance >= requiredBalance.amount
     }
 
@@ -552,14 +552,14 @@ class RecoveryTransactionBuilder {
     }
 
     fileprivate func calculateFees(basedOn estimationResponse: EstimateTransactionRequest.Response) {
-        let gasPrice = TokenAmount(amount: TokenInt(estimationResponse.gasPrice), token: Token.Ether)
+        let feeToken = DomainRegistry.tokenListItemRepository
+            .find(id: TokenID(estimationResponse.gasToken))?.token ?? Token.Ether
+        let gasPrice = TokenAmount(amount: TokenInt(estimationResponse.gasPrice), token: feeToken)
         let estimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
                                               dataGas: estimationResponse.dataGas,
                                               operationalGas: estimationResponse.operationalGas,
                                               gasPrice: gasPrice)
-        let fee = TokenInt(estimate.gas + estimate.dataGas) * estimate.gasPrice.amount
-        let feeAmount = TokenAmount(amount: fee, token: gasPrice.token)
-        transaction.change(fee: feeAmount)
+        transaction.change(fee: estimate.totalSubmittedToBlockchain)
             .change(feeEstimate: estimate)
             .change(nonce: String(estimationResponse.nextNonce))
     }
@@ -680,12 +680,14 @@ class RecoveryTransactionBuilder {
     }
 
     private func estimate() -> EstimateTransactionRequest.Response? {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let formattedRecipient = DomainRegistry.encryptionService.address(from: transaction.ethTo.value)!
         let estimationRequest = EstimateTransactionRequest(safe: transaction.sender!,
                                                            to: formattedRecipient,
                                                            value: String(transaction.ethValue),
                                                            data: transaction.ethData,
-                                                           operation: transaction.operation!)
+                                                           operation: transaction.operation!,
+                                                           gasToken: wallet.feePaymentTokenAddress?.value)
         do {
             return try DomainRegistry.transactionRelayService.estimateTransaction(request: estimationRequest)
         } catch let error {

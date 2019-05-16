@@ -21,9 +21,9 @@ public class RBEIntroViewController: UIViewController {
 
     var state: State = LoadingState()
     var calculationData: RBEFeeCalculationData?
-    var feeCalculation: EthFeeCalculation {
+    var feeCalculation: OwnerModificationFeeCalculation {
         get {
-            return feeCalculationView.calculation as! EthFeeCalculation
+            return feeCalculationView.calculation as! OwnerModificationFeeCalculation
         }
         set {
             feeCalculationView.calculation = newValue
@@ -32,7 +32,6 @@ public class RBEIntroViewController: UIViewController {
     public var transactionID: RBETransactionID?
     public var starter: RBEStarter?
     public var screenTrackingEvent: Trackable?
-    let formatter = TokenNumberFormatter()
 
     @IBOutlet weak var contentView: IntroContentView!
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
@@ -60,7 +59,6 @@ public class RBEIntroViewController: UIViewController {
         startButtonItem = UIBarButtonItem(title: Strings.start, style: .done, target: self, action: #selector(start))
         backButtonItem = UIBarButtonItem(title: Strings.back, style: .plain, target: self, action: #selector(back))
         retryButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(retry))
-        formatter.displayedDecimals = 5
     }
 
     public override func viewDidLoad() {
@@ -89,12 +87,15 @@ public class RBEIntroViewController: UIViewController {
     }
 
     func reloadData() {
-        feeCalculation = EthFeeCalculation()
+        feeCalculation = OwnerModificationFeeCalculation()
         guard let data = calculationData else { return }
-        formatter.tokenSymbol = data.currentBalance.code
-        feeCalculation.currentBalance.set(value: formatter.string(from: data.currentBalance.balance!))
-        feeCalculation.networkFee.set(value: formatter.string(from: data.networkFee.balance!))
-        feeCalculation.balance.set(value: formatter.string(from: data.balance.balance!))
+        let formatter = TokenNumberFormatter.ERC20Token(code: data.balance.code,
+                                                        decimals: data.balance.decimals,
+                                                        displayedDecimals: 5)
+        feeCalculation.currentBalanceLine.set(value: formatter.string(from: data.currentBalance.balance!))
+        feeCalculation.networkFeeLine.set(valueButton: data.networkFee.withNonNegativeBalance())
+        feeCalculation.resultingBalanceLine.set(value: formatter.string(from: data.balance.balance!))
+        feeCalculation.setBalanceError(nil)
     }
 
     func setContent(_ content: IntroContentView.Content) {

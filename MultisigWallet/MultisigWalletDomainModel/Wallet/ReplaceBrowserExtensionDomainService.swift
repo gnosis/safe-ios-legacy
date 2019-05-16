@@ -47,10 +47,14 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     public func createTransaction() -> TransactionID {
+        var tokenID = Token.Ether.id
+        if let feeTokenAddress = requiredWallet.feePaymentTokenAddress?.value {
+            tokenID = TokenID(feeTokenAddress)
+        }
         let tx = Transaction(id: repository.nextID(),
                              type: transactionType,
                              walletID: requiredWallet.id,
-                             accountID: AccountID(tokenID: Token.Ether.id, walletID: requiredWallet.id))
+                             accountID: AccountID(tokenID: tokenID, walletID: requiredWallet.id))
         tx.change(amount: .ether(0)).change(sender: requiredWallet.address!)
         repository.save(tx)
         return tx.id
@@ -97,19 +101,17 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         let tx = transaction(transactionID)
         let request = estimationRequest(for: tx)
         let response = try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
-        let userFacingFee = TokenInt((response.dataGas + response.safeTxGas + response.operationalGas) *
-            response.gasPrice)
-        let transactionFee = TokenInt((response.dataGas + response.safeTxGas) * response.gasPrice)
-        let token = Token.Ether
-        tx.change(fee: TokenAmount(amount: transactionFee, token: token))
+        let feeToken = DomainRegistry.tokenListItemRepository.find(id: TokenID(response.gasToken))?.token ?? Token.Ether
         let estimate = TransactionFeeEstimate(gas: response.safeTxGas,
                                               dataGas: response.dataGas,
                                               operationalGas: response.operationalGas,
-                                              gasPrice: TokenAmount(amount: TokenInt(response.gasPrice), token: token))
-        tx.change(feeEstimate: estimate)
-          .change(nonce: String(response.nextNonce))
+                                              gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
+                                                                    token: feeToken))
+        tx.change(fee: estimate.totalSubmittedToBlockchain)
+            .change(feeEstimate: estimate)
+            .change(nonce: String(response.nextNonce))
         repository.save(tx)
-        return .ether(userFacingFee)
+        return estimate.totalDisplayedToUser
     }
 
     private func estimationRequest(for tx: Transaction) -> EstimateTransactionRequest {
@@ -117,14 +119,16 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
                      to: tx.ethTo,
                      value: String(tx.ethValue),
                      data: tx.ethData,
-                     operation: tx.operation!)
+                     operation: tx.operation!,
+                     gasToken: requiredWallet.feePaymentTokenAddress?.value)
     }
 
     public func accountBalance(for transactionID: TransactionID) -> TokenAmount {
         let tx = transaction(transactionID)
         let account = DomainRegistry.accountRepository.find(id: tx.accountID)!
         let balance = account.balance ?? 0
-        return .ether(balance)
+        let token = DomainRegistry.tokenListItemRepository.find(id: account.id.tokenID)?.token ?? Token.Ether
+        return TokenAmount(amount: balance, token: token)
     }
 
     public func resultingBalance(for transactionID: TransactionID, change amount: TokenAmount) -> TokenAmount {
@@ -146,7 +150,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     func validateOwners() throws {
-        try assertNotNil(requiredWallet.owner(role: .browserExtension) ,
+        try assertNotNil(requiredWallet.owner(role: .browserExtension),
                          ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected)
     }
 

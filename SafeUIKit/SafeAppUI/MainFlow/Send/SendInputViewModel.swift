@@ -28,13 +28,14 @@ class SendInputViewModel {
 
     let tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
     private let inputQueue: OperationQueue
-    private let tokenID: BaseID!
-    private let feeTokenID: BaseID = ethID
+    private let tokenID: BaseID
+    private let feeTokenID: BaseID
     private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
     private let updateBlock: () -> Void
 
     init(tokenID: BaseID, processEventsOnMainThread: Bool = false, onUpdate: @escaping () -> Void) {
         self.tokenID = tokenID
+        feeTokenID = BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
         canProceedToSigning = false
         updateBlock = onUpdate
         tokenData = ApplicationServiceRegistry.walletService.tokenData(id: tokenID.id)!

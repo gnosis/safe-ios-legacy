@@ -488,7 +488,8 @@ public class WalletApplicationService: Assertable {
                                                  to: recipient,
                                                  value: String(amount),
                                                  data: nil,
-                                                 operation: .call)
+                                                 operation: .call,
+                                                 gasToken: selectedWallet!.feePaymentTokenAddress?.value)
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
@@ -515,7 +516,8 @@ public class WalletApplicationService: Assertable {
                                                  to: to,
                                                  value: String(value),
                                                  data: data,
-                                                 operation: .call)
+                                                 operation: .call,
+                                                 gasToken: selectedWallet!.feePaymentTokenAddress?.value)
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
@@ -547,7 +549,7 @@ public class WalletApplicationService: Assertable {
             TokenData.empty()
         let feeTokenData = tx.fee != nil ?
             TokenData(token: tx.fee!.token, balance: tx.fee!.amount) :
-            TokenData(token: Token.Ether, balance: nil)
+            TokenData.empty()
         return TransactionData(id: tx.id.id,
                                sender: tx.sender?.value ?? "",
                                recipient: tx.recipient?.value ?? "",
@@ -618,17 +620,16 @@ public class WalletApplicationService: Assertable {
                                                  to: recipient,
                                                  value: String(tx.ethValue),
                                                  data: tx.ethData,
-                                                 operation: .call)
+                                                 operation: .call,
+                                                 gasToken: selectedWallet!.feePaymentTokenAddress?.value)
         let estimationResponse = try handleRelayServiceErrors {
             try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
         }
-        // TODO: get token from Tokens List by estimationResponse.gasToken address and use Ether as fallback
-        let token = Token.Ether
         let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
                                                  dataGas: estimationResponse.dataGas,
                                                  operationalGas: estimationResponse.operationalGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
-                                                                       token: token))
+                                                                       token: token(id: estimationResponse.gasToken)!))
         updateTransaction(tx, withFeeEsimate: feeEstimate, nonce: String(estimationResponse.nextNonce))
         return transactionData(id)!
     }

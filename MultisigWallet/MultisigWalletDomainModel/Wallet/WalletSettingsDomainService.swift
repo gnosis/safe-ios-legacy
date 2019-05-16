@@ -59,7 +59,8 @@ public class WalletSettingsDomainService {
                                                                    to: formattedRecipient,
                                                                    value: String(0),
                                                                    data: "0x" + data.toHexString(),
-                                                                   operation: .delegateCall)
+                                                                   operation: .delegateCall,
+                                                                   gasToken: wallet.feePaymentTokenAddress?.value)
                 let estimateResponse = try DomainRegistry
                     .transactionRelayService.estimateTransaction(request: estimationRequest)
 
@@ -92,7 +93,7 @@ public class WalletSettingsDomainService {
             return false
         }
         guard let estimate = tx.feeEstimate else { return false }
-        let requiredBalance = estimate.total
+        let requiredBalance = estimate.totalDisplayedToUser
         return balance >= requiredBalance.amount
     }
 
@@ -144,7 +145,8 @@ public class WalletSettingsDomainService {
                                                                to: formattedRecipient,
                                                                value: String(0),
                                                                data: "0x" + data.toHexString(),
-                                                               operation: .delegateCall)
+                                                               operation: .delegateCall,
+                                                               gasToken: wallet.feePaymentTokenAddress?.value)
             let estimateResponse = try DomainRegistry
                 .transactionRelayService.estimateTransaction(request: estimationRequest)
 

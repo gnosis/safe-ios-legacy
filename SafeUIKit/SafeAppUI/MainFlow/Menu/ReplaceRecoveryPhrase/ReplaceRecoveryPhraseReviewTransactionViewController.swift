@@ -27,7 +27,7 @@ final class ReplaceRecoveryPhraseReviewTransactionViewController: ReviewTransact
         let indexPath = IndexPathIterator()
         cells[indexPath.next()] = replaceRecoveryPhraseHeaderCell()
         feeCellIndexPath = indexPath.next()
-        cells[feeCellIndexPath] = etherTransactionFeeCell()
+        cells[feeCellIndexPath] = transactionFeeCell()
         cells[indexPath.next()] = confirmationCell
     }
 

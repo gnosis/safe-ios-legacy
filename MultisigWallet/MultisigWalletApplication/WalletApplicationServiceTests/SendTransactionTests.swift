@@ -75,7 +75,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let data = service.transactionData(txID)!
         XCTAssertEqual(data.sender, service.selectedWalletAddress!)
         XCTAssertEqual(data.recipient, "")
-        XCTAssertEqual(data.amountTokenData.balance, 0)
+        XCTAssertNil(data.amountTokenData.balance)
         XCTAssertNil(data.feeTokenData.balance)
         XCTAssertEqual(data.id, txID)
         XCTAssertEqual(data.amountTokenData.code, "")

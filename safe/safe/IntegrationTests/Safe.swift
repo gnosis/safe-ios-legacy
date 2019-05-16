@@ -55,19 +55,21 @@ struct Safe {
 
     func prepareAddOwnerTx(_ owner: ExternallyOwnedAccount, threshold: Int) throws -> Transaction {
         let data = proxy.addOwner(owner.address, newThreshold: threshold)
-        return try prepareTx(to: address, data: data)
+        return try prepareTx(to: address, data: data, feePaymentToken: Token.Ether)
     }
 
     func prepareTx(to recipient: Address,
                    amount: TokenInt = 0,
                    data: Data? = nil,
                    operation: WalletOperation = .call,
-                   type: TransactionType = .transfer) throws -> Transaction {
+                   type: TransactionType = .transfer,
+                   feePaymentToken: Token = Token.Ether) throws -> Transaction {
         let request = EstimateTransactionRequest(safe: address,
                                                  to: recipient,
                                                  value: String(amount),
                                                  data: data == nil ? "" : data!.toHexString().addHexPrefix(),
-                                                 operation: operation)
+                                                 operation: operation,
+                                                 gasToken: feePaymentToken.address.value)
         let response = try _test.relayService.estimateTransaction(request: request)
         // Gas is adjusted because server-side gas estimate is
         // inherently inaccurate: (dataGas + txGas) is not enough for funding the fees.
@@ -83,8 +85,8 @@ struct Safe {
                                                         dataGas: response.dataGas,
                                                         operationalGas: response.operationalGas,
                                                         gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
-                                                                              token: Token.Ether)))
-            .change(fee: TokenAmount(amount: TokenInt(fee), token: Token.Ether))
+                                                                              token: feePaymentToken)))
+            .change(fee: TokenAmount(amount: TokenInt(fee), token: feePaymentToken))
             .change(nonce: String(nonce))
             .change(recipient: recipient)
             .change(data: data)

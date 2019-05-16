@@ -53,7 +53,7 @@ public class ReviewTransactionViewController: UITableViewController {
         didSet {
             DispatchQueue.main.async {
                 self.updateSubmitButton()
-                self.updateEtherFeeBalanceCell()
+                self.updateTransactionFeeCell()
             }
         }
     }
@@ -175,9 +175,9 @@ public class ReviewTransactionViewController: UITableViewController {
         }
     }
 
-    internal func updateEtherFeeBalanceCell() {
+    internal func updateTransactionFeeCell() {
         precondition(Thread.isMainThread)
-        cells[feeCellIndexPath] = etherTransactionFeeCell()
+        cells[feeCellIndexPath] = transactionFeeCell()
         if feeCellIndexPath.row < tableView.numberOfRows(inSection: feeCellIndexPath.section) {
             tableView.reloadRows(at: [feeCellIndexPath], with: .none)
         }
@@ -304,16 +304,17 @@ extension ReviewTransactionViewController {
         return cell
     }
 
-    internal func etherTransactionFeeCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.amountTokenData)
+
+    internal func transactionFeeCell() -> UITableViewCell {
+        let balance = self.balance(of: tx.amountTokenData)!
         let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0) - abs(tx.feeTokenData.balance ?? 0)
         return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
                        transactionFee: tx.feeTokenData,
                        resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
     }
 
-    internal func balance(of token: TokenData) -> BigInt {
-        return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address))!
+    internal func balance(of token: TokenData) -> BigInt? {
+        return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address))
     }
 
     internal func feeCell(currentBalance: TokenData?,

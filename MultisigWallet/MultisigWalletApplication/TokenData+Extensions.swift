@@ -29,7 +29,7 @@ extension TokenData {
     }
 
     static func empty() -> TokenData {
-        return TokenData(address: "", code: "", name: "", logoURL: "", decimals: 18, balance: 0)
+        return TokenData(address: "", code: "", name: "", logoURL: "", decimals: 18, balance: nil)
     }
 
 }

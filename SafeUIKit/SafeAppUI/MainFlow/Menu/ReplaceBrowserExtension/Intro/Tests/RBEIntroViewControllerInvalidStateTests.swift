@@ -17,11 +17,11 @@ class RBEIntroViewControllerInvalidStateTests: RBEIntroViewControllerBaseTestCas
                                                    balance: TokenData.Ether.withBalance(BigInt(-1e18)))
         vc.disableRetry()
         vc.transition(to: RBEIntroViewController.InvalidState(error: error))
-        XCTAssertEqual(vc.feeCalculation.currentBalance.asset.value, "3.00 ETH")
-        XCTAssertEqual(vc.feeCalculation.networkFee.asset.value, "- 4.00 ETH")
-        XCTAssertEqual(vc.feeCalculation.balance.asset.value, "- 1.00 ETH")
-        XCTAssertEqual(vc.feeCalculation.balance.asset.error as? FeeCalculationError, error)
-        XCTAssertEqual(vc.feeCalculation.error?.text, error.localizedDescription)
+        XCTAssertEqual(vc.feeCalculation.currentBalanceLine.asset.value, "3.00 ETH")
+        XCTAssertEqual(vc.feeCalculation.networkFeeLine.asset.value, "-")
+        XCTAssertEqual(vc.feeCalculation.resultingBalanceLine.asset.value, "- 1.00 ETH")
+        XCTAssertEqual(vc.feeCalculation.resultingBalanceLine.asset.error as? FeeCalculationError, error)
+        XCTAssertEqual(vc.feeCalculation.errorLine.text, error.localizedDescription)
         XCTAssertNil(vc.navigationItem.titleView)
         XCTAssertTrue(vc.retryButtonItem.isEnabled)
         XCTAssertEqual(vc.navigationItem.rightBarButtonItems, [vc.retryButtonItem])
@@ -32,8 +32,8 @@ class RBEIntroViewControllerInvalidStateTests: RBEIntroViewControllerBaseTestCas
                             code: NSURLErrorTimedOut,
                             userInfo: [NSLocalizedDescriptionKey: "Request timed out"])
         vc.transition(to: RBEIntroViewController.InvalidState(error: error))
-        XCTAssertEqual(vc.feeCalculation.error?.text, error.localizedDescription)
-        XCTAssertNil(vc.feeCalculation.balance.asset.error)
+        XCTAssertEqual(vc.feeCalculation.errorLine.text, error.localizedDescription)
+        XCTAssertNil(vc.feeCalculation.resultingBalanceLine.asset.error)
     }
 
 }

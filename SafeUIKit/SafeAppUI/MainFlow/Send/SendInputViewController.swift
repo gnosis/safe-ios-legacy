@@ -28,7 +28,7 @@ public class SendInputViewController: UIViewController {
     internal var transactionID: String?
 
     private var tokenID: BaseID!
-    private let feeTokenID: BaseID = ethID
+    private var feeTokenID: BaseID!
 
     public static func create(tokenID: BaseID) -> SendInputViewController {
         let controller = StoryboardScene.Main.sendInputViewController.instantiate()
@@ -68,7 +68,11 @@ public class SendInputViewController: UIViewController {
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
         tokenInput.textInput.keyboardTargetView = tokenInput.superview
-        feeCalculationView.calculation = tokenID == feeTokenID ? SendEthFeeCalculation() : SendERC20FeeCalculation()
+
+        feeTokenID = BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
+        feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() :
+            DifferentTransferAndPaymentTokensFeeCalculation()
+
         model.start()
         DispatchQueue.main.async {
             // For unknown reasons, the identicon does not show up if updated in the viewDidLoad
@@ -94,12 +98,12 @@ public class SendInputViewController: UIViewController {
     func updateFromViewModel() {
         accountBalanceHeaderView.amount = model.tokenData
         if tokenID == feeTokenID {
-            let calculation = feeCalculationView.calculation as! SendEthFeeCalculation
+            let calculation = feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
             calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance())
             calculation.resultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setBalanceError(feeBalanceError())
         } else {
-            let calculation = feeCalculationView.calculation as! SendERC20FeeCalculation
+            let calculation = feeCalculationView.calculation as! DifferentTransferAndPaymentTokensFeeCalculation
             calculation.resultingBalanceLine.set(value: model.resultingTokenData)
             calculation.setBalanceError(tokenBalanceError())
             calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance())

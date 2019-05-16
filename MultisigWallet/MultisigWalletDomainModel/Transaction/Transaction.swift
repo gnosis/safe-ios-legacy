@@ -391,10 +391,15 @@ public struct TransactionFeeEstimate: Equatable {
         self.gasPrice = gasPrice
     }
 
-    public var total: TokenAmount {
-        return TokenAmount(amount: gasPrice.amount * (TokenInt(gas) +
-            TokenInt(dataGas) +
-            TokenInt(operationalGas)),
+    /// The value displayed to user includes operationalGas parameter.
+    public var totalDisplayedToUser: TokenAmount {
+        return TokenAmount(amount: gasPrice.amount * (TokenInt(gas) + TokenInt(dataGas) + TokenInt(operationalGas)),
+                           token: gasPrice.token)
+    }
+
+    /// The value submitted to blockchain does not include operational gas parameter.
+    public var totalSubmittedToBlockchain: TokenAmount {
+        return TokenAmount(amount: gasPrice.amount * (TokenInt(gas) + TokenInt(dataGas)),
                            token: gasPrice.token)
     }
 
