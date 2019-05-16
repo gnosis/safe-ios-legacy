@@ -1,63 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Setup Safe Options View Controller-->
+        <!--Onboarding Create Or Restore View Controller-->
         <scene sceneID="xz5-Vz-QDC">
             <objects>
-                <viewController storyboardIdentifier="SetupSafeOptionsViewController" id="Dc2-0P-PlK" customClass="SetupSafeOptionsViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="b3x-LP-Xv8" customClass="BackgroundImageView" customModule="SafeUIKit">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <viewController storyboardIdentifier="SetupSafeOptionsViewController" id="Dc2-0P-PlK" customClass="OnboardingCreateOrRestoreViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b3x-LP-Xv8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E13-LE-lAG">
-                                <rect key="frame" x="16" y="186" width="568" height="48"/>
-                                <string key="text">Safe is secured. 
-Password setup complete.</string>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E13-LE-lAG">
+                                <rect key="frame" x="16" y="259" width="382" height="55.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">No Safes added yet. 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" metaFont="system" size="20"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Let's get started.">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" metaFont="system" size="20"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" minimumLineHeight="32" maximumLineHeight="32" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="6KL-Tt-fre">
-                                <rect key="frame" x="40" y="456" width="520" height="114"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6KL-Tt-fre">
+                                <rect key="frame" x="16" y="723" width="382" height="104"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ab1-Z8-9ct" customClass="StandardButton" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="56"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="jIh-Ei-gnh"/>
+                                            <constraint firstAttribute="height" constant="56" id="jIh-Ei-gnh"/>
                                         </constraints>
-                                        <state key="normal" title="Create a New Safe"/>
+                                        <state key="normal" title="Create a New Safe">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="createNewSafe:" destination="Dc2-0P-PlK" eventType="touchUpInside" id="bAl-fZ-vB1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ns1-zd-Nf9" customClass="StandardButton" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="64" width="520" height="50"/>
+                                        <rect key="frame" x="0.0" y="64" width="382" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="mQJ-IQ-ReJ"/>
+                                            <constraint firstAttribute="height" constant="40" id="mQJ-IQ-ReJ"/>
                                         </constraints>
-                                        <state key="normal" title="Recover an Existing Safe"/>
+                                        <state key="normal" title="Recover an Existing Safe">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="recoverExistingSafe:" destination="Dc2-0P-PlK" eventType="touchUpInside" id="56d-oG-GkJ"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-safes" translatesAutoresizingMaskIntoConstraints="NO" id="Qlt-ex-y0w">
+                                <rect key="frame" x="146" y="144" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="l0L-wT-xA4"/>
+                                    <constraint firstAttribute="height" constant="90" id="xhv-51-y9R"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6KL-Tt-fre" firstAttribute="centerX" secondItem="b3x-LP-Xv8" secondAttribute="centerX" id="EzO-f9-VIE"/>
-                            <constraint firstItem="8Uu-Zb-CVY" firstAttribute="bottom" secondItem="6KL-Tt-fre" secondAttribute="bottom" constant="30" id="OZe-0q-kpv"/>
+                            <constraint firstItem="Qlt-ex-y0w" firstAttribute="top" secondItem="8Uu-Zb-CVY" secondAttribute="top" constant="100" id="DsE-4p-bCA"/>
+                            <constraint firstItem="8Uu-Zb-CVY" firstAttribute="bottom" secondItem="6KL-Tt-fre" secondAttribute="bottom" constant="35" id="OZe-0q-kpv"/>
                             <constraint firstItem="8Uu-Zb-CVY" firstAttribute="trailing" secondItem="E13-LE-lAG" secondAttribute="trailing" constant="16" id="Ocq-0P-cpX"/>
+                            <constraint firstItem="Qlt-ex-y0w" firstAttribute="centerX" secondItem="b3x-LP-Xv8" secondAttribute="centerX" constant="-16" id="Yh5-Fx-Wpl"/>
                             <constraint firstItem="E13-LE-lAG" firstAttribute="leading" secondItem="8Uu-Zb-CVY" secondAttribute="leading" constant="16" id="ZhP-f1-kwg"/>
-                            <constraint firstItem="8Uu-Zb-CVY" firstAttribute="trailing" secondItem="6KL-Tt-fre" secondAttribute="trailing" constant="40" id="ekq-Us-XnU"/>
-                            <constraint firstItem="6KL-Tt-fre" firstAttribute="leading" secondItem="8Uu-Zb-CVY" secondAttribute="leading" constant="40" id="f4v-DA-nWs"/>
-                            <constraint firstItem="E13-LE-lAG" firstAttribute="centerX" secondItem="8Uu-Zb-CVY" secondAttribute="centerX" id="fUo-Aw-i9x"/>
-                            <constraint firstItem="E13-LE-lAG" firstAttribute="centerY" secondItem="8Uu-Zb-CVY" secondAttribute="centerY" constant="-100" id="jpL-mY-Uhh"/>
+                            <constraint firstItem="8Uu-Zb-CVY" firstAttribute="trailing" secondItem="6KL-Tt-fre" secondAttribute="trailing" constant="16" id="ekq-Us-XnU"/>
+                            <constraint firstItem="6KL-Tt-fre" firstAttribute="leading" secondItem="8Uu-Zb-CVY" secondAttribute="leading" constant="16" id="f4v-DA-nWs"/>
+                            <constraint firstItem="E13-LE-lAG" firstAttribute="top" secondItem="Qlt-ex-y0w" secondAttribute="bottom" constant="25" id="yyW-JU-5Q9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Uu-Zb-CVY"/>
                     </view>
@@ -73,4 +102,7 @@ Password setup complete.</string>
             <point key="canvasLocation" x="132" y="74"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="no-safes" width="90" height="90"/>
+    </resources>
 </document>

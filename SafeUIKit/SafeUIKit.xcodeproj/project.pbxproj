@@ -54,11 +54,10 @@
 		0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */; };
 		0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */; };
 		0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */; };
-		0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */; };
 		0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */; };
-		0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */; };
-		0A334DC1209C6D8D00ABC6AE /* SetupSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */; };
-		0A334DC2209C6D8D00ABC6AE /* SetupSafeOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */; };
+		0A334DC0209C6D8700ABC6AE /* OnboardingCreateOrRestoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB7209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewController.swift */; };
+		0A334DC1209C6D8D00ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB3209C6D8600ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift */; };
+		0A334DC2209C6D8D00ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB5209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift */; };
 		0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */; };
 		0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */; };
 		0A334DC9209C6DD800ABC6AE /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DC8209C6DD800ABC6AE /* libCommonTestSupport.a */; };
@@ -140,7 +139,7 @@
 		0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F1220B1CE800E340DB /* MenuCommand.swift */; };
 		0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */; };
 		0A3FB8C2228B163D00270573 /* SendFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8C1228B163D00270573 /* SendFlowCoordinator.swift */; };
-		0A3FB8D2228B16F100270573 /* UIBarButtonItem+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D1228B16F100270573 /* UIBarButtonItem+Back.swift */; };
+		0A3FB8D2228B16F100270573 /* UIBarButtonItem+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D1228B16F100270573 /* UIBarButtonItem+Items.swift */; };
 		0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D3228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift */; };
 		0A3FB8D6228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
@@ -618,11 +617,10 @@
 		0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsGroupHeaderView.swift; sourceTree = "<group>"; };
 		0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenFooterView.swift; sourceTree = "<group>"; };
 		0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTokenFooterView.xib; sourceTree = "<group>"; };
-		0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewControllerTests.swift; sourceTree = "<group>"; };
+		0A334DB3209C6D8600ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorCreateOrRestoreTests.swift; sourceTree = "<group>"; };
+		0A334DB5209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCreateOrRestoreViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetupSafe.storyboard; sourceTree = "<group>"; };
-		0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewController.swift; sourceTree = "<group>"; };
+		0A334DB7209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCreateOrRestoreViewController.swift; sourceTree = "<group>"; };
 		0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334DC8209C6DD800ABC6AE /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -686,7 +684,7 @@
 		0A3D1551220B38B100E340DB /* libReplaceBrowserExtensionFacade.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReplaceBrowserExtensionFacade.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3D1553220B393A00E340DB /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0A3FB8C1228B163D00270573 /* SendFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A3FB8D1228B16F100270573 /* UIBarButtonItem+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Back.swift"; sourceTree = "<group>"; };
+		0A3FB8D1228B16F100270573 /* UIBarButtonItem+Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Items.swift"; sourceTree = "<group>"; };
 		0A3FB8D3228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingTransactionFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -1115,12 +1113,10 @@
 			isa = PBXGroup;
 			children = (
 				0A334DFB209C8E3800ABC6AE /* NewSafeFlow */,
-				0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */,
-				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
 				0A2D5889225757FF001B8BF4 /* RecoverSafe */,
-				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
-				0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */,
-				0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */,
+				0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */,
+				0A334DB7209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewController.swift */,
+				0A334DB5209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift */,
 			);
 			path = SetupSafeFlow;
 			sourceTree = "<group>";
@@ -1313,6 +1309,7 @@
 				0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */,
 				0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
+				0A334DB3209C6D8600ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift */,
 				55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */,
 				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
 				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
@@ -1327,7 +1324,7 @@
 				0A8C961920D2A783007D2410 /* TransactionDetails */,
 				0AF8D53C20D00FF6001E8423 /* TransactionList */,
 				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
-				0A3FB8D1228B16F100270573 /* UIBarButtonItem+Back.swift */,
+				0A3FB8D1228B16F100270573 /* UIBarButtonItem+Items.swift */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -2806,7 +2803,7 @@
 				0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */,
 				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* SendInputViewController.swift in Sources */,
-				0A3FB8D2228B16F100270573 /* UIBarButtonItem+Back.swift in Sources */,
+				0A3FB8D2228B16F100270573 /* UIBarButtonItem+Items.swift in Sources */,
 				5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */,
 				0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
@@ -2856,7 +2853,6 @@
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
 				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
-				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
 				55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
@@ -2871,7 +2867,7 @@
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
-				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
+				0A334DC0209C6D8700ABC6AE /* OnboardingCreateOrRestoreViewController.swift in Sources */,
 				0A3BD90922254833007039B4 /* RBEIntroViewControllerErrorState.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
 				5549B2A522859F4700F3B5B7 /* PaymentMethodHeaderView.swift in Sources */,
@@ -3008,7 +3004,7 @@
 				0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */,
 				0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */,
 				0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */,
-				0A334DC2209C6D8D00ABC6AE /* SetupSafeOptionsViewControllerTests.swift in Sources */,
+				0A334DC2209C6D8D00ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift in Sources */,
 				0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				55DEBC2A214BD7C60017CD4B /* SafeAddressViewControllerTests.swift in Sources */,
 				0A334E5B209C8E6800ABC6AE /* NewSafeFlowCoordinatorTests.swift in Sources */,
@@ -3017,7 +3013,7 @@
 				0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 				0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */,
 				0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */,
-				0A334DC1209C6D8D00ABC6AE /* SetupSafeFlowCoordinatorTests.swift in Sources */,
+				0A334DC1209C6D8D00ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift in Sources */,
 				0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */,
 				5549B2A222857F7500F3B5B7 /* PaymentMethodViewControllerTests.swift in Sources */,
 				0A3BD95D22255C49007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift in Sources */,

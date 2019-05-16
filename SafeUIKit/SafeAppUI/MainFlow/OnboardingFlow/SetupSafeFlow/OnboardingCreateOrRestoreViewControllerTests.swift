@@ -6,15 +6,15 @@ import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
 
-class SetupSafeOptionsViewControllerTests: SafeTestCase {
+class OnboardingCreateOrRestoreViewControllerTests: SafeTestCase {
 
     // swiftlint:disable:next weak_delegate
-    let delegate = MockSetupSafeOptionsDelegate()
-    var vc: SetupSafeOptionsViewController!
+    let delegate = MockOnboardingCreateOrRestoreViewControllerDelegate()
+    var vc: OnboardingCreateOrRestoreViewController!
 
     override func setUp() {
         super.setUp()
-        vc = SetupSafeOptionsViewController.create(delegate: delegate)
+        vc = OnboardingCreateOrRestoreViewController.create(delegate: delegate)
         vc.loadViewIfNeeded()
     }
 
@@ -47,8 +47,7 @@ class SetupSafeOptionsViewControllerTests: SafeTestCase {
     }
 }
 
-final class MockSetupSafeOptionsDelegate: SetupSafeOptionsDelegate {
-
+final class MockOnboardingCreateOrRestoreViewControllerDelegate: OnboardingCreateOrRestoreViewControllerDelegate {
 
     var pressedNewSafe = false
     var pressedRecovery = false
@@ -60,5 +59,7 @@ final class MockSetupSafeOptionsDelegate: SetupSafeOptionsDelegate {
     func didSelectRecoverSafe() {
         pressedRecovery = true
     }
+
+    func openMenu() {}
 
 }

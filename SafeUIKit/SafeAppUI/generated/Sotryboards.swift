@@ -126,7 +126,7 @@ enum StoryboardScene {
   enum SetupSafe: StoryboardType {
     static let storyboardName = "SetupSafe"
 
-    static let setupSafeOptionsViewController = SceneType<SafeAppUI.SetupSafeOptionsViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
+    static let setupSafeOptionsViewController = SceneType<SafeAppUI.OnboardingCreateOrRestoreViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
   }
   enum Unlock: StoryboardType {
     static let storyboardName = "Unlock"

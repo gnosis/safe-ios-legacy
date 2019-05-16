@@ -10,6 +10,10 @@ open class WalletSettingsApplicationService {
 
     public init() {}
 
+    open func isReplaceRecoveryAvailable() -> Bool {
+        return DomainRegistry.settingsService.isReplaceRecoveryAvailable()
+    }
+
     public func createRecoveryPhraseTransaction() -> TransactionData {
         let transactionID = DomainRegistry.settingsService.createReplaceRecoveryPhraseTransaction()
         DomainRegistry.settingsService.estimateRecoveryPhraseTransaction(transactionID)

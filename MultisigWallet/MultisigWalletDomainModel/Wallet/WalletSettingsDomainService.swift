@@ -10,6 +10,10 @@ public class WalletSettingsDomainService {
 
     public init() {}
 
+    public func isReplaceRecoveryAvailable() -> Bool {
+        return DomainRegistry.walletRepository.selectedWallet()?.owner(role: .paperWallet) != nil
+    }
+
     public func createReplaceRecoveryPhraseTransaction() -> TransactionID {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)

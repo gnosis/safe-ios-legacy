@@ -23,10 +23,6 @@ final class MainViewController: UIViewController {
 
     private weak var delegate: (MainViewControllerDelegate & TransactionsTableViewControllerDelegate)?
 
-    private enum Strings {
-        static let menu = LocalizedString("menu", comment: "Menu button title")
-    }
-
     static func create(delegate: MainViewControllerDelegate & TransactionsTableViewControllerDelegate)
         -> MainViewController {
             let controller = StoryboardScene.Main.mainViewController.instantiate()
@@ -43,8 +39,8 @@ final class MainViewController: UIViewController {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         ApplicationServiceRegistry.logger.info("Safe address: \(address)")
 
-        let menuButton = UIBarButtonItem(title: Strings.menu, style: .done, target: self, action: #selector(openMenu))
-        navigationItem.setRightBarButton(menuButton, animated: false)
+        navigationItem.setRightBarButton(UIBarButtonItem.menuButton(target: self, action: #selector(openMenu)),
+                                         animated: false)
         safeAddressLabel.address = address
         safeIdenticonView.seed = address
         safeIdenticonView.displayShadow = true
