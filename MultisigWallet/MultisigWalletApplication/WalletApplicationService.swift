@@ -493,8 +493,7 @@ public class WalletApplicationService: Assertable {
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
-        return (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas))
-            * BigInt(response.gasPrice)
+        return response.totalDisplayedToUser
     }
 
     public func estimateTransferFee(amount: BigInt, token: String, recipient: String?) -> BigInt? {
@@ -521,8 +520,7 @@ public class WalletApplicationService: Assertable {
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
-        return (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas))
-            * BigInt(response.gasPrice)
+        return response.totalDisplayedToUser
     }
 
     public func transactionData(_ id: String) -> TransactionData? {

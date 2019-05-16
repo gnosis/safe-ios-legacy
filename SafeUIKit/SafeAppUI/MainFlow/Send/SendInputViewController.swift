@@ -73,7 +73,7 @@ public class SendInputViewController: UIViewController {
         feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() :
             DifferentTransferAndPaymentTokensFeeCalculation()
 
-        model.start()
+        model.update()
         DispatchQueue.main.async {
             // For unknown reasons, the identicon does not show up if updated in the viewDidLoad
             self.accountBalanceHeaderView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
@@ -108,7 +108,7 @@ public class SendInputViewController: UIViewController {
             calculation.setBalanceError(feeBalanceError())
         } else {
             let calculation = feeCalculationView.calculation as! DifferentTransferAndPaymentTokensFeeCalculation
-            calculation.resultingBalanceLine.set(value: model.resultingTokenData)
+            calculation.resultingBalanceLine.set(value: model.resultingBalanceTokenData)
             calculation.setBalanceError(tokenBalanceError())
             calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance(),
                                            target: self,
@@ -121,7 +121,7 @@ public class SendInputViewController: UIViewController {
     }
 
     private func tokenBalanceError() -> Error? {
-        let isNegativeBalance = (model.resultingTokenData.balance ?? 0) < 0
+        let isNegativeBalance = (model.resultingBalanceTokenData.balance ?? 0) < 0
         return  model.hasEnoughFunds() == false && isNegativeBalance ? FeeCalculationError.insufficientBalance : nil
     }
 

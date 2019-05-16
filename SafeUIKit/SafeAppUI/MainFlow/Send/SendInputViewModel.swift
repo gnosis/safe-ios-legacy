@@ -10,34 +10,32 @@ import SafeUIKit
 
 class SendInputViewModel {
 
-    private var intFee: BigInt?
-
     private(set) var amount: BigInt?
     private(set) var recipient: String?
+    private(set) var estimatedFee: BigInt?
 
+    private let transferTokenID: BaseID
     private var feeTokenID: BaseID {
         return BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
     }
+
+    private(set) var accountBalanceTokenData: TokenData!
+    private(set) var resultingBalanceTokenData: TokenData!
+
     private(set) var feeBalanceTokenData: TokenData!
     private(set) var feeAmountTokenData: TokenData!
     private(set) var feeResultingBalanceTokenData: TokenData!
 
-    private(set) var resultingTokenData: TokenData!
-
     private(set) var canProceedToSigning: Bool
-
-    private let inputQueue: OperationQueue
-    private let transferTokenID: BaseID
-    private(set) var accountBalanceTokenData: TokenData!
 
     private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
     private let updateBlock: () -> Void
+    private let inputQueue: OperationQueue
 
     init(tokenID: BaseID, processEventsOnMainThread: Bool = false, onUpdate: @escaping () -> Void) {
         self.transferTokenID = tokenID
         canProceedToSigning = false
         updateBlock = onUpdate
-        accountBalanceTokenData = ApplicationServiceRegistry.walletService.tokenData(id: tokenID.id)!
         inputQueue = OperationQueue()
         inputQueue.maxConcurrentOperationCount = 1
         inputQueue.qualityOfService = .userInitiated
@@ -47,26 +45,22 @@ class SendInputViewModel {
         }
     }
 
-    func start() {
+    func update() {
         accountBalanceTokenData = ApplicationServiceRegistry.walletService.tokenData(id: transferTokenID.id)!
-        updateFeeData()
-        notifyUpdated()
         enqueueFeeEstimation()
+        updateBalances()
     }
 
     func change(amount: BigInt) {
         guard amount != self.amount else { return }
         self.amount = amount
-        enqueueFeeEstimation()
-        updateResultingBalance()
-        notifyUpdated()
+        update()
     }
 
     func change(recipient: String?) {
         guard recipient != self.recipient else { return }
         self.recipient = recipient
-        enqueueFeeEstimation()
-        notifyUpdated()
+        update()
     }
 
     private func enqueueFeeEstimation() {
@@ -74,31 +68,26 @@ class SendInputViewModel {
         inputQueue.addOperation(CancellableBlockOperation { [weak self] op in
             guard let `self` = self else { return }
             if op.isCancelled { return }
-            self.intFee = self.walletService.estimateTransferFee(amount: self.amount ?? 0, address: self.recipient)
+            self.estimatedFee = self.walletService.estimateTransferFee(amount: self.amount ?? 0,
+                                                                       address: self.recipient)
             if op.isCancelled { return }
-            self.updateFeeData()
-            self.notifyUpdated()
+            self.updateBalances()
         })
     }
 
-    private func notifyUpdated() {
-        canProceedToSigning = hasEnoughFunds() == true && isValidAddress(recipient)
-        if Thread.isMainThread {
-            updateBlock()
-        } else {
-            DispatchQueue.main.sync(execute: updateBlock)
-        }
+    private func updateBalances() {
+        updateFeeData()
+        updateResultingData()
+        notifyUpdated()
     }
 
     private func updateFeeData() {
-        guard let balance = self.walletService.tokenData(id: self.feeTokenID.id),
-            balance.balance != nil else { return }
-        self.feeBalanceTokenData = balance
-        self.feeAmountTokenData = balance.withBalance(-(intFee ?? 0))
-        self.updateResultingBalance()
+        let feeTokenBalance = self.walletService.tokenData(id: self.feeTokenID.id)!
+        self.feeBalanceTokenData = feeTokenBalance
+        self.feeAmountTokenData = feeTokenBalance.withBalance(-(estimatedFee ?? 0))
     }
 
-    private func updateResultingBalance() {
+    private func updateResultingData() {
         let intAmount = amount ?? 0
         let feeAmount = abs(self.feeAmountTokenData?.balance ?? 0)
         let feeAccountbalance = self.feeBalanceTokenData?.balance ?? 0
@@ -107,8 +96,17 @@ class SendInputViewModel {
             let newBalance = feeAccountbalance - intAmount - feeAmount
             self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(newBalance)
         } else {
-            self.resultingTokenData = self.accountBalanceTokenData.withBalance(accountBalance - intAmount)
+            self.resultingBalanceTokenData = self.accountBalanceTokenData.withBalance(accountBalance - intAmount)
             self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(feeAccountbalance - feeAmount)
+        }
+    }
+
+    private func notifyUpdated() {
+        canProceedToSigning = hasEnoughFunds() == true && isValidAddress(recipient)
+        if Thread.isMainThread {
+            updateBlock()
+        } else {
+            DispatchQueue.main.sync(execute: updateBlock)
         }
     }
 

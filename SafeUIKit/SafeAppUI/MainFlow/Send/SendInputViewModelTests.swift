@@ -22,7 +22,7 @@ class SendInputViewModelTests: XCTestCase {
         walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         model = SendInputViewModel(tokenID: ethID, processEventsOnMainThread: true) { /* empty */ }
-        model.start()
+        model.update()
     }
 
     func test_start() {
@@ -34,7 +34,7 @@ class SendInputViewModelTests: XCTestCase {
 
     func test_whenWalletAccountBalanceNil_thenBalanceIsNil() {
         walletService.update(account: ethID, newBalance: nil)
-        model.start()
+        model.update()
         XCTAssertNil(model.accountBalanceTokenData.balance)
     }
 
@@ -43,7 +43,7 @@ class SendInputViewModelTests: XCTestCase {
         model = SendInputViewModel(tokenID: ethID) {
             changed += 1
         }
-        model.start()
+        model.update()
         model.change(amount: 1)
         let expected = changed
         model.change(amount: 1)
@@ -56,7 +56,7 @@ class SendInputViewModelTests: XCTestCase {
         model = SendInputViewModel(tokenID: ethID) {
             changed += 1
         }
-        model.start()
+        model.update()
         model.change(recipient: "a")
         let expected = changed
         model.change(recipient: "a")

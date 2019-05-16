@@ -72,6 +72,11 @@ public struct EstimateTransactionRequest: Encodable {
             self.lastUsedNonce = lastUsedNonce
         }
 
+        /// The value displayed to user includes operationalGas parameter.
+        public var totalDisplayedToUser: BigInt {
+            return BigInt(gasPrice) * (BigInt(dataGas) + BigInt(safeTxGas) + BigInt(operationalGas))
+        }
+
     }
 
 }
