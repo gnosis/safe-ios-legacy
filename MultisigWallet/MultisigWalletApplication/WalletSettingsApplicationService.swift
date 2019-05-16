@@ -10,7 +10,7 @@ open class WalletSettingsApplicationService {
 
     public init() {}
 
-    public func isReplaceRecoveryAvailable() -> Bool {
+    open func isReplaceRecoveryAvailable() -> Bool {
         return DomainRegistry.settingsService.isReplaceRecoveryAvailable()
     }
 
