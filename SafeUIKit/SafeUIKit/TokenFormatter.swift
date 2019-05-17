@@ -269,26 +269,14 @@ public extension TokenData {
 
     /// CryptoToken-formatted balance
     var tokenValue: CryptoToken? {
-        get {
-            guard let amount = decimalAmount else { return nil }
-            return CryptoToken(amount, code)
-        }
-        set {
-            decimalAmount = newValue?.amount
-            code = newValue?.code ?? ""
-        }
+        guard let amount = decimalAmount else { return nil }
+        return CryptoToken(amount, code)
     }
 
     /// Balance as a decimal number
     var decimalAmount: BigDecimal? {
-        get {
-            guard let balance = balance else { return nil }
-            return BigDecimal(balance, decimals)
-        }
-        set {
-            balance = newValue?.value
-            decimals = newValue?.precision ?? 18
-        }
+        guard let balance = balance else { return nil }
+        return BigDecimal(balance, decimals)
     }
 
 }
