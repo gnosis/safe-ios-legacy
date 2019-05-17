@@ -61,7 +61,7 @@ public class SendInputViewController: UIViewController {
         tokenInput.addRule("", identifier: "notEnoughFunds") { [unowned self] in
             guard let amount = self.tokenInput.formatter.number(from: $0) else { return true }
             self.model.change(amount: amount)
-            return self.model.hasEnoughFunds() ?? false
+            return self.model.hasEnoughFunds()
         }
         tokenInput.setUp(value: 0, decimals: model.accountBalanceTokenData.decimals)
         tokenInput.usesEthDefaultImage = true
