@@ -28,7 +28,9 @@ public class SendInputViewController: UIViewController {
     internal var transactionID: String?
 
     private var tokenID: BaseID!
-    private var feeTokenID: BaseID!
+    private var feeTokenID: BaseID {
+        return BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
+    }
 
     public static func create(tokenID: BaseID) -> SendInputViewController {
         let controller = StoryboardScene.Main.sendInputViewController.instantiate()
@@ -50,30 +52,25 @@ public class SendInputViewController: UIViewController {
 
         model = SendInputViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
 
-        navigationItem.title = String(format: Strings.titleFormatString, model.tokenData.code)
+        navigationItem.title = String(format: Strings.titleFormatString, model.accountBalanceTokenData.code)
 
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
         addressInput.spacingAfterInput = 0
 
         tokenInput.addRule("", identifier: "notEnoughFunds") { [unowned self] in
-            guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
-            self.model.change(amount: $0)
-            return self.model.hasEnoughFunds() ?? false
+            guard let amount = self.tokenInput.formatter.number(from: $0) else { return true }
+            self.model.change(amount: amount)
+            return self.model.hasEnoughFunds()
         }
-        tokenInput.setUp(value: 0, decimals: model.tokenData.decimals)
+        tokenInput.setUp(value: 0, decimals: model.accountBalanceTokenData.decimals)
         tokenInput.usesEthDefaultImage = true
-        tokenInput.imageURL = model.tokenData.logoURL
-        tokenInput.tokenCode = model.tokenData.code
+        tokenInput.imageURL = model.accountBalanceTokenData.logoURL
+        tokenInput.tokenCode = model.accountBalanceTokenData.code
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
         tokenInput.textInput.keyboardTargetView = tokenInput.superview
 
-        feeTokenID = BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
-        feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() :
-            DifferentTransferAndPaymentTokensFeeCalculation()
-
-        model.start()
         DispatchQueue.main.async {
             // For unknown reasons, the identicon does not show up if updated in the viewDidLoad
             self.accountBalanceHeaderView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
@@ -83,11 +80,22 @@ public class SendInputViewController: UIViewController {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardBehavior.start()
+        updateFeeCalculationViewAndModel()
+    }
+
+    /// If user changed payment method, the fee calculation view should be updated with new fee token data.
+    private func updateFeeCalculationViewAndModel() {
+        feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() :
+            DifferentTransferAndPaymentTokensFeeCalculation()
+        model.resetEstimation()
+        model.update()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(SendTrackingEvent(.input, token: model.tokenData.address, tokenName: model.tokenData.code))
+        trackEvent(SendTrackingEvent(.input,
+                                     token: model.accountBalanceTokenData.address,
+                                     tokenName: model.accountBalanceTokenData.code))
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
@@ -96,17 +104,21 @@ public class SendInputViewController: UIViewController {
     }
 
     func updateFromViewModel() {
-        accountBalanceHeaderView.amount = model.tokenData
+        accountBalanceHeaderView.amount = model.accountBalanceTokenData
         if tokenID == feeTokenID {
             let calculation = feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
-            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance())
+            calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
+                                           target: self,
+                                           action: #selector(changePaymentMethod))
             calculation.resultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setBalanceError(feeBalanceError())
         } else {
             let calculation = feeCalculationView.calculation as! DifferentTransferAndPaymentTokensFeeCalculation
-            calculation.resultingBalanceLine.set(value: model.resultingTokenData)
+            calculation.resultingBalanceLine.set(value: model.resultingBalanceTokenData)
             calculation.setBalanceError(tokenBalanceError())
-            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance())
+            calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
+                                           target: self,
+                                           action: #selector(changePaymentMethod))
             calculation.networkFeeResultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setFeeBalanceError(feeBalanceError())
         }
@@ -115,7 +127,7 @@ public class SendInputViewController: UIViewController {
     }
 
     private func tokenBalanceError() -> Error? {
-        let isNegativeBalance = (model.resultingTokenData.balance ?? 0) < 0
+        let isNegativeBalance = (model.resultingBalanceTokenData.balance ?? 0) < 0
         return  model.hasEnoughFunds() == false && isNegativeBalance ? FeeCalculationError.insufficientBalance : nil
     }
 
@@ -128,7 +140,7 @@ public class SendInputViewController: UIViewController {
         let service = ApplicationServiceRegistry.walletService
         transactionID = service.createNewDraftTransaction()
         service.updateTransaction(transactionID!,
-                                  amount: model.intAmount ?? 0,
+                                  amount: model.amount ?? 0,
                                   token: tokenID.id,
                                   recipient: model.recipient!)
         delegate?.didCreateDraftTransaction(id: transactionID!)
@@ -144,6 +156,10 @@ public class SendInputViewController: UIViewController {
 
     @objc func showTransactionFeeInfo() {
         present(TransactionFeeAlertController.create(), animated: true, completion: nil)
+    }
+
+    @objc private func changePaymentMethod() {
+        navigationController?.pushViewController(PaymentMethodViewController(), animated: true)
     }
 
 }

@@ -37,6 +37,7 @@ class SendInputViewControllerTests: XCTestCase {
 
         controller.delegate = delegate
         controller.loadViewIfNeeded()
+        controller.viewWillAppear(false)
         controller.tokenInput.text = "0.1"
         controller.addressInput.text = recipient
         controller.proceedToSigning(controller.nextBarButton as Any)
