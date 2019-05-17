@@ -28,7 +28,9 @@ public class SendInputViewController: UIViewController {
     internal var transactionID: String?
 
     private var tokenID: BaseID!
-    private var feeTokenID: BaseID!
+    private var feeTokenID: BaseID {
+        return BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
+    }
 
     public static func create(tokenID: BaseID) -> SendInputViewController {
         let controller = StoryboardScene.Main.sendInputViewController.instantiate()
@@ -69,11 +71,6 @@ public class SendInputViewController: UIViewController {
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
         tokenInput.textInput.keyboardTargetView = tokenInput.superview
 
-        feeTokenID = BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
-        feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() :
-            DifferentTransferAndPaymentTokensFeeCalculation()
-
-        model.update()
         DispatchQueue.main.async {
             // For unknown reasons, the identicon does not show up if updated in the viewDidLoad
             self.accountBalanceHeaderView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
@@ -83,6 +80,15 @@ public class SendInputViewController: UIViewController {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardBehavior.start()
+        updateFeeCalculationViewAndModel()
+    }
+
+    /// If user changed payment method, the fee calculation view should be updated with new fee token data.
+    private func updateFeeCalculationViewAndModel() {
+        feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() :
+            DifferentTransferAndPaymentTokensFeeCalculation()
+        model.resetEstimation()
+        model.update()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -101,7 +107,7 @@ public class SendInputViewController: UIViewController {
         accountBalanceHeaderView.amount = model.accountBalanceTokenData
         if tokenID == feeTokenID {
             let calculation = feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
-            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance(),
+            calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
                                            target: self,
                                            action: #selector(changePaymentMethod))
             calculation.resultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
@@ -110,7 +116,7 @@ public class SendInputViewController: UIViewController {
             let calculation = feeCalculationView.calculation as! DifferentTransferAndPaymentTokensFeeCalculation
             calculation.resultingBalanceLine.set(value: model.resultingBalanceTokenData)
             calculation.setBalanceError(tokenBalanceError())
-            calculation.networkFeeLine.set(valueButton: model.feeAmountTokenData.withNonNegativeBalance(),
+            calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
                                            target: self,
                                            action: #selector(changePaymentMethod))
             calculation.networkFeeResultingBalanceLine.set(value: model.feeResultingBalanceTokenData)

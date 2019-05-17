@@ -19,11 +19,13 @@ class SendInputViewModel {
         return BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
     }
 
-    private(set) var accountBalanceTokenData: TokenData!
+    var accountBalanceTokenData: TokenData {
+        return ApplicationServiceRegistry.walletService.tokenData(id: transferTokenID.id)!
+    }
     private(set) var resultingBalanceTokenData: TokenData!
 
     private(set) var feeBalanceTokenData: TokenData!
-    private(set) var feeAmountTokenData: TokenData!
+    private(set) var feeEstimatedAmountTokenData: TokenData!
     private(set) var feeResultingBalanceTokenData: TokenData!
 
     private(set) var canProceedToSigning: Bool
@@ -45,8 +47,11 @@ class SendInputViewModel {
         }
     }
 
+    func resetEstimation() {
+        estimatedFee = nil
+    }
+
     func update() {
-        accountBalanceTokenData = ApplicationServiceRegistry.walletService.tokenData(id: transferTokenID.id)!
         enqueueFeeEstimation()
         updateBalances()
     }
@@ -84,13 +89,13 @@ class SendInputViewModel {
     private func updateFeeData() {
         let feeTokenBalance = self.walletService.tokenData(id: self.feeTokenID.id)!
         self.feeBalanceTokenData = feeTokenBalance
-        self.feeAmountTokenData = feeTokenBalance.withBalance(-(estimatedFee ?? 0))
+        self.feeEstimatedAmountTokenData = feeTokenBalance.withBalance(estimatedFee != nil ? -estimatedFee! : nil)
     }
 
     private func updateResultingData() {
         let intAmount = amount ?? 0
-        let feeAmount = abs(self.feeAmountTokenData?.balance ?? 0)
-        let feeAccountbalance = self.feeBalanceTokenData?.balance ?? 0
+        let feeAmount = abs(self.feeEstimatedAmountTokenData.balance ?? 0)
+        let feeAccountbalance = self.feeBalanceTokenData.balance ?? 0
         let accountBalance = self.accountBalanceTokenData.balance ?? 0
         if feeTokenID == transferTokenID {
             let newBalance = feeAccountbalance - intAmount - feeAmount
@@ -117,11 +122,15 @@ class SendInputViewModel {
         return false
     }
 
-    func hasEnoughFunds() -> Bool? {
+    /// Checks if token to transfer has enough together with fees to be payed. If fee is not known, returns false.
+    func hasEnoughFunds() -> Bool {
+        guard let estimatedAmount = feeEstimatedAmountTokenData.balance else {
+            return false
+        }
         let accountBalance = accountBalanceTokenData.balance ?? 0
         let intAmount = amount ?? 0
         let feeBalance = feeBalanceTokenData.balance ?? 0
-        let feeAmount = abs(feeAmountTokenData.balance ?? 0)
+        let feeAmount = abs(estimatedAmount)
         if feeTokenID == transferTokenID {
             return accountBalance >= intAmount + feeAmount
         } else {
