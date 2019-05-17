@@ -99,7 +99,8 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         } else {
             let label = UILabel()
             label.attributedText = NSAttributedString(string: asset.value ?? "",
-                                                      style: asset.error == nil ? textStyle.value : textStyle.error)
+                                                      style: asset.error == nil ? textStyle.value :
+                                                        textStyle.valueError)
             let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
             label.setContentHuggingPriority(huggingPriority, for: .horizontal)
             tooltipSource = TooltipSource(target: label)

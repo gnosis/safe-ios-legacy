@@ -1,4 +1,4 @@
-/* Insufficient funds.\nPlease add %@ to your Safe. */
+/* Insufficient funds to perform this transaction. */
 "exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* Browser extension is already connected. */
