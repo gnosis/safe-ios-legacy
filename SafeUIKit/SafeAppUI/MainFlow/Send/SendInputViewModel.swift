@@ -13,7 +13,7 @@ class SendInputViewModel {
     private (set) var intAmount: BigInt?
     private var intFee: BigInt?
     public var balance: String {
-        return tokenFormatter.string(from: tokenData.balance ?? 0)
+        return tokenFormatter.string(from: tokenData)
     }
     private(set) var tokenData: TokenData!
     private(set) var amount: String?
@@ -26,7 +26,7 @@ class SendInputViewModel {
 
     private(set) var canProceedToSigning: Bool
 
-    let tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
+    let tokenFormatter = TokenFormatter()
     private let inputQueue: OperationQueue
     private let tokenID: BaseID
     private let feeTokenID: BaseID
@@ -39,8 +39,6 @@ class SendInputViewModel {
         canProceedToSigning = false
         updateBlock = onUpdate
         tokenData = ApplicationServiceRegistry.walletService.tokenData(id: tokenID.id)!
-        tokenFormatter.decimals = tokenData.decimals
-        tokenFormatter.displayedDecimals = 8
         inputQueue = OperationQueue()
         inputQueue.maxConcurrentOperationCount = 1
         inputQueue.qualityOfService = .userInitiated
@@ -107,7 +105,7 @@ class SendInputViewModel {
 
     private func updateIntAmount() {
         guard let amount = amount else { intAmount = nil; return }
-        intAmount = tokenFormatter.number(from: amount)
+        intAmount = tokenFormatter.number(from: amount, precision: tokenData.decimals)?.value
     }
 
     private func enqueueFeeEstimation() {

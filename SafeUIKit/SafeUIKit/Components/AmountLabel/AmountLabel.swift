@@ -7,9 +7,15 @@ import Common
 
 public class AmountLabel: BaseCustomLabel {
 
-    public var formatter = TokenNumberFormatter.ERC20Token(decimals: 18)
+    public var formatter = TokenFormatter()
 
     public var isShowingPlusSign: Bool = true {
+        didSet {
+            update()
+        }
+    }
+
+    public var isShowingShortFormat: Bool = true {
         didSet {
             update()
         }
@@ -22,7 +28,6 @@ public class AmountLabel: BaseCustomLabel {
     }
 
     public override func commonInit() {
-        formatter.displayedDecimals = 4
         update()
     }
 
@@ -32,10 +37,9 @@ public class AmountLabel: BaseCustomLabel {
 
     private func formattedText() -> String? {
         guard let amount = amount else { return nil }
-        formatter.plusSign = isShowingPlusSign ? "+ " : ""
-        formatter.tokenCode = amount.code
-        formatter.decimals = amount.decimals
-        return formatter.string(from: amount.balance ?? 0)
+        return formatter.localizedString(from: amount,
+                                         forcePlusSign: isShowingPlusSign,
+                                         shortFormat: isShowingShortFormat)
     }
 
 }

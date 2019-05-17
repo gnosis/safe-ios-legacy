@@ -5,6 +5,7 @@
 import UIKit
 import Common
 
+// TODO: remove when ReplaceRecoveryPhraseViewController rewritten with FeeCalculationView
 public class TransactionFeeView: BaseCustomView {
 
     enum Strings {

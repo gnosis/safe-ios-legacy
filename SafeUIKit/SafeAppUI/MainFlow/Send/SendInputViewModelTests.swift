@@ -26,7 +26,7 @@ class SendInputViewModelTests: XCTestCase {
     }
 
     func test_start() {
-        XCTAssertEqual(model.balance, model.tokenFormatter.string(from: balance))
+        XCTAssertEqual(model.balance, model.tokenFormatter.string(from: model.tokenData))
         XCTAssertEqual(model.amount, nil)
         XCTAssertEqual(model.recipient, nil)
         XCTAssertEqual(model.feeAmountTokenData.balance, 0)
@@ -36,7 +36,7 @@ class SendInputViewModelTests: XCTestCase {
     func test_whenWalletBalanceNil_thenBalanceIsNil() {
         walletService.update(account: ethID, newBalance: nil)
         model.start()
-        XCTAssertEqual(model.balance, model.tokenFormatter.string(from: 0))
+        XCTAssertEqual(model.balance, "-")
     }
 
     func test_whenAmountChangesToSameValue_nothingHappens() {

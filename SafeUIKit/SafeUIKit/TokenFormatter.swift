@@ -13,6 +13,8 @@ public class TokenFormatter {
                                                   billions: LocalizedString("amount_billions", comment: "B"),
                                                   trillions: LocalizedString("amount_trillions", comment: "T"))
     public static let defaultLiterals = (millions: "M", billions: "B", trillions: "T")
+    public static let decimalSeparators = ".,٫"
+    public init() {}
 
     /// Converts string to a BigDecimal with a known precision.
     ///
@@ -32,7 +34,7 @@ public class TokenFormatter {
     /// - Returns: number parsed from the input, or nil if the input was not a number.
     public func number(from input: String,
                        precision: Int,
-                       decimalSeparators: String = ".,٫") -> BigDecimal? {
+                       decimalSeparators: String = TokenFormatter.decimalSeparators) -> BigDecimal? {
         let string = input.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "")
         if string == "0" { return .zero(precision) }
         var parts = string.components(separatedBy: CharacterSet(charactersIn: decimalSeparators))
@@ -48,9 +50,9 @@ public class TokenFormatter {
     }
 
     public func localizedString(from tokenData: TokenData,
+                                locale: Locale = Locale.autoupdatingCurrent,
                                 forcePlusSign: Bool = false,
                                 shortFormat: Bool = true) -> String {
-        let locale = Locale.autoupdatingCurrent
         return string(from: tokenData,
                       decimalSeparator: locale.decimalSeparator ?? ".",
                       thousandSeparator: locale.groupingSeparator ?? ",",
@@ -60,9 +62,9 @@ public class TokenFormatter {
     }
 
     public func localizedString(from number: BigDecimal,
+                                locale: Locale = Locale.autoupdatingCurrent,
                                 forcePlusSign: Bool = false,
                                 shortFormat: Bool = true) -> String {
-        let locale = Locale.autoupdatingCurrent
         return string(from: number,
                       decimalSeparator: locale.decimalSeparator ?? ".",
                       thousandSeparator: locale.groupingSeparator ?? ",",

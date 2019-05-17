@@ -13,14 +13,15 @@ class TokenFormatterTests: XCTestCase {
 
     // swiftlint:disable number_separator
     func test_stringFromNumber() {
+        // full format
         XCTAssertEqual(f.string(from: BigDecimal(1_000, 0), shortFormat: false), "1,000")
         XCTAssertEqual(f.string(from: BigDecimal(1_000, 1), shortFormat: false), "100")
         XCTAssertEqual(f.string(from: BigDecimal(1_000, 3), shortFormat: false), "1")
         XCTAssertEqual(f.string(from: BigDecimal(1_000, 7), shortFormat: false), "0.0001")
 
-        //   0.12345600 -> 0.12345
+        // 0.12345600 -> 0.12345
         XCTAssertEqual(f.string(from: BigDecimal(0_123456000, 9)), "0.12345")
-        //   1.123456000 -> 1.12345
+        // 1.123456000 -> 1.12345
         XCTAssertEqual(f.string(from: BigDecimal(1_123456000, 9)), "1.12345")
         // 100.123456000 -> 100.12345
         XCTAssertEqual(f.string(from: BigDecimal(100_123456000, 9)), "100.12345")

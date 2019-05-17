@@ -14,10 +14,10 @@ class AmountLabelTests: XCTestCase {
     func test_settingAmount() {
         XCTAssertNil(label.text)
         label.amount = TokenData.Ether.withBalance(BigInt(1e18) + BigInt(1e14))
-        XCTAssertEqual(label.text, label.formatter.string(from: label.amount!.balance!))
+        XCTAssertEqual(label.text, label.formatter.string(from: label.amount!, forcePlusSign: true))
         let nilBalance = TokenData(address: "0", code: "A", name: "a", logoURL: "", decimals: 18, balance: nil)
         label.amount = nilBalance
-        XCTAssertEqual(label.text, label.formatter.string(from: 0))
+        XCTAssertEqual(label.text, "-")
         label.amount = nil
         XCTAssertNil(label.text)
     }

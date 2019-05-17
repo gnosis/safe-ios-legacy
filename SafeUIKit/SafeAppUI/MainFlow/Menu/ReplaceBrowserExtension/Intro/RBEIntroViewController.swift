@@ -88,12 +88,10 @@ public class RBEIntroViewController: UIViewController {
     func reloadData() {
         feeCalculation = OwnerModificationFeeCalculation()
         guard let data = calculationData else { return }
-        let formatter = TokenNumberFormatter.ERC20Token(code: data.balance.code,
-                                                        decimals: data.balance.decimals,
-                                                        displayedDecimals: 5)
-        feeCalculation.currentBalanceLine.set(value: formatter.string(from: data.currentBalance.balance!))
+        let formatter = TokenFormatter()
+        feeCalculation.currentBalanceLine.set(value: formatter.string(from: data.currentBalance))
         feeCalculation.networkFeeLine.set(valueButton: data.networkFee.withNonNegativeBalance())
-        feeCalculation.resultingBalanceLine.set(value: formatter.string(from: data.balance.balance!))
+        feeCalculation.resultingBalanceLine.set(value: formatter.string(from: data.balance))
         feeCalculation.setBalanceError(nil)
     }
 

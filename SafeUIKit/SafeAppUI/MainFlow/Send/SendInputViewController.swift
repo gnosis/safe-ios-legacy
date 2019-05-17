@@ -57,7 +57,9 @@ public class SendInputViewController: UIViewController {
         addressInput.spacingAfterInput = 0
 
         tokenInput.addRule("", identifier: "notEnoughFunds") { [unowned self] in
-            guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
+            guard self.tokenInput.formatter.number(from: $0, precision: self.model.tokenData.decimals) != nil else {
+                return true
+            }
             self.model.change(amount: $0)
             return self.model.hasEnoughFunds() ?? false
         }

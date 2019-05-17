@@ -8,31 +8,25 @@ import SafeUIKit
 
 extension FeeCalculationAssetLine {
 
-    func set(value: TokenData, displayedDecimals: Int = 5) {
-        guard let balance = value.balance else {
+    func set(value: TokenData) {
+        guard value.balance != nil else {
             tooltipSource?.message = nil
             set(value: SameTransferAndPaymentTokensFeeCalculation.Strings.loading)
             return
         }
-        let formatter = TokenNumberFormatter.ERC20Token(code: value.code,
-                                                        decimals: value.decimals,
-                                                        displayedDecimals: displayedDecimals)
-        set(value: formatter.string(from: balance))
-
-        formatter.displayedDecimals = nil
-        set(tooltip: formatter.string(from: balance))
+        let formatter = TokenFormatter()
+        set(value: formatter.string(from: value))
+        set(tooltip: formatter.string(from: value, shortFormat: false))
     }
 
-    func set(valueButton value: TokenData, displayedDecimals: Int = 5) {
-        guard let balance = value.balance else {
+    func set(valueButton value: TokenData) {
+        guard value.balance != nil else {
             tooltipSource?.message = nil
             set(value: SameTransferAndPaymentTokensFeeCalculation.Strings.loading)
             return
         }
-        let formatter = TokenNumberFormatter.ERC20Token(code: value.code,
-                                                        decimals: value.decimals,
-                                                        displayedDecimals: displayedDecimals)
-        set(valueButton: formatter.string(from: balance), icon: nil)
-
+        let formatter = TokenFormatter()
+        set(valueButton: formatter.string(from: value), icon: nil)
     }
+
 }

@@ -350,8 +350,8 @@ extension SafeCreationViewController {
             let payment = ApplicationServiceRegistry.walletService.minimumDeploymentAmount ?? 0
             let minimumAmount = payment - balance
             guard minimumAmount > 0 else { return nil }
-            let formatter = TokenNumberFormatter.eth
-            return formatter.string(from: minimumAmount)
+            let formatter = TokenFormatter()
+            return formatter.string(from: TokenData.Ether.withBalance(minimumAmount))
         }
 
         func didEnter() {

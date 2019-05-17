@@ -202,7 +202,7 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureFee() {
         transactionFeeView.name = Strings.fee
-        transactionFeeView.amountLabel.formatter.displayedDecimals = nil
+        transactionFeeView.amountLabel.isShowingShortFormat = false
         transactionFeeView.amount = transaction.feeTokenData.withBalance(-(transaction.feeTokenData.balance ?? 0))
     }
 

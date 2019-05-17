@@ -5,6 +5,7 @@
 import Foundation
 import BigInt
 
+// TODO: remove when TransactionFeeView removed
 public final class TokenNumberFormatter {
 
     public static let eth: TokenNumberFormatter = TokenNumberFormatter.ERC20Token(code: "ETH", decimals: 18)

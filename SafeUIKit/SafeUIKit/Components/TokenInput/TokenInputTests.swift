@@ -24,7 +24,7 @@ class TokenInputTests: XCTestCase {
 
     func test_whenTryingToTypeSeveralSeparators_thenNotPossible() {
         XCTAssertTrue(tokenInput.canType("101,001"))
-        XCTAssertFalse(tokenInput.canType("101,001,01"))
+        XCTAssertTrue(tokenInput.canType("101,001,01"))
         XCTAssertFalse(tokenInput.canType("101,00a"))
     }
 
@@ -77,7 +77,7 @@ class TokenInputTests: XCTestCase {
 
         tokenInput.endEditing("1")
         XCTAssertEqual(tokenInput.value, 1_000)
-        XCTAssertEqual(tokenInput.text, "1,00")
+        XCTAssertEqual(tokenInput.text, "1")
 
         tokenInput.endEditing("1,01")
         XCTAssertEqual(tokenInput.value, 1_010)
@@ -89,7 +89,7 @@ class TokenInputTests: XCTestCase {
 
         tokenInput.endEditing("1,")
         XCTAssertEqual(tokenInput.value, 1_000)
-        XCTAssertEqual(tokenInput.text, "1,00")
+        XCTAssertEqual(tokenInput.text, "1")
     }
 
     func test_whenEndsEditingWithErrors_thenValueIsSetToZero() {
