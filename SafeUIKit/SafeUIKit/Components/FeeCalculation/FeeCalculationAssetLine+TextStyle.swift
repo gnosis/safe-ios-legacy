@@ -9,6 +9,7 @@ extension FeeCalculationAssetLine {
     struct TextStyle {
         var name: AttributedStringStyle
         var value: AttributedStringStyle
+        var valueError: AttributedStringStyle
         var valueButton: AttributedStringStyle
         var valueButtonPressed: AttributedStringStyle
         var info: AttributedStringStyle
@@ -17,6 +18,7 @@ extension FeeCalculationAssetLine {
 
         static let plain = TextStyle(name: DefaultStyle(),
                                      value: ValueStyle(),
+                                     valueError: ValueErrorStyle(),
                                      valueButton: ValueButtonStyle(),
                                      valueButtonPressed: ValueButtonPressedStyle(),
                                      info: NameButtonStyle(),
@@ -25,6 +27,7 @@ extension FeeCalculationAssetLine {
 
         static let balance = TextStyle(name: NameBalanceStyle(),
                                        value: ValueBalanceStyle(),
+                                       valueError: ValueBalanceErrorStyle(),
                                        valueButton: ValueButtonStyle(),
                                        valueButtonPressed: ValueButtonPressedStyle(),
                                        info: NameButtonBalanceStyle(),
@@ -77,6 +80,12 @@ extension FeeCalculationAssetLine {
 
     }
 
+    class ValueErrorStyle: ValueStyle {
+
+        override var fontColor: UIColor { return ColorName.tomato.color }
+
+    }
+
     class ValueButtonStyle: NameButtonStyle {
 
         override var minimumLineHeight: Double { return 20 }
@@ -93,6 +102,12 @@ extension FeeCalculationAssetLine {
     class ValueBalanceStyle: ValueStyle {
 
         override var fontWeight: UIFont.Weight { return .bold }
+
+    }
+
+    class ValueBalanceErrorStyle: ValueBalanceStyle {
+
+        override var fontColor: UIColor { return ColorName.tomato.color }
 
     }
 

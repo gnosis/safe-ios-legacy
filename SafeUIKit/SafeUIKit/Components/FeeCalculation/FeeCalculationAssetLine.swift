@@ -35,14 +35,14 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     public struct ButtonItem: Equatable {
 
         public var text: String
-        public var target: AnyClass?
+        public var target: Any?
         public var action: Selector?
         public var icon: UIImage?
 
         public static func == (lhs: FeeCalculationAssetLine.ButtonItem,
                                rhs: FeeCalculationAssetLine.ButtonItem) -> Bool {
             return lhs.text == rhs.text &&
-                lhs.target === rhs.target &&
+                String(reflecting: lhs.target) == String(reflecting: rhs.target) &&
                 String(describing: lhs.action) == String(describing: rhs.action)
         }
 
@@ -99,7 +99,8 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         } else {
             let label = UILabel()
             label.attributedText = NSAttributedString(string: asset.value ?? "",
-                                                      style: asset.error == nil ? textStyle.value : textStyle.error)
+                                                      style: asset.error == nil ? textStyle.value :
+                                                        textStyle.valueError)
             let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
             label.setContentHuggingPriority(huggingPriority, for: .horizontal)
             tooltipSource = TooltipSource(target: label)
@@ -169,7 +170,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     }
 
     @discardableResult
-    public func set(button: String, target: AnyClass? = nil, action: Selector? = nil) -> FeeCalculationAssetLine {
+    public func set(button: String, target: Any? = nil, action: Selector? = nil) -> FeeCalculationAssetLine {
         self.asset.button = ButtonItem(text: button, target: target, action: action, icon: nil)
         return self
     }
@@ -177,7 +178,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     @discardableResult
     public func set(valueButton: String,
                     icon: UIImage?,
-                    target: AnyClass? = nil,
+                    target: Any? = nil,
                     action: Selector? = nil) -> FeeCalculationAssetLine {
         self.asset.valueButton = ButtonItem(text: valueButton, target: target, action: action, icon: nil)
         return self

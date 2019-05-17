@@ -8,9 +8,9 @@ public class FeeCalculationError: NSError {
 
     public static let domain = "io.gnosis.safe.settings"
 
-    enum Description {
+    enum Strings {
         static let insufficientBalance = LocalizedString("exceeds_funds",
-                                                         comment: "Insufficient funds.\nPlease add %@ to your Safe.")
+                                                         comment: "Insufficient funds to perform this transaction.")
         static let extensionNotFound = LocalizedString("ios_error_extension_notfound",
                                                        comment: "Browser extension is not connected.")
         static let extensionExists = LocalizedString("ios_error_extension_exists",
@@ -26,17 +26,16 @@ public class FeeCalculationError: NSError {
     public static let insufficientBalance =
         FeeCalculationError(domain: FeeCalculationError.domain,
                             code: Code.insufficientBalance.rawValue,
-                            userInfo: [NSLocalizedDescriptionKey:
-                                String(format: Description.insufficientBalance, "ETH")])
+                            userInfo: [NSLocalizedDescriptionKey: Strings.insufficientBalance])
 
     public static let extensionNotFound =
         FeeCalculationError(domain: FeeCalculationError.domain,
                             code: Code.extensionNotFound.rawValue,
-                            userInfo: [NSLocalizedDescriptionKey: Description.extensionNotFound])
+                            userInfo: [NSLocalizedDescriptionKey: Strings.extensionNotFound])
 
     public static let extensionExists =
         FeeCalculationError(domain: FeeCalculationError.domain,
                             code: Code.extensionNotFound.rawValue,
-                            userInfo: [NSLocalizedDescriptionKey: Description.extensionExists])
+                            userInfo: [NSLocalizedDescriptionKey: Strings.extensionExists])
 
 }

@@ -22,21 +22,20 @@ class SendInputViewModelTests: XCTestCase {
         walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         model = SendInputViewModel(tokenID: ethID, processEventsOnMainThread: true) { /* empty */ }
-        model.start()
+        model.update()
     }
 
-    func test_start() {
-        XCTAssertEqual(model.balance, model.tokenFormatter.string(from: model.tokenData))
+    func test_update() {
         XCTAssertEqual(model.amount, nil)
         XCTAssertEqual(model.recipient, nil)
-        XCTAssertEqual(model.feeAmountTokenData.balance, 0)
+        XCTAssertEqual(model.feeEstimatedAmountTokenData.balance, nil)
         XCTAssertFalse(model.canProceedToSigning)
     }
 
-    func test_whenWalletBalanceNil_thenBalanceIsNil() {
+    func test_whenWalletAccountBalanceNil_thenBalanceIsNil() {
         walletService.update(account: ethID, newBalance: nil)
-        model.start()
-        XCTAssertEqual(model.balance, "-")
+        model = SendInputViewModel(tokenID: ethID, processEventsOnMainThread: true) { /* empty */ }
+        XCTAssertNil(model.accountBalanceTokenData.balance)
     }
 
     func test_whenAmountChangesToSameValue_nothingHappens() {
@@ -44,10 +43,10 @@ class SendInputViewModelTests: XCTestCase {
         model = SendInputViewModel(tokenID: ethID) {
             changed += 1
         }
-        model.start()
-        model.change(amount: "a")
+        model.update()
+        model.change(amount: 1)
         let expected = changed
-        model.change(amount: "a")
+        model.change(amount: 1)
         XCTAssertEqual(changed, expected)
         XCTAssertGreaterThan(changed, 0)
     }
@@ -57,7 +56,7 @@ class SendInputViewModelTests: XCTestCase {
         model = SendInputViewModel(tokenID: ethID) {
             changed += 1
         }
-        model.start()
+        model.update()
         model.change(recipient: "a")
         let expected = changed
         model.change(recipient: "a")
@@ -69,13 +68,13 @@ class SendInputViewModelTests: XCTestCase {
         walletService.estimatedFee_output = 100
         model.change(recipient: walletAddress)
         delay()
-        XCTAssertEqual(model.feeAmountTokenData.balance, -100)
+        XCTAssertEqual(model.feeEstimatedAmountTokenData.balance, -100)
         XCTAssertEqual(model.feeResultingBalanceTokenData.balance, balance - 100)
     }
 
     func test_whenEnteredAllValidData_thenCanProceedToSigning() {
         walletService.estimatedFee_output = 100
-        model.change(amount: "0.0000000000000000001")
+        model.change(amount: 900)
         model.change(recipient: walletAddress)
         delay()
         XCTAssertTrue(model.canProceedToSigning)
@@ -83,7 +82,15 @@ class SendInputViewModelTests: XCTestCase {
 
     func test_whenNotEnoughFunds_thenCanNotProceedToSigning() {
         walletService.estimatedFee_output = 100
-        model.change(amount: "1")
+        model.change(amount: 901)
+        model.change(recipient: walletAddress)
+        delay()
+        XCTAssertFalse(model.canProceedToSigning)
+    }
+
+    func test_whenFeeIsNotEstimated_thenCanNotProceedToSigning() {
+        walletService.estimatedFee_output = nil
+        model.change(amount: 900)
         model.change(recipient: walletAddress)
         delay()
         XCTAssertFalse(model.canProceedToSigning)
