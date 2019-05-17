@@ -24,15 +24,15 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
 
         let balance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
         let resultingBalance = balance - data.amountTokenData.balance! - data.feeTokenData.balance!
-        let formatter = TokenNumberFormatter.create(data: data.amountTokenData)
+        let formatter = TokenFormatter()
 
         let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
         let calculation = cell.feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
 
         XCTAssertEqual(calculation.networkFeeLine.asset.value,
-                       formatter.string(from: data.feeTokenData.withNonNegativeBalance().balance!))
+                       formatter.string(from: data.feeTokenData.withNonNegativeBalance()))
         XCTAssertEqual(calculation.resultingBalanceLine.asset.value,
-                       formatter.string(from: resultingBalance))
+                       formatter.string(from: data.amountTokenData.withBalance(resultingBalance)))
     }
 
     func test_whenLoadedForToken_thenHasCorrectFees() {
@@ -40,21 +40,20 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
 
         let tokenBalance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
         let tokenResultingBalance = tokenBalance - data.amountTokenData.balance!
-        let tokenFormatter = TokenNumberFormatter.create(data: data.amountTokenData)
+        let formatter = TokenFormatter()
 
         let feeBalance = service.accountBalance(tokenID: BaseID(data.feeTokenData.address))!
         let feeResultingBalance = feeBalance - data.feeTokenData.balance!
-        let feeFormatter = TokenNumberFormatter.create(data: data.feeTokenData)
 
         let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell
         let calculation = cell.feeCalculationView.calculation as! DifferentTransferAndPaymentTokensFeeCalculation
 
         XCTAssertEqual(calculation.resultingBalanceLine.asset.value,
-                       tokenFormatter.string(from: tokenResultingBalance))
+                       formatter.string(from: data.amountTokenData.withBalance(tokenResultingBalance)))
         XCTAssertEqual(calculation.networkFeeLine.asset.value,
-                       feeFormatter.string(from: data.feeTokenData.balance!))
+                       formatter.string(from: data.feeTokenData))
         XCTAssertEqual(calculation.networkFeeResultingBalanceLine.asset.value,
-                       feeFormatter.string(from: feeResultingBalance))
+                       formatter.string(from: data.feeTokenData.withBalance(feeResultingBalance)))
     }
 
     // MARK: - Tracking
@@ -90,13 +89,4 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
         }
     }
 
-}
-
-extension TokenNumberFormatter {
-
-    static func create(data: TokenData) -> TokenNumberFormatter {
-        return TokenNumberFormatter.ERC20Token(code: data.code,
-                                               decimals: data.decimals,
-                                               displayedDecimals: 5)
-    }
 }

@@ -4,6 +4,15 @@
 /* Amount placeholder for token input. */
 "amount" = "Amount";
 
+/* B */
+"amount_billions" = "B";
+
+/* M */
+"amount_millions" = "M";
+
+/* T */
+"amount_trillions" = "T";
+
 /* Explanation how to confirm. */
 "authentication_explanation" = "Open the browser extension to confirm this transaction.";
 

@@ -14,18 +14,14 @@ extension FeeCalculationAssetLine {
     ///   - value: button token data.
     ///   - displayedDecimals: displayed decimals.
     func set(value: TokenData, displayedDecimals: Int = 5) {
-        guard let balance = value.balance else {
+        guard value.balance != nil else {
             tooltipSource?.message = nil
             set(value: SameTransferAndPaymentTokensFeeCalculation.Strings.loading)
             return
         }
-        let formatter = TokenNumberFormatter.ERC20Token(code: value.code,
-                                                        decimals: value.decimals,
-                                                        displayedDecimals: displayedDecimals)
-        set(value: formatter.string(from: balance))
-
-        formatter.displayedDecimals = nil
-        set(tooltip: formatter.string(from: balance))
+        let formatter = TokenFormatter()
+        set(value: formatter.string(from: value))
+        set(tooltip: formatter.string(from: value, shortFormat: false))
     }
 
     /// Set actionable button in assets line. Currently is used for changing payment method.
@@ -37,11 +33,9 @@ extension FeeCalculationAssetLine {
     ///   - displayedDecimals: displayed decimals.
     func set(valueButton value: TokenData, target: Any? = nil, action: Selector? = nil, displayedDecimals: Int = 5) {
         var valueButtonStr = value.code
-        if let balance = value.balance {
-            let formatter = TokenNumberFormatter.ERC20Token(code: value.code,
-                                                            decimals: value.decimals,
-                                                            displayedDecimals: displayedDecimals)
-            valueButtonStr = formatter.string(from: balance)
+        if value.balance != nil {
+            let formatter = TokenFormatter()
+            valueButtonStr = formatter.string(from: value)
         } else {
             tooltipSource?.message = nil
         }

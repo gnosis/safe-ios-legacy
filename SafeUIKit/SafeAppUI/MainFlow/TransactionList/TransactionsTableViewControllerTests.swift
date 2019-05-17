@@ -109,7 +109,8 @@ class TransactionsTableViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.transactionDateLabel.text, transaction.processed?.timeAgoSinceNow)
 
         let formatter = cell.tokenAmountLabel.formatter
-        XCTAssertEqual(cell.tokenAmountLabel.text, formatter.string(from: transaction.amountTokenData.balance!))
+        XCTAssertEqual(cell.tokenAmountLabel.text,
+                       formatter.string(from: transaction.amountTokenData))
     }
 
     private func assertEqual(_ lhs: UIImage?, _ rhs: UIImage?, file: StaticString = #file, line: UInt = #line) {

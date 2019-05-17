@@ -30,7 +30,7 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertEqual(firstCell.leftTextLabel.text, "ETH")
         XCTAssertEqual(firstCell.rightTextLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01")
         XCTAssertEqual(secondCell.leftTextLabel.text, "GNO")
-        XCTAssertEqual(secondCell.rightTextLabel.text?.replacingOccurrences(of: ",", with: "."), "1.00")
+        XCTAssertEqual(secondCell.rightTextLabel.text?.replacingOccurrences(of: ",", with: "."), "1")
         XCTAssertEqual(thirdCell.leftTextLabel.text, "MGN")
         XCTAssertEqual(thirdCell.rightTextLabel.text, "--")
     }

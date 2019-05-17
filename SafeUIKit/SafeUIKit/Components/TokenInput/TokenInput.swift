@@ -9,14 +9,10 @@ public final class TokenInput: VerifiableInput {
 
     public private(set) var decimals: Int = 18
     public private(set) var value: BigInt = 0
-    public private(set) var formatter = TokenNumberFormatter()
+    public private(set) var formatter = TokenFormatter()
     private let textInputHeight: CGFloat = 56
 
-    var locale = Locale.autoupdatingCurrent {
-        didSet {
-            formatter.locale = locale
-        }
-    }
+    var locale = Locale.autoupdatingCurrent
 
     enum Strings {
         static let amount = LocalizedString("amount", comment: "Amount placeholder for token input.")
@@ -101,18 +97,18 @@ public final class TokenInput: VerifiableInput {
     }
 
     private func valueIsANumber(_ value: String) -> Bool {
-        guard formatter.number(from: value) != nil else { return false }
+        guard formatter.number(from: value, precision: decimals) != nil else { return false }
         return true
     }
 
     private func valueIsNotTooBig(_ value: String) -> Bool {
-        guard let number = formatter.number(from: value) else { return true }
-        return TokenBounds.isWithinBounds(value: number)
+        guard let number = formatter.number(from: value, precision: decimals) else { return true }
+        return TokenBounds.isWithinBounds(value: number.value)
     }
 
     private func notExcededAmountOfFractionalDigits(_ value: String) -> Bool {
-        guard formatter.number(from: value) != nil else { return true }
-        let components = value.components(separatedBy: TokenNumberFormatter.possibleDecimalSeapartors)
+        guard formatter.number(from: value, precision: decimals) != nil else { return true }
+        let components = value.components(separatedBy: CharacterSet(charactersIn: TokenFormatter.decimalSeparators))
         guard components.count == 2 else { return true }
         let fractionalPart = components[1].removingTrailingZeroes
         return fractionalPart.count <= decimals
@@ -128,13 +124,15 @@ public final class TokenInput: VerifiableInput {
         precondition(TokenBounds.isWithinBounds(value: value))
         self.decimals = decimals
         self.value = value
-        formatter = TokenNumberFormatter.ERC20Token(decimals: decimals)
-        formatter.locale = locale
         guard value != 0 else {
             textInput.text = nil
             return
         }
-        textInput.text = formatter.string(from: value)
+        textInput.text = stringValue()
+    }
+
+    private func stringValue() -> String {
+        return formatter.localizedString(from: BigDecimal(value, decimals), locale: locale, shortFormat: false)
     }
 
     public override func becomeFirstResponder() -> Bool {
@@ -159,7 +157,7 @@ public extension TokenInput {
                             shouldChangeCharactersIn range: NSRange,
                             replacementString string: String) -> Bool {
         let updatedText = (textField.nonNilText as NSString).replacingCharacters(in: range, with: string)
-        return updatedText.isEmpty || formatter.number(from: updatedText) != nil
+        return updatedText.isEmpty || formatter.number(from: updatedText, precision: decimals) != nil
     }
 
     override func textFieldDidEndEditing(_ textField: UITextField) {
@@ -168,8 +166,8 @@ public extension TokenInput {
             value = 0
             return
         }
-        value = formatter.number(from: text) ?? 0
-        textInput.text = formatter.string(from: value)
+        value = formatter.number(from: text, precision: decimals)?.value ?? 0
+        textInput.text = stringValue()
     }
 
 }
