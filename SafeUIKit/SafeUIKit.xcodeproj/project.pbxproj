@@ -215,6 +215,8 @@
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
 		0AC3F1732183674100DAADC9 /* GuidelinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F1722183674100DAADC9 /* GuidelinesViewController.swift */; };
+		0AC950A4228D86A700D77DE9 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC950A3228D86A700D77DE9 /* TokenFormatter.swift */; };
+		0AC950B5228D8B8E00D77DE9 /* TokenFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC950B3228D8B8B00D77DE9 /* TokenFormatterTests.swift */; };
 		0ACCA8C0221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8BF221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift */; };
 		0ACCA8C2221C116F00D37594 /* NibUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8C1221C116F00D37594 /* NibUIView.swift */; };
 		0ACCA8C6221C11E700D37594 /* LoadingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8C4221C11E700D37594 /* LoadingTitleView.swift */; };
@@ -791,6 +793,8 @@
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
 		0AC3F1722183674100DAADC9 /* GuidelinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidelinesViewController.swift; sourceTree = "<group>"; };
+		0AC950A3228D86A700D77DE9 /* TokenFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFormatter.swift; sourceTree = "<group>"; };
+		0AC950B3228D8B8B00D77DE9 /* TokenFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFormatterTests.swift; sourceTree = "<group>"; };
 		0ACCA8BF221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PairWithBrowserExtensionViewController+RBE.swift"; sourceTree = "<group>"; };
 		0ACCA8C1221C116F00D37594 /* NibUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NibUIView.swift; path = SafeUIKit/NibUIView.swift; sourceTree = SOURCE_ROOT; };
 		0ACCA8C4221C11E700D37594 /* LoadingTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingTitleView.swift; sourceTree = "<group>"; };
@@ -1457,8 +1461,10 @@
 				0AD89989228042CC008AE325 /* BaseCustomButton.swift */,
 				0ACCA8C8221C125C00D37594 /* AttributedStringStyle.swift */,
 				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
-				0AD899842280325D008AE325 /* DashedSeparatorView.swift */,
 				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
+				0AC950A3228D86A700D77DE9 /* TokenFormatter.swift */,
+				0AC950B3228D8B8B00D77DE9 /* TokenFormatterTests.swift */,
+				0AD899842280325D008AE325 /* DashedSeparatorView.swift */,
 				0AD1D1DF21A8430300941EA1 /* EthereumAddressFormatter.swift */,
 				0AD1D1E121A8432800941EA1 /* EthereumAddressFormatterTests.swift */,
 				0A9670CF20480C7A00445AC2 /* Colors.txt */,
@@ -2720,6 +2726,7 @@
 				0AD89979228031D0008AE325 /* FeeCalculationSpacingLine.swift in Sources */,
 				0A179C7D2256274A00C60138 /* MainTrackingEvents.swift in Sources */,
 				5539C13A21A55C74006BF834 /* TransferViewCell.swift in Sources */,
+				0AC950A4228D86A700D77DE9 /* TokenFormatter.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
 				0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */,
 				0ACCA8C2221C116F00D37594 /* NibUIView.swift in Sources */,
@@ -2788,6 +2795,7 @@
 				5539C13821A55AF5006BF834 /* TransactionHeaderCellTests.swift in Sources */,
 				5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */,
 				0AD89983228031FC008AE325 /* FeeCalculationTests.swift in Sources */,
+				0AC950B5228D8B8E00D77DE9 /* TokenFormatterTests.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
 				555EB6F2216CA5E900E06553 /* TextInputTests.swift in Sources */,
 				0A2D589722576A98001B8BF4 /* XCTest+Tracking.swift in Sources */,
