@@ -32,22 +32,12 @@ final class TokensTableViewController: UITableViewController {
         guard !tokens.isEmpty else {
             return
         }
-        // Eth section
         sections.append((
             headerViewIdentifier: nil,
             headerHeight: 0,
-            footerViewIdentifier: "EmptyFooter",
-            footerHeight: 16,
-            elements: [tokens.first!]
-        ))
-        // Tokens section
-        let shouldShowTokensFooter = tokens.count == 1
-        sections.append((
-            headerViewIdentifier: "TokensHeaderView",
-            headerHeight: TokensHeaderView.height,
-            footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : nil,
-            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : 0,
-            elements: [TokenData](tokens.dropFirst())
+            footerViewIdentifier: "AddTokenFooterView",
+            footerHeight: AddTokenFooterView.height,
+            elements: tokens
         ))
     }
 

@@ -28,9 +28,8 @@ public class SegmentBar: UIControl {
 
     private let stackView = UIStackView()
     private let selectionMarker = UIView()
-    private let bottomLineHeight: CGFloat = 2
     private let selectionMarkerHeight: CGFloat = 6
-    private let titleFontSize: CGFloat = 13
+    private let titleFontSize: CGFloat = 14
     var buttons = [UIButton]()
 
     public override init(frame: CGRect) {
@@ -49,20 +48,15 @@ public class SegmentBar: UIControl {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         addSubview(stackView)
-
-        let bottomLine = UIView()
-        bottomLine.backgroundColor = ColorName.aquaBlue.color
-        bottomLine.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(bottomLine)
-        NSLayoutConstraint.activate(
-            [
-                bottomLine.bottomAnchor.constraint(equalTo: bottomAnchor),
-                bottomLine.leadingAnchor.constraint(equalTo: leadingAnchor),
-                bottomLine.trailingAnchor.constraint(equalTo: trailingAnchor),
-                bottomLine.heightAnchor.constraint(equalToConstant: bottomLineHeight)
-            ])
-
         selectionMarker.backgroundColor = ColorName.aquaBlue.color
+        let shadowImage = UIImageView(image: Asset.shadow.image.stretchableImage(withLeftCapWidth: 0, topCapHeight: 0))
+        shadowImage.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(shadowImage)
+        NSLayoutConstraint.activate([shadowImage.topAnchor.constraint(equalTo: stackView.bottomAnchor),
+                                     shadowImage.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+                                     shadowImage.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+                                     shadowImage.heightAnchor.constraint(equalToConstant: 10)])
+        clipsToBounds = false
     }
 
     private func update() {
@@ -73,7 +67,7 @@ public class SegmentBar: UIControl {
             button.setTitleColor(.black, for: .highlighted)
             button.setImage(item.image, for: .normal)
             button.tintColor = .black
-            button.titleLabel?.font = UIFont.systemFont(ofSize: titleFontSize, weight: UIFont.Weight.regular)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: titleFontSize, weight: UIFont.Weight.medium)
             button.backgroundColor = .white
             button.tag = index
             button.addTarget(self, action: #selector(didTapButton(sender:)), for: .touchUpInside)
@@ -97,8 +91,8 @@ public class SegmentBar: UIControl {
 
     private func configureSelectedButton(at index: Int) {
         let button = buttons[index]
-        button.setTitleColor(.black, for: .normal)
-        button.tintColor = .black
+        button.setTitleColor(ColorName.darkSkyBlue.color, for: .normal)
+        button.tintColor = ColorName.darkSkyBlue.color
         addSelectionMarker(at: index)
     }
 

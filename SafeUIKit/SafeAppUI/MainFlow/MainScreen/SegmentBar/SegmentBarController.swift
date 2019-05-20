@@ -37,6 +37,7 @@ open class SegmentBarController: UIViewController {
         addStackView()
         addSegmentBar()
         addContentView()
+        stackView.bringSubviewToFront(segmentBar)
         update()
     }
 

@@ -46,6 +46,7 @@ struct ColorAsset {
 enum Asset {
   static let chevronHighlighted = ImageAsset(name: "Chevron-highlighted")
   static let chevron = ImageAsset(name: "Chevron")
+  static let add = ImageAsset(name: "add")
   static let checkmark = ImageAsset(name: "checkmark")
   static let congratulations = ImageAsset(name: "congratulations")
   enum ConnectBrowserExtension {
@@ -63,6 +64,7 @@ enum Asset {
     static let safeInprogress = ImageAsset(name: "safeInprogress")
     static let water = ImageAsset(name: "water")
   }
+  static let qrIcon = ImageAsset(name: "qrIcon")
   enum ReplaceBrowserExtension {
     static let estimationErrorIcon = ImageAsset(name: "estimation-error-icon")
     static let introIcon = ImageAsset(name: "intro-icon")
@@ -106,6 +108,7 @@ enum Asset {
   static let allImages: [ImageAsset] = [
     chevronHighlighted,
     chevron,
+    add,
     checkmark,
     congratulations,
     ConnectBrowserExtension.connectIntroIcon,
@@ -117,6 +120,7 @@ enum Asset {
     Onboarding.noSafes,
     Onboarding.safeInprogress,
     Onboarding.water,
+    qrIcon,
     ReplaceBrowserExtension.estimationErrorIcon,
     ReplaceBrowserExtension.introIcon,
     ReplaceBrowserExtension.scrollBottomGradient,
