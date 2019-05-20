@@ -19,3 +19,5 @@ white_two: #d8d8d8
 silver: #d1d1d6
 pale_grey_two: #e5e5ea
 darkSkyBlue: #28b2fa
+paleLilac: #e5e5ea
+dusk: #4a5579
