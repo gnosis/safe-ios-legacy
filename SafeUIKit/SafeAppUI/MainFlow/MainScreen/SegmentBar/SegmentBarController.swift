@@ -76,7 +76,7 @@ open class SegmentBarController: UIViewController {
             ])
     }
 
-    private func update() {
+    func update() {
         guard isViewLoaded else { return }
         segmentBar.items = viewControllers.map { $0.segmentItem }
     }

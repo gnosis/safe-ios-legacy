@@ -16,7 +16,10 @@ protocol MainViewControllerDelegate: class {
     func openAddressDetails()
 }
 
-protocol ScrollDelegate: UIScrollViewDelegate {}
+@objc protocol ScrollDelegate: UIScrollViewDelegate {
+
+    @objc optional func viewDidAppear(_ scrollView: UIScrollView)
+}
 
 final class MainViewController: UIViewController {
 
@@ -75,6 +78,9 @@ final class MainViewController: UIViewController {
 
         assetViewScrollDelegate.setUp(contentController.tokensController.tableView)
         transactionViewScrollDelegate.setUp(contentController.transactionsController.tableView)
+
+        // re-select otherwise the markers of tabs are lost (constraints removed)
+        contentController.selectedViewController = contentController.tokensController
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -129,6 +135,8 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
     let segmentBarHeight: CGFloat = 46
     let maxHeaderHeight: CGFloat = 130
     let minHeaderHeight: CGFloat = 0
+    let minAlpha: CGFloat = 0.3
+    let maxAlpha: CGFloat = 1.0
     var maximizationThreshold: CGFloat { return maxHeaderHeight * 0.8 }
     var minimizationThreshold: CGFloat { return maxHeaderHeight * 0.2 }
     var middleThreshold: CGFloat { return maxHeaderHeight * 0.5 }
@@ -144,6 +152,28 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         scrollView.contentOffset = CGPoint(x: 0, y: -contentInset.top)
     }
 
+    func viewDidAppear(_ scrollView: UIScrollView) {
+        let topOffset = CGPoint(x: scrollView.contentOffset.x, y: -scrollView.contentInset.top)
+
+        let needsToChangeHeight = headerHeightConstraint.constant != maxHeaderHeight
+        let needsToScroll = topOffset != scrollView.contentOffset
+
+        if !needsToChangeHeight {
+            scrollView.contentOffset = topOffset
+        } else if needsToScroll {
+            scrollView.setContentOffset(topOffset, animated: true)
+        } else {
+            UIView.animate(withDuration: 0.2,
+                           delay: 0,
+                           usingSpringWithDamping: 1.0,
+                           initialSpringVelocity: 0,
+                           options: [],
+                           animations: {
+                            self.scrollViewDidScroll(scrollView)
+            }, completion: nil)
+        }
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset
         let height = maxHeaderHeight - (offset.y + scrollView.contentInset.top)
@@ -154,6 +184,9 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         let x = clampedHeight / maxHeaderHeight
         let scale = x * sqrt(x)
         headerView.transform = CGAffineTransform(scaleX: scale, y: scale)
+
+        let alpha = max(0, (x - minAlpha) / (maxAlpha - minAlpha))
+        headerView.alpha = alpha
         headerView.setNeedsLayout()
     }
 
