@@ -75,8 +75,6 @@ enum StoryboardScene {
 
     static let replaceRecoveryPhraseViewController = SceneType<SafeAppUI.ReplaceRecoveryPhraseViewController>(storyboard: Main.self, identifier: "ReplaceRecoveryPhraseViewController")
 
-    static let safeAddressViewController = SceneType<SafeAppUI.SafeAddressViewController>(storyboard: Main.self, identifier: "SafeAddressViewController")
-
     static let sendInputViewController = SceneType<SafeAppUI.SendInputViewController>(storyboard: Main.self, identifier: "SendInputViewController")
 
     static let successViewController = SceneType<SafeAppUI.SuccessViewController>(storyboard: Main.self, identifier: "SuccessViewController")
@@ -111,6 +109,11 @@ enum StoryboardScene {
     static let storyboardName = "PairWithBrowserExtension"
 
     static let pairWithBrowserExtensionViewController = SceneType<SafeAppUI.PairWithBrowserExtensionViewController>(storyboard: PairWithBrowserExtension.self, identifier: "PairWithBrowserExtensionViewController")
+  }
+  enum ReceiveFunds: StoryboardType {
+    static let storyboardName = "ReceiveFunds"
+
+    static let receiveFundsViewController = SceneType<SafeAppUI.ReceiveFundsViewController>(storyboard: ReceiveFunds.self, identifier: "ReceiveFundsViewController")
   }
   enum RecoverSafe: StoryboardType {
     static let storyboardName = "RecoverSafe"

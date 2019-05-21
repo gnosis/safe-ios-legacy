@@ -3,7 +3,6 @@
 "add_token" = "Add Token";
 
 /* Address label.
-   Safe Address label.
    Title for safe address section. */
 "address" = "Address";
 
@@ -261,9 +260,6 @@
 /* Follow its progress on Etherscan.io */
 "ios_follow_progress" = "Follow its progress on Etherscan.io";
 
-/* Identicon label. */
-"ios_identicon" = "Identicon";
-
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
 "ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
 
@@ -451,7 +447,7 @@
 /* Rate App menu item */
 "rate_app" = "Rate App";
 
-/* Receive Funds screen title. */
+/* Receive Funds */
 "receive_funds" = "Receive Funds";
 
 /* Restore safe button */
