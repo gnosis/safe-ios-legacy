@@ -13,7 +13,7 @@ public protocol TransactionsTableViewControllerDelegate: class {
 }
 
 // TODO: rename
-public class TransactionsTableViewController: UITableViewController, EventSubscriber {
+public class TransactionViewViewController: UITableViewController, EventSubscriber {
 
     private var model = CollectionUIModel<TransactionGroupData>()
     public weak var delegate: TransactionsTableViewControllerDelegate?
@@ -23,7 +23,7 @@ public class TransactionsTableViewController: UITableViewController, EventSubscr
     private let updateQueue = DispatchQueue(label: "TransactionDetailsUpdateQueue",
                                             qos: .userInitiated)
 
-    public static func create() -> TransactionsTableViewController {
+    public static func create() -> TransactionViewViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
     }
 

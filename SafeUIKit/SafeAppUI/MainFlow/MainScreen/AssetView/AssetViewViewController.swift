@@ -8,7 +8,7 @@ import MultisigWalletApplication
 import Common
 
 // TODO: rename
-final class TokensTableViewController: UITableViewController {
+final class AssetViewViewController: UITableViewController {
 
     weak var delegate: MainViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
@@ -47,7 +47,7 @@ final class TokensTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let bundle = Bundle(for: TokensTableViewController.self)
+        let bundle = Bundle(for: AssetViewViewController.self)
         tableView.register(UINib(nibName: "AddTokenFooterView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
@@ -144,7 +144,7 @@ final class TokensTableViewController: UITableViewController {
 
 }
 
-extension TokensTableViewController: EventSubscriber {
+extension AssetViewViewController: EventSubscriber {
 
     func notify() {
         let newTokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)

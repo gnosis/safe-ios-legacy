@@ -9,9 +9,9 @@ import CommonTestSupport
 import Common
 import SafeUIKit
 
-class TokensTableViewControllerTests: SafeTestCase {
+class AssetViewViewControllerTests: SafeTestCase {
 
-    let controller = TokensTableViewController()
+    let controller = AssetViewViewController()
 
     override func setUp() {
         super.setUp()
