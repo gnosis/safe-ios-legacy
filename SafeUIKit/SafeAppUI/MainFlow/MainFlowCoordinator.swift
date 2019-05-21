@@ -66,10 +66,10 @@ open class MainFlowCoordinator: FlowCoordinator {
         lockedViewController = rootViewController
 
         if authenticationService.isUserRegistered {
-//            applicationRootViewController = UnlockViewController.create { [unowned self] success in
-//                if !success { return }
+            applicationRootViewController = UnlockViewController.create { [unowned self] success in
+                if !success { return }
                 self.applicationRootViewController = self.lockedViewController
-//            }
+            }
         } else {
             applicationRootViewController = lockedViewController
         }

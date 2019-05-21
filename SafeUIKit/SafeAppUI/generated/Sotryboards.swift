@@ -67,8 +67,6 @@ enum StoryboardScene {
 
     static let addTokenTableViewController = SceneType<SafeAppUI.AddTokenTableViewController>(storyboard: Main.self, identifier: "AddTokenTableViewController")
 
-    static let mainNavigationController = SceneType<UINavigationController>(storyboard: Main.self, identifier: "MainNavigationController")
-
     static let mainViewController = SceneType<SafeAppUI.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
 
     static let menuTableViewController = SceneType<SafeAppUI.MenuTableViewController>(storyboard: Main.self, identifier: "MenuTableViewController")
@@ -139,9 +137,6 @@ enum StoryboardScene {
 }
 
 enum StoryboardSegue {
-  enum Main: String, SegueType {
-    case mainContentViewControllerSeague = "MainContentViewControllerSeague"
-  }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
 

@@ -12,6 +12,7 @@ public protocol TransactionsTableViewControllerDelegate: class {
     func didSelectTransaction(id: String)
 }
 
+// TODO: rename
 public class TransactionsTableViewController: UITableViewController, EventSubscriber {
 
     private var model = CollectionUIModel<TransactionGroupData>()

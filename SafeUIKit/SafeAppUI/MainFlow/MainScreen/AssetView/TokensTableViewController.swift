@@ -7,6 +7,7 @@ import SafeUIKit
 import MultisigWalletApplication
 import Common
 
+// TODO: rename
 final class TokensTableViewController: UITableViewController {
 
     weak var delegate: MainViewControllerDelegate?
@@ -33,6 +34,7 @@ final class TokensTableViewController: UITableViewController {
         guard !tokens.isEmpty else {
             return
         }
+        // TODO: simplify
         sections.append((
             headerViewIdentifier: nil,
             headerHeight: 0,
@@ -57,8 +59,8 @@ final class TokensTableViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.backgroundColor = .clear
-        let footerView = UINib(nibName: "AddTokenFooterView", bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView
-        tableView.tableFooterView = footerView
+        tableView.tableFooterView = UINib(nibName: "AddTokenFooterView",
+                                          bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
 
         notify()
@@ -122,12 +124,18 @@ final class TokensTableViewController: UITableViewController {
         return sections[section].footerHeight
     }
 
+    // MARK: - Scroll View delegate
+
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollDelegate?.scrollViewDidScroll?(scrollView)
     }
 
-    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        scrollDelegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                            withVelocity velocity: CGPoint,
+                                            targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        scrollDelegate?.scrollViewWillEndDragging?(scrollView,
+                                                   withVelocity: velocity,
+                                                   targetContentOffset: targetContentOffset)
     }
 
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -142,10 +150,10 @@ extension TokensTableViewController: EventSubscriber {
         let newTokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
         let isChanged = newTokens != tokens
         tokens = newTokens
-        DispatchQueue.main.async {
-            // prevent flickering during scrolling
+        DispatchQueue.main.async { [unowned self] in
             if isChanged {
-                self.tableView.reloadSections(IndexSet([0]), with: .automatic)
+                // when notified during scrolling, the reloadData() will cause flickering, so we allow it only on change
+                self.tableView.reloadData()
             }
             self.tableView.refreshControl?.endRefreshing()
         }

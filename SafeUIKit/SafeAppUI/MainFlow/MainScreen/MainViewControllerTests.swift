@@ -32,7 +32,7 @@ class MainViewControllerTests: SafeTestCase {
 
     func test_whenPressingIdenticon_thenCallsDelegate() {
         createWindow(vc)
-        vc.safeIdenticonView.tapAction?()
+        vc.headerView.identiconView.tapAction?()
         XCTAssertTrue(delegate.didOpenAddressDetails)
     }
 

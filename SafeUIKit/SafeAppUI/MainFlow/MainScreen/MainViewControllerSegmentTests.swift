@@ -5,26 +5,26 @@
 import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
+import MultisigWalletApplication
 
-class SegmentBarControllerTests: XCTestCase {
+class MainViewControllerSegmentTests: SafeTestCase {
 
-    var controller: SegmentBarController!
-    var segmentA: TestSegmentController!
-    var segmentB: TestSegmentController!
+    var controller: MainViewController!
+    var segmentA: UIViewController & SegmentController {
+        return controller.viewControllers[0]
+    }
+    var segmentB: UIViewController & SegmentController {
+        return controller.viewControllers[1]
+    }
+    // swiftlint:disable weak_delegate
+    var delegate: MockMainViewControllerDelegate!
 
     override func setUp() {
         super.setUp()
-        controller = SegmentBarController()
-        segmentA = TestSegmentController()
-        segmentA.segmentItem.title = "segmentA"
-        segmentB = TestSegmentController()
-        segmentB.segmentItem.title = "segmentB"
-        controller.viewControllers = [segmentA, segmentB]
-    }
-
-    func test_whenSettingControllers_thenRetainsThem() {
-        // casting to UIViewController becuase type UIViewController & SegmentedController is not equatable
-        XCTAssertEqual(controller.viewControllers as [UIViewController], [segmentA, segmentB])
+        walletService.expect_grouppedTransactions(result: [.group(count: 1)])
+        delegate = MockMainViewControllerDelegate()
+        controller = MainViewController.create(delegate: delegate)
+        createWindow(controller)
     }
 
     func test_whenSelectingController_thenRetainsSelection() {
@@ -33,21 +33,20 @@ class SegmentBarControllerTests: XCTestCase {
     }
 
     func test_whenViewLoaded_thenLoadsContents() {
-        controller.loadViewIfNeeded()
         XCTAssertFalse(controller.view.subviews.isEmpty)
     }
 
     func test_whenViewLoadedAndControllersUpdated_thenSegmentUpdated() {
         controller.selectedViewController = segmentB
-        controller.loadViewIfNeeded()
-        controller.viewControllers = [segmentB, segmentA]
+        let expectedSegments = [segmentB, segmentA]
+        controller.viewControllers = expectedSegments
         XCTAssertNil(controller.selectedViewController)
-        XCTAssertEqual(controller.segmentBar.items, [segmentB.segmentItem, segmentA.segmentItem])
+        XCTAssertEqual(controller.segmentBar.items, [expectedSegments[0].segmentItem, expectedSegments[1].segmentItem])
     }
 
     func test_whenChangingSelection_thenOtherControllerShowsUp() {
+
         controller.selectedViewController = segmentA
-        createWindow(controller)
         controller.selectedViewController = segmentB
         XCTAssertNil(segmentA.view.window)
         XCTAssertNotNil(segmentB.view.window)
@@ -55,7 +54,6 @@ class SegmentBarControllerTests: XCTestCase {
 
     func test_whenSegmentTapped_thenSelectedControllerChanges() {
         controller.selectedViewController = segmentA
-        createWindow(controller)
         XCTAssertNil(segmentB.view.window)
         controller.segmentBar.buttons.last?.sendActions(for: .touchUpInside)
         XCTAssertNotNil(segmentB.view.window)
@@ -63,7 +61,6 @@ class SegmentBarControllerTests: XCTestCase {
 
     func test_whenSegmentChangedAndNotSelected_thenResetsSelectedController() {
         controller.selectedViewController = segmentA
-        createWindow(controller)
         XCTAssertNotNil(controller.selectedViewController)
         controller.segmentBar.selectedItem = nil
         XCTAssertNotNil(controller.selectedViewController)
@@ -71,8 +68,4 @@ class SegmentBarControllerTests: XCTestCase {
         XCTAssertNil(controller.selectedViewController)
     }
 
-}
-
-class TestSegmentController: UIViewController, SegmentController {
-    var segmentItem = SegmentBarItem(title: "testSegment")
 }

@@ -51,8 +51,7 @@ class TokensTableViewControllerTests: SafeTestCase {
         walletService.visibleTokensOutput = [TokenData.eth]
         createWindow(controller)
         controller.notify()
-        let footer = controller.tableView(controller.tableView, viewForFooterInSection: 0)
-        XCTAssertTrue(footer is AddTokenFooterView)
+        XCTAssertTrue(controller.tableView.tableFooterView is AddTokenFooterView)
     }
 
     func test_tracking() {
