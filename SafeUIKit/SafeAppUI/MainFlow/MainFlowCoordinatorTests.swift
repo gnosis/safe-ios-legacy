@@ -142,7 +142,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         mainFlowCoordinator.openAddressDetails()
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
-            is SafeAddressViewController)
+            is ReceiveFundsViewController)
     }
 
     func test_whenSelectingTransaction_thenPushesTransactionDetailController() {

@@ -239,7 +239,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     }
 
     func openAddressDetails() {
-        let addressDetailsVC = SafeAddressViewController.create()
+        let addressDetailsVC = ReceiveFundsViewController.create()
         push(addressDetailsVC)
     }
 

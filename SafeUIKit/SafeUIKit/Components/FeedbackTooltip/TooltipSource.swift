@@ -9,11 +9,14 @@ public class TooltipSource {
     private weak var tooltip: FeedbackTooltip?
     private weak var target: UIView?
 
+    private var onTap: (() -> Void)?
+
     public var isActive: Bool = true
     public var message: String?
 
-    public init(target: UIView) {
+    public init(target: UIView, onTap: (() -> Void)? = nil) {
         self.target = target
+        self.onTap = onTap
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
         target.addGestureRecognizer(tapRecognizer)
         target.isUserInteractionEnabled = true
@@ -29,6 +32,7 @@ public class TooltipSource {
             let window = UIApplication.shared.keyWindow,
             let target = target else { return }
         tooltip = FeedbackTooltip.show(for: target, in: window, message: message)
+        onTap?()
     }
 
 }
