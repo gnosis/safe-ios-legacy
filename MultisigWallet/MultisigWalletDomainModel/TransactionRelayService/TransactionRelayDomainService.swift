@@ -14,6 +14,14 @@ public protocol TransactionRelayDomainService {
     /// - Throws: network error or request error
     func createSafeCreationTransaction(request: SafeCreationRequest) throws -> SafeCreationRequest.Response
 
+    /// Fetches estimations for safe creation in different tokens.
+    ///
+    /// - Parameter request: request informations with number of safe owners.
+    /// - Returns: response containing estimations info.
+    /// - Throws: network error or server error
+    func estimateSafeCreation(request: EstimateSafeCreationRequest) throws ->
+        EstimateSafeCreationRequest.Response
+
     /// Starts safe deployment. Safe must have enough funds for transaction deployment.
     ///
     /// - Parameter address: safe address

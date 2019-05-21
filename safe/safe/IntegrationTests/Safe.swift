@@ -47,7 +47,7 @@ struct Safe {
         walletID = wallet.id
     }
 
-    var _test: GnosisTransactionRelayServiceTests!
+    var _test: HTTPGnosisTransactionRelayServiceTests!
 
     var gasAdjustment: BigInt = 0
 
