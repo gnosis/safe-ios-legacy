@@ -8,15 +8,14 @@ import MultisigWalletApplication
 import Common
 import SafeUIKit
 
-public protocol TransactionsTableViewControllerDelegate: class {
+public protocol TransactionViewViewControllerDelegate: class {
     func didSelectTransaction(id: String)
 }
 
-// TODO: rename
 public class TransactionViewViewController: UITableViewController, EventSubscriber {
 
     private var model = CollectionUIModel<TransactionGroupData>()
-    public weak var delegate: TransactionsTableViewControllerDelegate?
+    public weak var delegate: TransactionViewViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
     let emptyView = TransactionsEmptyView()
     let rowHeight: CGFloat = 70
@@ -97,12 +96,18 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
         delegate?.didSelectTransaction(id: transaction.id)
     }
 
+    // MARK: - Scroll View delegate
+
     override public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollDelegate?.scrollViewDidScroll?(scrollView)
     }
 
-    override public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        scrollDelegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    override public func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                                   withVelocity velocity: CGPoint,
+                                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        scrollDelegate?.scrollViewWillEndDragging?(scrollView,
+                                                   withVelocity: velocity,
+                                                   targetContentOffset: targetContentOffset)
     }
 
     override public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

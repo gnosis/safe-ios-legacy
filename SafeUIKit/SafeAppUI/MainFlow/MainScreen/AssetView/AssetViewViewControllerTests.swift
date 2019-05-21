@@ -60,7 +60,7 @@ class AssetViewViewControllerTests: SafeTestCase {
 
 }
 
-private extension TokensTableViewControllerTests {
+private extension AssetViewViewControllerTests {
 
     func cell(at row: Int, _ section: Int) -> BasicTableViewCell {
         return controller.tableView.cellForRow(at: IndexPath(row: row, section: section)) as! BasicTableViewCell

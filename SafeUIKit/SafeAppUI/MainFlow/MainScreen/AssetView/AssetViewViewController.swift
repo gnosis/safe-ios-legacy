@@ -7,49 +7,17 @@ import SafeUIKit
 import MultisigWalletApplication
 import Common
 
-// TODO: rename
 final class AssetViewViewController: UITableViewController {
 
     weak var delegate: MainViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
 
-    typealias Section = (
-        headerViewIdentifier: String?,
-        headerHeight: CGFloat,
-        footerViewIdentifier: String?,
-        footerHeight: CGFloat,
-        elements: [TokenData]
-    )
-
-    private var tokens = [TokenData]() {
-        didSet {
-            configureSections(tokens)
-        }
-    }
-
-    private var sections = [Section]()
-
-    private func configureSections(_ tokens: [TokenData]) {
-        sections = []
-        guard !tokens.isEmpty else {
-            return
-        }
-        // TODO: simplify
-        sections.append((
-            headerViewIdentifier: nil,
-            headerHeight: 0,
-            footerViewIdentifier: nil,
-            footerHeight: 0,
-            elements: tokens
-        ))
-    }
+    private var tokens = [TokenData]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let bundle = Bundle(for: AssetViewViewController.self)
-        tableView.register(UINib(nibName: "AddTokenFooterView", bundle: bundle),
-                           forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
         tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
@@ -59,8 +27,8 @@ final class AssetViewViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.backgroundColor = .clear
-        tableView.tableFooterView = UINib(nibName: "AddTokenFooterView",
-                                          bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView
+        tableView.tableFooterView = (UINib(nibName: "AddTokenFooterView",
+                                           bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView)
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
 
         notify()
@@ -80,12 +48,8 @@ final class AssetViewViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].elements.count
+        return tokens.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,32 +60,14 @@ final class AssetViewViewController: UITableViewController {
     }
 
     private func tokenData(for indexPath: IndexPath) -> TokenData {
-        return sections[indexPath.section].elements[indexPath.row]
+        return tokens[indexPath.row]
     }
 
     // MARK: - Table view delegate
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let identifier = sections[section].headerViewIdentifier else { return nil }
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier)
-    }
-
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let identifier = sections[section].footerViewIdentifier else { return nil }
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier)
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.createNewTransaction(token: tokenData(for: indexPath).address)
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sections[section].headerHeight
-    }
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return sections[section].footerHeight
     }
 
     // MARK: - Scroll View delegate

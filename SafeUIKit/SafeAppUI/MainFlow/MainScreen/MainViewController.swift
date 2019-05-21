@@ -21,7 +21,7 @@ public protocol SegmentController {
 }
 
 
-extension TokensTableViewController: SegmentController {
+extension AssetViewViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
         return SegmentBarItem(title: LocalizedString("assets_capitalized", comment: "Assets tab title"),
@@ -30,7 +30,7 @@ extension TokensTableViewController: SegmentController {
 
 }
 
-extension TransactionsTableViewController: SegmentController {
+extension TransactionViewViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
         return SegmentBarItem(title: LocalizedString("transactions_capitalized", comment: "Transactions tab title"),
@@ -45,15 +45,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var segmentBar: SegmentBar!
     @IBOutlet weak var containerView: UIView!
 
-    let assetViewController = TokensTableViewController()
+    let assetViewController = AssetViewViewController()
     // swiftlint:disable:next weak_delegate
     let assetViewScrollDelegate = HeaderScrollDelegate()
 
-    let transactionViewController = TransactionsTableViewController.create()
+    let transactionViewController = TransactionViewViewController.create()
     // swiftlint:disable:next weak_delegate
     let transactionViewScrollDelegate = HeaderScrollDelegate()
 
-    static func create(delegate: MainViewControllerDelegate & TransactionsTableViewControllerDelegate)
+    static func create(delegate: MainViewControllerDelegate & TransactionViewViewControllerDelegate)
         -> MainViewController {
             let controller = StoryboardScene.Main.mainViewController.instantiate()
             controller.assetViewController.delegate = delegate

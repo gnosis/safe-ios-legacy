@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="124" y="-252.32383808095955"/>
         </scene>
-        <!--Transactions Table View Controller-->
+        <!--Transaction View View Controller-->
         <scene sceneID="dIf-Mg-lgQ">
             <objects>
-                <tableViewController storyboardIdentifier="TransactionsTableViewController" id="NdG-Tt-8xh" customClass="TransactionsTableViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TransactionsTableViewController" id="NdG-Tt-8xh" customClass="TransactionViewViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="46" sectionFooterHeight="1" id="Yyv-2N-gW7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,21 +335,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDr-uj-AN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2634" y="869"/>
-        </scene>
-        <!--Main Content View Controller-->
-        <scene sceneID="4qF-mT-Ya6">
-            <objects>
-                <viewController id="Ozd-ht-crK" customClass="MainContentViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gf2-V3-xE2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Cql-Ui-XQ6"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zbK-QE-Rxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="126" y="363"/>
         </scene>
         <!--Send-->
         <scene sceneID="wM7-tc-FtQ">
@@ -761,7 +746,7 @@
         <!--Navigation Controller-->
         <scene sceneID="jhL-qr-Dhy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hWI-IO-Upv" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="hWI-IO-Upv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fNp-bk-VvO">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

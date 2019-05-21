@@ -245,7 +245,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
 }
 
-extension MainFlowCoordinator: TransactionsTableViewControllerDelegate {
+extension MainFlowCoordinator: TransactionViewViewControllerDelegate {
 
     public func didSelectTransaction(id: String) {
         let controller = TransactionDetailsViewController.create(transactionID: id)

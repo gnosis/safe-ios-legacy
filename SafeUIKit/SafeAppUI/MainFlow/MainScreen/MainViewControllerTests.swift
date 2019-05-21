@@ -38,7 +38,7 @@ class MainViewControllerTests: SafeTestCase {
 
 }
 
-class MockMainViewControllerDelegate: MainViewControllerDelegate, TransactionsTableViewControllerDelegate {
+class MockMainViewControllerDelegate: MainViewControllerDelegate, TransactionViewViewControllerDelegate {
 
     func didSelectTransaction(id: String) {}
 

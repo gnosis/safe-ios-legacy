@@ -73,24 +73,27 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         beginHeight = headerView.height
     }
 
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetOffset = targetContentOffset.pointee
 
         let targetHeight = maxHeaderHeight - (targetOffset.y + scrollView.contentInset.top)
         let targetClampedHeight = min(max(minHeaderHeight, targetHeight), maxHeaderHeight)
 
-        let wasMinimized  = beginHeight < middleThreshold
+        let wasMinimized = beginHeight < middleThreshold
 
-        let shouldMinimize =  wasMinimized && targetClampedHeight < minimizationThreshold ||
+        let shouldMinimize = wasMinimized && targetClampedHeight < minimizationThreshold ||
             !wasMinimized && targetClampedHeight < maximizationThreshold
 
         if (minHeaderHeight...maxHeaderHeight).contains(targetHeight) {
-            let newTargetOffsetY = maxHeaderHeight - (shouldMinimize ? minHeaderHeight : maxHeaderHeight) - scrollView.contentInset.top
+            let newTargetOffsetY = maxHeaderHeight -
+                (shouldMinimize ? minHeaderHeight : maxHeaderHeight) -
+                scrollView.contentInset.top
             let newOffset = CGPoint(x: targetOffset.x, y: newTargetOffsetY)
             targetContentOffset.pointee = newOffset
         }
 
     }
-
 
 }

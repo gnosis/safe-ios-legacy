@@ -67,6 +67,8 @@ enum StoryboardScene {
 
     static let addTokenTableViewController = SceneType<SafeAppUI.AddTokenTableViewController>(storyboard: Main.self, identifier: "AddTokenTableViewController")
 
+    static let mainNavigationController = SceneType<UINavigationController>(storyboard: Main.self, identifier: "MainNavigationController")
+
     static let mainViewController = SceneType<SafeAppUI.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
 
     static let menuTableViewController = SceneType<SafeAppUI.MenuTableViewController>(storyboard: Main.self, identifier: "MenuTableViewController")
@@ -79,7 +81,7 @@ enum StoryboardScene {
 
     static let transactionDetailsViewController = SceneType<SafeAppUI.TransactionDetailsViewController>(storyboard: Main.self, identifier: "TransactionDetailsViewController")
 
-    static let transactionsTableViewController = SceneType<SafeAppUI.TransactionsTableViewController>(storyboard: Main.self, identifier: "TransactionsTableViewController")
+    static let transactionsTableViewController = SceneType<SafeAppUI.TransactionViewViewController>(storyboard: Main.self, identifier: "TransactionsTableViewController")
   }
   enum MasterPassword: StoryboardType {
     static let storyboardName = "MasterPassword"
