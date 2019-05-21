@@ -10,6 +10,7 @@ import Common
 final class TokensTableViewController: UITableViewController {
 
     weak var delegate: MainViewControllerDelegate?
+    weak var scrollDelegate: ScrollDelegate?
 
     typealias Section = (
         headerViewIdentifier: String?,
@@ -35,8 +36,8 @@ final class TokensTableViewController: UITableViewController {
         sections.append((
             headerViewIdentifier: nil,
             headerHeight: 0,
-            footerViewIdentifier: "AddTokenFooterView",
-            footerHeight: AddTokenFooterView.height,
+            footerViewIdentifier: nil,
+            footerHeight: 0,
             elements: tokens
         ))
     }
@@ -56,8 +57,8 @@ final class TokensTableViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.backgroundColor = .clear
-        tableView.tableFooterView = UIView()
-
+        let footerView = UINib(nibName: "AddTokenFooterView", bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView
+        tableView.tableFooterView = footerView
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
 
         notify()
@@ -120,14 +121,31 @@ final class TokensTableViewController: UITableViewController {
         return sections[section].footerHeight
     }
 
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollDelegate?.scrollViewDidScroll?(scrollView)
+    }
+
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        scrollDelegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollDelegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+
 }
 
 extension TokensTableViewController: EventSubscriber {
 
     func notify() {
-        tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
+        let newTokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
+        let isChanged = newTokens != tokens
+        tokens = newTokens
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            // prevent flickering during scrolling
+            if isChanged {
+                self.tableView.reloadSections(IndexSet([0]), with: .automatic)
+            }
             self.tableView.refreshControl?.endRefreshing()
         }
     }

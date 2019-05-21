@@ -7,6 +7,7 @@ import UIKit
 class MainContentViewController: SegmentBarController {
 
     weak var delegate: MainViewControllerDelegate?
+
     let tokensController = TokensTableViewController()
 
     var transactionsControllerDelegate: TransactionsTableViewControllerDelegate? {

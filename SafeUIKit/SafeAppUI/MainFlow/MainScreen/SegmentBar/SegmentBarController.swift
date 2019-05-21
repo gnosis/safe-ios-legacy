@@ -30,6 +30,7 @@ open class SegmentBarController: UIViewController {
     }
     private let contentView = UIView()
     let segmentBar = SegmentBar()
+    let segmentBarHeight: CGFloat = 46
     private let stackView = UIStackView()
 
     override open func viewDidLoad() {
@@ -60,7 +61,7 @@ open class SegmentBarController: UIViewController {
         stackView.addArrangedSubview(segmentBar)
         NSLayoutConstraint.activate(
             [
-                segmentBar.heightAnchor.constraint(equalToConstant: 48),
+                segmentBar.heightAnchor.constraint(equalToConstant: segmentBarHeight),
                 segmentBar.widthAnchor.constraint(greaterThanOrEqualToConstant: 0)
             ])
     }

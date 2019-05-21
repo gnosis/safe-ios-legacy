@@ -16,6 +16,7 @@ public class TransactionsTableViewController: UITableViewController, EventSubscr
 
     private var model = CollectionUIModel<TransactionGroupData>()
     public weak var delegate: TransactionsTableViewControllerDelegate?
+    weak var scrollDelegate: ScrollDelegate?
     let emptyView = TransactionsEmptyView()
     let rowHeight: CGFloat = 70
     private let updateQueue = DispatchQueue(label: "TransactionDetailsUpdateQueue",
@@ -92,6 +93,18 @@ public class TransactionsTableViewController: UITableViewController, EventSubscr
         tableView.deselectRow(at: indexPath, animated: true)
         guard let transaction = model[indexPath] else { return }
         delegate?.didSelectTransaction(id: transaction.id)
+    }
+
+    override public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollDelegate?.scrollViewDidScroll?(scrollView)
+    }
+
+    override public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        scrollDelegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+
+    override public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollDelegate?.scrollViewWillBeginDragging?(scrollView)
     }
 
     // MARK: EventSubscriber

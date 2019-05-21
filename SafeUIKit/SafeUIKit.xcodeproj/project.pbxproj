@@ -1529,13 +1529,13 @@
 		0ABD142A2292BF9A00922964 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				0AF8D53C20D00FF6001E8423 /* TransactionView */,
-				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
 				55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */,
 				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
 				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
+				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
 				0AF8D53D20D01002001E8423 /* SegmentBar */,
 				0ABD142B2292BFC500922964 /* AssetView */,
+				0AF8D53C20D00FF6001E8423 /* TransactionView */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
