@@ -34,7 +34,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = ColorName.paleGrey.color
-        safeAddressLabel.textColor = ColorName.battleshipGrey.color
+        safeAddressLabel.textColor = ColorName.dusk.color
 
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         ApplicationServiceRegistry.logger.info("Safe address: \(address)")
@@ -43,7 +43,6 @@ final class MainViewController: UIViewController {
                                          animated: false)
         safeAddressLabel.address = address
         safeIdenticonView.seed = address
-        safeIdenticonView.displayShadow = true
         safeIdenticonView.tapAction = {
             self.delegate?.openAddressDetails()
         }

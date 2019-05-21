@@ -21,3 +21,4 @@ pale_grey_two: #e5e5ea
 darkSkyBlue: #28b2fa
 paleLilac: #e5e5ea
 dusk: #4a5579
+lightBlueGrey58: #c6d2d9

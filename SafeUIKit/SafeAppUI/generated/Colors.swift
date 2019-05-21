@@ -56,6 +56,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#401d9c"></span>
   /// Alpha: 100% <br/> (0x401d9cff)
   static let indigoBlue = ColorName(rgbaValue: 0x401d9cff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#c6d2d9"></span>
+  /// Alpha: 100% <br/> (0xc6d2d9ff)
+  static let lightBlueGrey58 = ColorName(rgbaValue: 0xc6d2d9ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#a2a8ba"></span>
   /// Alpha: 100% <br/> (0xa2a8baff)
   static let lightGreyBlue = ColorName(rgbaValue: 0xa2a8baff)
