@@ -5,32 +5,81 @@
 import Foundation
 
 @objc protocol ScrollDelegate: UIScrollViewDelegate {
-
     @objc optional func viewDidAppear(_ scrollView: UIScrollView)
 }
 
+/// This class encapsulates layout calculations for dynamically adjusting MainHeaderView's height based on
+/// the tableView's scroll position.
+///
+/// The desired effect is that when user starts scrolling down, the header is minimized, but when content is scrolled
+/// back to the top, the header is maximized again.
+///
+/// In case the header been minimized and user switches
+/// tabs, then it should automatically scroll to the top and show maximized header.
+///
+/// In case user releases touch while the header is displayed in intermediate state, we want it automatically
+/// animate to either minimized or maximized position (snap to the closes edge).
+///
+/// Alongside header minimization we scale it down and reduce the alpha so that it nicely disappears.
+///
+/// # Usage
+/// Relay the `viewDidAppear()`, `scrollViewDidScroll()`, `scrollViewWillBeginDragging()` and
+/// `scrollViewWillEndDragging()` method calls from table view controller to this object.
+/// For setting up the scroll view properly, call the `setUp()` on `viewDidLoad()`
+///
+/// # Layout assumptions
+/// This algorithm assumes that tableView's frame is the same as controller's view frame,
+/// that the headerView is covering the tableView, and that there is additional segmentBar that is attached
+/// below the headerView.
+///
+/// The `setUp()` changes tableView's contentInset to adjust for the headerView and segmentBar heights.
+///
+/// We assume that the `setUp()` will be called with exactly the same `scrollView` object as with other
+/// methods accepting `scrollView`
+///
 class HeaderScrollDelegate: NSObject, ScrollDelegate {
 
     let segmentBarHeight: CGFloat = 46
-    let maxHeaderHeight: CGFloat = 130
+
+    // Header's height decreases when scrollView.contentOffset.y increases, and vice versa.
+
     let minHeaderHeight: CGFloat = 0
-    let minAlpha: CGFloat = 0.3
-    let maxAlpha: CGFloat = 1.0
-    var maximizationThreshold: CGFloat { return maxHeaderHeight * 0.8 }
+    let maxHeaderHeight: CGFloat = 130
+
+    // Alpha decreases when header height decreases.
+
+    /// When height reaches X percent of the maximum, then alpha will become 0 and header will be transparent.
+    let minAlphaHeight: CGFloat = 0.3
+    /// When height reaches X percent of the maximum, then alpha will become 1 and header will be opaque.
+    let maxAlphaHeight: CGFloat = 1.0
+
+    /// Upon end of user touch, if the height is less than this value, then header will minimize.
     var minimizationThreshold: CGFloat { return maxHeaderHeight * 0.2 }
+    /// Upon end of user touch, if the height is more than this value, then header will maximize
+    var maximizationThreshold: CGFloat { return maxHeaderHeight * 0.8 }
+
+    /// Helps to determine direction of the height change: less than middle - minimization, otherwise - maximization
     var middleThreshold: CGFloat { return maxHeaderHeight * 0.5 }
+
+    /// Remembers value when scroll view began dragging (touches started)
     var beginHeight: CGFloat = 0
 
+    /// The view that will be manipulated
     weak var headerView: MainHeaderView!
+    weak var scrollView: UIScrollView!
 
+    /// Sets up scroll view's position and initial header height
     func setUp(_ scrollView: UIScrollView, _ headerView: MainHeaderView) {
         self.headerView = headerView
+        self.scrollView = scrollView
         let contentInset = UIEdgeInsets(top: segmentBarHeight + maxHeaderHeight, left: 0, bottom: 0, right: 0)
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
-        scrollView.contentOffset = CGPoint(x: 0, y: -contentInset.top) // triggers scrollViewDidScroll
+        // triggers scrollViewDidScroll
+        scrollView.contentOffset = CGPoint(x: 0, y: -contentInset.top)
     }
 
+    /// Always scrolls to the top and maximizes the header
     func viewDidAppear(_ scrollView: UIScrollView) {
         let topOffset = CGPoint(x: scrollView.contentOffset.x, y: -scrollView.contentInset.top)
 
@@ -42,6 +91,7 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         } else if needsToScroll {
             scrollView.setContentOffset(topOffset, animated: true)
         } else {
+            // because if scrollView.contentOffset does not change then the scrollViewDidScroll will not be called
             UIView.animate(withDuration: 0.2,
                            delay: 0,
                            usingSpringWithDamping: 1.0,
@@ -53,33 +103,47 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         }
     }
 
+    /// Updates height based on the 'y' content offset, updates scale transform based on height, and alpha based on
+    /// height.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset
-        let height = maxHeaderHeight - (offset.y + scrollView.contentInset.top)
-        let clampedHeight = min(max(minHeaderHeight, height), maxHeaderHeight)
+        let newHeight = clampedHeight(height(offset: scrollView.contentOffset.y, scrollView: scrollView))
+        headerView.height = newHeight
 
-        headerView.height = clampedHeight
+        let relativeHeight = newHeight / maxHeaderHeight
 
-        let x = clampedHeight / maxHeaderHeight
-        let scale = x * sqrt(x)
+        // Using f(x) = x^1.5 gives nice scaling interpolation for range [0 ... 1]
+        let scale = relativeHeight * sqrt(relativeHeight)
         headerView.transform = CGAffineTransform(scaleX: scale, y: scale)
 
-        let alpha = max(0, (x - minAlpha) / (maxAlpha - minAlpha))
+        let alpha = max(0, (relativeHeight - minAlphaHeight) / (maxAlphaHeight - minAlphaHeight))
         headerView.alpha = alpha
         headerView.setNeedsLayout()
     }
 
+    /// Returns target header height based on contentOffset's y (and vice versa)
+    private func height(offset: CGFloat, scrollView: UIScrollView) -> CGFloat {
+        return maxHeaderHeight - (offset + scrollView.contentInset.top)
+    }
+
+    /// Returns height limited to (min, max) height bounds
+    private func clampedHeight(_ height: CGFloat) -> CGFloat {
+        return min(max(minHeaderHeight, height), maxHeaderHeight)
+    }
+
+    /// Touches started
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         beginHeight = headerView.height
     }
 
+    /// Touches ended. We use the `targetContentOffset` to calculate target height, and then
+    /// adjust the `targetContentOffset` for the updated target height.
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                    withVelocity velocity: CGPoint,
                                    targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let targetOffset = targetContentOffset.pointee
 
-        let targetHeight = maxHeaderHeight - (targetOffset.y + scrollView.contentInset.top)
-        let targetClampedHeight = min(max(minHeaderHeight, targetHeight), maxHeaderHeight)
+        let targetHeight = height(offset: targetOffset.y, scrollView: scrollView)
+        let targetClampedHeight = clampedHeight(targetHeight)
 
         let wasMinimized = beginHeight < middleThreshold
 
@@ -87,10 +151,10 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
             !wasMinimized && targetClampedHeight < maximizationThreshold
 
         if (minHeaderHeight...maxHeaderHeight).contains(targetHeight) {
-            let newTargetOffsetY = maxHeaderHeight -
-                (shouldMinimize ? minHeaderHeight : maxHeaderHeight) -
-                scrollView.contentInset.top
-            let newOffset = CGPoint(x: targetOffset.x, y: newTargetOffsetY)
+            let newTargetHeight = shouldMinimize ? minHeaderHeight : maxHeaderHeight
+            let newOffset = CGPoint(x: targetOffset.x, y:
+                // offset from height is the same formula as height from offset.
+                height(offset: newTargetHeight, scrollView: scrollView))
             targetContentOffset.pointee = newOffset
         }
 
