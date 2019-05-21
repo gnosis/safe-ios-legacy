@@ -296,8 +296,6 @@
 		55126B6921AC38A900A9F810 /* TransactionConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */; };
 		551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */; };
 		551D778F22819D2A003B7910 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D778E22819D2A003B7910 /* PaymentMethodViewController.swift */; };
-		55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55247302213E8D7600A77557 /* TokensHeaderView.swift */; };
-		55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55247304213E8EC600A77557 /* TokensHeaderView.xib */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
 		5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735A21428FDD00A77557 /* IdenticonView.swift */; };
 		55247360214293D500A77557 /* IdenticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735F214293D500A77557 /* IdenticonViewController.swift */; };
@@ -879,8 +877,6 @@
 		55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationViewController.swift; sourceTree = "<group>"; };
 		551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeePaymentMethodCommand.swift; sourceTree = "<group>"; };
 		551D778E22819D2A003B7910 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
-		55247302213E8D7600A77557 /* TokensHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensHeaderView.swift; sourceTree = "<group>"; };
-		55247304213E8EC600A77557 /* TokensHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensHeaderView.xib; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		5524735A21428FDD00A77557 /* IdenticonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonView.swift; sourceTree = "<group>"; };
 		5524735F214293D500A77557 /* IdenticonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonViewController.swift; sourceTree = "<group>"; };
@@ -1308,25 +1304,20 @@
 				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
 				0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */,
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
-				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
 				0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */,
 				0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
 				0A334DB3209C6D8600ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift */,
-				55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */,
-				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
-				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
+				0ABD142A2292BF9A00922964 /* MainScreen */,
 				0A4EEA6B20D11109005CDAC0 /* Menu */,
 				0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */,
 				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
 				55DEBC26214BD78B0017CD4B /* SafeAddress */,
-				0AF8D53D20D01002001E8423 /* SegmentBar */,
 				0A60B50E211312C00066821A /* Send */,
 				0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */,
 				0AF8D53A20D00FDB001E8423 /* Tokens */,
 				0A8C961920D2A783007D2410 /* TransactionDetails */,
-				0AF8D53C20D00FF6001E8423 /* TransactionList */,
 				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
 				0A3FB8D1228B16F100270573 /* UIBarButtonItem+Items.swift */,
 			);
@@ -1535,6 +1526,32 @@
 			path = EthereumAddressLabel;
 			sourceTree = "<group>";
 		};
+		0ABD142A2292BF9A00922964 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0AF8D53C20D00FF6001E8423 /* TransactionView */,
+				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
+				55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */,
+				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
+				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
+				0AF8D53D20D01002001E8423 /* SegmentBar */,
+				0ABD142B2292BFC500922964 /* AssetView */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		0ABD142B2292BFC500922964 /* AssetView */ = {
+			isa = PBXGroup;
+			children = (
+				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
+				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
+				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
+				550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */,
+				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
+			);
+			path = AssetView;
+			sourceTree = "<group>";
+		};
 		0ACCA8C3221C11E700D37594 /* LoadingTitleView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1627,19 +1644,12 @@
 			isa = PBXGroup;
 			children = (
 				550D1ED32133E6420035109A /* ManageTokens */,
-				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
-				550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */,
-				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
-				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
-				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
-				55247302213E8D7600A77557 /* TokensHeaderView.swift */,
-				55247304213E8EC600A77557 /* TokensHeaderView.xib */,
 				5549B28222830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift */,
 			);
 			path = Tokens;
 			sourceTree = "<group>";
 		};
-		0AF8D53C20D00FF6001E8423 /* TransactionList */ = {
+		0AF8D53C20D00FF6001E8423 /* TransactionView */ = {
 			isa = PBXGroup;
 			children = (
 				0A8274E721A432DD00A73D32 /* TransactionsEmptyView.swift */,
@@ -1649,7 +1659,7 @@
 				0AB3F13121F5CF5400D351C7 /* TransactionsTableViewControllerRegressionTests.swift */,
 				0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */,
 			);
-			path = TransactionList;
+			path = TransactionView;
 			sourceTree = "<group>";
 		};
 		0AF8D53D20D01002001E8423 /* SegmentBar */ = {
@@ -2483,7 +2493,6 @@
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
 				0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */,
 				5549B2A722859F5F00F3B5B7 /* PaymentMethodHeaderView.xib in Resources */,
-				55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
 				0A3BD90622254833007039B4 /* RBEIntroViewController.xib in Resources */,
@@ -2809,7 +2818,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */,
-				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* SendInputViewController.swift in Sources */,
 				0A3FB8D2228B16F100270573 /* UIBarButtonItem+Items.swift in Sources */,
 				5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */,

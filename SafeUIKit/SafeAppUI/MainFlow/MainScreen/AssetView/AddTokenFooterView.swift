@@ -16,9 +16,9 @@ class AddTokenFooterView: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundView = UIView()
-        backgroundView?.backgroundColor = .white
         manageTokensButton.setTitle(Strings.addToken, for: .normal)
+        manageTokensButton.setTitleColor(ColorName.battleshipGrey.color, for: .normal)
+        manageTokensButton.setTitleColor(.black, for: .highlighted)
     }
 
 }

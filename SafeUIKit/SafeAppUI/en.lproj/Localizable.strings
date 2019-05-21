@@ -556,8 +556,7 @@
 /* Success */
 "sync_with_extension_sent" = "Resync notification sent successfully";
 
-/* Label for Tokens header on main screen.
-   Title for Manage Tokens Screen. */
+/* Title for Manage Tokens Screen. */
 "tab_title_assets" = "Tokens";
 
 /* Terms menu item
