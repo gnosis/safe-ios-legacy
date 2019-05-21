@@ -21,7 +21,6 @@ class ReceiveFundsViewControllerTests: XCTestCase {
     }
 
     func test_whenCreated_thenDisplaysCorrectData() {
-        createWindow(controller)
         controller.viewDidLoad()
         XCTAssertEqual(controller.safeAddressLabel.address, testAddress)
         XCTAssertEqual(controller.qrCodeView.value, testAddress)
