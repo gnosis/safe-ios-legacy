@@ -15,7 +15,9 @@ class ReceiveFundsViewController: UIViewController {
     @IBOutlet weak var safeAddressLabel: FullEthereumAddressLabel!
     @IBOutlet weak var qrCodeView: QRCodeView!
 
-    private let address = ApplicationServiceRegistry.walletService.selectedWalletAddress!
+    private var address: String {
+        return ApplicationServiceRegistry.walletService.selectedWalletAddress!
+    }
 
     enum Strings {
         static let title = LocalizedString("receive_funds", comment: "Receive Funds")
