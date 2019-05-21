@@ -79,19 +79,17 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         scrollView.contentOffset = CGPoint(x: 0, y: -contentInset.top)
     }
 
-    /// Always scrolls to the top and maximizes the header
+    /// Always scrolls to the top and maximizes the header.
     func viewDidAppear(_ scrollView: UIScrollView) {
-        let topOffset = CGPoint(x: scrollView.contentOffset.x, y: -scrollView.contentInset.top)
+        let topOffset = CGPoint(x: scrollView.contentOffset.x,
+                                y: height(offset: maxHeaderHeight, scrollView: scrollView))
 
-        let needsToChangeHeight = headerView.height != maxHeaderHeight
-        let needsToScroll = topOffset != scrollView.contentOffset
-
-        if !needsToChangeHeight {
-            scrollView.contentOffset = topOffset
-        } else if needsToScroll {
+        if headerView.height == maxHeaderHeight {
+            scrollView.setContentOffset(topOffset, animated: false)
+        } else if topOffset != scrollView.contentOffset {
             scrollView.setContentOffset(topOffset, animated: true)
         } else {
-            // because if scrollView.contentOffset does not change then the scrollViewDidScroll will not be called
+            // the height is out of sync with contentOffset, trigger the height update
             UIView.animate(withDuration: 0.2,
                            delay: 0,
                            usingSpringWithDamping: 1.0,
