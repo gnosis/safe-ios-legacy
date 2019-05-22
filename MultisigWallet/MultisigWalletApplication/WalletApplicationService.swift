@@ -90,11 +90,9 @@ public class WalletApplicationService: Assertable {
     }
 
     /// Gets estimations for all available payment methods.
-    /// Should be executed on a background thread.
     ///
     /// - Returns: tokens data to be displayed
     public func estimateSafeCreation() -> [TokenData] {
-        precondition(!Thread.isMainThread)
         let ownersNumber = selectedWallet!.allOwners().count
         let request = EstimateSafeCreationRequest(ownersNumber: ownersNumber)
         guard let response = try? DomainRegistry.transactionRelayService.estimateSafeCreation(request: request) else {

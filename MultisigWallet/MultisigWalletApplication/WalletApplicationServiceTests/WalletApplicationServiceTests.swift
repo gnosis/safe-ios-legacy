@@ -11,24 +11,16 @@ import CommonTestSupport
 class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
     func test_whenEstimating_thenReturnsResults() {
-        prepareEstimationEnv()
-        var tokenData: [TokenData]?
-        DispatchQueue.global().async {
-            tokenData = self.service.estimateSafeCreation()
-        }
-        delay()
-        XCTAssertEqual(tokenData?.count, 2)
+        prepareEstimationEnvironment()
+        let tokenData = self.service.estimateSafeCreation()
+        XCTAssertEqual(tokenData.count, 2)
     }
 
     func test_whenEstimatingThrows_thenReturnsEmptyData() {
-        prepareEstimationEnv()
+        prepareEstimationEnvironment()
         relayService.shouldThrow = true
-        var tokenData: [TokenData]?
-        DispatchQueue.global().async {
-            tokenData = self.service.estimateSafeCreation()
-        }
-        delay()
-        XCTAssertTrue(tokenData?.isEmpty ?? false)
+        let tokenData = self.service.estimateSafeCreation()
+        XCTAssertTrue(tokenData.isEmpty)
     }
 
     func test_whenDeployingWallet_thenResetsPublisherAndSubscribes() {
@@ -167,7 +159,7 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         return item
     }
 
-    private func prepareEstimationEnv() {
+    private func prepareEstimationEnvironment() {
         service.createNewDraftWallet()
         tokenItemsRepository.save(TokenListItem(token: Token.gno, status: .whitelisted, canPayTransactionFee: true))
         tokenItemsRepository.save(TokenListItem(token: Token.mgn, status: .whitelisted, canPayTransactionFee: true))
