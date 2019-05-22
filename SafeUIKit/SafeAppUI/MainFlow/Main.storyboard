@@ -128,6 +128,13 @@
                                                 <constraint firstAttribute="width" secondItem="SIP-ji-S5c" secondAttribute="height" multiplier="1:1" id="PRq-yW-dKU"/>
                                             </constraints>
                                         </view>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7aj-Y3-Wlh">
+                                            <rect key="frame" x="27" y="45" width="18" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="18" id="Jle-UC-xes"/>
+                                                <constraint firstAttribute="height" constant="18" id="yPY-8a-64X"/>
+                                            </constraints>
+                                        </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byc-ej-5Kp">
                                             <rect key="frame" x="72" y="16" width="261" height="36"/>
                                             <subviews>
@@ -166,8 +173,10 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="7aj-Y3-Wlh" firstAttribute="bottom" secondItem="SIP-ji-S5c" secondAttribute="bottom" constant="9" id="9cO-zm-BKg"/>
                                         <constraint firstItem="SIP-ji-S5c" firstAttribute="centerY" secondItem="tf8-eC-3h7" secondAttribute="centerY" id="Nfv-M2-q94"/>
                                         <constraint firstItem="byc-ej-5Kp" firstAttribute="centerY" secondItem="tf8-eC-3h7" secondAttribute="centerY" id="QrZ-bY-AUi"/>
+                                        <constraint firstItem="7aj-Y3-Wlh" firstAttribute="centerX" secondItem="SIP-ji-S5c" secondAttribute="centerX" id="XuZ-3q-mNe"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="byc-ej-5Kp" secondAttribute="trailing" id="bzT-fa-m5q"/>
                                         <constraint firstItem="byc-ej-5Kp" firstAttribute="leading" secondItem="SIP-ji-S5c" secondAttribute="trailing" constant="16" id="rfC-Sn-izb"/>
                                         <constraint firstItem="SIP-ji-S5c" firstAttribute="leading" secondItem="tf8-eC-3h7" secondAttribute="leading" constant="16" id="z4g-VQ-oLv"/>
@@ -178,6 +187,7 @@
                                     <outlet property="identiconView" destination="SIP-ji-S5c" id="iaB-ze-a6p"/>
                                     <outlet property="tokenAmountLabel" destination="olj-bB-CHd" id="DGg-kx-ija"/>
                                     <outlet property="transactionDateLabel" destination="iNB-zy-yWF" id="WlJ-SP-9jS"/>
+                                    <outlet property="transactionTypeImageView" destination="7aj-Y3-Wlh" id="dZU-bN-p2G"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

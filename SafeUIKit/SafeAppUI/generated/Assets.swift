@@ -91,9 +91,10 @@ enum Asset {
   }
   enum TransactionOverviewIcons {
     static let error = ImageAsset(name: "error")
-    static let receive = ImageAsset(name: "receive")
+    static let iconIncoming = ImageAsset(name: "icon-incoming")
+    static let iconOutgoing = ImageAsset(name: "icon-outgoing")
+    static let iconSettings = ImageAsset(name: "icon-settings")
     static let settingTransaction = ImageAsset(name: "setting_transaction")
-    static let settingTransactionIcon = ImageAsset(name: "setting_transaction_icon")
   }
   static let transparentBackground = ImageAsset(name: "transparent_background")
   enum UnlockScreen {
@@ -136,9 +137,10 @@ enum Asset {
     TransactionEdit.shape,
     TransactionEdit.`switch`,
     TransactionOverviewIcons.error,
-    TransactionOverviewIcons.receive,
+    TransactionOverviewIcons.iconIncoming,
+    TransactionOverviewIcons.iconOutgoing,
+    TransactionOverviewIcons.iconSettings,
     TransactionOverviewIcons.settingTransaction,
-    TransactionOverviewIcons.settingTransactionIcon,
     transparentBackground,
     UnlockScreen.faceIdIcon,
     UnlockScreen.safeHeaderLogo,

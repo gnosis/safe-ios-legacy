@@ -27,7 +27,7 @@ public class IdenticonView: BaseCustomView {
 
     public var tapAction: (() -> Void)?
 
-    internal let imageView = UIImageView()
+    public let imageView = UIImageView()
 
     private static let shadowOffset: CGFloat = 1
     private let shadowOpacity: Float = 0.7

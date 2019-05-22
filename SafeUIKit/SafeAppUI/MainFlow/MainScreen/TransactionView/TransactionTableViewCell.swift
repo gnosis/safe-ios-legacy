@@ -13,6 +13,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var addressLabel: EthereumAddressLabel!
     @IBOutlet weak var transactionDateLabel: UILabel!
     @IBOutlet weak var tokenAmountLabel: AmountLabel!
+    @IBOutlet weak var transactionTypeImageView: UIImageView!
 
     private enum Strings {
         static let recoveredSafe = LocalizedString("ios_recovered_safe", comment: "Recovered Safe")
@@ -35,18 +36,26 @@ class TransactionTableViewCell: UITableViewCell {
 
     func configure(transaction: TransactionData) {
         identiconView.seed = recipient(transaction)
+        if transaction.status == .failed {
+            identiconView.imageView.image = Asset.TransactionOverviewIcons.error.image
+        }
 
         addressLabel.address = recipient(transaction)
         addressLabel.suffix = addressSuffix(transaction)
         addressLabel.textColor = addressColor(transaction)
+        addressLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
 
         transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
-        transactionDateLabel.textColor = ColorName.lightGreyBlue.color
+        transactionDateLabel.textColor = ColorName.battleshipGrey.color
+        transactionDateLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
 
         setDetailText(transaction: transaction)
         tokenAmountLabel.textColor = valueColor(transaction)
         tokenAmountLabel.numberOfLines = 0
-        tokenAmountLabel.font = UIFont.systemFont(ofSize: 16)
+        tokenAmountLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        tokenAmountLabel.textAlignment = .right
+
+        transactionTypeImageView.image = typeImage(transaction)
     }
 
     private func setDetailText(transaction tx: TransactionData) {
@@ -90,13 +99,25 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     private func valueColor(_ transaction: TransactionData) -> UIColor {
-        if transaction.status == .pending { return ColorName.silver.color }
+        if transaction.status == .pending || transaction.status == .failed {
+            return ColorName.lightGreyBlue.color
+        }
         switch transaction.type {
         case .outgoing: return ColorName.darkSlateBlue.color
         case .incoming: return ColorName.greenTeal.color
         case .walletRecovery, .replaceRecoveryPhrase,
              .replaceBrowserExtension, .connectBrowserExtension, .disconnectBrowserExtension:
             return ColorName.darkSlateBlue.color
+        }
+    }
+
+    private func typeImage(_ transaction: TransactionData) -> UIImage {
+        switch transaction.type {
+        case .outgoing: return Asset.TransactionOverviewIcons.iconOutgoing.image
+        case .incoming: return Asset.TransactionOverviewIcons.iconIncoming.image
+        case .walletRecovery, .replaceRecoveryPhrase,
+             .replaceBrowserExtension, .connectBrowserExtension, .disconnectBrowserExtension:
+            return Asset.TransactionOverviewIcons.iconSettings.image
         }
     }
 
