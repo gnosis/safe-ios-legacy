@@ -7,9 +7,9 @@ import Foundation
 /// Request available payment methods with prices for safe creation
 public struct EstimateSafeCreationRequest: Encodable {
 
-    public let ownersNumber: String
+    public let ownersNumber: Int
 
-    public init(ownersNumber: String) {
+    public init(ownersNumber: Int) {
         self.ownersNumber = ownersNumber
     }
 

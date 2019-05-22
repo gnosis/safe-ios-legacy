@@ -29,6 +29,10 @@ class MockTransactionRelayService1: TransactionRelayDomainService {
             return expected_createSafeCreationTransaction[actual_createSafeCreationTransaction.count - 1].response
     }
 
+    func estimateSafeCreation(request: EstimateSafeCreationRequest) throws -> EstimateSafeCreationRequest.Response {
+        preconditionFailure("not implemented")
+    }
+
     func verify(line: UInt = #line, file: StaticString = #file) {
         XCTAssertEqual(actual_createSafeCreationTransaction.map { $0.toString() },
                        expected_createSafeCreationTransaction.map { $0.request.toString() },

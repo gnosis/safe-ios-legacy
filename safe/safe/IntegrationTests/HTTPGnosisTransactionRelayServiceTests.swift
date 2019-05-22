@@ -55,7 +55,6 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                           paymentToken: paymentToken)
         let response = try relayService.createSafeCreationTransaction(request: request)
 
-
         let validator = SafeCreationResponseValidator()
         XCTAssertNoThrow(try validator.validate(response, request: request))
 

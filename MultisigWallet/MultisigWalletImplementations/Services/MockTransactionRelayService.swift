@@ -80,4 +80,13 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
             preconditionFailure("not implemented")
     }
 
+    public var estimateSafeCreation_input: EstimateSafeCreationRequest?
+    public var estimateSafeCreation_outputEstimations = [EstimateSafeCreationRequest.Estimation]()
+    public func estimateSafeCreation(request: EstimateSafeCreationRequest) throws ->
+        EstimateSafeCreationRequest.Response {
+        try throwIfNeeded()
+        estimateSafeCreation_input = request
+        return EstimateSafeCreationRequest.Response(estimations: estimateSafeCreation_outputEstimations)
+    }
+
 }

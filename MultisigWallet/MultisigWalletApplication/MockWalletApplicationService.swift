@@ -34,37 +34,26 @@ public class MockWalletApplicationService: WalletApplicationService {
         return deploymentAmount
     }
 
-    public var didCreateNewDraft = false
     public var shouldThrow = false
 
-    private var existingOwners: [OwnerType: String] = [:]
-    private var accounts: [TokenID: BigInt] = [:]
     private var minimumFunding: [TokenID: BigInt] = [:]
-    private var funds: [TokenID: BigInt] = [:]
-    private var subscriptions: [String: () -> Void] = [:]
 
     private var _isSafeCreationInProgress: Bool = false
-
     public func expect_isSafeCreationInProgress(_ value: Bool) {
         _isSafeCreationInProgress = value
     }
-
     public override var isSafeCreationInProgress: Bool { return _isSafeCreationInProgress }
 
     private var _hasSelectedWallet: Bool = true
-
     public func expect_hasSelectedWallet(_ value: Bool) {
         _hasSelectedWallet = value
     }
-
     public override var hasSelectedWallet: Bool { return _hasSelectedWallet }
 
     private var _isWalletDeployable: Bool = true
-
     public func expect_isWalletDeployable(_ value: Bool) {
         _isWalletDeployable = value
     }
-
     public override var isWalletDeployable: Bool { return _isWalletDeployable }
 
     public func createReadyToUseWallet() {
@@ -76,6 +65,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         ]
     }
 
+    // MARK: - Wallet
+
+    public var didCreateNewDraft = false
     public override func createNewDraftWallet() {
         didCreateNewDraft = true
     }
@@ -83,8 +75,46 @@ public class MockWalletApplicationService: WalletApplicationService {
     public override func prepareForCreation() {
     }
 
-    public override func isOwnerExists(_ type: OwnerType) -> Bool {
-        return existingOwners[type] != nil
+    public var estimateSafeCreation_output = [TokenData]()
+    public var didCallEstimateSafeCreation = false
+    public override func estimateSafeCreation() -> [TokenData] {
+        didCallEstimateSafeCreation = true
+        return estimateSafeCreation_output
+    }
+
+    private var expected_deployWallet_error: Swift.Error?
+    private var expected_deployWallet = [EventSubscriber?]()
+    private var actual_deployWallet = [EventSubscriber]()
+    public func expect_deployWallet(subscriber: EventSubscriber? = nil) {
+        expected_deployWallet.append(subscriber)
+    }
+    public func expect_deployWallet_throw(_ error: Swift.Error) {
+        expected_deployWallet_error = error
+    }
+    public override func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
+        actual_deployWallet.append(subscriber)
+        if let error = expected_deployWallet_error {
+            onError?(error)
+        }
+    }
+
+    private var expected_walletState = [WalletStateId]()
+    private var actual_walletState = [String]()
+    public func expect_walletState(_ state: WalletStateId) {
+        expected_walletState.append(state)
+    }
+    public override func walletState() -> WalletStateId? {
+        actual_walletState.append(#function)
+        return expected_walletState[actual_walletState.count - 1]
+    }
+
+    private var expected_abortDeployment = [String]()
+    private var actual_abortDeployment = [String]()
+    public func expect_abortDeployment() {
+        expected_abortDeployment.append("abortDeployment()")
+    }
+    public override func abortDeployment() {
+        actual_abortDeployment.append(#function)
     }
 
     public func createReadyToDeployWallet() {
@@ -95,44 +125,16 @@ public class MockWalletApplicationService: WalletApplicationService {
         ]
     }
 
-    public func assignAddress(_ address: String) {
-        walletAddress = address
-    }
+    // MARK: - Owners
 
-    public override func update(account: BaseID, newBalance: BigInt?) {
-        guard let newBalance = newBalance else {
-            funds.removeValue(forKey: TokenID(account.id))
-            return
-        }
-        funds[TokenID(account.id)] = newBalance
-    }
+    private var existingOwners: [OwnerType: String] = [:]
 
-    public func updateMinimumFunding(account: BaseID, amount: BigInt) {
-        deploymentAmount = amount
-        minimumFunding[TokenID(account.id)] = amount
-    }
-
-    public override func accountBalance(tokenID: BaseID) -> BigInt? {
-        return funds[TokenID(tokenID.id)]
-    }
-
-    private var expected_abortDeployment = [String]()
-    private var actual_abortDeployment = [String]()
-
-    public func expect_abortDeployment() {
-        expected_abortDeployment.append("abortDeployment()")
-    }
-
-    public override func abortDeployment() {
-        actual_abortDeployment.append(#function)
+    public override func isOwnerExists(_ type: OwnerType) -> Bool {
+        return existingOwners[type] != nil
     }
 
     public override func addOwner(address: String, type: OwnerType) {
         existingOwners[type] = address
-    }
-
-    public override func ownerAddress(of type: OwnerType) -> String? {
-        return existingOwners[type]
     }
 
     public override func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
@@ -140,11 +142,35 @@ public class MockWalletApplicationService: WalletApplicationService {
         addOwner(address: address, type: .browserExtension)
     }
 
-    public var authCalled = false
-    public override func auth() throws {
-        try throwIfNeeded()
-        authCalled = true
+    public func assignAddress(_ address: String) {
+        walletAddress = address
     }
+
+    public func updateMinimumFunding(account: BaseID, amount: BigInt) {
+        deploymentAmount = amount
+        minimumFunding[TokenID(account.id)] = amount
+    }
+
+    public override func createPair(from rawCode: String) throws {
+        try throwIfNeeded()
+    }
+
+    public var deletePairCalled = false
+    public override func deletePair(with address: String) throws {
+        try throwIfNeeded()
+        deletePairCalled = true
+    }
+
+    public var addressBrowserExtensionCodeResult = ""
+    public override func address(browserExtensionCode rawCode: String) -> String {
+        return addressBrowserExtensionCodeResult
+    }
+
+    public override func ownerAddress(of type: OwnerType) -> String? {
+        return existingOwners[type]
+    }
+
+    // MARK: - Tokens
 
     private func throwIfNeeded() throws {
         if shouldThrow {
@@ -152,115 +178,14 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
-    public var estimatedFee_output: BigInt?
-    public override func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
-        return estimatedFee_output
-    }
-
-    public var createNewDraftTransaction_output: String = "TransactionID"
-
-    public override func createNewDraftTransaction() -> String {
-        return createNewDraftTransaction_output
-    }
-
-    public var updateTransaction_input: (id: String, amount: BigInt, token: String, recipient: String)?
-    public override func updateTransaction(_ id: String, amount: BigInt, token: String, recipient: String) {
-        updateTransaction_input = (id, amount, token, recipient)
-    }
-
-    public var transactionData_output: TransactionData?
-    public override func transactionData(_ id: String) -> TransactionData? {
-        return transactionData_output
-    }
-
-    public var requestTransactionConfirmation_input: String?
-    public var requestTransactionConfirmation_output =
-        TransactionData(id: "id",
-                        sender: "sender",
-                        recipient: "recipient",
-                        amountTokenData: TokenData(token: Token.Ether, balance: 0),
-                        feeTokenData: TokenData(token: Token.Ether, balance: 0),
-                        status: .waitingForConfirmation,
-                        type: .outgoing,
-                        created: nil,
-                        updated: nil,
-                        submitted: nil,
-                        rejected: nil,
-                        processed: nil)
-    public var requestTransactionConfirmation_throws = false
-
-    public override func requestTransactionConfirmationIfNeeded(_ id: String) throws -> TransactionData {
-        requestTransactionConfirmation_input = id
-        if requestTransactionConfirmation_throws {
-            throw Error.error
-        }
-        return requestTransactionConfirmation_output
-    }
-
-    public var didEstimate = false
-    public override func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
-        didEstimate = true
-        return requestTransactionConfirmation_output
-    }
-
-    public var receive_input: [AnyHashable: Any]?
-    public var receive_output: String?
-    public override func receive(message: [AnyHashable: Any]) -> String? {
-        receive_input = message
-        return receive_output
-    }
-
-    public var submitTransaction_input: String?
-    public var submitTransaction_output: TransactionData?
-    public override func submitTransaction(_ id: String) throws -> TransactionData {
-        submitTransaction_input = id
-        return submitTransaction_output ?? requestTransactionConfirmation_output
-    }
-
-    private var expected_removeDraftTransaction = [String]()
     private var actual_removeDraftTransaction = [String]()
-
-    public func expect_removeDraftTransaction(_ id: String) {
-        expected_removeDraftTransaction.append(id)
-    }
-
     public override func removeDraftTransaction(_ id: String) {
         actual_removeDraftTransaction.append(id)
     }
 
     private var expected_grouppedTransactions = [[TransactionGroupData]]()
-    private var actual_grouppedTransactions = [String]()
-
     public func expect_grouppedTransactions(result: [TransactionGroupData]) {
         expected_grouppedTransactions.append(result)
-    }
-
-    public override func grouppedTransactions() -> [TransactionGroupData] {
-        actual_grouppedTransactions.append(#function)
-        return expected_grouppedTransactions[actual_grouppedTransactions.count - 1]
-    }
-
-    private var expected_subscribeForTransactionUpdates = [EventSubscriber]()
-    private var actual_subscribeForTransactionUpdates = [EventSubscriber]()
-
-    public func expect_subscribeForTransactionUpdates(subscriber: EventSubscriber) {
-        expected_subscribeForTransactionUpdates.append(subscriber)
-    }
-
-    public override func subscribeForTransactionUpdates(subscriber: EventSubscriber) {
-        actual_subscribeForTransactionUpdates.append(subscriber)
-    }
-
-    private var expected_walletState = [WalletStateId]()
-    private var actual_walletState = [String]()
-
-    public func expect_walletState(_ state: WalletStateId) {
-        expected_walletState.append(state)
-    }
-
-    public override func walletState() -> WalletStateId? {
-        actual_walletState.append(#function)
-        return expected_walletState[actual_walletState.count - 1]
     }
 
     public func verify() -> Bool {
@@ -282,25 +207,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         return actual_abortDeployment == expected_abortDeployment
     }
 
-    private var expected_deployWallet_error: Swift.Error?
-    private var expected_deployWallet = [EventSubscriber?]()
-    private var actual_deployWallet = [EventSubscriber]()
-
-    public func expect_deployWallet(subscriber: EventSubscriber? = nil) {
-        expected_deployWallet.append(subscriber)
-    }
-
-    public func expect_deployWallet_throw(_ error: Swift.Error) {
-        expected_deployWallet_error = error
-    }
-
-    public override func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
-        actual_deployWallet.append(subscriber)
-        if let error = expected_deployWallet_error {
-            onError?(error)
-        }
-    }
-
     // MARK: - Tokens
 
     public var didSync = false
@@ -318,16 +224,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         return tokensOutput
     }
 
-    public var paymentTokensOutput = [TokenData]()
-    public override func paymentTokens() -> [TokenData] {
-        return paymentTokensOutput
-    }
-
-    public var changedPaymentToken: TokenData?
-    public override func changePaymentToken(_ token: TokenData) {
-        changedPaymentToken = token
-    }
-
     public var whitelistInput: TokenData?
     public override func whitelist(token tokenData: TokenData) {
         whitelistInput = tokenData
@@ -343,23 +239,129 @@ public class MockWalletApplicationService: WalletApplicationService {
         didRearrange = true
     }
 
+    public var paymentTokensOutput = [TokenData]()
+    public override func paymentTokens() -> [TokenData] {
+        return paymentTokensOutput
+    }
+
+    public var changedPaymentToken: TokenData?
+    public override func changePaymentToken(_ token: TokenData) {
+        changedPaymentToken = token
+    }
+
+    // MARK: - Accounts
+
+    private var funds: [TokenID: BigInt] = [:]
+
+    public override func accountBalance(tokenID: BaseID) -> BigInt? {
+        return funds[TokenID(tokenID.id)]
+    }
+
+    public override func update(account: BaseID, newBalance: BigInt?) {
+        guard let newBalance = newBalance else {
+            funds.removeValue(forKey: TokenID(account.id))
+            return
+        }
+        funds[TokenID(account.id)] = newBalance
+    }
+
+    // MARK: - Transactions
+
+    private var expected_subscribeForTransactionUpdates = [EventSubscriber]()
+    public func expect_subscribeForTransactionUpdates(subscriber: EventSubscriber) {
+        expected_subscribeForTransactionUpdates.append(subscriber)
+    }
+    private var actual_subscribeForTransactionUpdates = [EventSubscriber]()
+    public override func subscribeForTransactionUpdates(subscriber: EventSubscriber) {
+        actual_subscribeForTransactionUpdates.append(subscriber)
+    }
+
     public override func transactionURL(_ id: String) -> URL {
         return URL(string: "https://gnosis.pm")!
     }
 
-    public var deletePairCalled = false
-    public override func deletePair(with address: String) throws {
-        try throwIfNeeded()
-        deletePairCalled = true
+    private var actual_grouppedTransactions = [String]()
+    public override func grouppedTransactions() -> [TransactionGroupData] {
+        actual_grouppedTransactions.append(#function)
+        return expected_grouppedTransactions[actual_grouppedTransactions.count - 1]
     }
 
-    public override func createPair(from rawCode: String) throws {
-        try throwIfNeeded()
+    public var updateTransaction_input: (id: String, amount: BigInt, token: String, recipient: String)?
+    public override func updateTransaction(_ id: String, amount: BigInt, token: String, recipient: String) {
+        updateTransaction_input = (id, amount, token, recipient)
     }
 
-    public var addressBrowserExtensionCodeResult = ""
-    public override func address(browserExtensionCode rawCode: String) -> String {
-        return addressBrowserExtensionCodeResult
+    private var expected_removeDraftTransaction = [String]()
+    public func expect_removeDraftTransaction(_ id: String) {
+        expected_removeDraftTransaction.append(id)
+    }
+
+    public var estimatedFee_output: BigInt?
+    public override func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
+        return estimatedFee_output
+    }
+
+    public var transactionData_output: TransactionData?
+    public override func transactionData(_ id: String) -> TransactionData? {
+        return transactionData_output
+    }
+
+    public var createNewDraftTransaction_output: String = "TransactionID"
+    public override func createNewDraftTransaction() -> String {
+        return createNewDraftTransaction_output
+    }
+
+    public var requestTransactionConfirmation_input: String?
+    public var requestTransactionConfirmation_output =
+        TransactionData(id: "id",
+                        sender: "sender",
+                        recipient: "recipient",
+                        amountTokenData: TokenData(token: Token.Ether, balance: 0),
+                        feeTokenData: TokenData(token: Token.Ether, balance: 0),
+                        status: .waitingForConfirmation,
+                        type: .outgoing,
+                        created: nil,
+                        updated: nil,
+                        submitted: nil,
+                        rejected: nil,
+                        processed: nil)
+    public var requestTransactionConfirmation_throws = false
+    public override func requestTransactionConfirmationIfNeeded(_ id: String) throws -> TransactionData {
+        requestTransactionConfirmation_input = id
+        if requestTransactionConfirmation_throws {
+            throw Error.error
+        }
+        return requestTransactionConfirmation_output
+    }
+
+    public var didEstimate = false
+    public override func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
+        didEstimate = true
+        return requestTransactionConfirmation_output
+    }
+
+    public var submitTransaction_input: String?
+    public var submitTransaction_output: TransactionData?
+    public override func submitTransaction(_ id: String) throws -> TransactionData {
+        submitTransaction_input = id
+        return submitTransaction_output ?? requestTransactionConfirmation_output
+    }
+
+    // MARK: - Notifications
+
+    public var authCalled = false
+    public override func auth() throws {
+        try throwIfNeeded()
+        authCalled = true
+    }
+
+    // MARK: - Message Handling
+
+    public var receive_input: [AnyHashable: Any]?
+    public var receive_output: String?
+    public override func receive(message: [AnyHashable: Any]) -> String? {
+        receive_input = message
+        return receive_output
     }
 
 }
