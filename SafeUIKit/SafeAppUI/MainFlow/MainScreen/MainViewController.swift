@@ -41,6 +41,8 @@ extension TransactionViewViewController: SegmentController {
 
 class MainViewController: UIViewController {
 
+    /// This view provides background color when the headerView scaled down and reveals transparent regions in the back.
+    @IBOutlet weak var headerBackgroundView: UIView!
     @IBOutlet weak var headerView: MainHeaderView!
     @IBOutlet weak var segmentBar: SegmentBar!
     @IBOutlet weak var containerView: UIView!
@@ -63,8 +65,9 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // remove Storyboard's helper background colors
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = ColorName.paleGrey.color
+        view.backgroundColor = containerView.backgroundColor
+        headerBackgroundView.backgroundColor = .white
         headerView.backgroundColor = .white
         segmentBar.backgroundColor = .white
 
