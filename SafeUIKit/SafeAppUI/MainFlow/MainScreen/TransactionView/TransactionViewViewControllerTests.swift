@@ -10,9 +10,9 @@ import DateTools
 import SafeUIKit
 import Common
 
-class TransactionsTableViewControllerTests: XCTestCase {
+class TransactionViewViewControllerTests: XCTestCase {
 
-    var controller = TransactionsTableViewController.create()
+    var controller = TransactionViewViewController.create()
     let service = MockWalletApplicationService()
 
     override func setUp() {
@@ -77,7 +77,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
                                           string: String,
                                           file: StaticString = #file,
                                           line: UInt = #line) {
-        controller = TransactionsTableViewController.create()
+        controller = TransactionViewViewController.create()
         service.expect_grouppedTransactions(result: [.group(date: date)])
         createWindow(controller)
         let headerView = controller.tableView.headerView(forSection: 0) as! TransactionsGroupHeaderView
@@ -151,7 +151,7 @@ extension TransactionGroupData {
 
 }
 
-class TestTransactionTableViewControllerDelegate: TransactionsTableViewControllerDelegate {
+class TestTransactionTableViewControllerDelegate: TransactionViewViewControllerDelegate {
 
     private var expected_didSelect = [String]()
     private var actual_didSelect = [String]()

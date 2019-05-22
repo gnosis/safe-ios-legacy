@@ -43,7 +43,7 @@ public class SegmentBar: UIControl {
     }
 
     private func commonInit() {
-        stackView.frame = frame
+        stackView.frame = bounds
         stackView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually

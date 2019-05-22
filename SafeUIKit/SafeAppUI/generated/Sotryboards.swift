@@ -81,7 +81,7 @@ enum StoryboardScene {
 
     static let transactionDetailsViewController = SceneType<SafeAppUI.TransactionDetailsViewController>(storyboard: Main.self, identifier: "TransactionDetailsViewController")
 
-    static let transactionsTableViewController = SceneType<SafeAppUI.TransactionsTableViewController>(storyboard: Main.self, identifier: "TransactionsTableViewController")
+    static let transactionsTableViewController = SceneType<SafeAppUI.TransactionViewViewController>(storyboard: Main.self, identifier: "TransactionsTableViewController")
   }
   enum MasterPassword: StoryboardType {
     static let storyboardName = "MasterPassword"
@@ -139,9 +139,6 @@ enum StoryboardScene {
 }
 
 enum StoryboardSegue {
-  enum Main: String, SegueType {
-    case mainContentViewControllerSeague = "MainContentViewControllerSeague"
-  }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
 

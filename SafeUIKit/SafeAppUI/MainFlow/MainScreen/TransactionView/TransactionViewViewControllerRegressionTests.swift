@@ -8,7 +8,7 @@ import MultisigWalletApplication
 import Common
 import CommonTestSupport
 
-class TransactionsTableViewControllerRegressionTests: XCTestCase {
+class TransactionViewViewControllerRegressionTests: XCTestCase {
 
     var controller: TestableTransactionsTableViewController!
     let service = MockWalletApplicationService()
@@ -67,7 +67,7 @@ fileprivate func debug(_ items: Any...) {
     print(([timestamp] + items.map { "\($0)" }).joined(separator: " "))
 }
 
-class TestableTransactionsTableViewController: TransactionsTableViewController {
+class TestableTransactionsTableViewController: TransactionViewViewController {
 
     public static func createTestable() -> TestableTransactionsTableViewController {
         let vc = super.create()

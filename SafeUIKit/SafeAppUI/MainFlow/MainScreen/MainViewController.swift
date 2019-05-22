@@ -1,12 +1,10 @@
 //
-//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//  Copyright © 2019 Gnosis Ltd. All rights reserved.
 //
 
 import UIKit
 import SafeUIKit
-import Common
 import MultisigWalletApplication
-import BigInt
 
 protocol MainViewControllerDelegate: class {
     func mainViewDidAppear()
@@ -16,36 +14,79 @@ protocol MainViewControllerDelegate: class {
     func openAddressDetails()
 }
 
-final class MainViewController: UIViewController {
+public protocol SegmentController {
 
-    @IBOutlet weak var safeIdenticonView: IdenticonView!
-    @IBOutlet weak var safeAddressLabel: EthereumAddressLabel!
+    var segmentItem: SegmentBarItem { get }
 
-    private weak var delegate: (MainViewControllerDelegate & TransactionsTableViewControllerDelegate)?
+}
 
-    static func create(delegate: MainViewControllerDelegate & TransactionsTableViewControllerDelegate)
+
+extension AssetViewViewController: SegmentController {
+
+    public var segmentItem: SegmentBarItem {
+        return SegmentBarItem(title: LocalizedString("assets_capitalized", comment: "Assets tab title"),
+                              image: Asset.MainScreenHeader.coins.image)
+    }
+
+}
+
+extension TransactionViewViewController: SegmentController {
+
+    public var segmentItem: SegmentBarItem {
+        return SegmentBarItem(title: LocalizedString("transactions_capitalized", comment: "Transactions tab title"),
+                              image: Asset.MainScreenHeader.arrows.image)
+    }
+
+}
+
+class MainViewController: UIViewController {
+
+    @IBOutlet weak var headerView: MainHeaderView!
+    @IBOutlet weak var segmentBar: SegmentBar!
+    @IBOutlet weak var containerView: UIView!
+
+    let assetViewController = AssetViewViewController()
+    // swiftlint:disable:next weak_delegate
+    let assetViewScrollDelegate = HeaderScrollDelegate()
+
+    let transactionViewController = TransactionViewViewController.create()
+    // swiftlint:disable:next weak_delegate
+    let transactionViewScrollDelegate = HeaderScrollDelegate()
+
+    static func create(delegate: MainViewControllerDelegate & TransactionViewViewControllerDelegate)
         -> MainViewController {
             let controller = StoryboardScene.Main.mainViewController.instantiate()
-            controller.delegate = delegate
+            controller.assetViewController.delegate = delegate
+            controller.transactionViewController.delegate = delegate
             return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // remove Storyboard's helper background colors
+        containerView.backgroundColor = .white
+        headerView.backgroundColor = .white
+        segmentBar.backgroundColor = .white
 
-        view.backgroundColor = ColorName.paleGrey.color
-        safeAddressLabel.textColor = ColorName.dusk.color
+        navigationItem.rightBarButtonItem = .menuButton(target: self, action: #selector(openMenu))
 
-        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        ApplicationServiceRegistry.logger.info("Safe address: \(address)")
+        segmentBar.addTarget(self, action: #selector(didChangeSegment(bar:)), for: .valueChanged)
 
-        navigationItem.setRightBarButton(UIBarButtonItem.menuButton(target: self, action: #selector(openMenu)),
-                                         animated: false)
-        safeAddressLabel.address = address
-        safeIdenticonView.seed = address
-        safeIdenticonView.tapAction = {
-            self.delegate?.openAddressDetails()
-        }
+        viewControllers = [assetViewController, transactionViewController]
+        selectedViewController = assetViewController
+
+        headerView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+        headerView.identiconView.tapAction = assetViewController.delegate?.openAddressDetails
+
+        assetViewController.scrollDelegate = assetViewScrollDelegate
+        assetViewScrollDelegate.setUp(assetViewController.tableView, headerView)
+
+        transactionViewController.scrollDelegate = transactionViewScrollDelegate
+        transactionViewScrollDelegate.setUp(transactionViewController.tableView, headerView)
+    }
+
+    func showTransactionList() {
+        selectedViewController = transactionViewController
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -59,18 +100,12 @@ final class MainViewController: UIViewController {
     }
 
     @objc func openMenu(_ sender: Any) {
-        delegate?.openMenu()
+        assetViewController.delegate?.openMenu()
     }
 
-    // Called from AddTokenFooterView by responder chain
+    // Called from AssetViewViewController -> AddTokenFooterView by responder chain
     @IBAction func manageTokens(_ sender: Any) {
-        delegate?.manageTokens()
-    }
-
-    func showTransactionList() {
-        if let contentVC = self.children.first as? MainContentViewController {
-            contentVC.showTransactionList()
-        }
+        assetViewController.delegate?.manageTokens()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,17 +113,98 @@ final class MainViewController: UIViewController {
         // Without async appearing animations is not finished yet, but we call in delegate
         // system push notifications alert. This causes wrong views displaying.
         DispatchQueue.main.async {
-            self.delegate?.mainViewDidAppear()
+            self.assetViewController.delegate?.mainViewDidAppear()
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        if segue.identifier == StoryboardSegue.Main.mainContentViewControllerSeague.rawValue {
-            let controller = segue.destination as! MainContentViewController
-            controller.delegate = delegate
-            controller.transactionsControllerDelegate = delegate
+    // MARK: - Segments Management
+
+    open var viewControllers = [UIViewController & SegmentController]() {
+        didSet {
+            update()
+            selectedViewController = nil
         }
+    }
+    open var selectedViewController: (UIViewController & SegmentController)? {
+        willSet {
+            precondition(newValue == nil || viewControllers.contains { $0 === newValue })
+        }
+        didSet {
+            if oldValue !== selectedViewController {
+                updateSelection(old: oldValue)
+            }
+        }
+    }
+
+    func update() {
+        guard isViewLoaded else { return }
+        segmentBar.items = viewControllers.map { $0.segmentItem }
+    }
+
+    private func updateSelection(old oldController: (UIViewController & SegmentController)?) {
+        guard isViewLoaded else { return }
+        if let controller = oldController {
+            removeChild(controller)
+        }
+        if let controller = selectedViewController {
+            addChildContent(controller)
+            let index = viewControllers.firstIndex { $0 === controller }!
+            segmentBar.selectedItem = segmentBar.items[index]
+        } else {
+            segmentBar.selectedItem = nil
+        }
+    }
+
+    private func removeChild(_ controller: UIViewController) {
+        controller.willMove(toParent: nil)
+        controller.view.removeFromSuperview()
+        controller.removeFromParent()
+        view.setNeedsLayout()
+    }
+
+    private func addChildContent(_ controller: UIViewController) {
+        addChild(controller)
+        controller.view.frame = containerView.bounds
+        controller.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        containerView.addSubview(controller.view)
+        controller.didMove(toParent: self)
+        view.setNeedsLayout()
+    }
+
+    @objc private func didChangeSegment(bar: SegmentBar) {
+        if let selected = bar.selectedItem, let index = bar.items.firstIndex(of: selected) {
+            selectedViewController = viewControllers[index]
+        } else {
+            selectedViewController = nil
+        }
+    }
+
+}
+
+class MainHeaderView: UIView {
+
+    @IBOutlet weak var identiconView: IdenticonView!
+    @IBOutlet weak var addressLabel: EthereumAddressLabel!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+
+    var height: CGFloat {
+        get { return heightConstraint.constant }
+        set { heightConstraint.constant = newValue; setNeedsLayout() }
+    }
+
+    var address: String? {
+        didSet {
+            assert(Thread.isMainThread)
+            addressLabel.address = address
+            if let address = address {
+                identiconView.seed = address
+            }
+        }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        addressLabel.textColor = ColorName.dusk.color
     }
 
 }

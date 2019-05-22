@@ -8,20 +8,21 @@ import MultisigWalletApplication
 import Common
 import SafeUIKit
 
-public protocol TransactionsTableViewControllerDelegate: class {
+public protocol TransactionViewViewControllerDelegate: class {
     func didSelectTransaction(id: String)
 }
 
-public class TransactionsTableViewController: UITableViewController, EventSubscriber {
+public class TransactionViewViewController: UITableViewController, EventSubscriber {
 
     private var model = CollectionUIModel<TransactionGroupData>()
-    public weak var delegate: TransactionsTableViewControllerDelegate?
+    public weak var delegate: TransactionViewViewControllerDelegate?
+    weak var scrollDelegate: ScrollDelegate?
     let emptyView = TransactionsEmptyView()
     let rowHeight: CGFloat = 70
     private let updateQueue = DispatchQueue(label: "TransactionDetailsUpdateQueue",
                                             qos: .userInitiated)
 
-    public static func create() -> TransactionsTableViewController {
+    public static func create() -> TransactionViewViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
     }
 
@@ -56,6 +57,7 @@ public class TransactionsTableViewController: UITableViewController, EventSubscr
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.transactions)
+        scrollDelegate?.viewDidAppear?(tableView)
     }
 
     // MARK: - Table view data source
@@ -92,6 +94,24 @@ public class TransactionsTableViewController: UITableViewController, EventSubscr
         tableView.deselectRow(at: indexPath, animated: true)
         guard let transaction = model[indexPath] else { return }
         delegate?.didSelectTransaction(id: transaction.id)
+    }
+
+    // MARK: - Scroll View delegate
+
+    override public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollDelegate?.scrollViewDidScroll?(scrollView)
+    }
+
+    override public func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                                   withVelocity velocity: CGPoint,
+                                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        scrollDelegate?.scrollViewWillEndDragging?(scrollView,
+                                                   withVelocity: velocity,
+                                                   targetContentOffset: targetContentOffset)
+    }
+
+    override public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollDelegate?.scrollViewWillBeginDragging?(scrollView)
     }
 
     // MARK: EventSubscriber

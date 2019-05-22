@@ -9,9 +9,9 @@ import CommonTestSupport
 import Common
 import SafeUIKit
 
-class TokensTableViewControllerTests: SafeTestCase {
+class AssetViewViewControllerTests: SafeTestCase {
 
-    let controller = TokensTableViewController()
+    let controller = AssetViewViewController()
 
     override func setUp() {
         super.setUp()
@@ -51,8 +51,7 @@ class TokensTableViewControllerTests: SafeTestCase {
         walletService.visibleTokensOutput = [TokenData.eth]
         createWindow(controller)
         controller.notify()
-        let footer = controller.tableView(controller.tableView, viewForFooterInSection: 0)
-        XCTAssertTrue(footer is AddTokenFooterView)
+        XCTAssertTrue(controller.tableView.tableFooterView is AddTokenFooterView)
     }
 
     func test_tracking() {
@@ -61,7 +60,7 @@ class TokensTableViewControllerTests: SafeTestCase {
 
 }
 
-private extension TokensTableViewControllerTests {
+private extension AssetViewViewControllerTests {
 
     func cell(at row: Int, _ section: Int) -> BasicTableViewCell {
         return controller.tableView.cellForRow(at: IndexPath(row: row, section: section)) as! BasicTableViewCell
