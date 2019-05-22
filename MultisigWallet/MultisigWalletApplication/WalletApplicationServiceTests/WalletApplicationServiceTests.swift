@@ -6,8 +6,22 @@ import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
 import Common
+import CommonTestSupport
 
 class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
+
+    func test_whenEstimating_thenReturnsResults() {
+        prepareEstimationEnvironment()
+        let tokenData = self.service.estimateSafeCreation()
+        XCTAssertEqual(tokenData.count, 2)
+    }
+
+    func test_whenEstimatingThrows_thenReturnsEmptyData() {
+        prepareEstimationEnvironment()
+        relayService.shouldThrow = true
+        let tokenData = self.service.estimateSafeCreation()
+        XCTAssertTrue(tokenData.isEmpty)
+    }
 
     func test_whenDeployingWallet_thenResetsPublisherAndSubscribes() {
         let subscriber = MySubscriber()
@@ -144,5 +158,27 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         service.changePaymentToken(TokenData(token: token, balance: nil))
         return item
     }
+
+    private func prepareEstimationEnvironment() {
+        service.createNewDraftWallet()
+        tokenItemsRepository.save(TokenListItem(token: Token.gno, status: .whitelisted, canPayTransactionFee: true))
+        tokenItemsRepository.save(TokenListItem(token: Token.mgn, status: .whitelisted, canPayTransactionFee: true))
+        relayService.estimateSafeCreation_outputEstimations =
+            [EstimateSafeCreationRequest.Estimation.mgn, EstimateSafeCreationRequest.Estimation.gno]
+    }
+
+}
+
+extension EstimateSafeCreationRequest.Estimation {
+
+    static let gno = EstimateSafeCreationRequest.Estimation(paymentTokenAddress: Token.gno.address.value,
+                                                            gas: 1_000,
+                                                            gasPrice: 100,
+                                                            payment: 1)
+
+    static let mgn = EstimateSafeCreationRequest.Estimation(paymentTokenAddress: Token.mgn.address.value,
+                                                            gas: 10_000,
+                                                            gasPrice: 1_000,
+                                                            payment: 10)
 
 }

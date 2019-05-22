@@ -89,6 +89,21 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    /// Gets estimations for all available payment methods.
+    ///
+    /// - Returns: tokens data to be displayed
+    public func estimateSafeCreation() -> [TokenData] {
+        let ownersNumber = selectedWallet!.allOwners().count
+        let request = EstimateSafeCreationRequest(ownersNumber: ownersNumber)
+        guard let response = try? DomainRegistry.transactionRelayService.estimateSafeCreation(request: request) else {
+            return []
+        }
+        return response.estimations.compactMap {
+            guard let token = self.token(id: $0.paymentTokenAddress) else { return nil }
+            return TokenData(token: token, balance: BigInt($0.payment))
+        }
+    }
+
     public func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
         if let errorHandler = onError {
             DomainRegistry.errorStream.removeHandler(subscriber)

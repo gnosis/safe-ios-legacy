@@ -143,7 +143,7 @@ class MultisigWalletConfigurator {
         let chainId = EIP155ChainId(rawValue: appConfig.encryptionServiceChainId)!
         let encryptionService = MultisigWalletImplementations.EncryptionService(chainId: chainId)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
-        let relayService = GnosisTransactionRelayService(url: appConfig.relayServiceURL, logger: LogService.shared)
+        let relayService = HTTPGnosisTransactionRelayService(url: appConfig.relayServiceURL, logger: LogService.shared)
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
 
         appDelegate.secureStore = KeychainService(identifier: appDelegate.defaultBundleIdentifier)

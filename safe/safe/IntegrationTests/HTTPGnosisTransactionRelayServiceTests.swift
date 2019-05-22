@@ -11,9 +11,9 @@ import Common
 import CryptoSwift
 import CommonTestSupport
 
-class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
+class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
 
-    var relayService: GnosisTransactionRelayService!
+    var relayService: HTTPGnosisTransactionRelayService!
     let ethService = EthereumKitEthereumService()
     let walletRepo = InMemoryWalletRepository()
     var metadataRepo: InMemorySafeContractMetadataRepository!
@@ -26,7 +26,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
     override func setUp() {
         super.setUp()
         config = try! AppConfig.loadFromBundle()!
-        relayService = GnosisTransactionRelayService(url: config.relayServiceURL, logger: MockLogger())
+        relayService = HTTPGnosisTransactionRelayService(url: config.relayServiceURL, logger: MockLogger())
         metadataRepo = InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata)
         DomainRegistry.put(service: metadataRepo, for: SafeContractMetadataRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
@@ -54,7 +54,6 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                           confirmationCount: 2,
                                           paymentToken: paymentToken)
         let response = try relayService.createSafeCreationTransaction(request: request)
-
 
         let validator = SafeCreationResponseValidator()
         XCTAssertNoThrow(try validator.validate(response, request: request))

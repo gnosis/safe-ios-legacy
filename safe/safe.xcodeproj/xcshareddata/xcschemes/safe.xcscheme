@@ -161,6 +161,9 @@
                   Identifier = "GnosisTransactionRelayServiceTests">
                </Test>
                <Test
+                  Identifier = "HTTPGnosisTransactionRelayServiceTests">
+               </Test>
+               <Test
                   Identifier = "HTTPNotificatonServiceTests">
                </Test>
                <Test

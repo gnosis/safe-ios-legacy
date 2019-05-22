@@ -88,7 +88,7 @@
 		555C94F320E53BEF00A0621D /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */; };
 		555D33FE2110BD810055D87C /* PushLocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */; };
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
-		55A7B2A320ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */; };
+		55A7B2A320ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */; };
 		55B5DF792278AD2F001A32F4 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */; };
 		55B5DF98227C567D001A32F4 /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF97227C567D001A32F4 /* Migrations.swift */; };
 		55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */; };
@@ -372,7 +372,7 @@
 		555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalizationStrings.swift; sourceTree = "<group>"; };
 		558FD81420767F18004F070E /* NewSafeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeScreen.swift; sourceTree = "<group>"; };
-		55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
+		55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPGnosisTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
 		55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		55B5DF97227C567D001A32F4 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
 		55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicScreen.swift; sourceTree = "<group>"; };
@@ -689,7 +689,7 @@
 			children = (
 				555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */,
 				0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */,
-				55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */,
+				55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */,
 				0A364B4122688891002E80B7 /* Safe.swift */,
 				0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */,
 				55FB25C0212582EC00E81666 /* HTTPTokenListServiceTests.swift */,
@@ -1207,7 +1207,7 @@
 				555C94F120E537E900A0621D /* HTTPNotificatonServiceTests.swift in Sources */,
 				0A364B4222688891002E80B7 /* Safe.swift in Sources */,
 				0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */,
-				55A7B2A320ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift in Sources */,
+				55A7B2A320ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift in Sources */,
 				0A04A8C5225F505300305F79 /* PushLocalizationStringsTests.swift in Sources */,
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */,

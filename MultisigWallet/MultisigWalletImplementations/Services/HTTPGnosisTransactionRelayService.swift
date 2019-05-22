@@ -7,7 +7,7 @@ import MultisigWalletDomainModel
 import Common
 import CryptoSwift
 
-public class GnosisTransactionRelayService: TransactionRelayDomainService {
+public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
 
     private let logger: Logger
     private let httpClient: JSONHTTPClient
@@ -15,6 +15,11 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
     public init(url: URL, logger: Logger) {
         self.logger = logger
         httpClient = JSONHTTPClient(url: url, logger: logger)
+    }
+
+    public func estimateSafeCreation(request: EstimateSafeCreationRequest) throws ->
+        EstimateSafeCreationRequest.Response {
+            return try httpClient.execute(request: request)
     }
 
     public func createSafeCreationTransaction(request: SafeCreationRequest) throws
@@ -47,6 +52,15 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
     public func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {
         return try httpClient.execute(request: request)
     }
+
+}
+
+extension EstimateSafeCreationRequest: JSONRequest {
+
+    public var httpMethod: String { return "POST" }
+    public var urlPath: String { return "/api/v2/safes/estimate/" }
+
+    public typealias ResponseType = Response
 
 }
 
