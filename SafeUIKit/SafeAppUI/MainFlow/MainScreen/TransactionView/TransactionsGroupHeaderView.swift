@@ -9,12 +9,19 @@ import SafeUIKit
 class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
 
     internal enum Strings {
-        static let pending = LocalizedString("pending_captalized",
-                                             comment: "Pending transactions group header")
+        static let pending = LocalizedString("pending_captalized", comment: "Pending transactions group header")
         static let today = DateToolsLocalized("Today").capitalized
-        static let past =
-            LocalizedString("ios_past", comment: "Past transactions group header").capitalized
+        static let yesterday = DateToolsLocalized("Yesterday").capitalized
     }
+
+    static let thisYearDateFormatter: DateFormatter = {
+        // see http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
+        let formatString = DateFormatter.dateFormat(fromTemplate: "dMMM", options: 0, locale: .autoupdatingCurrent)
+        let formatter = DateFormatter()
+        formatter.dateFormat = formatString
+        formatter.locale = .autoupdatingCurrent
+        return formatter
+    }()
 
     func configure(group: TransactionGroupData) {
         title = name(from: group)?.uppercased()
@@ -25,9 +32,21 @@ class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
         guard let date = group.date else { return nil }
         if date.isToday || date.isLater(than: Date()) {
             return Strings.today
+        } else if date.isYesterday {
+            return Strings.yesterday
+        } else if date.isInCurrentYear {
+            return type(of: self).thisYearDateFormatter.string(from: date)
         } else {
-            return Strings.past
+            return date.format(with: .medium)
         }
+    }
+
+}
+
+extension Date {
+
+    var isInCurrentYear: Bool {
+        return self.year == Date().year
     }
 
 }

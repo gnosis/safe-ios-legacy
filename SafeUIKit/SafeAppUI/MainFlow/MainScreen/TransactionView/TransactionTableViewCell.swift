@@ -15,7 +15,15 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var tokenAmountLabel: AmountLabel!
     @IBOutlet weak var transactionTypeImageView: UIImageView!
 
-    private enum Strings {
+    private static let timeFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.timeStyle = .short
+        f.dateStyle = .none
+        f.locale = .autoupdatingCurrent
+        return f
+    }()
+
+    enum Strings {
         static let recoveredSafe = LocalizedString("ios_recovered_safe", comment: "Recovered Safe")
         static let replaceRecoveryPhrase = LocalizedString("ios_replace_recovery_phrase",
                                                            comment: "Replace recovery phrase")
@@ -24,6 +32,7 @@ class TransactionTableViewCell: UITableViewCell {
         static let disconnectBE = LocalizedString("ios_disconnect_browser_extension",
                                                   comment: "Disconnect browser extension")
         static let statusFailed = LocalizedString("status_failed", comment: "Failed status")
+        static let timeJustNow = LocalizedString("just_now", comment: "Time indication of 'Just now'")
     }
 
     override func awakeFromNib() {
@@ -45,7 +54,7 @@ class TransactionTableViewCell: UITableViewCell {
         addressLabel.textColor = addressColor(transaction)
         addressLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
 
-        transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
+        transactionDateLabel.text = dateText(transaction)
         transactionDateLabel.textColor = ColorName.battleshipGrey.color
         transactionDateLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
 
@@ -56,6 +65,19 @@ class TransactionTableViewCell: UITableViewCell {
         tokenAmountLabel.textAlignment = .right
 
         transactionTypeImageView.image = typeImage(transaction)
+    }
+
+    private func dateText(_ transaction: TransactionData) -> String? {
+        guard let date = transaction.displayDate else { return nil }
+        let now = Date()
+        let isInTheFuture = date > now
+        if date.minutesAgo == 0 && !isInTheFuture {
+            return Strings.timeJustNow
+        } else if date.isToday && !isInTheFuture {
+            return date.timeAgoSinceNow
+        } else {
+            return type(of: self).timeFormatter.string(from: date)
+        }
     }
 
     private func setDetailText(transaction tx: TransactionData) {

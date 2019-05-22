@@ -269,9 +269,6 @@
 /* 'Download the' Gnosis Safe Chrome browser exntension. */
 "ios_open_be_link_text" = "1. Open the link to the Chrome browser extension on your desktop computer.";
 
-/* Past transactions group header */
-"ios_past" = "Past";
-
 /* QR Code label. */
 "ios_qr_code" = "QR Code";
 
@@ -351,6 +348,9 @@
 
 /* 'View on Etherscan' button name */
 "ios_view_transaction_on_etherscan" = "View transaction on Etherscan.io";
+
+/* Time indication of 'Just now' */
+"just_now" = "Just now";
 
 /* Detail for the header in review screen */
 "layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the browser extension. Future transactions require a confirmation from both devices.";
