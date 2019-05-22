@@ -9,9 +9,9 @@ import SafeUIKit
 class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
 
     internal enum Strings {
-        static let pending = LocalizedString("pending_captalized", comment: "Pending transactions group header")
-        static let today = DateToolsLocalized("Today").capitalized
-        static let yesterday = DateToolsLocalized("Yesterday").capitalized
+        static let pending = LocalizedString("pending", comment: "Pending transactions group header")
+        static let today = DateToolsLocalized("Today")
+        static let yesterday = DateToolsLocalized("Yesterday")
     }
 
     static let thisYearDateFormatter: DateFormatter = {

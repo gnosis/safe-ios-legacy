@@ -19,7 +19,7 @@
 "app_version" = "App version: %@";
 
 /* Assets tab title */
-"assets_capitalized" = "ASSETS";
+"assets" = "Assets";
 
 /* Back */
 "back" = "Back";
@@ -432,7 +432,7 @@
 "paste" = "Paste";
 
 /* Pending transactions group header */
-"pending_captalized" = "PENDING";
+"pending" = "Pending";
 
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
@@ -587,7 +587,7 @@
 "transaction_type_asset_transfer" = "Outgoing transfer";
 
 /* Transactions tab title */
-"transactions_capitalized" = "TRANSACTIONS";
+"transactions" = "Transactions";
 
 /* Try again in */
 "try_again_in" = "Try again in";
