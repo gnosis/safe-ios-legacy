@@ -15,6 +15,7 @@ public protocol TransactionViewViewControllerDelegate: class {
 public class TransactionViewViewController: UITableViewController, EventSubscriber {
 
     private var model = CollectionUIModel<TransactionGroupData>()
+    private var pendingTransactionsToStartAnimation = Set<String>()
     public weak var delegate: TransactionViewViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
     let emptyView = TransactionsEmptyView()
@@ -45,7 +46,11 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
 
     func reloadData() {
         dispatch.asynchronous(updateQueue) {
-            self.model = CollectionUIModel(ApplicationServiceRegistry.walletService.grouppedTransactions())
+            let sections = ApplicationServiceRegistry.walletService.grouppedTransactions()
+            self.model = CollectionUIModel(sections)
+            if let pending = sections.first(where: { $0.type == .pending }) {
+                self.pendingTransactionsToStartAnimation = Set(pending.transactions.map{ $0.id })
+            }
         }.then(.main, closure: displayUpdatedData)
     }
 
@@ -88,6 +93,18 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
                                                  for: indexPath) as! TransactionTableViewCell
         cell.configure(transaction: transaction)
         return cell
+    }
+
+    public override func tableView(_ tableView: UITableView,
+                                   willDisplay cell: UITableViewCell,
+                                   forRowAt indexPath: IndexPath) {
+        guard let transaction = model[indexPath], let cell = cell as? TransactionTableViewCell else { return }
+        if pendingTransactionsToStartAnimation.contains(transaction.id) {
+            cell.showProgress(transaction, animated: true)
+            pendingTransactionsToStartAnimation.remove(transaction.id)
+        } else {
+            cell.showProgress(transaction, animated: false)
+        }
     }
 
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

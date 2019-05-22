@@ -72,11 +72,9 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
     func setUp(_ scrollView: UIScrollView, _ headerView: MainHeaderView) {
         self.headerView = headerView
         self.scrollView = scrollView
-        let contentInset = UIEdgeInsets(top: segmentBarHeight + maxHeaderHeight, left: 0, bottom: 0, right: 0)
-        scrollView.contentInset = contentInset
-        scrollView.scrollIndicatorInsets = contentInset
+        compensateInsetsIfContentNotTallEnough()
         // triggers scrollViewDidScroll
-        scrollView.contentOffset = CGPoint(x: 0, y: -contentInset.top)
+        scrollView.contentOffset = CGPoint(x: 0, y: -scrollView.contentInset.top)
     }
 
     /// Always scrolls to the top and maximizes the header.
@@ -104,6 +102,8 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
     /// Updates height based on the 'y' content offset, updates scale transform based on height, and alpha based on
     /// height.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        compensateInsetsIfContentNotTallEnough()
+
         let newHeight = clampedHeight(height(offset: scrollView.contentOffset.y, scrollView: scrollView))
         headerView.height = newHeight
 
@@ -116,6 +116,17 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         let alpha = max(0, (relativeHeight - minAlphaHeight) / (maxAlphaHeight - minAlphaHeight))
         headerView.alpha = alpha
         headerView.setNeedsLayout()
+    }
+
+    /// Needed to prevent edge case when header is not fully minimized/maximized when scrolled to bottom.
+    func compensateInsetsIfContentNotTallEnough() {
+        // top inset must always stay the same, otherwise scrolling start flickering
+        let top = maxHeaderHeight + segmentBarHeight
+        let maxVisibleContentHeight = scrollView.frame.height - segmentBarHeight
+        let compensatedBottom = max(0, maxVisibleContentHeight - scrollView.contentSize.height)
+        let contentInset = UIEdgeInsets(top: top, left: 0, bottom: compensatedBottom, right: 0)
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: headerView.height, left: 0, bottom: 0, right: 0)
     }
 
     /// Returns target header height based on contentOffset's y (and vice versa)

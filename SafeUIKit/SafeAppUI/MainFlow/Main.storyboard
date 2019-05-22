@@ -171,12 +171,20 @@
                                                 </stackView>
                                             </subviews>
                                         </stackView>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jmq-7C-Lpi">
+                                            <rect key="frame" x="0.0" y="66" width="375" height="2"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="2" id="8SM-xO-eCF"/>
+                                            </constraints>
+                                            <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </progressView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="7aj-Y3-Wlh" firstAttribute="bottom" secondItem="SIP-ji-S5c" secondAttribute="bottom" constant="9" id="9cO-zm-BKg"/>
                                         <constraint firstItem="SIP-ji-S5c" firstAttribute="centerY" secondItem="tf8-eC-3h7" secondAttribute="centerY" id="Nfv-M2-q94"/>
                                         <constraint firstItem="byc-ej-5Kp" firstAttribute="centerY" secondItem="tf8-eC-3h7" secondAttribute="centerY" id="QrZ-bY-AUi"/>
                                         <constraint firstItem="7aj-Y3-Wlh" firstAttribute="centerX" secondItem="SIP-ji-S5c" secondAttribute="centerX" id="XuZ-3q-mNe"/>
+                                        <constraint firstAttribute="bottom" secondItem="jmq-7C-Lpi" secondAttribute="bottom" constant="-0.5" id="YZ5-YY-xuI"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="byc-ej-5Kp" secondAttribute="trailing" id="bzT-fa-m5q"/>
                                         <constraint firstItem="b9O-G7-22I" firstAttribute="bottom" secondItem="SIP-ji-S5c" secondAttribute="bottom" id="gYv-jd-IB3"/>
                                         <constraint firstItem="b9O-G7-22I" firstAttribute="top" secondItem="SIP-ji-S5c" secondAttribute="top" id="qHs-Ox-JJk"/>
@@ -184,9 +192,14 @@
                                         <constraint firstItem="SIP-ji-S5c" firstAttribute="leading" secondItem="tf8-eC-3h7" secondAttribute="leading" constant="16" id="z4g-VQ-oLv"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="jmq-7C-Lpi" firstAttribute="leading" secondItem="Pfq-cF-5BS" secondAttribute="leading" id="258-yN-9Cn"/>
+                                    <constraint firstAttribute="trailing" secondItem="jmq-7C-Lpi" secondAttribute="trailing" id="867-XT-pcL"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="addressLabel" destination="Wsc-kl-wv7" id="Sxh-T2-gEB"/>
                                     <outlet property="identiconView" destination="SIP-ji-S5c" id="iaB-ze-a6p"/>
+                                    <outlet property="progressView" destination="jmq-7C-Lpi" id="bma-GG-3Cb"/>
                                     <outlet property="tokenAmountLabel" destination="olj-bB-CHd" id="DGg-kx-ija"/>
                                     <outlet property="transactionDateLabel" destination="iNB-zy-yWF" id="WlJ-SP-9jS"/>
                                     <outlet property="transactionTypeImageView" destination="7aj-Y3-Wlh" id="dZU-bN-p2G"/>
