@@ -456,6 +456,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ogX-1U-oiO">
+                                <rect key="frame" x="0.0" y="64" width="375" height="130"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0N2-eT-BJM" customClass="MainHeaderView" customModule="SafeAppUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="130"/>
                                 <subviews>
@@ -510,13 +514,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ogX-1U-oiO" firstAttribute="top" secondItem="0cb-Nd-Kbl" secondAttribute="top" id="1wR-S7-Ps8"/>
                             <constraint firstItem="JKv-4m-0lA" firstAttribute="bottom" secondItem="0cb-Nd-Kbl" secondAttribute="bottom" id="6sq-ah-iZP"/>
                             <constraint firstItem="3kT-vV-Qeg" firstAttribute="leading" secondItem="0cb-Nd-Kbl" secondAttribute="leading" id="719-io-r9T"/>
                             <constraint firstItem="0N2-eT-BJM" firstAttribute="leading" secondItem="0cb-Nd-Kbl" secondAttribute="leading" id="7Ql-dE-iUa"/>
                             <constraint firstItem="0N2-eT-BJM" firstAttribute="top" secondItem="0cb-Nd-Kbl" secondAttribute="top" id="BXV-mU-zm0"/>
                             <constraint firstItem="3kT-vV-Qeg" firstAttribute="trailing" secondItem="0cb-Nd-Kbl" secondAttribute="trailing" id="CJf-j3-Rci"/>
+                            <constraint firstItem="ogX-1U-oiO" firstAttribute="height" secondItem="0N2-eT-BJM" secondAttribute="height" id="CT5-uL-ltL"/>
                             <constraint firstItem="JKv-4m-0lA" firstAttribute="top" secondItem="0cb-Nd-Kbl" secondAttribute="top" id="K60-hl-Wpq"/>
+                            <constraint firstItem="0cb-Nd-Kbl" firstAttribute="trailing" secondItem="ogX-1U-oiO" secondAttribute="trailing" id="SDX-XC-n7H"/>
                             <constraint firstItem="0N2-eT-BJM" firstAttribute="trailing" secondItem="0cb-Nd-Kbl" secondAttribute="trailing" id="US3-fF-weJ"/>
+                            <constraint firstItem="ogX-1U-oiO" firstAttribute="leading" secondItem="0cb-Nd-Kbl" secondAttribute="leading" id="ghG-ah-nwR"/>
                             <constraint firstItem="JKv-4m-0lA" firstAttribute="trailing" secondItem="0cb-Nd-Kbl" secondAttribute="trailing" id="k9g-kY-sng"/>
                             <constraint firstItem="3kT-vV-Qeg" firstAttribute="top" secondItem="0N2-eT-BJM" secondAttribute="bottom" id="vt2-XZ-k7Q"/>
                             <constraint firstItem="JKv-4m-0lA" firstAttribute="leading" secondItem="0cb-Nd-Kbl" secondAttribute="leading" id="zbY-hK-mke"/>
@@ -551,6 +559,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="containerView" destination="JKv-4m-0lA" id="04p-8f-2FC"/>
+                        <outlet property="headerBackgroundView" destination="ogX-1U-oiO" id="soo-Yf-spK"/>
                         <outlet property="headerView" destination="0N2-eT-BJM" id="Xy3-Z0-I52"/>
                         <outlet property="segmentBar" destination="3kT-vV-Qeg" id="EOc-4e-c47"/>
                     </connections>
