@@ -19,7 +19,7 @@
 "app_version" = "App version: %@";
 
 /* Assets tab title */
-"assets_capitalized" = "ASSETS";
+"assets" = "Assets";
 
 /* Back */
 "back" = "Back";
@@ -269,9 +269,6 @@
 /* 'Download the' Gnosis Safe Chrome browser exntension. */
 "ios_open_be_link_text" = "1. Open the link to the Chrome browser extension on your desktop computer.";
 
-/* Past transactions group header */
-"ios_past" = "Past";
-
 /* QR Code label. */
 "ios_qr_code" = "QR Code";
 
@@ -351,6 +348,9 @@
 
 /* 'View on Etherscan' button name */
 "ios_view_transaction_on_etherscan" = "View transaction on Etherscan.io";
+
+/* Time indication of 'Just now' */
+"just_now" = "Just now";
 
 /* Detail for the header in review screen */
 "layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the browser extension. Future transactions require a confirmation from both devices.";
@@ -432,7 +432,7 @@
 "paste" = "Paste";
 
 /* Pending transactions group header */
-"pending_captalized" = "PENDING";
+"pending" = "Pending";
 
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
@@ -587,7 +587,7 @@
 "transaction_type_asset_transfer" = "Outgoing transfer";
 
 /* Transactions tab title */
-"transactions_capitalized" = "TRANSACTIONS";
+"transactions" = "Transactions";
 
 /* Try again in */
 "try_again_in" = "Try again in";
