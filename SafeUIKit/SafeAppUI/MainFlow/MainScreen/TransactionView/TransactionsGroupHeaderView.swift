@@ -16,6 +16,7 @@ class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
 
     static let thisYearDateFormatter: DateFormatter = {
         // see http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
+        // Abbreviated month and day, for example: Apr 21
         let formatString = DateFormatter.dateFormat(fromTemplate: "dMMM", options: 0, locale: .autoupdatingCurrent)
         let formatter = DateFormatter()
         formatter.dateFormat = formatString

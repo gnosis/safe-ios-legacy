@@ -69,8 +69,7 @@ class TransactionTableViewCell: UITableViewCell {
 
     private func dateText(_ transaction: TransactionData) -> String? {
         guard let date = transaction.displayDate else { return nil }
-        let now = Date()
-        let isInTheFuture = date > now
+        let isInTheFuture = date > Date()
         if date.minutesAgo == 0 && !isInTheFuture {
             return Strings.timeJustNow
         } else if date.isToday && !isInTheFuture {
