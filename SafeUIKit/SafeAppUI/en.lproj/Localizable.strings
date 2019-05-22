@@ -50,6 +50,9 @@
    Title for change password screen */
 "change_password" = "Change Password";
 
+/* Change payment method */
+"change_payment_method" = "Change fee payment method";
+
 /* Button to cancel 'abort create' alert
    Close */
 "close" = "Close";
@@ -80,7 +83,8 @@
 /* New safe button */
 "create_safe" = "Create a New Safe";
 
-/* Title for safe creation screen. */
+/* Create Safe
+   Title for safe creation screen. */
 "create_safe_title" = "Create Safe";
 
 /* Creating safe header for safe creation screen. */
@@ -124,7 +128,11 @@
    Recovery transaction failed alert's title */
 "error" = "Error";
 
-/* Fee Payment Method */
+/* Fee */
+"fee" = "Fee";
+
+/* Fee Payment Method
+   Fee payment method */
 "fee_method" = "Fee Payment Method";
 
 /* Fee Payment Method */
@@ -377,7 +385,11 @@
    Title for menu screen. */
 "menu" = "Menu";
 
-/* Required minimum description for safe creation screen. */
+/* Safe creation fee description */
+"network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
+
+/* Network fee description
+   Required minimum description for safe creation screen. */
 "network_fee_required" = "A network fee is required to create your new Safe.";
 
 /* Placeholder text for new password field */
@@ -431,6 +443,9 @@
 /* Paste */
 "paste" = "Paste";
 
+/* Pay with %@ */
+"pay_with" = "Pay with %@";
+
 /* Pending transactions group header */
 "pending_captalized" = "PENDING";
 
@@ -483,7 +498,8 @@
 /* Current balance */
 "safe_balance" = "Safe balance";
 
-/* First deposit header for safe creation screen. */
+/* First deposit header for safe creation screen.
+   Safe creation fee */
 "safe_creation_fee" = "Safe creation fee";
 
 /* Save button */
@@ -600,4 +616,7 @@
 
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
+
+/* What is the Safe creation fee? */
+"what_is_safe_creation_fee" = "What is the Safe creation fee?";
 

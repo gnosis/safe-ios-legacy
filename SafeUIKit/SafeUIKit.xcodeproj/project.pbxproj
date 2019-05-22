@@ -350,7 +350,7 @@
 		557353592293F0AB00248F87 /* ReceiveFunds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557353562293F0AB00248F87 /* ReceiveFunds.storyboard */; };
 		5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */; };
 		5573535B2293F0C500248F87 /* ReceiveFundsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */; };
-		557353722294290A00248F87 /* FeeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353712294290A00248F87 /* FeeIntroViewController.swift */; };
+		557353722294290A00248F87 /* CreationFeeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353712294290A00248F87 /* CreationFeeIntroViewController.swift */; };
 		558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */; };
 		558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
@@ -365,7 +365,10 @@
 		5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
-		55AA3C2F229546AB007B3105 /* FeeIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C2E229546AB007B3105 /* FeeIntroViewControllerTests.swift */; };
+		55AA3C2F229546AB007B3105 /* CreationFeeIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C2E229546AB007B3105 /* CreationFeeIntroViewControllerTests.swift */; };
+		55AA3C3122956E01007B3105 /* BasicPaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C3022956E01007B3105 /* BasicPaymentMethodViewController.swift */; };
+		55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */; };
+		55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55AA3C4922959151007B3105 /* PaymentMethodFooterView.xib */; };
 		55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */; };
 		55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */; };
 		55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */; };
@@ -928,7 +931,7 @@
 		557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewControllerTests.swift; sourceTree = "<group>"; };
 		557353562293F0AB00248F87 /* ReceiveFunds.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReceiveFunds.storyboard; sourceTree = "<group>"; };
 		557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
-		557353712294290A00248F87 /* FeeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeIntroViewController.swift; sourceTree = "<group>"; };
+		557353712294290A00248F87 /* CreationFeeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFeeIntroViewController.swift; sourceTree = "<group>"; };
 		558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PairWithBrowserExtension.storyboard; sourceTree = "<group>"; };
 		558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewController.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
@@ -943,7 +946,10 @@
 		5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		55AA3C2E229546AB007B3105 /* FeeIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeIntroViewControllerTests.swift; sourceTree = "<group>"; };
+		55AA3C2E229546AB007B3105 /* CreationFeeIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFeeIntroViewControllerTests.swift; sourceTree = "<group>"; };
+		55AA3C3022956E01007B3105 /* BasicPaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicPaymentMethodViewController.swift; sourceTree = "<group>"; };
+		55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodFooterView.swift; sourceTree = "<group>"; };
+		55AA3C4922959151007B3105 /* PaymentMethodFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentMethodFooterView.xib; sourceTree = "<group>"; };
 		55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSafeCommand.swift; sourceTree = "<group>"; };
 		55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensCommand.swift; sourceTree = "<group>"; };
 		55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseCommand.swift; sourceTree = "<group>"; };
@@ -1152,18 +1158,17 @@
 			children = (
 				0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */,
 				0AC3F1722183674100DAADC9 /* GuidelinesViewController.swift */,
-				0A2D58932257674C001B8BF4 /* GuidelinesViewControllerTests.swift */,
 				0A6EF3C121BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift */,
+				0A2D58932257674C001B8BF4 /* GuidelinesViewControllerTests.swift */,
 				0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */,
 				0A334E0A209C8E3800ABC6AE /* NewSafeFlowCoordinatorTests.swift */,
-				0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */,
 				0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */,
 				0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */,
-				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
+				0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */,
 				558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */,
 				55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */,
-				557353712294290A00248F87 /* FeeIntroViewController.swift */,
-				55AA3C2E229546AB007B3105 /* FeeIntroViewControllerTests.swift */,
+				55AA3C46229590AD007B3105 /* CreationFeeIntro */,
+				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
 			);
 			path = NewSafeFlow;
 			sourceTree = "<group>";
@@ -1782,7 +1787,7 @@
 				55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */,
 				5524735721428F2500A77557 /* BackgroundImageView */,
 				5524735521428E9000A77557 /* BigButton */,
-				55BAB0E221789285007539CF /* BorderedButton */,
+				55BAB0E221789285007539CF /* StandardButton */,
 				0ABA591D21AC0813009D249F /* EthereumAddressLabel */,
 				5524735821428F5000A77557 /* H1Label */,
 				5524735921428FA300A77557 /* IdenticonView */,
@@ -1892,6 +1897,9 @@
 				5549B2A122857F7500F3B5B7 /* PaymentMethodViewControllerTests.swift */,
 				5549B2A422859F4700F3B5B7 /* PaymentMethodHeaderView.swift */,
 				5549B2A622859F5F00F3B5B7 /* PaymentMethodHeaderView.xib */,
+				55AA3C3022956E01007B3105 /* BasicPaymentMethodViewController.swift */,
+				55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */,
+				55AA3C4922959151007B3105 /* PaymentMethodFooterView.xib */,
 			);
 			path = PaymentMethod;
 			sourceTree = "<group>";
@@ -2003,6 +2011,15 @@
 			path = ChangePassword;
 			sourceTree = "<group>";
 		};
+		55AA3C46229590AD007B3105 /* CreationFeeIntro */ = {
+			isa = PBXGroup;
+			children = (
+				557353712294290A00248F87 /* CreationFeeIntroViewController.swift */,
+				55AA3C2E229546AB007B3105 /* CreationFeeIntroViewControllerTests.swift */,
+			);
+			path = CreationFeeIntro;
+			sourceTree = "<group>";
+		};
 		55B5DF5122782B28001A32F4 /* SelectSafe */ = {
 			isa = PBXGroup;
 			children = (
@@ -2021,12 +2038,12 @@
 			path = Portfolio;
 			sourceTree = "<group>";
 		};
-		55BAB0E221789285007539CF /* BorderedButton */ = {
+		55BAB0E221789285007539CF /* StandardButton */ = {
 			isa = PBXGroup;
 			children = (
 				55BAB0E321789285007539CF /* StandardButton.swift */,
 			);
-			path = BorderedButton;
+			path = StandardButton;
 			sourceTree = "<group>";
 		};
 		55BF5735226F3C910032B195 /* FeedbackTooltip */ = {
@@ -2482,6 +2499,7 @@
 				0A3BD95922255192007039B4 /* MultisigWalletApplicationResources.bundle in Resources */,
 				0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
+				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
 				0A3BD90422254833007039B4 /* IntroContentView.xib in Resources */,
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
@@ -2843,6 +2861,7 @@
 				551D778F22819D2A003B7910 /* PaymentMethodViewController.swift in Sources */,
 				0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */,
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
+				55AA3C3122956E01007B3105 /* BasicPaymentMethodViewController.swift in Sources */,
 				0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				5598000B225B74A4006D5792 /* Authenticator.swift in Sources */,
@@ -2876,6 +2895,7 @@
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
+				55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* OnboardingCreateOrRestoreViewController.swift in Sources */,
 				0A3BD90922254833007039B4 /* RBEIntroViewControllerErrorState.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
@@ -2921,7 +2941,7 @@
 				0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
 				55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */,
-				557353722294290A00248F87 /* FeeIntroViewController.swift in Sources */,
+				557353722294290A00248F87 /* CreationFeeIntroViewController.swift in Sources */,
 				0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
@@ -2995,7 +3015,7 @@
 				0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */,
 				0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */,
 				0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */,
-				55AA3C2F229546AB007B3105 /* FeeIntroViewControllerTests.swift in Sources */,
+				55AA3C2F229546AB007B3105 /* CreationFeeIntroViewControllerTests.swift in Sources */,
 				0AD5091C211091E4008507CB /* SendInputViewModelTests.swift in Sources */,
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */,

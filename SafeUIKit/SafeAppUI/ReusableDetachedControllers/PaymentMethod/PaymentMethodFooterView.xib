@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PaymentMethodFooterView" customModule="SafeAppUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="590" height="252"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0j-T5-CSf" customClass="StandardButton" customModule="SafeUIKit">
+                    <rect key="frame" x="16" y="159" width="558" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="changePaymentMethod:" destination="-2" eventType="touchUpInside" id="CYA-vX-gcS"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZZ-rU-4JR" customClass="StandardButton" customModule="SafeUIKit">
+                    <rect key="frame" x="16" y="76" width="558" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="goH-oO-RRc"/>
+                    </constraints>
+                    <state key="normal" title="Pay with ETH"/>
+                    <connections>
+                        <action selector="pay:" destination="-2" eventType="touchUpInside" id="jyA-AM-iAH"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="a0j-T5-CSf" secondAttribute="bottom" constant="30" id="3eG-jo-E7x"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="a0j-T5-CSf" secondAttribute="trailing" constant="16" id="DXf-TM-F3l"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XZZ-rU-4JR" secondAttribute="trailing" constant="16" id="Kxy-jR-bBW"/>
+                <constraint firstItem="a0j-T5-CSf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="SaW-yd-ZVV"/>
+                <constraint firstItem="a0j-T5-CSf" firstAttribute="top" secondItem="XZZ-rU-4JR" secondAttribute="bottom" constant="27" id="UuO-UG-ewa"/>
+                <constraint firstItem="XZZ-rU-4JR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="cWG-BB-luI"/>
+                <constraint firstItem="XZZ-rU-4JR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="l7e-KR-b5A"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="changeFeePaymentMethodButton" destination="a0j-T5-CSf" id="btG-NY-RM0"/>
+                <outlet property="payWithButton" destination="XZZ-rU-4JR" id="hPi-NW-wsF"/>
+            </connections>
+            <point key="canvasLocation" x="169.56521739130437" y="-61.607142857142854"/>
+        </view>
+    </objects>
+</document>

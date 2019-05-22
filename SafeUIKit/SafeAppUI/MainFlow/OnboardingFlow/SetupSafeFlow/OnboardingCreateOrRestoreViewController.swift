@@ -42,7 +42,6 @@ class OnboardingCreateOrRestoreViewController: UIViewController {
         recoverSafeButton.setTitle(Strings.restoreSafe, for: .normal)
         navigationItem.setRightBarButton(UIBarButtonItem.menuButton(target: self, action: #selector(openMenu)),
                                          animated: false)
-
     }
 
     @objc func openMenu(_ sender: Any) {

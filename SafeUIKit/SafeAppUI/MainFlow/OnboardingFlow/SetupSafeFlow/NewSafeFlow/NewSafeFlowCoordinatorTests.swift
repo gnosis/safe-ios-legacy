@@ -64,6 +64,12 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectNext_presentsNextController() {
         newSafeFlowCoordinator.didSelectNext()
         delay()
+        assert(topViewController, is: CreationFeeIntroViewController.self)
+    }
+
+    func test_didSelectPay_presentsNextController() {
+        newSafeFlowCoordinator.didSelectPay()
+        delay()
         assert(topViewController, is: SafeCreationViewController.self)
     }
 

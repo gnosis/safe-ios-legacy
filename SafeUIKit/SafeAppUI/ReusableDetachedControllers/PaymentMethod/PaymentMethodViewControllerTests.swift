@@ -45,7 +45,7 @@ class PaymentMethodViewControllerTests: SafeTestCase {
         XCTAssertNil(walletService.changedPaymentToken)
     }
 
-    func test_whenSelectingDescriptionInHeadr_thenShowsAlert() {
+    func test_whenSelectingDescriptionInHeader_thenShowsAlert() {
         createWindow(controller)
         let headerView = controller.tableView(controller.tableView,
                                               viewForHeaderInSection: 0) as! PaymentMethodHeaderView
