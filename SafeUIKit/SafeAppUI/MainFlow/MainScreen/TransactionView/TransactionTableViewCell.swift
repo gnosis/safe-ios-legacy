@@ -14,6 +14,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var transactionDateLabel: UILabel!
     @IBOutlet weak var tokenAmountLabel: AmountLabel!
     @IBOutlet weak var transactionTypeImageView: UIImageView!
+    @IBOutlet weak var progressView: UIProgressView!
 
     private static let timeFormatter: DateFormatter = {
         let f = DateFormatter()
@@ -65,6 +66,25 @@ class TransactionTableViewCell: UITableViewCell {
         tokenAmountLabel.textAlignment = .right
 
         transactionTypeImageView.image = typeImage(transaction)
+
+        progressView.progress = 0
+    }
+
+    func showProgress(_ transaction: TransactionData, animated: Bool) {
+        guard transaction.status == .pending else { return }
+        guard animated else {
+            progressView.progress = 0.7
+            return
+        }
+        progressView.progress = 0
+        UIView.animate(withDuration: 120,
+                       delay: 1,
+                       usingSpringWithDamping: 1.0,
+                       initialSpringVelocity: 0,
+                       options: [],
+                       animations: { [unowned self] in
+                        self.progressView.setProgress(0.7, animated: true)
+            }, completion: nil)
     }
 
     private func dateText(_ transaction: TransactionData) -> String? {
