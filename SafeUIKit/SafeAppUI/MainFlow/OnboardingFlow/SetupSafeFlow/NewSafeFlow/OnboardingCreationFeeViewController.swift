@@ -29,11 +29,8 @@ class OnboardingCreationFeeViewController: CardViewController {
         setSubtitle(LocalizedString("safe_creation_fee", comment: "Safe creation fee"))
         setSubtitleDetail(LocalizedString("network_fee_required", comment: "Network fee required"))
 
-
         feeRequestView.feeTextLabel.text = LocalizedString("this_is_your_permanent_address", comment: "This is address")
-
         feeRequestView.balanceStackView.isHidden = true
-
         feeRequestView.feeAmountLabel.amount = TokenData.Ether.withBalance(nil)
 
         addressDetailView.headerLabel.isHidden = true
@@ -46,7 +43,6 @@ class OnboardingCreationFeeViewController: CardViewController {
 
         footerButton.isHidden = true
     }
-
 
     @objc func cancel() {
         // not implemented
