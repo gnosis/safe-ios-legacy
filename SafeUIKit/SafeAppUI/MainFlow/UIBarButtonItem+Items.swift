@@ -20,4 +20,15 @@ extension UIBarButtonItem {
                                action: action)
     }
 
+    static func cancelButton(target: Any? = nil, action: Selector? = nil) -> UIBarButtonItem {
+        return UIBarButtonItem(title: LocalizedString("cancel", comment: "Cancel"),
+                               style: .plain,
+                               target: target,
+                               action: action)
+    }
+
+    static func refreshButton(target: Any? = nil, action: Selector? = nil) -> UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: .refresh, target: target, action: action)
+    }
+
 }

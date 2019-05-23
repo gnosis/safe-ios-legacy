@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeeRequestView" customModule="SafeAppUI" customModuleProvider="target">
+            <connections>
+                <outlet property="balanceLineAmountLabel" destination="U4X-NZ-Gyf" id="O1j-d2-NaZ"/>
+                <outlet property="balanceLineLabel" destination="NWa-Dk-rM7" id="Vp6-HR-jIm"/>
+                <outlet property="balanceLineStackView" destination="6SN-2n-mHf" id="bIY-SJ-CJU"/>
+                <outlet property="balanceStackView" destination="0h0-JF-gSp" id="Ws6-pO-JJH"/>
+                <outlet property="contentStackView" destination="Idn-jJ-704" id="Rz4-tl-mdc"/>
+                <outlet property="feeAmountLabel" destination="spd-wf-MdR" id="tee-Kh-z3p"/>
+                <outlet property="feeStackView" destination="tMd-NQ-9JX" id="KjJ-et-Gwx"/>
+                <outlet property="feeTextLabel" destination="gsz-jj-OOz" id="o1e-fS-S71"/>
+                <outlet property="totalLineAmountLabel" destination="ZHL-0X-FSP" id="rmJ-aU-sIn"/>
+                <outlet property="totalLineLabel" destination="uGj-13-yko" id="Q9F-Gh-pHP"/>
+                <outlet property="totalLineStackView" destination="WEJ-hQ-Gc7" id="aNd-VH-ylf"/>
+                <outlet property="wrapperView" destination="iN0-l3-epB" id="EOI-Y7-a4M"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="407" height="155"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Idn-jJ-704">
+                    <rect key="frame" x="0.0" y="0.0" width="407" height="134"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0h0-JF-gSp">
+                            <rect key="frame" x="0.0" y="0.0" width="407" height="45"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SN-2n-mHf">
+                                    <rect key="frame" x="0.0" y="0.0" width="407" height="19.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Amount received" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWa-Dk-rM7">
+                                            <rect key="frame" x="0.0" y="0.0" width="305.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00002 OWL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4X-NZ-Gyf" customClass="AmountLabel" customModule="SafeUIKit">
+                                            <rect key="frame" x="305.5" y="0.0" width="101.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEJ-hQ-Gc7">
+                                    <rect key="frame" x="0.0" y="25.5" width="407" height="19.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Amount needed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGj-13-yko">
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00016 OWL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHL-0X-FSP" customClass="AmountLabel" customModule="SafeUIKit">
+                                            <rect key="frame" x="308" y="0.0" width="99" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tMd-NQ-9JX">
+                            <rect key="frame" x="0.0" y="64" width="407" height="51"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send at least the remainder to your new Safe:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsz-jj-OOz">
+                                    <rect key="frame" x="0.0" y="0.0" width="407" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00014 OWL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spd-wf-MdR" customClass="AmountLabel" customModule="SafeUIKit">
+                                    <rect key="frame" x="0.0" y="30.5" width="407" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ier-Xo-DWp" userLabel="ViewForBottomSpace">
+                            <rect key="frame" x="0.0" y="134" width="407" height="0.0"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="GxT-T6-pCd"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Idn-jJ-704" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1eP-N3-G1r"/>
+                <constraint firstItem="Idn-jJ-704" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Omu-s6-6E1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Idn-jJ-704" secondAttribute="trailing" id="UHg-hz-KPf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="135.50724637681159" y="-94.754464285714278"/>
+        </view>
+    </objects>
+</document>

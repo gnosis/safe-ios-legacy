@@ -56,6 +56,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         navBarAppearance.shadowImage = Asset.shadow.image
     }
 
+    // Entry point to the app
     open override func setUp() {
         super.setUp()
         if walletService.hasReadyToUseWallet {

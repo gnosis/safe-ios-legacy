@@ -4,7 +4,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
 
     /// Load contents of xib file with same name as caller type into the view of caller.
     func safeUIKit_loadFromNib(forClass _class: AnyClass) {

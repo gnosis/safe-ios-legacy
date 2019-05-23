@@ -25,6 +25,13 @@
 		0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */; };
 		0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
+		0A2C0DDA22969CA6008A30AC /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0DD822969CA6008A30AC /* CardViewController.swift */; };
+		0A2C0DDB22969CA6008A30AC /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C0DD922969CA6008A30AC /* CardViewController.xib */; };
+		0A2C0DEB2296A8B2008A30AC /* FeeRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0DEA2296A8B2008A30AC /* FeeRequestView.swift */; };
+		0A2C0DED2296A8BC008A30AC /* FeeRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C0DEC2296A8BC008A30AC /* FeeRequestView.xib */; };
+		0A2C0DEF2296AD10008A30AC /* AddressDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0DEE2296AD10008A30AC /* AddressDetailView.swift */; };
+		0A2C0DF12296AD1A008A30AC /* AddressDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C0DF02296AD1A008A30AC /* AddressDetailView.xib */; };
+		0A2C0DF32296E377008A30AC /* OnboardingCreationFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0DF22296E377008A30AC /* OnboardingCreationFeeViewController.swift */; };
 		0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */; };
 		0A2D587E225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587D225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift */; };
 		0A2D58802257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587F2257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift */; };
@@ -593,6 +600,13 @@
 		0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionViewController.swift; sourceTree = "<group>"; };
 		0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionDemoViewController.swift; sourceTree = "<group>"; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A2C0DD822969CA6008A30AC /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		0A2C0DD922969CA6008A30AC /* CardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
+		0A2C0DEA2296A8B2008A30AC /* FeeRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeRequestView.swift; sourceTree = "<group>"; };
+		0A2C0DEC2296A8BC008A30AC /* FeeRequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeeRequestView.xib; sourceTree = "<group>"; };
+		0A2C0DEE2296AD10008A30AC /* AddressDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressDetailView.swift; sourceTree = "<group>"; };
+		0A2C0DF02296AD1A008A30AC /* AddressDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressDetailView.xib; sourceTree = "<group>"; };
+		0A2C0DF22296E377008A30AC /* OnboardingCreationFeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeViewController.swift; sourceTree = "<group>"; };
 		0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A2D587D225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionTrackingEvent.swift; sourceTree = "<group>"; };
 		0A2D587F2257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionTrackingEvent.swift; sourceTree = "<group>"; };
@@ -1070,6 +1084,19 @@
 			path = ResyncBrowserExtension;
 			sourceTree = "<group>";
 		};
+		0A2C0DF42296E487008A30AC /* CardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0A2C0DD822969CA6008A30AC /* CardViewController.swift */,
+				0A2C0DD922969CA6008A30AC /* CardViewController.xib */,
+				0A2C0DEA2296A8B2008A30AC /* FeeRequestView.swift */,
+				0A2C0DEC2296A8BC008A30AC /* FeeRequestView.xib */,
+				0A2C0DEE2296AD10008A30AC /* AddressDetailView.swift */,
+				0A2C0DF02296AD1A008A30AC /* AddressDetailView.xib */,
+			);
+			path = CardViewController;
+			sourceTree = "<group>";
+		};
 		0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */ = {
 			isa = PBXGroup;
 			children = (
@@ -1164,6 +1191,7 @@
 				55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */,
 				557353712294290A00248F87 /* FeeIntroViewController.swift */,
 				55AA3C2E229546AB007B3105 /* FeeIntroViewControllerTests.swift */,
+				0A2C0DF22296E377008A30AC /* OnboardingCreationFeeViewController.swift */,
 			);
 			path = NewSafeFlow;
 			sourceTree = "<group>";
@@ -1971,6 +1999,7 @@
 				55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */,
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
 				0AD899A92281C74B008AE325 /* SuccessViewController.swift */,
+				0A2C0DF42296E487008A30AC /* CardViewController */,
 				558682CA2192F9840060F1DE /* PairWithBrowserExtension */,
 				5549B2A322859EFB00F3B5B7 /* PaymentMethod */,
 				55DFBCF52135901D004B2AC4 /* Unlock */,
@@ -2487,7 +2516,9 @@
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
 				0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */,
+				0A2C0DDB22969CA6008A30AC /* CardViewController.xib in Resources */,
 				5549B2A722859F5F00F3B5B7 /* PaymentMethodHeaderView.xib in Resources */,
+				0A2C0DED2296A8BC008A30AC /* FeeRequestView.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
 				0A3BD90622254833007039B4 /* RBEIntroViewController.xib in Resources */,
@@ -2495,6 +2526,7 @@
 				0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */,
 				55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */,
 				558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */,
+				0A2C0DF12296AD1A008A30AC /* AddressDetailView.xib in Resources */,
 				557353592293F0AB00248F87 /* ReceiveFunds.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2847,8 +2879,10 @@
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				5598000B225B74A4006D5792 /* Authenticator.swift in Sources */,
 				0A3FB8D6228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift in Sources */,
+				0A2C0DEB2296A8B2008A30AC /* FeeRequestView.swift in Sources */,
 				0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */,
 				55CA308F2227DB0900E7AEA7 /* UIViewController+Tracking.swift in Sources */,
+				0A2C0DEF2296AD10008A30AC /* AddressDetailView.swift in Sources */,
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */,
@@ -2862,6 +2896,7 @@
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
 				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */,
+				0A2C0DDA22969CA6008A30AC /* CardViewController.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
 				55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
@@ -2918,6 +2953,7 @@
 				0A334E3F209C8E3800ABC6AE /* StartViewController.swift in Sources */,
 				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,
 				0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */,
+				0A2C0DF32296E377008A30AC /* OnboardingCreationFeeViewController.swift in Sources */,
 				0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
 				55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */,

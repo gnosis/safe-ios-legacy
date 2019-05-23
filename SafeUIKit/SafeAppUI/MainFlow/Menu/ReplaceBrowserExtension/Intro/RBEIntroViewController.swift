@@ -56,8 +56,8 @@ public class RBEIntroViewController: UIViewController {
 
     func commonInit() {
         startButtonItem = UIBarButtonItem(title: Strings.start, style: .done, target: self, action: #selector(start))
-        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
-        retryButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(retry))
+        backButtonItem = .backButton(target: self, action: #selector(back))
+        retryButtonItem = .refreshButton(target: self, action: #selector(retry))
     }
 
     public override func viewDidLoad() {
