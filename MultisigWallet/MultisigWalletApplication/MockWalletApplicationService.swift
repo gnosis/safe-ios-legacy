@@ -24,8 +24,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         return walletAddress
     }
 
+    public var feePaymentTokenData_output = TokenData.Ether
     public override var feePaymentTokenData: TokenData {
-        return TokenData.Ether
+        return feePaymentTokenData_output
     }
 
     private var deploymentAmount: BigInt?
@@ -247,6 +248,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     public var changedPaymentToken: TokenData?
     public override func changePaymentToken(_ token: TokenData) {
         changedPaymentToken = token
+        feePaymentTokenData_output = token
     }
 
     // MARK: - Accounts

@@ -14,7 +14,7 @@ protocol CreationFeeIntroDelegate: class {
 
 class CreationFeeIntroViewController: BasicPaymentMethodViewController {
 
-    private enum Strings {
+    enum Strings {
         static let title = LocalizedString("create_safe_title", comment: "Create Safe")
         enum Alert {
             static let title = LocalizedString("what_is_safe_creation_fee", comment: "What is the Safe creation fee?")
@@ -25,12 +25,8 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
 
     private weak var delegate: CreationFeeIntroDelegate!
 
-    private var estimations = [TokenData]()
-    private var paymentMethodEstimatedTokenData: TokenData {
-        let paymentMethodData = ApplicationServiceRegistry.walletService.feePaymentTokenData
-        let estimationBalance = estimations.first { $0.address == paymentMethodData.address }?.balance
-        return paymentMethodData.withBalance(estimationBalance)
-    }
+    private var estimations: [TokenData]!
+    private(set) var paymentMethodEstimatedTokenData: TokenData!
 
     static func create(delegate: CreationFeeIntroDelegate) -> CreationFeeIntroViewController {
         let controller = CreationFeeIntroViewController()
@@ -43,6 +39,12 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
 
         view.backgroundColor = ColorName.paleGrey.color
         tableView.allowsSelection = false
+        updateEstimations(with: [])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingTrackingEvent.createSafePaymentMethod)
     }
 
     override func registerHeaderAndFooter() {
@@ -61,9 +63,9 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
     override func updateData() {
         showLoadingTitleIfNeeded()
         DispatchQueue.global().async {
-            let tokensData = ApplicationServiceRegistry.walletService.estimateSafeCreation()
+            let estimations = ApplicationServiceRegistry.walletService.estimateSafeCreation()
             DispatchQueue.main.async { [weak self] in
-                self?.estimations = tokensData
+                self?.updateEstimations(with: estimations)
                 self?.tableView.reloadData()
                 self?.tableView.refreshControl?.endRefreshing()
                 self?.hideLoadingTitleIfNeeded()
@@ -80,6 +82,19 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
         guard navigationItem.titleView != nil else { return }
         navigationItem.titleView = nil
         title = Strings.title
+    }
+
+    internal func updateEstimations(with estimations: [TokenData]) {
+        self.estimations = estimations
+        var paymentMethodData = ApplicationServiceRegistry.walletService.feePaymentTokenData
+        var estimationBalance = estimations.first { $0.address == paymentMethodData.address }?.balance
+        if estimationBalance == nil && !estimations.isEmpty {
+            // Selected wallet payment method is not amoung estimations. As a fallback we set payment method to Eth.
+            ApplicationServiceRegistry.walletService.changePaymentToken(TokenData.Ether)
+            paymentMethodData = ApplicationServiceRegistry.walletService.feePaymentTokenData
+            estimationBalance = estimations.first { $0.address == paymentMethodData.address }!.balance
+        }
+        self.paymentMethodEstimatedTokenData = paymentMethodData.withBalance(estimationBalance)
     }
 
     // MARK: - UITableViewDataSource
