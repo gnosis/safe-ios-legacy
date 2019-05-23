@@ -6,6 +6,7 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 
+// TODO: refactor and reuse CardViewController
 class ReceiveFundsViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: UILabel!

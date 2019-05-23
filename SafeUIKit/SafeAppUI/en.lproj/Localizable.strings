@@ -80,7 +80,8 @@
 /* New safe button */
 "create_safe" = "Create a New Safe";
 
-/* Title for safe creation screen. */
+/* Create Safe
+   Title for safe creation screen. */
 "create_safe_title" = "Create Safe";
 
 /* Creating safe header for safe creation screen. */
@@ -377,7 +378,8 @@
    Title for menu screen. */
 "menu" = "Menu";
 
-/* Required minimum description for safe creation screen. */
+/* Network fee required
+   Required minimum description for safe creation screen. */
 "network_fee_required" = "A network fee is required to create your new Safe.";
 
 /* Placeholder text for new password field */
@@ -437,6 +439,9 @@
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
 
+/* Please send % */
+"please_send_x" = "Please only send %@";
+
 /* Title for portfolio section. */
 "portfolio" = "Portfolio";
 
@@ -483,7 +488,8 @@
 /* Current balance */
 "safe_balance" = "Safe balance";
 
-/* First deposit header for safe creation screen. */
+/* First deposit header for safe creation screen.
+   Safe creation fee */
 "safe_creation_fee" = "Safe creation fee";
 
 /* Save button */
@@ -558,6 +564,9 @@
 /* Terms menu item
    Terms of Use */
 "terms_of_service" = "Terms of Use";
+
+/* This is address */
+"this_is_your_permanent_address" = "This is your permanent Safe address. Send at least this amount to create your Safe:";
 
 /* Fee payment method description */
 "this_payment_will_be_used" = "This payment method will be used to pay network fees in all transactions.";

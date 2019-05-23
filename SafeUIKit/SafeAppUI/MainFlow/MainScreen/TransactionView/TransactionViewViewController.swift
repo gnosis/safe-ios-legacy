@@ -49,7 +49,7 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
             let sections = ApplicationServiceRegistry.walletService.grouppedTransactions()
             self.model = CollectionUIModel(sections)
             if let pending = sections.first(where: { $0.type == .pending }) {
-                self.pendingTransactionsToStartAnimation = Set(pending.transactions.map{ $0.id })
+                self.pendingTransactionsToStartAnimation = Set(pending.transactions.map { $0.id })
             }
         }.then(.main, closure: displayUpdatedData)
     }
