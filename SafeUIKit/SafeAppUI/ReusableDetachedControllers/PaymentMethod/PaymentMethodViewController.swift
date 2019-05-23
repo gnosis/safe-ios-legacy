@@ -10,7 +10,7 @@ import Common
 class PaymentMethodViewController: UIViewController {
 
     enum Strings {
-        static let title = LocalizedString("fee_payment_method", comment: "Fee Payment Method")
+        static let title = LocalizedString("fee_method", comment: "Fee Payment Method")
         enum Alert {
             static let title = LocalizedString("transaction_fee", comment: "Network fee")
             static let description = LocalizedString("transaction_fee_description_token_payment",

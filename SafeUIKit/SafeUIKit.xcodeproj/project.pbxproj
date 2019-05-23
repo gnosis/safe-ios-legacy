@@ -314,6 +314,7 @@
 		5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */; };
 		553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */; };
 		553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */; };
+		553B9E022296D15A006E93C9 /* CreationFeePaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B9E012296D15A006E93C9 /* CreationFeePaymentMethodViewController.swift */; };
 		5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586421748BC400A3CEA4 /* AddressInputViewController.swift */; };
 		5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586721748C3700A3CEA4 /* AddressInput.swift */; };
 		5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586921748C5200A3CEA4 /* AddressInputTests.swift */; };
@@ -898,6 +899,7 @@
 		5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeCellTests.swift; sourceTree = "<group>"; };
 		553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreationFeeIntroHeaderView.xib; sourceTree = "<group>"; };
 		553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFeeIntroHeaderView.swift; sourceTree = "<group>"; };
+		553B9E012296D15A006E93C9 /* CreationFeePaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFeePaymentMethodViewController.swift; sourceTree = "<group>"; };
 		5541586421748BC400A3CEA4 /* AddressInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewController.swift; sourceTree = "<group>"; };
 		5541586721748C3700A3CEA4 /* AddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput.swift; sourceTree = "<group>"; };
 		5541586921748C5200A3CEA4 /* AddressInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputTests.swift; sourceTree = "<group>"; };
@@ -2022,6 +2024,7 @@
 				55AA3C2E229546AB007B3105 /* CreationFeeIntroViewControllerTests.swift */,
 				553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */,
 				553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */,
+				553B9E012296D15A006E93C9 /* CreationFeePaymentMethodViewController.swift */,
 			);
 			path = CreationFeeIntro;
 			sourceTree = "<group>";
@@ -2891,6 +2894,7 @@
 				0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
 				55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */,
+				553B9E022296D15A006E93C9 /* CreationFeePaymentMethodViewController.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
 				0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */,

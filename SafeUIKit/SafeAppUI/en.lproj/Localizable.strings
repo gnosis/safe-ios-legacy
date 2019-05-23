@@ -53,6 +53,9 @@
 /* Change payment method */
 "change_payment_method" = "Change fee payment method";
 
+/* Choose how to pay the creation fee. */
+"choose_how_to_pay_creation_fee" = "Choose how to pay the creation fee.";
+
 /* Button to cancel 'abort create' alert
    Close */
 "close" = "Close";

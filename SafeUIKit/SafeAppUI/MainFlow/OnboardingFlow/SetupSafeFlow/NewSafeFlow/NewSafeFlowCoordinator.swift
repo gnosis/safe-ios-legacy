@@ -4,6 +4,7 @@
 
 import UIKit
 import MultisigWalletApplication
+import Common
 
 class NewSafeFlowCoordinator: FlowCoordinator {
 
@@ -81,11 +82,19 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
 
 extension NewSafeFlowCoordinator: CreationFeeIntroDelegate {
 
-    func didSelectPay() {
+    func creationFeeIntroPay() {
         push(SafeCreationViewController.create(delegate: self))
     }
 
-    func didSelectChangePaymentMethod() {}
+    func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
+        push(CreationFeePaymentMethodViewController.create(delegate: self, estimations: estimations))
+    }
+
+}
+
+extension NewSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
+
+    func creationFeePaymentMethodPay() {}
 
 }
 

@@ -8,8 +8,8 @@ import MultisigWalletApplication
 import Common
 
 protocol CreationFeeIntroDelegate: class {
-    func didSelectPay()
-    func didSelectChangePaymentMethod()
+    func creationFeeIntroPay()
+    func creationFeeIntroChangePaymentMethod(estimations: [TokenData])
 }
 
 class CreationFeeIntroViewController: BasicPaymentMethodViewController {
@@ -25,9 +25,6 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
 
     private weak var delegate: CreationFeeIntroDelegate!
 
-    private var estimations: [TokenData]!
-    private(set) var paymentMethodEstimatedTokenData: TokenData!
-
     static func create(delegate: CreationFeeIntroDelegate) -> CreationFeeIntroViewController {
         let controller = CreationFeeIntroViewController()
         controller.delegate = delegate
@@ -39,12 +36,16 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
 
         view.backgroundColor = ColorName.paleGrey.color
         tableView.allowsSelection = false
-        updateEstimations(with: [])
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        update(with: self.tokens)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingTrackingEvent.createSafePaymentMethod)
+        trackEvent(OnboardingTrackingEvent.createSafeFeeIntro)
     }
 
     override func registerHeaderAndFooter() {
@@ -65,9 +66,7 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
         DispatchQueue.global().async {
             let estimations = ApplicationServiceRegistry.walletService.estimateSafeCreation()
             DispatchQueue.main.async { [weak self] in
-                self?.updateEstimations(with: estimations)
-                self?.tableView.reloadData()
-                self?.tableView.refreshControl?.endRefreshing()
+                self?.update(with: estimations)
                 self?.hideLoadingTitleIfNeeded()
             }
         }
@@ -84,19 +83,6 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
         title = Strings.title
     }
 
-    internal func updateEstimations(with estimations: [TokenData]) {
-        self.estimations = estimations
-        var paymentMethodData = ApplicationServiceRegistry.walletService.feePaymentTokenData
-        var estimationBalance = estimations.first { $0.address == paymentMethodData.address }?.balance
-        if estimationBalance == nil && !estimations.isEmpty {
-            // Selected wallet payment method is not amoung estimations. As a fallback we set payment method to Eth.
-            ApplicationServiceRegistry.walletService.changePaymentToken(TokenData.Ether)
-            paymentMethodData = ApplicationServiceRegistry.walletService.feePaymentTokenData
-            estimationBalance = estimations.first { $0.address == paymentMethodData.address }!.balance
-        }
-        self.paymentMethodEstimatedTokenData = paymentMethodData.withBalance(estimationBalance)
-    }
-
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,7 +92,7 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
                                                  for: indexPath) as! BasicTableViewCell
-        cell.configure(tokenData: paymentMethodEstimatedTokenData,
+        cell.configure(tokenData: paymentToken,
                        displayBalance: true,
                        displayFullName: false,
                        accessoryType: .none)
@@ -131,13 +117,13 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodFooterView")
             as! PaymentMethodFooterView
-        view.onChange = {
-            self.delegate.didSelectChangePaymentMethod()
-        }
         view.onPay = { [unowned self] in
-            self.delegate.didSelectPay()
+            self.delegate.creationFeeIntroPay()
         }
-        view.setPaymentMethodCode(paymentMethodEstimatedTokenData.code)
+        view.onChange = { [unowned self] in
+            self.delegate.creationFeeIntroChangePaymentMethod(estimations: self.tokens)
+        }
+        view.setPaymentMethodCode(paymentToken.code)
         return view
     }
 
