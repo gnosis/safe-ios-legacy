@@ -68,9 +68,15 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_didSelectPay_presentsNextController() {
-        newSafeFlowCoordinator.didSelectPay()
+        newSafeFlowCoordinator.creationFeeIntroPay()
         delay()
         assert(topViewController, is: SafeCreationViewController.self)
+    }
+
+    func test_didSelectChangePaymentMethod_presentsPaymentMethodController() {
+        newSafeFlowCoordinator.creationFeeIntroChangePaymentMethod(estimations: [])
+        delay()
+        assert(topViewController, is: CreationFeePaymentMethodViewController.self)
     }
 
     func assert<T>(_ object: Any?, is aType: T.Type, file: StaticString = #file, line: UInt = #line) {

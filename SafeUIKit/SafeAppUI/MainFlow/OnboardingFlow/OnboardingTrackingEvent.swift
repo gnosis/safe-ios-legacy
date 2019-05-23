@@ -37,7 +37,7 @@ enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
     case twoFAScanSuccess           = "Onboarding_2FAScanSuccess"
     case twoFAScanError             = "Onboarding_2FAScanError"
     case createSafeFeeIntro         = "Onboarding_CreationFeeIntro"
-    case createSafePaymentMethod    = "Onboarding_CreationFeePaymentMethod"
+    case createSafePaymentMethod    = "Onboarding_PaymentMethod"
     case creationFee                = "Onboarding_CreationFee"
     case feePaid                    = "Onboarding_FeePaid"
 

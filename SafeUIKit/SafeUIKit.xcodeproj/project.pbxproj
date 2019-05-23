@@ -2020,11 +2020,11 @@
 		55AA3C46229590AD007B3105 /* CreationFeeIntro */ = {
 			isa = PBXGroup;
 			children = (
+				553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */,
 				557353712294290A00248F87 /* CreationFeeIntroViewController.swift */,
 				55AA3C2E229546AB007B3105 /* CreationFeeIntroViewControllerTests.swift */,
-				553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */,
-				553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */,
 				553B9E012296D15A006E93C9 /* CreationFeePaymentMethodViewController.swift */,
+				553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */,
 			);
 			path = CreationFeeIntro;
 			sourceTree = "<group>";

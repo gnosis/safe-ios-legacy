@@ -25,7 +25,7 @@ class CreationFeeIntroViewControllerTests: SafeTestCase {
     }
 
     func test_tracking() {
-        XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.createSafePaymentMethod)
+        XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.createSafeFeeIntro)
     }
 
     func test_whenSelectingDescriptionInHeader_thenShowsAlert() {
@@ -38,6 +38,7 @@ class CreationFeeIntroViewControllerTests: SafeTestCase {
 
     func test_whenChoosingToPay_thenCallsDelegate() {
         controller.viewDidLoad()
+        controller.viewWillAppear(false)
         let footerView = controller.tableView(controller.tableView,
                                               viewForFooterInSection: 0) as! PaymentMethodFooterView
         footerView.pay(self)
@@ -46,6 +47,7 @@ class CreationFeeIntroViewControllerTests: SafeTestCase {
 
     func test_whenChoosingToChangePaymentMethod_thenCallsDelegate() {
         controller.viewDidLoad()
+        controller.viewWillAppear(false)
         let footerView = controller.tableView(controller.tableView,
                                               viewForFooterInSection: 0) as! PaymentMethodFooterView
         footerView.changePaymentMethod(self)
@@ -56,16 +58,16 @@ class CreationFeeIntroViewControllerTests: SafeTestCase {
         walletService.feePaymentTokenData_output = TokenData.mgn.withBalance(1)
         let estimation1 = TokenData.gno.withBalance(100)
         let estimation2 = TokenData.mgn.withBalance(100)
-        controller.updateEstimations(with: [estimation1, estimation2])
-        XCTAssertEqual(controller.paymentMethodEstimatedTokenData, estimation2)
+        controller.update(with: [estimation1, estimation2])
+        XCTAssertEqual(controller.paymentToken, estimation2)
     }
 
     func test_whenEstimationsDoesNotContainSelectedPaymentMethod_thenSetsSelectedMethodToEth() {
         walletService.feePaymentTokenData_output = TokenData.mgn.withBalance(1)
         let estimation1 = TokenData.Ether.withBalance(100)
         let estimation2 = TokenData.gno.withBalance(100)
-        controller.updateEstimations(with: [estimation1, estimation2])
-        XCTAssertEqual(controller.paymentMethodEstimatedTokenData, estimation1)
+        controller.update(with: [estimation1, estimation2])
+        XCTAssertEqual(controller.paymentToken, estimation1)
         XCTAssertEqual(walletService.feePaymentTokenData, TokenData.Ether)
     }
 
@@ -74,12 +76,12 @@ class CreationFeeIntroViewControllerTests: SafeTestCase {
 class MockCreationFeeIntroDelegate: CreationFeeIntroDelegate {
 
     var didSelectToPay = false
-    func didSelectPay() {
+    func creationFeeIntroPay() {
         didSelectToPay = true
     }
 
     var didSelectToChangePaymentMethod = false
-    func didSelectChangePaymentMethod() {
+    func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
         didSelectToChangePaymentMethod = true
     }
 
