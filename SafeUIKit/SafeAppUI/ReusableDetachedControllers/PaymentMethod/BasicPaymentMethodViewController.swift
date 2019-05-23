@@ -59,7 +59,7 @@ class BasicPaymentMethodViewController: UIViewController {
     @objc func updateData() {
         preconditionFailure("To override")
     }
-    
+
 }
 
 // MARK: - Table view data source

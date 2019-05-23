@@ -312,6 +312,8 @@
 		5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */; };
 		5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13D21A55E8D006BF834 /* TransactionFeeCell.swift */; };
 		5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */; };
+		553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */; };
+		553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */; };
 		5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586421748BC400A3CEA4 /* AddressInputViewController.swift */; };
 		5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586721748C3700A3CEA4 /* AddressInput.swift */; };
 		5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586921748C5200A3CEA4 /* AddressInputTests.swift */; };
@@ -894,6 +896,8 @@
 		5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCellTests.swift; sourceTree = "<group>"; };
 		5539C13D21A55E8D006BF834 /* TransactionFeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeCell.swift; sourceTree = "<group>"; };
 		5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeCellTests.swift; sourceTree = "<group>"; };
+		553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreationFeeIntroHeaderView.xib; sourceTree = "<group>"; };
+		553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFeeIntroHeaderView.swift; sourceTree = "<group>"; };
 		5541586421748BC400A3CEA4 /* AddressInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewController.swift; sourceTree = "<group>"; };
 		5541586721748C3700A3CEA4 /* AddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput.swift; sourceTree = "<group>"; };
 		5541586921748C5200A3CEA4 /* AddressInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputTests.swift; sourceTree = "<group>"; };
@@ -2016,6 +2020,8 @@
 			children = (
 				557353712294290A00248F87 /* CreationFeeIntroViewController.swift */,
 				55AA3C2E229546AB007B3105 /* CreationFeeIntroViewControllerTests.swift */,
+				553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */,
+				553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */,
 			);
 			path = CreationFeeIntro;
 			sourceTree = "<group>";
@@ -2512,6 +2518,7 @@
 				0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */,
 				0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */,
 				55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */,
+				553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */,
 				558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */,
 				557353592293F0AB00248F87 /* ReceiveFunds.storyboard in Resources */,
 			);
@@ -2848,6 +2855,7 @@
 				55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */,
 				0A2D588222575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift in Sources */,
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
+				553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */,
 				0A3BD95B22255C40007039B4 /* ConnectBrowserExtensionLaterCommand.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A2D58802257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift in Sources */,

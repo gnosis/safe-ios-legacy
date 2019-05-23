@@ -16,11 +16,6 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
 
     private enum Strings {
         static let title = LocalizedString("create_safe_title", comment: "Create Safe")
-        static let header = LocalizedString("safe_creation_fee", comment: "Safe creation fee")
-        static let description = LocalizedString("network_fee_required", comment: "Network fee description")
-        static let feeMethod = LocalizedString("fee_method", comment: "Fee payment method")
-        static let fee = LocalizedString("fee", comment: "Fee")
-
         enum Alert {
             static let title = LocalizedString("what_is_safe_creation_fee", comment: "What is the Safe creation fee?")
             static let description = LocalizedString("network_fee_creation", comment: "Safe creation fee description")
@@ -46,17 +41,16 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = Strings.title
         view.backgroundColor = ColorName.paleGrey.color
         tableView.allowsSelection = false
     }
 
     override func registerHeaderAndFooter() {
-        let bundle = Bundle(for: PaymentMethodHeaderView.self)
-        tableView.register(UINib(nibName: "PaymentMethodHeaderView", bundle: bundle),
-                           forHeaderFooterViewReuseIdentifier: "PaymentMethodHeaderView")
+        let bundle = Bundle(for: CreationFeeIntroHeaderView.self)
+        tableView.register(UINib(nibName: "CreationFeeIntroHeaderView", bundle: bundle),
+                           forHeaderFooterViewReuseIdentifier: "CreationFeeIntroHeaderView")
         tableView.sectionHeaderHeight = UITableView.automaticDimension
-        tableView.estimatedSectionHeaderHeight = PaymentMethodHeaderView.estimatedHeight
+        tableView.estimatedSectionHeaderHeight = CreationFeeIntroHeaderView.estimatedHeight
 
         tableView.register(UINib(nibName: "PaymentMethodFooterView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "PaymentMethodFooterView")
@@ -65,14 +59,27 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
     }
 
     override func updateData() {
+        showLoadingTitleIfNeeded()
         DispatchQueue.global().async {
             let tokensData = ApplicationServiceRegistry.walletService.estimateSafeCreation()
             DispatchQueue.main.async { [weak self] in
                 self?.estimations = tokensData
                 self?.tableView.reloadData()
                 self?.tableView.refreshControl?.endRefreshing()
+                self?.hideLoadingTitleIfNeeded()
             }
         }
+    }
+
+    private func showLoadingTitleIfNeeded() {
+        guard title == nil else { return }
+        navigationItem.titleView = LoadingTitleView()
+    }
+
+    private func hideLoadingTitleIfNeeded() {
+        guard navigationItem.titleView != nil else { return }
+        navigationItem.titleView = nil
+        title = Strings.title
     }
 
     // MARK: - UITableViewDataSource
@@ -94,8 +101,8 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
     // MARK: - Table view delegate
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodHeaderView")
-            as! PaymentMethodHeaderView
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CreationFeeIntroHeaderView")
+            as! CreationFeeIntroHeaderView
         view.onTextSelected = { [unowned self] in
             let alert = UIAlertController(title: Strings.Alert.title,
                                           message: Strings.Alert.description,
