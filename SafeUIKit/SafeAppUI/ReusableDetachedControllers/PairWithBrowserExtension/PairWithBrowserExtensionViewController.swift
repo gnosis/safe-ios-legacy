@@ -21,6 +21,7 @@ public protocol PairWithBrowserExtensionViewControllerDelegate: class {
 
 }
 
+// TODO: refactor and reuse CardViewController
 public final class PairWithBrowserExtensionViewController: UIViewController {
 
     enum Strings {
