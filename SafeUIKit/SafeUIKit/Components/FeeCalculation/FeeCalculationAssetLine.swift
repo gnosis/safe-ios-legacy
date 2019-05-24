@@ -119,16 +119,9 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
             button.addTarget(item.target, action: action, for: .touchUpInside)
         }
 
-        let buttonImageSpace: CGFloat = 7
-        // brilliant trickery to make image appear on the right hand side of the button
-        // h/t https://stackoverflow.com/a/32174204/7822368
         button.setImage(Asset.settings.image, for: .normal)
-        button.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        button.flipImageToTrailingSide(spacing: 7)
         button.contentHorizontalAlignment = .leading // instead of trailing, because the sides flipped
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -buttonImageSpace, bottom: 0, right: buttonImageSpace)
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: buttonImageSpace, bottom: 0, right: 0)
 
         // separate dash-line view because the NSAttributedString's dashed underline is too close to the
         // text vertically and there was no way found to offset it.
@@ -193,6 +186,24 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     override func equals(to rhs: FeeCalculationLine) -> Bool {
         guard let rhs = rhs as? FeeCalculationAssetLine else { return false }
         return style == rhs.style && asset == rhs.asset
+    }
+
+}
+
+public extension UIButton {
+
+    /// Flips the button's view along vertical axis. This changes content alignment - .leading is not .trailing!
+    ///
+    /// This method modifies imageEdgeInsets and contentEdgeInsets
+    ///
+    /// brilliant trickery to make image appear on the right hand side of the button
+    /// h/t https://stackoverflow.com/a/32174204/7822368
+    func flipImageToTrailingSide(spacing: CGFloat) {
+        transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        imageEdgeInsets = UIEdgeInsets(top: 0, left: -spacing, bottom: 0, right: spacing)
+        contentEdgeInsets = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: 0)
     }
 
 }

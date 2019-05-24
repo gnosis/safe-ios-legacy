@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeePaidViewController" customModule="SafeAppUI" customModuleProvider="target">
+            <connections>
+                <outlet property="bodyLabel" destination="ESO-R6-mQg" id="dp2-zm-6Sz"/>
+                <outlet property="button" destination="f1y-KY-h13" id="xj6-FP-YWy"/>
+                <outlet property="headerLabel" destination="vwM-fu-IzC" id="uKj-jR-Nsf"/>
+                <outlet property="imageView" destination="Ht3-Jg-J7E" id="H6v-n6-ZaG"/>
+                <outlet property="progressView" destination="W0A-K3-qPI" id="spV-Pg-IUv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Operation in progress" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwM-fu-IzC">
+                    <rect key="frame" x="16" y="114" width="382" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <color key="textColor" red="0.12941176470588234" green="0.2627450980392157" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="safeInprogress" translatesAutoresizingMaskIntoConstraints="NO" id="Ht3-Jg-J7E">
+                    <rect key="frame" x="16" y="160.5" width="382" height="99"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="99" id="0op-z4-Rbl"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESO-R6-mQg">
+                    <rect key="frame" x="16" y="277.5" width="382" height="44"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Your transaction was submitted. Your Safe will be created now. This can take a couple of minutes.">
+                            <attributes>
+                                <font key="NSFont" metaFont="system" size="17"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" minimumLineHeight="22" maximumLineHeight="22" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="W0A-K3-qPI">
+                    <rect key="frame" x="16" y="349.5" width="382" height="5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="Xlx-7H-ae9"/>
+                    </constraints>
+                    <color key="progressTintColor" red="0.15686274509803921" green="0.69803921568627447" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="trackTintColor" red="0.89019607840000003" green="0.8980392157" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <real key="value" value="2.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </progressView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1y-KY-h13" customClass="StandardButton" customModule="SafeUIKit">
+                    <rect key="frame" x="16" y="374.5" width="382" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="T54-In-LyT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Follow progress on Etherscan.io" image="external_link">
+                        <color key="titleColor" red="0.15686274510000001" green="0.69803921570000005" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tapAction:" destination="-1" eventType="touchUpInside" id="Ujb-iA-MJH"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vwM-fu-IzC" secondAttribute="trailing" constant="16" id="0tx-Sh-Lfi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ESO-R6-mQg" secondAttribute="trailing" constant="16" id="3rA-v2-1FA"/>
+                <constraint firstItem="W0A-K3-qPI" firstAttribute="top" secondItem="ESO-R6-mQg" secondAttribute="bottom" constant="28" id="4ok-YI-2le"/>
+                <constraint firstItem="ESO-R6-mQg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="J7d-Jx-7cr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ht3-Jg-J7E" secondAttribute="trailing" constant="16" id="Lg4-PY-IPD"/>
+                <constraint firstItem="vwM-fu-IzC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NDb-jr-fU1"/>
+                <constraint firstAttribute="trailing" secondItem="W0A-K3-qPI" secondAttribute="trailing" constant="16" id="QCq-9e-ndl"/>
+                <constraint firstItem="f1y-KY-h13" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="UoZ-f7-qYD"/>
+                <constraint firstItem="Ht3-Jg-J7E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cdA-H5-gf9"/>
+                <constraint firstItem="W0A-K3-qPI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="cqp-XJ-z3L"/>
+                <constraint firstItem="ESO-R6-mQg" firstAttribute="top" secondItem="Ht3-Jg-J7E" secondAttribute="bottom" constant="18" id="eZ1-vh-aaV"/>
+                <constraint firstItem="vwM-fu-IzC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mio-dF-kmB"/>
+                <constraint firstItem="vwM-fu-IzC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="26" id="mrP-9E-N3e"/>
+                <constraint firstItem="Ht3-Jg-J7E" firstAttribute="top" secondItem="vwM-fu-IzC" secondAttribute="bottom" constant="26" id="s77-Ou-9pX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="f1y-KY-h13" secondAttribute="trailing" constant="16" id="wz0-BJ-7sf"/>
+                <constraint firstItem="f1y-KY-h13" firstAttribute="top" secondItem="W0A-K3-qPI" secondAttribute="bottom" constant="20" id="xNl-kd-ldb"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="external_link" width="12" height="12"/>
+        <image name="safeInprogress" width="121" height="93"/>
+    </resources>
+</document>

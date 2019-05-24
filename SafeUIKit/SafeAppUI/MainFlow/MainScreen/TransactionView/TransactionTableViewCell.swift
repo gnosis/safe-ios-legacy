@@ -14,8 +14,17 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var transactionDateLabel: UILabel!
     @IBOutlet weak var tokenAmountLabel: AmountLabel!
     @IBOutlet weak var transactionTypeImageView: UIImageView!
+    @IBOutlet weak var progressView: UIProgressView!
 
-    private enum Strings {
+    private static let timeFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.timeStyle = .short
+        f.dateStyle = .none
+        f.locale = .autoupdatingCurrent
+        return f
+    }()
+
+    enum Strings {
         static let recoveredSafe = LocalizedString("ios_recovered_safe", comment: "Recovered Safe")
         static let replaceRecoveryPhrase = LocalizedString("ios_replace_recovery_phrase",
                                                            comment: "Replace recovery phrase")
@@ -24,6 +33,7 @@ class TransactionTableViewCell: UITableViewCell {
         static let disconnectBE = LocalizedString("ios_disconnect_browser_extension",
                                                   comment: "Disconnect browser extension")
         static let statusFailed = LocalizedString("status_failed", comment: "Failed status")
+        static let timeJustNow = LocalizedString("just_now", comment: "Time indication of 'Just now'")
     }
 
     override func awakeFromNib() {
@@ -45,7 +55,7 @@ class TransactionTableViewCell: UITableViewCell {
         addressLabel.textColor = addressColor(transaction)
         addressLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
 
-        transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
+        transactionDateLabel.text = dateText(transaction)
         transactionDateLabel.textColor = ColorName.battleshipGrey.color
         transactionDateLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
 
@@ -56,6 +66,37 @@ class TransactionTableViewCell: UITableViewCell {
         tokenAmountLabel.textAlignment = .right
 
         transactionTypeImageView.image = typeImage(transaction)
+
+        progressView.progress = 0
+    }
+
+    func showProgress(_ transaction: TransactionData, animated: Bool) {
+        guard transaction.status == .pending else { return }
+        guard animated else {
+            progressView.progress = 0.7
+            return
+        }
+        progressView.progress = 0
+        UIView.animate(withDuration: 120,
+                       delay: 1,
+                       usingSpringWithDamping: 1.0,
+                       initialSpringVelocity: 0,
+                       options: [],
+                       animations: { [unowned self] in
+                        self.progressView.setProgress(0.7, animated: true)
+            }, completion: nil)
+    }
+
+    private func dateText(_ transaction: TransactionData) -> String? {
+        guard let date = transaction.displayDate else { return nil }
+        let isInTheFuture = date > Date()
+        if date.minutesAgo == 0 && !isInTheFuture {
+            return Strings.timeJustNow
+        } else if date.isToday && !isInTheFuture {
+            return date.timeAgoSinceNow
+        } else {
+            return type(of: self).timeFormatter.string(from: date)
+        }
     }
 
     private func setDetailText(transaction tx: TransactionData) {

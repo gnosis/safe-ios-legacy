@@ -157,14 +157,10 @@ class TransactionDomainServiceTests: XCTestCase {
         let dates = (0..<5).map { i in Date() - i.days }
         let stored = dates.map { d in Transaction.success().timestampProcessed(at: d) }
         save(stored)
-        let groups = [
+        let groups = stored.map { t in
             TransactionGroup(type: .processed,
-                             date: stored[0].processedDate?.dateForGrouping,
-                             transactions: [stored[0]]),
-            TransactionGroup(type: .processed,
-                             date: Date.distantPast.dateForGrouping,
-                             transactions: Array(stored[1..<5]))
-        ]
+                             date: t.processedDate?.dateForGrouping,
+                             transactions: [t]) }
         XCTAssertEqual(service.grouppedTransactions(), groups)
     }
 
@@ -174,7 +170,7 @@ class TransactionDomainServiceTests: XCTestCase {
         save(stored)
         let groups = [
             TransactionGroup(type: .processed,
-                             date: Date.distantPast.dateForGrouping,
+                             date: dates.first?.dateForGrouping,
                              transactions: stored)
         ]
         XCTAssertEqual(service.grouppedTransactions(), groups)

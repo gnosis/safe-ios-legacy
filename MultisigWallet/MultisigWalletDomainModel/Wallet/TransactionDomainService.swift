@@ -65,9 +65,8 @@ public class TransactionDomainService {
 
     /// Groups transactions by day, in reverse chronologic order, with pending transaction as 1st group.
     public func grouppedTransactions() -> [TransactionGroup] {
+        var groups = [TransactionGroup]()
         var pendingGroup = TransactionGroup(type: .pending, date: nil, transactions: [])
-        var todayGroup = TransactionGroup(type: .processed, date: Date().dateForGrouping, transactions: [])
-        var pastGroup = TransactionGroup(type: .processed, date: Date.distantPast.dateForGrouping, transactions: [])
         for tx in allTransactions() {
             if tx.status == .pending {
                 pendingGroup.transactions.append(tx)
@@ -75,13 +74,13 @@ public class TransactionDomainService {
             }
             precondition(tx.allEventDates.first != nil, "Transaction must be timestamped: \(tx)")
             let txDate = tx.allEventDates.first!.dateForGrouping
-            if txDate.isToday || txDate.isInTheFuture {
-                todayGroup.transactions.append(tx)
-            } else {
-                pastGroup.transactions.append(tx)
+            if groups.last?.date != txDate {
+                let newGroup = TransactionGroup(type: .processed, date: txDate, transactions: [])
+                groups.append(newGroup)
             }
+            groups[groups.count - 1].transactions.append(tx)
         }
-        return ([pendingGroup, todayGroup, pastGroup]).filter { !$0.transactions.isEmpty }
+        return ([pendingGroup] + groups).filter { !$0.transactions.isEmpty }
     }
 
     public func updatePendingTransactions() throws {

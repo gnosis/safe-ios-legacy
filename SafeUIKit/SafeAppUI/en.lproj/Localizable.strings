@@ -19,7 +19,7 @@
 "app_version" = "App version: %@";
 
 /* Assets tab title */
-"assets_capitalized" = "ASSETS";
+"assets" = "Assets";
 
 /* Back */
 "back" = "Back";
@@ -90,7 +90,8 @@
    Title for safe creation screen. */
 "create_safe_title" = "Create Safe";
 
-/* Creating safe header for safe creation screen. */
+/* Creating safe
+   Creating safe header for safe creation screen. */
 "creating_your_new_safe" = "Creating your new Safe…";
 
 /* Current password */
@@ -280,9 +281,6 @@
 /* 'Download the' Gnosis Safe Chrome browser exntension. */
 "ios_open_be_link_text" = "1. Open the link to the Chrome browser extension on your desktop computer.";
 
-/* Past transactions group header */
-"ios_past" = "Past";
-
 /* QR Code label. */
 "ios_qr_code" = "QR Code";
 
@@ -362,6 +360,9 @@
 
 /* 'View on Etherscan' button name */
 "ios_view_transaction_on_etherscan" = "View transaction on Etherscan.io";
+
+/* Time indication of 'Just now' */
+"just_now" = "Just now";
 
 /* Detail for the header in review screen */
 "layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the browser extension. Future transactions require a confirmation from both devices.";
@@ -450,10 +451,13 @@
 "pay_with" = "Pay with %@";
 
 /* Pending transactions group header */
-"pending_captalized" = "PENDING";
+"pending" = "Pending";
 
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
+
+/* Please send % */
+"please_send_x" = "Please only send %@";
 
 /* Title for portfolio section. */
 "portfolio" = "Portfolio";
@@ -476,7 +480,8 @@
    Recover safe */
 "recover_safe_title" = "Recover Safe";
 
-/* Header label for progress screen */
+/* Header label for progress screen
+   Recovering safe */
 "recovering_safe" = "Recovering your Safe…";
 
 /* Title for setup recovery phrase screen. */
@@ -578,6 +583,9 @@
    Terms of Use */
 "terms_of_service" = "Terms of Use";
 
+/* This is address */
+"this_is_your_permanent_address" = "This is your permanent Safe address. Send at least this amount to create your Safe:";
+
 /* Fee payment method description */
 "this_payment_will_be_used" = "This payment method will be used to pay network fees in all transactions.";
 
@@ -599,14 +607,18 @@
 /* Explanation text */
 "transaction_has_been_submitted" = "Your transaction has been submitted.";
 
-/* This can take a while... */
+/* This can take a while...
+   Transaction submitted */
 "transaction_submitted_safe_being_created" = "Your transaction was submitted. Your Safe will be created now. This might take a couple of minutes.";
+
+/* Transaction submitted */
+"transaction_submitted_safe_being_recovered" = "Your transaction was submitted. Your Safe will be recovered now. This might take a couple of minutes.";
 
 /* Outgoing transafer */
 "transaction_type_asset_transfer" = "Outgoing transfer";
 
 /* Transactions tab title */
-"transactions_capitalized" = "TRANSACTIONS";
+"transactions" = "Transactions";
 
 /* Try again in */
 "try_again_in" = "Try again in";

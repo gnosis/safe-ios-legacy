@@ -69,8 +69,10 @@ class TransactionViewViewControllerTests: XCTestCase {
     }
 
     func test_whenGroupTypeProcessedInFuture_thenNameIsRelativeToGroupDate() {
-        template_testGroupHeader(for: Date(), string: TransactionsGroupHeaderView.Strings.today.uppercased())
-        template_testGroupHeader(for: Date() - 1.days, string: TransactionsGroupHeaderView.Strings.past.uppercased())
+        template_testGroupHeader(for: Date(), string:
+            TransactionsGroupHeaderView.Strings.today.uppercased())
+        template_testGroupHeader(for: Date() - 1.days,
+                                 string: TransactionsGroupHeaderView.Strings.yesterday.uppercased())
     }
 
     private func template_testGroupHeader(for date: Date,
@@ -106,7 +108,7 @@ class TransactionViewViewControllerTests: XCTestCase {
 
         XCTAssertEqual(cell.identiconView.seed, transaction.recipient)
         XCTAssertEqual(cell.addressLabel.address, transaction.recipient)
-        XCTAssertEqual(cell.transactionDateLabel.text, transaction.processed?.timeAgoSinceNow)
+        XCTAssertEqual(cell.transactionDateLabel.text, TransactionTableViewCell.Strings.timeJustNow)
 
         let formatter = cell.tokenAmountLabel.formatter
         XCTAssertEqual(cell.tokenAmountLabel.text,
