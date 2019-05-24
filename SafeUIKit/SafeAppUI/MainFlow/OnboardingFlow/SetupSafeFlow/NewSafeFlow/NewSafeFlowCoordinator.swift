@@ -94,7 +94,9 @@ extension NewSafeFlowCoordinator: CreationFeeIntroDelegate {
 
 extension NewSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 
-    func creationFeePaymentMethodPay() {}
+    func creationFeePaymentMethodPay() {
+        creationFeeIntroPay()
+    }
 
 }
 

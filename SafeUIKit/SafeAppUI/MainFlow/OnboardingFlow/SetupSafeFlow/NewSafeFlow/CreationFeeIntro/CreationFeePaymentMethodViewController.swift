@@ -16,11 +16,20 @@ class CreationFeePaymentMethodViewController: BasicPaymentMethodViewController {
     private weak var delegate: CreationFeePaymentMethodDelegate!
     private var didUpdateOnce = false
 
+    let payButton = StandardButton()
+
+    override var paymentToken: TokenData! {
+        didSet {
+            updatePayButtonTitle()
+        }
+    }
+
     enum Strings {
         static let title = LocalizedString("fee_method", comment: "Fee Payment Method")
         static let headerDescription = LocalizedString("choose_how_to_pay_creation_fee",
                                                        comment: "Choose how to pay the creation fee.")
         static let fee = LocalizedString("fee", comment: "Fee").uppercased()
+        static let payWith = LocalizedString("pay_with", comment: "Pay with %@")
     }
 
     static func create(delegate: CreationFeePaymentMethodDelegate,
@@ -38,7 +47,25 @@ class CreationFeePaymentMethodViewController: BasicPaymentMethodViewController {
         } else {
             title = Strings.title
         }
-        // TODO: add "Pay with Token" button.
+        addPayButton()
+    }
+
+    private func addPayButton() {
+        payButton.style = .filled
+        payButton.addTarget(self, action: #selector(pay), for: .touchUpInside)
+        payButton.translatesAutoresizingMaskIntoConstraints = false
+        payButton.isHidden = true
+        view.addSubview(payButton)
+        NSLayoutConstraint.activate([
+            payButton.heightAnchor.constraint(equalToConstant: 56),
+            payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            payButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)])
+    }
+
+    private func updatePayButtonTitle() {
+        payButton.isHidden = false
+        payButton.setTitle(String(format: Strings.payWith, paymentToken.code), for: .normal)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -61,8 +88,6 @@ class CreationFeePaymentMethodViewController: BasicPaymentMethodViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.hideLoadingTitleIfNeeded()
                     self?.update(with: estimations)
-                    self?.tableView.reloadData()
-                    self?.tableView.refreshControl?.endRefreshing()
                 }
             }
         } else {
@@ -76,6 +101,10 @@ class CreationFeePaymentMethodViewController: BasicPaymentMethodViewController {
         guard navigationItem.titleView != nil else { return }
         navigationItem.titleView = nil
         title = Strings.title
+    }
+
+    @objc func pay() {
+        delegate.creationFeePaymentMethodPay()
     }
 
     // MARK: - Table view delegate
