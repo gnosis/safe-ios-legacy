@@ -83,14 +83,11 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     func showOnboarding() {
-        let vc = RecoverFeePaidViewController.create()
-        push(vc)
-
-//        if authenticationService.isUserRegistered {
-//            showCreateOrRestore()
-//        } else {
-//            push(StartViewController.create(delegate: self))
-//        }
+        if authenticationService.isUserRegistered {
+            showCreateOrRestore()
+        } else {
+            push(StartViewController.create(delegate: self))
+        }
     }
 
     open func appEntersForeground() {
