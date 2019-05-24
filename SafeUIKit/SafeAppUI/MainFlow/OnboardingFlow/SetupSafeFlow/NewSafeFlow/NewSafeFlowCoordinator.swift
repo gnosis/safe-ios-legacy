@@ -9,56 +9,15 @@ import Common
 class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
-    var pairController: PairWithBrowserExtensionViewController?
 
+    // FIXME: deprecated
     var isSafeCreationInProgress: Bool {
         return ApplicationServiceRegistry.walletService.isSafeCreationInProgress
     }
 
     override func setUp() {
         super.setUp()
-        if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
-            exitFlow()
-            return
-        }
         push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
-        saveCheckpoint()
-        if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
-            push(NewSafeViewController.create(delegate: self))
-            push(SafeCreationViewController.create(delegate: self))
-        }
-    }
-
-}
-
-extension NewSafeFlowCoordinator {
-
-    func enterAndComeBack(from coordinator: FlowCoordinator) {
-        saveCheckpoint()
-        enter(flow: coordinator) {
-            self.popToLastCheckpoint()
-        }
-    }
-
-}
-
-extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
-
-    func didPressNext() {
-        push(NewSafeViewController.create(delegate: self))
-    }
-
-}
-
-extension NewSafeFlowCoordinator: NewSafeDelegate {
-
-    func didSelectPaperWalletSetup() {
-        enterAndComeBack(from: paperWalletFlowCoordinator)
-    }
-
-    func didSelectBrowserExtensionSetup() {
-        pairController = newPairController()
-        push(pairController!)
     }
 
     func newPairController() -> PairWithBrowserExtensionViewController {
@@ -74,10 +33,70 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
         return controller
     }
 
-    func didSelectNext() {
-        push(OnboardingCreationFeeIntroViewController.create(delegate: self))
+}
+
+// FIXME: deprecated
+extension NewSafeFlowCoordinator: NewSafeDelegate {
+
+    func didSelectPaperWalletSetup() {
     }
 
+    func didSelectBrowserExtensionSetup() {
+    }
+
+
+    func didSelectNext() {
+    }
+
+}
+// FIXME: deprecated
+extension NewSafeFlowCoordinator {
+
+    func enterAndComeBack(from coordinator: FlowCoordinator) {
+        saveCheckpoint()
+        enter(flow: coordinator) {
+            self.popToLastCheckpoint()
+        }
+    }
+
+}
+
+extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
+
+    func didPressNext() {
+        push(newPairController())
+    }
+
+}
+
+
+extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
+
+    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
+                                                didScanAddress address: String,
+                                                code: String) throws {
+        try ApplicationServiceRegistry.walletService
+            .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
+    }
+
+    func pairWithBrowserExtensionViewControllerDidFinish() {
+        showSeed()
+    }
+
+    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+        ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
+        showSeed()
+    }
+
+    func showSeed() {
+        enter(flow: paperWalletFlowCoordinator) {
+            self.showPayment()
+        }
+    }
+
+    func showPayment() {
+        push(OnboardingCreationFeeIntroViewController.create(delegate: self))
+    }
 }
 
 extension NewSafeFlowCoordinator: CreationFeeIntroDelegate {
@@ -96,26 +115,6 @@ extension NewSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 
     func creationFeePaymentMethodPay() {
         creationFeeIntroPay()
-    }
-
-}
-
-extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
-
-    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didScanAddress address: String,
-                                                code: String) throws {
-        try ApplicationServiceRegistry.walletService
-            .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
-    }
-
-    func pairWithBrowserExtensionViewControllerDidFinish() {
-        pop()
-    }
-
-    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
-        ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
-        self.pop()
     }
 
 }

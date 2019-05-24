@@ -19,15 +19,16 @@ open class MainFlowCoordinator: FlowCoordinator {
     private var lockedViewController: UIViewController!
 
     private let transactionSubmissionHandler = TransactionSubmissionHandler()
+    // FIXME: deprecated
 
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
     }
-
+// FIXME: deprecated
     private var authenticationService: AuthenticationApplicationService {
         return IdentityAccessApplication.ApplicationServiceRegistry.authenticationService
     }
-
+// FIXME: deprecated
     private var shouldLockWhenAppActive: Bool {
         return authenticationService.isUserRegistered  && !authenticationService.isUserAuthenticated
     }
@@ -59,20 +60,47 @@ open class MainFlowCoordinator: FlowCoordinator {
     // Entry point to the app
     open override func setUp() {
         super.setUp()
-        if walletService.hasReadyToUseWallet {
-            showMainScreen()
-        } else {
-            showOnboarding()
-        }
-        lockedViewController = rootViewController
+        appDidFinishLaunching()
+    }
 
-        if authenticationService.isUserRegistered {
-            applicationRootViewController = UnlockViewController.create { [unowned self] success in
-                if !success { return }
-                self.applicationRootViewController = self.lockedViewController
-            }
+    func appDidFinishLaunching() {
+        if !ApplicationServiceRegistry.authenticationService.isUserRegistered {
+            showStartScreen()
+            applicationRootViewController = rootViewController
+            return
+        } else if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            showMainScreen()
+        } else if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
+            showCreationProgress()
+        } else if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
+            showRecoveryProgress()
         } else {
-            applicationRootViewController = lockedViewController
+            showCreateOrRestoreScreen()
+        }
+        requestToUnlockApp()
+    }
+
+    func showStartScreen() {
+        push(StartViewController.create(delegate: self))
+    }
+
+    func showCreationProgress() {
+        push(OnboardingFeePaidViewController.create())
+    }
+
+    func showRecoveryProgress() {
+        push(RecoverFeePaidViewController.create())
+    }
+
+    func showCreateOrRestoreScreen() {
+        push(OnboardingCreateOrRestoreViewController.create(delegate: self))
+    }
+
+    func requestToUnlockApp() {
+        lockedViewController = rootViewController
+        applicationRootViewController = UnlockViewController.create { [unowned self] success in
+            if !success { return }
+            self.applicationRootViewController = self.lockedViewController
         }
     }
 
@@ -82,6 +110,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         push(mainVC)
     }
 
+    // FIXME: deprecated
     func showOnboarding() {
         if authenticationService.isUserRegistered {
             showCreateOrRestore()
@@ -91,14 +120,10 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     open func appEntersForeground() {
-        guard let rootVC = applicationRootViewController,
-            !(rootVC is UnlockViewController) && shouldLockWhenAppActive else {
-                return
-        }
-        lockedViewController = rootVC
-        applicationRootViewController = UnlockViewController.create { [unowned self] success in
-            guard success else { return }
-            self.applicationRootViewController = self.lockedViewController
+        if ApplicationServiceRegistry.authenticationService.isUserRegistered &&
+            !ApplicationServiceRegistry.authenticationService.isUserAuthenticated &&
+            !(applicationRootViewController is UnlockViewController) {
+            requestToUnlockApp()
         }
     }
 
@@ -115,16 +140,17 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     open func receive(message: [AnyHashable: Any]) {
-        guard let transactionID = walletService.receive(message: message) else { return }
+        guard let transactionID = ApplicationServiceRegistry.walletService.receive(message: message) else { return }
         if let vc = navigationController.topViewController as? ReviewTransactionViewController {
             let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
             vc.update(with: tx)
-        } else if let tx = walletService.transactionData(transactionID), tx.status != .rejected {
+        } else if let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID),
+            tx.status != .rejected {
             incomingTransactionFlowCoordinator.transactionID = transactionID
             enterTransactionFlow(incomingTransactionFlowCoordinator)
         }
     }
-
+    // FIXME: deprecated
     func showCreateOrRestore() {
         push(OnboardingCreateOrRestoreViewController.create(delegate: self))
 
@@ -195,6 +221,8 @@ extension MainFlowCoordinator: TermsAndConditionsViewControllerDelegate {
 extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 
     func didSelectNewSafe() {
+        // TODO: remove existing draft wallet if it exists - so that we restart with new owner every time.
+
         enter(flow: newSafeFlowCoordinator) { [unowned self] in
             self.clearNavigationStack()
             self.showMainScreen()
@@ -202,6 +230,8 @@ extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
     }
 
     func didSelectRecoverSafe() {
+        // TODO: remove existing draft wallet if it exists - so that we restart with new owner every time.
+
         enter(flow: recoverSafeFlowCoordinator) { [unowned self] in
             self.clearNavigationStack()
             self.showMainScreen()
