@@ -208,6 +208,7 @@
 		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
 		0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF69B22265D19400F06616 /* PasswordViewController.xib */; };
 		0AB201162297E71E0071510A /* RecoverFeePaidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB201152297E71E0071510A /* RecoverFeePaidViewController.swift */; };
+		0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */; };
 		0AB3F13221F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13121F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift */; };
 		0AB3F13821F7373300D351C7 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */; };
 		0AB3F13921F73A5200D351C7 /* CollectionUIModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */; };
@@ -789,6 +790,7 @@
 		0AB0B56E21638AEC00FB2435 /* SafeUIKit.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SafeUIKit.xcconfig; sourceTree = "<group>"; };
 		0AB0B56F21638CBF00FB2435 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
 		0AB201152297E71E0071510A /* RecoverFeePaidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverFeePaidViewController.swift; sourceTree = "<group>"; };
+		0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeViewController.swift; sourceTree = "<group>"; };
 		0AB3F13121F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewViewControllerRegressionTests.swift; sourceTree = "<group>"; };
 		0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModelTests.swift; sourceTree = "<group>"; };
 		0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModel.swift; sourceTree = "<group>"; };
@@ -1225,6 +1227,7 @@
 				0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */,
 				0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */,
 				558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */,
+				0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */,
 				55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */,
 				55AA3C46229590AD007B3105 /* CreationFeeIntro */,
 				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
@@ -1470,6 +1473,7 @@
 				0AF33D36209C6BF800527D25 /* SafeAppUI */,
 				0A96707B20480C3E00445AC2 /* Products */,
 				0A34BC61207B80A700636560 /* Frameworks */,
+				0AB2012C229812F80071510A /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1572,6 +1576,14 @@
 				0AB0B56B2163898E00FB2435 /* SafeUIKitDemoConfig.xcconfig */,
 			);
 			name = config;
+			sourceTree = "<group>";
+		};
+		0AB2012C229812F80071510A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				0A2C0E1C2296F303008A30AC /* OnboardingCreationFeeViewController.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		0ABA591B21AC0802009D249F /* AmountLabel */ = {
@@ -3023,6 +3035,7 @@
 				55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */,
 				557353722294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift in Sources */,
 				0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */,
+				0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
 				0A8274E821A432DD00A73D32 /* TransactionsEmptyView.swift in Sources */,
