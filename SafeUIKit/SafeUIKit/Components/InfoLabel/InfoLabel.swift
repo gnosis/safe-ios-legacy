@@ -25,9 +25,10 @@ public class InfoLabel: BaseCustomLabel {
         delegate?.didTap()
     }
 
-    public func setInfoText(_ text: String) {
+    public func setInfoText(_ text: String, withInfo: Bool = true) {
         // Non-braking space is used with info suffix to make it always next to the last word when the line splits.
-        let attributedString = NSMutableAttributedString(string: "\(text)\u{00A0}\(infoSuffix)")
+        let str = withInfo ? "\(text)\u{00A0}\(infoSuffix)" : text
+        let attributedString = NSMutableAttributedString(string: str)
         let textRange = attributedString.mutableString.range(of: text)
         let infoRange = attributedString.mutableString.range(of: infoSuffix)
         attributedString.addAttribute(.foregroundColor, value: ColorName.battleshipGrey.color, range: textRange)

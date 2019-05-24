@@ -28,13 +28,20 @@ final class PaymentMethodHeaderView: UITableViewHeaderFooterView {
         backgroundView = UIView()
         backgroundView!.backgroundColor = .white
         headingView.backgroundColor = ColorName.paleGrey.color
-        descriptionInfoLabel.setInfoText(Strings.description)
         descriptionInfoLabel.delegate = self
-        let headerStyle = TableHeaderStyle()
+        updateDescriptionLabel(Strings.description)
         feePaymentMethodLabel.attributedText = NSAttributedString(string: Strings.feeMethod,
-                                                                  style: headerStyle)
-        balanceLabel.attributedText = NSAttributedString(string: Strings.balance,
-                                                         style: headerStyle)
+                                                                  style: TableHeaderStyle())
+        updateBalanceLabel(Strings.balance)
+    }
+
+    func updateDescriptionLabel(_ text: String, withInfo: Bool = true) {
+        descriptionInfoLabel.setInfoText(text, withInfo: withInfo)
+    }
+
+    func updateBalanceLabel(_ text: String) {
+        balanceLabel.attributedText = NSAttributedString(string: text,
+                                                         style: TableHeaderStyle())
     }
 
 }

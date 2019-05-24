@@ -8,7 +8,7 @@ class RecoverFeePaidViewController: FeePaidViewController {
 
     static func create() -> RecoverFeePaidViewController {
         let controller = RecoverFeePaidViewController(nibName: String(describing: FeePaidViewController.self),
-                                                         bundle: Bundle(for: FeePaidViewController.self))
+                                                      bundle: Bundle(for: FeePaidViewController.self))
         return controller
     }
 
@@ -26,4 +26,3 @@ class RecoverFeePaidViewController: FeePaidViewController {
     }
 
 }
-

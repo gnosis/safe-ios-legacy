@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="WRg-bf-qsn" customClass="CreationFeeIntroHeaderView" customModule="SafeAppUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="495" height="238"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safe creation fee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyu-RP-j0c">
+                    <rect key="frame" x="32" y="23" width="431" height="79"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="This payment method will be used to pay network fees in all transactions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5p-rr-wdm" customClass="InfoLabel" customModule="SafeUIKit">
+                    <rect key="frame" x="16" y="124" width="463" height="41"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMh-RW-ugs">
+                    <rect key="frame" x="0.0" y="192" width="495" height="46"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmA-sY-qwd">
+                            <rect key="frame" x="24" y="0.0" width="455" height="46"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="FEE PAYMENT METHOD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-nL-swr">
+                                    <rect key="frame" x="0.0" y="0.0" width="436" height="46"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68H-ti-UM4">
+                                    <rect key="frame" x="436" y="0.0" width="19" height="46"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="rmA-sY-qwd" secondAttribute="trailing" constant="16" id="Z9A-U8-hfS"/>
+                        <constraint firstAttribute="bottom" secondItem="rmA-sY-qwd" secondAttribute="bottom" id="r3a-GI-jcr"/>
+                        <constraint firstItem="rmA-sY-qwd" firstAttribute="top" secondItem="dMh-RW-ugs" secondAttribute="top" id="svp-nP-mIX"/>
+                        <constraint firstAttribute="height" constant="46" id="yt8-6H-MlX"/>
+                        <constraint firstItem="rmA-sY-qwd" firstAttribute="leading" secondItem="dMh-RW-ugs" secondAttribute="leading" constant="24" id="z9Z-0Z-hv8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="dyu-RP-j0c" firstAttribute="leading" secondItem="WRg-bf-qsn" secondAttribute="leading" constant="32" id="4NZ-b0-6n9"/>
+                <constraint firstItem="E5p-rr-wdm" firstAttribute="leading" secondItem="tg2-dY-Fvh" secondAttribute="leading" constant="16" id="BBs-p3-hzS"/>
+                <constraint firstItem="dyu-RP-j0c" firstAttribute="top" secondItem="WRg-bf-qsn" secondAttribute="top" constant="23" id="HuK-8n-JaT"/>
+                <constraint firstItem="E5p-rr-wdm" firstAttribute="top" secondItem="dyu-RP-j0c" secondAttribute="bottom" constant="22" id="MRW-CP-f6l"/>
+                <constraint firstItem="tg2-dY-Fvh" firstAttribute="trailing" secondItem="E5p-rr-wdm" secondAttribute="trailing" constant="16" id="Ryr-Eb-iHe"/>
+                <constraint firstAttribute="bottom" secondItem="dMh-RW-ugs" secondAttribute="bottom" id="VXh-rM-IaA"/>
+                <constraint firstItem="dMh-RW-ugs" firstAttribute="leading" secondItem="tg2-dY-Fvh" secondAttribute="leading" id="WfM-kf-Vfy"/>
+                <constraint firstItem="dMh-RW-ugs" firstAttribute="top" secondItem="E5p-rr-wdm" secondAttribute="bottom" constant="27" id="YKB-LU-dQc"/>
+                <constraint firstItem="tg2-dY-Fvh" firstAttribute="trailing" secondItem="dMh-RW-ugs" secondAttribute="trailing" id="hXW-G4-CDv"/>
+                <constraint firstAttribute="trailing" secondItem="dyu-RP-j0c" secondAttribute="trailing" constant="32" id="wfZ-0s-i73"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="tg2-dY-Fvh"/>
+            <connections>
+                <outlet property="descriptionInfoLabel" destination="E5p-rr-wdm" id="M0g-9G-crF"/>
+                <outlet property="feeLabel" destination="68H-ti-UM4" id="XP1-NJ-s3q"/>
+                <outlet property="feePaymentMethodLabel" destination="lUP-nL-swr" id="TqR-t7-cLG"/>
+                <outlet property="headerLabel" destination="dyu-RP-j0c" id="Io3-hs-NUf"/>
+                <outlet property="headingView" destination="dMh-RW-ugs" id="yRC-zE-wUp"/>
+            </connections>
+            <point key="canvasLocation" x="383.33333333333337" y="-588.61607142857144"/>
+        </view>
+    </objects>
+</document>

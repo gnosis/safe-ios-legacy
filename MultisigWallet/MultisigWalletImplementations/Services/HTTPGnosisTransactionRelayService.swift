@@ -18,7 +18,7 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
     }
 
     public func estimateSafeCreation(request: EstimateSafeCreationRequest) throws ->
-        EstimateSafeCreationRequest.Response {
+        [EstimateSafeCreationRequest.Estimation] {
             return try httpClient.execute(request: request)
     }
 
@@ -60,7 +60,7 @@ extension EstimateSafeCreationRequest: JSONRequest {
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v2/safes/estimate/" }
 
-    public typealias ResponseType = Response
+    public typealias ResponseType = [Estimation]
 
 }
 

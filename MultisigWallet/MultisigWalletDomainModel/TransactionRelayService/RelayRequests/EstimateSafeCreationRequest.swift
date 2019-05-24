@@ -7,37 +7,27 @@ import Foundation
 /// Request available payment methods with prices for safe creation
 public struct EstimateSafeCreationRequest: Encodable {
 
-    public let ownersNumber: Int
+    public let numberOwners: Int
 
-    public init(ownersNumber: Int) {
-        self.ownersNumber = ownersNumber
+    public init(numberOwners: Int) {
+        self.numberOwners = numberOwners
     }
 
     public struct Estimation: Decodable {
 
-        public let paymentTokenAddress: String
+        public let paymentToken: String
         public let gas: Int
         public let gasPrice: Int
         public let payment: Int
 
-        public init(paymentTokenAddress: String,
+        public init(paymentToken: String,
                     gas: Int,
                     gasPrice: Int,
                     payment: Int) {
-            self.paymentTokenAddress = paymentTokenAddress
+            self.paymentToken = paymentToken
             self.gas = gas
             self.gasPrice = gasPrice
             self.payment = payment
-        }
-
-    }
-
-    public struct Response: Decodable {
-
-        public let estimations: [Estimation]
-
-        public init(estimations: [Estimation]) {
-            self.estimations = estimations
         }
 
     }
