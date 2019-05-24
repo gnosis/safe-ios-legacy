@@ -64,7 +64,7 @@ class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
 
     func test_whenSelectingRow_thenChangesPaymentToken() {
         controller = OnboardingPaymentMethodViewController.create(delegate: delegate,
-                                                                   estimations: [TokenData.Ether, TokenData.gno])
+                                                                  estimations: [TokenData.Ether, TokenData.gno])
         XCTAssertEqual(walletService.feePaymentTokenData, TokenData.Ether)
         selectRow(1)
         XCTAssertEqual(walletService.feePaymentTokenData, TokenData.gno)
@@ -72,7 +72,7 @@ class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
 
     func test_whenSelectingRow_thenUpdatesButtonTitle() {
         controller = OnboardingPaymentMethodViewController.create(delegate: delegate,
-                                                                   estimations: [TokenData.Ether, TokenData.gno])
+                                                                  estimations: [TokenData.Ether, TokenData.gno])
         let ethTitle = String(format: OnboardingPaymentMethodViewController.Strings.payWith, TokenData.Ether.code)
         let gnoTitle = String(format: OnboardingPaymentMethodViewController.Strings.payWith, TokenData.gno.code)
         controller.viewWillAppear(false)

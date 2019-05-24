@@ -93,12 +93,12 @@ public class WalletApplicationService: Assertable {
     ///
     /// - Returns: tokens data to be displayed
     public func estimateSafeCreation() -> [TokenData] {
-        let ownersNumber = selectedWallet!.allOwners().count
-        let request = EstimateSafeCreationRequest(ownersNumber: ownersNumber)
+        let numberOwners = selectedWallet!.allOwners().count
+        let request = EstimateSafeCreationRequest(numberOwners: numberOwners)
         guard let response = try? DomainRegistry.transactionRelayService.estimateSafeCreation(request: request) else {
             return []
         }
-        return response.estimations.compactMap {
+        return response.compactMap {
             guard let token = self.token(id: $0.paymentToken) else { return nil }
             return TokenData(token: token, balance: BigInt($0.payment))
         }

@@ -20,7 +20,7 @@ public protocol TransactionRelayDomainService {
     /// - Returns: response containing estimations info.
     /// - Throws: network error or server error
     func estimateSafeCreation(request: EstimateSafeCreationRequest) throws ->
-        EstimateSafeCreationRequest.Response
+        [EstimateSafeCreationRequest.Estimation]
 
     /// Starts safe deployment. Safe must have enough funds for transaction deployment.
     ///

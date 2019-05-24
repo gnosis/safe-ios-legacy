@@ -29,7 +29,8 @@ class MockTransactionRelayService1: TransactionRelayDomainService {
             return expected_createSafeCreationTransaction[actual_createSafeCreationTransaction.count - 1].response
     }
 
-    func estimateSafeCreation(request: EstimateSafeCreationRequest) throws -> EstimateSafeCreationRequest.Response {
+    func estimateSafeCreation(request: EstimateSafeCreationRequest) throws
+        -> [EstimateSafeCreationRequest.Estimation] {
         preconditionFailure("not implemented")
     }
 
