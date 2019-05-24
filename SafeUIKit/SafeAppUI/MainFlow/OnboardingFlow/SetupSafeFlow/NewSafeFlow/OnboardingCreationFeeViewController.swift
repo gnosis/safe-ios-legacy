@@ -5,25 +5,47 @@
 import Foundation
 import SafeUIKit
 import Common
+import MultisigWalletApplication
+
+protocol OnboardingCreationFeeViewControllerDelegate: class {
+    func deploymentDidCancel()
+    func deploymentDidStart()
+    func deploymentDidFail()
+}
 
 class OnboardingCreationFeeViewController: CardViewController {
 
     let feeRequestView = FeeRequestView()
     let addressDetailView = AddressDetailView()
 
+    weak var delegate: OnboardingCreationFeeViewControllerDelegate?
+
     enum Strings {
 
         static let title = LocalizedString("create_safe_title", comment: "Create Safe")
-        static let subtitle = LocalizedString("safe_creation_fee", comment: "Safe creation fee")
-        static let subtitleDetail = LocalizedString("network_fee_required", comment: "Network fee required")
-        static let addressExplanation = LocalizedString("this_is_your_permanent_address", comment: "This is address")
         static let sendOnlyTokenFormatTemplate = LocalizedString("please_send_x", comment: "Please send %")
+
+        enum FeeRequest {
+            static let subtitle = LocalizedString("safe_creation_fee", comment: "Safe creation fee")
+            static let subtitleDetail = LocalizedString("network_fee_required", comment: "Network fee required")
+        }
+
+        enum Info {
+            static let title = LocalizedString("what_is_safe_creation_fee", comment: "What is safe creation fee?")
+            static let message = LocalizedString("network_fee_creation", comment: "Explanation")
+        }
+
+        enum Insufficient {
+            static let subtitle = LocalizedString("insufficient_funds", comment: "Insufficient funds header.")
+            static let subtitleDetail = LocalizedString("funds_did_not_meet_minimum", comment: "Explanation text.")
+        }
 
     }
 
-    static func create() -> OnboardingCreationFeeViewController {
+    static func create(delegate: OnboardingCreationFeeViewControllerDelegate) -> OnboardingCreationFeeViewController {
         let controller = OnboardingCreationFeeViewController(nibName: String(describing: CardViewController.self),
                                                              bundle: Bundle(for: CardViewController.self))
+        controller.delegate = delegate
         return controller
     }
 
@@ -36,41 +58,152 @@ class OnboardingCreationFeeViewController: CardViewController {
         navigationItem.leftBarButtonItem = .cancelButton(target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = .refreshButton(target: self, action: #selector(refresh))
 
-        setSubtitle(Strings.subtitle)
-        setSubtitleDetail(Strings.subtitleDetail)
+        setSubtitle(Strings.FeeRequest.subtitle)
+        setSubtitleDetail(Strings.FeeRequest.subtitleDetail)
 
-        feeRequestView.feeTextLabel.text = Strings.addressExplanation
+        feeRequestView.feeTextLabel.text = FeeRequestView.Strings.sendFeeRequest
         feeRequestView.balanceStackView.isHidden = true
         feeRequestView.feeAmountLabel.amount = TokenData.Ether.withBalance(nil)
 
-        addressDetailView.headerLabel.isHidden = true
-        addressDetailView.address = "0xf1511FAB6b7347899f51f9db027A32b39caE3910"
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
 
-        let feeTokenCode = "OWL"
-        addressDetailView.footnoteLabel.text = String(format: Strings.sendOnlyTokenFormatTemplate, feeTokenCode)
+        addressDetailView.headerLabel.isHidden = true
+        addressDetailView.footnoteLabel.isHidden = true
+        addressDetailView.isHidden = true
 
         footerButton.isHidden = true
+
+        start()
+    }
+
+    func setFootnoteTokenCode(_ code: String) {
+        addressDetailView.footnoteLabel.text = String(format: Strings.sendOnlyTokenFormatTemplate, code)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.createSafe)
+        trackEvent(OnboardingTrackingEvent.creationFee)
+    }
+
+    func start() {
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        DispatchQueue.global().async { [unowned self] in
+            ApplicationServiceRegistry.walletService.deployWallet(subscriber: self) { [unowned self] error in
+                DispatchQueue.main.async {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                    self.handleError(error)
+                }
+            }
+        }
+    }
+
+    func handleError(_ error: Error) {
+        let canRetry = isRetriableError(error)
+        let controller = SafeCreationFailedAlertController
+            .create(message: error.localizedDescription) { [unowned self] in
+                if !canRetry {
+                    self.dismiss(animated: true) {
+                        self.delegate?.deploymentDidFail()
+                    }
+                }
+        }
+        present(controller, animated: true, completion: nil)
+    }
+
+    func isRetriableError(_ error: Error) -> Bool {
+        switch error {
+        case let nsError as NSError where nsError.domain == NSURLErrorDomain:
+            fallthrough
+        case WalletApplicationServiceError.clientError,
+             WalletApplicationServiceError.networkError,
+             EthereumApplicationService.Error.clientError,
+             EthereumApplicationService.Error.networkError:
+            return true
+        default:
+            return false
+        }
     }
 
     @objc func cancel() {
-        // not implemented
+        let controller = AbortSafeCreationAlertController.create(abort: { [unowned self] in
+            self.dismiss(animated: true) {
+                ApplicationServiceRegistry.walletService.abortDeployment()
+                self.delegate?.deploymentDidCancel()
+            }
+            }, continue: { [unowned self] in
+                self.dismiss(animated: true, completion: nil)
+        })
+        present(controller, animated: true, completion: nil)
     }
 
     @objc func refresh() {
-        // not implemented
+        start()
     }
 
     @objc func share() {
-        // not implemented
-    }
-
-    @objc func tapFooter() {
-        // not implemented
+        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+        let activityController = UIActivityViewController(activityItems: [address], applicationActivities: nil)
+        self.present(activityController, animated: true)
     }
 
     override func showNetworkFeeInfo() {
-        // not implemented
+        // TODO: is it the one? NO! need to change texts!
+        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
     }
 
 }
+
+extension OnboardingCreationFeeViewController: EventSubscriber {
+
+    func notify() {
+        let walletState = ApplicationServiceRegistry.walletService.walletState()!
+        switch walletState {
+        case .draft, .deploying:
+            // started, but has nothing to show
+            break
+        case .waitingForFirstDeposit:
+            let fee = ApplicationServiceRegistry.walletService.feePaymentTokenData
+            feeRequestView.feeAmountLabel.amount = fee
+            addressDetailView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+            setFootnoteTokenCode(fee.code)
+            addressDetailView.footnoteLabel.isHidden = false
+            addressDetailView.isHidden = false
+        case .notEnoughFunds:
+            let required = ApplicationServiceRegistry.walletService.feePaymentTokenData
+            let received = ApplicationServiceRegistry.walletService
+                .accountBalance(tokenID: BaseID(required.address)) ?? 0
+            let remaining = required.balance == nil ? nil : (required.balance! - received)
+
+            setSubtitle(Strings.Insufficient.subtitle, showError: true)
+            setSubtitleDetail(Strings.Insufficient.subtitleDetail)
+
+            feeRequestView.balanceStackView.isHidden = false
+            feeRequestView.balanceLineAmountLabel.amount = required.withBalance(received)
+            feeRequestView.totalLineAmountLabel.amount = required
+            feeRequestView.feeAmountLabel.amount = required.withBalance(remaining)
+        case .creationStarted,
+             .transactionHashIsKnown,
+             .finalizingDeployment,
+             .readyToUse:
+            // fee was enough, the creation started.
+            // point of no return (or cancelling)
+            navigationItem.leftBarButtonItem?.isEnabled = false
+            delegate?.deploymentDidStart()
+        }
+    }
+
+}
+
+//case .transactionHashIsKnown:
+//// etherscan link is now available
+//break
+//case .finalizingDeployment:
+//// waiting for last transaction to be mined
+//// now nnew info
+//break
+//case .readyToUse:
+//// safe created
+//// exit with success (delegate!)
+//break
+//}

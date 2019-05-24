@@ -12,6 +12,12 @@
 /* Agree */
 "agree" = "Agree";
 
+/* Needed */
+"amount_needed" = "amount_needed";
+
+/* Received */
+"amount_received" = "amount_received";
+
 /* App slogan */
 "app_slogan" = "Enter the decentralized web.";
 
@@ -142,6 +148,9 @@
 /* Fee Payment Method */
 "fee_payment_method" = "Fee Payment Method";
 
+/* Explanation text. */
+"funds_did_not_meet_minimum" = "funds_did_not_meet_minimum";
+
 /* Feedback and FAQ menu item */
 "give_feedback" = "Give Feedback";
 
@@ -166,7 +175,8 @@
 /* Scan its QR code. */
 "install_browser_extension" = "2. Install browser extension on your desktop computer and scan its QR code.";
 
-/* Insufficient funds header for safe creation screen. */
+/* Insufficient funds header for safe creation screen.
+   Insufficient funds header. */
 "insufficient_funds" = "Insufficient funds";
 
 /* Network error message */
@@ -389,7 +399,8 @@
    Title for menu screen. */
 "menu" = "Menu";
 
-/* Safe creation fee description */
+/* Explanation
+   Safe creation fee description */
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
 
 /* Network fee description
@@ -523,6 +534,9 @@
 /* Title for security section. */
 "security" = "Security";
 
+/* Send the remainder */
+"send_remainder" = "send_remainder";
+
 /* Required minimum header for safe creation screen. */
 "send_this_amount" = "Send at least this amount to your new Safe:";
 
@@ -633,6 +647,7 @@
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
-/* What is the Safe creation fee? */
+/* What is safe creation fee?
+   What is the Safe creation fee? */
 "what_is_safe_creation_fee" = "What is the Safe creation fee?";
 

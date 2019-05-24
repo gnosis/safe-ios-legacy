@@ -278,9 +278,7 @@ class SafeCreationViewController: UIViewController {
     }
 
     private func notifyUser(error: String) {
-        let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) {
-            // empty
-        }
+        let controller = SafeCreationFailedAlertController.create(message: error)
         present(controller, animated: true, completion: nil)
     }
 

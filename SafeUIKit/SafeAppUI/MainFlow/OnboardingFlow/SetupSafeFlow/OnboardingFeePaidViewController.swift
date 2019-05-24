@@ -24,4 +24,16 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         setImage(Asset.Onboarding.creatingSafe.image)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.safeFeePaid)
+        trackEvent(OnboardingTrackingEvent.feePaid)
+    }
+
+    // start() on viewDidLoad()
+    //  on error: show error alert. If retryable - retry enabled. If not - call delegate.
+    //  on having tx - enable 'show progress'
+    //  on success - delegate success
+    //  animate progress! animate completion!
+
 }

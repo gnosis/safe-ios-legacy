@@ -7,12 +7,14 @@ import MultisigWalletApplication
 
 class SafeAlertController: UIAlertController {
 
+    // This can be a global function!
     static func wrap<T>(closure: @escaping () -> Void) -> (T) -> Void {
         return { _ in closure() }
     }
 
 }
 
+// TODO: simplify, maybe it is not needed at all! Just another factory method
 class AbortSafeCreationAlertController: SafeAlertController {
 
     private enum Strings {

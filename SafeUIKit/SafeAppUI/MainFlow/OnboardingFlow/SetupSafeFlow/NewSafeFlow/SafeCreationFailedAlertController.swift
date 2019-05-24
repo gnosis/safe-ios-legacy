@@ -16,8 +16,7 @@ class SafeCreationFailedAlertController: SafeAlertController {
 
     }
 
-    static func create(localizedErrorDescription message: String,
-                       ok: @escaping () -> Void) -> SafeCreationFailedAlertController {
+    static func create(message: String, ok: @escaping () -> Void = {}) -> SafeCreationFailedAlertController {
         let controller = SafeCreationFailedAlertController(title: Strings.title,
                                                            message: String(format: Strings.message, message),
                                                            preferredStyle: .alert)

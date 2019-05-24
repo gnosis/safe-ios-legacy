@@ -35,32 +35,6 @@ class NewSafeFlowCoordinator: FlowCoordinator {
 
 }
 
-// FIXME: deprecated
-extension NewSafeFlowCoordinator: NewSafeDelegate {
-
-    func didSelectPaperWalletSetup() {
-    }
-
-    func didSelectBrowserExtensionSetup() {
-    }
-
-
-    func didSelectNext() {
-    }
-
-}
-// FIXME: deprecated
-extension NewSafeFlowCoordinator {
-
-    func enterAndComeBack(from coordinator: FlowCoordinator) {
-        saveCheckpoint()
-        enter(flow: coordinator) {
-            self.popToLastCheckpoint()
-        }
-    }
-
-}
-
 extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
 
     func didPressNext() {
@@ -68,7 +42,6 @@ extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
     }
 
 }
-
 
 extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
 
@@ -97,16 +70,17 @@ extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate
     func showPayment() {
         push(OnboardingCreationFeeIntroViewController.create(delegate: self))
     }
+
 }
 
 extension NewSafeFlowCoordinator: CreationFeeIntroDelegate {
 
-    func creationFeeIntroPay() {
-        push(SafeCreationViewController.create(delegate: self))
-    }
-
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
         push(OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations))
+    }
+
+    func creationFeeIntroPay() {
+        push(OnboardingCreationFeeViewController.create(delegate: self))
     }
 
 }
@@ -119,28 +93,19 @@ extension NewSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 
 }
 
-extension NewSafeFlowCoordinator: SafeCreationViewControllerDelegate {
+extension NewSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate {
 
-    func deploymentDidFail(_ error: String) {
-        let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) { [unowned self] in
-            self.dismissModal()
-            self.popToLastCheckpoint()
-        }
-        presentModally(controller)
+    func deploymentDidFail() {
+        popToLastCheckpoint()
     }
 
-    func deploymentDidSuccess() {
-        exitFlow()
+    func deploymentDidStart() {
+        // TODO: no 'back' button... applicationRootViewController!
+        push(OnboardingFeePaidViewController.create())
     }
 
     func deploymentDidCancel() {
-        let controller = AbortSafeCreationAlertController.create(abort: { [unowned self] in
-            self.dismissModal()
-            self.popToLastCheckpoint()
-        }, continue: { [unowned self] in
-            self.dismissModal()
-        })
-        presentModally(controller)
+        popToLastCheckpoint()
     }
 
 }

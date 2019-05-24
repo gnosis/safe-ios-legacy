@@ -12,17 +12,27 @@ class FeeRequestView: BaseCustomView {
 
     @IBOutlet weak var balanceStackView: UIStackView!
 
+    // TODO: rename to amountReceived
     @IBOutlet weak var balanceLineStackView: UIStackView!
     @IBOutlet weak var balanceLineLabel: UILabel!
     @IBOutlet weak var balanceLineAmountLabel: AmountLabel!
 
+    // TODO: rename to amountNeded
     @IBOutlet weak var totalLineStackView: UIStackView!
     @IBOutlet weak var totalLineLabel: UILabel!
     @IBOutlet weak var totalLineAmountLabel: AmountLabel!
 
+    // TODO: rename to remainder
     @IBOutlet weak var feeStackView: UIStackView!
     @IBOutlet weak var feeTextLabel: UILabel!
     @IBOutlet weak var feeAmountLabel: AmountLabel!
+
+    enum Strings {
+        static let received = LocalizedString("amount_received", comment: "Received")
+        static let needed = LocalizedString("amount_needed", comment: "Needed")
+        static let sendFeeRequest = LocalizedString("this_is_your_permanent_address", comment: "This is address")
+        static let sendRemainderRequest = LocalizedString("send_remainder", comment: "Send the remainder")
+    }
 
     override func commonInit() {
         safeUIKit_loadFromNib(forClass: FeeRequestView.self)
