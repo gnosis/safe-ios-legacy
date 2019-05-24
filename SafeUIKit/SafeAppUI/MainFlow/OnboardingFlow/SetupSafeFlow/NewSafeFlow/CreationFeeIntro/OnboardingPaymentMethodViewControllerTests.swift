@@ -7,15 +7,15 @@ import XCTest
 import CommonTestSupport
 import Common
 
-class CreationFeePaymentMethodViewControllerTests: SafeTestCase {
+class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
 
-    var controller: CreationFeePaymentMethodViewController!
+    var controller: OnboardingPaymentMethodViewController!
     // swiftlint:disable:next weak_delegate
     let delegate = MockCreationFeePaymentMethodDelegate()
 
     override func setUp() {
         super.setUp()
-        controller = CreationFeePaymentMethodViewController.create(delegate: delegate, estimations: [])
+        controller = OnboardingPaymentMethodViewController.create(delegate: delegate, estimations: [])
     }
 
     func test_tracking() {
@@ -44,7 +44,7 @@ class CreationFeePaymentMethodViewControllerTests: SafeTestCase {
     }
 
     func test_whenEstimationsAreKnown_thenDoesNotSetLoadingTitle() {
-        controller = CreationFeePaymentMethodViewController.create(delegate: delegate, estimations: [TokenData.Ether])
+        controller = OnboardingPaymentMethodViewController.create(delegate: delegate, estimations: [TokenData.Ether])
         controller.viewDidLoad()
         XCTAssertNil(controller.navigationItem.titleView)
     }
@@ -63,7 +63,7 @@ class CreationFeePaymentMethodViewControllerTests: SafeTestCase {
     }
 
     func test_whenSelectingRow_thenChangesPaymentToken() {
-        controller = CreationFeePaymentMethodViewController.create(delegate: delegate,
+        controller = OnboardingPaymentMethodViewController.create(delegate: delegate,
                                                                    estimations: [TokenData.Ether, TokenData.gno])
         XCTAssertEqual(walletService.feePaymentTokenData, TokenData.Ether)
         selectRow(1)
@@ -71,10 +71,10 @@ class CreationFeePaymentMethodViewControllerTests: SafeTestCase {
     }
 
     func test_whenSelectingRow_thenUpdatesButtonTitle() {
-        controller = CreationFeePaymentMethodViewController.create(delegate: delegate,
+        controller = OnboardingPaymentMethodViewController.create(delegate: delegate,
                                                                    estimations: [TokenData.Ether, TokenData.gno])
-        let ethTitle = String(format: CreationFeePaymentMethodViewController.Strings.payWith, TokenData.Ether.code)
-        let gnoTitle = String(format: CreationFeePaymentMethodViewController.Strings.payWith, TokenData.gno.code)
+        let ethTitle = String(format: OnboardingPaymentMethodViewController.Strings.payWith, TokenData.Ether.code)
+        let gnoTitle = String(format: OnboardingPaymentMethodViewController.Strings.payWith, TokenData.gno.code)
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.payButton.title(for: .normal), ethTitle)
         selectRow(1)
@@ -87,7 +87,7 @@ class CreationFeePaymentMethodViewControllerTests: SafeTestCase {
     }
 
     private func updateWithKnownEstimations() {
-        controller = CreationFeePaymentMethodViewController.create(delegate: delegate, estimations: [TokenData.Ether])
+        controller = OnboardingPaymentMethodViewController.create(delegate: delegate, estimations: [TokenData.Ether])
         controller.updateData()
         delay()
     }

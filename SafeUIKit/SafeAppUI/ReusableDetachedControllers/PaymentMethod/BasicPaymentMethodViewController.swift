@@ -66,7 +66,7 @@ class BasicPaymentMethodViewController: UIViewController {
         preconditionFailure("To override")
     }
 
-    /// Used for CreationFeeIntroViewController, CreationFeePaymentMethodViewController.
+    /// Used for OnboardingCreationFeeIntroViewController, OnboardingPaymentMethodViewController.
     /// Updates view model and reloads table view.
     ///
     /// - Parameter estimations: operation estimations in different payment methods.

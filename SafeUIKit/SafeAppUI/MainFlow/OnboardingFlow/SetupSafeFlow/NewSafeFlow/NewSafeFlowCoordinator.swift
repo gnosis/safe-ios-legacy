@@ -75,7 +75,7 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectNext() {
-        push(CreationFeeIntroViewController.create(delegate: self))
+        push(OnboardingCreationFeeIntroViewController.create(delegate: self))
     }
 
 }
@@ -87,7 +87,7 @@ extension NewSafeFlowCoordinator: CreationFeeIntroDelegate {
     }
 
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
-        push(CreationFeePaymentMethodViewController.create(delegate: self, estimations: estimations))
+        push(OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations))
     }
 
 }

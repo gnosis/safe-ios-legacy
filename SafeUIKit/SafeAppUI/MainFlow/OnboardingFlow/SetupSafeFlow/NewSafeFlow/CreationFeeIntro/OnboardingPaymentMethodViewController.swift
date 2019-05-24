@@ -11,7 +11,7 @@ protocol CreationFeePaymentMethodDelegate: class {
     func creationFeePaymentMethodPay()
 }
 
-class CreationFeePaymentMethodViewController: BasicPaymentMethodViewController {
+class OnboardingPaymentMethodViewController: BasicPaymentMethodViewController {
 
     private weak var delegate: CreationFeePaymentMethodDelegate!
     private var didUpdateOnce = false
@@ -33,8 +33,8 @@ class CreationFeePaymentMethodViewController: BasicPaymentMethodViewController {
     }
 
     static func create(delegate: CreationFeePaymentMethodDelegate,
-                       estimations: [TokenData]) -> CreationFeePaymentMethodViewController {
-        let controller = CreationFeePaymentMethodViewController()
+                       estimations: [TokenData]) -> OnboardingPaymentMethodViewController {
+        let controller = OnboardingPaymentMethodViewController()
         controller.delegate = delegate
         controller.tokens = estimations
         return controller

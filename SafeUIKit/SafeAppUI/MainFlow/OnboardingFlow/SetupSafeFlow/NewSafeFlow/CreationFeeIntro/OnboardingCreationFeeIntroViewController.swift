@@ -12,7 +12,7 @@ protocol CreationFeeIntroDelegate: class {
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData])
 }
 
-class CreationFeeIntroViewController: BasicPaymentMethodViewController {
+class OnboardingCreationFeeIntroViewController: BasicPaymentMethodViewController {
 
     enum Strings {
         static let title = LocalizedString("create_safe_title", comment: "Create Safe")
@@ -25,8 +25,8 @@ class CreationFeeIntroViewController: BasicPaymentMethodViewController {
 
     private weak var delegate: CreationFeeIntroDelegate!
 
-    static func create(delegate: CreationFeeIntroDelegate) -> CreationFeeIntroViewController {
-        let controller = CreationFeeIntroViewController()
+    static func create(delegate: CreationFeeIntroDelegate) -> OnboardingCreationFeeIntroViewController {
+        let controller = OnboardingCreationFeeIntroViewController()
         controller.delegate = delegate
         return controller
     }

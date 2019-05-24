@@ -7,15 +7,15 @@ import XCTest
 import CommonTestSupport
 import Common
 
-class CreationFeeIntroViewControllerTests: SafeTestCase {
+class OnboardingCreationFeeIntroViewControllerTests: SafeTestCase {
 
-    var controller: CreationFeeIntroViewController!
+    var controller: OnboardingCreationFeeIntroViewController!
     // swiftlint:disable:next weak_delegate
     let delegate = MockCreationFeeIntroDelegate()
 
     override func setUp() {
         super.setUp()
-        controller = CreationFeeIntroViewController.create(delegate: delegate)
+        controller = OnboardingCreationFeeIntroViewController.create(delegate: delegate)
     }
 
     func test_whenCreated_thenFetchesEstimationData() {
@@ -33,7 +33,7 @@ class CreationFeeIntroViewControllerTests: SafeTestCase {
         let headerView = controller.tableView(controller.tableView,
                                               viewForHeaderInSection: 0) as! CreationFeeIntroHeaderView
         headerView.onTextSelected!()
-        XCTAssertAlertShown(message: CreationFeeIntroViewController.Strings.Alert.description, actionCount: 1)
+        XCTAssertAlertShown(message: OnboardingCreationFeeIntroViewController.Strings.Alert.description, actionCount: 1)
     }
 
     func test_whenChoosingToPay_thenCallsDelegate() {
