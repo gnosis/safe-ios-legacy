@@ -7,7 +7,7 @@ import SafeUIKit
 import Common
 import MultisigWalletApplication
 
-class BasicPaymentMethodViewController: UIViewController {
+class BasePaymentMethodViewController: UIViewController {
 
     var tokens = [TokenData]()
     var paymentToken: TokenData!
@@ -50,6 +50,7 @@ class BasicPaymentMethodViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+        paymentToken = ApplicationServiceRegistry.walletService.feePaymentTokenData
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -58,12 +59,12 @@ class BasicPaymentMethodViewController: UIViewController {
     }
 
     func registerHeaderAndFooter() {
-        preconditionFailure("To override")
+        // to override
     }
 
     /// Called on viewWillAppear and on refresh triggering.
     @objc func updateData() {
-        preconditionFailure("To override")
+        // to override
     }
 
     /// Used for OnboardingCreationFeeIntroViewController, OnboardingPaymentMethodViewController.
@@ -89,7 +90,7 @@ class BasicPaymentMethodViewController: UIViewController {
 
 // MARK: - Table view data source
 
-extension BasicPaymentMethodViewController: UITableViewDataSource {
+extension BasePaymentMethodViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tokens.count
@@ -129,7 +130,7 @@ extension BasicPaymentMethodViewController: UITableViewDataSource {
 
 // MARK: - Table view delegate
 
-extension BasicPaymentMethodViewController: UITableViewDelegate {
+extension BasePaymentMethodViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

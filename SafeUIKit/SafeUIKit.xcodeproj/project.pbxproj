@@ -304,6 +304,7 @@
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		552C01972297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C01962297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift */; };
+		552C01992297E10F001A158D /* BasePaymentMethodViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C01982297E10F001A158D /* BasePaymentMethodViewControllerTests.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -370,7 +371,7 @@
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
 		55AA3C2F229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C2E229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift */; };
-		55AA3C3122956E01007B3105 /* BasicPaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C3022956E01007B3105 /* BasicPaymentMethodViewController.swift */; };
+		55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C3022956E01007B3105 /* BasePaymentMethodViewController.swift */; };
 		55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */; };
 		55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55AA3C4922959151007B3105 /* PaymentMethodFooterView.xib */; };
 		55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */; };
@@ -891,6 +892,7 @@
 		5527A807208E357B00AF3A50 /* ScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		552C01962297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPaymentMethodViewControllerTests.swift; sourceTree = "<group>"; };
+		552C01982297E10F001A158D /* BasePaymentMethodViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaymentMethodViewControllerTests.swift; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -955,7 +957,7 @@
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55AA3C2E229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeIntroViewControllerTests.swift; sourceTree = "<group>"; };
-		55AA3C3022956E01007B3105 /* BasicPaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicPaymentMethodViewController.swift; sourceTree = "<group>"; };
+		55AA3C3022956E01007B3105 /* BasePaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaymentMethodViewController.swift; sourceTree = "<group>"; };
 		55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodFooterView.swift; sourceTree = "<group>"; };
 		55AA3C4922959151007B3105 /* PaymentMethodFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentMethodFooterView.xib; sourceTree = "<group>"; };
 		55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSafeCommand.swift; sourceTree = "<group>"; };
@@ -1901,13 +1903,14 @@
 		5549B2A322859EFB00F3B5B7 /* PaymentMethod */ = {
 			isa = PBXGroup;
 			children = (
+				55AA3C3022956E01007B3105 /* BasePaymentMethodViewController.swift */,
+				552C01982297E10F001A158D /* BasePaymentMethodViewControllerTests.swift */,
+				55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */,
+				5549B2A422859F4700F3B5B7 /* PaymentMethodHeaderView.swift */,
 				551D778E22819D2A003B7910 /* PaymentMethodViewController.swift */,
 				5549B2A122857F7500F3B5B7 /* PaymentMethodViewControllerTests.swift */,
-				5549B2A422859F4700F3B5B7 /* PaymentMethodHeaderView.swift */,
-				5549B2A622859F5F00F3B5B7 /* PaymentMethodHeaderView.xib */,
-				55AA3C3022956E01007B3105 /* BasicPaymentMethodViewController.swift */,
-				55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */,
 				55AA3C4922959151007B3105 /* PaymentMethodFooterView.xib */,
+				5549B2A622859F5F00F3B5B7 /* PaymentMethodHeaderView.xib */,
 			);
 			path = PaymentMethod;
 			sourceTree = "<group>";
@@ -2875,7 +2878,7 @@
 				551D778F22819D2A003B7910 /* PaymentMethodViewController.swift in Sources */,
 				0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */,
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
-				55AA3C3122956E01007B3105 /* BasicPaymentMethodViewController.swift in Sources */,
+				55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */,
 				0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				5598000B225B74A4006D5792 /* Authenticator.swift in Sources */,
@@ -3025,6 +3028,7 @@
 				0A2D588E225761DC001B8BF4 /* XCTest+Tracking.swift in Sources */,
 				0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */,
 				0A2D58BE22578A68001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift in Sources */,
+				552C01992297E10F001A158D /* BasePaymentMethodViewControllerTests.swift in Sources */,
 				0A4EEA6D20D1112F005CDAC0 /* MenuTableViewControllerTests.swift in Sources */,
 				0AF8D55720D01A90001E8423 /* AssetViewViewControllerTests.swift in Sources */,
 				0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */,

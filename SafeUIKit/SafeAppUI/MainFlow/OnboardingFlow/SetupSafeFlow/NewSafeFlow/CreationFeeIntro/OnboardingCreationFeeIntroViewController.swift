@@ -12,7 +12,7 @@ protocol CreationFeeIntroDelegate: class {
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData])
 }
 
-class OnboardingCreationFeeIntroViewController: BasicPaymentMethodViewController {
+class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController {
 
     enum Strings {
         static let title = LocalizedString("create_safe_title", comment: "Create Safe")

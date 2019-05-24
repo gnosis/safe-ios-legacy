@@ -11,7 +11,7 @@ protocol CreationFeePaymentMethodDelegate: class {
     func creationFeePaymentMethodPay()
 }
 
-class OnboardingPaymentMethodViewController: BasicPaymentMethodViewController {
+class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
 
     private weak var delegate: CreationFeePaymentMethodDelegate!
     private var didUpdateOnce = false

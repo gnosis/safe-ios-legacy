@@ -54,23 +54,6 @@ class OnboardingCreationFeeIntroViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.didSelectToChangePaymentMethod)
     }
 
-    func test_whenUpdatingEstimations_thenSetsPaymentMethodEstimatedTokenData() {
-        walletService.feePaymentTokenData_output = TokenData.mgn.withBalance(1)
-        let estimation1 = TokenData.gno.withBalance(100)
-        let estimation2 = TokenData.mgn.withBalance(100)
-        controller.update(with: [estimation1, estimation2])
-        XCTAssertEqual(controller.paymentToken, estimation2)
-    }
-
-    func test_whenEstimationsDoesNotContainSelectedPaymentMethod_thenSetsSelectedMethodToEth() {
-        walletService.feePaymentTokenData_output = TokenData.mgn.withBalance(1)
-        let estimation1 = TokenData.Ether.withBalance(100)
-        let estimation2 = TokenData.gno.withBalance(100)
-        controller.update(with: [estimation1, estimation2])
-        XCTAssertEqual(controller.paymentToken, estimation1)
-        XCTAssertEqual(walletService.feePaymentTokenData, TokenData.Ether)
-    }
-
 }
 
 class MockCreationFeeIntroDelegate: CreationFeeIntroDelegate {
