@@ -393,6 +393,7 @@
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
 
 /* Network fee description
+   Network fee required
    Required minimum description for safe creation screen. */
 "network_fee_required" = "A network fee is required to create your new Safe.";
 

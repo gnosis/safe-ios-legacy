@@ -29,7 +29,6 @@ class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
         XCTAssertTrue(walletService.didCallEstimateSafeCreation)
     }
 
-
     func test_whenUpdatingTheFirstTimeWithKnownEstimations_thenDoesNotFetchEstimations() {
         XCTAssertFalse(walletService.didCallEstimateSafeCreation)
         updateWithKnownEstimations()

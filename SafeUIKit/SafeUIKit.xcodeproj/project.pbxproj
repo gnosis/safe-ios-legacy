@@ -31,7 +31,6 @@
 		0A2C0E192296F2E3008A30AC /* FeeRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E052296F2E3008A30AC /* FeeRequestView.swift */; };
 		0A2C0E1A2296F2E3008A30AC /* AddressDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C0E062296F2E3008A30AC /* AddressDetailView.xib */; };
 		0A2C0E1B2296F2E3008A30AC /* FeeRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C0E072296F2E3008A30AC /* FeeRequestView.xib */; };
-		0A2C0E1D2296F303008A30AC /* OnboardingCreationFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E1C2296F303008A30AC /* OnboardingCreationFeeViewController.swift */; };
 		0A2C0E2A2297DCFF008A30AC /* FeePaidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E282297DCFF008A30AC /* FeePaidViewController.swift */; };
 		0A2C0E2B2297DCFF008A30AC /* FeePaidViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C0E292297DCFF008A30AC /* FeePaidViewController.xib */; };
 		0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E3A2297E11C008A30AC /* OnboardingFeePaidViewController.swift */; };
@@ -620,7 +619,6 @@
 		0A2C0E052296F2E3008A30AC /* FeeRequestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeeRequestView.swift; sourceTree = "<group>"; };
 		0A2C0E062296F2E3008A30AC /* AddressDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressDetailView.xib; sourceTree = "<group>"; };
 		0A2C0E072296F2E3008A30AC /* FeeRequestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeeRequestView.xib; sourceTree = "<group>"; };
-		0A2C0E1C2296F303008A30AC /* OnboardingCreationFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeViewController.swift; sourceTree = "<group>"; };
 		0A2C0E282297DCFF008A30AC /* FeePaidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeePaidViewController.swift; sourceTree = "<group>"; };
 		0A2C0E292297DCFF008A30AC /* FeePaidViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeePaidViewController.xib; sourceTree = "<group>"; };
 		0A2C0E3A2297E11C008A30AC /* OnboardingFeePaidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeePaidViewController.swift; sourceTree = "<group>"; };
@@ -1581,7 +1579,6 @@
 		0AB2012C229812F80071510A /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				0A2C0E1C2296F303008A30AC /* OnboardingCreationFeeViewController.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -2996,7 +2993,6 @@
 				0A2D587E225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift in Sources */,
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
-				0A2C0E1D2296F303008A30AC /* OnboardingCreationFeeViewController.swift in Sources */,
 				0A2D58862257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift in Sources */,
 				55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */,
 				0A553D4321C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift in Sources */,

@@ -13,10 +13,6 @@ public struct EstimateSafeCreationRequest: Encodable {
         self.numberOwners = numberOwners
     }
 
-    enum CodingKeys: String, CodingKey {
-        case ownersNumber = "numberOwners"
-    }
-
     public struct Estimation: Decodable {
 
         public let paymentToken: String

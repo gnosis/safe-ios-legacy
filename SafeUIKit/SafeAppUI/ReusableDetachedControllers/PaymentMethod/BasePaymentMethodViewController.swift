@@ -76,7 +76,7 @@ class BasePaymentMethodViewController: UIViewController {
         var paymentMethodData = ApplicationServiceRegistry.walletService.feePaymentTokenData
         var estimationBalance = estimations.first { $0.address == paymentMethodData.address }?.balance
         if estimationBalance == nil && !estimations.isEmpty {
-            // Selected wallet payment method is not amoung estimations. As a fallback we set payment method to Eth.
+            // Selected wallet payment method is not among estimations. As a fallback we set payment method to Eth.
             ApplicationServiceRegistry.walletService.changePaymentToken(TokenData.Ether)
             paymentMethodData = ApplicationServiceRegistry.walletService.feePaymentTokenData
             estimationBalance = estimations.first { $0.address == paymentMethodData.address }!.balance
