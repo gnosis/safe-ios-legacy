@@ -10,6 +10,7 @@ import Common
 class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
 
     var controller: OnboardingPaymentMethodViewController!
+
     // swiftlint:disable:next weak_delegate
     let delegate = MockCreationFeePaymentMethodDelegate()
 
