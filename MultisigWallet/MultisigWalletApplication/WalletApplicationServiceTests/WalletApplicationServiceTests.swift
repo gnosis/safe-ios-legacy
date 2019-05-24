@@ -171,12 +171,12 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
 extension EstimateSafeCreationRequest.Estimation {
 
-    static let gno = EstimateSafeCreationRequest.Estimation(paymentTokenAddress: Token.gno.address.value,
+    static let gno = EstimateSafeCreationRequest.Estimation(paymentToken: Token.gno.address.value,
                                                             gas: 1_000,
                                                             gasPrice: 100,
                                                             payment: 1)
 
-    static let mgn = EstimateSafeCreationRequest.Estimation(paymentTokenAddress: Token.mgn.address.value,
+    static let mgn = EstimateSafeCreationRequest.Estimation(paymentToken: Token.mgn.address.value,
                                                             gas: 10_000,
                                                             gasPrice: 1_000,
                                                             payment: 10)

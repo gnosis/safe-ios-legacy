@@ -20,11 +20,11 @@ public struct EstimateSafeCreationRequest: Encodable {
         public let gasPrice: Int
         public let payment: Int
 
-        public init(paymentTokenAddress: String,
+        public init(paymentToken: String,
                     gas: Int,
                     gasPrice: Int,
                     payment: Int) {
-            self.paymentToken = paymentTokenAddress
+            self.paymentToken = paymentToken
             self.gas = gas
             self.gasPrice = gasPrice
             self.payment = payment

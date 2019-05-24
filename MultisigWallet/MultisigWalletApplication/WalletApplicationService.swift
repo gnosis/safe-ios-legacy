@@ -99,7 +99,7 @@ public class WalletApplicationService: Assertable {
             return []
         }
         return response.estimations.compactMap {
-            guard let token = self.token(id: $0.paymentTokenAddress) else { return nil }
+            guard let token = self.token(id: $0.paymentToken) else { return nil }
             return TokenData(token: token, balance: BigInt($0.payment))
         }
     }
