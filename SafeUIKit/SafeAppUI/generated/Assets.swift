@@ -58,6 +58,7 @@ enum Asset {
   }
   enum Onboarding {
     static let browserExtensionQr = ImageAsset(name: "browser-extension-qr")
+    static let creatingSafe = ImageAsset(name: "creatingSafe")
     static let errorIcon = ImageAsset(name: "error-icon")
     static let ironSafe = ImageAsset(name: "iron-safe")
     static let noSafes = ImageAsset(name: "no-safes")
@@ -116,6 +117,7 @@ enum Asset {
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
     Onboarding.browserExtensionQr,
+    Onboarding.creatingSafe,
     Onboarding.errorIcon,
     Onboarding.ironSafe,
     Onboarding.noSafes,

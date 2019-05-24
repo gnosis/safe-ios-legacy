@@ -84,7 +84,8 @@
    Title for safe creation screen. */
 "create_safe_title" = "Create Safe";
 
-/* Creating safe header for safe creation screen. */
+/* Creating safe
+   Creating safe header for safe creation screen. */
 "creating_your_new_safe" = "Creating your new Safe…";
 
 /* Current password */
@@ -463,7 +464,8 @@
    Recover safe */
 "recover_safe_title" = "Recover Safe";
 
-/* Header label for progress screen */
+/* Header label for progress screen
+   Recovering safe */
 "recovering_safe" = "Recovering your Safe…";
 
 /* Title for setup recovery phrase screen. */
@@ -589,8 +591,12 @@
 /* Explanation text */
 "transaction_has_been_submitted" = "Your transaction has been submitted.";
 
-/* This can take a while... */
+/* This can take a while...
+   Transaction submitted */
 "transaction_submitted_safe_being_created" = "Your transaction was submitted. Your Safe will be created now. This might take a couple of minutes.";
+
+/* Transaction submitted */
+"transaction_submitted_safe_being_recovered" = "Your transaction was submitted. Your Safe will be recovered now. This might take a couple of minutes.";
 
 /* Outgoing transafer */
 "transaction_type_asset_transfer" = "Outgoing transfer";
