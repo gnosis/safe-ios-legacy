@@ -19,6 +19,7 @@ class OnboardingCreationFeeViewController: CardViewController {
     let addressDetailView = AddressDetailView()
 
     weak var delegate: OnboardingCreationFeeViewControllerDelegate?
+    var creationProcessTracker = CreationProcessTracker()
 
     enum Strings {
 
@@ -56,7 +57,13 @@ class OnboardingCreationFeeViewController: CardViewController {
 
         navigationItem.title = Strings.title
         navigationItem.leftBarButtonItem = .cancelButton(target: self, action: #selector(cancel))
-        navigationItem.rightBarButtonItem = .refreshButton(target: self, action: #selector(refresh))
+
+        let retryItem = UIBarButtonItem.refreshButton(target: creationProcessTracker,
+                                                      action: #selector(creationProcessTracker.start))
+        navigationItem.rightBarButtonItem = retryItem
+        creationProcessTracker.retryItem = retryItem
+        creationProcessTracker.viewController = self
+        creationProcessTracker.onFailure = delegate?.deploymentDidFail
 
         setSubtitle(Strings.FeeRequest.subtitle)
         setSubtitleDetail(Strings.FeeRequest.subtitleDetail)
@@ -73,7 +80,7 @@ class OnboardingCreationFeeViewController: CardViewController {
 
         footerButton.isHidden = true
 
-        start()
+        creationProcessTracker.start()
     }
 
     func setFootnoteTokenCode(_ code: String) {
@@ -84,45 +91,6 @@ class OnboardingCreationFeeViewController: CardViewController {
         super.viewDidAppear(animated)
         trackEvent(OnboardingEvent.createSafe)
         trackEvent(OnboardingTrackingEvent.creationFee)
-    }
-
-    func start() {
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        DispatchQueue.global().async { [unowned self] in
-            ApplicationServiceRegistry.walletService.deployWallet(subscriber: self) { [unowned self] error in
-                DispatchQueue.main.async {
-                    self.navigationItem.rightBarButtonItem?.isEnabled = false
-                    self.handleError(error)
-                }
-            }
-        }
-    }
-
-    func handleError(_ error: Error) {
-        let canRetry = isRetriableError(error)
-        let controller = SafeCreationFailedAlertController
-            .create(message: error.localizedDescription) { [unowned self] in
-                if !canRetry {
-                    self.dismiss(animated: true) {
-                        self.delegate?.deploymentDidFail()
-                    }
-                }
-        }
-        present(controller, animated: true, completion: nil)
-    }
-
-    func isRetriableError(_ error: Error) -> Bool {
-        switch error {
-        case let nsError as NSError where nsError.domain == NSURLErrorDomain:
-            fallthrough
-        case WalletApplicationServiceError.clientError,
-             WalletApplicationServiceError.networkError,
-             EthereumApplicationService.Error.clientError,
-             EthereumApplicationService.Error.networkError:
-            return true
-        default:
-            return false
-        }
     }
 
     @objc func cancel() {
@@ -137,9 +105,6 @@ class OnboardingCreationFeeViewController: CardViewController {
         present(controller, animated: true, completion: nil)
     }
 
-    @objc func refresh() {
-        start()
-    }
 
     @objc func share() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
@@ -194,16 +159,3 @@ extension OnboardingCreationFeeViewController: EventSubscriber {
     }
 
 }
-
-//case .transactionHashIsKnown:
-//// etherscan link is now available
-//break
-//case .finalizingDeployment:
-//// waiting for last transaction to be mined
-//// now nnew info
-//break
-//case .readyToUse:
-//// safe created
-//// exit with success (delegate!)
-//break
-//}

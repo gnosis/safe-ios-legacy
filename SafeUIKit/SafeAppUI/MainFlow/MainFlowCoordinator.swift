@@ -85,7 +85,8 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     func showCreationProgress() {
-        push(OnboardingFeePaidViewController.create())
+        // should open new safe flow coordinator
+//        push(OnboardingFeePaidViewController.create(delegate: self))
     }
 
     func showRecoveryProgress() {
@@ -225,6 +226,7 @@ extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 
         enter(flow: newSafeFlowCoordinator) { [unowned self] in
             self.clearNavigationStack()
+            // TODO: decide what to open based on wallet state (it could have been canceled.
             self.showMainScreen()
         }
     }

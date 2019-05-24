@@ -3,12 +3,24 @@
 //
 
 import UIKit
+import MultisigWalletApplication
+import SafariServices
+
+protocol OnboardingFeePaidViewControllerDelegate: class {
+    func onboardingFeePaidDidFail()
+    func onboardingFeePaidDidSuccess()
+    func onboardingFeePaidOpenMenu()
+}
 
 class OnboardingFeePaidViewController: FeePaidViewController {
 
-    static func create() -> OnboardingFeePaidViewController {
+    weak var delegate: OnboardingFeePaidViewControllerDelegate?
+    var creationProcessTracker = CreationProcessTracker()
+
+    static func create(delegate: OnboardingFeePaidViewControllerDelegate) -> OnboardingFeePaidViewController {
         let controller = OnboardingFeePaidViewController(nibName: String(describing: FeePaidViewController.self),
                                                          bundle: Bundle(for: FeePaidViewController.self))
+        controller.delegate = delegate
         return controller
     }
 
@@ -22,6 +34,14 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         setHeader(Strings.header)
         setBody(Strings.body)
         setImage(Asset.Onboarding.creatingSafe.image)
+        button.isEnabled = false
+        let retryItem = UIBarButtonItem.refreshButton(target: creationProcessTracker,
+                                                      action: #selector(creationProcessTracker.start))
+        navigationItem.leftBarButtonItem = retryItem
+        creationProcessTracker.retryItem = retryItem
+        creationProcessTracker.viewController = self
+        creationProcessTracker.onFailure = delegate?.onboardingFeePaidDidFail
+        creationProcessTracker.start()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -30,10 +50,38 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         trackEvent(OnboardingTrackingEvent.feePaid)
     }
 
-    // start() on viewDidLoad()
-    //  on error: show error alert. If retryable - retry enabled. If not - call delegate.
-    //  on having tx - enable 'show progress'
-    //  on success - delegate success
-    //  animate progress! animate completion!
+    override func tapAction(_ sender: Any) {
+        let url = ApplicationServiceRegistry.walletService.walletCreationURL()
+        let safari = SFSafariViewController(url: url)
+        present(safari, animated: true)
+    }
+
+    override func openMenu() {
+        delegate?.onboardingFeePaidOpenMenu()
+    }
+
+}
+
+extension OnboardingFeePaidViewController: EventSubscriber {
+
+    func notify() {
+        let walletState = ApplicationServiceRegistry.walletService.walletState()!
+        switch walletState {
+        case .draft,
+             .deploying,
+             .waitingForFirstDeposit,
+             .notEnoughFunds,
+             .creationStarted:
+            // nothing to do here, yet
+            break
+        case .transactionHashIsKnown, .finalizingDeployment:
+            button.isEnabled = true
+        case .readyToUse:
+            button.isEnabled = true
+            progressAnimator.finish(duration: 0.7) { [unowned self] in
+                self.delegate?.onboardingFeePaidDidSuccess()
+            }
+        }
+    }
 
 }

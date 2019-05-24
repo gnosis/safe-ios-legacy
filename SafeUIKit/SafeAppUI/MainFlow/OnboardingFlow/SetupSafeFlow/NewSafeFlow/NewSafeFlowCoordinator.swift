@@ -10,17 +10,19 @@ class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
 
-    // FIXME: deprecated
-    var isSafeCreationInProgress: Bool {
-        return ApplicationServiceRegistry.walletService.isSafeCreationInProgress
-    }
-
     override func setUp() {
         super.setUp()
+        // TODO: if safe is draft, show guidelines
+        // if deploying, waiting for first deposit, notenough funds - then show CreationFee
+        // else - show FeePaid
         push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
     }
 
-    func newPairController() -> PairWithBrowserExtensionViewController {
+}
+
+extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
+
+    func didPressNext() {
         let controller = PairWithBrowserExtensionViewController.create(delegate: self)
         controller.screenTitle = LocalizedString("browser_extension",
                                                  comment: "Title for add browser extension screen")
@@ -30,15 +32,7 @@ class NewSafeFlowCoordinator: FlowCoordinator {
                                                      comment: "Description for add browser extension screen")
         controller.screenTrackingEvent = OnboardingTrackingEvent.twoFA
         controller.scanTrackingEvent = OnboardingTrackingEvent.twoFAScan
-        return controller
-    }
-
-}
-
-extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
-
-    func didPressNext() {
-        push(newPairController())
+        push(controller)
     }
 
 }
@@ -96,16 +90,31 @@ extension NewSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 extension NewSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate {
 
     func deploymentDidFail() {
-        popToLastCheckpoint()
+        exitFlow()
     }
 
     func deploymentDidStart() {
-        // TODO: no 'back' button... applicationRootViewController!
-        push(OnboardingFeePaidViewController.create())
+        push(OnboardingFeePaidViewController.create(delegate: self))
     }
 
     func deploymentDidCancel() {
-        popToLastCheckpoint()
+        exitFlow()
+    }
+
+}
+
+extension NewSafeFlowCoordinator: OnboardingFeePaidViewControllerDelegate {
+
+    func onboardingFeePaidDidFail() {
+        exitFlow()
+    }
+
+    func onboardingFeePaidDidSuccess() {
+        exitFlow()
+    }
+
+    func onboardingFeePaidOpenMenu() {
+        //TODO: openMenu
     }
 
 }
