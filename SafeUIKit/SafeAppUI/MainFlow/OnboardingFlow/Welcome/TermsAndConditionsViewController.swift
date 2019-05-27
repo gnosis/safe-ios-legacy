@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 
 public protocol TermsAndConditionsViewControllerDelegate: class {
     func wantsToOpenTermsOfUse()
@@ -17,8 +18,8 @@ public class TermsAndConditionsViewController: UIViewController {
     @IBOutlet weak var listLabel: UILabel!
     @IBOutlet weak var termsOfUseButton: UIButton!
     @IBOutlet weak var privacyPolicyButton: UIButton!
-    @IBOutlet weak var agreeButton: UIButton!
-    @IBOutlet weak var disagreeButton: UIButton!
+    @IBOutlet weak var agreeButton: StandardButton!
+    @IBOutlet weak var disagreeButton: StandardButton!
 
     public weak var delegate: TermsAndConditionsViewControllerDelegate?
 
@@ -38,19 +39,21 @@ public class TermsAndConditionsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        let headerStyle = HeaderStyle.default
         var bodyStyle = ListStyle.default
         bodyStyle.minimumLineHeight = 0
         bodyStyle.paragraphSpacing = 0
-        headerLabel.attributedText = .header(from: Strings.header, style: headerStyle)
+
+        headerLabel.attributedText = .header(from: Strings.header, style: HeaderStyle.contentHeader)
         listLabel.attributedText = .list(from: Strings.body, style: bodyStyle)
+
         privacyPolicyButton.setAttributedTitle(link(from: Strings.privacyLink), for: .normal)
         termsOfUseButton.setAttributedTitle(link(from: Strings.termsLink), for: .normal)
-        disagreeButton.setTitle(Strings.disagree, for: .normal)
-        disagreeButton.setTitleColor(ColorName.aquaBlue.color, for: .normal)
+
         agreeButton.setTitle(Strings.agree, for: .normal)
-        agreeButton.setTitleColor(ColorName.aquaBlue.color, for: .normal)
-        agreeButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        agreeButton.style = .filled
+
+        disagreeButton.setTitle(Strings.disagree, for: .normal)
+        disagreeButton.style = .plain
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -76,8 +79,8 @@ public class TermsAndConditionsViewController: UIViewController {
 
     private func link(from text: String) -> NSAttributedString {
         return NSAttributedString(string: text, attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue,
-                                                             .font: UIFont.systemFont(ofSize: 13),
-                                                             .foregroundColor: ColorName.aquaBlue.color])
+                                                             .font: UIFont.systemFont(ofSize: 15),
+                                                             .foregroundColor: ColorName.darkSkyBlue.color])
     }
 
 }
@@ -91,7 +94,7 @@ struct BodyStyle {
     var paragraphSpacing: CGFloat
     var minimumLineHeight: CGFloat
 
-    static let `default` = BodyStyle(textFontSize: 16,
+    static let `default` = BodyStyle(textFontSize: 15,
                                      textColor: ColorName.battleshipGrey.color,
                                      fontWeight: .regular,
                                      alignment: .left,
@@ -126,7 +129,7 @@ struct ListStyle {
                                      bulletFontSize: 24,
                                      textFontSize: 14,
                                      textColor: ColorName.battleshipGrey.color,
-                                     bulletColor: ColorName.whiteTwo.color,
+                                     bulletColor: ColorName.darkSkyBlue.color,
                                      paragraphSpacing: 22,
                                      minimumLineHeight: 25)
 }
@@ -145,7 +148,7 @@ struct HeaderStyle {
     static let contentHeader = HeaderStyle(leading: 40,
                                            trailing: 40,
                                            textColor: ColorName.darkSlateBlue.color,
-                                           textFontSize: 20)
+                                           textFontSize: 17)
 }
 
 extension NSAttributedString {
@@ -169,7 +172,7 @@ extension NSAttributedString {
         style.headIndent = headerStyle.leading
         style.tailIndent = -headerStyle.trailing
         style.alignment = .center
-        let font = UIFont.systemFont(ofSize: headerStyle.textFontSize, weight: .bold)
+        let font = UIFont.systemFont(ofSize: headerStyle.textFontSize, weight: .medium)
         return NSAttributedString(string: text, attributes: [.paragraphStyle: style,
                                                              .font: font,
                                                              .foregroundColor: headerStyle.textColor])
