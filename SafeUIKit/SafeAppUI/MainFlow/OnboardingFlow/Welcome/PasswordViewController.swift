@@ -21,6 +21,9 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
     weak var delegate: PasswordViewControllerDelegate!
     private var keyboardBehavior: KeyboardAvoidingBehavior!
 
+    // needed for navigation bar manipulations when this controller is removed from navigation controller
+    private weak var _navigationController: UINavigationController!
+
     enum Strings {
         static let passwordPlaceholder = LocalizedString("password", comment: "Password placeholder")
 
@@ -50,7 +53,7 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
         super.viewDidLoad()
         configureKeyboardBehavior()
         nextButton = UIBarButtonItem(title: Strings.nextButtonTitle,
-                                     style: .plain,
+                                     style: .done,
                                      target: self,
                                      action: #selector(proceed(_:)))
         navigationItem.rightBarButtonItem = nextButton
@@ -71,11 +74,18 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardBehavior.start()
+        _navigationController = navigationController
+        _navigationController?.navigationBar.setBackgroundImage(Asset.navbarFilled.image, for: .default)
+        _navigationController?.navigationBar.shadowImage = UIImage()
+        _navigationController?.navigationBar.tintColor = .white
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardBehavior.stop()
+        _navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        _navigationController?.navigationBar.shadowImage = Asset.shadow.image
+        _navigationController?.navigationBar.tintColor = ColorName.darkSkyBlue.color
     }
 
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
