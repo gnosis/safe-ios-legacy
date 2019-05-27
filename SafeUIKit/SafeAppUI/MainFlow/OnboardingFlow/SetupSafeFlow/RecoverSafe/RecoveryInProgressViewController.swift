@@ -94,8 +94,7 @@ public class RecoveryInProgressViewController: UIViewController {
     }
 
     func show(error: Error) {
-        let message = error.localizedDescription
-        let controller = InputFailedAlertController.create(message: message) {
+        let controller = UIAlertController.operationFailed(message: error.localizedDescription) {
             self.delegate?.recoveryInProgressViewControllerDidFail()
         }
         present(controller, animated: true)

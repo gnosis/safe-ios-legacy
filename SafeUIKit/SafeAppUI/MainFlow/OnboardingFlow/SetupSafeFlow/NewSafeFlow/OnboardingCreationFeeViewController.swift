@@ -69,9 +69,9 @@ class OnboardingCreationFeeViewController: CardViewController {
         setSubtitle(Strings.FeeRequest.subtitle)
         setSubtitleDetail(Strings.FeeRequest.subtitleDetail)
 
-        feeRequestView.feeTextLabel.text = FeeRequestView.Strings.sendFeeRequest
+        feeRequestView.remainderTextLabel.text = FeeRequestView.Strings.sendFeeRequest
         feeRequestView.balanceStackView.isHidden = true
-        feeRequestView.feeAmountLabel.amount = TokenData.Ether.withBalance(nil)
+        feeRequestView.remainderAmountLabel.amount = TokenData.Ether.withBalance(nil)
 
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
 
@@ -95,7 +95,7 @@ class OnboardingCreationFeeViewController: CardViewController {
     }
 
     @objc func cancel() {
-        let controller = AbortSafeCreationAlertController.create(abort: { [unowned self] in
+        let controller = UIAlertController.cancelSafeCreation(close: { [unowned self] in
             self.dismiss(animated: true, completion: nil)
             ApplicationServiceRegistry.walletService.abortDeployment()
             self.delegate?.deploymentDidCancel()
@@ -113,8 +113,7 @@ class OnboardingCreationFeeViewController: CardViewController {
     }
 
     override func showNetworkFeeInfo() {
-        // TODO: is it the one? NO! need to change texts!
-        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
+        present(UIAlertController.creationFee(), animated: true, completion: nil)
     }
 
     func update() {
@@ -126,7 +125,7 @@ class OnboardingCreationFeeViewController: CardViewController {
         case .waitingForFirstDeposit:
             let fee = ApplicationServiceRegistry.walletService.feePaymentTokenData
                 .withBalance(ApplicationServiceRegistry.walletService.minimumDeploymentAmount!)
-            feeRequestView.feeAmountLabel.amount = fee
+            feeRequestView.remainderAmountLabel.amount = fee
             addressDetailView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
             setFootnoteTokenCode(fee.code)
             addressDetailView.footnoteLabel.isHidden = false
@@ -142,9 +141,9 @@ class OnboardingCreationFeeViewController: CardViewController {
             setSubtitleDetail(Strings.Insufficient.subtitleDetail)
 
             feeRequestView.balanceStackView.isHidden = false
-            feeRequestView.balanceLineAmountLabel.amount = required.withBalance(received)
-            feeRequestView.totalLineAmountLabel.amount = required
-            feeRequestView.feeAmountLabel.amount = required.withBalance(remaining)
+            feeRequestView.amountReceivedAmountLabel.amount = required.withBalance(received)
+            feeRequestView.amountNeededAmountLabel.amount = required
+            feeRequestView.remainderAmountLabel.amount = required.withBalance(remaining)
         case .creationStarted,
              .transactionHashIsKnown,
              .finalizingDeployment,

@@ -27,8 +27,7 @@ class CreationProcessTracker {
     }
     func handleError(_ error: Error) {
         let canRetry = isRetriableError(error)
-        let controller = SafeCreationFailedAlertController
-            .create(message: error.localizedDescription) { [unowned self] in
+        let controller = UIAlertController.operationFailed(message: error.localizedDescription) { [unowned self] in
                 if !canRetry {
                     self.viewController.dismiss(animated: true) {
                         self.onFailure?()

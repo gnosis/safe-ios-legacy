@@ -169,7 +169,7 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
 
     func show(error: Error) {
         let message = error.localizedDescription
-        let controller = RecoveryFailedAlertController.create(message: message) { [unowned self] in
+        let controller = UIAlertController.operationFailed(message: message) { [unowned self] in
             self.delegate?.reviewRecoveryTransactionViewControllerDidCancel()
         }
         present(controller, animated: true)
@@ -188,7 +188,7 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
     }
 
     @objc func showTransactionFeeInfo() {
-        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
+        present(UIAlertController.networkFee(), animated: true, completion: nil)
     }
 
 }
@@ -197,27 +197,6 @@ extension ReviewRecoveryTransactionViewController: EventSubscriber {
 
     public func notify() {
         reloadData()
-    }
-
-}
-
-class RecoveryFailedAlertController: SafeAlertController {
-
-    private enum Strings {
-
-        static let title = LocalizedString("error", comment: "Recovery transaction failed alert's title")
-        static let okTitle = LocalizedString("ok", comment: "OK button title")
-
-    }
-
-    static func create(message: String,
-                       ok: @escaping () -> Void) -> RecoveryFailedAlertController {
-        let controller = RecoveryFailedAlertController(title: Strings.title,
-                                                       message: message,
-                                                       preferredStyle: .alert)
-        let okAction = UIAlertAction.create(title: Strings.okTitle, style: .cancel, handler: wrap(closure: ok))
-        controller.addAction(okAction)
-        return controller
     }
 
 }

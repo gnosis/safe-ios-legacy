@@ -12,20 +12,17 @@ class FeeRequestView: BaseCustomView {
 
     @IBOutlet weak var balanceStackView: UIStackView!
 
-    // TODO: rename to amountReceived
-    @IBOutlet weak var balanceLineStackView: UIStackView!
-    @IBOutlet weak var balanceLineLabel: UILabel!
-    @IBOutlet weak var balanceLineAmountLabel: AmountLabel!
+    @IBOutlet weak var amountReceivedStackView: UIStackView!
+    @IBOutlet weak var amountReceivedLabel: UILabel!
+    @IBOutlet weak var amountReceivedAmountLabel: AmountLabel!
 
-    // TODO: rename to amountNeded
-    @IBOutlet weak var totalLineStackView: UIStackView!
-    @IBOutlet weak var totalLineLabel: UILabel!
-    @IBOutlet weak var totalLineAmountLabel: AmountLabel!
+    @IBOutlet weak var amountNeededStackView: UIStackView!
+    @IBOutlet weak var amountNeededLabel: UILabel!
+    @IBOutlet weak var amountNeededAmountLabel: AmountLabel!
 
-    // TODO: rename to remainder
-    @IBOutlet weak var feeStackView: UIStackView!
-    @IBOutlet weak var feeTextLabel: UILabel!
-    @IBOutlet weak var feeAmountLabel: AmountLabel!
+    @IBOutlet weak var remainderStackView: UIStackView!
+    @IBOutlet weak var remainderTextLabel: UILabel!
+    @IBOutlet weak var remainderAmountLabel: AmountLabel!
 
     enum Strings {
         static let received = LocalizedString("amount_received", comment: "Received")
@@ -41,18 +38,21 @@ class FeeRequestView: BaseCustomView {
         wrapperView.heightAnchor.constraint(equalTo: contentStackView.heightAnchor).isActive = true
         wrapAroundDynamicHeightView(wrapperView)
 
-        [balanceLineLabel,
-        balanceLineAmountLabel,
-        totalLineLabel,
-        totalLineAmountLabel,
-        feeTextLabel].forEach { label in
+        [amountReceivedLabel,
+        amountReceivedAmountLabel,
+        amountNeededLabel,
+        amountNeededAmountLabel,
+        remainderTextLabel].forEach { label in
             label?.textColor = ColorName.battleshipGrey.color
         }
-        feeAmountLabel.textColor = ColorName.darkSlateBlue.color
+        remainderAmountLabel.textColor = ColorName.darkSlateBlue.color
 
-        [feeAmountLabel, balanceLineAmountLabel, totalLineAmountLabel].forEach { label in
+        [remainderAmountLabel, amountReceivedAmountLabel, amountNeededAmountLabel].forEach { label in
             label?.isShowingPlusSign = false
         }
+
+        amountReceivedLabel.text = Strings.received
+        amountNeededLabel.text = Strings.needed
     }
 
 }

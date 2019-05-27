@@ -168,7 +168,6 @@
 		0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */; };
 		0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */; };
 		0A5D467B20AD6DBE00AC287E /* SafeAppUIAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467A20AD6DBE00AC287E /* SafeAppUIAlerts.swift */; };
-		0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */; };
 		0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */; };
 		0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */; };
 		0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */; };
@@ -736,7 +735,6 @@
 		0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Testable.swift"; sourceTree = "<group>"; };
 		0A5D467A20AD6DBE00AC287E /* SafeAppUIAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAppUIAlerts.swift; sourceTree = "<group>"; };
-		0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationFailedAlertController.swift; sourceTree = "<group>"; };
 		0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
 		0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingBehavior.swift; sourceTree = "<group>"; };
 		0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingBehaviorTests.swift; sourceTree = "<group>"; };
@@ -1225,7 +1223,6 @@
 				0A334E0A209C8E3800ABC6AE /* NewSafeFlowCoordinatorTests.swift */,
 				0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */,
 				0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */,
-				0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */,
 				558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */,
 				0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */,
 				0AB20141229848520071510A /* CreationProcessTracker.swift */,
@@ -2963,7 +2960,6 @@
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
-				0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */,
 				0A6EF3C221BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift in Sources */,
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
 				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,

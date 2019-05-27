@@ -157,7 +157,7 @@ public class SendInputViewController: UIViewController {
     }
 
     @objc func showTransactionFeeInfo() {
-        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
+        present(UIAlertController.networkFee(), animated: true, completion: nil)
     }
 
     @objc private func changePaymentMethod() {

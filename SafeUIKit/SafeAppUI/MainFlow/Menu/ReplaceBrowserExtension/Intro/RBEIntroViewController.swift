@@ -166,7 +166,7 @@ public class RBEIntroViewController: UIViewController {
     }
 
     @objc public func showNetworkFeeInfo() {
-        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
+        present(UIAlertController.networkFee(), animated: true, completion: nil)
     }
 
 }

@@ -62,8 +62,7 @@
 /* Choose how to pay the creation fee. */
 "choose_how_to_pay_creation_fee" = "Choose how to pay the creation fee.";
 
-/* Button to cancel 'abort create' alert
-   Close */
+/* Close */
 "close" = "Close";
 
 /* Confirm button title */
@@ -132,10 +131,7 @@
 
 /* Error
    Error alert's title
-   Error title
-   Pending safe failed alert's title
-   Recovery address validation failed alert's title
-   Recovery transaction failed alert's title */
+   Error title */
 "error" = "Error";
 
 /* Fee */
@@ -400,6 +396,7 @@
 "menu" = "Menu";
 
 /* Explanation
+   Fee explanation
    Safe creation fee description */
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
 
@@ -647,7 +644,8 @@
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
-/* What is safe creation fee?
+/* Safe Creation Fee
+   What is safe creation fee?
    What is the Safe creation fee? */
 "what_is_safe_creation_fee" = "What is the Safe creation fee?";
 

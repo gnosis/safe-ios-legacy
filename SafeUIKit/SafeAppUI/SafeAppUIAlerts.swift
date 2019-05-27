@@ -5,55 +5,78 @@
 import Foundation
 import MultisigWalletApplication
 
-class SafeAlertController: UIAlertController {
 
-    // This can be a global function!
-    static func wrap<T>(closure: @escaping () -> Void) -> (T) -> Void {
-        return { _ in closure() }
-    }
-
+fileprivate func wrapNoArguments<T>(closure: @escaping () -> Void) -> (T) -> Void {
+    return { _ in closure() }
 }
 
-// TODO: simplify, maybe it is not needed at all! Just another factory method
-class AbortSafeCreationAlertController: SafeAlertController {
+extension UIAlertController {
 
-    private enum Strings {
-
-        static let title = LocalizedString("cancel_safe_creation", comment: "Title of abort safe creation alert")
-        static let message = LocalizedString("cancel_creation_warning", comment: "Message body of abort alert")
-        static let abortTitle = LocalizedString("continue_text", comment: "Abort safe creation button title")
-        static let cancelTitle = LocalizedString("close", comment: "Button to cancel 'abort create' alert")
-
-    }
-
-    static func create(abort: @escaping () -> Void,
-                       continue: @escaping () -> Void) -> AbortSafeCreationAlertController {
-        let controller = AbortSafeCreationAlertController(title: Strings.title,
-                                                          message: Strings.message,
-                                                          preferredStyle: .alert)
-        let continueAction = UIAlertAction.create(title: Strings.cancelTitle,
-                                                  style: .cancel,
-                                                  handler: wrap(closure: `continue`))
-        controller.addAction(continueAction)
-        let abortAction = UIAlertAction.create(title: Strings.abortTitle, style: .destructive) { _ in
-            ApplicationServiceRegistry.walletService.abortDeployment()
-            abort()
-        }
-        controller.addAction(abortAction)
-        return controller
-    }
-
-}
-
-class TransactionFeeAlertController: SafeAlertController {
-
-    static func create() -> TransactionFeeAlertController {
-        let alert = TransactionFeeAlertController(title: LocalizedString("transaction_fee", comment: "Network fee"),
-                                                  message: LocalizedString("transaction_fee_explanation",
-                                                                           comment: "Explanatory message"),
-                                                  preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
+    static func create(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.view.tintColor = ColorName.darkSkyBlue.color
+        return alert
+    }
+
+    func withCloseAction(handler: @escaping () -> Void = {}) -> UIAlertController {
+        addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"),
+                                style: .default,
+                                handler: wrapNoArguments(closure: handler)))
+        return self
+    }
+
+    func withDestructiveAction(title: String, action: @escaping () -> Void) -> UIAlertController {
+        addAction(UIAlertAction(title: title, style: .destructive, handler: wrapNoArguments(closure: action)))
+        return self
+    }
+
+}
+
+extension UIAlertController {
+
+    static func networkFee() -> UIAlertController {
+        return create(title: LocalizedString("transaction_fee", comment: "Network fee"),
+                      message: LocalizedString("transaction_fee_explanation", comment: "Explanatory message"))
+            .withCloseAction()
+    }
+
+    static func creationFee() -> UIAlertController {
+        return create(title: LocalizedString("what_is_safe_creation_fee", comment: "Safe Creation Fee"),
+                      message: LocalizedString("network_fee_creation", comment: "Fee explanation"))
+            .withCloseAction()
+    }
+
+    static func cancelSafeCreation(close: @escaping () -> Void, continue: @escaping () -> Void) -> UIAlertController {
+        return create(title: LocalizedString("cancel_safe_creation", comment: "Title of abort safe creation alert"),
+                      message: LocalizedString("cancel_creation_warning", comment: "Message body of abort alert"))
+            .withCloseAction(handler: close)
+            .withDestructiveAction(title: LocalizedString("continue_text", comment: "Abort safe creation button title"),
+                                   action: `continue`)
+    }
+
+    static func operationFailed(message: String, close: @escaping () -> Void = {}) -> UIAlertController {
+        return create(title: LocalizedString("error", comment: "Error"),
+                      message: message)
+            .withCloseAction(handler: close)
+    }
+
+    static func operationFailed(reason: String, close: @escaping () -> Void = {}) -> UIAlertController {
+        let template = LocalizedString("ios_creationFee_failed_error", comment: "Pending safe failed alert's message")
+        return operationFailed(message: String(format: template, reason), close: close)
+    }
+
+    static func confirmReplaceSeed(handler: @escaping () -> Void) -> UIAlertController {
+        let alert = create(title: LocalizedString("ios_replaceseed_confirm_title",
+                                                  comment: "Confirmation alert title"),
+                           message: LocalizedString("ios_replaceseed_confirm_message",
+                                                    comment: "Confirmation alert message"))
+        alert.addAction(UIAlertAction(title: LocalizedString("ios_replaceseed_confirm_yes",
+                                                             comment: "Affirmative response button title"),
+                                      style: .default,
+                                      handler: wrapNoArguments(closure: handler)))
+        alert.addAction(UIAlertAction(title: LocalizedString("cancel", comment: "Cancel response button title"),
+                                      style: .cancel,
+                                      handler: nil))
         return alert
     }
 
