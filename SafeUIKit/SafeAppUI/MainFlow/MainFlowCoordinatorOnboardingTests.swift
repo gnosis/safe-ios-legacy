@@ -19,7 +19,7 @@ class MainFlowCoordinatorOnboardingTests: SafeTestCase {
 
     func test_whenUserNotRegistered_thenShowsStartScreen() {
         authenticationService.unregisterUser()
-        flowCoordinator.showOnboarding()
+        flowCoordinator.setUp()
         XCTAssertTrue(flowCoordinator.navigationController.topViewController is StartViewController)
     }
 
@@ -30,7 +30,7 @@ class MainFlowCoordinatorOnboardingTests: SafeTestCase {
 
     private func pressSetupPasswordButton() {
         authenticationService.unregisterUser()
-        flowCoordinator.showOnboarding()
+        flowCoordinator.setUp()
         createWindow(flowCoordinator.rootViewController)
         flowCoordinator.didStart()
         delay(0.25)
@@ -71,14 +71,6 @@ class MainFlowCoordinatorOnboardingTests: SafeTestCase {
         delay(1.0)
         XCTAssertTrue(flowCoordinator.rootViewController.presentedViewController?
             .presentedViewController is SFSafariViewController)
-    }
-
-    func test_startViewController_whenMasterPasswordIsSet_thenNewSafeFlowStarted() {
-        try? authenticationService.registerUser(password: "password")
-        flowCoordinator.showOnboarding()
-
-        XCTAssertNotNil(flowCoordinator.navigationController.topViewController)
-        XCTAssertTrue(flowCoordinator.navigationController.topViewController is OnboardingCreateOrRestoreViewController)
     }
 
     func test_whenDidConfirmPassword_thenSetupSafeIsShown() {

@@ -194,6 +194,7 @@
 		0ADD1DD12135432A0046AF1F /* ERC20TokenContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD1DD02135432A0046AF1F /* ERC20TokenContractProxy.swift */; };
 		0ADD1DDE213544C50046AF1F /* ERC20TokenContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD1DDD213544C50046AF1F /* ERC20TokenContractProxyTests.swift */; };
 		0AE0FE07229BEB1400ABC552 /* WalletDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE06229BEB1400ABC552 /* WalletDomainService.swift */; };
+		0AE0FE0D229BEEB100ABC552 /* MockRecoveryApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */; };
 		0AEDED5621676156005B6DD0 /* SafeOwnerManagerContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */; };
 		0AEDED5D216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5C216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift */; };
 		0AEF8A8620A08889006A1265 /* libMultisigWalletDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A7520A08878006A1265 /* libMultisigWalletDomainModel.a */; };
@@ -630,6 +631,7 @@
 		0ADD1DD02135432A0046AF1F /* ERC20TokenContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20TokenContractProxy.swift; sourceTree = "<group>"; };
 		0ADD1DDD213544C50046AF1F /* ERC20TokenContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20TokenContractProxyTests.swift; sourceTree = "<group>"; };
 		0AE0FE06229BEB1400ABC552 /* WalletDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDomainService.swift; sourceTree = "<group>"; };
+		0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecoveryApplicationService.swift; sourceTree = "<group>"; };
 		0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeOwnerManagerContractProxy.swift; sourceTree = "<group>"; };
 		0AEDED5C216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeOwnerManagerContractProxyTests.swift; sourceTree = "<group>"; };
 		0AEF8A7520A08878006A1265 /* libMultisigWalletDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMultisigWalletDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1060,6 +1062,7 @@
 				0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */,
 				0AB08751212D9851002F969C /* MockEventRelay.swift */,
 				0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */,
+				0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */,
 				0A3BD93422255049007039B4 /* MultisigWalletApplicationResources-Info.plist */,
 				0A4AD4F32225A649004244FB /* OwnerModificationApplicationService.swift */,
 				0A54E7D721305282006BAD93 /* OwnerType.swift */,
@@ -1810,6 +1813,7 @@
 				0AAAE3E7219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift in Sources */,
 				0A9E383520F4AC5F0085E8D7 /* EthereumApplicationService.swift in Sources */,
 				0A6EF3CC21BAB13200F1074E /* RecoveryApplicationService.swift in Sources */,
+				0AE0FE0D229BEEB100ABC552 /* MockRecoveryApplicationService.swift in Sources */,
 				0A40669120A5E0EA009BA7FC /* WalletApplicationService.swift in Sources */,
 				0A4C3898212D9411005594DA /* WalletStateEnum.swift in Sources */,
 			);

@@ -17,6 +17,7 @@ class SafeTestCase: XCTestCase {
 
     let ethereumService = MockEthereumApplicationService()
     let walletService = MockWalletApplicationService()
+    let recoveryService = MockRecoveryApplicationService()
     let authenticationService = MockAuthenticationService()
     let clock = MockClockService()
     let logger = MockLogger()
@@ -51,6 +52,7 @@ class SafeTestCase: XCTestCase {
     private func configureMultisigWalletModule() {
         let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
         applicationRegistry.put(service: walletService, for: WalletApplicationService.self)
+        applicationRegistry.put(service: recoveryService, for: RecoveryApplicationService.self)
     }
 
     private func configureEthereumModule() {

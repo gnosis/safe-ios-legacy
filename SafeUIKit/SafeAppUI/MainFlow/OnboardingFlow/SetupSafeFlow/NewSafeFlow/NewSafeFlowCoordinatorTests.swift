@@ -11,10 +11,6 @@ import MultisigWalletApplication
 class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     var newSafeFlowCoordinator: NewSafeFlowCoordinator!
-    let nav = UINavigationController()
-    var startVC: UIViewController!
-    var pairVC: PairWithBrowserExtensionViewController?
-    let address = "test_address"
 
     var topViewController: UIViewController? {
         return newSafeFlowCoordinator.navigationController.topViewController
@@ -22,6 +18,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
+        walletService.expect_walletState(.draft)
         newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
         newSafeFlowCoordinator.setUp()
     }
@@ -31,7 +28,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_didSelectBrowserExtensionSetup_showsController() {
-        newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
+        newSafeFlowCoordinator.didPressNext()
         delay()
         XCTAssertTrue(topViewController is PairWithBrowserExtensionViewController)
     }
@@ -40,14 +37,14 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertFalse(walletService.isOwnerExists(.browserExtension))
         pairWithBrowserExtension()
         XCTAssertTrue(walletService.isOwnerExists(.browserExtension))
-        XCTAssertTrue(topViewController === startVC)
+        XCTAssertTrue(topViewController is SaveMnemonicViewController)
     }
 
     func test_whenWalletServiceThrowsDuringPairing_thenAlertIsHandled() {
         walletService.shouldThrow = true
         pairWithBrowserExtension()
         XCTAssertAlertShown(message: PairWithBrowserExtensionViewController.Strings.invalidCode)
-        XCTAssertTrue(topViewController === pairVC)
+        assert(topViewController, is: PairWithBrowserExtensionViewController.self)
     }
 
     func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
@@ -55,14 +52,14 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         testFC.enter(flow: PaperWalletFlowCoordinator())
         let expectedViewController = testFC.topViewController
 
-        newSafeFlowCoordinator.didSelectPaperWalletSetup()
+        newSafeFlowCoordinator.showSeed()
 
         let finalTransitionedViewController = newSafeFlowCoordinator.navigationController.topViewController
         XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
     }
 
     func test_didSelectNext_presentsNextController() {
-        newSafeFlowCoordinator.didSelectNext()
+        newSafeFlowCoordinator.showPayment()
         delay()
         assert(topViewController, is: OnboardingCreationFeeIntroViewController.self)
     }
@@ -70,7 +67,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectCreationFeeIntroPay_presentsNextController() {
         newSafeFlowCoordinator.creationFeeIntroPay()
         delay()
-        assert(topViewController, is: SafeCreationViewController.self)
+        assert(topViewController, is: OnboardingCreationFeeViewController.self)
     }
 
     func test_didSelectCreationFeeIntroChangePaymentMethod_presentsPaymentMethodController() {
@@ -82,100 +79,79 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_creationFeeIntroChangePaymentMethod_presentsNextController() {
         newSafeFlowCoordinator.creationFeePaymentMethodPay()
         delay()
-        assert(topViewController, is: SafeCreationViewController.self)
+        assert(topViewController, is: OnboardingCreationFeeViewController.self)
     }
 
-    func assert<T>(_ object: Any?, is aType: T.Type, file: StaticString = #file, line: UInt = #line) {
-        XCTAssertTrue(object is T,
-                      "Expected \(T.self) but got \(String(describing: type(of: object)))",
-                      file: file,
-                      line: line)
-    }
-
-    func test_paperWalletSetupCompletion_popsToStartVC() {
-        let startVC = topViewController
-        newSafeFlowCoordinator.didSelectPaperWalletSetup()
+    func test_paperWalletSetupCompletion_showsPayment() {
+        newSafeFlowCoordinator.showSeed()
         delay()
-        let vc = ConfirmMnemonicViewController()
-        newSafeFlowCoordinator.paperWalletFlowCoordinator.confirmMnemonicViewControllerDidConfirm(vc)
+        newSafeFlowCoordinator.paperWalletFlowCoordinator.exitFlow()
         delay()
-        XCTAssertTrue(topViewController === startVC)
+        assert(topViewController, is: OnboardingCreationFeeIntroViewController.self)
     }
 
-    func test_whenCancellationAlertConfirmed_thenPopsBackToNewSafeScreen() {
-        let newSafeFlowCoordinator = TestableNewSafeFlowCoordinator(rootViewController: UINavigationController())
-        newSafeFlowCoordinator.setUp()
-        walletService.createReadyToDeployWallet()
-        walletService.expect_deployWallet()
-        newSafeFlowCoordinator.rootViewController.loadViewIfNeeded()
-        newSafeFlowCoordinator.didSelectNext()
-        newSafeFlowCoordinator.deploymentDidCancel()
-        let alert = newSafeFlowCoordinator.modallyPresentedController as! UIAlertController
-        guard let confirmCancellationAction = alert.actions.first(where: { $0.style == .destructive }) else {
-            XCTFail("Confirm cancellation action not found")
-            return
-        }
-        walletService.expect_abortDeployment()
-        confirmCancellationAction.test_handler?(confirmCancellationAction)
-        XCTAssertTrue(walletService.verifyAborted())
-        XCTAssertNil(newSafeFlowCoordinator.modallyPresentedController)
-        XCTAssertTrue(newSafeFlowCoordinator.didPopToCheckpoint)
-    }
+    func test_whenDeploymentCancelled_thenExitsFlow() {
+        walletService.expect_walletState(.creationStarted)
 
-    func test_whenCancellationAlertDismissed_thenStaysOnPendingController() {
-        walletService.createReadyToDeployWallet()
-        let newSafeFlowCoordinator = TestableNewSafeFlowCoordinator(rootViewController: UINavigationController())
-        newSafeFlowCoordinator.setUp()
-        newSafeFlowCoordinator.deploymentDidCancel()
-        let alert = newSafeFlowCoordinator.modallyPresentedController as! UIAlertController
-        guard let action = alert.actions.first(where: { $0.style == .cancel }) else {
-            XCTFail("Confirm cancellation action not found")
-            return
+        let newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
+
+        let parent = MainFlowCoordinator()
+        let exp = expectation(description: "Exited")
+        parent.enter(flow: newSafeFlowCoordinator) {
+            exp.fulfill()
         }
-        newSafeFlowCoordinator.didPush = false
-        action.test_handler?(action)
-        XCTAssertNil(newSafeFlowCoordinator.modallyPresentedController)
-        XCTAssertFalse(newSafeFlowCoordinator.didPush)
+
+        newSafeFlowCoordinator.deploymentDidCancel()
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
 
     func test_whenDeploymentSuccess_thenExitsFlow() {
+        walletService.expect_walletState(.creationStarted)
+
         let testFC = TestFlowCoordinator()
         var finished = false
         testFC.enter(flow: newSafeFlowCoordinator) {
             finished = true
         }
-        newSafeFlowCoordinator.deploymentDidSuccess()
+        newSafeFlowCoordinator.onboardingFeePaidDidSuccess()
         XCTAssertTrue(finished)
     }
 
-    func test_whenDeploymentFailed_thenShowsAlertThatTakesBackToNewSafeScreen() {
-        walletService.createReadyToDeployWallet()
-        let newSafeFlowCoordinator = TestableNewSafeFlowCoordinator(rootViewController: UINavigationController())
-        newSafeFlowCoordinator.setUp()
-        newSafeFlowCoordinator.deploymentDidFail("")
-        guard let alert = newSafeFlowCoordinator.modallyPresentedController as? UIAlertController,
-            let action = alert.actions.first(where: { $0.style == .cancel }) else {
-                XCTFail("Confirm cancellation action not found")
-                return
+    func test_whenDeploymentFailed_thenExitsFlow() {
+        walletService.expect_walletState(.creationStarted)
+
+        let newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
+
+        let testFC = TestFlowCoordinator()
+        var finished = false
+        testFC.enter(flow: newSafeFlowCoordinator) {
+            finished = true
         }
-        action.test_handler?(action)
-        XCTAssertNil(newSafeFlowCoordinator.modallyPresentedController)
-        XCTAssertTrue(newSafeFlowCoordinator.didPopToCheckpoint)
+
+        newSafeFlowCoordinator.onboardingFeePaidDidFail()
+
+        XCTAssertTrue(finished)
     }
 
-    func test_whenSafeIsInAnyPendingState_thenShowingPendingController() {
-        walletService.expect_isSafeCreationInProgress(true)
-        assertShowingPendingVC()
-
-        walletService.expect_isSafeCreationInProgress(false)
-        assertShowingPendingVC(shouldShow: false)
+    func test_startStates() {
+        assert(when: .draft, then: GuidelinesViewController.self)
+        assert(when: .deploying, then: OnboardingCreationFeeViewController.self)
+        assert(when: .waitingForFirstDeposit, then: OnboardingCreationFeeViewController.self)
+        assert(when: .notEnoughFunds, then: OnboardingCreationFeeViewController.self)
+        assert(when: .creationStarted, then: OnboardingFeePaidViewController.self)
+        assert(when: .creationStarted, then: OnboardingFeePaidViewController.self)
+        assert(when: .finalizingDeployment, then: OnboardingFeePaidViewController.self)
     }
 
     func test_tracking() {
-        let screenEvent = newSafeFlowCoordinator.newPairController().screenTrackingEvent as? OnboardingTrackingEvent
+        newSafeFlowCoordinator.didPressNext()
+        delay(0.5)
+        let controller = newSafeFlowCoordinator.navigationController.topViewController as!
+            PairWithBrowserExtensionViewController
+        let screenEvent = controller.screenTrackingEvent as? OnboardingTrackingEvent
         XCTAssertEqual(screenEvent, .twoFA)
 
-        let scanEvent = newSafeFlowCoordinator.newPairController().scanTrackingEvent as? OnboardingTrackingEvent
+        let scanEvent = controller.scanTrackingEvent as? OnboardingTrackingEvent
         XCTAssertEqual(scanEvent, .twoFAScan)
     }
 
@@ -183,26 +159,24 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
 private extension NewSafeFlowCoordinatorTests {
 
-    func deploy() {
-        walletService.deployWallet(subscriber: MockEventSubscriber(), onError: nil)
+    func assert<T>(when state: WalletStateId, then controllerClass: T.Type, line: UInt = #line) {
+        walletService.expect_walletState(state)
+        newSafeFlowCoordinator.setUp()
+        delay()
+        assert(topViewController!, is: controllerClass, line: line)
     }
 
-    func assertShowingPendingVC(shouldShow: Bool = true, line: UInt = #line) {
-        let testFC = TestFlowCoordinator()
-        testFC.enter(flow: newSafeFlowCoordinator)
-        delay()
-        XCTAssertTrue((testFC.topViewController is SafeCreationViewController) == shouldShow,
-                      "\(String(describing: testFC.topViewController)) is not PendingViewController",
-                      line: line)
+    func assert<T>(_ object: Any?, is aType: T.Type, file: StaticString = #file, line: UInt = #line) {
+        let message = "Expected \(T.self) but got \(String(describing: type(of: object)))"
+        XCTAssertTrue(object is T, message, file: file, line: line)
     }
 
     func pairWithBrowserExtension() {
         ethereumService.browserExtensionAddress = "code"
         walletService.expect_isSafeCreationInProgress(true)
-        startVC = topViewController
-        newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
+        newSafeFlowCoordinator.didPressNext()
         delay()
-        pairVC = topViewController as? PairWithBrowserExtensionViewController
+        let pairVC = topViewController as? PairWithBrowserExtensionViewController
         pairVC!.loadViewIfNeeded()
         pairVC!.scanBarButtonItemDidScanValidCode("code")
         delay()
@@ -212,30 +186,4 @@ private extension NewSafeFlowCoordinatorTests {
 
 class MockEventSubscriber: EventSubscriber {
     func notify() {}
-}
-
-class TestableNewSafeFlowCoordinator: NewSafeFlowCoordinator {
-
-    var modallyPresentedController: UIViewController?
-
-    override func presentModally(_ controller: UIViewController) {
-        modallyPresentedController = controller
-    }
-
-    override func dismissModal(_ completion: (() -> Void)?) {
-        modallyPresentedController = nil
-    }
-
-    var didPush: Bool = false
-
-    override func push(_ controller: UIViewController, onPop action: (() -> Void)?) {
-        didPush = true
-    }
-
-    var didPopToCheckpoint: Bool = false
-
-    override func popToLastCheckpoint() {
-        didPopToCheckpoint = true
-    }
-
 }

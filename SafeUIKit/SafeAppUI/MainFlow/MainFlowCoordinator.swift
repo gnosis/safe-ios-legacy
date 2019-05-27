@@ -79,8 +79,8 @@ open class MainFlowCoordinator: FlowCoordinator {
         push(OnboardingCreateOrRestoreViewController.create(delegate: self))
     }
 
-    func requestToUnlockApp() {
-        lockedViewController = rootViewController
+    func requestToUnlockApp(useUIApplicationRoot: Bool = false) {
+        lockedViewController = useUIApplicationRoot ? applicationRootViewController : rootViewController
         applicationRootViewController = UnlockViewController.create { [unowned self] success in
             if !success { return }
             self.applicationRootViewController = self.lockedViewController
@@ -97,7 +97,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         if ApplicationServiceRegistry.authenticationService.isUserRegistered &&
             !ApplicationServiceRegistry.authenticationService.isUserAuthenticated &&
             !(applicationRootViewController is UnlockViewController) {
-            requestToUnlockApp()
+            requestToUnlockApp(useUIApplicationRoot: true)
         }
     }
 
