@@ -130,6 +130,7 @@
                         <outlet property="countdownLabel" destination="k6Y-AZ-zil" id="0UI-I6-JvS"/>
                         <outlet property="countdownStack" destination="fz4-D4-HVk" id="vuf-lp-9rV"/>
                         <outlet property="loginWithBiometryButton" destination="h1G-7q-Z9o" id="n6X-7D-Iau"/>
+                        <outlet property="logoImageView" destination="Si5-KI-qJM" id="Nl2-e9-Jml"/>
                         <outlet property="tryAgainLabel" destination="ABb-xa-28G" id="ZN3-Mo-fzI"/>
                         <outlet property="verifiableInput" destination="nj1-ul-eXr" id="zEF-xN-NcA"/>
                     </connections>
@@ -141,6 +142,6 @@
     </scenes>
     <resources>
         <image name="safe-header-logo" width="71" height="72"/>
-        <image name="touch-id-icon" width="85" height="85"/>
+        <image name="touch-id-icon" width="31" height="34"/>
     </resources>
 </document>

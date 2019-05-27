@@ -23,9 +23,14 @@ public class TextInput: UITextField {
     public weak var keyboardTargetView: UIView?
 
     public enum Style {
+        /// white background, 2pt border, 10pt corner radius
         case white
+        /// gray background, 2pt border, 10pt corner radius
         case gray
+        /// 40% transaprent white background, 2pt border, 10pt corner radius
         case dimmed
+        /// white background, no border, 10pt corner radius
+        case opaqueWhite
     }
 
     public enum TextInputState {
@@ -197,6 +202,12 @@ public class TextInput: UITextField {
             case .normal, .success: layer.borderColor = UIColor.white.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
             }
+        case .opaqueWhite:
+            backgroundColor = .white
+            textColor = ColorName.battleshipGrey.color
+            tintColor = ColorName.dodgerBlue.color
+            clearButton.tintColor = ColorName.lightGreyBlue.color
+            layer.borderWidth = 0
         }
     }
 
@@ -208,9 +219,7 @@ public class TextInput: UITextField {
 
     private func placeholderColor() -> UIColor {
         switch style {
-        case .white:
-            return ColorName.lightGreyBlue.color
-        case .gray:
+        case .white, .gray, .opaqueWhite:
             return ColorName.lightGreyBlue.color
         case .dimmed:
             return .white
