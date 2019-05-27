@@ -26,7 +26,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     public init() {
-        super.init(rootViewController: UINavigationController())
+        super.init(rootViewController: CustomNavigationController())
         configureGloabalAppearance()
         newSafeFlowCoordinator.mainFlowCoordinator = self
     }
