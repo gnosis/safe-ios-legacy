@@ -18,9 +18,6 @@
 /* Received */
 "amount_received" = "Amount received";
 
-/* App slogan */
-"app_slogan" = "Enter the decentralized web.";
-
 /* App Version */
 "app_version" = "App version: %@";
 
@@ -174,6 +171,9 @@
 /* Insufficient funds header for safe creation screen.
    Insufficient funds header. */
 "insufficient_funds" = "Insufficient funds";
+
+/* App slogan */
+"ios_app_slogan" = "Enter the\ndecentralized web.";
 
 /* Network error message */
 "ios_be_error_expired" = "Failed to pair because QR code is expired. Please, generate a new code.";

@@ -100,6 +100,7 @@ enum Asset {
   static let transparentBackground = ImageAsset(name: "transparent_background")
   enum UnlockScreen {
     static let faceIdIcon = ImageAsset(name: "face-id-icon")
+    static let safeHeaderLogoRinkeby = ImageAsset(name: "safe-header-logo-rinkeby")
     static let safeHeaderLogo = ImageAsset(name: "safe-header-logo")
     static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   }
@@ -145,6 +146,7 @@ enum Asset {
     TransactionOverviewIcons.settingTransaction,
     transparentBackground,
     UnlockScreen.faceIdIcon,
+    UnlockScreen.safeHeaderLogoRinkeby,
     UnlockScreen.safeHeaderLogo,
     UnlockScreen.touchIdIcon,
   ]

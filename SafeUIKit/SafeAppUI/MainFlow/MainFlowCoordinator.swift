@@ -53,7 +53,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     func appDidFinishLaunching() {
         if !ApplicationServiceRegistry.authenticationService.isUserRegistered {
-            push(StartViewController.create(delegate: self))
+            push(OnboardingWelcomeViewController.create(delegate: self))
             applicationRootViewController = rootViewController
             return
         } else if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
@@ -146,7 +146,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 
 }
 
-extension MainFlowCoordinator: StartViewControllerDelegate {
+extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
 
     func didStart() {
         let controller = TermsAndConditionsViewController.create()

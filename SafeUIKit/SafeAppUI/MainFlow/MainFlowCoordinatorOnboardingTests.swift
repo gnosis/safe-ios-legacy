@@ -20,7 +20,7 @@ class MainFlowCoordinatorOnboardingTests: SafeTestCase {
     func test_whenUserNotRegistered_thenShowsStartScreen() {
         authenticationService.unregisterUser()
         flowCoordinator.setUp()
-        XCTAssertTrue(flowCoordinator.navigationController.topViewController is StartViewController)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is OnboardingWelcomeViewController)
     }
 
     func test_whenStartingSetupPassword_thenShowsTermsScreen() {
@@ -47,7 +47,7 @@ class MainFlowCoordinatorOnboardingTests: SafeTestCase {
         pressSetupPasswordButton()
         flowCoordinator.didDisagree()
         delay(1.0)
-        XCTAssertTrue(flowCoordinator.navigationController.topViewController is StartViewController)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is OnboardingWelcomeViewController)
         XCTAssertNil(flowCoordinator.rootViewController.presentedViewController)
     }
 
