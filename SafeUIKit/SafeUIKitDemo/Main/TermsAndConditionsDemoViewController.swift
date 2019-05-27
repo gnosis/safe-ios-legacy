@@ -5,9 +5,9 @@
 import UIKit
 import SafeAppUI
 
-class TermsAndConditionsDemoViewController: BaseDemoViewController, TermsAndConditionsViewControllerDelegate {
+class TermsAndConditionsDemoViewController: BaseDemoViewController, OnboardingTermsViewControllerDelegate {
 
-    var controller: TermsAndConditionsViewController!
+    var controller: OnboardingTermsViewController!
     override var demoController: UIViewController { return controller }
 
     override func viewDidLoad() {

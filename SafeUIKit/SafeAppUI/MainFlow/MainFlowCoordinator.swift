@@ -149,7 +149,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
 
     func didStart() {
-        let controller = TermsAndConditionsViewController.create()
+        let controller = OnboardingTermsViewController.create()
         controller.delegate = self
         controller.modalPresentationStyle = .overFullScreen
         rootViewController.definesPresentationContext = true
@@ -158,7 +158,7 @@ extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
 
 }
 
-extension MainFlowCoordinator: TermsAndConditionsViewControllerDelegate {
+extension MainFlowCoordinator: OnboardingTermsViewControllerDelegate {
 
     public func wantsToOpenTermsOfUse() {
         SupportFlowCoordinator(from: self).openTermsOfUse()

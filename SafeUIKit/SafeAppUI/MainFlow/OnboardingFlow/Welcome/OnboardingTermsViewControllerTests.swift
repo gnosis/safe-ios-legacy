@@ -5,12 +5,12 @@
 import XCTest
 @testable import SafeAppUI
 
-class TermsAndConditionsViewControllerTests: XCTestCase {
+class OnboardingTermsViewControllerTests: XCTestCase {
 
-    let controller = TermsAndConditionsViewController.create()
+    let controller = OnboardingTermsViewController.create()
 
     func test_whenTappingButtons_thenCallsDelegate() {
-        let delegate = TestTermsAndConditionsViewControllerDelegate()
+        let delegate = OnboardingTermsViewControllerDelegate()
         controller.delegate = delegate
         createWindow(controller)
         [controller.termsOfUseButton, controller.privacyPolicyButton, controller.disagreeButton,
@@ -27,7 +27,7 @@ class TermsAndConditionsViewControllerTests: XCTestCase {
 
 }
 
-class TestTermsAndConditionsViewControllerDelegate: TermsAndConditionsViewControllerDelegate {
+class TestOnboardingTermsViewControllerDelegate: OnboardingTermsViewControllerDelegate {
 
     var didOpenTermsOfUse = false
     var didOpenPrivacyPolicy = false

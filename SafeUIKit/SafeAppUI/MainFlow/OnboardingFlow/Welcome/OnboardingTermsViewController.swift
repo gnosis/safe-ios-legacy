@@ -5,14 +5,14 @@
 import UIKit
 import SafeUIKit
 
-public protocol TermsAndConditionsViewControllerDelegate: class {
+public protocol OnboardingTermsViewControllerDelegate: class {
     func wantsToOpenTermsOfUse()
     func wantsToOpenPrivacyPolicy()
     func didDisagree()
     func didAgree()
 }
 
-public class TermsAndConditionsViewController: UIViewController {
+public class OnboardingTermsViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var listLabel: UILabel!
@@ -21,7 +21,7 @@ public class TermsAndConditionsViewController: UIViewController {
     @IBOutlet weak var agreeButton: StandardButton!
     @IBOutlet weak var disagreeButton: StandardButton!
 
-    public weak var delegate: TermsAndConditionsViewControllerDelegate?
+    public weak var delegate: OnboardingTermsViewControllerDelegate?
 
     private enum Strings {
         static let header = LocalizedString("please_review_terms_and_privacy_policy", comment: "Header label")
@@ -33,8 +33,8 @@ public class TermsAndConditionsViewController: UIViewController {
         static let agree = LocalizedString("agree", comment: "Agree")
     }
 
-    public static func create() -> TermsAndConditionsViewController {
-        return StoryboardScene.MasterPassword.termsAndConditionsViewController.instantiate()
+    public static func create() -> OnboardingTermsViewController {
+        return StoryboardScene.MasterPassword.onboardingTermsViewController.instantiate()
     }
 
     public override func viewDidLoad() {

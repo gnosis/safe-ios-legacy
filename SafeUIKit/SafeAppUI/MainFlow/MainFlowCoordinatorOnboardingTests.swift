@@ -25,7 +25,7 @@ class MainFlowCoordinatorOnboardingTests: SafeTestCase {
 
     func test_whenStartingSetupPassword_thenShowsTermsScreen() {
         pressSetupPasswordButton()
-        XCTAssertTrue(flowCoordinator.rootViewController.presentedViewController is TermsAndConditionsViewController)
+        XCTAssertTrue(flowCoordinator.rootViewController.presentedViewController is OnboardingTermsViewController)
     }
 
     private func pressSetupPasswordButton() {
