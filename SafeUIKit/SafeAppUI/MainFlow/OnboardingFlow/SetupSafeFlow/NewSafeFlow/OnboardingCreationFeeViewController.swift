@@ -20,6 +20,7 @@ class OnboardingCreationFeeViewController: CardViewController {
 
     weak var delegate: OnboardingCreationFeeViewControllerDelegate?
     var creationProcessTracker = CreationProcessTracker()
+    var isFinished: Bool = false
 
     enum Strings {
 
@@ -95,12 +96,11 @@ class OnboardingCreationFeeViewController: CardViewController {
 
     @objc func cancel() {
         let controller = AbortSafeCreationAlertController.create(abort: { [unowned self] in
-            self.dismiss(animated: true) {
-                ApplicationServiceRegistry.walletService.abortDeployment()
-                self.delegate?.deploymentDidCancel()
-            }
-            }, continue: { [unowned self] in
-                self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+            ApplicationServiceRegistry.walletService.abortDeployment()
+            self.delegate?.deploymentDidCancel()
+        }, continue: { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
         })
         present(controller, animated: true, completion: nil)
     }
@@ -117,11 +117,7 @@ class OnboardingCreationFeeViewController: CardViewController {
         present(TransactionFeeAlertController.create(), animated: true, completion: nil)
     }
 
-}
-
-extension OnboardingCreationFeeViewController: EventSubscriber {
-
-    func notify() {
+    func update() {
         let walletState = ApplicationServiceRegistry.walletService.walletState()!
         switch walletState {
         case .draft, .deploying:
@@ -129,6 +125,7 @@ extension OnboardingCreationFeeViewController: EventSubscriber {
             break
         case .waitingForFirstDeposit:
             let fee = ApplicationServiceRegistry.walletService.feePaymentTokenData
+                .withBalance(ApplicationServiceRegistry.walletService.minimumDeploymentAmount!)
             feeRequestView.feeAmountLabel.amount = fee
             addressDetailView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
             setFootnoteTokenCode(fee.code)
@@ -136,6 +133,7 @@ extension OnboardingCreationFeeViewController: EventSubscriber {
             addressDetailView.isHidden = false
         case .notEnoughFunds:
             let required = ApplicationServiceRegistry.walletService.feePaymentTokenData
+                .withBalance(ApplicationServiceRegistry.walletService.minimumDeploymentAmount!)
             let received = ApplicationServiceRegistry.walletService
                 .accountBalance(tokenID: BaseID(required.address)) ?? 0
             let remaining = required.balance == nil ? nil : (required.balance! - received)
@@ -151,11 +149,23 @@ extension OnboardingCreationFeeViewController: EventSubscriber {
              .transactionHashIsKnown,
              .finalizingDeployment,
              .readyToUse:
+            // has to exit from here because the screen is still visible for a while
+            guard !isFinished else { return }
+            isFinished = true
             // fee was enough, the creation started.
             // point of no return (or cancelling)
             navigationItem.leftBarButtonItem?.isEnabled = false
             delegate?.deploymentDidStart()
         }
     }
+
+}
+
+extension OnboardingCreationFeeViewController: EventSubscriber {
+
+    func notify() {
+        DispatchQueue.main.async(execute: update)
+    }
+
 
 }

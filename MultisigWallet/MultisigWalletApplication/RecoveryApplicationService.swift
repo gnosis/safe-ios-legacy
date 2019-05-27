@@ -29,6 +29,7 @@ public class RecoveryApplicationService {
     }
 
     public func prepareForRecovery() {
+        // remove all owners, recreate new owner
         DomainRegistry.recoveryService.prepareForRecovery()
     }
 

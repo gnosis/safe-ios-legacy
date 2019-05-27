@@ -49,6 +49,10 @@ class FeeRequestView: BaseCustomView {
             label?.textColor = ColorName.battleshipGrey.color
         }
         feeAmountLabel.textColor = ColorName.darkSlateBlue.color
+
+        [feeAmountLabel, balanceLineAmountLabel, totalLineAmountLabel].forEach { label in
+            label?.isShowingPlusSign = false
+        }
     }
 
 }

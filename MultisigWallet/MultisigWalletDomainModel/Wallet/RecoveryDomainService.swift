@@ -68,6 +68,12 @@ public class RecoveryDomainService: Assertable {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.reset()
         wallet.prepareForRecovery()
+        for owner in wallet.allOwners() {
+            DomainRegistry.externallyOwnedAccountRepository.remove(address: owner.address)
+            wallet.removeOwner(role: owner.role)
+        }
+        let newOwnerAddress = newOwner()
+        wallet.addOwner(Owner(address: newOwnerAddress, role: .thisDevice))
         DomainRegistry.walletRepository.save(wallet)
     }
 

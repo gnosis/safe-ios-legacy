@@ -4,6 +4,7 @@
 
 import Foundation
 
+// TODO: is this class needed? We just need one factory method.
 class SafeCreationFailedAlertController: SafeAlertController {
 
     private enum Strings {

@@ -63,10 +63,42 @@ public class DeploymentDomainService {
         wallet.resume()
     }
 
+    public func createNewDraftWallet() {
+        let portfolio = fetchOrCreatePortfolio()
+        let address = newOwner()
+        let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: address)
+        let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
+        portfolio.addWallet(wallet.id)
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.portfolioRepository.save(portfolio)
+        DomainRegistry.accountRepository.save(account)
+    }
+
+    private func newOwner() -> Address {
+        let account = DomainRegistry.encryptionService.generateExternallyOwnedAccount()
+        DomainRegistry.externallyOwnedAccountRepository.save(account)
+        return account.address
+    }
+
+    private func fetchOrCreatePortfolio() -> Portfolio {
+        if let result = DomainRegistry.portfolioRepository.portfolio() {
+            return result
+        } else {
+            return Portfolio(id: DomainRegistry.portfolioRepository.nextID())
+        }
+    }
+
+    // TODO: remove duplication
     public func prepareForCreation() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.reset()
         wallet.prepareForCreation()
+        for owner in wallet.allOwners() {
+            DomainRegistry.externallyOwnedAccountRepository.remove(address: owner.address)
+            wallet.removeOwner(role: owner.role)
+        }
+        let newOwnerAddress = newOwner()
+        wallet.addOwner(Owner(address: newOwnerAddress, role: .thisDevice))
         DomainRegistry.walletRepository.save(wallet)
     }
 

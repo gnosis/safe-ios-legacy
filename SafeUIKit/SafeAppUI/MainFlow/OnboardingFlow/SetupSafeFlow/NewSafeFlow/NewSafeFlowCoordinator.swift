@@ -9,13 +9,21 @@ import Common
 class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
+    weak var mainFlowCoordinator: MainFlowCoordinator!
 
     override func setUp() {
         super.setUp()
-        // TODO: if safe is draft, show guidelines
-        // if deploying, waiting for first deposit, notenough funds - then show CreationFee
-        // else - show FeePaid
-        push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
+        let state = ApplicationServiceRegistry.walletService.walletState()!
+        switch state {
+        case .draft:
+            push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
+        case .deploying, .waitingForFirstDeposit, .notEnoughFunds:
+            creationFeeIntroPay()
+        case .creationStarted, .transactionHashIsKnown, .finalizingDeployment:
+            deploymentDidStart()
+        case .readyToUse:
+            exitFlow()
+        }
     }
 
 }
@@ -114,7 +122,7 @@ extension NewSafeFlowCoordinator: OnboardingFeePaidViewControllerDelegate {
     }
 
     func onboardingFeePaidOpenMenu() {
-        //TODO: openMenu
+        mainFlowCoordinator.openMenu()
     }
 
 }

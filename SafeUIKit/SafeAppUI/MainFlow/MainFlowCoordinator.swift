@@ -19,19 +19,6 @@ open class MainFlowCoordinator: FlowCoordinator {
     private var lockedViewController: UIViewController!
 
     private let transactionSubmissionHandler = TransactionSubmissionHandler()
-    // FIXME: deprecated
-
-    private var walletService: WalletApplicationService {
-        return MultisigWalletApplication.ApplicationServiceRegistry.walletService
-    }
-// FIXME: deprecated
-    private var authenticationService: AuthenticationApplicationService {
-        return IdentityAccessApplication.ApplicationServiceRegistry.authenticationService
-    }
-// FIXME: deprecated
-    private var shouldLockWhenAppActive: Bool {
-        return authenticationService.isUserRegistered  && !authenticationService.isUserAuthenticated
-    }
 
     private var applicationRootViewController: UIViewController? {
         get { return UIApplication.shared.keyWindow?.rootViewController }
@@ -41,6 +28,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     public init() {
         super.init(rootViewController: UINavigationController())
         configureGloabalAppearance()
+        newSafeFlowCoordinator.mainFlowCoordinator = self
     }
 
     private func configureGloabalAppearance() {
@@ -65,32 +53,26 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     func appDidFinishLaunching() {
         if !ApplicationServiceRegistry.authenticationService.isUserRegistered {
-            showStartScreen()
+            push(StartViewController.create(delegate: self))
             applicationRootViewController = rootViewController
             return
-        } else if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
-            showMainScreen()
         } else if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
-            showCreationProgress()
+            didSelectNewSafe()
         } else if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
-            showRecoveryProgress()
+            didSelectRecoverSafe()
         } else {
-            showCreateOrRestoreScreen()
+            switchToRootController()
         }
         requestToUnlockApp()
     }
 
-    func showStartScreen() {
-        push(StartViewController.create(delegate: self))
-    }
-
-    func showCreationProgress() {
-        // should open new safe flow coordinator
-//        push(OnboardingFeePaidViewController.create(delegate: self))
-    }
-
-    func showRecoveryProgress() {
-        push(RecoverFeePaidViewController.create())
+    func switchToRootController() {
+        clearNavigationStack()
+        if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            showMainScreen()
+        } else {
+            showCreateOrRestoreScreen()
+        }
     }
 
     func showCreateOrRestoreScreen() {
@@ -109,15 +91,6 @@ open class MainFlowCoordinator: FlowCoordinator {
         let mainVC = MainViewController.create(delegate: self)
         mainVC.navigationItem.backBarButtonItem = .backButton()
         push(mainVC)
-    }
-
-    // FIXME: deprecated
-    func showOnboarding() {
-        if authenticationService.isUserRegistered {
-            showCreateOrRestore()
-        } else {
-            push(StartViewController.create(delegate: self))
-        }
     }
 
     open func appEntersForeground() {
@@ -149,15 +122,6 @@ open class MainFlowCoordinator: FlowCoordinator {
             tx.status != .rejected {
             incomingTransactionFlowCoordinator.transactionID = transactionID
             enterTransactionFlow(incomingTransactionFlowCoordinator)
-        }
-    }
-    // FIXME: deprecated
-    func showCreateOrRestore() {
-        push(OnboardingCreateOrRestoreViewController.create(delegate: self))
-
-        if newSafeFlowCoordinator.isSafeCreationInProgress ||
-            ApplicationServiceRegistry.walletService.isWalletDeployable {
-            didSelectNewSafe()
         }
     }
 
@@ -211,8 +175,7 @@ extension MainFlowCoordinator: TermsAndConditionsViewControllerDelegate {
     public func didAgree() {
         dismissModal { [unowned self] in
             self.enter(flow: self.masterPasswordFlowCoordinator) {
-                self.clearNavigationStack()
-                self.showCreateOrRestore()
+                self.switchToRootController()
             }
         }
     }
@@ -222,26 +185,18 @@ extension MainFlowCoordinator: TermsAndConditionsViewControllerDelegate {
 extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 
     func didSelectNewSafe() {
-        // TODO: remove existing draft wallet if it exists - so that we restart with new owner every time.
-
         enter(flow: newSafeFlowCoordinator) { [unowned self] in
-            self.clearNavigationStack()
-            // TODO: decide what to open based on wallet state (it could have been canceled.
-            self.showMainScreen()
+            self.switchToRootController()
         }
     }
 
     func didSelectRecoverSafe() {
-        // TODO: remove existing draft wallet if it exists - so that we restart with new owner every time.
-
         enter(flow: recoverSafeFlowCoordinator) { [unowned self] in
-            self.clearNavigationStack()
-            self.showMainScreen()
+            self.switchToRootController()
         }
     }
 
 }
-
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
 
@@ -249,7 +204,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
         UIApplication.shared.requestRemoteNotificationsRegistration()
         DispatchQueue.global().async {
             do {
-                try self.walletService.auth()
+                try ApplicationServiceRegistry.walletService.auth()
             } catch let e {
                 MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Error in auth(): \(e)")
             }

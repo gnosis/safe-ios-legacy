@@ -35,6 +35,7 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         setBody(Strings.body)
         setImage(Asset.Onboarding.creatingSafe.image)
         button.isEnabled = false
+
         let retryItem = UIBarButtonItem.refreshButton(target: creationProcessTracker,
                                                       action: #selector(creationProcessTracker.start))
         navigationItem.leftBarButtonItem = retryItem
@@ -60,21 +61,18 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         delegate?.onboardingFeePaidOpenMenu()
     }
 
-}
-
-extension OnboardingFeePaidViewController: EventSubscriber {
-
-    func notify() {
+    func update() {
         let walletState = ApplicationServiceRegistry.walletService.walletState()!
         switch walletState {
         case .draft,
              .deploying,
              .waitingForFirstDeposit,
              .notEnoughFunds,
-             .creationStarted:
+             .creationStarted,
+             .finalizingDeployment:
             // nothing to do here, yet
             break
-        case .transactionHashIsKnown, .finalizingDeployment:
+        case .transactionHashIsKnown:
             button.isEnabled = true
         case .readyToUse:
             button.isEnabled = true
@@ -82,6 +80,14 @@ extension OnboardingFeePaidViewController: EventSubscriber {
                 self.delegate?.onboardingFeePaidDidSuccess()
             }
         }
+    }
+
+}
+
+extension OnboardingFeePaidViewController: EventSubscriber {
+
+    func notify() {
+        DispatchQueue.main.async(execute: update)
     }
 
 }
