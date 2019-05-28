@@ -57,6 +57,7 @@ extension RecoverSafeFlowCoordinator {
     func recoveryPhraseViewController() -> RecoveryPhraseInputViewController {
         let controller = RecoveryPhraseInputViewController.create(delegate: self)
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.enterSeed
+        controller.title = LocalizedString("recover_safe_title", comment: "Recover safe")
         return controller
     }
 

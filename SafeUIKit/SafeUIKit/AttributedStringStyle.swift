@@ -105,6 +105,11 @@ open class AttributedStringStyle {
 
 public extension NSAttributedString {
 
+    convenience init?(string: String?, style: AttributedStringStyle) {
+        guard let string = string else { return nil }
+        self.init(string: string, style: style)
+    }
+
     convenience init(string: String, style: AttributedStringStyle) {
         self.init(string: string, attributes: [.font: style.font,
                                                .foregroundColor: style.fontColor,

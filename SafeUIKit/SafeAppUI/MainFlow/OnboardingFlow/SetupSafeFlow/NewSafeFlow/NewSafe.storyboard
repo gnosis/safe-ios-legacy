@@ -328,10 +328,10 @@ Save this recovery phrase.</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WNT-0N-qa2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1v-Kw-okT" customClass="ShadowWrapperView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1v-Kw-okT">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="500.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="X0O-6T-6hX" userLabel="Text Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="X0O-6T-6hX" userLabel="Text Stack View">
                                                 <rect key="frame" x="0.0" y="42" width="375" height="404.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="How this works" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydp-ZQ-OwU" userLabel="Header Label">
@@ -341,10 +341,10 @@ Save this recovery phrase.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UhS-X4-EnH">
-                                                        <rect key="frame" x="0.0" y="61.5" width="375" height="128"/>
+                                                        <rect key="frame" x="0.0" y="39.5" width="375" height="128"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guidelines go here..." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htJ-RN-Xqq" userLabel="Content Label">
-                                                        <rect key="frame" x="0.0" y="230.5" width="375" height="174"/>
+                                                        <rect key="frame" x="0.0" y="186.5" width="375" height="218"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -388,6 +388,7 @@ Save this recovery phrase.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundView" destination="NLa-Xn-4F3" id="m43-a6-1YN"/>
                         <outlet property="contentLabel" destination="htJ-RN-Xqq" id="hb1-zU-uzK"/>
                         <outlet property="headerLabel" destination="ydp-ZQ-OwU" id="2qM-wS-54r"/>
                         <outlet property="imageView" destination="UhS-X4-EnH" id="fyx-LQ-tZW"/>
