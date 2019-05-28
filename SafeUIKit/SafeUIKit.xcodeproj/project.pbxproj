@@ -1220,12 +1220,12 @@
 				0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */,
 				0AB20141229848520071510A /* CreationProcessTracker.swift */,
 				55AA3C46229590AD007B3105 /* CreationFeeIntro */,
-				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
+				0A334E02209C8E3800ABC6AE /* SeedFlow */,
 			);
 			path = CreateSafe;
 			sourceTree = "<group>";
 		};
-		0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */ = {
+		0A334E02209C8E3800ABC6AE /* SeedFlow */ = {
 			isa = PBXGroup;
 			children = (
 				0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */,
@@ -1235,7 +1235,7 @@
 				0A334E08209C8E3800ABC6AE /* SaveMnemonicViewController.swift */,
 				0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */,
 			);
-			path = PaperWalletSetupFlow;
+			path = SeedFlow;
 			sourceTree = "<group>";
 		};
 		0A334E10209C8E3800ABC6AE /* Welcome */ = {
