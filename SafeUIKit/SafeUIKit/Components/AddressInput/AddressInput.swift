@@ -19,14 +19,16 @@ public final class AddressInput: VerifiableInput {
                                                "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"]
 
     public weak var addressInputDelegate: AddressInputDelegate?
-    private let identiconSize = CGSize(width: 26, height: 26)
+
+    private let identiconSize = CGSize(width: 32, height: 32)
     private let inputHeight: CGFloat = 56
-    private let inputHeightWithAddress: CGFloat = 72
+    private let inputHeightWithAddress: CGFloat = 78
+    private let addressLabelSidePadding: CGFloat = 12
+    private let textFontSize: CGFloat = 16
+
     private let addressCharacterCount: Int = 42
     private let addressDigitCount: Int = 40
     private let hexPrefix: String = "0x"
-    private let textFontSize: CGFloat = 16
-    private let addressLabelSidePadding: CGFloat = 12
 
     private var leadingInputConstraint: NSLayoutConstraint!
 
@@ -137,6 +139,7 @@ public final class AddressInput: VerifiableInput {
         addressLabel.adjustsFontSizeToFitWidth = true
         addressLabel.minimumScaleFactor = 0.8
         addressLabel.lineBreakMode = .byTruncatingTail
+        addressLabel.isUserInteractionEnabled = false
     }
 
     private func dotsRightView() -> UIView {

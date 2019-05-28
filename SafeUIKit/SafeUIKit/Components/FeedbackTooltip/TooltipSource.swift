@@ -18,6 +18,7 @@ public class TooltipSource {
         self.target = target
         self.onTap = onTap
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        tapRecognizer.cancelsTouchesInView = false
         target.addGestureRecognizer(tapRecognizer)
         target.isUserInteractionEnabled = true
     }

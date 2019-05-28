@@ -76,10 +76,8 @@ public class GuidelinesViewController: UIViewController {
 
     func update() {
         guard isViewLoaded else { return }
-        let titleView = SafeLabelTitleView()
-        titleView.attributedText = NSAttributedString(string: titleText, style: TitleStyle())
-        navigationItem.titleView = titleView
-        headerLabel.attributedText = NSAttributedString(string: headerText, style: HeaderStyle())
+        navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: titleText)
+        headerLabel.attributedText = NSAttributedString(string: headerText, style: OnboardingHeaderStyle())
         contentLabel.attributedText = .list(from: bodyText, style: bodyStyle)
         nextButtonItem.title = nextActionText
         imageView.image = headerImage
@@ -90,21 +88,25 @@ public class GuidelinesViewController: UIViewController {
         delegate?.didPressNext()
     }
 
-    class HeaderStyle: AttributedStringStyle {
+}
 
-        override var fontSize: Double { return 17 }
-        override var maximumLineHeight: Double { return 22 }
-        override var minimumLineHeight: Double { return 22 }
-        override var alignment: NSTextAlignment { return .center }
-        override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
-        override var fontWeight: UIFont.Weight { return .medium }
+class OnboardingHeaderStyle: AttributedStringStyle {
 
-    }
+    override var fontSize: Double { return 17 }
+    override var maximumLineHeight: Double { return 22 }
+    override var minimumLineHeight: Double { return 22 }
+    override var alignment: NSTextAlignment { return .center }
+    override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+    override var fontWeight: UIFont.Weight { return .semibold }
 
-    class TitleStyle: HeaderStyle {
+}
 
-        override var fontWeight: UIFont.Weight { return .semibold }
+extension SafeLabelTitleView {
 
+    static func onboardingTitleView(text: String?) -> SafeLabelTitleView {
+        let view = SafeLabelTitleView()
+        view.attributedText = NSAttributedString(string: text, style: OnboardingHeaderStyle())
+        return view
     }
 
 }

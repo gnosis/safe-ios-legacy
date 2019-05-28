@@ -453,9 +453,6 @@
    Passwords must match. */
 "passwords_do_not_match" = "Sorry, the password doesn't match";
 
-/* Paste */
-"paste" = "Paste";
-
 /* Pay with %@ */
 "pay_with" = "Pay with %@";
 
