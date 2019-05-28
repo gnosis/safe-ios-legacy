@@ -9,6 +9,7 @@ import Common
 
 public final class UnlockViewController: UIViewController {
 
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var tryAgainLabel: UILabel!
     @IBOutlet weak var countdownStack: UIStackView!
     @IBOutlet weak var backgroundImageView: BackgroundImageView!
@@ -45,7 +46,7 @@ public final class UnlockViewController: UIViewController {
 
         verifiableInput.delegate = self
         verifiableInput.isSecure = true
-        verifiableInput.style = .dimmed
+        verifiableInput.style = .opaqueWhite
         verifiableInput.accessibilityIdentifier = "unlock.password"
         verifiableInput.textInput.placeholder = Strings.passwordPlaceholder
 
@@ -56,7 +57,7 @@ public final class UnlockViewController: UIViewController {
 
         biometryExplanationLabel.text = isFaceID ? Strings.faceIDInfo : Strings.touchIDInfo
         biometryExplanationLabel.textColor = ColorName.paleGrey.color
-        biometryExplanationLabel.font = UIFont.systemFont(ofSize: 15)
+        biometryExplanationLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
 
         updateBiometryButtonVisibility()
 
@@ -79,7 +80,6 @@ public final class UnlockViewController: UIViewController {
         startCountdownIfNeeded()
         subscribeForKeyboardUpdates()
     }
-
 
     private func subscribeForKeyboardUpdates() {
         NotificationCenter.default.addObserver(self,
@@ -147,6 +147,10 @@ public final class UnlockViewController: UIViewController {
 
     @IBAction func loginWithBiometry(_ sender: Any) {
         auhtenticateWithBiometry()
+    }
+
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     private func auhtenticateWithBiometry() {
