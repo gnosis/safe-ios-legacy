@@ -120,7 +120,7 @@ public final class TwoFAViewController: CardViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         didCancel = false
-        setCustomBackButton()
+        setCustomBackButton(backButtonItem)
     }
 
     public func showLoadingTitle() {

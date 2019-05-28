@@ -86,7 +86,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     override func willMove(toParent parent: UIViewController?) {
-        setCustomBackButton()
+        setCustomBackButton(backButtonItem)
     }
 
     private func textInsets() -> UIEdgeInsets {
