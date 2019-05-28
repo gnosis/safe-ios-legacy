@@ -570,9 +570,9 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qh8-Vu-Kwr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="114.5" height="30"/>
-                                                                <state key="normal" title="Dimmed"/>
+                                                                <state key="normal" title="OpaqueWhite"/>
                                                                 <connections>
-                                                                    <action selector="setDimmed:" destination="vHI-aF-hxB" eventType="touchUpInside" id="GOk-68-eT6"/>
+                                                                    <action selector="setOpaqueWhite:" destination="vHI-aF-hxB" eventType="touchUpInside" id="GOk-68-eT6"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvi-Ah-yXk">

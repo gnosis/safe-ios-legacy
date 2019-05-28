@@ -32,8 +32,8 @@ class TextInputViewController: UIViewController {
         simpleTextInput.leftImageURL = URL(string: "https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/rinkeby/icons/0x979861dF79C7408553aAF20c01Cfb3f81CCf9341.png")
     }
 
-    @IBAction func setDimmed(_ sender: Any) {
-        simpleTextInput.style = .dimmed
+    @IBAction func setOpaqueWhite(_ sender: Any) {
+        simpleTextInput.style = .opaqueWhite
         simpleTextInput.resignFirstResponder()
     }
 

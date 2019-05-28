@@ -27,8 +27,6 @@ public class TextInput: UITextField {
         case white
         /// gray background, 2pt border, 10pt corner radius
         case gray
-        /// 40% transaprent white background, 2pt border, 10pt corner radius
-        case dimmed
         /// white background, no border, 10pt corner radius
         case opaqueWhite
     }
@@ -193,15 +191,6 @@ public class TextInput: UITextField {
             case .normal, .success: layer.borderColor = UIColor.white.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
             }
-        case .dimmed:
-            backgroundColor = UIColor.white.withAlphaComponent(0.4)
-            textColor = .white
-            tintColor = ColorName.lightishBlue.color
-            clearButton.tintColor = .white
-            switch inputState {
-            case .normal, .success: layer.borderColor = UIColor.white.cgColor
-            case .error: layer.borderColor = ColorName.tomato.color.cgColor
-            }
         case .opaqueWhite:
             backgroundColor = .white
             textColor = ColorName.battleshipGrey.color
@@ -218,12 +207,7 @@ public class TextInput: UITextField {
     }
 
     private func placeholderColor() -> UIColor {
-        switch style {
-        case .white, .gray, .opaqueWhite:
-            return ColorName.lightGreyBlue.color
-        case .dimmed:
-            return .white
-        }
+        return ColorName.lightGreyBlue.color
     }
 
     private func updateImage() {
