@@ -26,20 +26,18 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     public init() {
-        super.init(rootViewController: UINavigationController())
+        super.init(rootViewController: CustomNavigationController())
         configureGloabalAppearance()
         newSafeFlowCoordinator.mainFlowCoordinator = self
     }
 
     private func configureGloabalAppearance() {
-        let barButtonAppearance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
-        barButtonAppearance.tintColor = ColorName.aquaBlue.color
-
-        let buttonAppearance = UIButton.appearance()
-        buttonAppearance.tintColor = ColorName.aquaBlue.color
+        UIButton.appearance().tintColor = ColorName.darkSkyBlue.color
+        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = nil
 
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.barTintColor = .white
+        navBarAppearance.tintColor = ColorName.darkSkyBlue.color
         navBarAppearance.isTranslucent = false
         navBarAppearance.setBackgroundImage(UIImage(), for: .default)
         navBarAppearance.shadowImage = Asset.shadow.image
@@ -53,7 +51,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     func appDidFinishLaunching() {
         if !ApplicationServiceRegistry.authenticationService.isUserRegistered {
-            push(StartViewController.create(delegate: self))
+            push(OnboardingWelcomeViewController.create(delegate: self))
             applicationRootViewController = rootViewController
             return
         } else if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
@@ -146,10 +144,10 @@ open class MainFlowCoordinator: FlowCoordinator {
 
 }
 
-extension MainFlowCoordinator: StartViewControllerDelegate {
+extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
 
     func didStart() {
-        let controller = TermsAndConditionsViewController.create()
+        let controller = OnboardingTermsViewController.create()
         controller.delegate = self
         controller.modalPresentationStyle = .overFullScreen
         rootViewController.definesPresentationContext = true
@@ -158,7 +156,7 @@ extension MainFlowCoordinator: StartViewControllerDelegate {
 
 }
 
-extension MainFlowCoordinator: TermsAndConditionsViewControllerDelegate {
+extension MainFlowCoordinator: OnboardingTermsViewControllerDelegate {
 
     public func wantsToOpenTermsOfUse() {
         SupportFlowCoordinator(from: self).openTermsOfUse()

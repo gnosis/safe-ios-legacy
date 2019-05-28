@@ -6,7 +6,7 @@ import UIKit
 import SafeUIKit
 import Common
 
-class CardViewController: UIViewController {
+public class CardViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollContentView: UIView!
@@ -26,7 +26,7 @@ class CardViewController: UIViewController {
 
     @IBOutlet weak var footerButton: StandardButton!
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         footerButton.style = .plain
         [view,

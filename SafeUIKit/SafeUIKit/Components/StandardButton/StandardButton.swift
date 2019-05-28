@@ -43,7 +43,7 @@ final public class StandardButton: BaseCustomButton {
         switch style {
         case .bordered:
             layer.borderColor = UIColor.white.cgColor
-            layer.borderWidth = 1
+            layer.borderWidth = 2
         case .plain:
             setTitleColor(ColorName.darkSkyBlue.color, for: .normal)
             layer.cornerRadius = 0

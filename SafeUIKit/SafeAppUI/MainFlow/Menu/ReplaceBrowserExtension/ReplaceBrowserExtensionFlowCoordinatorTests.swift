@@ -35,13 +35,13 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
     func test_whenScannedCode_thenConnects() throws {
         fc.introVC!.transactionID = "Some"
         fc.rbeIntroViewControllerDidStart()
-        let vc = PairWithBrowserExtensionViewController.create(delegate: nil)
-        try fc.pairWithBrowserExtensionViewController(vc, didScanAddress: "Address", code: "Code")
+        let vc = TwoFAViewController.create(delegate: nil)
+        try fc.twoFAViewController(vc, didScanAddress: "Address", code: "Code")
         XCTAssertTrue(mockApplicationService.didCallConnect)
     }
 
     func test_whenPairingFinishes_thenPresentsRecoveryPhraseInput() {
-        fc.pairWithBrowserExtensionViewControllerDidFinish()
+        fc.twoFAViewControllerDidFinish()
         XCTAssertTrue(nav.topViewController is RecoveryPhraseInputViewController)
     }
 

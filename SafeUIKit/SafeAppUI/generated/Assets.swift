@@ -56,6 +56,7 @@ enum Asset {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
   }
+  static let navbarFilled = ImageAsset(name: "navbar-filled")
   enum Onboarding {
     static let browserExtensionQr = ImageAsset(name: "browser-extension-qr")
     static let creatingSafe = ImageAsset(name: "creatingSafe")
@@ -100,6 +101,7 @@ enum Asset {
   static let transparentBackground = ImageAsset(name: "transparent_background")
   enum UnlockScreen {
     static let faceIdIcon = ImageAsset(name: "face-id-icon")
+    static let safeHeaderLogoRinkeby = ImageAsset(name: "safe-header-logo-rinkeby")
     static let safeHeaderLogo = ImageAsset(name: "safe-header-logo")
     static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   }
@@ -116,6 +118,7 @@ enum Asset {
     ConnectBrowserExtension.connectIntroIcon,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
+    navbarFilled,
     Onboarding.browserExtensionQr,
     Onboarding.creatingSafe,
     Onboarding.errorIcon,
@@ -145,6 +148,7 @@ enum Asset {
     TransactionOverviewIcons.settingTransaction,
     transparentBackground,
     UnlockScreen.faceIdIcon,
+    UnlockScreen.safeHeaderLogoRinkeby,
     UnlockScreen.safeHeaderLogo,
     UnlockScreen.touchIdIcon,
   ]

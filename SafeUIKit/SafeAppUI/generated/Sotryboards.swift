@@ -86,9 +86,9 @@ enum StoryboardScene {
   enum MasterPassword: StoryboardType {
     static let storyboardName = "MasterPassword"
 
-    static let startViewController = SceneType<SafeAppUI.StartViewController>(storyboard: MasterPassword.self, identifier: "StartViewController")
+    static let onboardingTermsViewController = SceneType<SafeAppUI.OnboardingTermsViewController>(storyboard: MasterPassword.self, identifier: "OnboardingTermsViewController")
 
-    static let termsAndConditionsViewController = SceneType<SafeAppUI.TermsAndConditionsViewController>(storyboard: MasterPassword.self, identifier: "TermsAndConditionsViewController")
+    static let onboardingWelcomeViewController = SceneType<SafeAppUI.OnboardingWelcomeViewController>(storyboard: MasterPassword.self, identifier: "OnboardingWelcomeViewController")
   }
   enum NewSafe: StoryboardType {
     static let storyboardName = "NewSafe"
@@ -104,11 +104,6 @@ enum StoryboardScene {
     static let safeCreationViewController = SceneType<SafeAppUI.SafeCreationViewController>(storyboard: NewSafe.self, identifier: "SafeCreationViewController")
 
     static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: NewSafe.self, identifier: "SaveMnemonicViewController")
-  }
-  enum PairWithBrowserExtension: StoryboardType {
-    static let storyboardName = "PairWithBrowserExtension"
-
-    static let pairWithBrowserExtensionViewController = SceneType<SafeAppUI.PairWithBrowserExtensionViewController>(storyboard: PairWithBrowserExtension.self, identifier: "PairWithBrowserExtensionViewController")
   }
   enum ReceiveFunds: StoryboardType {
     static let storyboardName = "ReceiveFunds"

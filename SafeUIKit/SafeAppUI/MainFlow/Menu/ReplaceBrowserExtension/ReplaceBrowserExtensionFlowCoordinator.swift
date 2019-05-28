@@ -34,8 +34,8 @@ extension ReplaceBrowserExtensionFlowCoordinator {
         return intro
     }
 
-    func pairViewController() -> PairWithBrowserExtensionViewController {
-        let controller = PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
+    func pairViewController() -> TwoFAViewController {
+        let controller = TwoFAViewController.createRBEConnectController(delegate: self)
         controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.scan
         return controller
     }
@@ -64,15 +64,13 @@ extension ReplaceBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate
 
 }
 
-extension ReplaceBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
+extension ReplaceBrowserExtensionFlowCoordinator: TwoFAViewControllerDelegate {
 
-    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didScanAddress address: String,
-                                                code: String) throws {
+    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
         try applicationService.connect(transaction: transactionID, code: code)
     }
 
-    func pairWithBrowserExtensionViewControllerDidFinish() {
+    func twoFAViewControllerDidFinish() {
         push(phraseInputViewController())
     }
 

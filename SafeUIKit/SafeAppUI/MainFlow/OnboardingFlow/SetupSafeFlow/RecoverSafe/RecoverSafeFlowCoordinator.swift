@@ -38,8 +38,8 @@ extension RecoverSafeFlowCoordinator {
         return RecoveryInProgressViewController.create(delegate: self)
     }
 
-    func newPairController() -> PairWithBrowserExtensionViewController {
-        let controller = PairWithBrowserExtensionViewController.create(delegate: self)
+    func newPairController() -> TwoFAViewController {
+        let controller = TwoFAViewController.create(delegate: self)
         controller.screenTitle = LocalizedString("recover_safe_title", comment: "Recover Safe")
         controller.screenHeader = LocalizedString("ios_connect_browser_extension",
                                                   comment: "Header for add browser extension screen")
@@ -57,6 +57,7 @@ extension RecoverSafeFlowCoordinator {
     func recoveryPhraseViewController() -> RecoveryPhraseInputViewController {
         let controller = RecoveryPhraseInputViewController.create(delegate: self)
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.enterSeed
+        controller.title = LocalizedString("recover_safe_title", comment: "Recover safe")
         return controller
     }
 
@@ -101,20 +102,18 @@ extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate 
 
 }
 
-extension RecoverSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
+extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
 
-    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didScanAddress address: String,
-                                                code: String) throws {
+    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.walletService
             .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
     }
 
-    func pairWithBrowserExtensionViewControllerDidFinish() {
+    func twoFAViewControllerDidFinish() {
         showReview()
     }
 
-    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+    func twoFAViewControllerDidSkipPairing() {
         ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
         showReview()
     }

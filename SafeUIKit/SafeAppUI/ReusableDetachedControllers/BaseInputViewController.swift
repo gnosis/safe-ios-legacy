@@ -13,8 +13,15 @@ class BaseInputViewController: UIViewController, EventSubscriber {
     @IBOutlet var nextButtonItem: UIBarButtonItem!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet var backgroundView: BackgroundImageView!
 
     let headerStyle = HeaderStyle.contentHeader
+
+    override var title: String? {
+        didSet {
+            navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: title)
+        }
+    }
 
     var headerText: String {
         preconditionFailure("Not implemented")
@@ -32,8 +39,14 @@ class BaseInputViewController: UIViewController, EventSubscriber {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerLabel.attributedText = .header(from: headerText, style: headerStyle)
+        headerLabel.attributedText = NSAttributedString(string: headerText, style: OnboardingHeaderStyle())
         disableNextAction()
+        backgroundView?.isWhite = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setCustomBackButton()
     }
 
     func disableNextAction() {

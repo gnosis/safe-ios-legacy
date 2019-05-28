@@ -5,16 +5,16 @@
 import XCTest
 @testable import SafeAppUI
 
-class StartViewControllerTests: XCTestCase {
+class OnboardingWelcomeViewControllerTests: XCTestCase {
 
     // swiftlint:disable:next weak_delegate
-    let delegate = MockStartViewControllerDelegate()
-    var vc: StartViewController!
+    let delegate = MockOnboardingWelcomeViewControllerDelegate()
+    var vc: OnboardingWelcomeViewController!
 
     override func setUp() {
         super.setUp()
         delegate.wasCalled = false
-        vc = StartViewController.create(delegate: delegate)
+        vc = OnboardingWelcomeViewController.create(delegate: delegate)
         vc.loadViewIfNeeded()
     }
 
@@ -33,7 +33,7 @@ class StartViewControllerTests: XCTestCase {
 
 }
 
-class MockStartViewControllerDelegate: StartViewControllerDelegate {
+class MockOnboardingWelcomeViewControllerDelegate: OnboardingWelcomeViewControllerDelegate {
 
     var wasCalled = false
 

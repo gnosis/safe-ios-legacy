@@ -6,27 +6,27 @@ import UIKit
 import SafeUIKit
 import Common
 
-protocol StartViewControllerDelegate: class {
+protocol OnboardingWelcomeViewControllerDelegate: class {
     func didStart()
 }
 
-final class StartViewController: UIViewController {
+final class OnboardingWelcomeViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: BackgroundImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var setupPasswordButton: StandardButton!
-    private weak var delegate: StartViewControllerDelegate!
+    private weak var delegate: OnboardingWelcomeViewControllerDelegate!
 
     private var preservedNavBarColor: UIColor!
     private var preservedTranslucent: Bool!
 
     private enum Strings {
-        static let description = LocalizedString("app_slogan", comment: "App slogan")
+        static let description = LocalizedString("ios_app_slogan", comment: "App slogan")
         static let setupPassword = LocalizedString("setup_password", comment: "Set up password button title")
     }
 
-    static func create(delegate: StartViewControllerDelegate) -> StartViewController {
-        let vc = StoryboardScene.MasterPassword.startViewController.instantiate()
+    static func create(delegate: OnboardingWelcomeViewControllerDelegate) -> OnboardingWelcomeViewController {
+        let vc = StoryboardScene.MasterPassword.onboardingWelcomeViewController.instantiate()
         vc.delegate = delegate
         return vc
     }
@@ -34,6 +34,7 @@ final class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionLabel.text = Strings.description
+        descriptionLabel.font = UIFont.systemFont(ofSize: 27, weight: .light)
         setupPasswordButton.setTitle(Strings.setupPassword, for: .normal)
     }
 
@@ -63,6 +64,10 @@ final class StartViewController: UIViewController {
 
     @IBAction func setupPassword(_ sender: Any) {
         delegate.didStart()
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
 }

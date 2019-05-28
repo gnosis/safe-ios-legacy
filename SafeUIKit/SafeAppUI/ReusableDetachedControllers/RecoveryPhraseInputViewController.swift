@@ -4,6 +4,7 @@
 
 import UIKit
 import Common
+import SafeUIKit
 
 protocol RecoveryPhraseInputViewControllerDelegate: class {
 
@@ -14,8 +15,7 @@ protocol RecoveryPhraseInputViewControllerDelegate: class {
 
 class RecoveryPhraseInputViewController: BaseInputViewController {
 
-    @IBOutlet weak var pasteButton: UIButton!
-    @IBOutlet weak var phraseTextView: UITextView!
+    @IBOutlet weak var phraseTextView: CustomTextView!
     var keyboardBehavior: KeyboardAvoidingBehavior!
     weak var delegate: RecoveryPhraseInputViewControllerDelegate?
     var backButtonItem: UIBarButtonItem!
@@ -57,13 +57,23 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundView.isWhite = true
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
+
+        phraseTextView.layer.cornerRadius = 10
+        phraseTextView.layer.borderColor = ColorName.paleLilac.color.cgColor
+        phraseTextView.layer.borderWidth = 2
+        phraseTextView.textColor = ColorName.darkSlateBlue.color
+        phraseTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        phraseTextView.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        phraseTextView.tintColor = ColorName.darkSkyBlue.color
+
         let insets = textInsets()
         placeholderTop.constant = insets.top
         placeholderLeading.constant = insets.left
         placeholderTrailing.constant = insets.right
         placeholderLabel.textColor = ColorName.darkSlateBlue.color.withAlphaComponent(0.7)
-        pasteButton.setTitle(LocalizedString("paste", comment: "Paste"), for: .normal)
+
         view.setNeedsUpdateConstraints()
         update()
     }
@@ -76,9 +86,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     override func willMove(toParent parent: UIViewController?) {
-        guard let nav = parent as? UINavigationController,
-            nav.topViewController == self && nav.viewControllers.count > 1 else { return }
-        nav.viewControllers[nav.viewControllers.count - 2].navigationItem.backBarButtonItem = backButtonItem
+        setCustomBackButton(backButtonItem)
     }
 
     private func textInsets() -> UIEdgeInsets {
@@ -112,12 +120,6 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardBehavior.stop()
-    }
-
-    @IBAction func pasteFromClipboard(_ sender: Any) {
-        if let value = UIPasteboard.general.string {
-            text = value
-        }
     }
 
     @objc func back() {
@@ -183,6 +185,18 @@ extension RecoveryPhraseInputViewController: UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         updateTextDependentViews(with: textView.text)
+    }
+
+}
+
+
+class CustomTextView: UITextView {
+
+    override func caretRect(for position: UITextPosition) -> CGRect {
+        var rect = super.caretRect(for: position)
+        rect.size.width = min(1, rect.width)
+        rect.size.height = max((font?.lineHeight ?? 21) + 2, rect.height)
+        return rect
     }
 
 }
