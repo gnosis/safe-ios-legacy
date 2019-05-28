@@ -18,7 +18,7 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
     private var pendingTransactionsToStartAnimation = Set<String>()
     public weak var delegate: TransactionViewViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
-    let emptyView = TransactionsEmptyView()
+    let emptyView = EmptyResultsView()
     let rowHeight: CGFloat = 70
     private let updateQueue = DispatchQueue(label: "TransactionDetailsUpdateQueue",
                                             qos: .userInitiated)
@@ -27,8 +27,13 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
     }
 
+    private enum Strings {
+        static let noTransactions = LocalizedString("empty_safe_transactions_message", comment: "No transactions yet")
+    }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
+        emptyView.text = Strings.noTransactions
         tableView.register(TransactionsGroupHeaderView.self,
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
         tableView.sectionHeaderHeight = TransactionsGroupHeaderView.height
