@@ -137,27 +137,11 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
     }
 
     func showConfirmationAlert() {
-
-        let alert = UIAlertController(title: LocalizedString("ios_replaceseed_confirm_title",
-                                                             comment: "Confirmation alert title"),
-                                      message: LocalizedString("ios_replaceseed_confirm_message",
-                                                               comment: "Confirmation alert message"),
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("ios_replaceseed_confirm_yes",
-                                                             comment: "Affirmative response button title"),
-                                      style: .default,
-                                      handler: SafeAlertController.wrap { [unowned self] in
-                                        self.doStart()
-        }))
-        alert.addAction(UIAlertAction(title: LocalizedString("cancel",
-                                                             comment: "Cancel response button title"),
-                                      style: .cancel,
-                                      handler: nil))
-        present(alert, animated: true)
+        present(UIAlertController.confirmReplaceSeed(handler: doStart), animated: true)
     }
 
     @objc func showTransactionFeeInfo() {
-        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
+        present(UIAlertController.networkFee(), animated: true, completion: nil)
     }
 
 }

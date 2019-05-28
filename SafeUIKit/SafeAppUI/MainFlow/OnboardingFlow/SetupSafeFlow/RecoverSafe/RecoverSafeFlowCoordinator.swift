@@ -12,14 +12,10 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
         super.setUp()
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
             exitFlow()
-            return
-        }
-
-        push(introViewController())
-        saveCheckpoint()
-
-        if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
+        } else if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
             push(inProgressViewController())
+        } else {
+            push(introViewController())
         }
     }
 
@@ -135,7 +131,7 @@ extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDel
 
     func reviewRecoveryTransactionViewControllerDidCancel() {
         dismissModal { [unowned self] in
-            self.popToLastCheckpoint()
+            self.exitFlow()
         }
     }
 
@@ -144,7 +140,7 @@ extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDel
 extension RecoverSafeFlowCoordinator: RecoveryInProgressViewControllerDelegate {
 
     func recoveryInProgressViewControllerDidFail() {
-        popToLastCheckpoint()
+        exitFlow()
     }
 
     func recoveryInProgressViewControllerDidSuccess() {

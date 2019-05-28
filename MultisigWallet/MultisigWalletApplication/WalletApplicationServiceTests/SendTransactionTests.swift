@@ -213,7 +213,8 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let txID = service.handle(message: message)!
         _ = try service.submitTransaction(txID)
         let tx = transactionRepository.find(id: TransactionID(txID))!
-        XCTAssertTrue(tx.isSignedBy(Address.deviceAddress))
+        let deviceAddress = service.ownerAddress(of: .thisDevice)!
+        XCTAssertTrue(tx.isSignedBy(Address(deviceAddress)))
     }
 
     func test_whenSubmittingTransaction_thenTimestamps() throws {

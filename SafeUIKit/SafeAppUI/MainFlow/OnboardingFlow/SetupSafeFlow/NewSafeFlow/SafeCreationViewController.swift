@@ -278,10 +278,7 @@ class SafeCreationViewController: UIViewController {
     }
 
     private func notifyUser(error: String) {
-        let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) {
-            // empty
-        }
-        present(controller, animated: true, completion: nil)
+        present(UIAlertController.operationFailed(reason: error), animated: true, completion: nil)
     }
 
     @IBAction func showExplanation(_ sender: Any) {
@@ -289,7 +286,7 @@ class SafeCreationViewController: UIViewController {
     }
 
     @objc func showTransactionFeeInfo() {
-        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
+        present(UIAlertController.creationFee(), animated: true, completion: nil)
     }
 
 }

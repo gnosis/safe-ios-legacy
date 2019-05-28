@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,17 +8,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeeRequestView" customModule="SafeAppUI" customModuleProvider="target">
             <connections>
-                <outlet property="balanceLineAmountLabel" destination="U4X-NZ-Gyf" id="O1j-d2-NaZ"/>
-                <outlet property="balanceLineLabel" destination="NWa-Dk-rM7" id="Vp6-HR-jIm"/>
-                <outlet property="balanceLineStackView" destination="6SN-2n-mHf" id="bIY-SJ-CJU"/>
+                <outlet property="amountNeededAmountLabel" destination="ZHL-0X-FSP" id="rmJ-aU-sIn"/>
+                <outlet property="amountNeededLabel" destination="uGj-13-yko" id="Q9F-Gh-pHP"/>
+                <outlet property="amountNeededStackView" destination="WEJ-hQ-Gc7" id="aNd-VH-ylf"/>
+                <outlet property="amountReceivedAmountLabel" destination="U4X-NZ-Gyf" id="O1j-d2-NaZ"/>
+                <outlet property="amountReceivedLabel" destination="NWa-Dk-rM7" id="Vp6-HR-jIm"/>
+                <outlet property="amountReceivedStackView" destination="6SN-2n-mHf" id="bIY-SJ-CJU"/>
                 <outlet property="balanceStackView" destination="0h0-JF-gSp" id="Ws6-pO-JJH"/>
                 <outlet property="contentStackView" destination="Idn-jJ-704" id="Rz4-tl-mdc"/>
-                <outlet property="feeAmountLabel" destination="spd-wf-MdR" id="tee-Kh-z3p"/>
-                <outlet property="feeStackView" destination="tMd-NQ-9JX" id="KjJ-et-Gwx"/>
-                <outlet property="feeTextLabel" destination="gsz-jj-OOz" id="o1e-fS-S71"/>
-                <outlet property="totalLineAmountLabel" destination="ZHL-0X-FSP" id="rmJ-aU-sIn"/>
-                <outlet property="totalLineLabel" destination="uGj-13-yko" id="Q9F-Gh-pHP"/>
-                <outlet property="totalLineStackView" destination="WEJ-hQ-Gc7" id="aNd-VH-ylf"/>
+                <outlet property="remainderAmountLabel" destination="spd-wf-MdR" id="tee-Kh-z3p"/>
+                <outlet property="remainderStackView" destination="tMd-NQ-9JX" id="KjJ-et-Gwx"/>
+                <outlet property="remainderTextLabel" destination="gsz-jj-OOz" id="o1e-fS-S71"/>
                 <outlet property="wrapperView" destination="iN0-l3-epB" id="EOI-Y7-a4M"/>
             </connections>
         </placeholder>

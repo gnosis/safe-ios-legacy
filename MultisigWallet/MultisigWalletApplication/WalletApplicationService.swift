@@ -67,27 +67,13 @@ public class WalletApplicationService: Assertable {
     // MARK: - Wallet
 
     public func createNewDraftWallet() {
-        let portfolio = fetchOrCreatePortfolio()
-        let address = ethereumService.generateExternallyOwnedAccount().address
-        let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: Address(address))
-        let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
-        portfolio.addWallet(wallet.id)
-        DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.portfolioRepository.save(portfolio)
-        DomainRegistry.accountRepository.save(account)
+        DomainRegistry.deploymentService.createNewDraftWallet()
     }
 
     public func prepareForCreation() {
         DomainRegistry.deploymentService.prepareForCreation()
     }
 
-    private func fetchOrCreatePortfolio() -> Portfolio {
-        if let result = DomainRegistry.portfolioRepository.portfolio() {
-            return result
-        } else {
-            return Portfolio(id: DomainRegistry.portfolioRepository.nextID())
-        }
-    }
 
     /// Gets estimations for all available payment methods.
     ///

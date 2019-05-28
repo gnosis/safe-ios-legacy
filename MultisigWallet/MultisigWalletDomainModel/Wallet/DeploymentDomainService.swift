@@ -63,11 +63,23 @@ public class DeploymentDomainService {
         wallet.resume()
     }
 
+    public func createNewDraftWallet() {
+        let portfolio = WalletDomainService.fetchOrCreatePortfolio()
+        let address = WalletDomainService.newOwner()
+        let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: address)
+        let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
+        portfolio.addWallet(wallet.id)
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.portfolioRepository.save(portfolio)
+        DomainRegistry.accountRepository.save(account)
+    }
+
     public func prepareForCreation() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.reset()
         wallet.prepareForCreation()
         DomainRegistry.walletRepository.save(wallet)
+        WalletDomainService.recreateOwners()
     }
 
     func deploymentStarted(_ event: DeploymentStarted) {

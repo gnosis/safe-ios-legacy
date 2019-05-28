@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
 import Common
+import MultisigWalletApplication
 
 class MainFlowCoordinatorAppTests: SafeTestCase {
 
@@ -22,7 +23,6 @@ class MainFlowCoordinatorAppTests: SafeTestCase {
         let testFC = TestFlowCoordinator()
         let mainFC = MainFlowCoordinator()
         testFC.enter(flow: mainFC)
-        mainFC.showOnboarding()
         let expectedController = testFC.topViewController
 
         authenticationService.unregisterUser()
@@ -63,7 +63,7 @@ class MainFlowCoordinatorAppTests: SafeTestCase {
 
         authenticationService.allowAuthentication()
         let anySender: Any = self
-        (rootVC as? UnlockViewController)?.loginWithBiometry(anySender)
+        (rootVC as! UnlockViewController).loginWithBiometry(anySender)
         delay()
         XCTAssertTrue(UIApplication.rootViewController === securedVC)
     }

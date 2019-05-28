@@ -266,7 +266,7 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     @objc func showTransactionFeeInfo() {
-        present(TransactionFeeAlertController.create(), animated: true, completion: nil)
+        present(UIAlertController.networkFee(), animated: true, completion: nil)
     }
 
 }

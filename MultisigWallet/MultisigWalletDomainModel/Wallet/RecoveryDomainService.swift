@@ -37,9 +37,7 @@ public class RecoveryDomainService: Assertable {
     }
 
     private func newOwner() -> Address {
-        let account = DomainRegistry.encryptionService.generateExternallyOwnedAccount()
-        DomainRegistry.externallyOwnedAccountRepository.save(account)
-        return account.address
+        return WalletDomainService.newOwner()
     }
 
     private func newWallet(with owner: Address) -> Wallet {
@@ -56,12 +54,7 @@ public class RecoveryDomainService: Assertable {
     }
 
     private func portfolio() -> Portfolio {
-        if let result = DomainRegistry.portfolioRepository.portfolio() {
-            return result
-        }
-        let result = Portfolio(id: DomainRegistry.portfolioRepository.nextID())
-        DomainRegistry.portfolioRepository.save(result)
-        return result
+        return WalletDomainService.fetchOrCreatePortfolio()
     }
 
     public func prepareForRecovery() {
@@ -69,6 +62,7 @@ public class RecoveryDomainService: Assertable {
         wallet.reset()
         wallet.prepareForRecovery()
         DomainRegistry.walletRepository.save(wallet)
+        WalletDomainService.recreateOwners()
     }
 
     // MARK: - Getting Ready for Recovery

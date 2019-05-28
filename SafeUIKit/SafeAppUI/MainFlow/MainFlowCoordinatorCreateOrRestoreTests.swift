@@ -14,51 +14,36 @@ class MainFlowCoordinatorCreateOrRestoreTests: SafeTestCase {
         super.setUp()
         mainFlowCoordinator = MainFlowCoordinator()
         mainFlowCoordinator.setUp()
+        try! authenticationService.registerUser(password: "MyPassword")
+        authenticationService.allowAuthentication()
+        _ = try! authenticationService.authenticateUser(.password("MyPassword"))
     }
 
-    func test_whenNoSafeSelected_thenShowsOptionsScreen() {
+    func test_whenNoSafeSelected_thenShowsCreateOrRestore() throws {
         walletService.expect_isSafeCreationInProgress(false)
-        walletService.expect_isWalletDeployable(false)
-        mainFlowCoordinator.showCreateOrRestore()
+        mainFlowCoordinator.setUp()
         delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is
-            OnboardingCreateOrRestoreViewController)
-    }
-
-    func test_whenDraftAlreadyExists_thenShowsNewSafeFlow() {
-        walletService.expect_isSafeCreationInProgress(false)
-        walletService.expect_isWalletDeployable(true)
-        mainFlowCoordinator.showCreateOrRestore()
-        delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.viewControllers.last is GuidelinesViewController)
+        let topVC = mainFlowCoordinator.navigationController.topViewController
+        XCTAssertTrue(topVC is OnboardingCreateOrRestoreViewController, String(reflecting: topVC))
     }
 
     func test_didSelectNewSafe_showsNewSafeFlowStartVC() {
-        mainFlowCoordinator.showCreateOrRestore()
+        walletService.expect_walletState(.draft)
+        mainFlowCoordinator.setUp()
         mainFlowCoordinator.didSelectNewSafe()
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is GuidelinesViewController)
     }
 
-    func test_whenNewSafeFlowExits_thenSetupSafeFlowExits() {
+    func test_whenNewSafeFlowExits_thenShowsRoot() {
+        walletService.expect_walletState(.creationStarted)
         walletService.expect_isSafeCreationInProgress(true)
-        mainFlowCoordinator.showCreateOrRestore()
+        mainFlowCoordinator.setUp()
         delay()
         mainFlowCoordinator.newSafeFlowCoordinator.exitFlow()
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is
-            MainViewController)
-    }
-
-    func test_whenSelectedNewSafeFlowExits_thenSetupSafeFlowExits() {
-        mainFlowCoordinator.showCreateOrRestore()
-        delay()
-        mainFlowCoordinator.didSelectNewSafe()
-        delay()
-        mainFlowCoordinator.newSafeFlowCoordinator.exitFlow()
-        delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is
-            MainViewController)
+            OnboardingCreateOrRestoreViewController)
     }
 
 }

@@ -56,8 +56,7 @@ class BaseInputViewController: UIViewController, EventSubscriber {
 
     func show(error: Error) {
         let message = String(format: actionFailureMessageFormat, error.localizedDescription)
-        let controller = InputFailedAlertController.create(message: message) { /* empty */ }
-        present(controller, animated: true)
+        present(UIAlertController.operationFailed(message: message), animated: true)
     }
 
     @IBAction func next(_ sender: Any) {}
@@ -67,27 +66,6 @@ class BaseInputViewController: UIViewController, EventSubscriber {
             self.stopActivityIndicator()
             self.enableNextAction()
         }
-    }
-
-}
-
-class InputFailedAlertController: SafeAlertController {
-
-    private enum Strings {
-
-        static let title = LocalizedString("error", comment: "Recovery address validation failed alert's title")
-        static let okTitle = LocalizedString("ok", comment: "OK button title")
-
-    }
-
-    static func create(message: String,
-                       ok: @escaping () -> Void) -> InputFailedAlertController {
-        let controller = InputFailedAlertController(title: Strings.title,
-                                                    message: message,
-                                                    preferredStyle: .alert)
-        let okAction = UIAlertAction.create(title: Strings.okTitle, style: .cancel, handler: wrap(closure: ok))
-        controller.addAction(okAction)
-        return controller
     }
 
 }

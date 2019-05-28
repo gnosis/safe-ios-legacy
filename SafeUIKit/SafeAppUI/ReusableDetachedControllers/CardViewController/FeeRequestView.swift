@@ -12,17 +12,24 @@ class FeeRequestView: BaseCustomView {
 
     @IBOutlet weak var balanceStackView: UIStackView!
 
-    @IBOutlet weak var balanceLineStackView: UIStackView!
-    @IBOutlet weak var balanceLineLabel: UILabel!
-    @IBOutlet weak var balanceLineAmountLabel: AmountLabel!
+    @IBOutlet weak var amountReceivedStackView: UIStackView!
+    @IBOutlet weak var amountReceivedLabel: UILabel!
+    @IBOutlet weak var amountReceivedAmountLabel: AmountLabel!
 
-    @IBOutlet weak var totalLineStackView: UIStackView!
-    @IBOutlet weak var totalLineLabel: UILabel!
-    @IBOutlet weak var totalLineAmountLabel: AmountLabel!
+    @IBOutlet weak var amountNeededStackView: UIStackView!
+    @IBOutlet weak var amountNeededLabel: UILabel!
+    @IBOutlet weak var amountNeededAmountLabel: AmountLabel!
 
-    @IBOutlet weak var feeStackView: UIStackView!
-    @IBOutlet weak var feeTextLabel: UILabel!
-    @IBOutlet weak var feeAmountLabel: AmountLabel!
+    @IBOutlet weak var remainderStackView: UIStackView!
+    @IBOutlet weak var remainderTextLabel: UILabel!
+    @IBOutlet weak var remainderAmountLabel: AmountLabel!
+
+    enum Strings {
+        static let received = LocalizedString("amount_received", comment: "Received")
+        static let needed = LocalizedString("amount_needed", comment: "Needed")
+        static let sendFeeRequest = LocalizedString("this_is_your_permanent_address", comment: "This is address")
+        static let sendRemainderRequest = LocalizedString("send_remainder", comment: "Send the remainder")
+    }
 
     override func commonInit() {
         safeUIKit_loadFromNib(forClass: FeeRequestView.self)
@@ -31,14 +38,21 @@ class FeeRequestView: BaseCustomView {
         wrapperView.heightAnchor.constraint(equalTo: contentStackView.heightAnchor).isActive = true
         wrapAroundDynamicHeightView(wrapperView)
 
-        [balanceLineLabel,
-        balanceLineAmountLabel,
-        totalLineLabel,
-        totalLineAmountLabel,
-        feeTextLabel].forEach { label in
+        [amountReceivedLabel,
+        amountReceivedAmountLabel,
+        amountNeededLabel,
+        amountNeededAmountLabel,
+        remainderTextLabel].forEach { label in
             label?.textColor = ColorName.battleshipGrey.color
         }
-        feeAmountLabel.textColor = ColorName.darkSlateBlue.color
+        remainderAmountLabel.textColor = ColorName.darkSlateBlue.color
+
+        [remainderAmountLabel, amountReceivedAmountLabel, amountNeededAmountLabel].forEach { label in
+            label?.isShowingPlusSign = false
+        }
+
+        amountReceivedLabel.text = Strings.received
+        amountNeededLabel.text = Strings.needed
     }
 
 }

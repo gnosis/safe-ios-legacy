@@ -15,8 +15,10 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
+        try! authenticationService.registerUser(password: "password")
+        walletService.createReadyToUseWallet()
         mainFlowCoordinator = MainFlowCoordinator()
-        mainFlowCoordinator.showMainScreen()
+        mainFlowCoordinator.setUp()
     }
 
     func test_whenSetupCalled_thenShowsMainScreen() {
