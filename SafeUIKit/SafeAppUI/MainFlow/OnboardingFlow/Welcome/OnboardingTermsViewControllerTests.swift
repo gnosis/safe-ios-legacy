@@ -10,7 +10,7 @@ class OnboardingTermsViewControllerTests: XCTestCase {
     let controller = OnboardingTermsViewController.create()
 
     func test_whenTappingButtons_thenCallsDelegate() {
-        let delegate = OnboardingTermsViewControllerDelegate()
+        let delegate = TestOnboardingTermsViewControllerDelegate()
         controller.delegate = delegate
         createWindow(controller)
         [controller.termsOfUseButton, controller.privacyPolicyButton, controller.disagreeButton,
