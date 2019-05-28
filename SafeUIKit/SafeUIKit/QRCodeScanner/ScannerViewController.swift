@@ -26,6 +26,7 @@ class ScannerViewController: UIViewController {
 
     @IBOutlet weak var debugButtonsStackView: UIStackView!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var buttonEffectView: UIVisualEffectView!
 
     private var debugButtonReturnCodes = [String]()
     private var debugButtons = [UIButton]()
@@ -68,6 +69,7 @@ class ScannerViewController: UIViewController {
         codeReaderVC.didMove(toParent: self)
 
         closeButton.accessibilityLabel = LocalizedString("close", comment: "Close button on camera")
+        buttonEffectView.mask = CircleMask(frame: buttonEffectView.bounds)
     }
 
     func barcodesHandler(_ barcodes: [AVMetadataMachineReadableCodeObject]) {
@@ -120,6 +122,23 @@ class ScannerViewController: UIViewController {
     @objc private func scanDebugCode(_ sender: UIButton) {
         let code = debugButtonReturnCodes[sender.tag]
         _ = handle(code)
+    }
+
+}
+
+fileprivate class CircleMask: BaseCustomView {
+
+    public override class var layerClass: AnyClass {
+        return CAShapeLayer.classForCoder()
+    }
+
+    override func commonInit() {
+        let shapeLayer = layer as! CAShapeLayer
+        shapeLayer.frame = bounds
+        let path = CGMutablePath()
+        path.addEllipse(in: bounds)
+        shapeLayer.path = path
+        shapeLayer.fillColor = UIColor.black.cgColor
     }
 
 }

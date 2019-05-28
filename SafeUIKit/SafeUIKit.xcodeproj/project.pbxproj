@@ -262,6 +262,8 @@
 		0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998AD20D3EDD200E6F3CA /* TransactionParameterViewTests.swift */; };
 		0AD998B020D3FEBD00E6F3CA /* SendInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998AF20D3FEBD00E6F3CA /* SendInputViewController.swift */; };
 		0AE0FE42229C484000ABC552 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */; };
+		0AE0FE5A229D2CE500ABC552 /* TwoFAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */; };
+		0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE0FE5B229D2CF700ABC552 /* TwoFAView.xib */; };
 		0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950BD20D29C910099B79D /* TransactionValueView.swift */; };
 		0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C220D29C920099B79D /* TransactionParameterView.swift */; };
 		0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C320D29C920099B79D /* TransactionParticipantView.swift */; };
@@ -369,7 +371,6 @@
 		5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */; };
 		5573535B2293F0C500248F87 /* ReceiveFundsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */; };
 		557353722294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */; };
-		558682CC2192FA6E0060F1DE /* TwoFAViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558682CB2192FA6E0060F1DE /* TwoFAViewController.storyboard */; };
 		558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
@@ -860,6 +861,8 @@
 		0AD998AD20D3EDD200E6F3CA /* TransactionParameterViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParameterViewTests.swift; sourceTree = "<group>"; };
 		0AD998AF20D3FEBD00E6F3CA /* SendInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputViewController.swift; sourceTree = "<group>"; };
 		0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFAView.swift; sourceTree = "<group>"; };
+		0AE0FE5B229D2CF700ABC552 /* TwoFAView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoFAView.xib; sourceTree = "<group>"; };
 		0AE950BD20D29C910099B79D /* TransactionValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionValueView.swift; sourceTree = "<group>"; };
 		0AE950C220D29C920099B79D /* TransactionParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParameterView.swift; sourceTree = "<group>"; };
 		0AE950C320D29C920099B79D /* TransactionParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParticipantView.swift; sourceTree = "<group>"; };
@@ -968,7 +971,6 @@
 		557353562293F0AB00248F87 /* ReceiveFunds.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReceiveFunds.storyboard; sourceTree = "<group>"; };
 		557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
 		557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeIntroViewController.swift; sourceTree = "<group>"; };
-		558682CB2192FA6E0060F1DE /* TwoFAViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TwoFAViewController.storyboard; sourceTree = "<group>"; };
 		558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewController.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
@@ -2053,21 +2055,22 @@
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
 				0AD899A92281C74B008AE325 /* SuccessViewController.swift */,
 				0A2C0E012296F2E3008A30AC /* CardViewController */,
-				558682CA2192F9840060F1DE /* PairWithBrowserExtension */,
+				558682CA2192F9840060F1DE /* TwoFA */,
 				5549B2A322859EFB00F3B5B7 /* PaymentMethod */,
 				55DFBCF52135901D004B2AC4 /* Unlock */,
 			);
 			path = ReusableDetachedControllers;
 			sourceTree = "<group>";
 		};
-		558682CA2192F9840060F1DE /* PairWithBrowserExtension */ = {
+		558682CA2192F9840060F1DE /* TwoFA */ = {
 			isa = PBXGroup;
 			children = (
+				0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */,
+				0AE0FE5B229D2CF700ABC552 /* TwoFAView.xib */,
 				0A334E0E209C8E3800ABC6AE /* TwoFAViewController.swift */,
 				0A334E0F209C8E3800ABC6AE /* TwoFAViewControllerTests.swift */,
-				558682CB2192FA6E0060F1DE /* TwoFAViewController.storyboard */,
 			);
-			path = PairWithBrowserExtension;
+			path = TwoFA;
 			sourceTree = "<group>";
 		};
 		5598FFE3225B73B3006D5792 /* ChangePassword */ = {
@@ -2576,6 +2579,7 @@
 			files = (
 				0A3BD95922255192007039B4 /* MultisigWalletApplicationResources.bundle in Resources */,
 				0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */,
+				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
 				0A3BD90422254833007039B4 /* IntroContentView.xib in Resources */,
@@ -2595,7 +2599,6 @@
 				0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */,
 				55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */,
 				553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */,
-				558682CC2192FA6E0060F1DE /* TwoFAViewController.storyboard in Resources */,
 				557353592293F0AB00248F87 /* ReceiveFunds.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3051,6 +3054,7 @@
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* SendInputViewModel.swift in Sources */,
 				554597082268AB22009B4A0B /* TermsCommand.swift in Sources */,
+				0AE0FE5A229D2CE500ABC552 /* TwoFAView.swift in Sources */,
 				0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

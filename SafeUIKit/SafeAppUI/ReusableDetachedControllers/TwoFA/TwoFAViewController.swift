@@ -19,7 +19,7 @@ public protocol TwoFAViewControllerDelegate: class {
 
 }
 
-public final class TwoFAViewController: UIViewController {
+public final class TwoFAViewController: CardViewController {
 
     enum Strings {
         static let downloadExtension = LocalizedString("ios_open_be_link_text",
@@ -40,14 +40,6 @@ public final class TwoFAViewController: UIViewController {
                                                  comment: "Invalid extension code")
     }
 
-    @IBOutlet weak var wrapperView: UIView!
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var step1Label: UILabel!
-    @IBOutlet weak var step2Label: UILabel!
-    var skipButton: UIButton!
-    let skipButtonOffset: CGFloat = 30
-    let skipButtonMinimumHeight: CGFloat = 50
     weak var delegate: TwoFAViewControllerDelegate?
 
     private var logger: Logger {
@@ -59,6 +51,8 @@ public final class TwoFAViewController: UIViewController {
     private var ethereumService: EthereumApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.ethereumService
     }
+    let twoFAView = TwoFAView()
+
     var downloadExtensionEnabled = true
     var scanBarButtonItem: ScanBarButtonItem!
     private var activityIndicator: UIActivityIndicatorView!
@@ -93,18 +87,22 @@ public final class TwoFAViewController: UIViewController {
     public var scanTrackingEvent: Trackable?
 
     public static func create(delegate: TwoFAViewControllerDelegate?) -> TwoFAViewController {
-        let controller = StoryboardScene.TwoFAViewController.twoFAViewController.instantiate()
+        let controller = TwoFAViewController(nibName: String(describing: CardViewController.self),
+                                             bundle: Bundle(for: CardViewController.self))
         controller.delegate = delegate
         return controller
     }
 
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
-    }
-
     override public func viewDidLoad() {
         super.viewDidLoad()
+        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
+
+        embed(view: twoFAView, inCardSubview: cardHeaderView)
+        subtitleLabel.isHidden = true
+        subtitleDetailLabel.isHidden = true
+        cardBodyView.isHidden = true
+        cardSeparatorView.isHidden = true
+
         configureScanButton()
         configureActivityIndicator()
         configureStepsLabels()
@@ -119,15 +117,13 @@ public final class TwoFAViewController: UIViewController {
         }
     }
 
-    override public func willMove(toParent parent: UIViewController?) {
-        guard let nav = parent as? UINavigationController,
-            nav.topViewController == self && nav.viewControllers.count > 1 else { return }
-        nav.viewControllers[nav.viewControllers.count - 2].navigationItem.backBarButtonItem = backButtonItem
-    }
-
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         didCancel = false
+        if let nav = navigationController,
+            nav.topViewController == self && nav.viewControllers.count > 1 {
+            nav.viewControllers[nav.viewControllers.count - 2].navigationItem.backBarButtonItem = backButtonItem
+        }
     }
 
     public func showLoadingTitle() {
@@ -141,12 +137,12 @@ public final class TwoFAViewController: UIViewController {
     func updateTexts() {
         guard isViewLoaded else { return }
         title = screenTitle
-        headerLabel.text = screenHeader
-        descriptionLabel.text = descriptionText
+        twoFAView.headerLabel.text = screenHeader
+        twoFAView.body1Label.text = descriptionText
     }
 
     func updateSkipButton() {
-        skipButton?.isHidden = hidesSkipButton
+        footerButton?.isHidden = hidesSkipButton
     }
 
     @objc func back() {
@@ -184,32 +180,21 @@ public final class TwoFAViewController: UIViewController {
     }
 
     private func configureSkipButton() {
-        skipButton = UIButton(type: .custom)
-        skipButton.setTitleColor(.white, for: .normal)
-        skipButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        skipButton.titleLabel?.numberOfLines = 0
-        skipButton.titleLabel?.textAlignment = .center
-        skipButton.setTitle(Strings.skipSetup, for: .normal)
-        skipButton.isHidden = hidesSkipButton
-        skipButton.addTarget(self, action: #selector(skipPairing(_:)), for: .touchUpInside)
-        skipButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(skipButton)
-        NSLayoutConstraint.activate([
-            skipButton.topAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: skipButtonOffset),
-            skipButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            skipButton.heightAnchor.constraint(greaterThanOrEqualToConstant: skipButtonMinimumHeight)])
+        footerButton.setTitle(Strings.skipSetup, for: .normal)
+        footerButton.isHidden = hidesSkipButton
+        footerButton.addTarget(self, action: #selector(skipPairing(_:)), for: .touchUpInside)
     }
 
     private func configureStepsLabels() {
-        let attrStr = NSMutableAttributedString(string: Strings.downloadExtension)
-        let range = attrStr.mutableString.range(of: Strings.chromeExtension)
-        attrStr.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: range)
-        attrStr.addLinkIcon()
-        step1Label.attributedText = attrStr
-        step1Label.isUserInteractionEnabled = true
-        step1Label.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                               action: #selector(downloadBrowserExtension)))
-        step2Label.text = Strings.scanQRCode
+        let body2Text = NSMutableAttributedString(string: Strings.downloadExtension)
+        let range = body2Text.mutableString.range(of: Strings.chromeExtension)
+        body2Text.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: range)
+        body2Text.addLinkIcon()
+        twoFAView.body2Label.attributedText = body2Text
+        twoFAView.body2Label.isUserInteractionEnabled = true
+        twoFAView.body2Label.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                         action: #selector(downloadBrowserExtension)))
+        twoFAView.body3Label.text = Strings.scanQRCode
     }
 
     @objc private func downloadBrowserExtension() {
@@ -221,13 +206,13 @@ public final class TwoFAViewController: UIViewController {
 
     private func disableButtons() {
         scanBarButtonItem?.isEnabled = false
-        skipButton?.isEnabled = false
+        footerButton?.isEnabled = false
         downloadExtensionEnabled = false
     }
 
     private func enableButtons() {
         scanBarButtonItem?.isEnabled = true
-        skipButton?.isEnabled = true
+        footerButton?.isEnabled = true
         downloadExtensionEnabled = true
     }
 

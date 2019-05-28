@@ -126,11 +126,6 @@ enum StoryboardScene {
 
     static let setupSafeOptionsViewController = SceneType<SafeAppUI.OnboardingCreateOrRestoreViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
   }
-  enum TwoFAViewController: StoryboardType {
-    static let storyboardName = "TwoFAViewController"
-
-    static let twoFAViewController = SceneType<SafeAppUI.TwoFAViewController>(storyboard: TwoFAViewController.self, identifier: "TwoFAViewController")
-  }
   enum Unlock: StoryboardType {
     static let storyboardName = "Unlock"
 

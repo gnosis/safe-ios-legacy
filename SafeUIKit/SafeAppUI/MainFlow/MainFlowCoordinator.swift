@@ -37,6 +37,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.barTintColor = .white
+        navBarAppearance.tintColor = ColorName.darkSkyBlue.color
         navBarAppearance.isTranslucent = false
         navBarAppearance.setBackgroundImage(UIImage(), for: .default)
         navBarAppearance.shadowImage = Asset.shadow.image
