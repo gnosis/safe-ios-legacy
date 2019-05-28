@@ -46,12 +46,7 @@ class BaseInputViewController: UIViewController, EventSubscriber {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let nav = navigationController,
-            let topVC = nav.topViewController,
-            topVC === self && nav.viewControllers.count > 1 {
-            nav.viewControllers[nav.viewControllers.count - 2].navigationItem.backBarButtonItem =
-                UIBarButtonItem.backButton()
-        }
+        setCustomBackButton()
     }
 
     func disableNextAction() {

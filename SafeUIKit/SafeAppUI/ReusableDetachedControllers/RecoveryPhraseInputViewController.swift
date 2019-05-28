@@ -86,9 +86,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     override func willMove(toParent parent: UIViewController?) {
-        guard let nav = parent as? UINavigationController,
-            nav.topViewController == self && nav.viewControllers.count > 1 else { return }
-        nav.viewControllers[nav.viewControllers.count - 2].navigationItem.backBarButtonItem = backButtonItem
+        setCustomBackButton()
     }
 
     private func textInsets() -> UIEdgeInsets {
