@@ -110,7 +110,7 @@ class AddTokenTableViewController: UITableViewController {
         tableView.backgroundColor = ColorName.paleGrey.color
 
         tableView.sectionIndexMinimumDisplayRowCount = 15
-        tableView.sectionIndexColor = .white
+        tableView.sectionIndexColor = ColorName.battleshipGrey.color
     }
 
     @objc func didShowKeyboard(_ notification: NSNotification) {

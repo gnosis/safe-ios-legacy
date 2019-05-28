@@ -51,6 +51,17 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(tokensWithoutEth.count, visibleAccounts.count - 1)
     }
 
+    func test_whenGettingVisibleTokensWithoutWallet_thenReturnsIt() {
+        XCTAssertEqual(accountRepository.all().count, 0)
+        sync()
+        XCTAssertEqual(accountRepository.all().count, 0)
+        let visibleTokens = service.visibleTokens(withEth: false)
+        let whitelistedCount = try! tokenItemsService.items().filter { $0.status == .whitelisted }.count
+        XCTAssertEqual(visibleTokens.count, whitelistedCount)
+        let visibleTokensWithEth = service.visibleTokens(withEth: true)
+        XCTAssertEqual(visibleTokensWithEth.count, whitelistedCount + 1)
+    }
+
     func test_whenGettingHiddenTokens_thenReturnsThem() {
         givenReadyToUseWallet()
         sync()
