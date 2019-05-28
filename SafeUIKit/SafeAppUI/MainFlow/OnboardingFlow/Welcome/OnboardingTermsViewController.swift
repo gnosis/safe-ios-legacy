@@ -135,7 +135,7 @@ struct ListStyle {
                                      textColor: ColorName.battleshipGrey.color,
                                      bulletColor: ColorName.darkSkyBlue.color,
                                      paragraphSpacing: 22,
-                                     minimumLineHeight: 25)
+                                     minimumLineHeight: 22)
 }
 
 struct HeaderStyle {

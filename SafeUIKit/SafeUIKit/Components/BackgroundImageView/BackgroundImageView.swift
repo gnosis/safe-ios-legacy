@@ -24,6 +24,7 @@ public final class BackgroundImageView: UIImageView {
     }
 
     private func commonInit() {
+        backgroundColor = .white
         image = Asset.backgroundDarkImage.image
         dimmedView = UIView()
         dimmedView.backgroundColor = .clear
@@ -35,6 +36,16 @@ public final class BackgroundImageView: UIImageView {
     public var isDimmed = false {
         didSet {
             dimmedView.backgroundColor = isDimmed ? UIColor.black.withAlphaComponent(0.15) : .clear
+        }
+    }
+
+    public var isWhite = false {
+        didSet {
+            if isWhite {
+                image = nil
+            } else {
+                image = Asset.backgroundDarkImage.image
+            }
         }
     }
 

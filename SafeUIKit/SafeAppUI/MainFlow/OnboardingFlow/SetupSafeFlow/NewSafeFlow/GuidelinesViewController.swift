@@ -4,6 +4,7 @@
 
 import UIKit
 import Common
+import SafeUIKit
 
 public protocol GuidelinesViewControllerDelegate: class {
     func didPressNext()
@@ -37,11 +38,12 @@ public class GuidelinesViewController: UIViewController {
         }
     }
 
+    @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nextButtonItem: UIBarButtonItem!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var headerLabel: UILabel!
-    var headerStyle = HeaderStyle.contentHeader
+
     var bodyStyle = ListStyle.default
     public weak var delegate: GuidelinesViewControllerDelegate?
     /// If not nil, then will be tracked, otherwise default onboarding events will be tracked.
@@ -55,6 +57,7 @@ public class GuidelinesViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundView.isWhite = true
         bodyStyle.bulletColor = ColorName.aquaBlue.color
         bodyStyle.textColor = ColorName.battleshipGrey.color
         bodyStyle.textFontSize = 16
@@ -73,8 +76,10 @@ public class GuidelinesViewController: UIViewController {
 
     func update() {
         guard isViewLoaded else { return }
-        navigationItem.title = titleText
-        headerLabel.attributedText = .header(from: headerText, style: headerStyle)
+        let titleView = SafeLabelTitleView()
+        titleView.attributedText = NSAttributedString(string: titleText, style: TitleStyle())
+        navigationItem.titleView = titleView
+        headerLabel.attributedText = NSAttributedString(string: headerText, style: HeaderStyle())
         contentLabel.attributedText = .list(from: bodyText, style: bodyStyle)
         nextButtonItem.title = nextActionText
         imageView.image = headerImage
@@ -83,6 +88,23 @@ public class GuidelinesViewController: UIViewController {
 
     @IBAction func proceed(_ sender: Any) {
         delegate?.didPressNext()
+    }
+
+    class HeaderStyle: AttributedStringStyle {
+
+        override var fontSize: Double { return 17 }
+        override var maximumLineHeight: Double { return 22 }
+        override var minimumLineHeight: Double { return 22 }
+        override var alignment: NSTextAlignment { return .center }
+        override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+        override var fontWeight: UIFont.Weight { return .medium }
+
+    }
+
+    class TitleStyle: HeaderStyle {
+
+        override var fontWeight: UIFont.Weight { return .semibold }
+
     }
 
 }
