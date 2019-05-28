@@ -31,7 +31,7 @@ class NewSafeFlowCoordinator: FlowCoordinator {
 extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
 
     func didPressNext() {
-        let controller = PairWithBrowserExtensionViewController.create(delegate: self)
+        let controller = TwoFAViewController.create(delegate: self)
         controller.screenTitle = LocalizedString("browser_extension",
                                                  comment: "Title for add browser extension screen")
         controller.screenHeader = LocalizedString("ios_connect_browser_extension",
@@ -45,20 +45,18 @@ extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
 
 }
 
-extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
+extension NewSafeFlowCoordinator: TwoFAViewControllerDelegate {
 
-    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didScanAddress address: String,
-                                                code: String) throws {
+    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.walletService
             .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
     }
 
-    func pairWithBrowserExtensionViewControllerDidFinish() {
+    func twoFAViewControllerDidFinish() {
         showSeed()
     }
 
-    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+    func twoFAViewControllerDidSkipPairing() {
         ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
         showSeed()
     }

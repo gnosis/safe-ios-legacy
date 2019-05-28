@@ -32,20 +32,18 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         fc.transactionID = nil
         fc.intro.transactionID = "tx"
         fc.rbeIntroViewControllerDidStart()
-        XCTAssertTrue(nav.topViewController is PairWithBrowserExtensionViewController)
+        XCTAssertTrue(nav.topViewController is TwoFAViewController)
         XCTAssertEqual(fc.transactionID, "tx")
     }
 
     func test_whenDidScan_thenConnectsExtension() throws {
-        try fc.pairWithBrowserExtensionViewController(PairWithBrowserExtensionViewController(),
-                                                      didScanAddress: "address",
-                                                      code: "code")
+        try fc.twoFAViewController(TwoFAViewController(), didScanAddress: "address", code: "code")
         XCTAssertTrue(mockApplicationService.didCallConnect)
     }
 
     func test_whenFinishesPairing_thenReviewOpens() {
         mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit)
-        fc.pairWithBrowserExtensionViewControllerDidFinish()
+        fc.twoFAViewControllerDidFinish()
         XCTAssertTrue(nav.topViewController is ReviewTransactionViewController)
     }
 

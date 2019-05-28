@@ -4,11 +4,11 @@
 
 import Foundation
 
-public extension PairWithBrowserExtensionViewController {
+public extension TwoFAViewController {
 
-    static func createRBEConnectController(delegate: PairWithBrowserExtensionViewControllerDelegate)
-        -> PairWithBrowserExtensionViewController {
-            let controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
+    static func createRBEConnectController(delegate: TwoFAViewControllerDelegate)
+        -> TwoFAViewController {
+            let controller = TwoFAViewController.create(delegate: delegate)
             controller.screenTitle = nil
             controller.screenHeader = LocalizedString("scan_qr_code", comment: "Scan QR code")
             controller.descriptionText = LocalizedString("pairing_info", comment: "Replace BE pairing description.")

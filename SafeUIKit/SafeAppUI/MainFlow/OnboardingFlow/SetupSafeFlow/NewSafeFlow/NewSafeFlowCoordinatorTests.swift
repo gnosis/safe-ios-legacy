@@ -30,7 +30,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectBrowserExtensionSetup_showsController() {
         newSafeFlowCoordinator.didPressNext()
         delay()
-        XCTAssertTrue(topViewController is PairWithBrowserExtensionViewController)
+        XCTAssertTrue(topViewController is TwoFAViewController)
     }
 
     func test_pairWithBrowserExtensionCompletion_thenAddsBowserExtensionAndPopsToStartVC() {
@@ -43,8 +43,8 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_whenWalletServiceThrowsDuringPairing_thenAlertIsHandled() {
         walletService.shouldThrow = true
         pairWithBrowserExtension()
-        XCTAssertAlertShown(message: PairWithBrowserExtensionViewController.Strings.invalidCode)
-        assert(topViewController, is: PairWithBrowserExtensionViewController.self)
+        XCTAssertAlertShown(message: TwoFAViewController.Strings.invalidCode)
+        assert(topViewController, is: TwoFAViewController.self)
     }
 
     func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
@@ -147,7 +147,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         newSafeFlowCoordinator.didPressNext()
         delay(0.5)
         let controller = newSafeFlowCoordinator.navigationController.topViewController as!
-            PairWithBrowserExtensionViewController
+            TwoFAViewController
         let screenEvent = controller.screenTrackingEvent as? OnboardingTrackingEvent
         XCTAssertEqual(screenEvent, .twoFA)
 
@@ -176,7 +176,7 @@ private extension NewSafeFlowCoordinatorTests {
         walletService.expect_isSafeCreationInProgress(true)
         newSafeFlowCoordinator.didPressNext()
         delay()
-        let pairVC = topViewController as? PairWithBrowserExtensionViewController
+        let pairVC = topViewController as? TwoFAViewController
         pairVC!.loadViewIfNeeded()
         pairVC!.scanBarButtonItemDidScanValidCode("code")
         delay()

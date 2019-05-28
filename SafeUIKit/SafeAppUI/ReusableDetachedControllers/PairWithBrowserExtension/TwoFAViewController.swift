@@ -9,20 +9,17 @@ import Common
 import SafariServices
 
 @objc
-public protocol PairWithBrowserExtensionViewControllerDelegate: class {
+public protocol TwoFAViewControllerDelegate: class {
 
-    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didScanAddress address: String,
-                                                code: String) throws
-    func pairWithBrowserExtensionViewControllerDidFinish()
+    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws
+    func twoFAViewControllerDidFinish()
 
     @objc
-    optional func pairWithBrowserExtensionViewControllerDidSkipPairing()
+    optional func twoFAViewControllerDidSkipPairing()
 
 }
 
-// TODO: refactor and reuse CardViewController
-public final class PairWithBrowserExtensionViewController: UIViewController {
+public final class TwoFAViewController: UIViewController {
 
     enum Strings {
         static let downloadExtension = LocalizedString("ios_open_be_link_text",
@@ -51,7 +48,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     var skipButton: UIButton!
     let skipButtonOffset: CGFloat = 30
     let skipButtonMinimumHeight: CGFloat = 50
-    weak var delegate: PairWithBrowserExtensionViewControllerDelegate?
+    weak var delegate: TwoFAViewControllerDelegate?
 
     private var logger: Logger {
         return MultisigWalletApplication.ApplicationServiceRegistry.logger
@@ -95,12 +92,10 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     public var screenTrackingEvent: Trackable?
     public var scanTrackingEvent: Trackable?
 
-    public static func create(delegate: PairWithBrowserExtensionViewControllerDelegate?)
-        -> PairWithBrowserExtensionViewController {
-            let controller = StoryboardScene.PairWithBrowserExtension
-                .pairWithBrowserExtensionViewController.instantiate()
-            controller.delegate = delegate
-            return controller
+    public static func create(delegate: TwoFAViewControllerDelegate?) -> TwoFAViewController {
+        let controller = StoryboardScene.TwoFAViewController.twoFAViewController.instantiate()
+        controller.delegate = delegate
+        return controller
     }
 
     override public func awakeFromNib() {
@@ -239,11 +234,11 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     private func processValidCode(_ code: String) {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
         do {
-            try self.delegate?.pairWithBrowserExtensionViewController(self, didScanAddress: address, code: code)
+            try self.delegate?.twoFAViewController(self, didScanAddress: address, code: code)
             if self.didCancel { return }
             trackEvent(OnboardingTrackingEvent.twoFAScanSuccess)
             DispatchQueue.main.async {
-                self.delegate?.pairWithBrowserExtensionViewControllerDidFinish()
+                self.delegate?.twoFAViewControllerDidFinish()
             }
         } catch let e {
             if self.didCancel { return }
@@ -272,7 +267,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     }
 
     @IBAction func skipPairing(_ sender: Any) {
-        delegate?.pairWithBrowserExtensionViewControllerDidSkipPairing?()
+        delegate?.twoFAViewControllerDidSkipPairing?()
     }
 
     // MARK: - Debug Buttons
@@ -304,7 +299,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
 
 }
 
-extension PairWithBrowserExtensionViewController: ScanBarButtonItemDelegate {
+extension TwoFAViewController: ScanBarButtonItemDelegate {
 
     public func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)

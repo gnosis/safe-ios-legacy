@@ -105,11 +105,6 @@ enum StoryboardScene {
 
     static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: NewSafe.self, identifier: "SaveMnemonicViewController")
   }
-  enum PairWithBrowserExtension: StoryboardType {
-    static let storyboardName = "PairWithBrowserExtension"
-
-    static let pairWithBrowserExtensionViewController = SceneType<SafeAppUI.PairWithBrowserExtensionViewController>(storyboard: PairWithBrowserExtension.self, identifier: "PairWithBrowserExtensionViewController")
-  }
   enum ReceiveFunds: StoryboardType {
     static let storyboardName = "ReceiveFunds"
 
@@ -130,6 +125,11 @@ enum StoryboardScene {
     static let storyboardName = "SetupSafe"
 
     static let setupSafeOptionsViewController = SceneType<SafeAppUI.OnboardingCreateOrRestoreViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
+  }
+  enum TwoFAViewController: StoryboardType {
+    static let storyboardName = "TwoFAViewController"
+
+    static let twoFAViewController = SceneType<SafeAppUI.TwoFAViewController>(storyboard: TwoFAViewController.self, identifier: "TwoFAViewController")
   }
   enum Unlock: StoryboardType {
     static let storyboardName = "Unlock"

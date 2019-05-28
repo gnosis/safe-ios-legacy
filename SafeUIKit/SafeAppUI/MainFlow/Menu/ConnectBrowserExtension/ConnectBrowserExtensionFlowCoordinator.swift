@@ -51,8 +51,8 @@ extension ConnectBrowserExtensionFlowCoordinator {
         return vc
     }
 
-    func pairViewController() -> PairWithBrowserExtensionViewController {
-        return PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
+    func pairViewController() -> TwoFAViewController {
+        return TwoFAViewController.createRBEConnectController(delegate: self)
     }
 
     func reviewViewController() -> RBEReviewTransactionViewController {
@@ -75,15 +75,13 @@ extension ConnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate
 
 }
 
-extension ConnectBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
+extension ConnectBrowserExtensionFlowCoordinator: TwoFAViewControllerDelegate {
 
-    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didScanAddress address: String,
-                                                code: String) throws {
+    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.connectExtensionService.connect(transaction: transactionID, code: code)
     }
 
-    func pairWithBrowserExtensionViewControllerDidFinish() {
+    func twoFAViewControllerDidFinish() {
         push(reviewViewController())
     }
 
