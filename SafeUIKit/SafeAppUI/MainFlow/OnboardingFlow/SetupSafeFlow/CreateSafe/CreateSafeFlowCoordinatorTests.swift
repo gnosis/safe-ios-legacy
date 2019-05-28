@@ -8,9 +8,9 @@ import CommonTestSupport
 import Common
 import MultisigWalletApplication
 
-class NewSafeFlowCoordinatorTests: SafeTestCase {
+class CreateSafeFlowCoordinatorTests: SafeTestCase {
 
-    var newSafeFlowCoordinator: NewSafeFlowCoordinator!
+    var newSafeFlowCoordinator: CreateSafeFlowCoordinator!
 
     var topViewController: UIViewController? {
         return newSafeFlowCoordinator.navigationController.topViewController
@@ -19,12 +19,12 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         walletService.expect_walletState(.draft)
-        newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
+        newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: UINavigationController())
         newSafeFlowCoordinator.setUp()
     }
 
     func test_startViewController_returnsSetupSafeStartVC() {
-        assert(topViewController, is: GuidelinesViewController.self)
+        assert(topViewController, is: OnboardingIntroViewController.self)
     }
 
     func test_didSelectBrowserExtensionSetup_showsController() {
@@ -93,7 +93,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_whenDeploymentCancelled_thenExitsFlow() {
         walletService.expect_walletState(.creationStarted)
 
-        let newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
+        let newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: UINavigationController())
 
         let parent = MainFlowCoordinator()
         let exp = expectation(description: "Exited")
@@ -120,7 +120,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_whenDeploymentFailed_thenExitsFlow() {
         walletService.expect_walletState(.creationStarted)
 
-        let newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
+        let newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: UINavigationController())
 
         let testFC = TestFlowCoordinator()
         var finished = false
@@ -134,7 +134,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_startStates() {
-        assert(when: .draft, then: GuidelinesViewController.self)
+        assert(when: .draft, then: OnboardingIntroViewController.self)
         assert(when: .deploying, then: OnboardingCreationFeeViewController.self)
         assert(when: .waitingForFirstDeposit, then: OnboardingCreationFeeViewController.self)
         assert(when: .notEnoughFunds, then: OnboardingCreationFeeViewController.self)
@@ -157,7 +157,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
 }
 
-private extension NewSafeFlowCoordinatorTests {
+private extension CreateSafeFlowCoordinatorTests {
 
     func assert<T>(when state: WalletStateId, then controllerClass: T.Type, line: UInt = #line) {
         walletService.expect_walletState(state)

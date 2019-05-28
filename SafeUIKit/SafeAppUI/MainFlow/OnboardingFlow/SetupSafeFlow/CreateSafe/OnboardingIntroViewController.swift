@@ -6,11 +6,11 @@ import UIKit
 import Common
 import SafeUIKit
 
-public protocol GuidelinesViewControllerDelegate: class {
+public protocol OnboardingIntroViewControllerDelegate: class {
     func didPressNext()
 }
 
-public class GuidelinesViewController: UIViewController {
+public class OnboardingIntroViewController: UIViewController {
 
     var titleText: String? {
         didSet {
@@ -45,12 +45,12 @@ public class GuidelinesViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
 
     var bodyStyle = ListStyle.default
-    public weak var delegate: GuidelinesViewControllerDelegate?
+    public weak var delegate: OnboardingIntroViewControllerDelegate?
     /// If not nil, then will be tracked, otherwise default onboarding events will be tracked.
     var screenTrackingEvent: Trackable?
 
-    public static func create(delegate: GuidelinesViewControllerDelegate? = nil) -> GuidelinesViewController {
-        let controller = StoryboardScene.NewSafe.guidelinesViewController.instantiate()
+    public static func create(delegate: OnboardingIntroViewControllerDelegate? = nil) -> OnboardingIntroViewController {
+        let controller = StoryboardScene.CreateSafe.onboardingIntroViewController.instantiate()
         controller.delegate = delegate
         return controller
     }

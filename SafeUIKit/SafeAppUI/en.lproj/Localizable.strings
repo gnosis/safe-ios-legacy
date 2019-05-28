@@ -2,8 +2,7 @@
    Title for Add Token screen. */
 "add_token" = "Add Token";
 
-/* Address label.
-   Title for safe address section. */
+/* Title for safe address section. */
 "address" = "Address";
 
 /* Recovery address validation failed alert's message */
@@ -33,14 +32,12 @@
 /* Balance after transfer */
 "balance_after_transfer" = "Balance after transfer";
 
-/* Browser extension button
-   Title for add browser extension screen */
+/* Title for add browser extension screen */
 "browser_extension" = "Browser extension";
 
 /* Cancel
    Cancel button.
-   Cancel response button title
-   Cancel safe creation button. */
+   Cancel response button title */
 "cancel" = "Cancel";
 
 /* Message body of abort alert */
@@ -88,12 +85,10 @@
 /* New safe button */
 "create_safe" = "Create a New Safe";
 
-/* Create Safe
-   Title for safe creation screen. */
+/* Create Safe */
 "create_safe_title" = "Create Safe";
 
-/* Creating safe
-   Creating safe header for safe creation screen. */
+/* Creating safe */
 "creating_your_new_safe" = "Creating your new Safe…";
 
 /* Current password */
@@ -168,8 +163,7 @@
 /* Scan its QR code. */
 "install_browser_extension" = "2. Install browser extension on your desktop computer and scan its QR code.";
 
-/* Insufficient funds header for safe creation screen.
-   Insufficient funds header. */
+/* Insufficient funds header. */
 "insufficient_funds" = "Insufficient funds";
 
 /* App slogan */
@@ -184,45 +178,12 @@
 /* Browser Extension Expired Message */
 "ios_be_error_network" = "Failed to pair because of network error. Please try again later.";
 
-/* Mobile app button */
-"ios_configure_mobile_app" = "Mobile app";
-
-/* (Optional) */
-"ios_configure_optional" = "(Optional)";
-
-/* Recovery phrase button */
-"ios_configure_recovery_phrase" = "Recovery phrase";
-
-/* Title for new safe screen */
-"ios_configure_title" = "Configure";
-
 /* Connect browser extension
    Header for add browser extension screen */
 "ios_connect_browser_extension" = "Connect browser\nextension";
 
-/* Deployment accepted by blockchain. */
-"ios_creationFee_accepted" = "This can take a couple minutes...";
-
-/* Awaiting deposit label. */
-"ios_creationFee_awaiting" = "Awaiting your deposit...";
-
-/* Waiting for safe description for safe creation screen. */
-"ios_creationFee_deposit" = "Your deposit is on its way.";
-
-/* Error during safe creation. Retry later. */
-"ios_creationFee_error_status" = "Network error. Please retry later...";
-
 /* Pending safe failed alert's message */
 "ios_creationFee_failed_error" = "Error: %@ Please try again later.";
-
-/* Account received enough funds. */
-"ios_creationFee_funded" = "Account funded";
-
-/* Generation safe address. */
-"ios_creationFee_generating" = "Generating safe address...";
-
-/* Description how to share safe address. */
-"ios_creationFee_share_description" = "Share your address or scan this QR code with the account or person sending funds.";
 
 /* Disconnect browser extension */
 "ios_disconnect_browser_extension" = "Disconnect browser\nextension";
@@ -286,9 +247,6 @@
 
 /* 'Download the' Gnosis Safe Chrome browser exntension. */
 "ios_open_be_link_text" = "1. Open the link to the Chrome browser extension on your desktop computer.";
-
-/* QR Code label. */
-"ios_qr_code" = "QR Code";
 
 /* Recovered Safe */
 "ios_recovered_safe" = "Recovered\nSafe";
@@ -401,8 +359,7 @@
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
 
 /* Network fee description
-   Network fee required
-   Required minimum description for safe creation screen. */
+   Network fee required */
 "network_fee_required" = "A network fee is required to create your new Safe.";
 
 /* Placeholder text for new password field */
@@ -493,9 +450,6 @@
 /* Title for setup recovery phrase screen. */
 "recovery_phrase" = "Recovery Phrase";
 
-/* Retry button title. */
-"refresh" = "Refresh";
-
 /* Detail for the header in review screen */
 "replace_browser_extension_transaction_info" = "The currently connected browser extension will be replaced with the new browser extension.";
 
@@ -512,8 +466,7 @@
 /* Current balance */
 "safe_balance" = "Safe balance";
 
-/* First deposit header for safe creation screen.
-   Safe creation fee */
+/* Safe creation fee */
 "safe_creation_fee" = "Safe creation fee";
 
 /* Save button */
@@ -530,9 +483,6 @@
 
 /* Send the remainder */
 "send_remainder" = "Send at least the remainder to your new Safe:";
-
-/* Required minimum header for safe creation screen. */
-"send_this_amount" = "Send at least this amount to your new Safe:";
 
 /* Send */
 "send_title" = "Send %@";

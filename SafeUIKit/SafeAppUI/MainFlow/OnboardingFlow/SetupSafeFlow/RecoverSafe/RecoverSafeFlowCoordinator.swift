@@ -19,17 +19,13 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
         }
     }
 
-    func showReview() {
-        presentModally(reviewNavigationController())
-    }
-
 }
 
 /// Constructors of the screens participating in the flow
 extension RecoverSafeFlowCoordinator {
 
-    func introViewController() -> GuidelinesViewController {
-        let controller = GuidelinesViewController.createRecoverSafeGuidelines(delegate: self)
+    func introViewController() -> OnboardingIntroViewController {
+        let controller = OnboardingIntroViewController.createRecoverSafeIntro(delegate: self)
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.intro
         return controller
     }
@@ -66,9 +62,14 @@ extension RecoverSafeFlowCoordinator {
         let navigationVC = UINavigationController(rootViewController: controller)
         return navigationVC
     }
+
+    func showReview() {
+        presentModally(reviewNavigationController())
+    }
+
 }
 
-extension RecoverSafeFlowCoordinator: GuidelinesViewControllerDelegate {
+extension RecoverSafeFlowCoordinator: OnboardingIntroViewControllerDelegate {
 
     func didPressNext() {
         push(addressViewController())

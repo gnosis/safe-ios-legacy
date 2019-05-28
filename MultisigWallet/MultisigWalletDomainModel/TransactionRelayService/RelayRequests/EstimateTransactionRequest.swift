@@ -47,6 +47,8 @@ public struct EstimateTransactionRequest: Encodable {
     public struct Response: Decodable {
 
         public let safeTxGas: Int
+        /// Deprecated, will be removed in the future. Use `baseGas` instead
+        /// TODO: use `baseGas`
         public let dataGas: Int
         public let gasPrice: Int
         public let operationalGas: Int

@@ -60,6 +60,15 @@ enum StoryboardScene {
 
     static let verifyCurrentPasswordViewController = SceneType<SafeAppUI.VerifyCurrentPasswordViewController>(storyboard: ChangePassword.self, identifier: "VerifyCurrentPasswordViewController")
   }
+  enum CreateSafe: StoryboardType {
+    static let storyboardName = "CreateSafe"
+
+    static let confirmMnemonicViewController = SceneType<SafeAppUI.ConfirmMnemonicViewController>(storyboard: CreateSafe.self, identifier: "ConfirmMnemonicViewController")
+
+    static let onboardingIntroViewController = SceneType<SafeAppUI.OnboardingIntroViewController>(storyboard: CreateSafe.self, identifier: "OnboardingIntroViewController")
+
+    static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: CreateSafe.self, identifier: "SaveMnemonicViewController")
+  }
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 
@@ -89,21 +98,6 @@ enum StoryboardScene {
     static let onboardingTermsViewController = SceneType<SafeAppUI.OnboardingTermsViewController>(storyboard: MasterPassword.self, identifier: "OnboardingTermsViewController")
 
     static let onboardingWelcomeViewController = SceneType<SafeAppUI.OnboardingWelcomeViewController>(storyboard: MasterPassword.self, identifier: "OnboardingWelcomeViewController")
-  }
-  enum NewSafe: StoryboardType {
-    static let storyboardName = "NewSafe"
-
-    static let confirmMnemonicViewController = SceneType<SafeAppUI.ConfirmMnemonicViewController>(storyboard: NewSafe.self, identifier: "ConfirmMnemonicViewController")
-
-    static let guidelinesViewController = SceneType<SafeAppUI.GuidelinesViewController>(storyboard: NewSafe.self, identifier: "GuidelinesViewController")
-
-    static let navigationController = SceneType<UINavigationController>(storyboard: NewSafe.self, identifier: "NavigationController")
-
-    static let newSafeViewController = SceneType<SafeAppUI.NewSafeViewController>(storyboard: NewSafe.self, identifier: "NewSafeViewController")
-
-    static let safeCreationViewController = SceneType<SafeAppUI.SafeCreationViewController>(storyboard: NewSafe.self, identifier: "SafeCreationViewController")
-
-    static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: NewSafe.self, identifier: "SaveMnemonicViewController")
   }
   enum ReceiveFunds: StoryboardType {
     static let storyboardName = "ReceiveFunds"

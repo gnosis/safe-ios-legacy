@@ -57,7 +57,7 @@ final class SaveMnemonicViewController: UIViewController {
     private(set) var account: ExternallyOwnedAccountData!
 
     static func create(delegate: SaveMnemonicDelegate, isRecoveryMode: Bool = false) -> SaveMnemonicViewController {
-        let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()
+        let controller = StoryboardScene.CreateSafe.saveMnemonicViewController.instantiate()
         controller.delegate = delegate
         controller.recoveryModeEnabled = isRecoveryMode
         return controller
