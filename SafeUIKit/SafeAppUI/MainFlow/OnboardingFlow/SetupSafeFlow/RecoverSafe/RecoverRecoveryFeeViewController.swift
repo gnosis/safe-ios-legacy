@@ -33,7 +33,6 @@ class RecoverRecoveryFeeViewController: CardViewController {
         static let amountReceived = LocalizedString("safe_balance", comment: "Safe balance")
     }
 
-
     static func create(delegate: RecoverRecoveryFeeViewControllerDelegate) -> RecoverRecoveryFeeViewController {
         let controller = RecoverRecoveryFeeViewController(nibName: String(describing: CardViewController.self),
                                                           bundle: Bundle(for: CardViewController.self))
@@ -161,7 +160,6 @@ class RecoverRecoveryFeeViewController: CardViewController {
     }
 
 }
-
 
 extension RecoverRecoveryFeeViewController: EventSubscriber {
 
