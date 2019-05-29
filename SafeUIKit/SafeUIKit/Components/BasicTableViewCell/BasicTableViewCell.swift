@@ -27,7 +27,9 @@ open class BasicTableViewCell: UITableViewCell {
     override open func prepareForReuse() {
         super.prepareForReuse()
         leftTextLabel?.text = nil
+        leftTextLabel?.attributedText = nil
         rightTextLabel?.text = nil
+        rightTextLabel?.attributedText = nil
     }
 
     open func commonInit() {

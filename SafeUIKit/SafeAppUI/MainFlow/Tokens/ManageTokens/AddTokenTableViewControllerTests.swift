@@ -29,14 +29,14 @@ class AddTokenTableViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 2)
 
         let firstCell = cell(at: 0, 0)
-        XCTAssertEqual(firstCell.leftTextLabel.text, "GNO (Gnosis)")
+        XCTAssertEqual(firstCell.leftTextLabel.text, "GNO\nGnosis")
         XCTAssertNil(firstCell.rightTextLabel.text)
 
         let secondCell = cell(at: 0, 1)
-        XCTAssertEqual(secondCell.leftTextLabel.text, "MGN (Magnolia)")
+        XCTAssertEqual(secondCell.leftTextLabel.text, "MGN\nMagnolia")
 
         let thirdCell = cell(at: 0, 2)
-        XCTAssertEqual(thirdCell.leftTextLabel.text, "RDN (Raiden)")
+        XCTAssertEqual(thirdCell.leftTextLabel.text, "RDN\nRaiden")
     }
 
     func test_whenCellIsSelected_thenDelegateIsCalled() {
