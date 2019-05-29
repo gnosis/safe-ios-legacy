@@ -19,9 +19,11 @@ extension RBEIntroViewController {
 
         private func reload(controller: RBEIntroViewController) {
             asyncInBackground {
-                guard let transactionID = controller.transactionID ?? controller.starter?.create() else { return }
-                controller.transactionID = transactionID
-                guard let estimation = controller.starter?.estimate(transaction: transactionID) else { return }
+                guard let transactionID = controller.transactionID ?? controller.starter?.create(),
+                    let updatedTransactionId = controller.starter?
+                        .recreateTransactionIfPaymentMethodChanged(transaction: transactionID) else { return }
+                controller.transactionID = updatedTransactionId
+                guard let estimation = controller.starter?.estimate(transaction: updatedTransactionId) else { return }
                 DispatchQueue.main.sync {
                     controller.calculationData = estimation.feeCalculation
                     if let error = estimation.error {

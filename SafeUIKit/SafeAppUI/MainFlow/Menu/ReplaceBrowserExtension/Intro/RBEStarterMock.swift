@@ -20,6 +20,17 @@ class RBEStarterMock: RBEStarter {
         return actualCall.returns
     }
 
+    func recreateTransactionIfPaymentMethodChanged(transaction: RBETransactionID) -> RBETransactionID {
+        let actualCall: RecreateCall
+        if let expected: RecreateCall = nextCall() {
+            actualCall = RecreateCall(returns: expected.returns)
+        } else {
+            actualCall = RecreateCall(returns: "<unexpected>")
+        }
+        actualCalls.append(actualCall)
+        return actualCall.returns
+    }
+
     func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
         let actualCall: EstimateCall
         if let expected: EstimateCall = nextCall() {
@@ -68,6 +79,7 @@ class RBEStarterMock: RBEStarter {
         var description: String {
             return methodSignature
         }
+
     }
 
 
@@ -90,7 +102,18 @@ class RBEStarterMock: RBEStarter {
 
     }
 
+    class RecreateCall: CreateCall {
+
+        override var methodSignature: String { return "recreateTransactionIfPaymentMethodChanged(transaction:)" }
+
+        override func equals(_ rhs: RBEStarterMock.Call) -> Bool {
+            return super.equals(rhs) && rhs is RecreateCall && returns == (rhs as! RecreateCall).returns
+        }
+
+    }
+
     class EstimateCall: Call {
+
         override var methodSignature: String { return "estimate(transaction:)" }
 
         var transaction: RBETransactionID
@@ -109,6 +132,7 @@ class RBEStarterMock: RBEStarter {
         override var description: String {
             return "estimate(transaction: \(transaction.debugDescription)) -> \(returns.debugDescription)"
         }
+
     }
 
     class StartCall: Call {
@@ -136,6 +160,10 @@ class RBEStarterMock: RBEStarter {
 
     func expect_create(returns: RBETransactionID) {
         expect(CreateCall(returns: returns))
+    }
+
+    func expect_recreate(returns: RBETransactionID) {
+        expect(RecreateCall(returns: returns))
     }
 
     func expect_estimate(transaction: RBETransactionID, returns: RBEEstimationResult) {
