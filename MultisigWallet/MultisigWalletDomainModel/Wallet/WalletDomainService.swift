@@ -33,4 +33,12 @@ class WalletDomainService {
         DomainRegistry.walletRepository.save(wallet)
     }
 
+    static func token(id: String) -> Token? {
+        if id == Token.Ether.id.id {
+            return Token.Ether
+        } else {
+            return DomainRegistry.tokenListItemRepository.find(id: TokenID(id))?.token
+        }
+    }
+
 }

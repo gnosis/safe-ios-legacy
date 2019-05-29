@@ -18,6 +18,7 @@ public enum RecoveryApplicationServiceError: Error {
     case walletNotFound
     case failedToCreateValidTransaction
     case internalServerError
+    case insufficientFundsForRecovery
 }
 
 public class RecoveryApplicationService {
@@ -49,6 +50,10 @@ public class RecoveryApplicationService {
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletRecoveryAccountsAccepted.self)
             DomainRegistry.recoveryService.provide(recoveryPhrase: recoveryPhrase)
         }
+    }
+
+    public func estimateRecoveryTransaction() -> [TokenData] {
+        return DomainRegistry.recoveryService.estimateRecoveryTransaction()
     }
 
     public func createRecoveryTransaction(subscriber: EventSubscriber,

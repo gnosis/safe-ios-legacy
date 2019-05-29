@@ -71,7 +71,9 @@ public class RecoveryDomainService: Assertable {
         do {
             try validate(address: address)
             changeWallet(address: address)
+            try RecoveryTransactionBuilder().validate()
             try pullWalletData()
+            DomainRegistry.eventPublisher.publish(WalletAddressChanged())
         } catch let error {
             DomainRegistry.errorStream.post(serviceError(from: error))
         }
@@ -89,7 +91,6 @@ public class RecoveryDomainService: Assertable {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.changeAddress(address)
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(WalletAddressChanged())
     }
 
     private func pullWalletData() throws {
@@ -146,13 +147,36 @@ public class RecoveryDomainService: Assertable {
 
     // MARK: - Recovery Transaction
 
+    public func estimateRecoveryTransaction() -> [TokenData] {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        if let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) {
+            DomainRegistry.transactionRepository.remove(tx)
+        }
+        let txId = RecoveryTransactionBuilder().build()
+        let tx = DomainRegistry.transactionRepository.find(id: txId)!
+        let formattedRecipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
+        let request = MultiTokenEstimateTransactionRequest(safe: tx.sender!.value,
+                                                           to: formattedRecipient,
+                                                           value: String(tx.ethValue),
+                                                           data: tx.ethData,
+                                                           operation: tx.operation!)
+        do {
+            let response = try DomainRegistry.transactionRelayService.multiTokenEstimateTransaction(request: request)
+            return response.estimations.compactMap {
+                guard let token = WalletDomainService.token(id: $0.gasToken) else { return nil }
+                return TokenData(token: token, balance: BigInt($0.totalDisplayedToUser))
+            }
+        } catch {
+            return []
+        }
+    }
+
     public func createRecoveryTransaction() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         if let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) {
             DomainRegistry.transactionRepository.remove(tx)
         }
-        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-        RecoveryTransactionBuilder(multiSendContractAddress: multiSendAddress).main()
+        RecoveryTransactionBuilder().main()
     }
 
     public func isRecoveryTransactionReadyToSubmit() -> Bool {
@@ -409,7 +433,7 @@ fileprivate func serviceError(from error: Error) -> Error {
 }
 
 
-class RecoveryTransactionBuilder {
+class RecoveryTransactionBuilder: Assertable {
 
     let isDebugging = false
 
@@ -432,19 +456,37 @@ class RecoveryTransactionBuilder {
 
     var transaction: Transaction!
 
-    init(multiSendContractAddress: Address) {
-        self.multiSendContractAddress = multiSendContractAddress
+    init(multiSendContractAddress: Address? = nil) {
+        self.multiSendContractAddress = multiSendContractAddress ??
+            DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+
         wallet = DomainRegistry.walletRepository.selectedWallet()!
-        accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+
+        let tokenID = wallet!.feePaymentTokenAddress == nil ?
+            Token.Ether.id : TokenID(wallet!.feePaymentTokenAddress!.value)
+        accountID = AccountID(tokenID:  tokenID, walletID: wallet.id)
 
         ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address!)
-        multiSendContractProxy = MultiSendContractProxy(multiSendContractAddress)
+        multiSendContractProxy = MultiSendContractProxy(self.multiSendContractAddress)
 
         print("Wallet \(wallet.id), address \(wallet.address!)")
 
         transaction = newTransaction()
             .change(sender: wallet.address!)
             .change(amount: .ether(0))
+    }
+
+    func validate() throws {
+        pullData()
+        try validateSafeOwners()
+        try validateSupportedScheme()
+    }
+
+    func build() -> TransactionID {
+        pullData()
+        buildData()
+        save()
+        return transaction.id
     }
 
     func main() {
@@ -655,22 +697,39 @@ class RecoveryTransactionBuilder {
     }
 
     private func isSupportedSafeOwners() -> Bool {
-        guard supportedModifiableOwnerCounts.contains(modifiableOwners.count) else {
-            let message = "Expected one of \(supportedModifiableOwnerCounts) mutable owners" +
-            ", but found \(modifiableOwners.count)"
-            DomainRegistry.errorStream.post(RecoveryServiceError.unsupportedWalletConfiguration(message))
+        do {
+            try validateSafeOwners()
+            return true
+        } catch {
+            DomainRegistry.errorStream.post(error)
             return false
         }
-        return true
+    }
+
+    private func validateSafeOwners() throws {
+        if !supportedModifiableOwnerCounts.contains(modifiableOwners.count) {
+            let message = "Expected one of \(supportedModifiableOwnerCounts) mutable owners" +
+            ", but found \(modifiableOwners.count)"
+            throw RecoveryServiceError.unsupportedWalletConfiguration(message)
+        }
     }
 
     private func isSupportedScheme() -> Bool {
-        guard supportedSchemes.contains(oldScheme) && supportedSchemes.contains(newScheme) else {
-            let message = "Expected \(supportedSchemes) confirmations/owners, but got \(oldScheme!)"
-            DomainRegistry.errorStream.post(RecoveryServiceError.unsupportedWalletConfiguration(message))
+        do {
+            try validateSupportedScheme()
+            return true
+        } catch {
+            DomainRegistry.errorStream.post(error)
             return false
         }
-        return true
+    }
+
+    private func validateSupportedScheme() throws {
+        if  !(supportedSchemes.contains(oldScheme) && supportedSchemes.contains(newScheme)) {
+            let message = "Expected \(supportedSchemes) confirmations/owners, but got \(oldScheme!)"
+            throw RecoveryServiceError.unsupportedWalletConfiguration(message)
+        }
+
     }
 
     private func estimate() -> EstimateTransactionRequest.Response? {

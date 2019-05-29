@@ -68,12 +68,22 @@ extension CreateSafeFlowCoordinator: TwoFAViewControllerDelegate {
     }
 
     func showPayment() {
-        push(OnboardingCreationFeeIntroViewController.create(delegate: self))
+        let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
+        controller.titleText = LocalizedString("create_safe_title", comment: "Create Safe")
+        push(controller)
     }
 
 }
 
 extension CreateSafeFlowCoordinator: CreationFeeIntroDelegate {
+
+    func creationFeeLoadEstimates() -> [TokenData] {
+        return ApplicationServiceRegistry.walletService.estimateSafeCreation()
+    }
+
+    func creationFeeNetworkFeeAlert() -> UIAlertController {
+        return .creationFee()
+    }
 
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
         push(OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations))
@@ -89,6 +99,10 @@ extension CreateSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 
     func creationFeePaymentMethodPay() {
         creationFeeIntroPay()
+    }
+
+    func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
+        return creationFeeLoadEstimates()
     }
 
 }

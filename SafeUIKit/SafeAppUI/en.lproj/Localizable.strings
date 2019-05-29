@@ -354,9 +354,11 @@
 "menu" = "Menu";
 
 /* Explanation
-   Fee explanation
-   Safe creation fee description */
+   Fee explanation */
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
+
+/* Fee explanation */
+"network_fee_recovery" = "This is the fee required by the blockchain to recover your Safe.";
 
 /* Network fee description
    Network fee required */
@@ -592,7 +594,9 @@
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
 /* Safe Creation Fee
-   What is safe creation fee?
-   What is the Safe creation fee? */
+   What is safe creation fee? */
 "what_is_safe_creation_fee" = "What is the Safe creation fee?";
+
+/* Safe Creation Fee */
+"what_is_safe_recovery_fee" = "What is the Safe recovery fee?";
 

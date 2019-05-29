@@ -49,6 +49,28 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
         return try httpClient.execute(request: request)
     }
 
+    public func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
+        MultiTokenEstimateTransactionRequest.Response {
+            // commented out until implementation is ready
+//            return try httpClient.execute(request: request)
+            let estimateRequest = EstimateTransactionRequest(safe: Address(request.safe),
+                                                             to: request.to == nil ? nil : Address(request.to!),
+                                                             value: request.value,
+                                                             data: request.data,
+                                                             operation: request.operation,
+                                                             gasToken: nil)
+            let response = try estimateTransaction(request: estimateRequest)
+
+            typealias Response = MultiTokenEstimateTransactionRequest.Response
+            typealias Estimation = MultiTokenEstimateTransactionRequest.Response.Estimation
+            return Response(lastUsedNonce: response.lastUsedNonce,
+                            estimations: [Estimation(gasToken: response.gasToken,
+                                                     gasPrice: response.gasPrice,
+                                                     safeTxGas: response.safeTxGas,
+                                                     baseGas: response.dataGas,
+                                                     operationalGas: response.operationalGas)])
+    }
+
     public func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {
         return try httpClient.execute(request: request)
     }
@@ -105,6 +127,15 @@ extension EstimateTransactionRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/estimate/" }
+
+    public typealias ResponseType = Response
+
+}
+
+extension MultiTokenEstimateTransactionRequest: JSONRequest {
+
+    public var httpMethod: String { return "POST" }
+    public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/estimates/" }
 
     public typealias ResponseType = Response
 
