@@ -24,6 +24,7 @@ class RBEIntroViewControllerStartingStateTests: RBEIntroViewControllerBaseTestCa
 
         vc.state = RBEIntroViewController.StartingState()
         vc.loadViewIfNeeded()
+        vc.viewWillAppear(false)
 
         XCTAssertFalse(vc.startButtonItem.isEnabled)
         XCTAssertTrue(vc.navigationItem.titleView is LoadingTitleView)
@@ -74,11 +75,8 @@ extension RBEIntroViewControllerStartingStateTests {
         let state = RBEIntroViewController.StartingState()
         let exp = expectation(description: "Starting")
         state.addCompletion { exp.fulfill() }
-
         let controller = vc ?? self.vc
-        controller.state = state
-        controller.loadViewIfNeeded()
-
+        controller.transition(to: state)
         waitForExpectations(timeout: 0.01, handler: nil)
     }
 

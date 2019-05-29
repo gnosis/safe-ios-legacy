@@ -843,6 +843,7 @@
 		0A75D920211B193400F5DE63 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				553AEADB229E83BC00EA3248 /* BrowserExtension */,
 				0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */,
 				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
 				0AE0FE06229BEB1400ABC552 /* WalletDomainService.swift */,
@@ -882,17 +883,6 @@
 				0A08641322856FBD00B2D891 /* SafeContractMetadataRepository.swift */,
 				0A086419228576B000B2D891 /* SafeContractMetadata.swift */,
 				0A553D4421C0164100647CFF /* WalletSettingsDomainService.swift */,
-				0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */,
-				0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */,
-				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
-				0A3BD9612225606D007039B4 /* ConnectBrowserExtensionDomainService.swift */,
-				0A1940292226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift */,
-				0A1940342226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift */,
-				0A1940362226C2EF005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift */,
-				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
-				0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
-				0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
-				0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
 				0A19402F2226A9DA005B7440 /* TestableOwnerProxy.swift */,
 			);
 			path = Wallet;
@@ -1138,6 +1128,24 @@
 				552C5FFA212B0CA200BF973A /* SynchronisationDomainService.swift */,
 			);
 			path = SynchronisationService;
+			sourceTree = "<group>";
+		};
+		553AEADB229E83BC00EA3248 /* BrowserExtension */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */,
+				0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */,
+				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
+				0A3BD9612225606D007039B4 /* ConnectBrowserExtensionDomainService.swift */,
+				0A1940292226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift */,
+				0A1940342226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift */,
+				0A1940362226C2EF005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift */,
+				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
+				0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
+				0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
+				0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
+			);
+			path = BrowserExtension;
 			sourceTree = "<group>";
 		};
 		55B5DFA4227C5FAD001A32F4 /* Repositories */ = {

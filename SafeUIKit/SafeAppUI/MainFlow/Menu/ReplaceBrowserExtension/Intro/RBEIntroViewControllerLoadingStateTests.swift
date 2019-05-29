@@ -11,6 +11,7 @@ import MultisigWalletApplication
 class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCase {
 
     let transactionID = "TestTransactionID"
+    let mock = RBEStarterMock()
 
     // swiftlint:disable:next overridden_super_call
     override func setUp() {
@@ -20,6 +21,7 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
     func test_whenLoading_thenHasContent() {
         vc.enableStart()
         vc.loadViewIfNeeded()
+        vc.viewWillAppear(false)
         XCTAssertTrue(vc.navigationItem.titleView is LoadingTitleView)
         XCTAssertEqual(vc.navigationItem.rightBarButtonItems, [vc.startButtonItem])
         XCTAssertFalse(vc.startButtonItem.isEnabled)
@@ -28,7 +30,6 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
     func test_whenLoadingAndPushed_thenBackButtonIsSet() {
         let navVC = UINavigationController(rootViewController: UIViewController())
         navVC.pushViewController(vc, animated: false)
-        vc.loadViewIfNeeded()
         vc.willMove(toParent: navVC)
         XCTAssertEqual(navVC.viewControllers.first!.navigationItem.backBarButtonItem, vc.backButtonItem)
     }
@@ -46,14 +47,15 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
         XCTAssertNil(parent.navigationItem.backBarButtonItem)
     }
 
-    func test_whenLoading_thenHasEmptyCalculation() {
+    func test_whenAppearing_thenHasEmptyCalculation() {
         vc.loadViewIfNeeded()
+        vc.viewWillAppear(false)
         XCTAssertEqual(vc.feeCalculationView.calculation, OwnerModificationFeeCalculation())
     }
 
     func test_whenNotCreatedTransaction_thenCreatesItAndEstimatesIt() {
-        let mock = RBEStarterMock()
         mock.expect_create(returns: transactionID)
+        mock.expect_recreate(returns: transactionID)
         mock.expect_estimate(transaction: transactionID, returns: .zero)
         vc.transactionID = nil
         vc.starter = mock
@@ -65,7 +67,7 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
     }
 
     func test_whenCreatedTransaction_thenReestimatesIt() {
-        let mock = RBEStarterMock()
+        mock.expect_recreate(returns: transactionID)
         mock.expect_estimate(transaction: transactionID, returns: .zero)
         vc.transactionID = transactionID
         vc.starter = mock
@@ -76,7 +78,6 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
     }
 
     func test_whenEstimationInvalid_thenErrors() {
-        let mock = RBEStarterMock()
         var estimateWithError = RBEEstimationResult.zero
         estimateWithError.error = FeeCalculationError.insufficientBalance
         mock.expect_estimate(transaction: transactionID, returns: estimateWithError)
@@ -91,7 +92,6 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
     }
 
     func test_whenEstimated_thenSavesEstimationAndCallsDidLoad() {
-        let mock = RBEStarterMock()
         let estimation = RBEEstimationResult.zero
         mock.expect_estimate(transaction: transactionID, returns: estimation)
         let vc = TestableRBEIntroViewController.createTestable()
@@ -112,9 +112,10 @@ extension RBEIntroViewControllerLoadingStateTests {
         let state = RBEIntroViewController.LoadingState()
         let exp = expectation(description: "Loading")
         state.addCompletion { exp.fulfill() }
-        (vc ?? self.vc).state = state
-        (vc ?? self.vc).loadViewIfNeeded()
-        waitForExpectations(timeout: 0.1, handler: nil)
+        let controller = vc ?? self.vc
+        controller.loadViewIfNeeded()
+        controller.transition(to: state)
+        waitForExpectations(timeout: 0.01, handler: nil)
     }
 
 }

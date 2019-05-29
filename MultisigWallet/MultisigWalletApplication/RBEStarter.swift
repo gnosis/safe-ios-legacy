@@ -7,6 +7,7 @@ import Foundation
 public protocol RBEStarter {
 
     func create() -> RBETransactionID
+    func recreateTransactionIfPaymentMethodChanged(transaction: RBETransactionID) -> RBETransactionID
     func estimate(transaction: RBETransactionID) -> RBEEstimationResult
     func start(transaction: RBETransactionID) throws
 

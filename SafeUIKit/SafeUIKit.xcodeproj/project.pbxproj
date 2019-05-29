@@ -113,17 +113,6 @@
 		0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */; };
 		0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */; };
 		0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */; };
-		0A3BD8EB22254822007039B4 /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
-		0A3BD8EC22254822007039B4 /* RBEIntroViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */; };
-		0A3BD8ED22254822007039B4 /* RBEIntroViewControllerErrorStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */; };
-		0A3BD8EE22254822007039B4 /* RBEIntroViewControllerInvalidStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */; };
-		0A3BD8EF22254822007039B4 /* RBEIntroViewControllerLoadingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */; };
-		0A3BD8F022254822007039B4 /* RBEStarterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */; };
-		0A3BD8F122254822007039B4 /* RBEIntroViewControllerReadyStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F0220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift */; };
-		0A3BD8F222254822007039B4 /* RBEIntroViewControllerStartedStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */; };
-		0A3BD8F322254822007039B4 /* RBEIntroViewControllerStartingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */; };
-		0A3BD8F422254822007039B4 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */; };
-		0A3BD8F522254822007039B4 /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
 		0A3BD8F622254833007039B4 /* UINavigationController+BackSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */; };
 		0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */; };
 		0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */; };
@@ -330,6 +319,17 @@
 		5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */; };
 		5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13D21A55E8D006BF834 /* TransactionFeeCell.swift */; };
 		5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */; };
+		553AEB0C229EA33800EA3248 /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
+		553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
+		553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */; };
+		553AEB13229EA42400EA3248 /* RBEIntroViewControllerErrorStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */; };
+		553AEB14229EA42700EA3248 /* RBEIntroViewControllerInvalidStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */; };
+		553AEB15229EA42B00EA3248 /* RBEIntroViewControllerLoadingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */; };
+		553AEB16229EA42E00EA3248 /* RBEIntroViewControllerReadyStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F0220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift */; };
+		553AEB17229EA43200EA3248 /* RBEIntroViewControllerStartedStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */; };
+		553AEB18229EA43500EA3248 /* RBEIntroViewControllerStartingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */; };
+		553AEB19229EA43900EA3248 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */; };
+		553AEB1A229EA44E00EA3248 /* RBEStarterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */; };
 		553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */; };
 		553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */; };
 		553B9E022296D15A006E93C9 /* OnboardingPaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B9E012296D15A006E93C9 /* OnboardingPaymentMethodViewController.swift */; };
@@ -1291,41 +1291,33 @@
 		0A3BD8DF22254786007039B4 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				0A3BD8E9222547B2007039B4 /* Tests */,
-				0A2FAA822201A92A00793B7B /* Common */,
-				5549B2F3228C268100F3B5B7 /* OwnerModificationFeeCalculation.swift */,
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
-				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
+				5549B2F3228C268100F3B5B7 /* OwnerModificationFeeCalculation.swift */,
 				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
-				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
+				0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */,
 				0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */,
+				0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */,
 				0ABDF5E6220841880047F10D /* RBEIntroViewControllerCancellingState.swift */,
 				0ABDF5EE220841E50047F10D /* RBEIntroViewControllerErrorState.swift */,
-				0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */,
-				0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */,
-				0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */,
-				0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */,
-				0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */,
-			);
-			path = Intro;
-			sourceTree = "<group>";
-		};
-		0A3BD8E9222547B2007039B4 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */,
-				0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */,
 				0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */,
+				0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */,
 				0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */,
+				0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */,
 				0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */,
-				0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */,
+				0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */,
 				0ABDF5F0220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift */,
+				0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */,
 				0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */,
+				0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */,
 				0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */,
 				0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */,
+				0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */,
 				0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */,
+				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
+				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
+				0A2FAA822201A92A00793B7B /* Common */,
 			);
-			path = Tests;
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		0A3BD94022255174007039B4 /* Products */ = {
@@ -3013,6 +3005,7 @@
 				0AD899BA2281CADD008AE325 /* SuccessViewController+SendSuccess.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */,
+				553AEB0C229EA33800EA3248 /* TestableRBEIntroViewController.swift in Sources */,
 				0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
 				5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */,
@@ -3070,38 +3063,33 @@
 				0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */,
 				0A334E52209C8E6800ABC6AE /* UnlockViewControllerTests.swift in Sources */,
 				5573535B2293F0C500248F87 /* ReceiveFundsViewControllerTests.swift in Sources */,
-				0A3BD8F422254822007039B4 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,
 				55980009225B73E6006D5792 /* ChangePasswordFlowCoordinatorTests.swift in Sources */,
 				0A2D58A52257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift in Sources */,
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
 				55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* OnboardingWelcomeViewControllerTests.swift in Sources */,
-				0A3BD8ED22254822007039B4 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift in Sources */,
 				554CACD7221F19430086D303 /* SendReviewViewControllerTests.swift in Sources */,
-				0A3BD8F122254822007039B4 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
-				0A3BD8EE22254822007039B4 /* RBEIntroViewControllerInvalidStateTests.swift in Sources */,
 				0A2D589F22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift in Sources */,
 				0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */,
-				0A3BD8F222254822007039B4 /* RBEIntroViewControllerStartedStateTests.swift in Sources */,
 				0A2D589922576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift in Sources */,
+				553AEB18229EA43500EA3248 /* RBEIntroViewControllerStartingStateTests.swift in Sources */,
 				55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */,
+				553AEB1A229EA44E00EA3248 /* RBEStarterMock.swift in Sources */,
 				55980006225B73BE006D5792 /* VerifyCurrentPasswordViewControllerTests.swift in Sources */,
-				0A3BD8F322254822007039B4 /* RBEIntroViewControllerStartingStateTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
-				0A3BD8EB22254822007039B4 /* RBEIntroViewControllerActionsTests.swift in Sources */,
 				0A2D589B22576F60001B8BF4 /* RecoveryInProgressViewControllerTests.swift in Sources */,
-				0A3BD8F022254822007039B4 /* RBEStarterMock.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0A2D588C22575F33001B8BF4 /* AddressInputViewControllerTests.swift in Sources */,
 				0AF5BB3B222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */,
+				553AEB16229EA42E00EA3248 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
 				0AB3F13221F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift in Sources */,
 				0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */,
 				550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */,
 				0AC3F1712183402800DAADC9 /* OnboardingTermsViewControllerTests.swift in Sources */,
+				553AEB14229EA42700EA3248 /* RBEIntroViewControllerInvalidStateTests.swift in Sources */,
 				0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */,
-				0A3BD8F522254822007039B4 /* TestableRBEIntroViewController.swift in Sources */,
 				0AF8D53920D00E56001E8423 /* TransactionViewViewControllerTests.swift in Sources */,
 				0A2D588A225759F4001B8BF4 /* ReviewTransactionViewControllerTests.swift in Sources */,
 				0A54E7BF21300D35006BAD93 /* XCTest+Alert.swift in Sources */,
@@ -3120,6 +3108,7 @@
 				0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */,
 				55AA3C2F229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift in Sources */,
 				0AD5091C211091E4008507CB /* SendInputViewModelTests.swift in Sources */,
+				553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */,
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */,
 				55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */,
@@ -3133,23 +3122,26 @@
 				0AF8D53720CFFC52001E8423 /* MainViewControllerSegmentTests.swift in Sources */,
 				0A334E5D209C8E6800ABC6AE /* TwoFAViewControllerTests.swift in Sources */,
 				0A2D58A122577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift in Sources */,
-				0A3BD8EF22254822007039B4 /* RBEIntroViewControllerLoadingStateTests.swift in Sources */,
 				550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */,
 				0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,
+				553AEB15229EA42B00EA3248 /* RBEIntroViewControllerLoadingStateTests.swift in Sources */,
 				0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */,
 				0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */,
 				0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				0A334DC2209C6D8D00ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift in Sources */,
 				0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				0A334E5B209C8E6800ABC6AE /* NewSafeFlowCoordinatorTests.swift in Sources */,
-				0A3BD8EC22254822007039B4 /* RBEIntroViewControllerBaseTestCase.swift in Sources */,
 				0A334E5A209C8E6800ABC6AE /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 				0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */,
+				553AEB17229EA43200EA3248 /* RBEIntroViewControllerStartedStateTests.swift in Sources */,
 				0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */,
 				0A334DC1209C6D8D00ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift in Sources */,
+				553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */,
+				553AEB19229EA43900EA3248 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,
 				0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */,
+				553AEB13229EA42400EA3248 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				5549B2A222857F7500F3B5B7 /* PaymentMethodViewControllerTests.swift in Sources */,
 				0A3BD95D22255C49007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift in Sources */,
 				552C01972297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift in Sources */,
