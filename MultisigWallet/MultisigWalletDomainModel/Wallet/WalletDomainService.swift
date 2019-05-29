@@ -5,15 +5,15 @@
 import Foundation
 
 /// Common code between DeploymentDomainService and RecoveryDomainService
-class WalletDomainService {
+public class WalletDomainService {
 
-    static func newOwner() -> Address {
+    public static func newOwner() -> Address {
         let account = DomainRegistry.encryptionService.generateExternallyOwnedAccount()
         DomainRegistry.externallyOwnedAccountRepository.save(account)
         return account.address
     }
 
-    static func fetchOrCreatePortfolio() -> Portfolio {
+    public static func fetchOrCreatePortfolio() -> Portfolio {
         if let result = DomainRegistry.portfolioRepository.portfolio() {
             return result
         }
@@ -22,7 +22,7 @@ class WalletDomainService {
         return result
     }
 
-    static func recreateOwners() {
+    public static func recreateOwners() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         for owner in wallet.allOwners() {
             DomainRegistry.externallyOwnedAccountRepository.remove(address: owner.address)
@@ -33,7 +33,7 @@ class WalletDomainService {
         DomainRegistry.walletRepository.save(wallet)
     }
 
-    static func token(id: String) -> Token? {
+    public static func token(id: String) -> Token? {
         if id == Token.Ether.id.id {
             return Token.Ether
         } else {

@@ -58,14 +58,10 @@ class RecoverRecoveryFeeViewController: CardViewController {
         start()
     }
 
-    // TODO: from creation process tracker
-
     func start() {
-        // show loading state
         navigationItem.titleView = LoadingTitleView()
         retryItem.isEnabled = false
 
-        // start the estimation
         DispatchQueue.global().async {
             ApplicationServiceRegistry.recoveryService
                 .createRecoveryTransaction(subscriber: self) { [weak self] error in
@@ -84,8 +80,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
         let canRetry = isRetriableError(error)
         retryItem.isEnabled = canRetry
 
-        let message = error.localizedDescription
-        let controller = UIAlertController.operationFailed(message: message) { [unowned self] in
+        let controller = UIAlertController.operationFailed(message: error.localizedDescription) { [unowned self] in
             if !canRetry {
                 self.delegate?.recoverRecoveryFeeViewControllerDidCancel()
             }
@@ -106,8 +101,6 @@ class RecoverRecoveryFeeViewController: CardViewController {
             return false
         }
     }
-
-    // till this point from creation process tracker
 
     @objc func cancel() {
         DispatchQueue.global().async {

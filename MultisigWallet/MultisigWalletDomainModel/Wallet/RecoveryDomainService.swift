@@ -440,7 +440,7 @@ fileprivate func serviceError(from error: Error) -> Error {
 
 class RecoveryTransactionBuilder: Assertable {
 
-    let isDebugging = true
+    let isDebugging = false
 
     var wallet: Wallet!
     var accountID: AccountID!
@@ -471,7 +471,7 @@ class RecoveryTransactionBuilder: Assertable {
 
         let tokenID = wallet!.feePaymentTokenAddress == nil ?
             Token.Ether.id : TokenID(wallet!.feePaymentTokenAddress!.value)
-        accountID = AccountID(tokenID:  tokenID, walletID: wallet.id)
+        accountID = AccountID(tokenID: tokenID, walletID: wallet.id)
 
         ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address!)
         multiSendContractProxy = MultiSendContractProxy(self.multiSendContractAddress)
@@ -698,39 +698,22 @@ class RecoveryTransactionBuilder: Assertable {
     }
 
     private func isSupportedSafeOwners() -> Bool {
-        do {
-            try validateSafeOwners()
-            return true
-        } catch {
-            DomainRegistry.errorStream.post(error)
-            return false
-        }
-    }
-
-    private func validateSafeOwners() throws {
-        if !supportedModifiableOwnerCounts.contains(modifiableOwners.count) {
+        guard supportedModifiableOwnerCounts.contains(modifiableOwners.count) else {
             let message = "Expected one of \(supportedModifiableOwnerCounts) mutable owners" +
             ", but found \(modifiableOwners.count)"
-            throw RecoveryServiceError.unsupportedWalletConfiguration(message)
+            DomainRegistry.errorStream.post(RecoveryServiceError.unsupportedWalletConfiguration(message))
+            return false
         }
+        return true
     }
 
     private func isSupportedScheme() -> Bool {
-        do {
-            try validateSupportedScheme()
-            return true
-        } catch {
-            DomainRegistry.errorStream.post(error)
+        guard supportedSchemes.contains(oldScheme) && supportedSchemes.contains(newScheme) else {
+            let message = "Expected \(supportedSchemes) confirmations/owners, but got \(oldScheme!)"
+            DomainRegistry.errorStream.post(RecoveryServiceError.unsupportedWalletConfiguration(message))
             return false
         }
-    }
-
-    private func validateSupportedScheme() throws {
-        if  !(supportedSchemes.contains(oldScheme) && supportedSchemes.contains(newScheme)) {
-            let message = "Expected \(supportedSchemes) confirmations/owners, but got \(oldScheme!)"
-            throw RecoveryServiceError.unsupportedWalletConfiguration(message)
-        }
-
+        return true
     }
 
     private func estimate() -> EstimateTransactionRequest.Response? {

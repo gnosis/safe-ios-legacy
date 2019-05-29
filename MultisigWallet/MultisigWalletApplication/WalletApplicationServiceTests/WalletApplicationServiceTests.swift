@@ -123,6 +123,7 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         let item = createWalletWithFeeTokenItem(Token.gno, tokenItemStatus: .whitelisted)
         tokenItemsRepository.remove(item)
         let wallet = walletRepository.selectedWallet()!
+        accountRepository.save(Account(tokenID: Token.Ether.id, walletID: wallet.id))
         XCTAssertEqual(wallet.feePaymentTokenAddress, Token.gno.address)
         XCTAssertEqual(service.feePaymentTokenData.address, TokenData.Ether.address)
     }
