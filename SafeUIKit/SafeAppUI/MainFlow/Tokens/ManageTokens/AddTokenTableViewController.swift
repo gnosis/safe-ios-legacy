@@ -45,11 +45,11 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     static func create(delegate: AddTokenTableViewControllerDelegate) -> UINavigationController {
-        let navControllet = StoryboardScene.Main.addTokenNavigationController.instantiate()
-        navControllet.navigationBar.isTranslucent = false
-        let controller = navControllet.children[0] as! AddTokenTableViewController
+        let navController = StoryboardScene.Main.addTokenNavigationController.instantiate()
+        navController.navigationBar.isTranslucent = false
+        let controller = navController.children[0] as! AddTokenTableViewController
         controller.delegate = delegate
-        return navControllet
+        return navController
     }
 
     override func viewDidLoad() {
