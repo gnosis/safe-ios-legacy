@@ -18,7 +18,6 @@ public enum RecoveryApplicationServiceError: Error {
     case walletNotFound
     case failedToCreateValidTransaction
     case internalServerError
-    case insufficientFundsForRecovery
 }
 
 public class RecoveryApplicationService {

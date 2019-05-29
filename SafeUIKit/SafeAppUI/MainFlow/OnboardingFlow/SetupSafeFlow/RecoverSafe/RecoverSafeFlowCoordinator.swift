@@ -126,6 +126,18 @@ extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
 
 }
 
+extension RecoverSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
+
+    func creationFeePaymentMethodPay() {
+        creationFeeIntroPay()
+    }
+
+    func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
+        return creationFeeLoadEstimates()
+    }
+
+}
+
 extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
 
     func creationFeeLoadEstimates() -> [TokenData] {
@@ -141,29 +153,22 @@ extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
     }
 
     func creationFeeIntroPay() {
-        // show insufficient funds screen
-        // it will create a transaction, estimate it, seal it, and then check the balance
-        // if not enough, it will display the appropriate message and will wait for balance updates.
-        // if enough, then it will call the delegate
-
-        // we as a delegate will replace the funds screen with the review screen.
-
-        // Review will just display the transaction information.
-        // On submission we submit, and then the delegate will be called
-
-        // and then we display in progress screen.
+        var stack = navigationController.viewControllers
+        stack.removeLast()
+        stack.append(RecoverRecoveryFeeViewController.create(delegate: self))
+        navigationController.viewControllers = stack
     }
 
 }
 
-extension RecoverSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
+extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
 
-    func creationFeePaymentMethodPay() {
-        creationFeeIntroPay()
+    func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit() {
+        showReview()
     }
 
-    func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
-        return creationFeeLoadEstimates()
+    func recoverRecoveryFeeViewControllerDidCancel() {
+        exitFlow()
     }
 
 }

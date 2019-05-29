@@ -71,7 +71,6 @@ public class RecoveryDomainService: Assertable {
         do {
             try validate(address: address)
             changeWallet(address: address)
-            try RecoveryTransactionBuilder().validate()
             try pullWalletData()
             DomainRegistry.eventPublisher.publish(WalletAddressChanged())
         } catch let error {
@@ -98,6 +97,12 @@ public class RecoveryDomainService: Assertable {
         let ownerContract = SafeOwnerManagerContractProxy(wallet.address!)
         let existingOwnerAddresses = try ownerContract.getOwners()
         let confirmationCount = try ownerContract.getThreshold()
+
+        let scheme = WalletScheme(confirmations: confirmationCount, owners: existingOwnerAddresses.count)
+        let errorMessage = "Configuration \(scheme.confirmations)/\(scheme.owners) is not supported"
+        try assertTrue(RecoveryTransactionBuilder.supportedSchemes.contains(scheme),
+                       RecoveryServiceError.unsupportedWalletConfiguration(errorMessage))
+
         for address in existingOwnerAddresses {
             wallet.addOwner(Owner(address: address, role: .unknown))
         }
@@ -435,7 +440,7 @@ fileprivate func serviceError(from error: Error) -> Error {
 
 class RecoveryTransactionBuilder: Assertable {
 
-    let isDebugging = false
+    let isDebugging = true
 
     var wallet: Wallet!
     var accountID: AccountID!
@@ -452,7 +457,9 @@ class RecoveryTransactionBuilder: Assertable {
     var multiSendContractProxy: MultiSendContractProxy!
 
     var supportedModifiableOwnerCounts = [1, 2]
-    var supportedSchemes: [WalletScheme] = [.withoutExtension, .withExtension]
+
+    static let supportedSchemes: [WalletScheme] = [.withoutExtension, .withExtension]
+    var supportedSchemes: [WalletScheme] { return type(of: self).supportedSchemes }
 
     var transaction: Transaction!
 
@@ -474,12 +481,6 @@ class RecoveryTransactionBuilder: Assertable {
         transaction = newTransaction()
             .change(sender: wallet.address!)
             .change(amount: .ether(0))
-    }
-
-    func validate() throws {
-        pullData()
-        try validateSafeOwners()
-        try validateSupportedScheme()
     }
 
     func build() -> TransactionID {

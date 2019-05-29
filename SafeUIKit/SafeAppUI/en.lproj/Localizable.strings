@@ -353,8 +353,7 @@
    Title for menu screen. */
 "menu" = "Menu";
 
-/* Explanation
-   Fee explanation */
+/* Fee explanation */
 "network_fee_creation" = "This is the fee required by the blockchain to create your Safe. Any additional funds will show up in your new Safe.";
 
 /* Fee explanation */
@@ -440,10 +439,14 @@
 /* Restore safe button */
 "recover_safe" = "Recover an Existing Safe";
 
-/* Header of the review transaction screen
-   Recover Safe
-   Recover safe */
+/* Create Safe
+   Header of the review transaction screen
+   Recover safe
+   Recover Safe */
 "recover_safe_title" = "Recover Safe";
+
+/* Explanation text. */
+"recovering_requires_fee" = "recovering_requires_fee";
 
 /* Header label for progress screen
    Recovering safe */
@@ -465,7 +468,8 @@
    Review transaction title */
 "review" = "Review";
 
-/* Current balance */
+/* Current balance
+   Safe balance */
 "safe_balance" = "Safe balance";
 
 /* Safe creation fee */
@@ -593,8 +597,7 @@
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
-/* Safe Creation Fee
-   What is safe creation fee? */
+/* Safe Creation Fee */
 "what_is_safe_creation_fee" = "What is the Safe creation fee?";
 
 /* Safe Creation Fee */

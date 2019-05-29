@@ -100,4 +100,9 @@ class MockTransactionRelayService1: TransactionRelayDomainService {
         preconditionFailure("not implemented")
     }
 
+    func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
+        MultiTokenEstimateTransactionRequest.Response {
+            return .init(lastUsedNonce: nil, estimations: [])
+    }
+
 }
