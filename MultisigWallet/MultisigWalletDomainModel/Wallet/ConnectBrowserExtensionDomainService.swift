@@ -8,7 +8,7 @@ open class ConnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomainSe
 
     open override var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
-        return wallet.owner(role: .browserExtension) == nil
+        return wallet.isReadyToUse && wallet.owner(role: .browserExtension) == nil
     }
 
     override var transactionType: TransactionType { return .connectBrowserExtension }
