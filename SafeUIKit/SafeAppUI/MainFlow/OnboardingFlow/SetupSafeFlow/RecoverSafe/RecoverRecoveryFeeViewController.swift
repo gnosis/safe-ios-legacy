@@ -43,6 +43,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         embed(view: feeRequestView, inCardSubview: cardHeaderView)
         embed(view: addressDetailView, inCardSubview: cardBodyView)
         footerButton.isHidden = true
@@ -150,8 +151,8 @@ class RecoverRecoveryFeeViewController: CardViewController {
         let balance = (ApplicationServiceRegistry
             .walletService.accountBalance(tokenID: BaseID(tx.feeTokenData.address)) ?? 0)
         feeRequestView.amountReceivedAmountLabel.amount = tx.feeTokenData.withBalance(balance)
-        feeRequestView.amountNeededAmountLabel.amount = tx.feeTokenData
-        let remaining = (tx.feeTokenData.balance ?? 0) - balance
+        feeRequestView.amountNeededAmountLabel.amount = tx.feeTokenData.withNonNegativeBalance()
+        let remaining = (tx.feeTokenData.withNonNegativeBalance().balance ?? 0) - balance
         feeRequestView.remainderAmountLabel.amount = tx.feeTokenData.withBalance(remaining)
 
         scrollView.isHidden = false
@@ -162,7 +163,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
         addressDetailView.footnoteLabel.text = String(format: template, code)
     }
 
-    @objc func showTransactionFeeInfo() {
+    override func showNetworkFeeInfo() {
         present(UIAlertController.recoveryFee(), animated: true, completion: nil)
     }
 

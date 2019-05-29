@@ -446,7 +446,7 @@
 "recover_safe_title" = "Recover Safe";
 
 /* Explanation text. */
-"recovering_requires_fee" = "recovering_requires_fee";
+"recovering_requires_fee" = "Recovering your Safe requires a network fee. Please add funds to your Safe.";
 
 /* Header label for progress screen
    Recovering safe */

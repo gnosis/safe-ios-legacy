@@ -153,10 +153,7 @@ extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
     }
 
     func creationFeeIntroPay() {
-        var stack = navigationController.viewControllers
-        stack.removeLast()
-        stack.append(RecoverRecoveryFeeViewController.create(delegate: self))
-        navigationController.viewControllers = stack
+        push(RecoverRecoveryFeeViewController.create(delegate: self))
     }
 
 }
@@ -164,7 +161,10 @@ extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
 extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
 
     func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit() {
-        showReview()
+        var stack = navigationController.viewControllers
+        stack.removeLast()
+        stack.append(ReviewRecoveryTransactionViewController.create(delegate: self))
+        navigationController.viewControllers = stack
     }
 
     func recoverRecoveryFeeViewControllerDidCancel() {
@@ -176,15 +176,11 @@ extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
 extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDelegate {
 
     func reviewRecoveryTransactionViewControllerDidSubmit() {
-        dismissModal { [unowned self] in
-            self.push(self.inProgressViewController())
-        }
+        push(self.inProgressViewController())
     }
 
     func reviewRecoveryTransactionViewControllerDidCancel() {
-        dismissModal { [unowned self] in
-            self.exitFlow()
-        }
+        exitFlow()
     }
 
 }
