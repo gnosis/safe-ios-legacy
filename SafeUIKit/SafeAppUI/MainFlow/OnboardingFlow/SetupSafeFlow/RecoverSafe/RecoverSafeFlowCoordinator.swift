@@ -65,6 +65,7 @@ extension RecoverSafeFlowCoordinator {
     func showPaymentIntro() {
         let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
         controller.titleText = flowTitle
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.feeIntro
         push(controller)
     }
 
@@ -145,7 +146,9 @@ extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
     }
 
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
-        push(OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations))
+        let controller = OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations)
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.paymentMethod
+        push(controller)
     }
 
     func creationFeeIntroPay() {
@@ -159,6 +162,7 @@ extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
     func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit() {
         let tx = ApplicationServiceRegistry.recoveryService.recoveryTransaction()!
         let controller = RecoverReviewViewController(transactionID: tx.id, delegate: self)
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.review
         var stack = navigationController.viewControllers
         stack.removeLast()
         stack.append(controller)

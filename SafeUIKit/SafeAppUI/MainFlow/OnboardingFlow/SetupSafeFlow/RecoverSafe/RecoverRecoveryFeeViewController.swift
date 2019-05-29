@@ -65,6 +65,11 @@ class RecoverRecoveryFeeViewController: CardViewController {
         recoveryProcessTracker.start()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(RecoverSafeTrackingEvent.fee)
+    }
+
     @objc func cancel() {
         DispatchQueue.global().async {
             ApplicationServiceRegistry.recoveryService.cancelRecovery()

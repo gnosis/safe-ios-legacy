@@ -72,6 +72,7 @@ class RecoverFeePaidViewController: FeePaidViewController {
     override func openMenu() {
         delegate?.recoverFeePaidViewControllerOpenMenu()
     }
+
 }
 
 extension RecoverFeePaidViewController: EventSubscriber {

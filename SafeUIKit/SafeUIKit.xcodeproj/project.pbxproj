@@ -73,7 +73,6 @@
 		0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DE2209C892700ABC6AE /* SafeTestCase.swift */; };
 		0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DEC209C894D00ABC6AE /* libIdentityAccessImplementations.a */; };
 		0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */; };
-		0A334E2B209C8E3800ABC6AE /* ShadowWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFC209C8E3800ABC6AE /* ShadowWrapperView.swift */; };
 		0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */; };
 		0A334E2F209C8E3800ABC6AE /* CreateSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E00209C8E3800ABC6AE /* CreateSafe.storyboard */; };
 		0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */; };
@@ -658,7 +657,6 @@
 		0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeAppUIMedia.xcassets; sourceTree = "<group>"; };
 		0A334DF3209C8C4A00ABC6AE /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorOnboardingTests.swift; sourceTree = "<group>"; };
-		0A334DFC209C8E3800ABC6AE /* ShadowWrapperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowWrapperView.swift; sourceTree = "<group>"; };
 		0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334E00209C8E3800ABC6AE /* CreateSafe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateSafe.storyboard; sourceTree = "<group>"; };
 		0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1174,6 +1172,7 @@
 				0A2D5889225757FF001B8BF4 /* RecoverSafe */,
 				0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */,
 				0A334DB7209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewController.swift */,
+				0AB20141229848520071510A /* LongProcessTracker.swift */,
 				0A334DB5209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift */,
 				0A2C0E3A2297E11C008A30AC /* OnboardingFeePaidViewController.swift */,
 				0A2C0E282297DCFF008A30AC /* FeePaidViewController.swift */,
@@ -1210,9 +1209,7 @@
 				0A2D58932257674C001B8BF4 /* OnboardingIntroViewControllerTests.swift */,
 				0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */,
 				0A334E0A209C8E3800ABC6AE /* CreateSafeFlowCoordinatorTests.swift */,
-				0A334DFC209C8E3800ABC6AE /* ShadowWrapperView.swift */,
 				0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */,
-				0AB20141229848520071510A /* LongProcessTracker.swift */,
 				55AA3C46229590AD007B3105 /* CreationFeeIntro */,
 				0A334E02209C8E3800ABC6AE /* SeedFlow */,
 			);
@@ -3006,7 +3003,6 @@
 				0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */,
 				55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */,
-				0A334E2B209C8E3800ABC6AE /* ShadowWrapperView.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */,

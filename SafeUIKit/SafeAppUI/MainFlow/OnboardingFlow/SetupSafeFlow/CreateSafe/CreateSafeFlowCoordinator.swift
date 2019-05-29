@@ -70,6 +70,7 @@ extension CreateSafeFlowCoordinator: TwoFAViewControllerDelegate {
     func showPayment() {
         let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
         controller.titleText = LocalizedString("create_safe_title", comment: "Create Safe")
+        controller.screenTrackingEvent = OnboardingTrackingEvent.createSafeFeeIntro
         push(controller)
     }
 
@@ -86,7 +87,9 @@ extension CreateSafeFlowCoordinator: CreationFeeIntroDelegate {
     }
 
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
-        push(OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations))
+        let controller = OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations)
+        controller.screenTrackingEvent = OnboardingTrackingEvent.createSafePaymentMethod
+        push(controller)
     }
 
     func creationFeeIntroPay() {
