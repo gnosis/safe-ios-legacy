@@ -27,7 +27,7 @@ class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
         XCTAssertFalse(walletService.didCallEstimateSafeCreation)
         controller.updateData()
         delay()
-        XCTAssertTrue(walletService.didCallEstimateSafeCreation)
+        XCTAssertTrue(delegate.didCallEstimation)
     }
 
     func test_whenUpdatingTheFirstTimeWithKnownEstimations_thenDoesNotFetchEstimations() {
@@ -40,7 +40,7 @@ class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
         updateWithKnownEstimations()
         controller.updateData()
         delay()
-        XCTAssertTrue(walletService.didCallEstimateSafeCreation)
+        XCTAssertTrue(delegate.didCallEstimation)
     }
 
     func test_whenEstimationsAreKnown_thenDoesNotSetLoadingTitle() {
@@ -103,6 +103,12 @@ class MockCreationFeePaymentMethodDelegate: CreationFeePaymentMethodDelegate {
     var didSelectToPay = false
     func creationFeePaymentMethodPay() {
         didSelectToPay = true
+    }
+
+    var didCallEstimation = false
+    func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
+        didCallEstimation = true
+        return []
     }
 
 }

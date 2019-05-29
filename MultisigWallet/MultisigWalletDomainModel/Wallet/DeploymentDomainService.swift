@@ -88,7 +88,7 @@ public class DeploymentDomainService {
             let request = SafeCreationRequest(saltNonce: DomainRegistry.encryptionService.randomSaltNonce(),
                                               owners: owners,
                                               confirmationCount: wallet.confirmationCount,
-                                              paymentToken: Token.Ether.address)
+                                              paymentToken: wallet.feePaymentTokenAddress ?? Token.Ether.address)
             let response = try DomainRegistry.transactionRelayService.createSafeCreationTransaction(request: request)
             try responseValidator.validate(response, request: request)
             wallet.changeAddress(response.safeAddress)

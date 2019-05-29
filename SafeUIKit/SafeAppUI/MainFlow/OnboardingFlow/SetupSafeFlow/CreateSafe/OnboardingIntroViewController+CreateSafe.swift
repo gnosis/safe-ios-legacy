@@ -4,7 +4,7 @@
 
 import UIKit
 
-public extension GuidelinesViewController {
+public extension OnboardingIntroViewController {
 
     private enum Strings {
         static let title = LocalizedString("guidelines", comment: "Guidelines")
@@ -15,8 +15,8 @@ public extension GuidelinesViewController {
         static let next = LocalizedString("next", comment: "Next")
     }
 
-    static func createNewSafeGuidelines(delegate: GuidelinesViewControllerDelegate? = nil) -> GuidelinesViewController {
-        let controller = GuidelinesViewController.create(delegate: delegate)
+    static func createCreateSafeIntro(delegate: OnboardingIntroViewControllerDelegate? = nil) -> OnboardingIntroViewController {
+        let controller = OnboardingIntroViewController.create(delegate: delegate)
         controller.titleText = Strings.title
         controller.headerText = Strings.header
         controller.headerImage = nil

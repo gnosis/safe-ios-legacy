@@ -32,7 +32,7 @@ class MainFlowCoordinatorCreateOrRestoreTests: SafeTestCase {
         mainFlowCoordinator.setUp()
         mainFlowCoordinator.didSelectNewSafe()
         delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is GuidelinesViewController)
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is OnboardingIntroViewController)
     }
 
     func test_whenNewSafeFlowExits_thenShowsRoot() {

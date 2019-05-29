@@ -8,7 +8,11 @@ import SafeUIKit
 import MultisigWalletApplication
 
 protocol CreationFeePaymentMethodDelegate: class {
+
     func creationFeePaymentMethodPay()
+    /// Will be called on a background thread. Load the fee estimations and return them.
+    func creationFeePaymentMethodLoadEstimates() -> [TokenData]
+
 }
 
 class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
@@ -84,7 +88,7 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
     override func updateData() {
         if didUpdateOnce || tokens.isEmpty {
             DispatchQueue.global().async {
-                let estimations = ApplicationServiceRegistry.walletService.estimateSafeCreation()
+                let estimations = self.delegate!.creationFeePaymentMethodLoadEstimates()
                 DispatchQueue.main.async { [weak self] in
                     self?.hideLoadingTitleIfNeeded()
                     self?.update(with: estimations)

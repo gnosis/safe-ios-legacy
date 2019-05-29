@@ -165,7 +165,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public func removeOwner(role: OwnerRole) {
         assertCanChangeOwners()
-        assertOwnerExists(role)
         owners.remove(with: role)
     }
 

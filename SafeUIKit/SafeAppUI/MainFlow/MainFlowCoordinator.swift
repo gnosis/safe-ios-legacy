@@ -12,7 +12,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     private let manageTokensFlowCoordinator = ManageTokensFlowCoordinator()
     let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
     let sendFlowCoordinator = SendFlowCoordinator()
-    let newSafeFlowCoordinator = NewSafeFlowCoordinator()
+    let newSafeFlowCoordinator = CreateSafeFlowCoordinator()
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionFlowCoordinator = IncomingTransactionFlowCoordinator()
 

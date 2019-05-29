@@ -154,7 +154,9 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
 
     func start() {
         startActivityIndicator()
+
         DispatchQueue.global().async {
+            // notifies when WalletBecameReadyForRecovery is reached
             ApplicationServiceRegistry.recoveryService
                 .createRecoveryTransaction(subscriber: self) { [weak self] error in
                     guard let `self` = self else { return }

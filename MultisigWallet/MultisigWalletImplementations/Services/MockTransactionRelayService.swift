@@ -89,4 +89,9 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         return estimateSafeCreation_outputEstimations
     }
 
+    public func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
+        MultiTokenEstimateTransactionRequest.Response {
+            return .init(lastUsedNonce: nil, estimations: [])
+    }
+
 }

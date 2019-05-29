@@ -46,7 +46,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     static func create(delegate: ConfirmMnemonicDelegate,
                        account: ExternallyOwnedAccountData,
                        isRecoveryMode: Bool = false) -> ConfirmMnemonicViewController {
-        let controller = StoryboardScene.NewSafe.confirmMnemonicViewController.instantiate()
+        let controller = StoryboardScene.CreateSafe.confirmMnemonicViewController.instantiate()
         controller.delegate = delegate
         controller.account = account
         controller.recoveryModeEnabled = isRecoveryMode

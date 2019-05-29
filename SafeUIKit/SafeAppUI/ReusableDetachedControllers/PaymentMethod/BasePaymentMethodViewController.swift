@@ -5,6 +5,7 @@
 import UIKit
 import SafeUIKit
 import Common
+import BigInt
 import MultisigWalletApplication
 
 class BasePaymentMethodViewController: UIViewController {
@@ -68,7 +69,7 @@ class BasePaymentMethodViewController: UIViewController {
     }
 
     /// Used for OnboardingCreationFeeIntroViewController, OnboardingPaymentMethodViewController.
-    /// Updates view model and reloads table view.
+    /// Reloads tableView with estimations.
     ///
     /// - Parameter estimations: operation estimations in different payment methods.
     func update(with estimations: [TokenData]) {
