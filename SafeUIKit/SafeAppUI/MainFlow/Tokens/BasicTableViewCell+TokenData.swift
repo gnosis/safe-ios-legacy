@@ -12,6 +12,10 @@ extension BasicTableViewCell {
         return 62
     }
 
+    static var tokenDataWithNameCellHeight: CGFloat {
+        return 70
+    }
+
     func configure(tokenData: TokenData,
                    displayBalance: Bool,
                    displayFullName: Bool,
@@ -25,7 +29,17 @@ extension BasicTableViewCell {
         } else {
             leftImageView.image = Asset.TokenIcons.defaultToken.image
         }
-        leftTextLabel.text = displayFullName ? "\(tokenData.code) (\(tokenData.name))" : tokenData.code
+        if displayFullName {
+            let tokenFullName = NSMutableAttributedString()
+            let tokenCode = NSAttributedString(string: tokenData.code + "\n", style: TokenCodeStyle())
+            let tokenName = NSAttributedString(string: tokenData.name, style: TokenNameStyle())
+            tokenFullName.append(tokenCode)
+            tokenFullName.append(tokenName)
+            leftTextLabel.numberOfLines = 0
+            leftTextLabel.attributedText = tokenFullName
+        } else {
+            leftTextLabel.text = tokenData.code
+        }
         rightTextLabel.text = displayBalance ? formattedBalance(tokenData) : nil
     }
 
@@ -34,5 +48,22 @@ extension BasicTableViewCell {
         let formatter = TokenFormatter()
         return formatter.string(from: decimal)
     }
+
+}
+
+fileprivate class TokenCodeStyle: AttributedStringStyle {
+
+    override var fontSize: Double { return 16 }
+    override var fontWeight: UIFont.Weight { return .medium }
+    override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+    override var spacingAfterParagraph: Double { return 4 }
+
+}
+
+fileprivate class TokenNameStyle: AttributedStringStyle {
+
+    override var fontSize: Double { return 13 }
+    override var fontWeight: UIFont.Weight { return .medium }
+    override var fontColor: UIColor { return ColorName.battleshipGrey.color }
 
 }

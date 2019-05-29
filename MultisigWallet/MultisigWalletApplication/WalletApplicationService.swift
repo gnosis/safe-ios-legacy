@@ -324,7 +324,7 @@ public class WalletApplicationService: Assertable {
         try? DomainRegistry.accountUpdateService.updateAccountsBalances()
     }
 
-    /// Return Token data for token address
+    /// Return Token data with account balance for token address
     ///
     /// - Parameter id: Token address
     /// - Returns: TokenData
@@ -347,16 +347,11 @@ public class WalletApplicationService: Assertable {
     /// - Parameter withEth: should the Eth be amoung Token Data returned or not.
     /// - Returns: token data array.
     public func visibleTokens(withEth: Bool) -> [TokenData] {
-        guard let wallet = selectedWallet else { return [] }
         let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
-            guard let account = DomainRegistry.accountRepository
-                .find(id: AccountID(tokenID: $0.id, walletID: wallet.id)) else { return nil }
-            return TokenData(token: $0.token, balance: account.balance)
+            return tokenData(id: $0.token.id.id)
         }
         guard withEth else { return tokens }
-        let ethAccount = DomainRegistry.accountRepository.find(
-            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))!
-        let ethData = TokenData(token: Token.Ether, balance: ethAccount.balance)
+        guard let ethData = tokenData(id: Token.Ether.id.id) else { return tokens }
         return [ethData] + tokens
     }
 
