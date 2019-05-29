@@ -724,7 +724,8 @@ class RecoveryTransactionBuilder: Assertable {
                                                            value: String(transaction.ethValue),
                                                            data: transaction.ethData,
                                                            operation: transaction.operation!,
-                                                           gasToken: wallet.feePaymentTokenAddress?.value)
+                                                           gasToken: wallet.feePaymentTokenAddress?.value ??
+                                                            Token.Ether.address.value)
         do {
             return try DomainRegistry.transactionRelayService.estimateTransaction(request: estimationRequest)
         } catch let error {

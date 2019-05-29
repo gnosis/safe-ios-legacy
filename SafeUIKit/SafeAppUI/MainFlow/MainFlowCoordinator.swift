@@ -29,6 +29,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         super.init(rootViewController: CustomNavigationController())
         configureGloabalAppearance()
         newSafeFlowCoordinator.mainFlowCoordinator = self
+        recoverSafeFlowCoordinator.mainFlowCoordinator = self
     }
 
     private func configureGloabalAppearance() {

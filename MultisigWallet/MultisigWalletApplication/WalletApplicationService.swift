@@ -537,8 +537,9 @@ public class WalletApplicationService: Assertable {
             TokenData(token: tx.amount!.token,
                       balance: (type == .outgoing ? -1 : 1) * (tx.amount?.amount ?? 0)) :
             TokenData.empty()
-        let feeTokenData = tx.fee != nil ?
-            TokenData(token: tx.fee!.token, balance: tx.fee!.amount) :
+        let feeTokenData = tx.feeEstimate != nil ?
+            TokenData(token: tx.feeEstimate!.totalDisplayedToUser.token,
+                      balance: tx.feeEstimate!.totalDisplayedToUser.amount) :
             TokenData.empty()
         return TransactionData(id: tx.id.id,
                                sender: tx.sender?.value ?? "",
@@ -627,9 +628,8 @@ public class WalletApplicationService: Assertable {
     private func updateTransaction(_ tx: Transaction,
                                    withFeeEsimate feeEstimate: TransactionFeeEstimate,
                                    nonce: String) {
-        let fee = TokenInt(feeEstimate.gas + feeEstimate.dataGas) * feeEstimate.gasPrice.amount
         tx.change(feeEstimate: feeEstimate)
-            .change(fee: TokenAmount(amount: fee, token: feeEstimate.gasPrice.token))
+            .change(fee: feeEstimate.totalSubmittedToBlockchain)
         tx.change(nonce: nonce)
             .change(operation: .call)
             .change(hash: ethereumService.hash(of: tx))

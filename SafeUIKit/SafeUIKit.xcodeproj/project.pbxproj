@@ -22,7 +22,6 @@
 		0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */; };
 		0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */; };
 		0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */; };
-		0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */; };
 		0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E022296F2E3008A30AC /* CardViewController.swift */; };
@@ -51,11 +50,9 @@
 		0A2D589622576A78001B8BF4 /* TimeProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588F22576243001B8BF4 /* TimeProfiler.swift */; };
 		0A2D589722576A98001B8BF4 /* XCTest+Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588D225761DC001B8BF4 /* XCTest+Tracking.swift */; };
 		0A2D589922576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D589822576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift */; };
-		0A2D589B22576F60001B8BF4 /* RecoveryInProgressViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D589A22576F60001B8BF4 /* RecoveryInProgressViewControllerTests.swift */; };
 		0A2D589D22576FA6001B8BF4 /* ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D589C22576FA6001B8BF4 /* ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift */; };
 		0A2D589F22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D589E22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift */; };
 		0A2D58A122577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58A022577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift */; };
-		0A2D58A322577D0C001B8BF4 /* ReviewRecoveryTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58A222577D0C001B8BF4 /* ReviewRecoveryTransactionViewControllerTests.swift */; };
 		0A2D58A52257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58A42257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift */; };
 		0A2D58BE22578A68001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58AE22578A31001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift */; };
 		0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FAA512201A64000793B7B /* DateToolsLocalized.swift */; };
@@ -203,9 +200,8 @@
 		0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
 		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
 		0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF69B22265D19400F06616 /* PasswordViewController.xib */; };
-		0AB201162297E71E0071510A /* RecoverFeePaidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB201152297E71E0071510A /* RecoverFeePaidViewController.swift */; };
 		0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */; };
-		0AB20142229848520071510A /* CreationProcessTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB20141229848520071510A /* CreationProcessTracker.swift */; };
+		0AB20142229848520071510A /* LongProcessTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB20141229848520071510A /* LongProcessTracker.swift */; };
 		0AB3F13221F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13121F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift */; };
 		0AB3F13821F7373300D351C7 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */; };
 		0AB3F13921F73A5200D351C7 /* CollectionUIModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */; };
@@ -217,7 +213,6 @@
 		0ABA592321AC0B6E009D249F /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA592221AC0B6E009D249F /* LabelsViewController.swift */; };
 		0ABD145D22943DCA00922964 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD145C22943DCA00922964 /* MainViewController.swift */; };
 		0ABD146D2294489D00922964 /* HeaderScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD146C2294489D00922964 /* HeaderScrollDelegate.swift */; };
-		0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */; };
 		0ABDE31D21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDE31C21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* OnboardingTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* OnboardingTermsViewController.swift */; };
@@ -265,6 +260,8 @@
 		0AE0FE68229D674400ABC552 /* UIViewController+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE67229D674400ABC552 /* UIViewController+Back.swift */; };
 		0AE0FEA0229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE9F229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift */; };
 		0AE0FECE229EA7DD00ABC552 /* EmptyResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FECD229EA7DD00ABC552 /* EmptyResultsView.swift */; };
+		0AE0FEE8229EC2AF00ABC552 /* RecoverFeePaidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FEE7229EC2AF00ABC552 /* RecoverFeePaidViewController.swift */; };
+		0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FEE9229EC7BC00ABC552 /* RecoverReviewViewController.swift */; };
 		0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950BD20D29C910099B79D /* TransactionValueView.swift */; };
 		0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C220D29C920099B79D /* TransactionParameterView.swift */; };
 		0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C320D29C920099B79D /* TransactionParticipantView.swift */; };
@@ -611,7 +608,6 @@
 		0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionCommand.swift; sourceTree = "<group>"; };
 		0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResyncWithBrowserExtensionCommand.swift; sourceTree = "<group>"; };
-		0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionViewController.swift; sourceTree = "<group>"; };
 		0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionDemoViewController.swift; sourceTree = "<group>"; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A2C0E022296F2E3008A30AC /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -636,11 +632,9 @@
 		0A2D58912257628B001B8BF4 /* TestTrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTrackingHandler.swift; sourceTree = "<group>"; };
 		0A2D58932257674C001B8BF4 /* OnboardingIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIntroViewControllerTests.swift; sourceTree = "<group>"; };
 		0A2D589822576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
-		0A2D589A22576F60001B8BF4 /* RecoveryInProgressViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryInProgressViewControllerTests.swift; sourceTree = "<group>"; };
 		0A2D589C22576FA6001B8BF4 /* ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		0A2D589E22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewControllerBaseTestCase.swift; sourceTree = "<group>"; };
 		0A2D58A022577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseViewControllerTests.swift; sourceTree = "<group>"; };
-		0A2D58A222577D0C001B8BF4 /* ReviewRecoveryTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		0A2D58A42257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A2D58AE22578A31001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A2FAA512201A64000793B7B /* DateToolsLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToolsLocalized.swift; sourceTree = "<group>"; };
@@ -785,9 +779,8 @@
 		0AB0B56C21638A2400FB2435 /* SafeUIKitDemo.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = SafeUIKitDemo.xcfilelist; sourceTree = "<group>"; };
 		0AB0B56E21638AEC00FB2435 /* SafeUIKit.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SafeUIKit.xcconfig; sourceTree = "<group>"; };
 		0AB0B56F21638CBF00FB2435 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
-		0AB201152297E71E0071510A /* RecoverFeePaidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverFeePaidViewController.swift; sourceTree = "<group>"; };
 		0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeViewController.swift; sourceTree = "<group>"; };
-		0AB20141229848520071510A /* CreationProcessTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationProcessTracker.swift; sourceTree = "<group>"; };
+		0AB20141229848520071510A /* LongProcessTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongProcessTracker.swift; sourceTree = "<group>"; };
 		0AB3F13121F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewViewControllerRegressionTests.swift; sourceTree = "<group>"; };
 		0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModelTests.swift; sourceTree = "<group>"; };
 		0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModel.swift; sourceTree = "<group>"; };
@@ -799,7 +792,6 @@
 		0ABA592221AC0B6E009D249F /* LabelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsViewController.swift; sourceTree = "<group>"; };
 		0ABD145C22943DCA00922964 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0ABD146C2294489D00922964 /* HeaderScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderScrollDelegate.swift; sourceTree = "<group>"; };
-		0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryInProgressViewController.swift; sourceTree = "<group>"; };
 		0ABDE31C21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoRecoveryInProgressViewControllerViewController.swift; sourceTree = "<group>"; };
 		0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerLoadingState.swift; sourceTree = "<group>"; };
 		0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerInvalidState.swift; sourceTree = "<group>"; };
@@ -863,6 +855,8 @@
 		0AE0FE67229D674400ABC552 /* UIViewController+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Back.swift"; sourceTree = "<group>"; };
 		0AE0FE9F229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverRecoveryFeeViewController.swift; sourceTree = "<group>"; };
 		0AE0FECD229EA7DD00ABC552 /* EmptyResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResultsView.swift; sourceTree = "<group>"; };
+		0AE0FEE7229EC2AF00ABC552 /* RecoverFeePaidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverFeePaidViewController.swift; sourceTree = "<group>"; };
+		0AE0FEE9229EC7BC00ABC552 /* RecoverReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverReviewViewController.swift; sourceTree = "<group>"; };
 		0AE950BD20D29C910099B79D /* TransactionValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionValueView.swift; sourceTree = "<group>"; };
 		0AE950C220D29C920099B79D /* TransactionParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParameterView.swift; sourceTree = "<group>"; };
 		0AE950C320D29C920099B79D /* TransactionParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParticipantView.swift; sourceTree = "<group>"; };
@@ -1153,15 +1147,13 @@
 				0A6EF3C521BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift */,
 				0A2D58A42257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift */,
 				0A2D588722575765001B8BF4 /* RecoverSafeTrackingEvent.swift */,
+				0A6EF3C321BA802D00F1074E /* OnboardingIntroViewController+RecoverSafe.swift */,
 				0A6EF3C721BA8CC100F1074E /* AddressInputViewController.swift */,
 				0A2D588B22575F33001B8BF4 /* AddressInputViewControllerTests.swift */,
-				0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */,
-				0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */,
-				0A2D589A22576F60001B8BF4 /* RecoveryInProgressViewControllerTests.swift */,
-				0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */,
-				0A2D58A222577D0C001B8BF4 /* ReviewRecoveryTransactionViewControllerTests.swift */,
-				0A6EF3C321BA802D00F1074E /* OnboardingIntroViewController+RecoverSafe.swift */,
 				0AE0FE9F229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift */,
+				0AE0FEE9229EC7BC00ABC552 /* RecoverReviewViewController.swift */,
+				0AE0FEE7229EC2AF00ABC552 /* RecoverFeePaidViewController.swift */,
+				0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */,
 			);
 			path = RecoverSafe;
 			sourceTree = "<group>";
@@ -1184,7 +1176,6 @@
 				0A334DB7209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewController.swift */,
 				0A334DB5209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift */,
 				0A2C0E3A2297E11C008A30AC /* OnboardingFeePaidViewController.swift */,
-				0AB201152297E71E0071510A /* RecoverFeePaidViewController.swift */,
 				0A2C0E282297DCFF008A30AC /* FeePaidViewController.swift */,
 				0A2C0E292297DCFF008A30AC /* FeePaidViewController.xib */,
 			);
@@ -1221,7 +1212,7 @@
 				0A334E0A209C8E3800ABC6AE /* CreateSafeFlowCoordinatorTests.swift */,
 				0A334DFC209C8E3800ABC6AE /* ShadowWrapperView.swift */,
 				0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */,
-				0AB20141229848520071510A /* CreationProcessTracker.swift */,
+				0AB20141229848520071510A /* LongProcessTracker.swift */,
 				55AA3C46229590AD007B3105 /* CreationFeeIntro */,
 				0A334E02209C8E3800ABC6AE /* SeedFlow */,
 			);
@@ -2923,6 +2914,7 @@
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0AE0FE68229D674400ABC552 /* UIViewController+Back.swift in Sources */,
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
+				0AE0FEE8229EC2AF00ABC552 /* RecoverFeePaidViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
 				0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */,
@@ -2973,7 +2965,6 @@
 				553B9E022296D15A006E93C9 /* OnboardingPaymentMethodViewController.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
-				0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */,
 				0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */,
 				55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
@@ -2985,7 +2976,6 @@
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
 				55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* OnboardingCreateOrRestoreViewController.swift in Sources */,
-				0AB201162297E71E0071510A /* RecoverFeePaidViewController.swift in Sources */,
 				0A3BD90922254833007039B4 /* RBEIntroViewControllerErrorState.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
 				5549B2A522859F4700F3B5B7 /* PaymentMethodHeaderView.swift in Sources */,
@@ -2996,7 +2986,7 @@
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
 				0A2D58862257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift in Sources */,
-				0AB20142229848520071510A /* CreationProcessTracker.swift in Sources */,
+				0AB20142229848520071510A /* LongProcessTracker.swift in Sources */,
 				55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */,
 				0A553D4321C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift in Sources */,
 				0A4DF82020CE6FC70095C00D /* AssetViewViewController.swift in Sources */,
@@ -3008,6 +2998,7 @@
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */,
 				0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */,
+				0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
 				5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
@@ -3016,7 +3007,6 @@
 				0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */,
 				55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */,
 				0A334E2B209C8E3800ABC6AE /* ShadowWrapperView.swift in Sources */,
-				0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */,
@@ -3085,7 +3075,6 @@
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A3BD8EB22254822007039B4 /* RBEIntroViewControllerActionsTests.swift in Sources */,
-				0A2D589B22576F60001B8BF4 /* RecoveryInProgressViewControllerTests.swift in Sources */,
 				0A3BD8F022254822007039B4 /* RBEStarterMock.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0A2D588C22575F33001B8BF4 /* AddressInputViewControllerTests.swift in Sources */,
@@ -3098,7 +3087,6 @@
 				0AF8D53920D00E56001E8423 /* TransactionViewViewControllerTests.swift in Sources */,
 				0A2D588A225759F4001B8BF4 /* ReviewTransactionViewControllerTests.swift in Sources */,
 				0A54E7BF21300D35006BAD93 /* XCTest+Alert.swift in Sources */,
-				0A2D58A322577D0C001B8BF4 /* ReviewRecoveryTransactionViewControllerTests.swift in Sources */,
 				0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */,
 				0A2D58922257628B001B8BF4 /* TestTrackingHandler.swift in Sources */,
 				0A2D588E225761DC001B8BF4 /* XCTest+Tracking.swift in Sources */,

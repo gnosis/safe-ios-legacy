@@ -20,6 +20,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
     let addressDetailView = AddressDetailView()
     var retryItem: UIBarButtonItem!
     weak var delegate: RecoverRecoveryFeeViewControllerDelegate?
+    var recoveryProcessTracker = LongProcessTracker()
 
     /// Flag to remember that transaction became ready for submission.
     /// Controller will then ignore all other update events
@@ -52,6 +53,8 @@ class RecoverRecoveryFeeViewController: CardViewController {
 
         navigationItem.leftBarButtonItem = .cancelButton(target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = retryItem
+        recoveryProcessTracker.retryItem = retryItem
+        recoveryProcessTracker.delegate = self
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
 
         start()
@@ -59,46 +62,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
 
     func start() {
         navigationItem.titleView = LoadingTitleView()
-        retryItem.isEnabled = false
-
-        DispatchQueue.global().async {
-            ApplicationServiceRegistry.recoveryService
-                .createRecoveryTransaction(subscriber: self) { [weak self] error in
-                    guard let `self` = self else { return }
-                    DispatchQueue.main.async {
-                        self.show(error: error)
-                    }
-            }
-            ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
-        }
-    }
-
-    func show(error: Error) {
-        navigationItem.titleView = nil
-
-        let canRetry = isRetriableError(error)
-        retryItem.isEnabled = canRetry
-
-        let controller = UIAlertController.operationFailed(message: error.localizedDescription) { [unowned self] in
-            if !canRetry {
-                self.delegate?.recoverRecoveryFeeViewControllerDidCancel()
-            }
-        }
-        present(controller, animated: true)
-    }
-
-    func isRetriableError(_ error: Error) -> Bool {
-        switch error {
-        case let nsError as NSError where nsError.domain == NSURLErrorDomain:
-            fallthrough
-        case WalletApplicationServiceError.clientError,
-             WalletApplicationServiceError.networkError,
-             EthereumApplicationService.Error.clientError,
-             EthereumApplicationService.Error.networkError:
-            return true
-        default:
-            return false
-        }
+        recoveryProcessTracker.start()
     }
 
     @objc func cancel() {
@@ -165,6 +129,19 @@ extension RecoverRecoveryFeeViewController: EventSubscriber {
 
     public func notify() {
         DispatchQueue.main.async(execute: update)
+    }
+
+}
+
+extension RecoverRecoveryFeeViewController: LongProcessTrackerDelegate {
+
+    func startProcess(errorHandler: @escaping (Error) -> Void) {
+        ApplicationServiceRegistry.recoveryService.createRecoveryTransaction(subscriber: self, onError: errorHandler)
+        ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
+    }
+
+    func processDidFail() {
+        delegate?.recoverRecoveryFeeViewControllerDidCancel()
     }
 
 }
