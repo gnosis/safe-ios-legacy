@@ -25,16 +25,10 @@ class OnboardingCreationFeeViewController: CardViewController {
     enum Strings {
 
         static let title = LocalizedString("create_safe_title", comment: "Create Safe")
-        static let sendOnlyTokenFormatTemplate = LocalizedString("please_send_x", comment: "Please send %")
 
         enum FeeRequest {
             static let subtitle = LocalizedString("safe_creation_fee", comment: "Safe creation fee")
             static let subtitleDetail = LocalizedString("network_fee_required", comment: "Network fee required")
-        }
-
-        enum Info {
-            static let title = LocalizedString("what_is_safe_creation_fee", comment: "What is safe creation fee?")
-            static let message = LocalizedString("network_fee_creation", comment: "Explanation")
         }
 
         enum Insufficient {
@@ -85,7 +79,8 @@ class OnboardingCreationFeeViewController: CardViewController {
     }
 
     func setFootnoteTokenCode(_ code: String) {
-        addressDetailView.footnoteLabel.text = String(format: Strings.sendOnlyTokenFormatTemplate, code)
+        let template = LocalizedString("please_send_x", comment: "Please send %")
+        addressDetailView.footnoteLabel.text = String(format: template, code)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -97,10 +92,10 @@ class OnboardingCreationFeeViewController: CardViewController {
     @objc func cancel() {
         let controller = UIAlertController.cancelSafeCreation(close: { [unowned self] in
             self.dismiss(animated: true, completion: nil)
-            ApplicationServiceRegistry.walletService.abortDeployment()
-            self.delegate?.deploymentDidCancel()
         }, continue: { [unowned self] in
             self.dismiss(animated: true, completion: nil)
+            ApplicationServiceRegistry.walletService.abortDeployment()
+            self.delegate?.deploymentDidCancel()
         })
         present(controller, animated: true, completion: nil)
     }
@@ -141,6 +136,7 @@ class OnboardingCreationFeeViewController: CardViewController {
             setSubtitleDetail(Strings.Insufficient.subtitleDetail)
 
             feeRequestView.balanceStackView.isHidden = false
+            feeRequestView.remainderTextLabel.text = FeeRequestView.Strings.sendRemainderRequest
             feeRequestView.amountReceivedAmountLabel.amount = required.withBalance(received)
             feeRequestView.amountNeededAmountLabel.amount = required
             feeRequestView.remainderAmountLabel.amount = required.withBalance(remaining)

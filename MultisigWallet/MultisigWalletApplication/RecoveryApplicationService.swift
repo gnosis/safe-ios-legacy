@@ -51,6 +51,10 @@ public class RecoveryApplicationService {
         }
     }
 
+    public func estimateRecoveryTransaction() -> [TokenData] {
+        return DomainRegistry.recoveryService.estimateRecoveryTransaction()
+    }
+
     public func createRecoveryTransaction(subscriber: EventSubscriber,
                                           onError errorHandler: @escaping (Error) -> Void) {
         withEnvironment(for: subscriber, errorHandler: errorHandler) {

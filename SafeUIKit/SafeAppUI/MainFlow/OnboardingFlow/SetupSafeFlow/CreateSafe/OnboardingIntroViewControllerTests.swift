@@ -5,9 +5,9 @@
 import XCTest
 @testable import SafeAppUI
 
-class GuidelinesViewControllerTests: XCTestCase {
+class OnboardingIntroViewControllerTests: XCTestCase {
 
-    let controller = GuidelinesViewController.create()
+    let controller = OnboardingIntroViewController.create()
 
     func test_whenScreenEventNotSet_thenTracksDefault() {
         XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.recoveryIntro)

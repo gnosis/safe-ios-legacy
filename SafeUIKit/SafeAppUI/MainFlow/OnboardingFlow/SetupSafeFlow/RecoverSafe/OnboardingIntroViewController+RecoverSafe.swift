@@ -4,7 +4,7 @@
 
 import Foundation
 
-public extension GuidelinesViewController {
+public extension OnboardingIntroViewController {
 
     private enum Strings {
         static let title = LocalizedString("recover_safe_title", comment: "Recover safe")
@@ -14,9 +14,9 @@ public extension GuidelinesViewController {
         static let start = LocalizedString("start", comment: "Start button title")
     }
 
-    static func createRecoverSafeGuidelines(delegate: GuidelinesViewControllerDelegate? = nil)
-        -> GuidelinesViewController {
-            let controller = GuidelinesViewController.create(delegate: delegate)
+    static func createRecoverSafeIntro(delegate: OnboardingIntroViewControllerDelegate? = nil)
+        -> OnboardingIntroViewController {
+            let controller = OnboardingIntroViewController.create(delegate: delegate)
             controller.titleText = Strings.title
             controller.headerText = Strings.header
             controller.headerImage = Asset.Onboarding.safeInprogress.image

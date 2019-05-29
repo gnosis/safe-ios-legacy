@@ -10,18 +10,14 @@ import Common
 protocol CreationFeeIntroDelegate: class {
     func creationFeeIntroPay()
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData])
+    /// Will be called on a background thread. Load the fee estimations and return them.
+    func creationFeeLoadEstimates() -> [TokenData]
+    func creationFeeNetworkFeeAlert() -> UIAlertController
 }
 
 class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController {
 
-    enum Strings {
-        static let title = LocalizedString("create_safe_title", comment: "Create Safe")
-        enum Alert {
-            static let title = LocalizedString("what_is_safe_creation_fee", comment: "What is the Safe creation fee?")
-            static let description = LocalizedString("network_fee_creation", comment: "Safe creation fee description")
-            static let close = LocalizedString("close", comment: "Close")
-        }
-    }
+    var titleText: String?
 
     private weak var delegate: CreationFeeIntroDelegate!
 
@@ -33,19 +29,32 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = ColorName.paleGrey.color
         tableView.allowsSelection = false
+        navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: titleText)
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        // parent triggers updateData() to fetch results from the server
         super.viewWillAppear(animated)
+        // update on view will appear in case the selected token is changed from the PaymentMethod screen
         update(with: self.tokens)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(OnboardingTrackingEvent.createSafeFeeIntro)
+    }
+
+    override func updateData() {
+        showLoadingTitleIfNeeded()
+        DispatchQueue.global().async {
+            let estimations = self.delegate!.creationFeeLoadEstimates()
+            DispatchQueue.main.async { [weak self] in
+                self?.update(with: estimations)
+                self?.hideLoadingTitleIfNeeded()
+            }
+        }
     }
 
     override func registerHeaderAndFooter() {
@@ -61,26 +70,14 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
         tableView.estimatedSectionFooterHeight = PaymentMethodFooterView.estimatedHeight
     }
 
-    override func updateData() {
-        showLoadingTitleIfNeeded()
-        DispatchQueue.global().async {
-            let estimations = ApplicationServiceRegistry.walletService.estimateSafeCreation()
-            DispatchQueue.main.async { [weak self] in
-                self?.update(with: estimations)
-                self?.hideLoadingTitleIfNeeded()
-            }
-        }
-    }
-
     private func showLoadingTitleIfNeeded() {
-        guard title == nil else { return }
+        if navigationItem.titleView is LoadingTitleView { return }
         navigationItem.titleView = LoadingTitleView()
     }
 
     private func hideLoadingTitleIfNeeded() {
-        guard navigationItem.titleView != nil else { return }
-        navigationItem.titleView = nil
-        title = Strings.title
+        if navigationItem.titleView is SafeLabelTitleView { return }
+        navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: titleText)
     }
 
     // MARK: - UITableViewDataSource
@@ -105,10 +102,7 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CreationFeeIntroHeaderView")
             as! CreationFeeIntroHeaderView
         view.onTextSelected = { [unowned self] in
-            let alert = UIAlertController(title: Strings.Alert.title,
-                                          message: Strings.Alert.description,
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Strings.Alert.close, style: .cancel))
+            let alert = self.delegate!.creationFeeNetworkFeeAlert()
             self.present(alert, animated: true)
         }
         return view

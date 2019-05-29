@@ -6,7 +6,7 @@ import UIKit
 import MultisigWalletApplication
 import Common
 
-class NewSafeFlowCoordinator: FlowCoordinator {
+class CreateSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
     weak var mainFlowCoordinator: MainFlowCoordinator!
@@ -16,7 +16,7 @@ class NewSafeFlowCoordinator: FlowCoordinator {
         let state = ApplicationServiceRegistry.walletService.walletState()!
         switch state {
         case .draft:
-            push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
+            push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
         case .deploying, .waitingForFirstDeposit, .notEnoughFunds:
             creationFeeIntroPay()
         case .creationStarted, .transactionHashIsKnown, .finalizingDeployment:
@@ -28,7 +28,7 @@ class NewSafeFlowCoordinator: FlowCoordinator {
 
 }
 
-extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
+extension CreateSafeFlowCoordinator: OnboardingIntroViewControllerDelegate {
 
     func didPressNext() {
         let controller = TwoFAViewController.create(delegate: self)
@@ -45,7 +45,7 @@ extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
 
 }
 
-extension NewSafeFlowCoordinator: TwoFAViewControllerDelegate {
+extension CreateSafeFlowCoordinator: TwoFAViewControllerDelegate {
 
     func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.walletService
@@ -68,12 +68,22 @@ extension NewSafeFlowCoordinator: TwoFAViewControllerDelegate {
     }
 
     func showPayment() {
-        push(OnboardingCreationFeeIntroViewController.create(delegate: self))
+        let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
+        controller.titleText = LocalizedString("create_safe_title", comment: "Create Safe")
+        push(controller)
     }
 
 }
 
-extension NewSafeFlowCoordinator: CreationFeeIntroDelegate {
+extension CreateSafeFlowCoordinator: CreationFeeIntroDelegate {
+
+    func creationFeeLoadEstimates() -> [TokenData] {
+        return ApplicationServiceRegistry.walletService.estimateSafeCreation()
+    }
+
+    func creationFeeNetworkFeeAlert() -> UIAlertController {
+        return .creationFee()
+    }
 
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
         push(OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations))
@@ -85,15 +95,19 @@ extension NewSafeFlowCoordinator: CreationFeeIntroDelegate {
 
 }
 
-extension NewSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
+extension CreateSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 
     func creationFeePaymentMethodPay() {
         creationFeeIntroPay()
     }
 
+    func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
+        return creationFeeLoadEstimates()
+    }
+
 }
 
-extension NewSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate {
+extension CreateSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate {
 
     func deploymentDidFail() {
         exitFlow()
@@ -109,7 +123,7 @@ extension NewSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate {
 
 }
 
-extension NewSafeFlowCoordinator: OnboardingFeePaidViewControllerDelegate {
+extension CreateSafeFlowCoordinator: OnboardingFeePaidViewControllerDelegate {
 
     func onboardingFeePaidDidFail() {
         exitFlow()

@@ -1,13 +1,12 @@
 //
-//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//  Copyright © 2019 Gnosis Ltd. All rights reserved.
 //
 
 import Foundation
 import Common
 import BigInt
-import MultisigWalletDomainModel
 
-extension TokenData {
+public extension TokenData {
 
     init(token: Token, balance: BigInt?) {
         self.init(

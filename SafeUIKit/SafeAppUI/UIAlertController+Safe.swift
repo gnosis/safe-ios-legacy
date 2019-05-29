@@ -46,6 +46,12 @@ extension UIAlertController {
             .withCloseAction()
     }
 
+    static func recoveryFee() -> UIAlertController {
+        return create(title: LocalizedString("what_is_safe_recovery_fee", comment: "Safe Creation Fee"),
+                      message: LocalizedString("network_fee_recovery", comment: "Fee explanation"))
+            .withCloseAction()
+    }
+
     static func cancelSafeCreation(close: @escaping () -> Void, continue: @escaping () -> Void) -> UIAlertController {
         return create(title: LocalizedString("cancel_safe_creation", comment: "Title of abort safe creation alert"),
                       message: LocalizedString("cancel_creation_warning", comment: "Message body of abort alert"))

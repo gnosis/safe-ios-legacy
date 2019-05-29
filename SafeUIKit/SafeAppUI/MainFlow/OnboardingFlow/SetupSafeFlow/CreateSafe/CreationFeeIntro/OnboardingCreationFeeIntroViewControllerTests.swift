@@ -21,7 +21,7 @@ class OnboardingCreationFeeIntroViewControllerTests: SafeTestCase {
     func test_whenCreated_thenFetchesEstimationData() {
         controller.viewWillAppear(false)
         delay()
-        XCTAssertTrue(walletService.didCallEstimateSafeCreation)
+        XCTAssertTrue(delegate.didCallEstimation)
     }
 
     func test_tracking() {
@@ -33,7 +33,7 @@ class OnboardingCreationFeeIntroViewControllerTests: SafeTestCase {
         let headerView = controller.tableView(controller.tableView,
                                               viewForHeaderInSection: 0) as! CreationFeeIntroHeaderView
         headerView.onTextSelected!()
-        XCTAssertAlertShown(message: OnboardingCreationFeeIntroViewController.Strings.Alert.description, actionCount: 1)
+        XCTAssertAlertShown(message: delegate.creationFeeNetworkFeeAlert().message, actionCount: 1)
     }
 
     func test_whenChoosingToPay_thenCallsDelegate() {
@@ -68,4 +68,13 @@ class MockCreationFeeIntroDelegate: CreationFeeIntroDelegate {
         didSelectToChangePaymentMethod = true
     }
 
+    var didCallEstimation = false
+    func creationFeeLoadEstimates() -> [TokenData] {
+        didCallEstimation = true
+        return []
+    }
+
+    func creationFeeNetworkFeeAlert() -> UIAlertController {
+        return .creationFee()
+    }
 }

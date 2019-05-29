@@ -5,8 +5,11 @@
 import UIKit
 import MultisigWalletApplication
 import SafariServices
+import Common
 
 final class RecoverSafeFlowCoordinator: FlowCoordinator {
+
+    let flowTitle: String = LocalizedString("recover_safe_title", comment: "Recover Safe")
 
     override func setUp() {
         super.setUp()
@@ -19,17 +22,14 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
         }
     }
 
-    func showReview() {
-        presentModally(reviewNavigationController())
-    }
 
 }
 
 /// Constructors of the screens participating in the flow
 extension RecoverSafeFlowCoordinator {
 
-    func introViewController() -> GuidelinesViewController {
-        let controller = GuidelinesViewController.createRecoverSafeGuidelines(delegate: self)
+    func introViewController() -> OnboardingIntroViewController {
+        let controller = OnboardingIntroViewController.createRecoverSafeIntro(delegate: self)
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.intro
         return controller
     }
@@ -40,7 +40,7 @@ extension RecoverSafeFlowCoordinator {
 
     func newPairController() -> TwoFAViewController {
         let controller = TwoFAViewController.create(delegate: self)
-        controller.screenTitle = LocalizedString("recover_safe_title", comment: "Recover Safe")
+        controller.screenTitle = flowTitle
         controller.screenHeader = LocalizedString("ios_connect_browser_extension",
                                                   comment: "Header for add browser extension screen")
         controller.descriptionText = LocalizedString("enable_2fa",
@@ -57,18 +57,24 @@ extension RecoverSafeFlowCoordinator {
     func recoveryPhraseViewController() -> RecoveryPhraseInputViewController {
         let controller = RecoveryPhraseInputViewController.create(delegate: self)
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.enterSeed
-        controller.title = LocalizedString("recover_safe_title", comment: "Recover safe")
+        controller.title = flowTitle
         return controller
     }
 
-    func reviewNavigationController() -> UINavigationController {
-        let controller = ReviewRecoveryTransactionViewController.create(delegate: self)
-        let navigationVC = UINavigationController(rootViewController: controller)
-        return navigationVC
+    func showPaymentIntro() {
+        let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
+        controller.titleText = flowTitle
+        push(controller)
     }
+
+    func showReview() {
+        let controller = ReviewRecoveryTransactionViewController.create(delegate: self)
+        push(controller)
+    }
+
 }
 
-extension RecoverSafeFlowCoordinator: GuidelinesViewControllerDelegate {
+extension RecoverSafeFlowCoordinator: OnboardingIntroViewControllerDelegate {
 
     func didPressNext() {
         push(addressViewController())
@@ -110,12 +116,59 @@ extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
     }
 
     func twoFAViewControllerDidFinish() {
-        showReview()
+        showPaymentIntro()
     }
 
     func twoFAViewControllerDidSkipPairing() {
         ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
-        showReview()
+        showPaymentIntro()
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
+
+    func creationFeePaymentMethodPay() {
+        creationFeeIntroPay()
+    }
+
+    func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
+        return creationFeeLoadEstimates()
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
+
+    func creationFeeLoadEstimates() -> [TokenData] {
+        return ApplicationServiceRegistry.recoveryService.estimateRecoveryTransaction()
+    }
+
+    func creationFeeNetworkFeeAlert() -> UIAlertController {
+        return .recoveryFee()
+    }
+
+    func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
+        push(OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations))
+    }
+
+    func creationFeeIntroPay() {
+        push(RecoverRecoveryFeeViewController.create(delegate: self))
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
+
+    func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit() {
+        var stack = navigationController.viewControllers
+        stack.removeLast()
+        stack.append(ReviewRecoveryTransactionViewController.create(delegate: self))
+        navigationController.viewControllers = stack
+    }
+
+    func recoverRecoveryFeeViewControllerDidCancel() {
+        exitFlow()
     }
 
 }
@@ -123,15 +176,11 @@ extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
 extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDelegate {
 
     func reviewRecoveryTransactionViewControllerDidSubmit() {
-        dismissModal { [unowned self] in
-            self.push(self.inProgressViewController())
-        }
+        push(self.inProgressViewController())
     }
 
     func reviewRecoveryTransactionViewControllerDidCancel() {
-        dismissModal { [unowned self] in
-            self.exitFlow()
-        }
+        exitFlow()
     }
 
 }

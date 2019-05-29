@@ -335,11 +335,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func token(id: String) -> Token? {
-        if id == Token.Ether.id.id {
-            return Token.Ether
-        } else {
-            return DomainRegistry.tokenListItemRepository.find(id: TokenID(id))?.token
-        }
+        return WalletDomainService.token(id: id)
     }
 
     /// Returns selected account Eth Data together with whitelisted tokens data.

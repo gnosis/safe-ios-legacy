@@ -55,4 +55,12 @@ public protocol TransactionRelayDomainService {
     /// - Throws: network error, or server error
     func estimateTransaction(request: EstimateTransactionRequest) throws -> EstimateTransactionRequest.Response
 
+    /// Fetches estimates of a transaction fees in all supported fee payment tokens
+    ///
+    /// - Parameter request: transaction information
+    /// - Returns: fee estimations
+    /// - Throws: network error, or server error
+    func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
+        MultiTokenEstimateTransactionRequest.Response
+
 }
