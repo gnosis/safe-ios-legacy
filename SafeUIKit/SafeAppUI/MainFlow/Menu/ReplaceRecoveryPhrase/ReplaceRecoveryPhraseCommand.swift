@@ -13,7 +13,7 @@ final class ReplaceRecoveryPhraseCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return !ApplicationServiceRegistry.settingsService.isReplaceRecoveryAvailable()
+        return !ApplicationServiceRegistry.replacePhraseService.isAvailable
     }
 
     override init() {

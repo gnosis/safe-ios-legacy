@@ -104,6 +104,9 @@
 		0A813533212315BB00B0B302 /* WalletStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A813532212315BB00B0B302 /* WalletStateTests.swift */; };
 		0A8272F221243B0300EB5C21 /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8272F121243B0300EB5C21 /* EventPublisher.swift */; };
 		0A8272FF2124447D00EB5C21 /* EventPublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8272FE2124447D00EB5C21 /* EventPublisherTests.swift */; };
+		0A8586CF22A16DD0003BE36E /* ReplaceRecoveryPhraseDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8586CE22A16DD0003BE36E /* ReplaceRecoveryPhraseDomainService.swift */; };
+		0A8586D522A17801003BE36E /* MultiSendContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8586D422A17801003BE36E /* MultiSendContractProxyTests.swift */; };
+		0A8586D722A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8586D622A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift */; };
 		0A8A2B9B20FCDC540003BB7E /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */; };
 		0A8A2B9C20FCDC550003BB7E /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */; };
 		0A8A2B9D20FCDC560003BB7E /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */; };
@@ -539,6 +542,9 @@
 		0A813532212315BB00B0B302 /* WalletStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStateTests.swift; sourceTree = "<group>"; };
 		0A8272F121243B0300EB5C21 /* EventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPublisher.swift; sourceTree = "<group>"; };
 		0A8272FE2124447D00EB5C21 /* EventPublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPublisherTests.swift; sourceTree = "<group>"; };
+		0A8586CE22A16DD0003BE36E /* ReplaceRecoveryPhraseDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseDomainService.swift; sourceTree = "<group>"; };
+		0A8586D422A17801003BE36E /* MultiSendContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSendContractProxyTests.swift; sourceTree = "<group>"; };
+		0A8586D622A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseApplicationService.swift; sourceTree = "<group>"; };
 		0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFixture.swift; sourceTree = "<group>"; };
 		0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAccountRepository.swift; sourceTree = "<group>"; };
@@ -886,6 +892,7 @@
 				0A08641322856FBD00B2D891 /* SafeContractMetadataRepository.swift */,
 				0A086419228576B000B2D891 /* SafeContractMetadata.swift */,
 				0A553D4421C0164100647CFF /* WalletSettingsDomainService.swift */,
+				0A8586CE22A16DD0003BE36E /* ReplaceRecoveryPhraseDomainService.swift */,
 				0A19402F2226A9DA005B7440 /* TestableOwnerProxy.swift */,
 			);
 			path = Wallet;
@@ -1027,6 +1034,7 @@
 				0ADD1DDD213544C50046AF1F /* ERC20TokenContractProxyTests.swift */,
 				0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */,
 				0A290E1721BD3558005188EA /* MultiSendContractProxy.swift */,
+				0A8586D422A17801003BE36E /* MultiSendContractProxyTests.swift */,
 				0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */,
 				0AEDED5C216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift */,
 				0AD899E22283060E008AE325 /* GnosisSafeContractProxy.swift */,
@@ -1064,6 +1072,7 @@
 				0A3BD92722254FF6007039B4 /* RBEStarter.swift */,
 				0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */,
 				0A3BD967222564B1007039B4 /* ReplaceBrowserExtensionApplicationService.swift */,
+				0A8586D622A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift */,
 				0A978635221D5727008C1DC9 /* ReplaceBrowserExtensionApplicationServiceTests.swift */,
 				0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */,
 				0AEF8A9F20A088A5006A1265 /* Tests-Info.plist */,
@@ -1136,17 +1145,17 @@
 		553AEADB229E83BC00EA3248 /* BrowserExtension */ = {
 			isa = PBXGroup;
 			children = (
-				0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */,
-				0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */,
-				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
 				0A3BD9612225606D007039B4 /* ConnectBrowserExtensionDomainService.swift */,
 				0A1940292226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift */,
 				0A1940342226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift */,
 				0A1940362226C2EF005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift */,
-				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
+				0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */,
+				0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */,
+				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
+				0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
 				0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
 				0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
-				0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
+				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
 			);
 			path = BrowserExtension;
 			sourceTree = "<group>";
@@ -1696,6 +1705,7 @@
 				0ABCC0F52177290F00E60E9F /* TransactionDomainService.swift in Sources */,
 				0A77D100211B0CD6003582DD /* EthSignature.swift in Sources */,
 				0A442DDF210B113100F19F80 /* OutgoingMessage.swift in Sources */,
+				0A8586CF22A16DD0003BE36E /* ReplaceRecoveryPhraseDomainService.swift in Sources */,
 				0AB08757212D9A0B002F969C /* MockErrorStream.swift in Sources */,
 				0ACA9D16212AEF4700E39BB6 /* SafeCreationResponseValidator.swift in Sources */,
 				0A7F3A9B2126C53E0062CB1E /* Repeater.swift in Sources */,
@@ -1795,6 +1805,7 @@
 				0ACA9D24212C02CD00E39BB6 /* MockSafeCreationResponseValidator.swift in Sources */,
 				0AEDED5D216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift in Sources */,
 				0A813533212315BB00B0B302 /* WalletStateTests.swift in Sources */,
+				0A8586D522A17801003BE36E /* MultiSendContractProxyTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
 				0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */,
 				55FB258F2122F95700E81666 /* TokenListItemTests.swift in Sources */,
@@ -1808,6 +1819,7 @@
 				0A3BD92D22254FF7007039B4 /* RBEFeeCalculationData.swift in Sources */,
 				0AB084CB21C01EAC00DC3E81 /* WalletSettingsApplicationService.swift in Sources */,
 				0A60B522211343F70066821A /* TransactionData.swift in Sources */,
+				0A8586D722A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift in Sources */,
 				0ACA9D46212C469100E39BB6 /* EventRelay.swift in Sources */,
 				0A54E7D821305282006BAD93 /* OwnerType.swift in Sources */,
 				0A3BD92C22254FF7007039B4 /* FeeCalculationError.swift in Sources */,

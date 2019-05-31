@@ -100,6 +100,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: WalletSettingsDomainService.self)
     }
 
+    public static var replacePhraseService: ReplaceRecoveryPhraseDomainService {
+        return service(for: ReplaceRecoveryPhraseDomainService.self)
+    }
+
     public static var replaceExtensionService: ReplaceBrowserExtensionDomainService {
         return service(for: ReplaceBrowserExtensionDomainService.self)
     }
@@ -119,5 +123,6 @@ public class DomainRegistry: AbstractRegistry {
     public static var transactionMonitorRepository: RBETransactionMonitorRepository {
         return service(for: RBETransactionMonitorRepository.self)
     }
+
 
 }

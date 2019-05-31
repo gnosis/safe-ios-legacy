@@ -5,23 +5,40 @@
 import UIKit
 import MultisigWalletApplication
 
+// Intro -> New Mnemonic -> Verify that mnemonic is copied -> Review (with BE confirmation request) -> Success
 class ReplaceRecoveryPhraseFlowCoordinator: FlowCoordinator {
 
-    weak var intro: ReplaceRecoveryPhraseViewController!
+    var transactionID: RBETransactionID!
+    weak var introVC: RBEIntroViewController!
 
     override func setUp() {
         super.setUp()
-        let vc = mnemonicIntroViewController()
+        let vc = introController()
         push(vc)
-        intro = vc
+        introVC = vc
     }
+
+}
+
+extension IntroContentView.Content {
+
+    static let replacePhrase =
+        IntroContentView.Content(header: LocalizedString("new_seed", comment: "Replace recovery phrase"),
+                                 body: LocalizedString("this_will_generate_new_seed",
+                                                       comment: "Text between stars (*) will be emphasized"),
+                                 icon: Asset.replacePhrase.image)
 
 }
 
 extension ReplaceRecoveryPhraseFlowCoordinator {
 
-    func mnemonicIntroViewController() -> ReplaceRecoveryPhraseViewController {
-        return ReplaceRecoveryPhraseViewController.create(delegate: self)
+    func introController() -> RBEIntroViewController {
+        let controller = RBEIntroViewController.create()
+        controller.starter = ApplicationServiceRegistry.replacePhraseService
+        controller.delegate = self
+        controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.intro
+        controller.setContent(.replacePhrase)
+        return controller
     }
 
     func saveMnemonicViewController() -> SaveMnemonicViewController {
@@ -40,9 +57,10 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
 
 }
 
-extension ReplaceRecoveryPhraseFlowCoordinator: ReplaceRecoveryPhraseViewControllerDelegate {
+extension ReplaceRecoveryPhraseFlowCoordinator: RBEIntroViewControllerDelegate {
 
-    func replaceRecoveryPhraseViewControllerDidStart() {
+    func rbeIntroViewControllerDidStart() {
+        transactionID = introVC.transactionID
         let controller = saveMnemonicViewController()
         push(controller) {
             controller.willBeDismissed()
@@ -62,17 +80,10 @@ extension ReplaceRecoveryPhraseFlowCoordinator: SaveMnemonicDelegate {
 extension ReplaceRecoveryPhraseFlowCoordinator: ConfirmMnemonicDelegate {
 
     func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController) {
-        let txID = intro.transaction!.id
         let address = vc.account.address
-        ApplicationServiceRegistry.settingsService.updateRecoveryPhraseTransaction(txID, with: address)
-        let reviewVC = ReplaceRecoveryPhraseReviewTransactionViewController(transactionID: txID, delegate: self)
-        push(reviewVC) { [unowned self] in // on pop
-            self.exitFlow()
-            DispatchQueue.global().async {
-                ApplicationServiceRegistry.settingsService.cancelPhraseRecovery()
-                ApplicationServiceRegistry.ethereumService.removeExternallyOwnedAccount(address: address)
-            }
-        }
+        ApplicationServiceRegistry.replacePhraseService.update(transaction: transactionID, newAddress: address)
+        let vc = ReplaceRecoveryPhraseReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        push(vc)
     }
 
 }
@@ -85,6 +96,7 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ReviewTransactionViewControllerD
     }
 
     public func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
+        ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: transactionID)
         exitFlow()
     }
 

@@ -344,11 +344,16 @@ fileprivate extension Address {
     var normalized: Address {
         return Address(value.lowercased())
     }
+
 }
 
 public struct OwnerLinkedList {
 
     var list = [SafeOwnerManagerContractProxy.sentinelAddress]
+
+    public var contents: [Address] {
+        return list.filter { $0 != SafeOwnerManagerContractProxy.sentinelAddress }
+    }
 
     public init() {}
 
@@ -370,7 +375,7 @@ public struct OwnerLinkedList {
     }
 
     public mutating func replace(_ oldOwner: Address, with newOwner: Address) {
-        guard let index = list.firstIndex(of: oldOwner.normalized) else { return }
+        guard let index = firstIndex(of: oldOwner) else { return }
         list[index] = newOwner.normalized
     }
 
@@ -379,7 +384,7 @@ public struct OwnerLinkedList {
     }
 
     public mutating func remove(_ address: Address) {
-        if let index = list.firstIndex(of: address.normalized) {
+        if let index = firstIndex(of: address) {
             list.remove(at: index)
         }
     }
@@ -389,8 +394,17 @@ public struct OwnerLinkedList {
     }
 
     public func addressBefore(_ owner: Address) -> Address {
-        let index = list.firstIndex(of: owner.normalized)!
+        let index = firstIndex(of: owner)!
         return list[index - 1]
+    }
+
+    public func addressAfter(_ owner: Address) -> Address? {
+        let index = firstIndex(of: owner)!
+        return list[index + 1]
+    }
+
+    public func firstIndex(of owner: Address) -> Int? {
+        return list.firstIndex(of: owner.normalized)
     }
 
     public func contains(_ owner: Address) -> Bool {

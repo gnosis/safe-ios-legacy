@@ -44,6 +44,8 @@ class MultisigWalletConfigurator {
                            for: ConnectBrowserExtensionDomainService.self)
         DomainRegistry.put(service: DisconnectBrowserExtensionDomainService(),
                            for: DisconnectBrowserExtensionDomainService.self)
+        DomainRegistry.put(service: ReplaceRecoveryPhraseDomainService(),
+                           for: ReplaceRecoveryPhraseDomainService.self)
         DomainRegistry.put(service: CommunicationDomainService(), for: CommunicationDomainService.self)
         DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata),
                            for: SafeContractMetadataRepository.self)
@@ -61,6 +63,9 @@ class MultisigWalletConfigurator {
         ApplicationServiceRegistry
             .put(service: DisconnectBrowserExtensionApplicationService.createDisconnectService(),
                  for: DisconnectBrowserExtensionApplicationService.self)
+        ApplicationServiceRegistry
+            .put(service: ReplaceRecoveryPhraseApplicationService.create(),
+                 for: ReplaceRecoveryPhraseApplicationService.self)
 
         configureEthereum(with: appDelegate)
         setUpMultisigDatabase(with: appDelegate)

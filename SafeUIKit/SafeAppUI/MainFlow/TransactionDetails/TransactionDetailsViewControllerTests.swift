@@ -41,7 +41,6 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.transactionStatusView.status, .pending)
         XCTAssertEqual(controller.transactionStatusView.value, controller.string(from: tx.displayDate!))
 
-        XCTAssertEqual(controller.transactionFeeView.name, Strings.fee)
         XCTAssertEqual(controller.transactionFeeView.amount, tx.feeTokenData.withBalance(-tx.feeTokenData.balance!))
 
         XCTAssertEqual(controller.viewInExternalAppButton.title(for: .normal), Strings.externalApp)

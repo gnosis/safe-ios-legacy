@@ -91,6 +91,9 @@ public class SynchronisationService: SynchronisationDomainService {
 
             guard hasAccessToFilesystem else { return }
             try DomainRegistry.disconnectExtensionService.postProcessTransactions()
+
+            guard hasAccessToFilesystem else { return }
+            try DomainRegistry.replacePhraseService.postProcessTransactions()
         } catch {
             ApplicationServiceRegistry.logger.error("Failed to post process transactions", error: error)
         }
