@@ -10,6 +10,7 @@ import Common
 final class RecoverSafeFlowCoordinator: FlowCoordinator {
 
     let flowTitle: String = LocalizedString("recover_safe_title", comment: "Recover Safe")
+    weak var mainFlowCoordinator: MainFlowCoordinator!
 
     override func setUp() {
         super.setUp()
@@ -22,7 +23,6 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
         }
     }
 
-
 }
 
 /// Constructors of the screens participating in the flow
@@ -34,8 +34,8 @@ extension RecoverSafeFlowCoordinator {
         return controller
     }
 
-    func inProgressViewController() -> RecoveryInProgressViewController {
-        return RecoveryInProgressViewController.create(delegate: self)
+    func inProgressViewController() -> UIViewController {
+        return RecoverFeePaidViewController.create(delegate: self)
     }
 
     func newPairController() -> TwoFAViewController {
@@ -47,6 +47,7 @@ extension RecoverSafeFlowCoordinator {
                                                      comment: "Description for add browser extension screen")
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.twoFA
         controller.scanTrackingEvent = RecoverSafeTrackingEvent.twoFAScan
+        controller.backButtonItem = .backButton()
         return controller
     }
 
@@ -64,11 +65,7 @@ extension RecoverSafeFlowCoordinator {
     func showPaymentIntro() {
         let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
         controller.titleText = flowTitle
-        push(controller)
-    }
-
-    func showReview() {
-        let controller = ReviewRecoveryTransactionViewController.create(delegate: self)
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.feeIntro
         push(controller)
     }
 
@@ -149,7 +146,9 @@ extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
     }
 
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
-        push(OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations))
+        let controller = OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations)
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.paymentMethod
+        push(controller)
     }
 
     func creationFeeIntroPay() {
@@ -161,9 +160,12 @@ extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
 extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
 
     func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit() {
+        let tx = ApplicationServiceRegistry.recoveryService.recoveryTransaction()!
+        let controller = RecoverReviewViewController(transactionID: tx.id, delegate: self)
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.review
         var stack = navigationController.viewControllers
         stack.removeLast()
-        stack.append(ReviewRecoveryTransactionViewController.create(delegate: self))
+        stack.append(controller)
         navigationController.viewControllers = stack
     }
 
@@ -173,30 +175,35 @@ extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
 
 }
 
-extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDelegate {
+extension RecoverSafeFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
-    func reviewRecoveryTransactionViewControllerDidSubmit() {
-        push(self.inProgressViewController())
+    func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
+        push(inProgressViewController())
     }
 
-    func reviewRecoveryTransactionViewControllerDidCancel() {
-        exitFlow()
+    func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
+                                                                 completion: @escaping (Bool) -> Void) {
+        completion(true)
     }
 
 }
 
-extension RecoverSafeFlowCoordinator: RecoveryInProgressViewControllerDelegate {
+extension RecoverSafeFlowCoordinator: RecoverFeePaidViewControllerDelegate {
 
-    func recoveryInProgressViewControllerDidFail() {
-        exitFlow()
+    func recoverFeePaidViewControllerOpenMenu() {
+        mainFlowCoordinator.openMenu()
     }
 
-    func recoveryInProgressViewControllerDidSuccess() {
-        exitFlow()
-    }
-
-    func recoveryInProgressViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String) {
+    func recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String) {
         SupportFlowCoordinator(from: self).openTransactionBrowser(transactionID)
+    }
+
+    func recoverFeePaidViewControllerDidFail() {
+        exitFlow()
+    }
+
+    func recoverFeePaidViewControllerDidSuccess() {
+        exitFlow()
     }
 
 }

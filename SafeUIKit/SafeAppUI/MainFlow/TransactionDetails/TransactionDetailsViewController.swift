@@ -73,7 +73,7 @@ public class TransactionDetailsViewController: UIViewController {
     @IBOutlet weak var transactionStatusView: StatusTransactionParameterView!
     @IBOutlet weak var transactionFeeView: TokenAmountTransactionParameterView!
     @IBOutlet weak var viewInExternalAppButton: UIButton!
-    @IBOutlet weak var wrapperView: ShadowWrapperView!
+    @IBOutlet weak var wrapperView: UIView!
     public weak var delegate: TransactionDetailsViewControllerDelegate?
     public private(set) var transactionID: String!
     private var transaction: TransactionData!

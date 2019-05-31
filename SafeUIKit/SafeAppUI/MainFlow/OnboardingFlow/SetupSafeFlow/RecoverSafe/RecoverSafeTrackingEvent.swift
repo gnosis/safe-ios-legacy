@@ -12,6 +12,9 @@ enum RecoverSafeTrackingEvent: String, ScreenTrackingEvent {
     case enterSeed = "Recover_EnterSeed"
     case twoFA = "Recover_2FA"
     case twoFAScan = "Recover_2FAScan"
+    case feeIntro = "Recover_RecoveryFeeIntro"
+    case paymentMethod = "Recover_PaymentMethod"
+    case fee  = "Recover_RecoveryFee"
     case review = "Recover_Review"
     case feePaid = "Recover_FeePaid"
 

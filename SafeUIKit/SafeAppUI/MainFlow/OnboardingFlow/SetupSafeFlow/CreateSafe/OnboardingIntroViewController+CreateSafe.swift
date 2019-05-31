@@ -15,14 +15,15 @@ public extension OnboardingIntroViewController {
         static let next = LocalizedString("next", comment: "Next")
     }
 
-    static func createCreateSafeIntro(delegate: OnboardingIntroViewControllerDelegate? = nil) -> OnboardingIntroViewController {
-        let controller = OnboardingIntroViewController.create(delegate: delegate)
-        controller.titleText = Strings.title
-        controller.headerText = Strings.header
-        controller.headerImage = nil
-        controller.bodyText = Strings.body
-        controller.nextActionText = Strings.next
-        return controller
+    static func createCreateSafeIntro(delegate: OnboardingIntroViewControllerDelegate? = nil) ->
+        OnboardingIntroViewController {
+            let controller = OnboardingIntroViewController.create(delegate: delegate)
+            controller.titleText = Strings.title
+            controller.headerText = Strings.header
+            controller.headerImage = nil
+            controller.bodyText = Strings.body
+            controller.nextActionText = Strings.next
+            return controller
     }
 
 }

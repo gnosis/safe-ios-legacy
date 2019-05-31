@@ -71,6 +71,11 @@ public class RecoveryApplicationService {
         return transactionData(tx)
     }
 
+    public func transactionData(_ tx: String) -> TransactionData {
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(tx))!
+        return transactionData(tx)
+    }
+
     // swiftlint:disable:next cyclomatic_complexity
     public func transactionData(_ tx: Transaction) -> TransactionData {
         let status: TransactionData.Status

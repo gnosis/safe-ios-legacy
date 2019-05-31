@@ -126,6 +126,9 @@
    Error title */
 "error" = "Error";
 
+/* Transaction details */
+"existing_safe_recovered" = "The existing Safe will be recovered and associated with this device.";
+
 /* Fee */
 "fee" = "Fee";
 
@@ -439,20 +442,22 @@
 /* Receive Funds */
 "receive_funds" = "Receive Funds";
 
+/* Transaction name */
+"recover_existing_safe" = "Recover Existing Safe";
+
 /* Restore safe button */
 "recover_safe" = "Recover an Existing Safe";
 
 /* Create Safe
-   Header of the review transaction screen
    Recover safe
-   Recover Safe */
+   Recover Safe
+   Title */
 "recover_safe_title" = "Recover Safe";
 
 /* Explanation text. */
 "recovering_requires_fee" = "Recovering your Safe requires a network fee. Please add funds to your Safe.";
 
-/* Header label for progress screen
-   Recovering safe */
+/* Recovering safe */
 "recovering_safe" = "Recovering your Safe…";
 
 /* Title for setup recovery phrase screen. */
@@ -531,8 +536,7 @@
 /* 'Success' status */
 "status_success" = "Success";
 
-/* Submit
-   Submit transaction */
+/* Submit transaction */
 "submit" = "Submit";
 
 /* Title for support section. */
@@ -575,8 +579,7 @@
 /* Explanation text */
 "transaction_has_been_submitted" = "Your transaction has been submitted.";
 
-/* This can take a while...
-   Transaction submitted */
+/* Transaction submitted */
 "transaction_submitted_safe_being_created" = "Your transaction was submitted. Your Safe will be created now. This might take a couple of minutes.";
 
 /* Transaction submitted */

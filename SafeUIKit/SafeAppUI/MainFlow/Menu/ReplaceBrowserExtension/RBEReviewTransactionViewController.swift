@@ -6,7 +6,7 @@ import UIKit
 import SafeUIKit
 import Common
 
-public final class RBEReviewTransactionViewController: ReviewTransactionViewController {
+public class RBEReviewTransactionViewController: ReviewTransactionViewController {
 
     var titleString = LocalizedString("ios_replace_browser_extension", comment: "Replace browser extension")
         .replacingOccurrences(of: "\n", with: " ")

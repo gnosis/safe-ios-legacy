@@ -15,7 +15,7 @@ protocol OnboardingFeePaidViewControllerDelegate: class {
 class OnboardingFeePaidViewController: FeePaidViewController {
 
     weak var delegate: OnboardingFeePaidViewControllerDelegate?
-    var creationProcessTracker = CreationProcessTracker()
+    var creationProcessTracker = LongProcessTracker()
 
     static func create(delegate: OnboardingFeePaidViewControllerDelegate) -> OnboardingFeePaidViewController {
         let controller = OnboardingFeePaidViewController(nibName: String(describing: FeePaidViewController.self),
@@ -40,8 +40,7 @@ class OnboardingFeePaidViewController: FeePaidViewController {
                                                       action: #selector(creationProcessTracker.start))
         navigationItem.leftBarButtonItem = retryItem
         creationProcessTracker.retryItem = retryItem
-        creationProcessTracker.viewController = self
-        creationProcessTracker.onFailure = delegate?.onboardingFeePaidDidFail
+        creationProcessTracker.delegate = self
         creationProcessTracker.start()
     }
 
@@ -91,3 +90,16 @@ extension OnboardingFeePaidViewController: EventSubscriber {
     }
 
 }
+
+extension OnboardingFeePaidViewController: LongProcessTrackerDelegate {
+
+    func startProcess(errorHandler: @escaping (Error) -> Void) {
+        ApplicationServiceRegistry.walletService.deployWallet(subscriber: self, onError: errorHandler)
+    }
+
+    func processDidFail() {
+        delegate?.onboardingFeePaidDidFail()
+    }
+
+}
+

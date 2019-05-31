@@ -17,7 +17,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     open var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
-        return wallet.owner(role: .browserExtension) != nil
+        return wallet.isReadyToUse && wallet.owner(role: .browserExtension) != nil
     }
 
     public var ownerContractProxy: SafeOwnerManagerContractProxy?

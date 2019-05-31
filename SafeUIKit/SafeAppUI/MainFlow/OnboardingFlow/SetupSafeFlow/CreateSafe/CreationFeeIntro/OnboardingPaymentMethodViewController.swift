@@ -21,6 +21,7 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
     private var didUpdateOnce = false
 
     let payButton = StandardButton()
+    var screenTrackingEvent: Trackable?
 
     override var paymentToken: TokenData! {
         didSet {
@@ -74,7 +75,9 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingTrackingEvent.createSafePaymentMethod)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        }
     }
 
     override func registerHeaderAndFooter() {

@@ -60,8 +60,12 @@ public class ReviewTransactionViewController: UITableViewController {
 
     public convenience init(transactionID: String, delegate: ReviewTransactionViewControllerDelegate) {
         self.init()
-        tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
+        tx = fetchTransaction(transactionID)
         self.delegate = delegate
+    }
+
+    internal func fetchTransaction(_ id: String) -> TransactionData {
+        return ApplicationServiceRegistry.walletService.transactionData(id)!
     }
 
     override public func viewDidLoad() {
@@ -83,9 +87,14 @@ public class ReviewTransactionViewController: UITableViewController {
         }
     }
 
-    private var didRequestSignatures: Bool = false
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        requestSignaturesIfNeeded()
+    }
+
+    private var didRequestSignatures: Bool = false
+
+    internal func requestSignaturesIfNeeded() {
         guard !didRequestSignatures else { return }
         requestSignatures()
         didRequestSignatures = true
@@ -99,13 +108,13 @@ public class ReviewTransactionViewController: UITableViewController {
         view.setNeedsUpdateConstraints()
     }
 
-    private func disableSubmit() {
+    func disableSubmit() {
         DispatchQueue.main.async {
             self.submitButton.isEnabled = false
         }
     }
 
-    private func enableSubmit() {
+    func enableSubmit() {
         DispatchQueue.main.async {
             self.submitButton.isEnabled = true
         }

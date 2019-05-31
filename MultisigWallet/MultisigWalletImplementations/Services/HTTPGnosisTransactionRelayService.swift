@@ -58,7 +58,7 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
                                                              value: request.value,
                                                              data: request.data,
                                                              operation: request.operation,
-                                                             gasToken: nil)
+                                                             gasToken: Token.Ether.address.value)
             let response = try estimateTransaction(request: estimateRequest)
 
             typealias Response = MultiTokenEstimateTransactionRequest.Response

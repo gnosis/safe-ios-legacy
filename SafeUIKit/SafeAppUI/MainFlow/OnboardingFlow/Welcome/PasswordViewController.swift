@@ -92,6 +92,10 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
         // overriden
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
 }
 
 fileprivate final class SetPasswordViewController: PasswordViewController {

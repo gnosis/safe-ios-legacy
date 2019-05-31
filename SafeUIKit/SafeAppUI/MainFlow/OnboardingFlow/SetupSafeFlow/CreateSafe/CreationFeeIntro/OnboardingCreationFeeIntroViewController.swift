@@ -18,6 +18,7 @@ protocol CreationFeeIntroDelegate: class {
 class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController {
 
     var titleText: String?
+    var screenTrackingEvent: Trackable?
 
     private weak var delegate: CreationFeeIntroDelegate!
 
@@ -43,7 +44,9 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingTrackingEvent.createSafeFeeIntro)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        }
     }
 
     override func updateData() {

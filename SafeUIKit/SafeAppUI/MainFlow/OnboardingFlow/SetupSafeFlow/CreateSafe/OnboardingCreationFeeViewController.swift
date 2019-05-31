@@ -19,7 +19,7 @@ class OnboardingCreationFeeViewController: CardViewController {
     let addressDetailView = AddressDetailView()
 
     weak var delegate: OnboardingCreationFeeViewControllerDelegate?
-    var creationProcessTracker = CreationProcessTracker()
+    var creationProcessTracker = LongProcessTracker()
     var isFinished: Bool = false
 
     enum Strings {
@@ -57,8 +57,7 @@ class OnboardingCreationFeeViewController: CardViewController {
                                                       action: #selector(creationProcessTracker.start))
         navigationItem.rightBarButtonItem = retryItem
         creationProcessTracker.retryItem = retryItem
-        creationProcessTracker.viewController = self
-        creationProcessTracker.onFailure = delegate?.deploymentDidFail
+        creationProcessTracker.delegate = self
 
         setSubtitle(Strings.FeeRequest.subtitle)
         setSubtitleDetail(Strings.FeeRequest.subtitleDetail)
@@ -162,5 +161,16 @@ extension OnboardingCreationFeeViewController: EventSubscriber {
         DispatchQueue.main.async(execute: update)
     }
 
+}
+
+extension OnboardingCreationFeeViewController: LongProcessTrackerDelegate {
+
+    func startProcess(errorHandler: @escaping (Error) -> Void) {
+        ApplicationServiceRegistry.walletService.deployWallet(subscriber: self, onError: errorHandler)
+    }
+
+    func processDidFail() {
+        delegate?.deploymentDidFail()
+    }
 
 }

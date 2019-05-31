@@ -50,7 +50,7 @@ Save this recovery phrase.</string>
                                                     <constraint firstItem="w8c-qh-D5l" firstAttribute="top" secondItem="SJL-Wu-tSJ" secondAttribute="top" constant="16" id="w1O-jg-aVF"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkP-Rj-RvE">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkP-Rj-RvE">
                                                 <rect key="frame" x="256" y="254.5" width="87" height="30"/>
                                                 <state key="normal" title="Make a copy"/>
                                                 <connections>
