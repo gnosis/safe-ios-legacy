@@ -16,23 +16,28 @@ class TransactionParameterView: BaseCustomView {
 
     var nameLabel: UILabel!
     var valueLabel: UILabel!
+    var stack: UIStackView!
     private let padding: CGFloat = 16
 
     internal func newValueLabel() -> UILabel {
         return UILabel()
     }
 
+    internal func newNameLabel() -> UILabel {
+        return UILabel()
+    }
+
     override func commonInit() {
-        nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        nameLabel = newNameLabel()
+        nameLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         nameLabel.textColor = ColorName.darkSlateBlue.color
 
         valueLabel = newValueLabel()
-        valueLabel.font = UIFont.systemFont(ofSize: 14)
+        valueLabel.font = UIFont.systemFont(ofSize: 15)
         valueLabel.textColor = ColorName.battleshipGrey.color
         valueLabel.numberOfLines = 0
 
-        let stack = UIStackView(arrangedSubviews: [nameLabel, valueLabel])
+        stack = UIStackView(arrangedSubviews: [nameLabel, valueLabel])
         stack.axis = .vertical
         stack.frame = self.bounds
         stack.translatesAutoresizingMaskIntoConstraints = false

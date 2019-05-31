@@ -7,7 +7,7 @@ import SafeUIKit
 
 class HorizontalSeparatorView: BaseCustomView {
 
-    var size: CGFloat = 1 {
+    var size: CGFloat = 2 {
         didSet {
             update()
         }
@@ -24,7 +24,7 @@ class HorizontalSeparatorView: BaseCustomView {
     }
 
     override func update() {
-        backgroundColor = ColorName.paleGreyFour.color
+        backgroundColor = ColorName.paleGrey.color
         heightConstraint.constant = size
         setNeedsDisplay()
     }

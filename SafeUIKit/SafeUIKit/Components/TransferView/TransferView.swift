@@ -48,7 +48,8 @@ public final class TransferView: BaseCustomView {
         toAddressLabel.hasFullAddressTooltip = true
         balanceLabel.textColor = ColorName.darkSlateBlue.color
         balanceLabel.isShowingPlusSign = false
-        amountLabel.textColor = ColorName.battleshipGrey.color
+        amountLabel.textColor = ColorName.darkSlateBlue.color
+        amountLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
     }
 
     public override func update() {
@@ -60,4 +61,11 @@ public final class TransferView: BaseCustomView {
         balanceLabel.amount = balanceData
     }
 
+    public func setFailed() {
+        amountLabel.textColor = ColorName.lightGreyBlue.color
+    }
+
+    public func setIncoming() {
+        amountLabel.textColor = ColorName.greenTeal.color
+    }
 }
