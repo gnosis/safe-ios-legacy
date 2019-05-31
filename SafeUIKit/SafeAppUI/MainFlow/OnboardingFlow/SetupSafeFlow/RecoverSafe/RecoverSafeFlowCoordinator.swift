@@ -47,7 +47,7 @@ extension RecoverSafeFlowCoordinator {
                                                      comment: "Description for add browser extension screen")
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.twoFA
         controller.scanTrackingEvent = RecoverSafeTrackingEvent.twoFAScan
-        controller.backButtonItem = .backButton()
+        controller.navigationItem.backBarButtonItem = .backButton()
         return controller
     }
 

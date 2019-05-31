@@ -91,7 +91,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
 
     public func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
         MultiTokenEstimateTransactionRequest.Response {
-            return .init(lastUsedNonce: nil, estimations: [])
+            return .init(lastUsedNonce: nil, safeTxGas: nil, operationalGas: nil, estimations: [])
     }
 
 }

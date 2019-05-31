@@ -35,6 +35,8 @@ public struct MultiTokenEstimateTransactionRequest: Encodable {
     public struct Response: Decodable {
 
         public let lastUsedNonce: Int?
+        public let safeTxGas: Int?
+        public let operationalGas: Int?
         public let estimations: [Estimation]
 
         public var nextNonce: Int {
@@ -42,18 +44,22 @@ public struct MultiTokenEstimateTransactionRequest: Encodable {
             return 0
         }
 
-        public init(lastUsedNonce: Int?, estimations: [Estimation]) {
+        public init(lastUsedNonce: Int?, safeTxGas: Int?, operationalGas: Int?, estimations: [Estimation]) {
             self.lastUsedNonce = lastUsedNonce
             self.estimations = estimations
+            self.safeTxGas = safeTxGas
+            self.operationalGas = operationalGas
         }
 
+        // Estimations in the response won't have the safeTxGas and operationalGas - they are in the parent Response
+        // object. We augment the estimations with these values as they are the same for all estimations.
         public struct Estimation: Decodable {
 
             public let gasToken: String
             public let gasPrice: Int
-            public let safeTxGas: Int
             public let baseGas: Int
-            public let operationalGas: Int
+            public let safeTxGas: Int!
+            public let operationalGas: Int!
 
             public init(gasToken: String,
                         gasPrice: Int,

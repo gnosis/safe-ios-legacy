@@ -112,7 +112,7 @@ public class RecoveryApplicationService {
         }
         let amount = tx.amount ?? TokenAmount(amount: 0, token: Token.Ether)
         let amountTokenData = TokenData(token: amount.token, balance: amount.amount)
-        let paymentToken = ApplicationServiceRegistry.walletService.feePaymentTokenData.token()
+        let paymentToken = WalletDomainService.token(id: tx.accountID.tokenID.id) ?? Token.Ether
         let zeroGasPrice = TokenAmount(amount: 0, token: paymentToken)
         let zeroFeeEstimate = TransactionFeeEstimate(gas: 0, dataGas: 0, operationalGas: 0, gasPrice: zeroGasPrice)
         let feeEstimate = tx.feeEstimate ?? zeroFeeEstimate
