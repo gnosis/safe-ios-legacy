@@ -51,24 +51,19 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
 
     public func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
         MultiTokenEstimateTransactionRequest.Response {
-            // commented out until implementation is ready
-//            return try httpClient.execute(request: request)
-            let estimateRequest = EstimateTransactionRequest(safe: Address(request.safe),
-                                                             to: request.to == nil ? nil : Address(request.to!),
-                                                             value: request.value,
-                                                             data: request.data,
-                                                             operation: request.operation,
-                                                             gasToken: Token.Ether.address.value)
-            let response = try estimateTransaction(request: estimateRequest)
-
+            let rawResponse = try httpClient.execute(request: request)
             typealias Response = MultiTokenEstimateTransactionRequest.Response
             typealias Estimation = MultiTokenEstimateTransactionRequest.Response.Estimation
-            return Response(lastUsedNonce: response.lastUsedNonce,
-                            estimations: [Estimation(gasToken: response.gasToken,
-                                                     gasPrice: response.gasPrice,
-                                                     safeTxGas: response.safeTxGas,
-                                                     baseGas: response.dataGas,
-                                                     operationalGas: response.operationalGas)])
+            return Response(lastUsedNonce: rawResponse.lastUsedNonce,
+                            safeTxGas: rawResponse.safeTxGas,
+                            operationalGas: rawResponse.operationalGas,
+                            estimations: rawResponse.estimations.map {
+                                Estimation(gasToken: $0.gasToken,
+                                           gasPrice: $0.gasPrice,
+                                           safeTxGas: rawResponse.safeTxGas!,
+                                           baseGas: $0.baseGas,
+                                           operationalGas: rawResponse.operationalGas!)
+            })
     }
 
     public func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {

@@ -334,7 +334,7 @@ public class WalletApplicationService: Assertable {
         return TokenData(token: token, balance: balance)
     }
 
-    private func token(id: String) -> Token? {
+    internal func token(id: String) -> Token? {
         return WalletDomainService.token(id: id)
     }
 
