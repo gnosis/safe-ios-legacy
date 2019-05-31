@@ -25,6 +25,7 @@ class OnboardingCreationFeeIntroViewControllerTests: SafeTestCase {
     }
 
     func test_tracking() {
+        controller.screenTrackingEvent = OnboardingTrackingEvent.createSafeFeeIntro
         XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.createSafeFeeIntro)
     }
 

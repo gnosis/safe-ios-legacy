@@ -90,6 +90,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         tx.change(recipient: Address.testAccount1)
             .change(amount: .ether(100))
             .change(fee: .ether(10))
+            .change(feeEstimate: TransactionFeeEstimate(gas: 1, dataGas: 0, operationalGas: 0, gasPrice: .ether(10)))
         transactionRepository.save(tx)
         let data = service.transactionData(txID)!
         XCTAssertEqual(data.recipient, Address.testAccount1.value)

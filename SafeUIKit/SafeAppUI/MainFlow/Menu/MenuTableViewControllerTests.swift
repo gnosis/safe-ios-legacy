@@ -15,7 +15,7 @@ class MenuTableViewControllerTests: XCTestCase {
     // swiftlint:disable:next weak_delegate
     let delegate = MockMenuTableViewControllerDelegate()
     let walletService = MockWalletApplicationService()
-    // needed to for commands
+    // needed for commands
     let replaceExtensionService = MockReplaceExtensionApplicationService()
     let connectExtensionService = MockConnectExtensionApplicationService()
     let disconnectExtensionService = MockDisconnectBrowserExtensionApplicationService()
@@ -32,6 +32,7 @@ class MenuTableViewControllerTests: XCTestCase {
                                        for: DisconnectBrowserExtensionApplicationService.self)
         ApplicationServiceRegistry.put(service: settingsService, for: WalletSettingsApplicationService.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
+        walletService.createReadyToUseWallet()
         controller.delegate = delegate
         createWindow(controller)
     }

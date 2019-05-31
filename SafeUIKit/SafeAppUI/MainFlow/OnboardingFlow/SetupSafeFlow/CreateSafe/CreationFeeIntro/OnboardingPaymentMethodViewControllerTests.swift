@@ -20,6 +20,7 @@ class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
     }
 
     func test_tracking() {
+        controller.screenTrackingEvent = OnboardingTrackingEvent.createSafePaymentMethod
         XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.createSafePaymentMethod)
     }
 
