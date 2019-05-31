@@ -94,7 +94,7 @@ public class TransactionDetailsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ColorName.paleGrey.color
+        view.backgroundColor = .white
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .medium
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
