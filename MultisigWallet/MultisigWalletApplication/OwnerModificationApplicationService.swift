@@ -20,6 +20,19 @@ open class OwnerModificationApplicationService: RBEStarter {
         return domainService.createTransaction().id
     }
 
+    /// Validated that AccountID for the existing transaction in sync with currect payement method.
+    ///
+    /// - Parameter transaction: existing transaction id
+    /// - Returns: updated transaction id
+    open func recreateTransactionIfPaymentMethodChanged(transaction: RBETransactionID) -> RBETransactionID {
+        let txID = TransactionID(transaction)
+        let tx = domainService.transaction(txID)
+        let feePaymentTokenData = ApplicationServiceRegistry.walletService.feePaymentTokenData
+        guard tx.accountID.tokenID != feePaymentTokenData.token().id else { return transaction }
+        domainService.deleteTransaction(id: txID)
+        return domainService.createTransaction().id
+    }
+
     open func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
         let txID = TransactionID(transaction)
         domainService.addDummyData(to: txID)

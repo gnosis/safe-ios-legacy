@@ -154,7 +154,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
                          ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected)
     }
 
-    func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {
+    public func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {
         guard let tx = repository.find(id: id) else {
             preconditionFailure("transaction not found \(file):\(line)")
         }

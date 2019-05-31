@@ -62,7 +62,11 @@ public class RBEIntroViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        transition(to: state)
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        transition(to: LoadingState())
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -90,7 +94,9 @@ public class RBEIntroViewController: UIViewController {
         guard let data = calculationData else { return }
         let formatter = TokenFormatter()
         feeCalculation.currentBalanceLine.set(value: formatter.string(from: data.currentBalance))
-        feeCalculation.networkFeeLine.set(valueButton: data.networkFee.withNonNegativeBalance())
+        feeCalculation.networkFeeLine.set(valueButton: data.networkFee.withNonNegativeBalance(),
+                                          target: self,
+                                          action: #selector(changePaymentMethod))
         feeCalculation.resultingBalanceLine.set(value: formatter.string(from: data.balance))
         feeCalculation.setBalanceError(nil)
     }
@@ -167,6 +173,10 @@ public class RBEIntroViewController: UIViewController {
 
     @objc public func showNetworkFeeInfo() {
         present(UIAlertController.networkFee(), animated: true, completion: nil)
+    }
+
+    @objc private func changePaymentMethod() {
+        navigationController?.pushViewController(PaymentMethodViewController(), animated: true)
     }
 
 }
