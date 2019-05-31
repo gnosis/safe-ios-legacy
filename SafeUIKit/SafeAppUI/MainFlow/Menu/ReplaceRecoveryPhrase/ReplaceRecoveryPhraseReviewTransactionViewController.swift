@@ -4,6 +4,7 @@
 
 import Foundation
 
+// TODO: Make it the same as other reivews! (RBE review)
 final class ReplaceRecoveryPhraseReviewTransactionViewController: ReviewTransactionViewController {
 
     enum ReplaceRecoveryPhraseStrings {

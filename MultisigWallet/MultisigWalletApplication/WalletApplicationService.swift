@@ -605,7 +605,7 @@ public class WalletApplicationService: Assertable {
     public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         guard tx.feeEstimate == nil ||
-            (tx.type == .connectBrowserExtension || tx.type == .replaceRecoveryPhrase)  && tx.status == .draft else {
+            (tx.type == .connectBrowserExtension || tx.type == .replaceRecoveryPhrase) && tx.status == .draft else {
                 return transactionData(id)!
         }
         let recipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
@@ -613,7 +613,7 @@ public class WalletApplicationService: Assertable {
                                                  to: recipient,
                                                  value: String(tx.ethValue),
                                                  data: tx.ethData,
-                                                 operation: .call,
+                                                 operation: tx.operation ?? .call,
                                                  gasToken: selectedWallet!.feePaymentTokenAddress?.value)
         let estimationResponse = try handleRelayServiceErrors {
             try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
@@ -633,7 +633,7 @@ public class WalletApplicationService: Assertable {
         tx.change(feeEstimate: feeEstimate)
             .change(fee: feeEstimate.totalSubmittedToBlockchain)
         tx.change(nonce: nonce)
-            .change(operation: .call)
+            .change(operation: tx.operation ?? .call)
             .change(hash: ethereumService.hash(of: tx))
             .proceed()
         DomainRegistry.transactionRepository.save(tx)

@@ -77,6 +77,13 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceBrowserExtensionDomainSe
         return multiSendProxy.multiSend(transactions)
     }
 
+    public override func update(transaction: TransactionID, newOwnerAddress: String) {
+        super.update(transaction: transaction, newOwnerAddress: newOwnerAddress)
+        let tx = self.transaction(transaction)
+        tx.change(operation: .delegateCall)
+        repository.save(tx)
+    }
+
     override func realTransactionData(with newAddress: String) -> Data? {
         guard let list = remoteOwnersList() else { return nil }
 
