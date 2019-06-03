@@ -28,6 +28,7 @@ class SendFlowCoordinator: FlowCoordinator {
 
     func openTransactionReviewScreen(_ id: String) {
         let reviewVC = SendReviewViewController(transactionID: id, delegate: self)
+        reviewVC.showsSubmitInNavigationBar = false
         push(reviewVC)
     }
 

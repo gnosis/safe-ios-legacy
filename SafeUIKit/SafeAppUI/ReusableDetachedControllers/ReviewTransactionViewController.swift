@@ -16,13 +16,17 @@ public protocol ReviewTransactionViewControllerDelegate: class {
 
 public class ReviewTransactionViewController: UITableViewController {
 
+    public var showsSubmitInNavigationBar: Bool = true
+
     private(set) var tx: TransactionData!
     private(set) weak var delegate: ReviewTransactionViewControllerDelegate!
+    private var submitBarButton: UIBarButtonItem!
 
     internal var cells = [IndexPath: UITableViewCell]()
 
     /// Confirmation cell is always last if present
     internal let confirmationCell = TransactionConfirmationCell()
+
     internal var submitButton: UIButton! {
         return confirmationCell.confirmationView.button
     }
@@ -71,6 +75,10 @@ public class ReviewTransactionViewController: UITableViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         title = Strings.title
+        submitBarButton = UIBarButtonItem(title: LocalizedString("submit", comment: "Submit transaction"),
+                                          style: .done,
+                                          target: self,
+                                          action: #selector(submit))
         submitButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
         disableSubmit()
         configureTableView()
@@ -78,6 +86,12 @@ public class ReviewTransactionViewController: UITableViewController {
         updateSubmitButton()
         if !hasBrowserExtension {
             confirmationCell.confirmationView.showsOnlyButton = true
+        }
+        if showsSubmitInNavigationBar {
+            if let key = cells.first(where: { $0.value === confirmationCell })?.key {
+                cells.removeValue(forKey: key)
+            }
+            navigationItem.rightBarButtonItem = submitBarButton
         }
 
         // Otherwise header cell height is smaller than the content height
@@ -111,12 +125,14 @@ public class ReviewTransactionViewController: UITableViewController {
     func disableSubmit() {
         DispatchQueue.main.async {
             self.submitButton.isEnabled = false
+            self.submitBarButton.isEnabled = false
         }
     }
 
     func enableSubmit() {
         DispatchQueue.main.async {
             self.submitButton.isEnabled = true
+            self.submitBarButton.isEnabled = true
         }
     }
 

@@ -139,6 +139,7 @@ extension ReviewTransactionViewControllerTests {
         service.requestTransactionConfirmation_output = data
         service.update(account: BaseID(data.amountTokenData.address), newBalance: accountBalance)
         let vc = SendReviewViewController(transactionID: data.id, delegate: delegate)
+        vc.showsSubmitInNavigationBar = false
         vc.viewDidLoad()
         return vc
     }

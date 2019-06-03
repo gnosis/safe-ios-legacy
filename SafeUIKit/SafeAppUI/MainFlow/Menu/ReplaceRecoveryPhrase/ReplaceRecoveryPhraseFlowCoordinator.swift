@@ -69,6 +69,7 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
         vc.detailString = ReplaceRecoveryPhraseStrings.detail
         vc.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.review
         vc.successTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.success
+        vc.showsSubmitInNavigationBar = false
         return vc
     }
 
