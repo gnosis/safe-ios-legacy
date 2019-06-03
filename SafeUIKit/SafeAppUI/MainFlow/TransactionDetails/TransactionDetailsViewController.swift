@@ -66,6 +66,7 @@ public class TransactionDetailsViewController: UIViewController {
                                                 comment: "Detail for the header in review screen")
         }
     }
+    @IBOutlet weak var separatorLineView: HorizontalSeparatorView!
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
     @IBOutlet weak var transferView: TransferView!
     @IBOutlet weak var transactionTypeView: TransactionParameterView!
@@ -131,7 +132,10 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureTransferDetails() {
         switch transaction.type {
-        case .incoming, .outgoing:
+        case .incoming:
+            transferView.setIncoming()
+            fallthrough
+        case .outgoing:
             transferView.fromAddress = transaction.sender
             transferView.toAddress = transaction.recipient
             transferView.tokenData = transaction.amountTokenData
@@ -168,6 +172,10 @@ public class TransactionDetailsViewController: UIViewController {
             transferView.isHidden = true
             settingsHeaderView.isHidden = false
         }
+        if transaction.status == .failed {
+            settingsHeaderView.setFailed()
+            transferView.setFailed()
+        }
     }
 
     private func configureType() {
@@ -201,8 +209,11 @@ public class TransactionDetailsViewController: UIViewController {
     }
 
     private func configureFee() {
-        transactionFeeView.name = Strings.fee
-        transactionFeeView.amountLabel.isShowingShortFormat = false
+        transactionFeeView.infoLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        transactionFeeView.infoLabel.bodyColor = ColorName.darkSlateBlue.color
+        transactionFeeView.infoLabel.setInfoText(Strings.fee)
+        transactionFeeView.infoLabel.delegate = self
+        transactionFeeView.amountLabel.isShowingShortFormat = true
         transactionFeeView.amount = transaction.feeTokenData.withBalance(-(transaction.feeTokenData.balance ?? 0))
     }
 
@@ -212,6 +223,8 @@ public class TransactionDetailsViewController: UIViewController {
             transaction.status == .pending
         viewInExternalAppButton.isHidden = !isSubmitted
         viewInExternalAppButton.setTitle(Strings.externalApp, for: .normal)
+        viewInExternalAppButton.flipImageToTrailingSide(spacing: 7)
+        viewInExternalAppButton.contentHorizontalAlignment = .trailing
         viewInExternalAppButton.removeTarget(self, action: nil, for: .touchUpInside)
         viewInExternalAppButton.addTarget(self, action: #selector(viewInExternalApp), for: .touchUpInside)
     }
@@ -232,6 +245,14 @@ extension TransactionDetailsViewController: EventSubscriber {
         DispatchQueue.main.async {
             self.reloadData()
         }
+    }
+
+}
+
+extension TransactionDetailsViewController: InfoLabelDelegate {
+
+    public func didTap() {
+        present(UIAlertController.networkFee(), animated: true, completion: nil)
     }
 
 }

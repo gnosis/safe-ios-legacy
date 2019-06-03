@@ -14,12 +14,20 @@ class TokenAmountTransactionParameterView: TransactionParameterView {
         }
     }
 
+    var infoLabel: InfoLabel {
+        return (nameLabel as! InfoLabel)
+    }
+
     var amountLabel: AmountLabel! {
         return (valueLabel as! AmountLabel)
     }
 
     override func newValueLabel() -> UILabel {
         return AmountLabel()
+    }
+
+    override func newNameLabel() -> UILabel {
+        return InfoLabel()
     }
 
 }

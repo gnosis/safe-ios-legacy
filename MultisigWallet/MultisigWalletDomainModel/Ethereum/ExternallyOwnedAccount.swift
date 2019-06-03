@@ -57,6 +57,7 @@ public struct Address: Hashable, Codable {
     public static let zero = Address(ethID.id)
     public static let one = Address("0x0000000000000000000000000000000000000001")
     public static let two = Address("0x0000000000000000000000000000000000000002")
+    public static let three = Address("0x0000000000000000000000000000000000000003")
 
     /// Creates new address with a string value.
     ///

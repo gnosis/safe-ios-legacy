@@ -145,6 +145,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
         return Owner(address: Address(address), role: role)
     }
 
+    public func addOrReplaceOwner(_ owner: Owner) {
+        addOwner(owner)
+    }
+
     public func addOwner(_ owner: Owner) {
         assertCanChangeOwners()
         if owner.role == .unknown {

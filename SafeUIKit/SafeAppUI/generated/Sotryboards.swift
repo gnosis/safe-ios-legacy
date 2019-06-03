@@ -82,8 +82,6 @@ enum StoryboardScene {
 
     static let menuTableViewController = SceneType<SafeAppUI.MenuTableViewController>(storyboard: Main.self, identifier: "MenuTableViewController")
 
-    static let replaceRecoveryPhraseViewController = SceneType<SafeAppUI.ReplaceRecoveryPhraseViewController>(storyboard: Main.self, identifier: "ReplaceRecoveryPhraseViewController")
-
     static let sendInputViewController = SceneType<SafeAppUI.SendInputViewController>(storyboard: Main.self, identifier: "SendInputViewController")
 
     static let successViewController = SceneType<SafeAppUI.SuccessViewController>(storyboard: Main.self, identifier: "SuccessViewController")

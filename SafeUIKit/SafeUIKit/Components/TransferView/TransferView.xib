@@ -48,7 +48,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0xf1…3910" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zms-IU-Lc2" customClass="EthereumAddressLabel" customModule="SafeUIKit" customModuleProvider="target">
-                    <rect key="frame" x="56" y="113" width="87" height="20.5"/>
+                    <rect key="frame" x="62" y="113" width="87" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                     <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
@@ -91,11 +91,11 @@
                 <constraint firstItem="FGi-iH-Tep" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="DZN-ys-dLR"/>
                 <constraint firstItem="FGi-iH-Tep" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="HO3-2X-Jtp"/>
                 <constraint firstItem="Rph-I6-gFQ" firstAttribute="centerY" secondItem="8zW-Yu-peS" secondAttribute="centerY" constant="-2" id="IdB-UU-VRt"/>
+                <constraint firstItem="zms-IU-Lc2" firstAttribute="leading" secondItem="zs1-2D-vQj" secondAttribute="leading" id="Jcq-Bt-NPs"/>
                 <constraint firstItem="V0c-TE-6U6" firstAttribute="firstBaseline" secondItem="zs1-2D-vQj" secondAttribute="firstBaseline" id="RPD-CS-WUv"/>
                 <constraint firstItem="V0c-TE-6U6" firstAttribute="trailing" secondItem="Rph-I6-gFQ" secondAttribute="trailing" id="Tmf-AA-Xg3"/>
                 <constraint firstItem="8zW-Yu-peS" firstAttribute="centerY" secondItem="w1d-bt-Oe8" secondAttribute="centerY" id="WIq-w6-rkf"/>
                 <constraint firstItem="zms-IU-Lc2" firstAttribute="centerY" secondItem="L7F-Ks-zDU" secondAttribute="centerY" id="bcg-2k-ga9"/>
-                <constraint firstItem="zms-IU-Lc2" firstAttribute="leading" secondItem="L7F-Ks-zDU" secondAttribute="trailing" constant="8" id="dcB-KR-jbO"/>
                 <constraint firstItem="L7F-Ks-zDU" firstAttribute="leading" secondItem="FGi-iH-Tep" secondAttribute="leading" id="h0f-cK-5gB"/>
                 <constraint firstItem="w1d-bt-Oe8" firstAttribute="top" secondItem="FGi-iH-Tep" secondAttribute="bottom" constant="17" id="iSQ-nr-CLW"/>
                 <constraint firstItem="Rph-I6-gFQ" firstAttribute="leading" secondItem="8zW-Yu-peS" secondAttribute="trailing" constant="16" id="l0W-eI-rIe"/>

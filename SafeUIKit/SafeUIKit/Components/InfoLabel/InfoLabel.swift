@@ -13,6 +13,8 @@ public class InfoLabel: BaseCustomLabel {
     public weak var delegate: InfoLabelDelegate?
 
     public var infoSuffix = "[?]"
+    public var infoColor: UIColor = ColorName.darkSkyBlue.color
+    public var bodyColor: UIColor = ColorName.battleshipGrey.color
 
     public override func commonInit() {
         font = UIFont.systemFont(ofSize: 17)
@@ -31,8 +33,8 @@ public class InfoLabel: BaseCustomLabel {
         let attributedString = NSMutableAttributedString(string: str)
         let textRange = attributedString.mutableString.range(of: text)
         let infoRange = attributedString.mutableString.range(of: infoSuffix)
-        attributedString.addAttribute(.foregroundColor, value: ColorName.battleshipGrey.color, range: textRange)
-        attributedString.addAttribute(.foregroundColor, value: ColorName.darkSkyBlue.color, range: infoRange)
+        attributedString.addAttribute(.foregroundColor, value: bodyColor, range: textRange)
+        attributedString.addAttribute(.foregroundColor, value: infoColor, range: infoRange)
         attributedText = attributedString
     }
 

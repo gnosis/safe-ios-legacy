@@ -19,7 +19,7 @@ class MenuTableViewControllerTests: XCTestCase {
     let replaceExtensionService = MockReplaceExtensionApplicationService()
     let connectExtensionService = MockConnectExtensionApplicationService()
     let disconnectExtensionService = MockDisconnectBrowserExtensionApplicationService()
-    let settingsService = MockSettingsService()
+    let replacePhraseService = MockReplaceRecoveryPhraseApplicationService()
 
     override func setUp() {
         super.setUp()
@@ -30,7 +30,8 @@ class MenuTableViewControllerTests: XCTestCase {
                                        for: ConnectBrowserExtensionApplicationService.self)
         ApplicationServiceRegistry.put(service: disconnectExtensionService,
                                        for: DisconnectBrowserExtensionApplicationService.self)
-        ApplicationServiceRegistry.put(service: settingsService, for: WalletSettingsApplicationService.self)
+        ApplicationServiceRegistry.put(service: replacePhraseService,
+                                       for: ReplaceRecoveryPhraseApplicationService.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         walletService.createReadyToUseWallet()
         controller.delegate = delegate
@@ -155,10 +156,8 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
 
 }
 
-class MockSettingsService: WalletSettingsApplicationService {
+class MockReplaceRecoveryPhraseApplicationService: ReplaceRecoveryPhraseApplicationService {
 
-    override func isReplaceRecoveryAvailable() -> Bool {
-        return true
-    }
+    override var isAvailable: Bool { return true }
 
 }

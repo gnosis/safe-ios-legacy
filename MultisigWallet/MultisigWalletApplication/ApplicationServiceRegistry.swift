@@ -11,6 +11,10 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: WalletApplicationService.self)
     }
 
+    public static var replacePhraseService: ReplaceRecoveryPhraseApplicationService {
+        return service(for: ReplaceRecoveryPhraseApplicationService.self)
+    }
+
     public static var replaceExtensionService: ReplaceBrowserExtensionApplicationService {
         return service(for: ReplaceBrowserExtensionApplicationService.self)
     }

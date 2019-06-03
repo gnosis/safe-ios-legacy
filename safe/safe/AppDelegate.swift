@@ -108,6 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             DomainRegistry.replaceExtensionService.cleanUpStaleTransactions()
             DomainRegistry.connectExtensionService.cleanUpStaleTransactions()
             DomainRegistry.disconnectExtensionService.cleanUpStaleTransactions()
+            DomainRegistry.replacePhraseService.cleanUpStaleTransactions()
         }
     }
 
