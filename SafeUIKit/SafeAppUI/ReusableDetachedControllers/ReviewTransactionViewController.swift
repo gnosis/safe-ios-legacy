@@ -93,7 +93,7 @@ public class ReviewTransactionViewController: UITableViewController {
             }
             navigationItem.rightBarButtonItem = submitBarButton
         }
-
+        isLoading = true
         // Otherwise header cell height is smaller than the content height
         // Alternatives tried: setting cell size when creating the header cell
         DispatchQueue.main.async {
@@ -126,6 +126,21 @@ public class ReviewTransactionViewController: UITableViewController {
         DispatchQueue.main.async {
             self.submitButton.isEnabled = false
             self.submitBarButton.isEnabled = false
+        }
+    }
+
+    var isLoading: Bool = false {
+        didSet {
+            assert(Thread.isMainThread)
+            if isLoading {
+                navigationItem.hidesBackButton = true
+                disableSubmit()
+                navigationItem.titleView = LoadingTitleView()
+            } else {
+                navigationItem.hidesBackButton = false
+                enableSubmit()
+                navigationItem.titleView = nil
+            }
         }
     }
 
@@ -223,7 +238,9 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func performTransactionConfirmationsRequestAction(_ action: @escaping () throws -> TransactionData) {
-        disableSubmit()
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             do {
@@ -232,11 +249,13 @@ public class ReviewTransactionViewController: UITableViewController {
                 self.hasUpdatedFee = true
             } catch let error {
                 DispatchQueue.main.sync {
-                    self.enableSubmit()
                     ErrorHandler.showError(message: error.localizedDescription,
                                            log: "operation failed: \(error)",
                                            error: nil)
                 }
+            }
+            DispatchQueue.main.async {
+                self.isLoading = false
             }
         }
     }

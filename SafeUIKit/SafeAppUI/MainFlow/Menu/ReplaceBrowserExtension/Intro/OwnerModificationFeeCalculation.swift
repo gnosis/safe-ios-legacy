@@ -11,7 +11,6 @@ class OwnerModificationFeeCalculation: SameTransferAndPaymentTokensFeeCalculatio
 
     required init() {
         currentBalanceLine = FeeCalculationAssetLine()
-            .set(style: .balance)
             .set(name: Strings.currentBalance)
             .set(value: Strings.loading)
         super.init()
@@ -20,6 +19,7 @@ class OwnerModificationFeeCalculation: SameTransferAndPaymentTokensFeeCalculatio
 
     override func update() {
         let section = FeeCalculationSection([currentBalanceLine, networkFeeLine, resultingBalanceLine, errorLine])
+        section.border = nil
         set(contents: [section])
     }
 

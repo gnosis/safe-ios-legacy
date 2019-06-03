@@ -15,8 +15,6 @@ public class RBEReviewTransactionViewController: ReviewTransactionViewController
     var screenTrackingEvent: Trackable?
     var successTrackingEvent: Trackable?
 
-    typealias SpacingCell = UITableViewCell
-
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let event = screenTrackingEvent {
@@ -41,8 +39,6 @@ public class RBEReviewTransactionViewController: ReviewTransactionViewController
     override func createCells() {
         let indexPath = IndexPathIterator()
         cells[indexPath.next()] = replaceBrowserExtensionHeaderCell()
-        cells[indexPath.next()] = SpacingCell()
-        cells[indexPath.next()] = SpacingCell()
         feeCellIndexPath = indexPath.next()
         cells[feeCellIndexPath] = feeCalculationCell()
         cells[indexPath.next()] = confirmationCell
