@@ -32,6 +32,14 @@ extension IntroContentView.Content {
 
 extension ReplaceRecoveryPhraseFlowCoordinator {
 
+    enum ReplaceRecoveryPhraseStrings {
+        static let title = LocalizedString("ios_replace_recovery_phrase",
+                                           comment: "Title for the header in review screen")
+            .replacingOccurrences(of: "\n", with: " ")
+        static let detail = LocalizedString("ios_replace_seed_details",
+                                            comment: "Detail for the header in review screen")
+    }
+
     func introController() -> RBEIntroViewController {
         let controller = RBEIntroViewController.create()
         controller.starter = ApplicationServiceRegistry.replacePhraseService
@@ -53,6 +61,15 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
                                                               isRecoveryMode: true)
         controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.enterSeed
         return controller
+    }
+
+    func reviewViewController() -> UIViewController {
+        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        vc.titleString = ReplaceRecoveryPhraseStrings.title
+        vc.detailString = ReplaceRecoveryPhraseStrings.detail
+        vc.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.review
+        vc.successTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.success
+        return vc
     }
 
 }
@@ -82,8 +99,7 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ConfirmMnemonicDelegate {
     func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController) {
         let address = vc.account.address
         ApplicationServiceRegistry.replacePhraseService.update(transaction: transactionID, newAddress: address)
-        let vc = ReplaceRecoveryPhraseReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        push(vc)
+        push(reviewViewController())
     }
 
 }
