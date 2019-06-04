@@ -102,4 +102,3 @@ extension OnboardingFeePaidViewController: LongProcessTrackerDelegate {
     }
 
 }
-

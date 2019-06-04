@@ -268,6 +268,7 @@
 		0AFA76692181FB1800A96FDB /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */; };
 		0AFA766B2181FB1E00A96FDB /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */; };
 		0AFA766D2182195200A96FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA766C2182195200A96FDB /* ViewController.swift */; };
+		0AFD05E022A680AF00888956 /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
 		0AFDB43821AC16B000F31840 /* FullEthereumAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDB43721AC16B000F31840 /* FullEthereumAddressLabel.swift */; };
 		0AFDB43A21AC42BE00F31840 /* FullEthereumAddressLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDB43921AC42BE00F31840 /* FullEthereumAddressLabelTests.swift */; };
 		5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395F20D17CDB000F2A82 /* Double+BigInt.swift */; };
@@ -310,7 +311,6 @@
 		5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */; };
 		5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13D21A55E8D006BF834 /* TransactionFeeCell.swift */; };
 		5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */; };
-		553AEB0C229EA33800EA3248 /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
 		553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
 		553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */; };
 		553AEB13229EA42400EA3248 /* RBEIntroViewControllerErrorStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */; };
@@ -2963,7 +2963,6 @@
 				0AD899BA2281CADD008AE325 /* SuccessViewController+SendSuccess.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */,
-				553AEB0C229EA33800EA3248 /* TestableRBEIntroViewController.swift in Sources */,
 				0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */,
 				0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
@@ -3087,6 +3086,7 @@
 				0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */,
 				553AEB17229EA43200EA3248 /* RBEIntroViewControllerStartedStateTests.swift in Sources */,
 				0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */,
+				0AFD05E022A680AF00888956 /* TestableRBEIntroViewController.swift in Sources */,
 				0A334DC1209C6D8D00ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift in Sources */,
 				553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */,
 				553AEB19229EA43900EA3248 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,

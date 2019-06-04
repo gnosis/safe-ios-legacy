@@ -21,6 +21,7 @@ class LongProcessTracker {
     @objc func start() {
         retryItem.isEnabled = false
         DispatchQueue.global().async { [unowned self] in
+            // swiftlint:disable:next trailing_closure
             self.delegate?.startProcess(errorHandler: { [unowned self] error in
                 DispatchQueue.main.async {
                     self.retryItem.isEnabled = true

@@ -180,13 +180,13 @@ public class ReviewTransactionViewController: UITableViewController {
         }
         if isLoading {
             navigationItem.hidesBackButton = true
-            submitButton.isEnabled = false
-            submitBarButton.isEnabled = false
+            submitButton?.isEnabled = false
+            submitBarButton?.isEnabled = false
             navigationItem.titleView = LoadingTitleView()
         } else {
             navigationItem.hidesBackButton = false
-            submitButton.isEnabled = true
-            submitBarButton.isEnabled = true
+            submitButton?.isEnabled = true
+            submitBarButton?.isEnabled = true
             navigationItem.titleView = nil
         }
     }
@@ -212,8 +212,8 @@ public class ReviewTransactionViewController: UITableViewController {
             DispatchQueue.main.async(execute: postProcessing)
             return
         }
-        self.reloadData()
-        self.notifyOfStatus()
+        reloadData()
+        notifyOfStatus()
     }
 
     private func showError(_ error: Error) {
@@ -225,8 +225,10 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func reloadData() {
-        updateTransactionFeeCell()
         updateConfirmationCell()
+        if feeCellIndexPath != nil {
+            updateTransactionFeeCell()
+        }
     }
 
     private func notifyOfStatus() {
@@ -237,7 +239,7 @@ public class ReviewTransactionViewController: UITableViewController {
             self.didReject()
         case .success, .pending, .failed, .discarded:
             self.didSubmit()
-            self.delegate.reviewTransactionViewControllerDidFinishReview(self) // this can actually execute something else
+            self.delegate.reviewTransactionViewControllerDidFinishReview(self)
         default: break
         }
     }
