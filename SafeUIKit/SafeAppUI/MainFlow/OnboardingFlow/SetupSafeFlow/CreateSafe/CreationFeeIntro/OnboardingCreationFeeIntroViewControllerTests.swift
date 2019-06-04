@@ -18,12 +18,6 @@ class OnboardingCreationFeeIntroViewControllerTests: SafeTestCase {
         controller = OnboardingCreationFeeIntroViewController.create(delegate: delegate)
     }
 
-    func test_whenCreated_thenFetchesEstimationData() {
-        controller.viewWillAppear(false)
-        delay()
-        XCTAssertTrue(delegate.didCallEstimation)
-    }
-
     func test_tracking() {
         controller.screenTrackingEvent = OnboardingTrackingEvent.createSafeFeeIntro
         XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.createSafeFeeIntro)

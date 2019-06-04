@@ -76,7 +76,7 @@ class OnboardingPaymentMethodViewControllerTests: SafeTestCase {
                                                                   estimations: [TokenData.Ether, TokenData.gno])
         let ethTitle = String(format: OnboardingPaymentMethodViewController.Strings.payWith, TokenData.Ether.code)
         let gnoTitle = String(format: OnboardingPaymentMethodViewController.Strings.payWith, TokenData.gno.code)
-        controller.viewWillAppear(false)
+        controller.loadViewIfNeeded()
         XCTAssertEqual(controller.payButton.title(for: .normal), ethTitle)
         selectRow(1)
         XCTAssertEqual(controller.payButton.title(for: .normal), gnoTitle)

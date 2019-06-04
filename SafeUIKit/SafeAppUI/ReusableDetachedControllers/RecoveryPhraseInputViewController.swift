@@ -66,7 +66,6 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         phraseTextView.textColor = ColorName.darkSlateBlue.color
         phraseTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         phraseTextView.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        phraseTextView.tintColor = ColorName.darkSkyBlue.color
 
         let insets = textInsets()
         placeholderTop.constant = insets.top
