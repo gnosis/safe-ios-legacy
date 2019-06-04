@@ -12,6 +12,7 @@ class DifferentTransferAndPaymentTokensFeeCalculation: SameTransferAndPaymentTok
 
     required init() {
         networkFeeResultingBalanceLine = FeeCalculationAssetLine()
+            .set(style: .balance)
             .set(name: Strings.resultingBalance)
             .set(value: Strings.loading)
         networkFeeBalanceErrorLine = FeeCalculationErrorLine(text: "")
@@ -24,14 +25,12 @@ class DifferentTransferAndPaymentTokensFeeCalculation: SameTransferAndPaymentTok
     }
 
     override func update() {
-        let section = FeeCalculationSection([networkFeeLine,
-                                             networkFeeResultingBalanceLine,
-                                             networkFeeBalanceErrorLine,
+        let section = FeeCalculationSection([resultingBalanceLine,
+                                             errorLine,
                                              FeeCalculationSpacingLine(spacing: 20),
-                                             resultingBalanceLine,
-                                             errorLine])
-        section.border = nil
-        section.insets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+                                             networkFeeLine,
+                                             networkFeeResultingBalanceLine,
+                                             networkFeeBalanceErrorLine])
         set(contents: [section])
     }
 }

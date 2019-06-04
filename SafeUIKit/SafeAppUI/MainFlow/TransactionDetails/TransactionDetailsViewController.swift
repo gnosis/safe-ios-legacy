@@ -100,6 +100,7 @@ public class TransactionDetailsViewController: UIViewController {
         dateFormatter.timeStyle = .medium
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
         wrapperView.backgroundColor = .white
+        transferView.setSmallerAmountLabelFontSize()
         reloadData()
     }
 

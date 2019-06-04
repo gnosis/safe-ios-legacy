@@ -19,7 +19,8 @@ class OwnerModificationFeeCalculation: SameTransferAndPaymentTokensFeeCalculatio
 
     override func update() {
         let section = FeeCalculationSection([currentBalanceLine, networkFeeLine, resultingBalanceLine, errorLine])
-        section.border = nil
+        section.border = (2, ColorName.paleGrey.color)
+        section.insets = UIEdgeInsets(top: 23, left: 16, bottom: 0, right: 16)
         set(contents: [section])
     }
 

@@ -8,8 +8,8 @@ import UIKit
 public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
 
     public var backgroundColor: UIColor = .white
-    public var insets = UIEdgeInsets(top: 22, left: 16, bottom: 22, right: 16)
-    public var border: (width: Double, color: UIColor)? = (1, ColorName.silver.color)
+    public var insets = UIEdgeInsets.zero
+    public var border: (width: Double, color: UIColor)?
 
     func makeView() -> UIView {
         let backgroundView = UIView()

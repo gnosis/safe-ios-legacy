@@ -126,6 +126,7 @@ public class SendInputViewController: UIViewController {
         }
         feeCalculationView.update()
         nextBarButton.isEnabled = model.canProceedToSigning
+        tokenInput.revalidateText()
     }
 
     private func tokenBalanceError() -> Error? {

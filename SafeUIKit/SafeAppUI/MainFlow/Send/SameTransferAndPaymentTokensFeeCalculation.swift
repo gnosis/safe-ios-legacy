@@ -44,8 +44,6 @@ class SameTransferAndPaymentTokensFeeCalculation: FeeCalculation {
 
     override func update() {
         let section = FeeCalculationSection([networkFeeLine, resultingBalanceLine, errorLine])
-        section.border = nil
-        section.insets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         set(contents: [section])
     }
 

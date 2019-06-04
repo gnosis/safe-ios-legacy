@@ -8,6 +8,6 @@ public class FeeCalculationCell: ContainerCell {
 
     public let feeCalculationView = FeeCalculationView()
     public override var cellContentView: UIView { return feeCalculationView }
-    public override var horizontalMargin: CGFloat { return 0 }
+    public override var horizontalMargin: CGFloat { return 16 }
 
 }

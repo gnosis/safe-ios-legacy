@@ -1257,6 +1257,8 @@
 			isa = PBXGroup;
 			children = (
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
+				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
+				0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */,
 				5549B2F3228C268100F3B5B7 /* OwnerModificationFeeCalculation.swift */,
 				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
 				0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */,
@@ -1277,8 +1279,6 @@
 				0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */,
 				0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */,
 				0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */,
-				0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */,
-				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
 				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
 				0A2FAA822201A92A00793B7B /* Common */,
 			);

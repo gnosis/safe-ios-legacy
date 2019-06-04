@@ -536,11 +536,11 @@ public class WalletApplicationService: Assertable {
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
                       balance: (type == .outgoing ? -1 : 1) * (tx.amount?.amount ?? 0)) :
-            TokenData.empty()
+            TokenData(token: token(id: tx.accountID.tokenID.id) ?? Token.Ether, balance: nil)
         let feeTokenData = tx.feeEstimate != nil ?
             TokenData(token: tx.feeEstimate!.totalDisplayedToUser.token,
                       balance: tx.feeEstimate!.totalDisplayedToUser.amount) :
-            TokenData.empty()
+            TokenData(token: feePaymentTokenData.token(), balance: nil)
         return TransactionData(id: tx.id.id,
                                sender: tx.sender?.value ?? "",
                                recipient: tx.recipient?.value ?? "",
