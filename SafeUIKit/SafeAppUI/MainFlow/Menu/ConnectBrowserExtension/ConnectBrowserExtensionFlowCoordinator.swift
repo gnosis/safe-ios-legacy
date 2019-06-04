@@ -95,7 +95,9 @@ extension ConnectBrowserExtensionFlowCoordinator: ReviewTransactionViewControlle
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        ApplicationServiceRegistry.connectExtensionService.startMonitoring(transaction: transactionID)
+        DispatchQueue.global.async {
+            ApplicationServiceRegistry.connectExtensionService.startMonitoring(transaction: self.transactionID)
+        }
         exitFlow()
     }
 

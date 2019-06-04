@@ -103,7 +103,9 @@ extension ReplaceBrowserExtensionFlowCoordinator: ReviewTransactionViewControlle
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        applicationService.startMonitoring(transaction: transactionID)
+        DispatchQueue.global.async {
+            self.applicationService.startMonitoring(transaction: self.transactionID)
+        }
         exitFlow()
     }
 

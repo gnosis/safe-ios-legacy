@@ -113,7 +113,9 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ReviewTransactionViewControllerD
     }
 
     public func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: transactionID)
+        DispatchQueue.global.async {
+            ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: self.transactionID)
+        }
         exitFlow()
     }
 
