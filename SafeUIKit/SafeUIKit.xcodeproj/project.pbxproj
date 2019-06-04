@@ -357,7 +357,6 @@
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
-		557353592293F0AB00248F87 /* ReceiveFunds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557353562293F0AB00248F87 /* ReceiveFunds.storyboard */; };
 		5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */; };
 		5573535B2293F0C500248F87 /* ReceiveFundsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */; };
 		557353722294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */; };
@@ -947,7 +946,6 @@
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewControllerTests.swift; sourceTree = "<group>"; };
-		557353562293F0AB00248F87 /* ReceiveFunds.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReceiveFunds.storyboard; sourceTree = "<group>"; };
 		557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
 		557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeIntroViewController.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
@@ -1995,7 +1993,6 @@
 		557353542293F0AB00248F87 /* ReceiveFunds */ = {
 			isa = PBXGroup;
 			children = (
-				557353562293F0AB00248F87 /* ReceiveFunds.storyboard */,
 				557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */,
 				557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */,
 			);
@@ -2557,7 +2554,6 @@
 				0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */,
 				55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */,
 				553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */,
-				557353592293F0AB00248F87 /* ReceiveFunds.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

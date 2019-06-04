@@ -18,16 +18,15 @@ class ReceiveFundsViewControllerTests: XCTestCase {
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         walletService.assignAddress(testAddress)
         controller = ReceiveFundsViewController.create()
+        controller.loadViewIfNeeded()
     }
 
     func test_whenCreated_thenDisplaysCorrectData() {
-        controller.viewDidLoad()
-        XCTAssertEqual(controller.safeAddressLabel.address, testAddress)
-        XCTAssertEqual(controller.qrCodeView.value, testAddress)
-        XCTAssertEqual(controller.identiconView.seed, testAddress)
+        XCTAssertEqual(controller.addressDetailView.address, testAddress)
     }
 
     func test_tracking() {
         XCTAssertTracksAppearance(in: controller, MainTrackingEvent.receiveFunds)
     }
+
 }
