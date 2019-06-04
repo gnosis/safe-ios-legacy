@@ -98,7 +98,18 @@ extension ConnectBrowserExtensionFlowCoordinator: ReviewTransactionViewControlle
         DispatchQueue.global.async {
             ApplicationServiceRegistry.connectExtensionService.startMonitoring(transaction: self.transactionID)
         }
-        exitFlow()
+        push(SuccessViewController.connect2FASuccess(action: exitFlow))
+    }
+
+}
+
+extension SuccessViewController {
+
+    static func connect2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
+        return .congratulations(text: LocalizedString("connecting_in_progress", comment: "Explanation text"),
+                                image: Asset.ConnectBrowserExtension.connectIntroIcon.image,
+                                tracking: ConnectBrowserExtensionTrackingEvent.success,
+                                action: action)
     }
 
 }

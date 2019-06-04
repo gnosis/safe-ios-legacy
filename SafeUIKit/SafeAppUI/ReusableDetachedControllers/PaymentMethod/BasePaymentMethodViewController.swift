@@ -19,7 +19,7 @@ class BasePaymentMethodViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = ColorName.paleGrey.color
+        view.backgroundColor = .white
 
         let topView = UIView()
         topView.backgroundColor = .white

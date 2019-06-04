@@ -29,10 +29,21 @@ extension ChangePasswordFlowCoordinator: SetupNewPasswordViewControllerDelegate 
     func didEnterNewPassword(_ password: String) {
         do {
             try Authenticator.instance.updateUserPassword(with: password)
-            exitFlow()
+            push(SuccessViewController.changePasswordSuccess(action: exitFlow))
         } catch {
             ErrorHandler.showFatalError(log: "Failed to update password", error: error)
         }
+    }
+
+}
+
+extension SuccessViewController {
+
+    static func changePasswordSuccess(action: @escaping () -> Void) -> SuccessViewController {
+        return .congratulations(text: LocalizedString("password_changed", comment: "Explanation text"),
+                                image: Asset.congratulations.image,
+                                tracking: ChangePasswordTrackingEvent.success,
+                                action: action)
     }
 
 }

@@ -1,4 +1,4 @@
-//
+    //
 //  Copyright © 2019 Gnosis Ltd. All rights reserved.
 //
 
@@ -50,7 +50,30 @@ extension SendFlowCoordinator: ReviewTransactionViewControllerDelegate {
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        push(SuccessViewController.createSendSuccess(token: controller.tx.amountTokenData, action: exitFlow))
+        push(SuccessViewController.sendSuccess(token: controller.tx.amountTokenData, action: exitFlow))
+    }
+
+}
+
+extension SuccessViewController {
+
+    static func sendSuccess(token: TokenData, action: @escaping () -> Void) -> SuccessViewController {
+        return .congratulations(text: LocalizedString("transaction_has_been_submitted", comment: "Explanation text"),
+                                image: Asset.congratulations.image,
+                                tracking: SendTrackingEvent(.success, token: token.address, tokenName: token.code),
+                                action: action)
+    }
+
+    static func congratulations(text: String,
+                                image: UIImage,
+                                tracking: Trackable,
+                                action: @escaping () -> Void) -> SuccessViewController {
+        return .create(title: LocalizedString("congratulations", comment: "Congratulations!"),
+                detail: text,
+                image: image,
+                screenTrackingEvent: tracking,
+                actionTitle: LocalizedString("continue_text", comment: "Continue"),
+                action: action)
     }
 
 }

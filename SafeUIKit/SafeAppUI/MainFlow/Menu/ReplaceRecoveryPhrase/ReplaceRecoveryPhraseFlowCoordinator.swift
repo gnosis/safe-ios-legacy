@@ -116,7 +116,18 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ReviewTransactionViewControllerD
         DispatchQueue.global.async {
             ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: self.transactionID)
         }
-        exitFlow()
+        push(SuccessViewController.replaceSeedSuccess(action: exitFlow))
+    }
+
+}
+
+extension SuccessViewController {
+
+    static func replaceSeedSuccess(action: @escaping () -> Void) -> SuccessViewController {
+        return .congratulations(text: LocalizedString("replaceseed_in_progress", comment: "Explanation text"),
+                                image: Asset.replacePhrase.image,
+                                tracking: ReplaceRecoveryPhraseTrackingEvent.success,
+                                action: action)
     }
 
 }

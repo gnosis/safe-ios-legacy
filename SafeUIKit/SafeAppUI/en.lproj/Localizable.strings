@@ -72,6 +72,9 @@
 /* Congratulations! */
 "congratulations" = "Congratulations!";
 
+/* Explanation text */
+"connecting_in_progress" = "Connecting the browser extension is now in progress. The transaction has been submitted and should take a couple of minutes.";
+
 /* Abort safe creation button title
    Continue */
 "continue_text" = "Continue";
@@ -96,6 +99,9 @@
 
 /* Disconnect browser extension description */
 "disconnect_2fa_description" = "Once this process is complete, you won't need to confirm transactions with browser extension.\n\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
+
+/* Explanation text */
+"disconnecting_in_progress" = "Disconnecting the browser extension is now in progress. The transaction has been submitted and should take a couple of minutes.";
 
 /* No transactions yet */
 "empty_safe_transactions_message" = "No transactions yet";
@@ -407,6 +413,9 @@
    Password placeholder */
 "password" = "Password";
 
+/* Explanation text */
+"password_changed" = "Your password has been changed.";
+
 /* No triple characters. */
 "password_validation_identical_characters" = "No triple characters";
 
@@ -468,6 +477,9 @@
 
 /* Detail for the header in review screen */
 "replace_browser_extension_transaction_info" = "The currently connected browser extension will be replaced with the new browser extension.";
+
+/* Explanation text */
+"replaceseed_in_progress" = "The transaction has been submitted and should take a couple of minutes. Replacing the recovery phrase is in progress. ";
 
 /* Resend button. */
 "resend" = "Resend";
@@ -596,6 +608,9 @@
 
 /* Try again in */
 "try_again_in" = "Try again in";
+
+/* Replacing */
+"tx_submitted_replace_be" = "The transaction has been submitted and should take a couple of minutes. Replacing browser extension is in progress.";
 
 /* 'Type' parameter name */
 "type" = "Type";
