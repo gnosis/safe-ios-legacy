@@ -140,6 +140,7 @@ public final class AddressInput: VerifiableInput {
         addressLabel.minimumScaleFactor = 0.8
         addressLabel.lineBreakMode = .byTruncatingTail
         addressLabel.isUserInteractionEnabled = false
+        addressLabel.hasCopyAddressTooltip = false
     }
 
     private func dotsRightView() -> UIView {

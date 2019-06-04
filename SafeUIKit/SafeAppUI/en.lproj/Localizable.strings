@@ -463,6 +463,9 @@
 /* Title for setup recovery phrase screen. */
 "recovery_phrase" = "Recovery Phrase";
 
+/* Refresh */
+"refresh" = "refresh";
+
 /* Detail for the header in review screen */
 "replace_browser_extension_transaction_info" = "The currently connected browser extension will be replaced with the new browser extension.";
 

@@ -25,17 +25,28 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
 
     private var tooltipSource: TooltipSource!
 
+    private let defaultBodyAttributes: [NSAttributedString.Key: Any] =
+        [.foregroundColor: ColorName.lightGreyBlue.color]
+    private let selectedBodyAttributes: [NSAttributedString.Key: Any] =
+        [.foregroundColor: ColorName.lightGreyBlue.color,
+         .backgroundColor: ColorName.darkSkyBlue.color.withAlphaComponent(0.2)]
+
     public override func commonInit() {
         formatter.hexMode = .mixedcased
         formatter.truncationMode = .off
         formatter.headLength = 2
         formatter.tailLength = 4
-        formatter.bodyAttributes = [.foregroundColor: ColorName.lightGreyBlue.color]
+        formatter.bodyAttributes = defaultBodyAttributes
         formatter.headAttributes = [.foregroundColor: UIColor.black]
         formatter.tailAttributes = formatter.headAttributes
-        tooltipSource = TooltipSource(target: self) { [unowned self] in
+        // swiftlint:disable:next multiline_arguments
+        tooltipSource = TooltipSource(target: self, onTap: { [unowned self] in
             UIPasteboard.general.string = self.address
-        }
+        }, onAppear: { [weak self] in
+            self?.tooltipWillShow()
+        }, onDisappear: { [weak self] in
+            self?.tooltipWillHide()
+        })
         tooltipSource.isActive = false
         numberOfLines = 0
         lineBreakMode = .byCharWrapping
@@ -51,6 +62,16 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
     private func formattedText() -> NSAttributedString? {
         guard let address = address else { return nil }
         return formatter.attributedString(from: address)
+    }
+
+    func tooltipWillShow() {
+        formatter.bodyAttributes = selectedBodyAttributes
+        attributedText = formattedText()
+    }
+
+    func tooltipWillHide() {
+        formatter.bodyAttributes = defaultBodyAttributes
+        attributedText = formattedText()
     }
 
 }
