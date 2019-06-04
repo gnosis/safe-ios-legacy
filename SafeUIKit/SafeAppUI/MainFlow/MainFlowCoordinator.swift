@@ -75,7 +75,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         } else {
             nextController = OnboardingCreateOrRestoreViewController.create(delegate: self)
         }
-        navigationController.setViewControllers([nextController], animated: true)
+        navigationController.setViewControllers([nextController], animated: false)
     }
 
 

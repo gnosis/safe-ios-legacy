@@ -123,18 +123,6 @@ extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
 
 }
 
-extension RecoverSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
-
-    func creationFeePaymentMethodPay() {
-        creationFeeIntroPay()
-    }
-
-    func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
-        return creationFeeLoadEstimates()
-    }
-
-}
-
 extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
 
     func creationFeeLoadEstimates() -> [TokenData] {
@@ -153,6 +141,27 @@ extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
 
     func creationFeeIntroPay() {
         push(RecoverRecoveryFeeViewController.create(delegate: self))
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
+
+    func creationFeePaymentMethodPay() {
+        creationFeeIntroPay()
+    }
+
+    func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
+        let estimates = creationFeeLoadEstimates()
+        // hacky: we want to update the payment intro at this point as well.
+        // TODO: duplicate code.
+        DispatchQueue.main.async {
+            if let controller = self.navigationController.viewControllers.first(where: {
+                $0 is OnboardingCreationFeeIntroViewController }) as? OnboardingCreationFeeIntroViewController {
+                controller.update(with: estimates)
+            }
+        }
+        return estimates
     }
 
 }

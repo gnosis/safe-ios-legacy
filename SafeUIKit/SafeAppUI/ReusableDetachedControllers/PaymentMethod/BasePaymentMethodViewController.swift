@@ -8,7 +8,7 @@ import Common
 import BigInt
 import MultisigWalletApplication
 
-class BasePaymentMethodViewController: UIViewController {
+class BasePaymentMethodViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var tokens = [TokenData]()
     var paymentToken: TokenData!
@@ -54,16 +54,11 @@ class BasePaymentMethodViewController: UIViewController {
         paymentToken = ApplicationServiceRegistry.walletService.feePaymentTokenData
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateData()
-    }
-
     func registerHeaderAndFooter() {
         // to override
     }
 
-    /// Called on viewWillAppear and on refresh triggering.
+    /// Called on refresh triggering.
     @objc func updateData() {
         // to override
     }
@@ -91,11 +86,7 @@ class BasePaymentMethodViewController: UIViewController {
         self.tableView.refreshControl?.endRefreshing()
     }
 
-}
-
 // MARK: - Table view data source
-
-extension BasePaymentMethodViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tokens.count
@@ -131,11 +122,7 @@ extension BasePaymentMethodViewController: UITableViewDataSource {
         return UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 13))
     }
 
-}
-
-// MARK: - Table view delegate
-
-extension BasePaymentMethodViewController: UITableViewDelegate {
+    // MARK: - Table view delegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

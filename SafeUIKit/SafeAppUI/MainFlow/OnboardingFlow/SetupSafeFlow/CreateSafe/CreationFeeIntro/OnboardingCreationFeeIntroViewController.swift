@@ -19,6 +19,7 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
 
     var titleText: String?
     var screenTrackingEvent: Trackable?
+    private var actionsIsEnabled: Bool = true
 
     private weak var delegate: CreationFeeIntroDelegate!
 
@@ -31,12 +32,11 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        tableView.allowsSelection = false
         navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: titleText)
+        updateData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        // parent triggers updateData() to fetch results from the server
         super.viewWillAppear(animated)
         // update on view will appear in case the selected token is changed from the PaymentMethod screen
         update(with: self.tokens)
@@ -74,13 +74,23 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
     }
 
     private func showLoadingTitleIfNeeded() {
+        actionsIsEnabled = false
         if navigationItem.titleView is LoadingTitleView { return }
         navigationItem.titleView = LoadingTitleView()
+        if let footer = tableView.footerView(forSection: 0) as? PaymentMethodFooterView {
+            footer.payWithButton.isEnabled = false
+            footer.changeFeePaymentMethodButton.isEnabled = false
+        }
     }
 
     private func hideLoadingTitleIfNeeded() {
+        actionsIsEnabled = true
         if navigationItem.titleView is SafeLabelTitleView { return }
         navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: titleText)
+        if let footer = tableView.footerView(forSection: 0) as? PaymentMethodFooterView {
+            footer.payWithButton.isEnabled = true
+            footer.changeFeePaymentMethodButton.isEnabled = true
+        }
     }
 
     // MARK: - UITableViewDataSource
@@ -121,7 +131,15 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
             self.delegate.creationFeeIntroChangePaymentMethod(estimations: self.tokens)
         }
         view.setPaymentMethodCode(paymentToken.code)
+        view.changeFeePaymentMethodButton.isEnabled = actionsIsEnabled
+        view.payWithButton.isEnabled = actionsIsEnabled
         return view
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard actionsIsEnabled else { return }
+        self.delegate.creationFeeIntroChangePaymentMethod(estimations: self.tokens)
     }
 
 }
