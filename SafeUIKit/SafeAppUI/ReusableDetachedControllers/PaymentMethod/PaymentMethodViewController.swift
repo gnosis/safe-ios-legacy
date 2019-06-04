@@ -7,6 +7,10 @@ import SafeUIKit
 import MultisigWalletApplication
 import Common
 
+protocol PaymentMethodViewControllerDelegate: class {
+    func paymentMethodViewControllerDidChangePaymentMethod(_ controller: PaymentMethodViewController)
+}
+
 class PaymentMethodViewController: BasePaymentMethodViewController {
 
     enum Strings {
@@ -18,6 +22,8 @@ class PaymentMethodViewController: BasePaymentMethodViewController {
             static let close = LocalizedString("close", comment: "Close")
         }
     }
+
+    weak var delegate: PaymentMethodViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +76,10 @@ class PaymentMethodViewController: BasePaymentMethodViewController {
             self.present(alert, animated: true)
         }
         return view
+    }
+
+    override func didChangePaymentMethod() {
+        delegate?.paymentMethodViewControllerDidChangePaymentMethod(self)
     }
 
 }

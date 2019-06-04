@@ -68,6 +68,10 @@ class BasePaymentMethodViewController: UIViewController {
         // to override
     }
 
+    func didChangePaymentMethod() {
+        // to override
+    }
+
     /// Used for OnboardingCreationFeeIntroViewController, OnboardingPaymentMethodViewController.
     /// Reloads tableView with estimations.
     ///
@@ -137,9 +141,13 @@ extension BasePaymentMethodViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let tokenData = tokens[indexPath.row]
         guard tokenData.balance ?? 0 > 0 else { return }
+        let oldToken = paymentToken
         ApplicationServiceRegistry.walletService.changePaymentToken(tokenData)
         paymentToken = ApplicationServiceRegistry.walletService.feePaymentTokenData
         tableView.reloadData()
+        if oldToken != paymentToken {
+            didChangePaymentMethod()
+        }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

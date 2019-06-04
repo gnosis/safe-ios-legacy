@@ -31,6 +31,7 @@ public class SendInputViewController: UIViewController {
     private var feeTokenID: BaseID {
         return BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
     }
+    private var needsEstimation: Bool = false
 
     public static func create(tokenID: BaseID) -> SendInputViewController {
         let controller = StoryboardScene.Main.sendInputViewController.instantiate()
@@ -73,6 +74,8 @@ public class SendInputViewController: UIViewController {
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
         tokenInput.textInput.keyboardTargetView = tokenInput.superview
 
+        setNeedsEstimation()
+
         DispatchQueue.main.async {
             // For unknown reasons, the identicon does not show up if updated in the viewDidLoad
             self.accountBalanceHeaderView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
@@ -85,8 +88,16 @@ public class SendInputViewController: UIViewController {
         updateFeeCalculationViewAndModel()
     }
 
+    private func setNeedsEstimation() {
+        needsEstimation = true
+    }
+
     /// If user changed payment method, the fee calculation view should be updated with new fee token data.
     private func updateFeeCalculationViewAndModel() {
+        guard needsEstimation else {
+            return
+        }
+        needsEstimation = false
         feeCalculationView.calculation = tokenID == feeTokenID ? SameTransferAndPaymentTokensFeeCalculation() :
             DifferentTransferAndPaymentTokensFeeCalculation()
         model.resetEstimation()
@@ -162,7 +173,9 @@ public class SendInputViewController: UIViewController {
     }
 
     @objc private func changePaymentMethod() {
-        navigationController?.pushViewController(PaymentMethodViewController(), animated: true)
+        let vc = PaymentMethodViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }
@@ -193,6 +206,14 @@ extension SendInputViewController: VerifiableInputDelegate {
 
     public func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput) {
         keyboardBehavior.activeTextField = verifiableInput.textInput
+    }
+
+}
+
+extension SendInputViewController: PaymentMethodViewControllerDelegate {
+
+    func paymentMethodViewControllerDidChangePaymentMethod(_ controller: PaymentMethodViewController) {
+        setNeedsEstimation()
     }
 
 }
