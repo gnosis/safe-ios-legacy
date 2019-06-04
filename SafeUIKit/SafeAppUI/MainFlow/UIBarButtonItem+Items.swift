@@ -28,7 +28,10 @@ extension UIBarButtonItem {
     }
 
     static func refreshButton(target: Any? = nil, action: Selector? = nil) -> UIBarButtonItem {
-        return UIBarButtonItem(barButtonSystemItem: .refresh, target: target, action: action)
+        return UIBarButtonItem(title: LocalizedString("refresh", comment: "Refresh"),
+                               style: .plain,
+                               target: target,
+                               action: action)
     }
 
 }
