@@ -34,7 +34,9 @@ public class RBEIntroViewController: UIViewController {
     public var screenTrackingEvent: Trackable?
 
     @IBOutlet weak var contentView: IntroContentView!
-    @IBOutlet weak var feeCalculationView: FeeCalculationView!
+    internal var feeCalculationView: FeeCalculationView {
+        return contentView.feeCalculationView
+    }
 
     private enum Strings {
         static let start = LocalizedString("start", comment: "Start")

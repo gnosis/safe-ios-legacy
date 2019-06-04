@@ -72,6 +72,11 @@ class SetupNewPasswordViewController: UIViewController {
         keyboardBehavior.stop()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(ChangePasswordTrackingEvent.new)
+    }
+
     private func configureNewPasswordInput() {
         newPasswordInput.delegate = self
         newPasswordInput.textInput.placeholder = Strings.newPasswordPlaceholder

@@ -41,6 +41,7 @@
                                     <constraint firstAttribute="height" constant="48" id="6mX-Xl-WY2"/>
                                     <constraint firstAttribute="width" constant="48" id="q9j-nP-Z2q"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="close-icon"/>
                                 <connections>
                                     <action selector="close" destination="-1" eventType="touchUpInside" id="QZw-d6-74e"/>

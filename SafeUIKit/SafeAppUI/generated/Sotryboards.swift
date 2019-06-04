@@ -97,11 +97,6 @@ enum StoryboardScene {
 
     static let onboardingWelcomeViewController = SceneType<SafeAppUI.OnboardingWelcomeViewController>(storyboard: MasterPassword.self, identifier: "OnboardingWelcomeViewController")
   }
-  enum ReceiveFunds: StoryboardType {
-    static let storyboardName = "ReceiveFunds"
-
-    static let receiveFundsViewController = SceneType<SafeAppUI.ReceiveFundsViewController>(storyboard: ReceiveFunds.self, identifier: "ReceiveFundsViewController")
-  }
   enum RecoverSafe: StoryboardType {
     static let storyboardName = "RecoverSafe"
 

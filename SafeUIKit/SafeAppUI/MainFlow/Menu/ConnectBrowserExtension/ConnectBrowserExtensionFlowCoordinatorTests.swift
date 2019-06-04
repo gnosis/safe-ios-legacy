@@ -59,9 +59,9 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(mockApplicationService.didStartMonitoring)
     }
 
-    func test_whenFinishesReview_thenExitsFlo() {
+    func test_whenFinishesReview_thenOpensSuccess() {
         fc.reviewTransactionViewControllerDidFinishReview(ReviewTransactionViewController())
-        XCTAssertTrue(fc.didExit)
+        XCTAssertTrue(fc.navigationController.topViewController is SuccessViewController)
     }
 
     func test_tracking() {

@@ -49,7 +49,7 @@ public final class TransferView: BaseCustomView {
         balanceLabel.textColor = ColorName.darkSlateBlue.color
         balanceLabel.isShowingPlusSign = false
         amountLabel.textColor = ColorName.darkSlateBlue.color
-        amountLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        amountLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
     }
 
     public override func update() {
@@ -68,4 +68,9 @@ public final class TransferView: BaseCustomView {
     public func setIncoming() {
         amountLabel.textColor = ColorName.greenTeal.color
     }
+
+    public func setSmallerAmountLabelFontSize() {
+        amountLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+    }
+
 }

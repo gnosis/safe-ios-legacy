@@ -9,7 +9,6 @@ class RecoverReviewViewController: RBEReviewTransactionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        enableSubmit()
         title = LocalizedString("recover_safe_title", comment: "Title")
     }
 
@@ -23,7 +22,7 @@ class RecoverReviewViewController: RBEReviewTransactionViewController {
         return ApplicationServiceRegistry.recoveryService.transactionData(id)
     }
 
-    override func requestSignaturesIfNeeded() {
+    override func requestConfirmationsOnce() {
         /* empty */
     }
 

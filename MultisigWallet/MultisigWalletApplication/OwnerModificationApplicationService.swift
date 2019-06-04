@@ -35,6 +35,7 @@ open class OwnerModificationApplicationService: RBEStarter {
 
     open func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
         let txID = TransactionID(transaction)
+        domainService.stepBackToDraft(txID)
         domainService.addDummyData(to: txID)
         do {
             let fee = try domainService.estimateNetworkFee(for: txID)

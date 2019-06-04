@@ -10,16 +10,16 @@ public class IntroContentView: NibUIView {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
     @IBOutlet weak var elementsStackView: UIStackView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
     struct Style {
-        var elementSpacing: CGFloat = 39
-        var edgeMargin: CGFloat = 28
+        var elementSpacing: CGFloat = 25
+        var edgeMargin: CGFloat = 16
         var headerStyle = ContentHeaderStyle()
         var bodyStyle = ContentBodyStyle()
     }
@@ -43,7 +43,6 @@ public class IntroContentView: NibUIView {
         elementsStackView.spacing = style.elementSpacing
         leadingConstraint.constant = style.edgeMargin
         trailingConstraint.constant = style.edgeMargin
-        bottomConstraint.constant = style.elementSpacing
         iconImageView.image = content.icon
         headerLabel.attributedText = NSAttributedString(string: content.header, style: style.headerStyle)
         bodyLabel.attributedText = NSAttributedString(string: content.body, style: style.bodyStyle)
@@ -53,21 +52,21 @@ public class IntroContentView: NibUIView {
 
 class ContentHeaderStyle: AttributedStringStyle {
 
-    override var fontWeight: UIFont.Weight { return .bold }
-    override var fontSize: Double { return 20 }
+    override var fontWeight: UIFont.Weight { return .semibold }
+    override var fontSize: Double { return 17 }
     override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
-    override var minimumLineHeight: Double { return 25 }
-    override var maximumLineHeight: Double { return 25 }
+    override var minimumLineHeight: Double { return 22 }
+    override var maximumLineHeight: Double { return 22 }
     override var alignment: NSTextAlignment { return .center }
 
 }
 
 class ContentBodyStyle: AttributedStringStyle {
 
-    override var fontSize: Double { return 16 }
+    override var fontSize: Double { return 17 }
     override var fontColor: UIColor { return ColorName.battleshipGrey.color }
-    override var minimumLineHeight: Double { return 25 }
-    override var maximumLineHeight: Double { return 25 }
+    override var minimumLineHeight: Double { return 22 }
+    override var maximumLineHeight: Double { return 22 }
     override var spacingAfterParagraph: Double { return -10 } // two paragraphs are used in localisation strings
 
 }

@@ -75,6 +75,11 @@ final class VerifyCurrentPasswordViewController: UIViewController {
         verifiableInputDidReturn(passwordInput)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(ChangePasswordTrackingEvent.current)
+    }
+
 }
 
 extension VerifyCurrentPasswordViewController: VerifiableInputDelegate {

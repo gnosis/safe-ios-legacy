@@ -105,8 +105,21 @@ extension DisconnectBrowserExtensionFlowCoordinator: ReviewTransactionViewContro
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        applicationService.startMonitoring(transaction: transactionID)
-        exitFlow()
+        DispatchQueue.global.async {
+            self.applicationService.startMonitoring(transaction: self.transactionID)
+        }
+        push(SuccessViewController.disconnect2FASuccess(action: exitFlow))
+    }
+
+}
+
+extension SuccessViewController {
+
+    static func disconnect2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
+        return .congratulations(text: LocalizedString("disconnecting_in_progress", comment: "Explanation text"),
+                                image: Asset.ConnectBrowserExtension.connectIntroIcon.image,
+                                tracking: DisconnectBrowserExtensionTrackingEvent.success,
+                                action: action)
     }
 
 }

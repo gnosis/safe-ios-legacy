@@ -103,8 +103,21 @@ extension ReplaceBrowserExtensionFlowCoordinator: ReviewTransactionViewControlle
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        applicationService.startMonitoring(transaction: transactionID)
-        exitFlow()
+        DispatchQueue.global.async {
+            self.applicationService.startMonitoring(transaction: self.transactionID)
+        }
+        push(SuccessViewController.replace2FASuccess(action: exitFlow))
+    }
+
+}
+
+extension SuccessViewController {
+
+    static func replace2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
+        return .congratulations(text: LocalizedString("tx_submitted_replace_be", comment: "Replacing"),
+                                image: Asset.ReplaceBrowserExtension.introIcon.image,
+                                tracking: ReplaceBrowserExtensionTrackingEvent.success,
+                                action: action)
     }
 
 }

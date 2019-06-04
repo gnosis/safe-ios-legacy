@@ -46,6 +46,8 @@ class ScannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UIButton.appearance(whenContainedInInstancesOf: [type(of: self)]).tintColor = .white
+
         #if !DEBUG
         debugButtonsStackView.removeFromSuperview()
         #else

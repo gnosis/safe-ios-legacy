@@ -105,7 +105,15 @@ extension CreateSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
     }
 
     func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
-        return creationFeeLoadEstimates()
+        let estimates = creationFeeLoadEstimates()
+        // hacky: we want to update the payment intro at this point as well.
+        DispatchQueue.main.async {
+            if let controller = self.navigationController.viewControllers.first(where: {
+                $0 is OnboardingCreationFeeIntroViewController }) as? OnboardingCreationFeeIntroViewController {
+                controller.update(with: estimates)
+            }
+        }
+        return estimates
     }
 
 }

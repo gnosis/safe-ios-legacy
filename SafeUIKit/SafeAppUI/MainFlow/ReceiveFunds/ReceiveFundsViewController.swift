@@ -6,55 +6,58 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 
-// TODO: refactor and reuse CardViewController
-class ReceiveFundsViewController: UIViewController {
+class ReceiveFundsViewController: CardViewController {
 
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var safeLabel: UILabel!
-    @IBOutlet weak var identiconView: IdenticonView!
-    @IBOutlet weak var safeAddressLabel: FullEthereumAddressLabel!
-    @IBOutlet weak var qrCodeView: QRCodeView!
+    let addressDetailView = AddressDetailView()
+    let headerLabel = UILabel()
+    private var address: String!
 
-    private var address: String {
-        return ApplicationServiceRegistry.walletService.selectedWalletAddress!
+    static func create() -> ReceiveFundsViewController {
+        let controller = ReceiveFundsViewController(nibName: String(describing: CardViewController.self),
+                                                    bundle: Bundle(for: CardViewController.self))
+        return controller
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: 19, right: 0)
+        embed(view: headerLabel, inCardSubview: cardHeaderView, insets: insets)
+        embed(view: addressDetailView, inCardSubview: cardBodyView, insets: insets)
+
+        title = Strings.title
+
+        headerLabel.textColor = ColorName.battleshipGrey.color
+        headerLabel.text = Strings.description
+        headerLabel.numberOfLines = 0
+        headerLabel.font = UIFont.systemFont(ofSize: 17)
+        headerLabel.textAlignment = .center
+
+        subtitleLabel.isHidden = true
+        subtitleDetailLabel.isHidden = true
+        footerButton.isHidden = true
+
+        SafeLabelTitleView.apply(to: addressDetailView.headerLabel)
+        addressDetailView.footnoteLabel.isHidden = true
+        addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
+        addressDetailView.address = address
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(MainTrackingEvent.receiveFunds)
+    }
+
+    @IBAction func share(_ sender: Any) {
+        let activityController = UIActivityViewController(activityItems: [address!], applicationActivities: nil)
+        present(activityController, animated: true)
     }
 
     enum Strings {
         static let title = LocalizedString("receive_funds", comment: "Receive Funds")
         static let description = LocalizedString("share_your_address",
                                                  comment: "Description for Receive Funds screen.")
-    }
-
-    static func create() -> ReceiveFundsViewController {
-        return StoryboardScene.ReceiveFunds.receiveFundsViewController.instantiate()
-    }
-
-    @IBAction func share(_ sender: Any) {
-        let activityController = UIActivityViewController(activityItems: [address], applicationActivities: nil)
-        present(activityController, animated: true)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = Strings.title
-        view.backgroundColor = ColorName.paleGrey.color
-        headerLabel.textColor = ColorName.battleshipGrey.color
-        separatorView.backgroundColor = ColorName.paleLilac.color
-        safeLabel.textColor = ColorName.dusk.color
-        identiconView.seed = address
-        safeAddressLabel.address = address
-        safeAddressLabel.hasCopyAddressTooltip = true
-        qrCodeView.value = address
-        qrCodeView.padding = 12
-        qrCodeView.layer.borderWidth = 1
-        qrCodeView.layer.borderColor = UIColor.black.cgColor
-        qrCodeView.layer.cornerRadius = 9
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        trackEvent(MainTrackingEvent.receiveFunds)
     }
 
 }

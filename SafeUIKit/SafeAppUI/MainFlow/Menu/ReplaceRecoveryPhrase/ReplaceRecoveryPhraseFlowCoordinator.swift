@@ -69,6 +69,7 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
         vc.detailString = ReplaceRecoveryPhraseStrings.detail
         vc.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.review
         vc.successTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.success
+        vc.showsSubmitInNavigationBar = false
         return vc
     }
 
@@ -112,8 +113,21 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ReviewTransactionViewControllerD
     }
 
     public func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: transactionID)
-        exitFlow()
+        DispatchQueue.global.async {
+            ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: self.transactionID)
+        }
+        push(SuccessViewController.replaceSeedSuccess(action: exitFlow))
+    }
+
+}
+
+extension SuccessViewController {
+
+    static func replaceSeedSuccess(action: @escaping () -> Void) -> SuccessViewController {
+        return .congratulations(text: LocalizedString("replaceseed_in_progress", comment: "Explanation text"),
+                                image: Asset.replacePhrase.image,
+                                tracking: ReplaceRecoveryPhraseTrackingEvent.success,
+                                action: action)
     }
 
 }

@@ -79,7 +79,7 @@ class MainViewController: UIViewController {
         selectedViewController = assetViewController
 
         headerView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
-        headerView.identiconView.tapAction = assetViewController.delegate?.openAddressDetails
+        headerView.button.addTarget(self, action: #selector(didTapAddress), for: .touchUpInside)
 
         assetViewController.scrollDelegate = assetViewScrollDelegate
         assetViewScrollDelegate.setUp(assetViewController.tableView, headerView)
@@ -109,6 +109,10 @@ class MainViewController: UIViewController {
     // Called from AssetViewViewController -> AddTokenFooterView by responder chain
     @IBAction func manageTokens(_ sender: Any) {
         assetViewController.delegate?.manageTokens()
+    }
+
+    @IBAction func didTapAddress(_ sender: Any) {
+        assetViewController.delegate?.openAddressDetails()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -189,6 +193,7 @@ class MainHeaderView: UIView {
     @IBOutlet weak var identiconView: IdenticonView!
     @IBOutlet weak var addressLabel: EthereumAddressLabel!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var button: UIButton!
 
     var height: CGFloat {
         get { return heightConstraint.constant }

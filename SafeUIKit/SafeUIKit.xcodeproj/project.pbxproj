@@ -229,7 +229,6 @@
 		0AD8998722803858008AE325 /* FeeCalculationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8998622803858008AE325 /* FeeCalculationCell.swift */; };
 		0AD8998A228042CD008AE325 /* BaseCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD89989228042CC008AE325 /* BaseCustomButton.swift */; };
 		0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899A92281C74B008AE325 /* SuccessViewController.swift */; };
-		0AD899BA2281CADD008AE325 /* SuccessViewController+SendSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899B92281CADD008AE325 /* SuccessViewController+SendSuccess.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */; };
 		0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989520D3B43200E6F3CA /* BaseCustomViewTests.swift */; };
@@ -268,6 +267,8 @@
 		0AFA76692181FB1800A96FDB /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */; };
 		0AFA766B2181FB1E00A96FDB /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */; };
 		0AFA766D2182195200A96FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA766C2182195200A96FDB /* ViewController.swift */; };
+		0AFD05E022A680AF00888956 /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
+		0AFD05F822A6906000888956 /* ChangePasswordTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD05F722A6906000888956 /* ChangePasswordTrackingEvent.swift */; };
 		0AFDB43821AC16B000F31840 /* FullEthereumAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDB43721AC16B000F31840 /* FullEthereumAddressLabel.swift */; };
 		0AFDB43A21AC42BE00F31840 /* FullEthereumAddressLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDB43921AC42BE00F31840 /* FullEthereumAddressLabelTests.swift */; };
 		5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395F20D17CDB000F2A82 /* Double+BigInt.swift */; };
@@ -310,7 +311,6 @@
 		5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */; };
 		5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13D21A55E8D006BF834 /* TransactionFeeCell.swift */; };
 		5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */; };
-		553AEB0C229EA33800EA3248 /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
 		553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
 		553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */; };
 		553AEB13229EA42400EA3248 /* RBEIntroViewControllerErrorStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */; };
@@ -357,7 +357,6 @@
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
-		557353592293F0AB00248F87 /* ReceiveFunds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557353562293F0AB00248F87 /* ReceiveFunds.storyboard */; };
 		5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */; };
 		5573535B2293F0C500248F87 /* ReceiveFundsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */; };
 		557353722294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */; };
@@ -827,7 +826,6 @@
 		0AD8998622803858008AE325 /* FeeCalculationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationCell.swift; sourceTree = "<group>"; };
 		0AD89989228042CC008AE325 /* BaseCustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCustomButton.swift; sourceTree = "<group>"; };
 		0AD899A92281C74B008AE325 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
-		0AD899B92281CADD008AE325 /* SuccessViewController+SendSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuccessViewController+SendSuccess.swift"; sourceTree = "<group>"; };
 		0AD9989520D3B43200E6F3CA /* BaseCustomViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomViewTests.swift; sourceTree = "<group>"; };
 		0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParticipantViewTests.swift; sourceTree = "<group>"; };
 		0AD998A120D3E5BA00E6F3CA /* IdenticonViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonViewTests.swift; sourceTree = "<group>"; };
@@ -871,6 +869,7 @@
 		0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFA766C2182195200A96FDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0AFD05F722A6906000888956 /* ChangePasswordTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordTrackingEvent.swift; sourceTree = "<group>"; };
 		0AFDB43721AC16B000F31840 /* FullEthereumAddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEthereumAddressLabel.swift; sourceTree = "<group>"; };
 		0AFDB43921AC42BE00F31840 /* FullEthereumAddressLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEthereumAddressLabelTests.swift; sourceTree = "<group>"; };
 		5506395F20D17CDB000F2A82 /* Double+BigInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+BigInt.swift"; sourceTree = "<group>"; };
@@ -947,7 +946,6 @@
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewControllerTests.swift; sourceTree = "<group>"; };
-		557353562293F0AB00248F87 /* ReceiveFunds.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReceiveFunds.storyboard; sourceTree = "<group>"; };
 		557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
 		557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeIntroViewController.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
@@ -1257,6 +1255,8 @@
 			isa = PBXGroup;
 			children = (
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
+				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
+				0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */,
 				5549B2F3228C268100F3B5B7 /* OwnerModificationFeeCalculation.swift */,
 				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
 				0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */,
@@ -1277,8 +1277,6 @@
 				0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */,
 				0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */,
 				0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */,
-				0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */,
-				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
 				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
 				0A2FAA822201A92A00793B7B /* Common */,
 			);
@@ -1389,7 +1387,6 @@
 				0AD5091B211091E4008507CB /* SendInputViewModelTests.swift */,
 				554CACCE221F04B80086D303 /* SendReviewViewController.swift */,
 				554CACD6221F19430086D303 /* SendReviewViewControllerTests.swift */,
-				0AD899B92281CADD008AE325 /* SuccessViewController+SendSuccess.swift */,
 				0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */,
 			);
 			path = Send;
@@ -1995,7 +1992,6 @@
 		557353542293F0AB00248F87 /* ReceiveFunds */ = {
 			isa = PBXGroup;
 			children = (
-				557353562293F0AB00248F87 /* ReceiveFunds.storyboard */,
 				557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */,
 				557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */,
 			);
@@ -2038,6 +2034,7 @@
 				5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */,
 				5598FFE9225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift */,
 				5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */,
+				0AFD05F722A6906000888956 /* ChangePasswordTrackingEvent.swift */,
 				5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */,
 				5598FFE5225B73B3006D5792 /* SetupNewPasswordViewControllerTests.swift */,
 				5598FFEB225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift */,
@@ -2557,7 +2554,6 @@
 				0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */,
 				55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */,
 				553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */,
-				557353592293F0AB00248F87 /* ReceiveFunds.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2951,6 +2947,7 @@
 				554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */,
 				0A2D587E225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift in Sources */,
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,
+				0AFD05F822A6906000888956 /* ChangePasswordTrackingEvent.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
 				0A2D58862257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift in Sources */,
 				0AB20142229848520071510A /* LongProcessTracker.swift in Sources */,
@@ -2960,10 +2957,8 @@
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
 				0AE0FEA0229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift in Sources */,
-				0AD899BA2281CADD008AE325 /* SuccessViewController+SendSuccess.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */,
-				553AEB0C229EA33800EA3248 /* TestableRBEIntroViewController.swift in Sources */,
 				0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */,
 				0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
@@ -3087,6 +3082,7 @@
 				0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */,
 				553AEB17229EA43200EA3248 /* RBEIntroViewControllerStartedStateTests.swift in Sources */,
 				0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */,
+				0AFD05E022A680AF00888956 /* TestableRBEIntroViewController.swift in Sources */,
 				0A334DC1209C6D8D00ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift in Sources */,
 				553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */,
 				553AEB19229EA43900EA3248 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,

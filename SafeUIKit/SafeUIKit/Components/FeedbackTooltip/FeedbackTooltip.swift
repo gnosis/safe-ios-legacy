@@ -4,6 +4,13 @@
 
 import UIKit
 
+public protocol FeedbackTooltipDelegate: class {
+
+    func tooltipWillAppear(_ tooltip: FeedbackTooltip)
+    func tooltipWillDisappear(_ tooltip: FeedbackTooltip)
+
+}
+
 public final class FeedbackTooltip: CardView {
 
     private let label = UILabel()
@@ -17,6 +24,8 @@ public final class FeedbackTooltip: CardView {
     private let appearanceDuration: TimeInterval = 0.3
 
     public private(set) var isVisible: Bool = false
+
+    public weak var delegate: FeedbackTooltipDelegate?
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,6 +67,7 @@ public final class FeedbackTooltip: CardView {
 
     // swiftlint:disable multiline_arguments multiple_closures_with_trailing_closure
     private func show() {
+        self.delegate?.tooltipWillAppear(self)
         isVisible = true
         UIView.animate(withDuration: appearanceDuration, delay: 0, options: [.allowUserInteraction], animations: {
             self.alpha = 1
@@ -65,6 +75,7 @@ public final class FeedbackTooltip: CardView {
     }
 
     public func hide() {
+        self.delegate?.tooltipWillDisappear(self)
         isVisible = false
         layer.removeAllAnimations()
         UIView.animate(withDuration: appearanceDuration, delay: 0, options: [], animations: {
@@ -75,8 +86,12 @@ public final class FeedbackTooltip: CardView {
     }
 
     @discardableResult
-    public static func show(for view: UIView, in superview: UIView, message: String) -> FeedbackTooltip {
+    public static func show(for view: UIView,
+                            in superview: UIView,
+                            message: String,
+                            delegate: FeedbackTooltipDelegate? = nil) -> FeedbackTooltip {
         let tooltip = FeedbackTooltip()
+        tooltip.delegate = delegate
         tooltip.label.text = message
         tooltip.alpha = 0
         tooltip.translatesAutoresizingMaskIntoConstraints = false

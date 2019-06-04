@@ -66,17 +66,18 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     func switchToRootController() {
-        clearNavigationStack()
+        let nextController: UIViewController
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
-            showMainScreen()
+            let mainVC = MainViewController.create(delegate: self)
+            mainVC.navigationItem.backBarButtonItem = .backButton()
+            nextController = mainVC
+
         } else {
-            showCreateOrRestoreScreen()
+            nextController = OnboardingCreateOrRestoreViewController.create(delegate: self)
         }
+        navigationController.setViewControllers([nextController], animated: false)
     }
 
-    func showCreateOrRestoreScreen() {
-        push(OnboardingCreateOrRestoreViewController.create(delegate: self))
-    }
 
     func requestToUnlockApp(useUIApplicationRoot: Bool = false) {
         lockedViewController = useUIApplicationRoot ? applicationRootViewController : rootViewController
@@ -84,12 +85,6 @@ open class MainFlowCoordinator: FlowCoordinator {
             if !success { return }
             self.applicationRootViewController = self.lockedViewController
         }
-    }
-
-    func showMainScreen() {
-        let mainVC = MainViewController.create(delegate: self)
-        mainVC.navigationItem.backBarButtonItem = .backButton()
-        push(mainVC)
     }
 
     open func appEntersForeground() {

@@ -44,10 +44,10 @@ public class CardViewController: UIViewController {
 
     }
 
-    func embed(view: UIView, inCardSubview cardSubview: UIView) {
+    func embed(view: UIView, inCardSubview cardSubview: UIView, insets: UIEdgeInsets = .zero) {
         view.translatesAutoresizingMaskIntoConstraints = false
         cardSubview.addSubview(view)
-        cardSubview.wrapAroundDynamicHeightView(view)
+        cardSubview.wrapAroundDynamicHeightView(view, insets: insets)
     }
 
     func setSubtitle(_ subtitle: String?, showError: Bool = false) {

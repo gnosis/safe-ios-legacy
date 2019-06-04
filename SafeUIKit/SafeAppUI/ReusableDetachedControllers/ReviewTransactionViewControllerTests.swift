@@ -88,7 +88,7 @@ class ReviewTransactionViewControllerTests: ReviewTransactionViewControllerBaseT
         createWindow(vc)
         vc.submit()
         delay()
-        XCTAssertAlertShown(message: ReviewTransactionViewController.Strings.Alert.description, actionCount: 2)
+        XCTAssertAlertShown(message: ReviewTransactionViewController.Alert.description, actionCount: 2)
     }
 
     func test_whenSubmittingConfirmedTransaction_thenCallsDelegate() {
@@ -139,6 +139,7 @@ extension ReviewTransactionViewControllerTests {
         service.requestTransactionConfirmation_output = data
         service.update(account: BaseID(data.amountTokenData.address), newBalance: accountBalance)
         let vc = SendReviewViewController(transactionID: data.id, delegate: delegate)
+        vc.showsSubmitInNavigationBar = false
         vc.viewDidLoad()
         return vc
     }
