@@ -105,6 +105,7 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
         cell.configure(tokenData: paymentToken,
                        displayBalance: true,
                        displayFullName: false,
+                       roundUp: true,
                        accessoryType: .none)
         return cell
     }

@@ -29,6 +29,8 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
         }
     }
 
+    override var shouldRoundUpAmounts: Bool { return true }
+
     enum Strings {
         static let title = LocalizedString("fee_method", comment: "Fee Payment Method")
         static let headerDescription = LocalizedString("choose_how_to_pay_creation_fee",

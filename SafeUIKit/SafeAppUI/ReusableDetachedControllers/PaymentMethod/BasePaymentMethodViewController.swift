@@ -15,6 +15,7 @@ class BasePaymentMethodViewController: UIViewController, UITableViewDelegate, UI
 
     let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     var topViewHeightConstraint: NSLayoutConstraint!
+    var shouldRoundUpAmounts: Bool { return false }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +87,7 @@ class BasePaymentMethodViewController: UIViewController, UITableViewDelegate, UI
         self.tableView.refreshControl?.endRefreshing()
     }
 
-// MARK: - Table view data source
+    // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tokens.count
@@ -99,6 +100,7 @@ class BasePaymentMethodViewController: UIViewController, UITableViewDelegate, UI
         cell.configure(tokenData: tokenData,
                        displayBalance: true,
                        displayFullName: false,
+                       roundUp: shouldRoundUpAmounts,
                        accessoryType: .none)
         cell.accessoryView = tokenData.address == paymentToken.address ? checkmarkImageView() : emptyImageView()
         cell.rightTrailingConstraint.constant = 14

@@ -122,7 +122,8 @@ public class SendInputViewController: UIViewController {
             let calculation = feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
             calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
                                            target: self,
-                                           action: #selector(changePaymentMethod))
+                                           action: #selector(changePaymentMethod),
+                                           roundUp: true)
             calculation.resultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setBalanceError(feeBalanceError())
         } else {
@@ -131,7 +132,8 @@ public class SendInputViewController: UIViewController {
             calculation.setBalanceError(tokenBalanceError())
             calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
                                            target: self,
-                                           action: #selector(changePaymentMethod))
+                                           action: #selector(changePaymentMethod),
+                                           roundUp: true)
             calculation.networkFeeResultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setFeeBalanceError(feeBalanceError())
         }

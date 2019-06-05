@@ -19,6 +19,7 @@ extension BasicTableViewCell {
     func configure(tokenData: TokenData,
                    displayBalance: Bool,
                    displayFullName: Bool,
+                   roundUp: Bool = false,
                    accessoryType: AccessoryType = .disclosureIndicator) {
         accessibilityIdentifier = tokenData.name
         self.accessoryType = accessoryType
@@ -40,12 +41,13 @@ extension BasicTableViewCell {
         } else {
             leftTextLabel.text = tokenData.code
         }
-        rightTextLabel.text = displayBalance ? formattedBalance(tokenData) : nil
+        rightTextLabel.text = displayBalance ? formattedBalance(tokenData, roundUp: roundUp) : nil
     }
 
-    private func formattedBalance(_ tokenData: TokenData) -> String {
+    private func formattedBalance(_ tokenData: TokenData, roundUp: Bool) -> String {
         guard let decimal = tokenData.decimalAmount else { return "--" }
         let formatter = TokenFormatter()
+        formatter.roundingBehavior = roundUp ? .roundUp : .cutoff
         return formatter.string(from: decimal)
     }
 

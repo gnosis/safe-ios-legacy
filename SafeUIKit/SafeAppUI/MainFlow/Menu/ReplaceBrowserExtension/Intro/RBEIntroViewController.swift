@@ -98,7 +98,8 @@ public class RBEIntroViewController: UIViewController {
         feeCalculation.currentBalanceLine.set(value: formatter.string(from: data.currentBalance))
         feeCalculation.networkFeeLine.set(valueButton: data.networkFee.withNonNegativeBalance(),
                                           target: self,
-                                          action: #selector(changePaymentMethod))
+                                          action: #selector(changePaymentMethod),
+                                          roundUp: true)
         feeCalculation.resultingBalanceLine.set(value: formatter.string(from: data.balance))
         feeCalculation.setBalanceError(nil)
     }
