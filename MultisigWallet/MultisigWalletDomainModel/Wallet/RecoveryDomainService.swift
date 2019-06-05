@@ -607,7 +607,7 @@ class RecoveryTransactionBuilder: Assertable {
             .find(id: TokenID(estimationResponse.gasToken))?.token ?? Token.Ether
         let gasPrice = TokenAmount(amount: TokenInt(estimationResponse.gasPrice), token: feeToken)
         let estimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
-                                              dataGas: estimationResponse.dataGas,
+                                              dataGas: estimationResponse.baseGas,
                                               operationalGas: estimationResponse.operationalGas,
                                               gasPrice: gasPrice)
         transaction.change(fee: estimate.totalSubmittedToBlockchain)

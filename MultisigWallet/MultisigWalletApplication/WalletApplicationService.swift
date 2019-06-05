@@ -619,7 +619,7 @@ public class WalletApplicationService: Assertable {
             try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
         }
         let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
-                                                 dataGas: estimationResponse.dataGas,
+                                                 dataGas: estimationResponse.baseGas,
                                                  operationalGas: estimationResponse.operationalGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
                                                                        token: token(id: estimationResponse.gasToken)!))

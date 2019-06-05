@@ -83,7 +83,7 @@ public class WalletSettingsDomainService {
         (TokenAmount, TransactionFeeEstimate, Int) {
             let gasPrice = TokenAmount(amount: TokenInt(estimationResponse.gasPrice), token: Token.Ether)
             let estimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
-                                                  dataGas: estimationResponse.dataGas,
+                                                  dataGas: estimationResponse.baseGas,
                                                   operationalGas: estimationResponse.operationalGas,
                                                   gasPrice: gasPrice)
             let fee = TokenInt(estimate.gas + estimate.dataGas) * estimate.gasPrice.amount

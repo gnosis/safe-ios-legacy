@@ -85,7 +85,7 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                                  operation: .call,
                                                  gasToken: nil)
         let response = try relayService.estimateTransaction(request: request)
-        let ints = [response.safeTxGas, response.gasPrice, response.dataGas, response.operationalGas]
+        let ints = [response.safeTxGas, response.gasPrice, response.baseGas, response.operationalGas]
         ints.forEach { XCTAssertNotEqual($0, 0, "Response: \(response)") }
         let address = EthAddress(hex: response.gasToken)
         XCTAssertEqual(address, .zero)
