@@ -55,6 +55,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     func test_whenReceivingRemoteMessageData_thenPassesItToService() {
         mainFlowCoordinator.receive(message: ["key": "value"])
+        delay()
         XCTAssertEqual(walletService.receive_input?["key"] as? String, "value")
     }
 
@@ -62,7 +63,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         let data = createTransaction()
         mainFlowCoordinator.incomingTransactionFlowCoordinator.transactionID = data.id
         mainFlowCoordinator.receive(message: ["key": "value"])
-        delay()
+        delay(0.5)
         let vc = mainFlowCoordinator.navigationController.topViewController
             as? ReviewTransactionViewController
         XCTAssertNotNil(vc)
@@ -73,13 +74,11 @@ class MainFlowCoordinatorTests: SafeTestCase {
     func test_whenAlreadyOpenedReviewTransaction_thenJustUpdatesIt() {
         let data = createTransaction()
         mainFlowCoordinator.receive(message: ["key": "value"])
-        delay()
-        let controllerCount = mainFlowCoordinator.navigationController.viewControllers.count
+        delay(0.5)
         mainFlowCoordinator.receive(message: ["key": "value"])
-        delay()
+        delay(0.5)
         XCTAssertEqual((mainFlowCoordinator.navigationController.topViewController
             as? ReviewTransactionViewController)?.tx.id, data.id)
-        XCTAssertEqual(mainFlowCoordinator.navigationController.viewControllers.count, controllerCount)
     }
 
     func test_whenReviewTransactionFinished_thenPopsBack() {
