@@ -837,7 +837,7 @@ public class WalletApplicationService: Assertable {
 
         let tokenProxy = ERC20TokenContractProxy(message.to)
         if let erc20Transfer = tokenProxy.decodedTransfer(from: message.data) {
-            let amountToken = self.token(for: message.to, isFee: false)
+            let amountToken = self.token(for: message.to)
             transaction
                 .change(recipient: erc20Transfer.recipient)
                 .change(amount: TokenAmount(amount: erc20Transfer.amount, token: amountToken))
