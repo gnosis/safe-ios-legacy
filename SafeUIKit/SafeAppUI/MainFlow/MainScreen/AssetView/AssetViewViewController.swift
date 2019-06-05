@@ -37,13 +37,18 @@ final class AssetViewViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.assets)
-        scrollDelegate?.viewDidAppear?(tableView)
     }
 
     @objc func update() {
         DispatchQueue.global().async {
             ApplicationServiceRegistry.walletService.syncBalances()
         }
+    }
+
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        guard parent != nil else { return }
+        scrollDelegate?.scrollToTop?(tableView)
     }
 
     // MARK: - Table view data source

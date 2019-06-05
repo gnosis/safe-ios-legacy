@@ -5,7 +5,7 @@
 import Foundation
 
 @objc protocol ScrollDelegate: UIScrollViewDelegate {
-    @objc optional func viewDidAppear(_ scrollView: UIScrollView)
+    @objc optional func scrollToTop(_ scrollView: UIScrollView)
 }
 
 /// This class encapsulates layout calculations for dynamically adjusting MainHeaderView's height based on
@@ -78,7 +78,7 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
     }
 
     /// Always scrolls to the top and maximizes the header.
-    func viewDidAppear(_ scrollView: UIScrollView) {
+    func scrollToTop(_ scrollView: UIScrollView) {
         let topOffset = CGPoint(x: scrollView.contentOffset.x,
                                 y: height(offset: maxHeaderHeight, scrollView: scrollView))
 

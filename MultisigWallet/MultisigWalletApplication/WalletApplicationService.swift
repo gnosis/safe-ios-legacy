@@ -788,12 +788,14 @@ public class WalletApplicationService: Assertable {
 
         if let tx = DomainRegistry.transactionRepository.find(hash: message.hash) {
             transaction = tx
-            transaction.stepBack()
         } else {
             let transactionID = DomainRegistry.transactionService
                 .newDraftTransaction(in: wallet, token: tokenAddress(from: message))
             transaction = DomainRegistry.transactionRepository.find(id: transactionID)!
         }
+        if transaction.status == .signing { transaction.stepBack() }
+        guard transaction.status == .draft else { return nil }
+
         update(transaction: transaction, with: message)
         let hash = DomainRegistry.encryptionService.hash(of: transaction)
         guard hash == message.hash else {
@@ -833,28 +835,46 @@ public class WalletApplicationService: Assertable {
             .change(fee: self.fee(message))
             .change(nonce: String(message.nonce))
 
-        if let erc20Transfer = ERC20TokenContractProxy(message.to).decodedTransfer(from: message.data) {
-            let token = self.token(id: message.to.value) ?? Token(code: "--",
-                                                                  name: message.to.value,
-                                                                  decimals: 18,
-                                                                  address: message.to,
-                                                                  logoUrl: "")
+        let tokenProxy = ERC20TokenContractProxy(message.to)
+        if let erc20Transfer = tokenProxy.decodedTransfer(from: message.data) {
+            let amountToken = self.token(for: message.to, isFee: false)
             transaction
                 .change(recipient: erc20Transfer.recipient)
-                .change(amount: TokenAmount(amount: erc20Transfer.amount, token: token))
+                .change(amount: TokenAmount(amount: erc20Transfer.amount, token: amountToken))
+        }
+    }
+
+    private func token(for address: Address, isFee: Bool) -> Token {
+        let tokenProxy = ERC20TokenContractProxy(address)
+        if let token = self.token(id: address.value) {
+            return token
+        } else if let name = try? tokenProxy.name(),
+            let code = try? tokenProxy.symbol(),
+            let decimals = try? tokenProxy.decimals() {
+            // unknown token, need to add it to local database
+            let token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: "")
+            DomainRegistry.tokenListItemRepository.save(TokenListItem(token: token,
+                                                                      status: .whitelisted,
+                                                                      canPayTransactionFee: isFee))
+            try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
+            return token
+        } else {
+            // same as above
+            let token = Token(code: "---", name: address.value, decimals: 18, address: address, logoUrl: "")
+            DomainRegistry.tokenListItemRepository.save(TokenListItem(token: token,
+                                                                      status: .whitelisted,
+                                                                      canPayTransactionFee: isFee))
+            try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
+            return token
         }
     }
 
     private func estimation(_ message: SendTransactionMessage) -> TransactionFeeEstimate {
+        let feeToken = self.token(for: message.gasToken, isFee: true)
         return TransactionFeeEstimate(gas: message.txGas,
                                       dataGas: message.dataGas,
                                       operationalGas: message.operationalGas,
-                                      gasPrice: TokenAmount(amount: message.gasPrice,
-                                                            token: Token(code: "",
-                                                                         name: "",
-                                                                         decimals: 18,
-                                                                         address: message.gasToken,
-                                                                         logoUrl: "")))
+                                      gasPrice: TokenAmount(amount: message.gasPrice, token: feeToken))
 
     }
 

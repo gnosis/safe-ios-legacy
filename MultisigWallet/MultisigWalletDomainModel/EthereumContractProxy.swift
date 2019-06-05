@@ -115,6 +115,14 @@ public class EthereumContractProxy {
         return encoded.prefix(Int(count))
     }
 
+    func decodeString(_ value: Data) -> String? {
+        var encoded = value
+        let offset = decodeUInt(encoded); encoded.removeFirst(32)
+        let bytes = decodeBytes(value.advanced(by: Int(offset)))
+        let result = String(data: bytes, encoding: .utf8)
+        return result
+    }
+
     func invoke(_ selector: String, _ args: Data ...) throws -> Data {
         return try nodeService.eth_call(to: contract, data: invocation(selector, args: args))
     }
