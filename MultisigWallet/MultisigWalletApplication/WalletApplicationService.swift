@@ -844,7 +844,7 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func token(for address: Address, isFee: Bool) -> Token {
+    private func token(for address: Address) -> Token {
         let tokenProxy = ERC20TokenContractProxy(address)
         if let token = self.token(id: address.value) {
             return token
@@ -855,7 +855,7 @@ public class WalletApplicationService: Assertable {
             let token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: "")
             DomainRegistry.tokenListItemRepository.save(TokenListItem(token: token,
                                                                       status: .whitelisted,
-                                                                      canPayTransactionFee: isFee))
+                                                                      canPayTransactionFee: false))
             try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
             return token
         } else {
@@ -863,14 +863,14 @@ public class WalletApplicationService: Assertable {
             let token = Token(code: "---", name: address.value, decimals: 18, address: address, logoUrl: "")
             DomainRegistry.tokenListItemRepository.save(TokenListItem(token: token,
                                                                       status: .whitelisted,
-                                                                      canPayTransactionFee: isFee))
+                                                                      canPayTransactionFee: false))
             try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
             return token
         }
     }
 
     private func estimation(_ message: SendTransactionMessage) -> TransactionFeeEstimate {
-        let feeToken = self.token(for: message.gasToken, isFee: true)
+        let feeToken = self.token(for: message.gasToken)
         return TransactionFeeEstimate(gas: message.txGas,
                                       dataGas: message.dataGas,
                                       operationalGas: message.operationalGas,
