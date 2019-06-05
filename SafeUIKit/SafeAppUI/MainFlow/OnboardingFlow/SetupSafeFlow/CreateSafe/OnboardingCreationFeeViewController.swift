@@ -89,9 +89,10 @@ class OnboardingCreationFeeViewController: CardViewController {
     }
 
     @objc func cancel() {
-        let controller = UIAlertController.cancelSafeCreation(close: { [unowned self] in
-            self.dismiss(animated: true, completion: nil)
-        }, continue: { [unowned self] in
+        let controller = UIAlertController.cancelSafeCreation(close: { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }, continue: { [weak self] in
+            guard let `self` = self else { return }
             self.dismiss(animated: true, completion: nil)
             ApplicationServiceRegistry.walletService.abortDeployment()
             self.delegate?.deploymentDidCancel()

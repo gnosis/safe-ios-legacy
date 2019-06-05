@@ -99,17 +99,17 @@ class FeePaidViewController: UIViewController {
                            usingSpringWithDamping: 1.0,
                            initialSpringVelocity: 0,
                            options: [],
-                           animations: { [unowned self] in
-                            self.progressView.setProgress(value, animated: true)
+                           animations: { [weak self] in
+                            self?.progressView.setProgress(value, animated: true)
                 }, completion: nil)
         }
 
         func finish(duration: TimeInterval, completion: @escaping () -> Void) {
             UIView.animate(withDuration: duration,
-                           animations: { [unowned self] in
-                            self.progressView.setProgress(1.0, animated: true)
-                }, completion: { _ in
-                    self.isAnimating = false
+                           animations: { [weak self] in
+                            self?.progressView.setProgress(1.0, animated: true)
+                }, completion: { [weak self] _ in
+                    self?.isAnimating = false
                     completion()
             })
         }

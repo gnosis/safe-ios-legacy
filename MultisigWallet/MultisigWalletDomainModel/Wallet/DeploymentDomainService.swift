@@ -136,8 +136,9 @@ public class DeploymentDomainService {
     }
 
     private func updateBalance(for wallet: Wallet) throws -> TokenInt {
-        let balance = try self.balance(of: wallet.address!)
-        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
+        let balance = try self.balance(of: wallet.address!, for: token)
+        let accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
         let account = DomainRegistry.accountRepository.find(id: accountID)!
         account.update(newAmount: balance)
         DomainRegistry.accountRepository.save(account)
@@ -234,10 +235,16 @@ public class DeploymentDomainService {
         }
     }
 
-    private func balance(of address: Address) throws -> TokenInt {
+    private func balance(of address: Address, for tokenAddress: Address) throws -> TokenInt {
         return try RetryWithIncreasingDelay(maxAttempts: config.balance.retryAttempts,
                                             startDelay: config.balance.retryDelay) {
-                try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
+                if tokenAddress == Token.Ether.address {
+                    return try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
+                } else {
+                    // NOTE: assuming the ERC20 contract
+                    let proxy = ERC20TokenContractProxy(tokenAddress)
+                    return try proxy.balance(of: address)
+                }
             }.start()
     }
 

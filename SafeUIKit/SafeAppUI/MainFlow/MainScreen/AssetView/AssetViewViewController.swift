@@ -96,7 +96,8 @@ extension AssetViewViewController: EventSubscriber {
         let newTokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
         let isChanged = newTokens != tokens
         tokens = newTokens
-        DispatchQueue.main.async { [unowned self] in
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
             if isChanged {
                 // when notified during scrolling, the reloadData() will cause flickering, so we allow it only on change
                 self.tableView.reloadData()

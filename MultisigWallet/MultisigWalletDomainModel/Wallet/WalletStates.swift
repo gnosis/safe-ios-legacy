@@ -152,7 +152,8 @@ public class WaitingForFirstDepositState: WalletState {
         guard let minimumBalance = wallet.minimumDeploymentTransactionAmount else {
             preconditionFailure("Minimum balance must be set before waiting for first deposit")
         }
-        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
+        let accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
         let balance = DomainRegistry.accountRepository.find(id: accountID)!.balance ?? 0
         wallet.state = balance < minimumBalance ? wallet.notEnoughFundsState : wallet.creationStartedState
         DomainRegistry.walletRepository.save(wallet)

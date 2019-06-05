@@ -115,7 +115,8 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CreationFeeIntroHeaderView")
             as! CreationFeeIntroHeaderView
-        view.onTextSelected = { [unowned self] in
+        view.onTextSelected = { [weak self] in
+            guard let `self` = self else { return }
             let alert = self.delegate!.creationFeeNetworkFeeAlert()
             self.present(alert, animated: true)
         }
@@ -125,10 +126,11 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodFooterView")
             as! PaymentMethodFooterView
-        view.onPay = { [unowned self] in
-            self.delegate.creationFeeIntroPay()
+        view.onPay = { [weak self] in
+            self?.delegate.creationFeeIntroPay()
         }
-        view.onChange = { [unowned self] in
+        view.onChange = { [weak self] in
+            guard let `self` = self else { return }
             self.delegate.creationFeeIntroChangePaymentMethod(estimations: self.tokens)
         }
         view.setPaymentMethodCode(paymentToken.code)

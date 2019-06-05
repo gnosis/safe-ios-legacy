@@ -15,16 +15,16 @@ public class TransactionDomainService {
         }
     }
 
-    public func newDraftTransaction() -> TransactionID {
+    public func newDraftTransaction(token: Address = Token.Ether.address) -> TransactionID {
         return newDraftTransaction(in: DomainRegistry.walletRepository.selectedWallet()!)
     }
 
-    public func newDraftTransaction(in wallet: Wallet) -> TransactionID {
+    public func newDraftTransaction(in wallet: Wallet, token: Address = Token.Ether.address) -> TransactionID {
         let repository = DomainRegistry.transactionRepository
         let transaction = Transaction(id: repository.nextID(),
                                       type: .transfer,
                                       walletID: wallet.id,
-                                      accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
+                                      accountID: AccountID(tokenID: TokenID(token.value), walletID: wallet.id))
         transaction.change(sender: wallet.address!)
         repository.save(transaction)
         return transaction.id

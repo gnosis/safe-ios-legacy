@@ -20,10 +20,11 @@ class LongProcessTracker {
 
     @objc func start() {
         retryItem.isEnabled = false
-        DispatchQueue.global().async { [unowned self] in
+        DispatchQueue.global().async { [weak self] in
             // swiftlint:disable:next trailing_closure
-            self.delegate?.startProcess(errorHandler: { [unowned self] error in
+            self?.delegate?.startProcess(errorHandler: { error in
                 DispatchQueue.main.async {
+                    guard let `self` = self else { return }
                     self.retryItem.isEnabled = true
                     self.handleError(error)
                 }
@@ -34,7 +35,8 @@ class LongProcessTracker {
     func handleError(_ error: Error) {
         let canRetry = isRetriableError(error)
         retryItem.isEnabled = canRetry
-        let controller = UIAlertController.operationFailed(message: error.localizedDescription) { [unowned self] in
+        let controller = UIAlertController.operationFailed(message: error.localizedDescription) { [weak self] in
+            guard let `self` = self else { return }
             self.delegate?.dismiss(animated: true, completion: nil)
             if !canRetry {
                 self.delegate?.processDidFail()

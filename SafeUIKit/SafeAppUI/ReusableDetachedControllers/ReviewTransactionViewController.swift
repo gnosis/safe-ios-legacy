@@ -162,13 +162,15 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func doRequest() {
-        doAfterEstimateTransaction { [unowned self] in
+        doAfterEstimateTransaction { [weak self] in
+            guard let `self` = self else { return TransactionData.empty }
             return try ApplicationServiceRegistry.walletService.requestTransactionConfirmationIfNeeded(self.tx.id)
         }
     }
 
     private func doSubmit() {
-        doAfterEstimateTransaction { [unowned self] in
+        doAfterEstimateTransaction { [weak self] in
+            guard let `self` = self else { return TransactionData.empty }
             return try ApplicationServiceRegistry.walletService.submitTransaction(self.tx.id)
         }
     }

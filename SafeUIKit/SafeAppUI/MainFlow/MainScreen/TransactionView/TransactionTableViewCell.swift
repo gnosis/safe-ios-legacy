@@ -82,8 +82,8 @@ class TransactionTableViewCell: UITableViewCell {
                        usingSpringWithDamping: 1.0,
                        initialSpringVelocity: 0,
                        options: [],
-                       animations: { [unowned self] in
-                        self.progressView.setProgress(0.7, animated: true)
+                       animations: { [weak self] in
+                        self?.progressView.setProgress(0.7, animated: true)
             }, completion: nil)
     }
 

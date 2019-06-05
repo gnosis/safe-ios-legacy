@@ -574,8 +574,9 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func createNewDraftTransaction() -> String {
-        let newTransactionID = DomainRegistry.transactionService.newDraftTransaction()
+    public func createNewDraftTransaction(token: String? = nil) -> String {
+        let token = token == nil ? Token.Ether.address : Address(token!)
+        let newTransactionID = DomainRegistry.transactionService.newDraftTransaction(token: token)
         return newTransactionID.id
     }
 
@@ -786,7 +787,8 @@ public class WalletApplicationService: Assertable {
             return transaction.status == .signing ? transaction.id.id : nil
         }
         guard let wallet = DomainRegistry.walletRepository.find(address: message.safe) else { return nil }
-        let transactionID = DomainRegistry.transactionService.newDraftTransaction(in: wallet)
+        let transactionID = DomainRegistry.transactionService.newDraftTransaction(in: wallet,
+                                                                                  token: tokenAddress(from: message))
         let transaction = DomainRegistry.transactionRepository.find(id: transactionID)!
         update(transaction: transaction, with: message)
         let hash = DomainRegistry.encryptionService.hash(of: transaction)
@@ -807,6 +809,14 @@ public class WalletApplicationService: Assertable {
         transaction.add(signature: signature)
         DomainRegistry.transactionRepository.save(transaction)
         return transactionID.id
+    }
+
+    private func tokenAddress(from message: SendTransactionMessage) -> Address {
+        if let erc20Transfer = ERC20TokenContractProxy(message.to).decodedTransfer(from: message.data) {
+            return erc20Transfer.recipient
+        } else {
+            return Token.Ether.address
+        }
     }
 
     private func update(transaction: Transaction, with message: SendTransactionMessage) {

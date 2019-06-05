@@ -483,9 +483,8 @@ class RecoveryTransactionBuilder: Assertable {
 
         wallet = DomainRegistry.walletRepository.selectedWallet()!
 
-        let tokenID = wallet!.feePaymentTokenAddress == nil ?
-            Token.Ether.id : TokenID(wallet!.feePaymentTokenAddress!.value)
-        accountID = AccountID(tokenID: tokenID, walletID: wallet.id)
+        let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
+        accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
 
         ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address!)
         multiSendContractProxy = MultiSendContractProxy(self.multiSendContractAddress)

@@ -47,14 +47,11 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     public func createTransaction() -> TransactionID {
-        var tokenID = Token.Ether.id
-        if let feeTokenAddress = requiredWallet.feePaymentTokenAddress?.value {
-            tokenID = TokenID(feeTokenAddress)
-        }
+        let token = requiredWallet.feePaymentTokenAddress ?? Token.Ether.address
         let tx = Transaction(id: repository.nextID(),
                              type: transactionType,
                              walletID: requiredWallet.id,
-                             accountID: AccountID(tokenID: tokenID, walletID: requiredWallet.id))
+                             accountID: AccountID(tokenID: TokenID(token.value), walletID: requiredWallet.id))
         tx.change(amount: .ether(0)).change(sender: requiredWallet.address!)
         repository.save(tx)
         return tx.id
