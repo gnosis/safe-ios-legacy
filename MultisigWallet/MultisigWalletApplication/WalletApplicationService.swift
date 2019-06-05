@@ -783,13 +783,17 @@ public class WalletApplicationService: Assertable {
     }
 
     func handle(message: SendTransactionMessage) -> String? {
-        if let transaction = DomainRegistry.transactionRepository.find(hash: message.hash) {
-            return transaction.status == .signing ? transaction.id.id : nil
-        }
         guard let wallet = DomainRegistry.walletRepository.find(address: message.safe) else { return nil }
-        let transactionID = DomainRegistry.transactionService.newDraftTransaction(in: wallet,
-                                                                                  token: tokenAddress(from: message))
-        let transaction = DomainRegistry.transactionRepository.find(id: transactionID)!
+        let transaction: Transaction
+
+        if let tx = DomainRegistry.transactionRepository.find(hash: message.hash) {
+            transaction = tx
+            transaction.stepBack()
+        } else {
+            let transactionID = DomainRegistry.transactionService
+                .newDraftTransaction(in: wallet, token: tokenAddress(from: message))
+            transaction = DomainRegistry.transactionRepository.find(id: transactionID)!
+        }
         update(transaction: transaction, with: message)
         let hash = DomainRegistry.encryptionService.hash(of: transaction)
         guard hash == message.hash else {
@@ -808,12 +812,12 @@ public class WalletApplicationService: Assertable {
                                   address: Address(extensionAddress))
         transaction.add(signature: signature)
         DomainRegistry.transactionRepository.save(transaction)
-        return transactionID.id
+        return transaction.id.id
     }
 
     private func tokenAddress(from message: SendTransactionMessage) -> Address {
-        if let erc20Transfer = ERC20TokenContractProxy(message.to).decodedTransfer(from: message.data) {
-            return erc20Transfer.recipient
+        if ERC20TokenContractProxy(message.to).decodedTransfer(from: message.data) != nil {
+            return message.to
         } else {
             return Token.Ether.address
         }
@@ -830,14 +834,14 @@ public class WalletApplicationService: Assertable {
             .change(nonce: String(message.nonce))
 
         if let erc20Transfer = ERC20TokenContractProxy(message.to).decodedTransfer(from: message.data) {
+            let token = self.token(id: message.to.value) ?? Token(code: "--",
+                                                                  name: message.to.value,
+                                                                  decimals: 18,
+                                                                  address: message.to,
+                                                                  logoUrl: "")
             transaction
                 .change(recipient: erc20Transfer.recipient)
-                .change(amount: TokenAmount(amount: erc20Transfer.amount,
-                                            token: Token(code: "",
-                                                         name: "",
-                                                         decimals: 18,
-                                                         address: message.to,
-                                                         logoUrl: "")))
+                .change(amount: TokenAmount(amount: erc20Transfer.amount, token: token))
         }
     }
 
