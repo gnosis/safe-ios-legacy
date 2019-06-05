@@ -113,7 +113,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
             .walletService.accountBalance(tokenID: BaseID(tx.feeTokenData.address)) ?? 0)
         feeRequestView.amountReceivedAmountLabel.amount = tx.feeTokenData.withBalance(balance)
         feeRequestView.amountNeededAmountLabel.amount = tx.feeTokenData.withNonNegativeBalance()
-        let remaining = (tx.feeTokenData.withNonNegativeBalance().balance ?? 0) - balance
+        let remaining = max((tx.feeTokenData.withNonNegativeBalance().balance ?? 0) - balance, 0)
         feeRequestView.remainderAmountLabel.amount = tx.feeTokenData.withBalance(remaining)
 
         scrollView.isHidden = false
