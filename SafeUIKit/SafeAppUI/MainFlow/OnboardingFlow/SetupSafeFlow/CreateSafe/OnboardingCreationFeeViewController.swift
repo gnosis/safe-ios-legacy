@@ -121,10 +121,7 @@ class OnboardingCreationFeeViewController: CardViewController {
             let fee = ApplicationServiceRegistry.walletService.feePaymentTokenData
                 .withBalance(ApplicationServiceRegistry.walletService.minimumDeploymentAmount!)
             feeRequestView.remainderAmountLabel.amount = fee
-            addressDetailView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
-            setFootnoteTokenCode(fee.code)
-            addressDetailView.footnoteLabel.isHidden = false
-            addressDetailView.isHidden = false
+            showAddressDetail(fee: fee)
         case .notEnoughFunds:
             let required = ApplicationServiceRegistry.walletService.feePaymentTokenData
                 .withBalance(ApplicationServiceRegistry.walletService.minimumDeploymentAmount!)
@@ -140,6 +137,7 @@ class OnboardingCreationFeeViewController: CardViewController {
             feeRequestView.amountReceivedAmountLabel.amount = required.withBalance(received)
             feeRequestView.amountNeededAmountLabel.amount = required
             feeRequestView.remainderAmountLabel.amount = required.withBalance(remaining)
+            showAddressDetail(fee: required)
         case .creationStarted,
              .transactionHashIsKnown,
              .finalizingDeployment,
@@ -152,6 +150,13 @@ class OnboardingCreationFeeViewController: CardViewController {
             navigationItem.leftBarButtonItem?.isEnabled = false
             delegate?.deploymentDidStart()
         }
+    }
+
+    private func showAddressDetail(fee: TokenData) {
+        addressDetailView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+        setFootnoteTokenCode(fee.code)
+        addressDetailView.footnoteLabel.isHidden = false
+        addressDetailView.isHidden = false
     }
 
 }
@@ -168,6 +173,7 @@ extension OnboardingCreationFeeViewController: LongProcessTrackerDelegate {
 
     func startProcess(errorHandler: @escaping (Error) -> Void) {
         ApplicationServiceRegistry.walletService.deployWallet(subscriber: self, onError: errorHandler)
+        ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
     }
 
     func processDidFail() {
