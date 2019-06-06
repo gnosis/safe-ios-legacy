@@ -42,11 +42,9 @@
 		0A2D588A225759F4001B8BF4 /* ReviewTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */; };
 		0A2D588C22575F33001B8BF4 /* AddressInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588B22575F33001B8BF4 /* AddressInputViewControllerTests.swift */; };
 		0A2D588E225761DC001B8BF4 /* XCTest+Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588D225761DC001B8BF4 /* XCTest+Tracking.swift */; };
-		0A2D589022576243001B8BF4 /* TimeProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588F22576243001B8BF4 /* TimeProfiler.swift */; };
 		0A2D58922257628B001B8BF4 /* TestTrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58912257628B001B8BF4 /* TestTrackingHandler.swift */; };
 		0A2D58942257674C001B8BF4 /* OnboardingIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58932257674C001B8BF4 /* OnboardingIntroViewControllerTests.swift */; };
 		0A2D589522576A63001B8BF4 /* TestTrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58912257628B001B8BF4 /* TestTrackingHandler.swift */; };
-		0A2D589622576A78001B8BF4 /* TimeProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588F22576243001B8BF4 /* TimeProfiler.swift */; };
 		0A2D589722576A98001B8BF4 /* XCTest+Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588D225761DC001B8BF4 /* XCTest+Tracking.swift */; };
 		0A2D589922576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D589822576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift */; };
 		0A2D589F22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D589E22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift */; };
@@ -618,7 +616,6 @@
 		0A2D588722575765001B8BF4 /* RecoverSafeTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeTrackingEvent.swift; sourceTree = "<group>"; };
 		0A2D588B22575F33001B8BF4 /* AddressInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewControllerTests.swift; sourceTree = "<group>"; };
 		0A2D588D225761DC001B8BF4 /* XCTest+Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Tracking.swift"; sourceTree = "<group>"; };
-		0A2D588F22576243001B8BF4 /* TimeProfiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeProfiler.swift; sourceTree = "<group>"; };
 		0A2D58912257628B001B8BF4 /* TestTrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTrackingHandler.swift; sourceTree = "<group>"; };
 		0A2D58932257674C001B8BF4 /* OnboardingIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIntroViewControllerTests.swift; sourceTree = "<group>"; };
 		0A2D589822576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1398,7 +1395,6 @@
 				0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */,
 				0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */,
 				0A54E7BA21300D2F006BAD93 /* XCTest+Alert.swift */,
-				0A2D588F22576243001B8BF4 /* TimeProfiler.swift */,
 				0A2D588D225761DC001B8BF4 /* XCTest+Tracking.swift */,
 				0A2D58912257628B001B8BF4 /* TestTrackingHandler.swift */,
 			);
@@ -2835,7 +2831,6 @@
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */,
 				0AFDB43A21AC42BE00F31840 /* FullEthereumAddressLabelTests.swift in Sources */,
-				0A2D589622576A78001B8BF4 /* TimeProfiler.swift in Sources */,
 				0A2D589522576A63001B8BF4 /* TestTrackingHandler.swift in Sources */,
 				552473642142AD6900A77557 /* IdenticonViewTests.swift in Sources */,
 				55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */,
@@ -3059,7 +3054,6 @@
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */,
 				55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */,
-				0A2D589022576243001B8BF4 /* TimeProfiler.swift in Sources */,
 				550D1EDD213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift in Sources */,
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,
 				0A334E6D209C8F8800ABC6AE /* ErrorHandlerTests.swift in Sources */,

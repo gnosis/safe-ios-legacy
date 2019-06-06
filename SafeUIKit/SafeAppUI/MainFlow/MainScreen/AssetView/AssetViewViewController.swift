@@ -11,7 +11,6 @@ final class AssetViewViewController: UITableViewController {
 
     weak var delegate: MainViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
-
     private var tokens = [TokenData]()
 
     override func viewDidLoad() {
@@ -23,9 +22,9 @@ final class AssetViewViewController: UITableViewController {
         tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
         tableView.separatorStyle = .none
 
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
-        tableView.refreshControl = refreshControl
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(update), for: .valueChanged)
+
         tableView.backgroundColor = .clear
         tableView.tableFooterView = (UINib(nibName: "AddTokenFooterView",
                                            bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView)
@@ -51,7 +50,7 @@ final class AssetViewViewController: UITableViewController {
         scrollDelegate?.scrollToTop?(tableView)
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table view data source and delegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tokens.count
@@ -67,8 +66,6 @@ final class AssetViewViewController: UITableViewController {
     private func tokenData(for indexPath: IndexPath) -> TokenData {
         return tokens[indexPath.row]
     }
-
-    // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -103,11 +100,12 @@ extension AssetViewViewController: EventSubscriber {
         tokens = newTokens
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
+            self.refreshControl?.endRefreshing()
             if isChanged {
                 // when notified during scrolling, the reloadData() will cause flickering, so we allow it only on change
                 self.tableView.reloadData()
             }
-            self.tableView.refreshControl?.endRefreshing()
+
         }
     }
 

@@ -157,7 +157,7 @@ public class RecoveryDomainService: Assertable {
         if let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) {
             DomainRegistry.transactionRepository.remove(tx)
         }
-        let txId = RecoveryTransactionBuilder().build()
+        guard let txId = RecoveryTransactionBuilder().build() else { return [] }
         let tx = DomainRegistry.transactionRepository.find(id: txId)!
         let formattedRecipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
         let request = MultiTokenEstimateTransactionRequest(safe: tx.sender!.value,
@@ -496,16 +496,15 @@ class RecoveryTransactionBuilder: Assertable {
             .change(amount: .ether(0))
     }
 
-    func build() -> TransactionID {
-        pullData()
+    func build() -> TransactionID? {
+        guard pullData() else { return nil }
         buildData()
         save()
         return transaction.id
     }
 
     func main() {
-        pullData()
-        guard isSupportedSafeOwners() && isSupportedScheme() else { return }
+        guard pullData() && isSupportedSafeOwners() && isSupportedScheme() else { return }
         buildData()
         guard let estimation = self.estimate() else { return }
         calculateFees(basedOn: estimation)
@@ -515,7 +514,7 @@ class RecoveryTransactionBuilder: Assertable {
         notify()
     }
 
-    func pullData() {
+    func pullData() -> Bool {
         do {
             wallet.removeOwner(role: .unknown)
             let remoteOwners = try ownerContractProxy.getOwners()
@@ -538,8 +537,10 @@ class RecoveryTransactionBuilder: Assertable {
             print("Modifiable owners: ", modifiableOwners as Any)
 
             try DomainRegistry.accountUpdateService.updateAccountsBalances()
+            return true
         } catch let error {
             DomainRegistry.errorStream.post(error)
+            return false
         }
     }
 

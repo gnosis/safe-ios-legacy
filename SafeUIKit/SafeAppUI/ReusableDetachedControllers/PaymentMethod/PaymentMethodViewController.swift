@@ -35,6 +35,7 @@ class PaymentMethodViewController: BasePaymentMethodViewController {
         tableView.refreshControl = refreshControl
 
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
+        updateData()
     }
 
     override func viewDidAppear(_ animated: Bool) {

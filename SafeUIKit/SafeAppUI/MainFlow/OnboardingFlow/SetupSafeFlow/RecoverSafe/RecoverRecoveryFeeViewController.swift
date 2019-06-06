@@ -142,8 +142,8 @@ extension RecoverRecoveryFeeViewController: EventSubscriber {
 extension RecoverRecoveryFeeViewController: LongProcessTrackerDelegate {
 
     func startProcess(errorHandler: @escaping (Error) -> Void) {
-        ApplicationServiceRegistry.recoveryService.createRecoveryTransaction(subscriber: self, onError: errorHandler)
         ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
+        ApplicationServiceRegistry.recoveryService.createRecoveryTransaction(subscriber: self, onError: errorHandler)
     }
 
     func processDidFail() {
