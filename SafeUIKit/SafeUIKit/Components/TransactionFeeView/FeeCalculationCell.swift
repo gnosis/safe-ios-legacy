@@ -4,10 +4,10 @@
 
 import UIKit
 
-public class FeeCalculationCell: ContainerCell {
+open class FeeCalculationCell: ContainerCell {
 
     public let feeCalculationView = FeeCalculationView()
-    public override var cellContentView: UIView { return feeCalculationView }
-    public override var horizontalMargin: CGFloat { return 16 }
+    open override var cellContentView: UIView { return feeCalculationView }
+    open override var horizontalMargin: CGFloat { return 16 }
 
 }

@@ -72,11 +72,12 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         guard let buttonData = asset.button else {
             return label
         }
-        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        let stack = UIStackView(arrangedSubviews: [label, makeInfoButton(button: buttonData, textStyle: textStyle)])
-        stack.spacing = 5
-        stack.alignment = .firstBaseline
-        return stack
+        let filler = UIView() // will get stretched between the button and the value
+        let button = makeInfoButton(button: buttonData, textStyle: textStyle)
+        let wrapper = UIStackView(arrangedSubviews: [label, button, filler])
+        wrapper.spacing = 5
+        wrapper.alignment = .firstBaseline
+        return wrapper
     }
 
     func makeInfoButton(button buttonData: ButtonItem, textStyle: TextStyle) -> UIButton {
@@ -101,8 +102,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
             label.attributedText = NSAttributedString(string: asset.value ?? "",
                                                       style: asset.error == nil ? textStyle.value :
                                                         textStyle.valueError)
-            let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
-            label.setContentHuggingPriority(huggingPriority, for: .horizontal)
+            label.setContentHuggingPriority(.required, for: .horizontal)
             tooltipSource = TooltipSource(target: label)
             tooltipSource.message = tooltip
             return label

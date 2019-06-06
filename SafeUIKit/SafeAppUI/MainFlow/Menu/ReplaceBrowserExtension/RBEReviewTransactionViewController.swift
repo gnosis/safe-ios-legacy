@@ -49,7 +49,10 @@ public class RBEReviewTransactionViewController: ReviewTransactionViewController
     }
 
     private func feeCalculationCell() -> UITableViewCell {
-        let cell = FeeCalculationCell(frame: .zero)
+        class ReviewFeeCell: FeeCalculationCell {
+            override var horizontalMargin: CGFloat { return 0 }
+        }
+        let cell = ReviewFeeCell(frame: .zero)
         let calculation = OwnerModificationFeeCalculation()
         let currentFeeTokenBalance = balance(of: tx.feeTokenData)!
         let resultingFeeTokenBalance = currentFeeTokenBalance - abs(tx.feeTokenData.balance ?? 0)

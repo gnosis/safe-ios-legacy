@@ -94,13 +94,12 @@ public class RBEIntroViewController: UIViewController {
     func reloadData() {
         feeCalculation = OwnerModificationFeeCalculation()
         guard let data = calculationData else { return }
-        let formatter = TokenFormatter()
-        feeCalculation.currentBalanceLine.set(value: formatter.string(from: data.currentBalance))
+        feeCalculation.currentBalanceLine.set(value: data.currentBalance)
         feeCalculation.networkFeeLine.set(valueButton: data.networkFee.withNonNegativeBalance(),
                                           target: self,
                                           action: #selector(changePaymentMethod),
                                           roundUp: true)
-        feeCalculation.resultingBalanceLine.set(value: formatter.string(from: data.balance))
+        feeCalculation.resultingBalanceLine.set(value: data.balance)
         feeCalculation.setBalanceError(nil)
     }
 
@@ -174,7 +173,7 @@ public class RBEIntroViewController: UIViewController {
         state.retry(controller: self)
     }
 
-    @objc public func showNetworkFeeInfo() {
+    @objc public func showTransactionFeeInfo() {
         present(UIAlertController.networkFee(), animated: true, completion: nil)
     }
 
