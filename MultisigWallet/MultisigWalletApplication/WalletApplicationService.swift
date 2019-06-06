@@ -848,22 +848,15 @@ public class WalletApplicationService: Assertable {
         let tokenProxy = ERC20TokenContractProxy(address)
         if let token = self.token(id: address.value) {
             return token
-        } else if let name = try? tokenProxy.name(),
-            let code = try? tokenProxy.symbol(),
-            let decimals = try? tokenProxy.decimals() {
-            // unknown token, need to add it to local database
-            let token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: "")
-            DomainRegistry.tokenListItemRepository.save(TokenListItem(token: token,
-                                                                      status: .whitelisted,
-                                                                      canPayTransactionFee: false))
-            try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
-            return token
         } else {
-            // same as above
-            let token = Token(code: "---", name: address.value, decimals: 18, address: address, logoUrl: "")
-            DomainRegistry.tokenListItemRepository.save(TokenListItem(token: token,
-                                                                      status: .whitelisted,
-                                                                      canPayTransactionFee: false))
+            let token: Token
+            if let name = try? tokenProxy.name(),
+                let code = try? tokenProxy.symbol(),
+                let decimals = try? tokenProxy.decimals() {
+                token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: "")
+            } else {
+                token = Token(code: "---", name: address.value, decimals: 18, address: address, logoUrl: "")
+            }
             try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
             return token
         }
