@@ -157,6 +157,7 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         tokenItemsRepository.save(item)
         givenDraftWallet()
         service.changePaymentToken(TokenData(token: token, balance: nil))
+        delay()
         return item
     }
 
