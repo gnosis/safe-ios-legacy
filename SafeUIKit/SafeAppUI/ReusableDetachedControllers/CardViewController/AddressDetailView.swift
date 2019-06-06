@@ -45,6 +45,9 @@ class AddressDetailView: BaseCustomView {
         qrCodeView.layer.borderWidth = 1
         qrCodeView.layer.borderColor = UIColor.black.cgColor
         qrCodeView.layer.cornerRadius = 9
+
+        addressLabel.numberOfLines = 2
+        addressLabel.lineBreakMode = .byClipping
     }
 
 }

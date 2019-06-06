@@ -114,8 +114,8 @@ public class ReviewTransactionViewController: UITableViewController {
         return ApplicationServiceRegistry.walletService.transactionData(id)!
     }
 
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         requestConfirmationsOnce()
     }
 

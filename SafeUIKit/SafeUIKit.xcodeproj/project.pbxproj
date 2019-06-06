@@ -1092,8 +1092,8 @@
 				0A2C0E022296F2E3008A30AC /* CardViewController.swift */,
 				0A2C0E032296F2E3008A30AC /* CardViewController.xib */,
 				0A2C0E042296F2E3008A30AC /* AddressDetailView.swift */,
-				0A2C0E052296F2E3008A30AC /* FeeRequestView.swift */,
 				0A2C0E062296F2E3008A30AC /* AddressDetailView.xib */,
+				0A2C0E052296F2E3008A30AC /* FeeRequestView.swift */,
 				0A2C0E072296F2E3008A30AC /* FeeRequestView.xib */,
 			);
 			path = CardViewController;

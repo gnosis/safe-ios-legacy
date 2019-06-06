@@ -17,8 +17,8 @@ final class OnboardingWelcomeViewController: UIViewController {
     @IBOutlet weak var setupPasswordButton: StandardButton!
     private weak var delegate: OnboardingWelcomeViewControllerDelegate!
 
-    private var preservedNavBarColor: UIColor!
-    private var preservedTranslucent: Bool!
+    // needed for navigation bar manipulations when this controller is removed from navigation controller
+    private weak var _navigationController: UINavigationController!
 
     private enum Strings {
         static let description = LocalizedString("ios_app_slogan", comment: "App slogan")
@@ -46,20 +46,17 @@ final class OnboardingWelcomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        preservedNavBarColor = navigationController!.navigationBar.barTintColor
-        preservedTranslucent = navigationController!.navigationBar.isTranslucent
-        navigationController!.navigationBar.barTintColor = .clear
-        navigationController!.navigationBar.isTranslucent = true
-        navigationController!.navigationBar.shadowImage = UIImage()
+        _navigationController = navigationController
+        _navigationController?.navigationBar.setBackgroundImage(Asset.navbarFilled.image, for: .default)
+        _navigationController?.navigationBar.shadowImage = UIImage()
+        _navigationController?.navigationBar.tintColor = .white
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.barTintColor = preservedNavBarColor
-        if let preservedTranslucent = preservedTranslucent {
-            navigationController?.navigationBar.isTranslucent = preservedTranslucent
-        }
-        navigationController?.navigationBar.shadowImage = Asset.shadow.image
+        _navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        _navigationController?.navigationBar.shadowImage = Asset.shadow.image
+        _navigationController?.navigationBar.tintColor = ColorName.darkSkyBlue.color
     }
 
     @IBAction func setupPassword(_ sender: Any) {
