@@ -12,7 +12,6 @@ open class AccountUpdateDomainService {
     public init() {}
 
     public func updateAccountBalance(token: Token) throws {
-        precondition(!Thread.isMainThread)
         guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
         let accountID = AccountID(tokenID: token.id, walletID: wallet.id)
         if DomainRegistry.accountRepository.find(id: accountID) == nil {
@@ -24,7 +23,6 @@ open class AccountUpdateDomainService {
     }
 
     open func updateAccountsBalances() throws {
-        precondition(!Thread.isMainThread)
         addMissingAccountsForWhitelistedAndPaymentTokenItems()
         try updateBalancesForWhitelistedAndPaymentTokenAccounts()
         DomainRegistry.eventPublisher.publish(AccountsBalancesUpdated())
@@ -68,8 +66,7 @@ open class AccountUpdateDomainService {
         if accountID.tokenID == Token.Ether.id {
             return try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
         } else {
-            let token = DomainRegistry.tokenListItemRepository.find(id: accountID.tokenID)!
-            let proxy = ERC20TokenContractProxy(token.token.address)
+            let proxy = ERC20TokenContractProxy(Address(accountID.tokenID.id))
             return try proxy.balance(of: address)
         }
     }

@@ -35,6 +35,7 @@ class PaymentMethodViewController: BasePaymentMethodViewController {
         tableView.refreshControl = refreshControl
 
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
+        updateData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -68,7 +69,8 @@ class PaymentMethodViewController: BasePaymentMethodViewController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodHeaderView")
             as! PaymentMethodHeaderView
-        view.onTextSelected = { [unowned self] in
+        view.onTextSelected = { [weak self] in
+            guard let `self` = self else { return }
             let alert = UIAlertController(title: Strings.Alert.title,
                                           message: Strings.Alert.description,
                                           preferredStyle: .alert)

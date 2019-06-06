@@ -72,6 +72,19 @@ public struct TransactionData: Equatable {
         return [processed, rejected, submitted, updated, created].compactMap { $0 }.first
     }
 
+    public static let empty = TransactionData(id: "",
+                                              sender: "",
+                                              recipient: "",
+                                              amountTokenData: .empty(),
+                                              feeTokenData: .empty(),
+                                              status: .discarded,
+                                              type: .incoming,
+                                              created: nil,
+                                              updated: nil,
+                                              submitted: nil,
+                                              rejected: nil,
+                                              processed: nil)
+
     public init(id: String,
                 sender: String,
                 recipient: String,

@@ -13,13 +13,14 @@ extension FeeCalculationAssetLine {
     /// - Parameters:
     ///   - value: button token data.
     ///   - displayedDecimals: displayed decimals.
-    func set(value: TokenData, displayedDecimals: Int = 5) {
+    func set(value: TokenData, roundUp: Bool = false) {
         guard value.balance != nil else {
             tooltipSource?.message = nil
             set(value: SameTransferAndPaymentTokensFeeCalculation.Strings.loading)
             return
         }
         let formatter = TokenFormatter()
+        formatter.roundingBehavior = roundUp ? .roundUp : .cutoff
         set(value: formatter.string(from: value))
         set(tooltip: formatter.string(from: value, shortFormat: false))
     }
@@ -31,10 +32,11 @@ extension FeeCalculationAssetLine {
     ///   - target: target for button action.
     ///   - action: button action.
     ///   - displayedDecimals: displayed decimals.
-    func set(valueButton value: TokenData, target: Any? = nil, action: Selector? = nil, displayedDecimals: Int = 5) {
+    func set(valueButton value: TokenData, target: Any? = nil, action: Selector? = nil, roundUp: Bool = false) {
         var valueButtonStr = value.code
         if value.balance != nil {
             let formatter = TokenFormatter()
+            formatter.roundingBehavior = roundUp ? .roundUp : .cutoff
             valueButtonStr = formatter.string(from: value)
         } else {
             tooltipSource?.message = nil

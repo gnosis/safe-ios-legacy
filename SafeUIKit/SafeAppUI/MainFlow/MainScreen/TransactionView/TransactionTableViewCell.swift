@@ -42,6 +42,7 @@ class TransactionTableViewCell: UITableViewCell {
         backgroundView?.backgroundColor = UIColor.white
         identiconView.layer.cornerRadius = identiconView.bounds.width / 2
         identiconView.clipsToBounds = true
+        progressView.progressTintColor = ColorName.darkSkyBlue.color
     }
 
     func configure(transaction: TransactionData) {
@@ -82,8 +83,8 @@ class TransactionTableViewCell: UITableViewCell {
                        usingSpringWithDamping: 1.0,
                        initialSpringVelocity: 0,
                        options: [],
-                       animations: { [unowned self] in
-                        self.progressView.setProgress(0.7, animated: true)
+                       animations: { [weak self] in
+                        self?.progressView.setProgress(0.7, animated: true)
             }, completion: nil)
     }
 

@@ -56,6 +56,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
         recoveryProcessTracker.retryItem = retryItem
         recoveryProcessTracker.delegate = self
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
+        addressDetailView.headerLabel.isHidden = true
 
         start()
     }
@@ -113,7 +114,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
             .walletService.accountBalance(tokenID: BaseID(tx.feeTokenData.address)) ?? 0)
         feeRequestView.amountReceivedAmountLabel.amount = tx.feeTokenData.withBalance(balance)
         feeRequestView.amountNeededAmountLabel.amount = tx.feeTokenData.withNonNegativeBalance()
-        let remaining = (tx.feeTokenData.withNonNegativeBalance().balance ?? 0) - balance
+        let remaining = max((tx.feeTokenData.withNonNegativeBalance().balance ?? 0) - balance, 0)
         feeRequestView.remainderAmountLabel.amount = tx.feeTokenData.withBalance(remaining)
 
         scrollView.isHidden = false
@@ -141,8 +142,8 @@ extension RecoverRecoveryFeeViewController: EventSubscriber {
 extension RecoverRecoveryFeeViewController: LongProcessTrackerDelegate {
 
     func startProcess(errorHandler: @escaping (Error) -> Void) {
-        ApplicationServiceRegistry.recoveryService.createRecoveryTransaction(subscriber: self, onError: errorHandler)
         ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
+        ApplicationServiceRegistry.recoveryService.createRecoveryTransaction(subscriber: self, onError: errorHandler)
     }
 
     func processDidFail() {

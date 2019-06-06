@@ -59,7 +59,8 @@ public class SendInputViewController: UIViewController {
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
         addressInput.spacingAfterInput = 0
 
-        tokenInput.addRule("", identifier: "notEnoughFunds") { [unowned self] in
+        tokenInput.addRule("", identifier: "notEnoughFunds") { [weak self] in
+            guard let `self` = self else { return true }
             let number = self.tokenInput.formatter.number(from: $0,
                                                           precision: self.model.accountBalanceTokenData.decimals)
             guard let amount = number else { return true }
@@ -122,7 +123,8 @@ public class SendInputViewController: UIViewController {
             let calculation = feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
             calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
                                            target: self,
-                                           action: #selector(changePaymentMethod))
+                                           action: #selector(changePaymentMethod),
+                                           roundUp: true)
             calculation.resultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setBalanceError(feeBalanceError())
         } else {
@@ -131,7 +133,8 @@ public class SendInputViewController: UIViewController {
             calculation.setBalanceError(tokenBalanceError())
             calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
                                            target: self,
-                                           action: #selector(changePaymentMethod))
+                                           action: #selector(changePaymentMethod),
+                                           roundUp: true)
             calculation.networkFeeResultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setFeeBalanceError(feeBalanceError())
         }
@@ -152,7 +155,7 @@ public class SendInputViewController: UIViewController {
 
     @IBAction func proceedToSigning(_ sender: Any) {
         let service = ApplicationServiceRegistry.walletService
-        transactionID = service.createNewDraftTransaction()
+        transactionID = service.createNewDraftTransaction(token: tokenID.id)
         service.updateTransaction(transactionID!,
                                   amount: model.amount ?? 0,
                                   token: tokenID.id,

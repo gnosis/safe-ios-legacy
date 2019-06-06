@@ -11,7 +11,6 @@ final class AssetViewViewController: UITableViewController {
 
     weak var delegate: MainViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
-
     private var tokens = [TokenData]()
 
     override func viewDidLoad() {
@@ -23,9 +22,9 @@ final class AssetViewViewController: UITableViewController {
         tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
         tableView.separatorStyle = .none
 
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
-        tableView.refreshControl = refreshControl
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(update), for: .valueChanged)
+
         tableView.backgroundColor = .clear
         tableView.tableFooterView = (UINib(nibName: "AddTokenFooterView",
                                            bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView)
@@ -37,7 +36,6 @@ final class AssetViewViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.assets)
-        scrollDelegate?.viewDidAppear?(tableView)
     }
 
     @objc func update() {
@@ -46,7 +44,13 @@ final class AssetViewViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table view data source
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        guard parent != nil else { return }
+        scrollDelegate?.scrollToTop?(tableView)
+    }
+
+    // MARK: - Table view data source and delegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tokens.count
@@ -62,8 +66,6 @@ final class AssetViewViewController: UITableViewController {
     private func tokenData(for indexPath: IndexPath) -> TokenData {
         return tokens[indexPath.row]
     }
-
-    // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -96,12 +98,14 @@ extension AssetViewViewController: EventSubscriber {
         let newTokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
         let isChanged = newTokens != tokens
         tokens = newTokens
-        DispatchQueue.main.async { [unowned self] in
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+            self.refreshControl?.endRefreshing()
             if isChanged {
                 // when notified during scrolling, the reloadData() will cause flickering, so we allow it only on change
                 self.tableView.reloadData()
             }
-            self.tableView.refreshControl?.endRefreshing()
+
         }
     }
 

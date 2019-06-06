@@ -33,6 +33,8 @@ public class RBEIntroViewController: UIViewController {
     public var starter: RBEStarter?
     public var screenTrackingEvent: Trackable?
 
+    private var needsEstimation = false
+
     @IBOutlet weak var contentView: IntroContentView!
     internal var feeCalculationView: FeeCalculationView {
         return contentView.feeCalculationView
@@ -64,11 +66,15 @@ public class RBEIntroViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        needsEstimation = true
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        transition(to: LoadingState())
+        if needsEstimation {
+            needsEstimation = false
+            transition(to: LoadingState())
+        }
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -94,12 +100,12 @@ public class RBEIntroViewController: UIViewController {
     func reloadData() {
         feeCalculation = OwnerModificationFeeCalculation()
         guard let data = calculationData else { return }
-        let formatter = TokenFormatter()
-        feeCalculation.currentBalanceLine.set(value: formatter.string(from: data.currentBalance))
+        feeCalculation.currentBalanceLine.set(value: data.currentBalance)
         feeCalculation.networkFeeLine.set(valueButton: data.networkFee.withNonNegativeBalance(),
                                           target: self,
-                                          action: #selector(changePaymentMethod))
-        feeCalculation.resultingBalanceLine.set(value: formatter.string(from: data.balance))
+                                          action: #selector(changePaymentMethod),
+                                          roundUp: true)
+        feeCalculation.resultingBalanceLine.set(value: data.balance)
         feeCalculation.setBalanceError(nil)
     }
 
@@ -173,12 +179,22 @@ public class RBEIntroViewController: UIViewController {
         state.retry(controller: self)
     }
 
-    @objc public func showNetworkFeeInfo() {
+    @objc public func showTransactionFeeInfo() {
         present(UIAlertController.networkFee(), animated: true, completion: nil)
     }
 
     @objc private func changePaymentMethod() {
-        navigationController?.pushViewController(PaymentMethodViewController(), animated: true)
+        let vc = PaymentMethodViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+}
+
+extension RBEIntroViewController: PaymentMethodViewControllerDelegate {
+
+    func paymentMethodViewControllerDidChangePaymentMethod(_ controller: PaymentMethodViewController) {
+        needsEstimation = true
     }
 
 }

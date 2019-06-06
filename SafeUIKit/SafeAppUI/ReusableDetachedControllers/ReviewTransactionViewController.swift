@@ -114,8 +114,8 @@ public class ReviewTransactionViewController: UITableViewController {
         return ApplicationServiceRegistry.walletService.transactionData(id)!
     }
 
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         requestConfirmationsOnce()
     }
 
@@ -162,13 +162,15 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func doRequest() {
-        doAfterEstimateTransaction { [unowned self] in
+        doAfterEstimateTransaction { [weak self] in
+            guard let `self` = self else { return TransactionData.empty }
             return try ApplicationServiceRegistry.walletService.requestTransactionConfirmationIfNeeded(self.tx.id)
         }
     }
 
     private func doSubmit() {
-        doAfterEstimateTransaction { [unowned self] in
+        doAfterEstimateTransaction { [weak self] in
+            guard let `self` = self else { return TransactionData.empty }
             return try ApplicationServiceRegistry.walletService.submitTransaction(self.tx.id)
         }
     }

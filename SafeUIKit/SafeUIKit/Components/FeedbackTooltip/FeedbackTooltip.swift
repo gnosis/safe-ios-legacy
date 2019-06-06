@@ -80,8 +80,8 @@ public final class FeedbackTooltip: CardView {
         layer.removeAllAnimations()
         UIView.animate(withDuration: appearanceDuration, delay: 0, options: [], animations: {
             self.alpha = 0
-        }, completion: { _ in
-            self.removeFromSuperview()
+        }, completion: { [weak self] _ in
+            self?.removeFromSuperview()
         })
     }
 

@@ -5,7 +5,7 @@
 import Foundation
 
 @objc protocol ScrollDelegate: UIScrollViewDelegate {
-    @objc optional func viewDidAppear(_ scrollView: UIScrollView)
+    @objc optional func scrollToTop(_ scrollView: UIScrollView)
 }
 
 /// This class encapsulates layout calculations for dynamically adjusting MainHeaderView's height based on
@@ -78,7 +78,7 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
     }
 
     /// Always scrolls to the top and maximizes the header.
-    func viewDidAppear(_ scrollView: UIScrollView) {
+    func scrollToTop(_ scrollView: UIScrollView) {
         let topOffset = CGPoint(x: scrollView.contentOffset.x,
                                 y: height(offset: maxHeaderHeight, scrollView: scrollView))
 
@@ -125,6 +125,9 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         let maxVisibleContentHeight = scrollView.frame.height - segmentBarHeight
         let compensatedBottom = max(0, maxVisibleContentHeight - scrollView.contentSize.height)
         let contentInset = UIEdgeInsets(top: top, left: 0, bottom: compensatedBottom, right: 0)
+        // exit if pulled to refresh (changing contentInset while refresh control is active messes up scrolling)
+        // https://stackoverflow.com/a/36489805/7822368
+        guard scrollView.contentOffset.y >= -top else { return }
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = UIEdgeInsets(top: headerView.height, left: 0, bottom: 0, right: 0)
     }

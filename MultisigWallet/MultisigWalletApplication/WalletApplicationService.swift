@@ -574,8 +574,9 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func createNewDraftTransaction() -> String {
-        let newTransactionID = DomainRegistry.transactionService.newDraftTransaction()
+    public func createNewDraftTransaction(token: String? = nil) -> String {
+        let token = token == nil ? Token.Ether.address : Address(token!)
+        let newTransactionID = DomainRegistry.transactionService.newDraftTransaction(token: token)
         return newTransactionID.id
     }
 
@@ -619,7 +620,7 @@ public class WalletApplicationService: Assertable {
             try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
         }
         let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
-                                                 dataGas: estimationResponse.dataGas,
+                                                 dataGas: estimationResponse.baseGas,
                                                  operationalGas: estimationResponse.operationalGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
                                                                        token: token(id: estimationResponse.gasToken)!))
@@ -782,12 +783,19 @@ public class WalletApplicationService: Assertable {
     }
 
     func handle(message: SendTransactionMessage) -> String? {
-        if let transaction = DomainRegistry.transactionRepository.find(hash: message.hash) {
-            return transaction.status == .signing ? transaction.id.id : nil
-        }
         guard let wallet = DomainRegistry.walletRepository.find(address: message.safe) else { return nil }
-        let transactionID = DomainRegistry.transactionService.newDraftTransaction(in: wallet)
-        let transaction = DomainRegistry.transactionRepository.find(id: transactionID)!
+        let transaction: Transaction
+
+        if let tx = DomainRegistry.transactionRepository.find(hash: message.hash) {
+            transaction = tx
+        } else {
+            let transactionID = DomainRegistry.transactionService
+                .newDraftTransaction(in: wallet, token: tokenAddress(from: message))
+            transaction = DomainRegistry.transactionRepository.find(id: transactionID)!
+        }
+        if transaction.status == .signing { transaction.stepBack() }
+        guard transaction.status == .draft else { return nil }
+
         update(transaction: transaction, with: message)
         let hash = DomainRegistry.encryptionService.hash(of: transaction)
         guard hash == message.hash else {
@@ -806,7 +814,15 @@ public class WalletApplicationService: Assertable {
                                   address: Address(extensionAddress))
         transaction.add(signature: signature)
         DomainRegistry.transactionRepository.save(transaction)
-        return transactionID.id
+        return transaction.id.id
+    }
+
+    private func tokenAddress(from message: SendTransactionMessage) -> Address {
+        if ERC20TokenContractProxy(message.to).decodedTransfer(from: message.data) != nil {
+            return message.to
+        } else {
+            return Token.Ether.address
+        }
     }
 
     private func update(transaction: Transaction, with message: SendTransactionMessage) {
@@ -819,28 +835,39 @@ public class WalletApplicationService: Assertable {
             .change(fee: self.fee(message))
             .change(nonce: String(message.nonce))
 
-        if let erc20Transfer = ERC20TokenContractProxy(message.to).decodedTransfer(from: message.data) {
+        let tokenProxy = ERC20TokenContractProxy(message.to)
+        if let erc20Transfer = tokenProxy.decodedTransfer(from: message.data) {
+            let amountToken = self.token(for: message.to)
             transaction
                 .change(recipient: erc20Transfer.recipient)
-                .change(amount: TokenAmount(amount: erc20Transfer.amount,
-                                            token: Token(code: "",
-                                                         name: "",
-                                                         decimals: 18,
-                                                         address: message.to,
-                                                         logoUrl: "")))
+                .change(amount: TokenAmount(amount: erc20Transfer.amount, token: amountToken))
+        }
+    }
+
+    private func token(for address: Address) -> Token {
+        let tokenProxy = ERC20TokenContractProxy(address)
+        if let token = self.token(id: address.value) {
+            return token
+        } else {
+            let token: Token
+            if let name = try? tokenProxy.name(),
+                let code = try? tokenProxy.symbol(),
+                let decimals = try? tokenProxy.decimals() {
+                token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: "")
+            } else {
+                token = Token(code: "---", name: address.value, decimals: 18, address: address, logoUrl: "")
+            }
+            try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
+            return token
         }
     }
 
     private func estimation(_ message: SendTransactionMessage) -> TransactionFeeEstimate {
+        let feeToken = self.token(for: message.gasToken)
         return TransactionFeeEstimate(gas: message.txGas,
                                       dataGas: message.dataGas,
                                       operationalGas: message.operationalGas,
-                                      gasPrice: TokenAmount(amount: message.gasPrice,
-                                                            token: Token(code: "",
-                                                                         name: "",
-                                                                         decimals: 18,
-                                                                         address: message.gasToken,
-                                                                         logoUrl: "")))
+                                      gasPrice: TokenAmount(amount: message.gasPrice, token: feeToken))
 
     }
 

@@ -309,7 +309,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public var createNewDraftTransaction_output: String = "TransactionID"
-    public override func createNewDraftTransaction() -> String {
+    public override func createNewDraftTransaction(token: String? = nil) -> String {
         return createNewDraftTransaction_output
     }
 

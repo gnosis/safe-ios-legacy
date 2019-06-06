@@ -73,7 +73,7 @@ struct Safe {
         let response = try _test.relayService.estimateTransaction(request: request)
         // Gas is adjusted because server-side gas estimate is
         // inherently inaccurate: (dataGas + txGas) is not enough for funding the fees.
-        let fee = (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas) +
+        let fee = (BigInt(response.baseGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas) +
             gasAdjustment) * BigInt(response.gasPrice)
         let nonce = response.nextNonce
         let tx = Transaction(id: TransactionID(),
@@ -82,7 +82,7 @@ struct Safe {
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
         tx.change(sender: address)
             .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas,
-                                                        dataGas: response.dataGas,
+                                                        dataGas: response.baseGas,
                                                         operationalGas: response.operationalGas,
                                                         gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
                                                                               token: feePaymentToken)))

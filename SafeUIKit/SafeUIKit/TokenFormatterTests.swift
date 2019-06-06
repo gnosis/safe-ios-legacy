@@ -87,6 +87,17 @@ class TokenFormatterTests: XCTestCase {
 
         let noAmount = TokenData(address: "", code: "ETH", name: "", logoURL: "", decimals: 18, balance: nil)
         XCTAssertEqual(f.string(from: noAmount), "-")
+
+        // roundUp
+        f.roundingBehavior = .roundUp
+
+        XCTAssertEqual(f.string(from: BigDecimal(0_011, 3)), "0.011")
+        XCTAssertEqual(f.string(from: BigDecimal(0_00001, 5)), "0.00001")
+        XCTAssertEqual(f.string(from: BigDecimal(0_0000101, 7)), "0.00002")
+        XCTAssertEqual(f.string(from: BigDecimal(0_0000901, 7)), "0.0001")
+        XCTAssertEqual(f.string(from: BigDecimal(0_9999901, 7)), "1")
+        XCTAssertEqual(f.string(from: BigDecimal(100_001_000_000000001, 9)), "100.002M")
+        XCTAssertEqual(f.string(from: BigDecimal(0_00060_2600000301300, 18)), "0.00061")
     }
 
     func test_NumberFromString() {

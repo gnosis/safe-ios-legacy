@@ -108,14 +108,18 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     open func receive(message: [AnyHashable: Any]) {
-        guard let transactionID = ApplicationServiceRegistry.walletService.receive(message: message) else { return }
-        if let vc = navigationController.topViewController as? ReviewTransactionViewController {
-            let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
-            vc.update(with: tx)
-        } else if let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID),
-            tx.status != .rejected {
-            incomingTransactionFlowCoordinator.transactionID = transactionID
-            enterTransactionFlow(incomingTransactionFlowCoordinator)
+        DispatchQueue.global.async { [unowned self] in
+            guard let transactionID = ApplicationServiceRegistry.walletService.receive(message: message),
+                let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID) else { return }
+            DispatchQueue.main.async {
+                if let vc = self.navigationController.topViewController as? ReviewTransactionViewController,
+                    tx.id == vc.tx.id {
+                    vc.update(with: tx)
+                } else if tx.status != .rejected {
+                    self.incomingTransactionFlowCoordinator.transactionID = transactionID
+                    self.enterTransactionFlow(self.incomingTransactionFlowCoordinator)
+                }
+            }
         }
     }
 

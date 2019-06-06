@@ -96,6 +96,7 @@ class MainFlowCoordinatorAppTests: SafeTestCase {
 
     func test_whenReceivingRemoteMessage_delegatesToMainFlowCoordinator() {
         flowCoordinator.receive(message: ["key": "value"])
+        delay()
         XCTAssertNotNil(walletService.receive_input)
     }
 

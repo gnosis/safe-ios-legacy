@@ -30,4 +30,16 @@ public class ERC20TokenContractProxy: EthereumContractProxy {
         return (recipient, TokenInt(amount))
     }
 
+    public func name() throws -> String? {
+        return try decodeString(invoke("name()"))
+    }
+
+    public func symbol() throws -> String? {
+        return try decodeString(invoke("symbol()"))
+    }
+
+    public func decimals() throws -> Int {
+        return try Int(decodeUInt(invoke("decimals()")))
+    }
+
 }

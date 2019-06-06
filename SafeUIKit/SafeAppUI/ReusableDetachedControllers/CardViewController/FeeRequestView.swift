@@ -51,6 +51,10 @@ class FeeRequestView: BaseCustomView {
             label?.isShowingPlusSign = false
         }
 
+        [remainderAmountLabel, amountNeededAmountLabel].forEach { label in
+            label?.formatter.roundingBehavior = .roundUp
+        }
+
         amountReceivedLabel.text = Strings.received
         amountNeededLabel.text = Strings.needed
     }

@@ -75,8 +75,8 @@ class OnboardingFeePaidViewController: FeePaidViewController {
             button.isEnabled = true
         case .readyToUse:
             button.isEnabled = true
-            progressAnimator.finish(duration: 0.7) { [unowned self] in
-                self.delegate?.onboardingFeePaidDidSuccess()
+            progressAnimator.finish(duration: 0.7) { [weak self] in
+                self?.delegate?.onboardingFeePaidDidSuccess()
             }
         }
     }

@@ -40,7 +40,8 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
         formatter.headAttributes = [.foregroundColor: UIColor.black]
         formatter.tailAttributes = formatter.headAttributes
         // swiftlint:disable:next multiline_arguments
-        tooltipSource = TooltipSource(target: self, onTap: { [unowned self] in
+        tooltipSource = TooltipSource(target: self, onTap: { [weak self] in
+            guard let `self` = self else { return }
             UIPasteboard.general.string = self.address
         }, onAppear: { [weak self] in
             self?.tooltipWillShow()

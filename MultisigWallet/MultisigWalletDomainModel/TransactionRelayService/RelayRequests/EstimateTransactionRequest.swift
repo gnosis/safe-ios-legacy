@@ -48,7 +48,8 @@ public struct EstimateTransactionRequest: Encodable {
 
         public let safeTxGas: Int
         /// Deprecated, will be removed in the future. Use `baseGas` instead
-        /// TODO: use `baseGas`
+        public let baseGas: Int
+        // TODO: deprecated, should be removed
         public let dataGas: Int
         public let gasPrice: Int
         public let operationalGas: Int
@@ -68,7 +69,8 @@ public struct EstimateTransactionRequest: Encodable {
                     gasToken: String) {
             self.safeTxGas = safeTxGas
             self.dataGas = dataGas
-            self.operationalGas = dataGas
+            self.baseGas = dataGas
+            self.operationalGas = operationalGas
             self.gasPrice = gasPrice
             self.gasToken = gasToken
             self.lastUsedNonce = lastUsedNonce

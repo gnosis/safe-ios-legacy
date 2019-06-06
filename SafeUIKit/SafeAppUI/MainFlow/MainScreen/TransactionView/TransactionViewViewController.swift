@@ -67,7 +67,12 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.transactions)
-        scrollDelegate?.viewDidAppear?(tableView)
+    }
+
+    public override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        guard parent != nil else { return }
+        scrollDelegate?.scrollToTop?(tableView)
     }
 
     // MARK: - Table view data source

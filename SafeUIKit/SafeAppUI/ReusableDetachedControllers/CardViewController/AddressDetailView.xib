@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,14 +25,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="412"/>
+            <rect key="frame" x="0.0" y="0.0" width="311" height="412"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="RVH-jg-2qj">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="289.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="311" height="289.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Safe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLh-ma-bKN">
-                            <rect key="frame" x="189" y="0.0" width="36" height="25"/>
+                            <rect key="frame" x="137.5" y="0.0" width="36" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="Lcc-La-UJY"/>
                             </constraints>
@@ -41,8 +40,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Wln-qg-ys6">
-                            <rect key="frame" x="0.0" y="47" width="414" height="44"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wln-qg-ys6">
+                            <rect key="frame" x="0.0" y="47" width="311" height="44"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dic-6K-GoA" customClass="IdenticonView" customModule="SafeUIKit">
                                     <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -52,14 +51,14 @@
                                         <constraint firstAttribute="height" constant="44" id="G9b-N5-LOU"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0xf1511FAB6b7347899f51f9db027A32b39caE3910" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEL-7G-Ox4" customClass="FullEthereumAddressLabel" customModule="SafeUIKit">
-                                    <rect key="frame" x="52" y="1.5" width="324" height="41"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0xDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iEL-7G-Ox4" customClass="FullEthereumAddressLabel" customModule="SafeUIKit">
+                                    <rect key="frame" x="52" y="1.5" width="221" height="41"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fu-kX-OlZ">
-                                    <rect key="frame" x="384" y="0.0" width="30" height="44"/>
+                                    <rect key="frame" x="281" y="0.0" width="30" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="em6-Ou-DjN"/>
                                         <constraint firstAttribute="width" constant="30" id="gVp-yY-4ac"/>
@@ -69,7 +68,7 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPv-au-iTA" customClass="QRCodeView" customModule="SafeUIKit">
-                            <rect key="frame" x="139.5" y="113" width="135" height="135"/>
+                            <rect key="frame" x="88" y="113" width="135" height="135"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="135" id="pJi-Q8-fNO"/>
@@ -77,7 +76,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Please only send OWL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AX0-gz-hkj">
-                            <rect key="frame" x="126" y="270" width="162" height="19.5"/>
+                            <rect key="frame" x="74.5" y="270" width="162" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

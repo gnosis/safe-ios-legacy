@@ -14,6 +14,14 @@ public class TokenFormatter {
                                                   trillions: LocalizedString("amount_trillions", comment: "T"))
     public static let defaultLiterals = (millions: "M", billions: "B", trillions: "T")
     public static let decimalSeparators = ".,٫"
+
+    public var roundingBehavior = RoundingBehavior.cutoff
+
+    public enum RoundingBehavior {
+        case cutoff
+        case roundUp
+    }
+
     public init() {}
 
     /// Converts string to a BigDecimal with a known precision.
@@ -156,14 +164,13 @@ public class TokenFormatter {
         // the log10() function for the BigInt type, which we do not have. That is why the String-based
         // operations have been chosen.
         //
-        var string = String(abs(number.value))
-        let leadingZeroesForSmallNumbers = String(repeating: "0", count: max(0, number.precision - string.count + 1))
-        string = leadingZeroesForSmallNumbers + string
+        var numberString = String(abs(number.value))
+        let leadingZeroesForSmallNumbers = String(repeating: "0",
+                                                  count: max(0, number.precision - numberString.count + 1))
+        numberString = leadingZeroesForSmallNumbers + numberString
 
-        var fractional = String(string.suffix(number.precision))
-        var integer = String(string.prefix(string.count - fractional.count))
-
-        fractional = fractional.removingTrailingZeroes
+        var fractional = String(numberString.suffix(number.precision))
+        var integer = String(numberString.prefix(numberString.count - fractional.count))
 
         let isNegative = number.value < 0
         let negativeSign = isNegative ? "-" : ""
@@ -176,8 +183,31 @@ public class TokenFormatter {
 
             switch integer.count {
             case (0...8):
-                let decimalDigitCount = min(max(0, 8 - integer.count), 5)
-                fractional = String(fractional.prefix(decimalDigitCount)).removingTrailingZeroes
+                let fractionalDigitCount = min(max(0, 8 - integer.count), 5)
+
+                let cutoffFractional = String(fractional.prefix(fractionalDigitCount))
+
+                // TODO: refactor with algorithm that takes number of desired fractional digits
+                // this will remove the duplication and may make things simpler.
+
+                if roundingBehavior == .roundUp {
+                    let remainderDigitCount = max(fractional.count - cutoffFractional.count, 0)
+                    let remainder = String(fractional.suffix(remainderDigitCount))
+                    let zeroRemainder = String(repeating: "0", count: remainder.count)
+                    let needsRoundUp = !remainder.isEmpty && remainder != zeroRemainder
+                    if needsRoundUp {
+                        let roundUpUnit = "1" + zeroRemainder
+                        let newNumber = BigInt(integer + cutoffFractional + zeroRemainder)! + BigInt(roundUpUnit)!
+                        return string(from: BigDecimal(newNumber, number.precision),
+                                      decimalSeparator: decimalSeparator,
+                                      thousandSeparator: thousandSeparator,
+                                      literals: literals,
+                                      forcePlusSign: forcePlusSign,
+                                      shortFormat: shortFormat)
+                    }
+                }
+
+                fractional = cutoffFractional.removingTrailingZeroes
             case 9:
                 literal = literals.millions
                 degree = 6
@@ -193,17 +223,38 @@ public class TokenFormatter {
             }
 
             if degree > 0 {
-                fractional = String(integer.suffix(degree).prefix(3)).removingTrailingZeroes
-                integer = String(integer.prefix(integer.count - degree))
+
+                let cutoffFractional = String(integer.suffix(degree).prefix(3))
+                let newInteger = String(integer.prefix(integer.count - degree))
+
+                if roundingBehavior == .roundUp {
+                    let remainder = String(integer.suffix(degree - 3)) + fractional
+                    let zeroRemainder = String(repeating: "0", count: remainder.count)
+                    let needsRoundUp = !remainder.isEmpty && remainder != zeroRemainder
+                    if needsRoundUp {
+                        let roundUpUnit = "1" + zeroRemainder
+                        let newNumber = BigInt(newInteger + cutoffFractional + zeroRemainder)! + BigInt(roundUpUnit)!
+                        return string(from: BigDecimal(newNumber, number.precision),
+                                      decimalSeparator: decimalSeparator,
+                                      thousandSeparator: thousandSeparator,
+                                      literals: literals,
+                                      forcePlusSign: forcePlusSign,
+                                      shortFormat: shortFormat)
+                    }
+                }
+
+                fractional = cutoffFractional
+                integer = newInteger
             }
         }
+
+        fractional = fractional.removingTrailingZeroes
 
         let integerGroupped = groups(string: integer, size: 3).joined(separator: thousandSeparator)
         let magnitude = fractional.isEmpty ? integerGroupped : integerGroupped + decimalSeparator + fractional
         let sign = magnitude != "0" ? (isNegative ? negativeSign : positiveSign) : ""
         return sign + magnitude + literal
     }
-
 
     /// Splits base-10 integer String into groups of `size` characters, starting from the end of string.
     ///

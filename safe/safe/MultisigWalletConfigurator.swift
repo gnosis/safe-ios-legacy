@@ -36,8 +36,6 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: DeploymentDomainService(), for: DeploymentDomainService.self)
         DomainRegistry.put(service: TransactionDomainService(), for: TransactionDomainService.self)
         DomainRegistry.put(service: RecoveryDomainService(), for: RecoveryDomainService.self)
-        DomainRegistry.put(service: WalletSettingsDomainService(),
-                           for: WalletSettingsDomainService.self)
         DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
                            for: ReplaceBrowserExtensionDomainService.self)
         DomainRegistry.put(service: ConnectBrowserExtensionDomainService(),

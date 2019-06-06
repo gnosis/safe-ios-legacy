@@ -29,6 +29,8 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
         }
     }
 
+    override var shouldRoundUpAmounts: Bool { return true }
+
     enum Strings {
         static let title = LocalizedString("fee_method", comment: "Fee Payment Method")
         static let headerDescription = LocalizedString("choose_how_to_pay_creation_fee",
@@ -53,23 +55,22 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
             title = Strings.title
         }
         addPayButton()
+        updatePayButtonTitle()
     }
 
     private func addPayButton() {
         payButton.style = .filled
         payButton.addTarget(self, action: #selector(pay), for: .touchUpInside)
         payButton.translatesAutoresizingMaskIntoConstraints = false
-        payButton.isHidden = true
         view.addSubview(payButton)
         NSLayoutConstraint.activate([
             payButton.heightAnchor.constraint(equalToConstant: 56),
             payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            payButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)])
+            payButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)])
     }
 
     private func updatePayButtonTitle() {
-        payButton.isHidden = false
         payButton.setTitle(String(format: Strings.payWith, paymentToken.code), for: .normal)
     }
 
@@ -100,6 +101,7 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
         } else {
             paymentToken = ApplicationServiceRegistry.walletService.feePaymentTokenData
             tableView.reloadData()
+            tableView.refreshControl?.endRefreshing()
         }
         didUpdateOnce = true
     }
@@ -108,6 +110,7 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
         guard navigationItem.titleView != nil else { return }
         navigationItem.titleView = nil
         title = Strings.title
+        tableView.refreshControl?.endRefreshing()
     }
 
     @objc func pay() {

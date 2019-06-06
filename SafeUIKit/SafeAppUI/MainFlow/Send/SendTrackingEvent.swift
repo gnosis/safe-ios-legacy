@@ -27,8 +27,8 @@ struct SendTrackingEvent: Trackable {
 
     init(_ screenID: ScreenName, token: String, tokenName: String) {
         self.screenName = screenID
-        self.token = token
-        self.tokenName = tokenName
+        self.token = token.isEmpty ? "<null>" : token
+        self.tokenName = tokenName.isEmpty ? "<null>" : tokenName
     }
 
     var parameters: [String: Any]? {
