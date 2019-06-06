@@ -63,7 +63,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         let data = createTransaction()
         mainFlowCoordinator.incomingTransactionFlowCoordinator.transactionID = data.id
         mainFlowCoordinator.receive(message: ["key": "value"])
-        delay(0.5)
+        delay(0.7)
         let vc = mainFlowCoordinator.navigationController.topViewController
             as? ReviewTransactionViewController
         XCTAssertNotNil(vc)
