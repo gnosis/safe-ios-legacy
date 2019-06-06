@@ -5,6 +5,39 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`1.3.0`_ - 2019-06-06
+======================
+Added
+-----
+- Ability to pay with a ERC20 token for any safe transaction
+
+Changed
+-------
+- Using safe contracts v1.0.0
+
+  + Changed API calls to v2 for safe creation, transaction estimation
+  + Changed hashing scheme based on master copy contract address
+
+- Updated UI designs of most of the screens
+
+  + Menu redesign
+  + Send flow
+  + Onboarding screens
+  + Create Safe flow
+  + Recover Safe flow
+  + All owner modification flows
+  + Main screens
+  + Added 'success' screens to all transaction flows
+
+- Refactored various parts of the app
+
+  + Merged several flow coordinators into MainFlowCoordinator
+  + Merged SegmentViewController into MainViewController
+  + To enable token payment, touched everywhere where gas token was used.
+  + Renamed flows and view controllers according to project's unified screen names.
+
+- Improved stability in database migrations
+
 
 `1.2.0`_ - 2019-04-24
 ======================
@@ -289,6 +322,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.3.0: https://github.com/gnosis/safe-ios/tree/1.2.0
 .. _1.2.0: https://github.com/gnosis/safe-ios/tree/1.2.0
 .. _1.1.0: https://github.com/gnosis/safe-ios/tree/1.1.0
 .. _1.0.1: https://github.com/gnosis/safe-ios/tree/1.0.1

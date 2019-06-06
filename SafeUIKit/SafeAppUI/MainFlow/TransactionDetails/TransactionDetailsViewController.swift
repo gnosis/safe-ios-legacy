@@ -215,7 +215,7 @@ public class TransactionDetailsViewController: UIViewController {
         transactionFeeView.infoLabel.setInfoText(Strings.fee)
         transactionFeeView.infoLabel.delegate = self
         transactionFeeView.amountLabel.isShowingShortFormat = true
-        transactionFeeView.amount = transaction.feeTokenData.withBalance(-(transaction.feeTokenData.balance ?? 0))
+        transactionFeeView.amount = transaction.feeTokenData.withBalance(-abs(transaction.feeTokenData.balance ?? 0))
     }
 
     private func configureViewInOtherApp() {
