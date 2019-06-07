@@ -120,15 +120,16 @@ public class SendInputViewController: UIViewController {
     func updateFromViewModel() {
         accountBalanceHeaderView.amount = model.accountBalanceTokenData
         if tokenID == feeTokenID {
-            let calculation = feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
+            let calculation = SameTransferAndPaymentTokensFeeCalculation()
             calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
                                            target: self,
                                            action: #selector(changePaymentMethod),
                                            roundUp: true)
             calculation.resultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setBalanceError(feeBalanceError())
+            feeCalculationView.calculation = calculation
         } else {
-            let calculation = feeCalculationView.calculation as! DifferentTransferAndPaymentTokensFeeCalculation
+            let calculation = DifferentTransferAndPaymentTokensFeeCalculation()
             calculation.resultingBalanceLine.set(value: model.resultingBalanceTokenData)
             calculation.setBalanceError(tokenBalanceError())
             calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
@@ -137,8 +138,8 @@ public class SendInputViewController: UIViewController {
                                            roundUp: true)
             calculation.networkFeeResultingBalanceLine.set(value: model.feeResultingBalanceTokenData)
             calculation.setFeeBalanceError(feeBalanceError())
+            feeCalculationView.calculation = calculation
         }
-        feeCalculationView.update()
         nextBarButton.isEnabled = model.canProceedToSigning
         tokenInput.revalidateText()
     }
