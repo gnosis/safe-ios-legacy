@@ -70,7 +70,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         let insets = textInsets()
         placeholderTop.constant = insets.top
         placeholderLeading.constant = insets.left
-        placeholderTrailing.constant = insets.right
+        placeholderTrailing.constant = -insets.right
         placeholderLabel.textColor = ColorName.darkSlateBlue.color.withAlphaComponent(0.7)
 
         view.setNeedsUpdateConstraints()

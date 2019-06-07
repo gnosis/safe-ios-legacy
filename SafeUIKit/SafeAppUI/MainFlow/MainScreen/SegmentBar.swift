@@ -27,8 +27,8 @@ public class SegmentBar: UIControl {
     }
 
     private let stackView = UIStackView()
-    private let selectionMarker = UIView()
-    private let selectionMarkerHeight: CGFloat = 6
+    private let selectionMarker = UIImageView()
+    private let selectionMarkerHeight: CGFloat = 5
     private let titleFontSize: CGFloat = 14
     var buttons = [UIButton]()
 
@@ -48,7 +48,7 @@ public class SegmentBar: UIControl {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         addSubview(stackView)
-        selectionMarker.backgroundColor = ColorName.aquaBlue.color
+        selectionMarker.tintColor = ColorName.darkSkyBlue.color
         let shadowImage = UIImageView(image: Asset.shadow.image.stretchableImage(withLeftCapWidth: 0, topCapHeight: 0))
         shadowImage.translatesAutoresizingMaskIntoConstraints = false
         addSubview(shadowImage)
@@ -104,17 +104,15 @@ public class SegmentBar: UIControl {
     private func addSelectionMarker(at index: Int) {
         let button = buttons[index]
         selectionMarker.translatesAutoresizingMaskIntoConstraints = false
-        selectionMarker.layer.cornerRadius = selectionMarkerHeight / 2
-        selectionMarker.clipsToBounds = true
-        let topLeftCorner = CACornerMask.layerMinXMinYCorner
-        let topRightCorner = CACornerMask.layerMaxXMinYCorner
+        let leftIndex = 0
+        let rightIndex = buttons.count - 1
         switch index {
-        case 0:
-            selectionMarker.layer.maskedCorners = topRightCorner
-        case buttons.count - 1:
-            selectionMarker.layer.maskedCorners = topLeftCorner
+        case leftIndex:
+            selectionMarker.image = Asset.SegmentBar.left.image
+        case rightIndex:
+            selectionMarker.image = Asset.SegmentBar.right.image
         default:
-            selectionMarker.layer.maskedCorners = [topLeftCorner, topRightCorner]
+            selectionMarker.image = Asset.SegmentBar.middle.image
         }
         addSubview(selectionMarker)
         NSLayoutConstraint.activate(
