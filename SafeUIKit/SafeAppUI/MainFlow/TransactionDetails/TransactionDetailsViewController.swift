@@ -215,6 +215,7 @@ public class TransactionDetailsViewController: UIViewController {
         transactionFeeView.infoLabel.setInfoText(Strings.fee)
         transactionFeeView.infoLabel.delegate = self
         transactionFeeView.amountLabel.isShowingShortFormat = true
+        transactionFeeView.amountLabel.hasTooltip = true
         transactionFeeView.amount = transaction.feeTokenData.withBalance(-abs(transaction.feeTokenData.balance ?? 0))
     }
 

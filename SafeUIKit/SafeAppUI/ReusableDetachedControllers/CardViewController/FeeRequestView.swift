@@ -49,6 +49,7 @@ class FeeRequestView: BaseCustomView {
 
         [remainderAmountLabel, amountReceivedAmountLabel, amountNeededAmountLabel].forEach { label in
             label?.isShowingPlusSign = false
+            label?.hasTooltip = true
         }
 
         [remainderAmountLabel, amountNeededAmountLabel].forEach { label in

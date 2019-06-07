@@ -48,8 +48,10 @@ public final class TransferView: BaseCustomView {
         toAddressLabel.hasFullAddressTooltip = true
         balanceLabel.textColor = ColorName.darkSlateBlue.color
         balanceLabel.isShowingPlusSign = false
+        balanceLabel.hasTooltip = true
         amountLabel.textColor = ColorName.darkSlateBlue.color
         amountLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        amountLabel.hasTooltip = true
     }
 
     public override func update() {
