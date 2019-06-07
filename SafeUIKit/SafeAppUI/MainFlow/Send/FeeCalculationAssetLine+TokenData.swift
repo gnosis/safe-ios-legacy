@@ -21,8 +21,8 @@ extension FeeCalculationAssetLine {
         }
         let formatter = TokenFormatter()
         formatter.roundingBehavior = roundUp ? .roundUp : .cutoff
-        set(value: formatter.string(from: value))
-        set(tooltip: formatter.string(from: value, shortFormat: false))
+        set(value: formatter.localizedString(from: value))
+        set(tooltip: formatter.localizedString(from: value, shortFormat: false))
     }
 
     /// Set actionable button in assets line. Currently is used for changing payment method.
@@ -37,7 +37,7 @@ extension FeeCalculationAssetLine {
         if value.balance != nil {
             let formatter = TokenFormatter()
             formatter.roundingBehavior = roundUp ? .roundUp : .cutoff
-            valueButtonStr = formatter.string(from: value)
+            valueButtonStr = formatter.localizedString(from: value)
         } else {
             tooltipSource?.message = nil
         }

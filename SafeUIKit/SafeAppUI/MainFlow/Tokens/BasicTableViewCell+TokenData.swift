@@ -48,7 +48,7 @@ extension BasicTableViewCell {
         guard let decimal = tokenData.decimalAmount else { return "--" }
         let formatter = TokenFormatter()
         formatter.roundingBehavior = roundUp ? .roundUp : .cutoff
-        return formatter.string(from: decimal)
+        return formatter.localizedString(from: decimal)
     }
 
 }
