@@ -74,6 +74,11 @@ enum Asset {
     static let scrollBottomGradient = ImageAsset(name: "scroll-bottom-gradient")
   }
   static let replacePhrase = ImageAsset(name: "replacePhrase")
+  enum SegmentBar {
+    static let `left` = ImageAsset(name: "left")
+    static let middle = ImageAsset(name: "middle")
+    static let `right` = ImageAsset(name: "right")
+  }
   static let shadow = ImageAsset(name: "shadow")
   static let shareIcon = ImageAsset(name: "share-icon")
   enum TermsScreen {
@@ -133,6 +138,9 @@ enum Asset {
     ReplaceBrowserExtension.introIcon,
     ReplaceBrowserExtension.scrollBottomGradient,
     replacePhrase,
+    SegmentBar.`left`,
+    SegmentBar.middle,
+    SegmentBar.`right`,
     shadow,
     shareIcon,
     TermsScreen.squareButtonBorder,

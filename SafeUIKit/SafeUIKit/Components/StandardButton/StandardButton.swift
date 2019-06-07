@@ -51,8 +51,10 @@ final public class StandardButton: BaseCustomButton {
             backgroundColor = ColorName.darkSkyBlue.color
             backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.darkSkyBlue.color,
                                        UIControl.State.highlighted.rawValue: ColorName.dodgerBlue.color,
-                                       UIControl.State.disabled.rawValue: ColorName.lightGreyBlue.color]
+                                       UIControl.State.disabled.rawValue:
+                                        ColorName.darkSkyBlue.color.withAlphaComponent(0.5)]
             setTitleColor(.white, for: .highlighted)
+            setTitleColor(.white, for: .disabled)
             layer.shadowColor = ColorName.lightBlueGrey58.color.cgColor
             layer.shadowOpacity = 0.58
             layer.shadowOffset = CGSize(width: 1, height: 2)
