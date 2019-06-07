@@ -127,7 +127,7 @@
                                                                     <outlet property="delegate" destination="iTY-dw-aTR" id="xkh-Tw-r49"/>
                                                                 </connections>
                                                             </textView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOME BEAT WORD BREAK LEAF HOUSE STUFF KEY HOME BEAT WORD BREAK " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghT-Ir-fNl">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOME BEAT WORD BREAK LEAF HOUSE STUFF KEY HOME BEAT WORD BREAK " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghT-Ir-fNl">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="38.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <nil key="textColor"/>
