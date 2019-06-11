@@ -31,13 +31,15 @@ public class TransactionDomainService {
     }
 
     public func allTransactions() -> [Transaction] {
+        let walletID = DomainRegistry.portfolioRepository.portfolio()?.selectedWallet
         let all = DomainRegistry.transactionRepository.all()
         return all
             .filter { tx in
                 tx.status != .draft &&
                 tx.status != .signing &&
                 tx.status != .discarded &&
-                tx.status != .rejected
+                tx.status != .rejected &&
+                tx.walletID == walletID
             }
             .sorted { lhs, rhs in
                 var lDates = lhs.allEventDates.makeIterator()
