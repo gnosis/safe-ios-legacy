@@ -91,17 +91,23 @@ class MultisigWalletConfigurator {
             DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
             DomainRegistry.put(service: monitorRepo, for: RBETransactionMonitorRepository.self)
 
-            if !db.exists {
+            let noDatabase = !db.exists
+            if noDatabase {
                 try db.create()
-                portfolioRepo.setUp()
-                walletRepo.setUp()
-                accountRepo.setUp()
-                transactionRepo.setUp()
-                tokenListItemRepo.setUp()
-                monitorRepo.setUp()
-                migrationRepo.setUp()
+            }
+
+            portfolioRepo.setUp()
+            walletRepo.setUp()
+            accountRepo.setUp()
+            transactionRepo.setUp()
+            tokenListItemRepo.setUp()
+            monitorRepo.setUp()
+            migrationRepo.setUp()
+
+            if noDatabase {
                 skipMigrationsBeforeAndIncluding(WalletMigrations.latest, with: migrationService)
             }
+
             migrate(with: migrationService)
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
