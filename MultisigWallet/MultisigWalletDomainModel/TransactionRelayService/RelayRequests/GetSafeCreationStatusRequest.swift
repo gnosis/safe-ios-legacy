@@ -13,12 +13,12 @@ public struct GetSafeCreationStatusRequest: Encodable {
         self.safeAddress = safeAddress
     }
 
-    public struct Resposne: Decodable {
+    public struct Response: Decodable {
 
         public var txHash: String?
-        public var blockNumber: Int?
+        public var blockNumber: StringifiedBigInt?
 
-        public init(txHash: String?, blockNumber: Int?) {
+        public init(txHash: String?, blockNumber: StringifiedBigInt?) {
             self.txHash = txHash
             self.blockNumber = blockNumber
         }

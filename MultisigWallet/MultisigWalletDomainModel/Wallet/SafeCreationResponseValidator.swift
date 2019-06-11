@@ -50,7 +50,7 @@ public class SafeCreationResponseValidator: Assertable {
                               to: .zero,
                               data: Data(),
                               paymentToken: Address(request.paymentToken),
-                              payment: BigInt(response.payment),
+                              payment: response.payment.value,
                               paymentReceiver: response.paymentReceiverAddress)
     }
 

@@ -92,7 +92,7 @@ public class DeploymentDomainService {
             let response = try DomainRegistry.transactionRelayService.createSafeCreationTransaction(request: request)
             try responseValidator.validate(response, request: request)
             wallet.changeAddress(response.safeAddress)
-            wallet.updateMinimumTransactionAmount(TokenInt(response.payment))
+            wallet.updateMinimumTransactionAmount(response.payment.value)
             wallet.changeMasterCopy(response.masterCopyAddress)
             let version = DomainRegistry.safeContractMetadataRepository.version(masterCopyAddress:
                 response.masterCopyAddress)
