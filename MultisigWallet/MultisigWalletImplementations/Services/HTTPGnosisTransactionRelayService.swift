@@ -105,7 +105,7 @@ extension GetSafeCreationStatusRequest: JSONRequest {
     public var httpMethod: String { return "GET" }
     public var urlPath: String { return "/api/v2/safes/\(safeAddress)/funded/" }
 
-    public typealias ResponseType = Resposne
+    public typealias ResponseType = Response
 
 }
 

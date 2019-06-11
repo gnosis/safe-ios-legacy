@@ -51,6 +51,8 @@
 		0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */; };
 		0A40669120A5E0EA009BA7FC /* WalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */; };
 		0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */; };
+		0A43B1EA22AFF2FE00D94F5F /* StringifiedBigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43B1E922AFF2FE00D94F5F /* StringifiedBigInt.swift */; };
+		0A43B1F022AFF6F200D94F5F /* StringifiedBigIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43B1EF22AFF6F200D94F5F /* StringifiedBigIntTests.swift */; };
 		0A442D8B2108B82B00F19F80 /* Data+InitWithHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442D8A2108B82B00F19F80 /* Data+InitWithHex.swift */; };
 		0A442DBE2109D99D00F19F80 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DBD2109D99D00F19F80 /* Message.swift */; };
 		0A442DC5210A05A400F19F80 /* MessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DC4210A05A400F19F80 /* MessageTests.swift */; };
@@ -486,6 +488,8 @@
 		0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
+		0A43B1E922AFF2FE00D94F5F /* StringifiedBigInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringifiedBigInt.swift; sourceTree = "<group>"; };
+		0A43B1EF22AFF6F200D94F5F /* StringifiedBigIntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringifiedBigIntTests.swift; sourceTree = "<group>"; };
 		0A442D8A2108B82B00F19F80 /* Data+InitWithHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+InitWithHex.swift"; sourceTree = "<group>"; };
 		0A442DBD2109D99D00F19F80 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0A442DC4210A05A400F19F80 /* MessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTests.swift; sourceTree = "<group>"; };
@@ -924,6 +928,8 @@
 				0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */,
 				0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */,
 				5573536022941DDE00248F87 /* EstimateSafeCreationRequest.swift */,
+				0A43B1E922AFF2FE00D94F5F /* StringifiedBigInt.swift */,
+				0A43B1EF22AFF6F200D94F5F /* StringifiedBigIntTests.swift */,
 			);
 			path = RelayRequests;
 			sourceTree = "<group>";
@@ -1727,6 +1733,7 @@
 				0ACA9D0D212AD31900E39BB6 /* System.swift in Sources */,
 				0A442D8B2108B82B00F19F80 /* Data+InitWithHex.swift in Sources */,
 				55D3C07420F75EFF0047004F /* PushTokensDomainService.swift in Sources */,
+				0A43B1EA22AFF2FE00D94F5F /* StringifiedBigInt.swift in Sources */,
 				0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */,
 				0AEDED5621676156005B6DD0 /* SafeOwnerManagerContractProxy.swift in Sources */,
 				0A2DBCBB220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift in Sources */,
@@ -1773,6 +1780,7 @@
 				55D3C02F20F668EB0047004F /* EthSignatureTests.swift in Sources */,
 				0A6AE030216CB554002FBE3D /* EthereumContractProxyTests.swift in Sources */,
 				0ADD1DDE213544C50046AF1F /* ERC20TokenContractProxyTests.swift in Sources */,
+				0A43B1F022AFF6F200D94F5F /* StringifiedBigIntTests.swift in Sources */,
 				0A19402A2226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift in Sources */,
 				551D7703227C7BCE003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */,

@@ -35,8 +35,8 @@ public struct MultiTokenEstimateTransactionRequest: Encodable {
     public struct Response: Decodable {
 
         public let lastUsedNonce: Int?
-        public let safeTxGas: Int?
-        public let operationalGas: Int?
+        public let safeTxGas: StringifiedBigInt?
+        public let operationalGas: StringifiedBigInt?
         public let estimations: [Estimation]
 
         public var nextNonce: Int {
@@ -44,7 +44,10 @@ public struct MultiTokenEstimateTransactionRequest: Encodable {
             return 0
         }
 
-        public init(lastUsedNonce: Int?, safeTxGas: Int?, operationalGas: Int?, estimations: [Estimation]) {
+        public init(lastUsedNonce: Int?,
+                    safeTxGas: StringifiedBigInt?,
+                    operationalGas: StringifiedBigInt?,
+                    estimations: [Estimation]) {
             self.lastUsedNonce = lastUsedNonce
             self.estimations = estimations
             self.safeTxGas = safeTxGas
@@ -56,16 +59,16 @@ public struct MultiTokenEstimateTransactionRequest: Encodable {
         public struct Estimation: Decodable {
 
             public let gasToken: String
-            public let gasPrice: Int
-            public let baseGas: Int
-            public let safeTxGas: Int!
-            public let operationalGas: Int!
+            public let gasPrice: StringifiedBigInt
+            public let baseGas: StringifiedBigInt
+            public let safeTxGas: StringifiedBigInt!
+            public let operationalGas: StringifiedBigInt!
 
             public init(gasToken: String,
-                        gasPrice: Int,
-                        safeTxGas: Int,
-                        baseGas: Int,
-                        operationalGas: Int) {
+                        gasPrice: StringifiedBigInt,
+                        safeTxGas: StringifiedBigInt,
+                        baseGas: StringifiedBigInt,
+                        operationalGas: StringifiedBigInt) {
                 self.gasToken = gasToken
                 self.gasPrice = gasPrice
                 self.safeTxGas = safeTxGas
@@ -75,7 +78,7 @@ public struct MultiTokenEstimateTransactionRequest: Encodable {
 
             /// The value displayed to user includes operationalGas parameter.
             public var totalDisplayedToUser: BigInt {
-                return BigInt(gasPrice) * (BigInt(baseGas) + BigInt(safeTxGas) + BigInt(operationalGas))
+                return gasPrice.value * (baseGas.value + safeTxGas.value + operationalGas.value)
             }
 
         }

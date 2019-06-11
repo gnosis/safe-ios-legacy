@@ -58,7 +58,7 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         let validator = SafeCreationResponseValidator()
         XCTAssertNoThrow(try validator.validate(response, request: request))
 
-        try transfer(to: response.safe, amount: String(response.payment))
+        try transfer(to: response.safe, amount: String(response.payment.value))
 
         try relayService.startSafeCreation(address: response.safeAddress)
         let txHash = try waitForSafeCreationTransaction(response.safeAddress)

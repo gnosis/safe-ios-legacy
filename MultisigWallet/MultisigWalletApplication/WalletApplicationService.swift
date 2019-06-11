@@ -86,7 +86,7 @@ public class WalletApplicationService: Assertable {
         }
         return response.compactMap {
             guard let token = self.token(id: $0.paymentToken) else { return nil }
-            return TokenData(token: token, balance: BigInt($0.payment))
+            return TokenData(token: token, balance: $0.payment.value)
         }
     }
 
