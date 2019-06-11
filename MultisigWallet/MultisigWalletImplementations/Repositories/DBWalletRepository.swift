@@ -10,15 +10,20 @@ import CommonImplementations
 public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRepository {
 
     public override var table: TableSchema {
+        // IMPORTANT: If you are adding new field to the SQL table, then add it to the end of the list.
+        // In existing app deployments, the order of fields in existing tables will not change just because
+        // the order of fields below is changed. If you _really_ want to change the order of the columns,
+        // then you have to make a migration by adding new table, moving data to the new table,
+        // removing the old table, and renaming the new table to old table name.
         return .init("tbl_wallets",
                      "id TEXT NOT NULL PRIMARY KEY",
                      "state INTEGER NOT NULL",
                      "owners TEXT NOT NULL",
                      "address TEXT",
-                     "fee_payment_token_address TEXT",
                      "minimum_deployment_tx_amount TEXT",
                      "creation_tx_hash TEXT",
                      "confirmation_count INTEGER NOT NULL",
+                     "fee_payment_token_address TEXT",
                      "master_copy_address TEXT",
                      "contract_version TEXT")
     }
@@ -28,10 +33,10 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                          object.state,
                          object.owners,
                          object.address,
-                         object.feePaymentTokenAddress,
                          object.minimumDeploymentTransactionAmount,
                          object.creationTransactionHash,
                          object.confirmationCount,
+                         object.feePaymentTokenAddress,
                          object.masterCopyAddress,
                          object.contractVersion])
     }

@@ -10,22 +10,23 @@ import CommonImplementations
 public class DBTokenListItemRepository: DBEntityRepository<TokenListItem, TokenID>, TokenListItemRepository {
 
     public override var table: TableSchema {
+        // IMPORTANT: If you are adding new field to the SQL table, then add it to the end of the list.
         return .init("tbl_token_list_items",
                      "id TEXT NOT NULL PRIMARY KEY",
                      "token TEXT NOT NULL",
                      "status TEXT NOT NULL",
-                     "can_pay_transaction_fee BOOLEAN",
                      "sorting_id INTEGER",
-                     "updated TEXT NOT NULL")
+                     "updated TEXT NOT NULL",
+                     "can_pay_transaction_fee BOOLEAN")
     }
 
     public override func insertionBindings(_ object: TokenListItem) -> [SQLBindable?] {
         return bindable([object.id,
                          object.token,
                          object.status.rawValue,
-                         object.canPayTransactionFee,
                          object.sortingId,
-                         object.updated])
+                         object.updated,
+                         object.canPayTransactionFee])
     }
 
     public override func save(_ tokenListItem: TokenListItem) {
