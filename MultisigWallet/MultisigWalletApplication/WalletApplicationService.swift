@@ -481,7 +481,6 @@ public class WalletApplicationService: Assertable {
             DomainRegistry.encryptionService.address(from: recipientAddress!)
         guard let recipient = formattedAddress, !recipient.isZero else { return nil }
 
-
         let request: EstimateTransactionRequest
 
         if token == Token.Ether.address.value {
