@@ -379,12 +379,12 @@ public struct EthBlock: Equatable {
 /// Estimate of transaction fees
 public struct TransactionFeeEstimate: Equatable {
 
-    public let gas: Int
-    public let dataGas: Int
-    public let operationalGas: Int
+    public let gas: TokenInt
+    public let dataGas: TokenInt
+    public let operationalGas: TokenInt
     public let gasPrice: TokenAmount
 
-    public init(gas: Int, dataGas: Int, operationalGas: Int, gasPrice: TokenAmount) {
+    public init(gas: TokenInt, dataGas: TokenInt, operationalGas: TokenInt, gasPrice: TokenAmount) {
         self.gas = gas
         self.dataGas = dataGas
         self.operationalGas = operationalGas
@@ -393,13 +393,13 @@ public struct TransactionFeeEstimate: Equatable {
 
     /// The value displayed to user includes operationalGas parameter.
     public var totalDisplayedToUser: TokenAmount {
-        return TokenAmount(amount: gasPrice.amount * (TokenInt(gas) + TokenInt(dataGas) + TokenInt(operationalGas)),
+        return TokenAmount(amount: gasPrice.amount * (gas + dataGas + operationalGas),
                            token: gasPrice.token)
     }
 
     /// The value submitted to blockchain does not include operational gas parameter.
     public var totalSubmittedToBlockchain: TokenAmount {
-        return TokenAmount(amount: gasPrice.amount * (TokenInt(gas) + TokenInt(dataGas)),
+        return TokenAmount(amount: gasPrice.amount * (gas + dataGas),
                            token: gasPrice.token)
     }
 

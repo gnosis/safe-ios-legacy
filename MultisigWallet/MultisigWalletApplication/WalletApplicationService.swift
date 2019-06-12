@@ -103,7 +103,8 @@ public class WalletApplicationService: Assertable {
          CreationStarted.self,
          WalletTransactionHashIsKnown.self,
          WalletCreated.self,
-         WalletCreationFailed.self].forEach {
+         WalletCreationFailed.self,
+         AccountsBalancesUpdated.self].forEach {
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
         }
         DomainRegistry.deploymentService.start()
@@ -471,17 +472,35 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.transactionService.removeDraftTransaction(TransactionID(id))
     }
 
-    public func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
+    public func estimateTransferFee(amount: BigInt,
+                                    recipientAddress: String?,
+                                    token: String = Token.Ether.id.id,
+                                    feeToken: String = Token.Ether.id.id) -> BigInt? {
         let placeholderAddress = Address(ownerAddress(of: .thisDevice)!)
-        let formattedAddress = address == nil || address!.isEmpty ? placeholderAddress :
-            DomainRegistry.encryptionService.address(from: address!)
+        let formattedAddress = recipientAddress == nil || recipientAddress!.isEmpty ? placeholderAddress :
+            DomainRegistry.encryptionService.address(from: recipientAddress!)
         guard let recipient = formattedAddress, !recipient.isZero else { return nil }
-        let request = EstimateTransactionRequest(safe: Address(selectedWalletAddress!),
+
+
+        let request: EstimateTransactionRequest
+
+        if token == Token.Ether.address.value {
+            request = EstimateTransactionRequest(safe: Address(selectedWalletAddress!),
                                                  to: recipient,
                                                  value: String(amount),
                                                  data: nil,
                                                  operation: .call,
-                                                 gasToken: selectedWallet!.feePaymentTokenAddress?.value)
+                                                 gasToken: feeToken)
+        } else {
+            let data = ERC20TokenContractProxy(Address(token)).transfer(to: recipient, amount: amount)
+            request = EstimateTransactionRequest(safe: Address(selectedWalletAddress!),
+                                                 to: Address(token),
+                                                 value: String(0),
+                                                 data: "0x" + data.toHexString(),
+                                                 operation: .call,
+                                                 gasToken: feeToken)
+        }
+
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
@@ -619,10 +638,10 @@ public class WalletApplicationService: Assertable {
         let estimationResponse = try handleRelayServiceErrors {
             try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
         }
-        let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
-                                                 dataGas: estimationResponse.baseGas,
-                                                 operationalGas: estimationResponse.operationalGas,
-                                                 gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
+        let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas.value,
+                                                 dataGas: estimationResponse.baseGas.value,
+                                                 operationalGas: estimationResponse.operationalGas.value,
+                                                 gasPrice: TokenAmount(amount: estimationResponse.gasPrice.value,
                                                                        token: token(id: estimationResponse.gasToken)!))
         updateTransaction(tx, withFeeEsimate: feeEstimate, nonce: String(estimationResponse.nextNonce))
         return transactionData(id)!

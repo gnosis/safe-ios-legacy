@@ -96,6 +96,7 @@
 		0A77D0D0211AD974003582DD /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77D0C3211AD952003582DD /* Fixtures.swift */; };
 		0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77D0C3211AD952003582DD /* Fixtures.swift */; };
 		0A77D100211B0CD6003582DD /* EthSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77D0FF211B0CD6003582DD /* EthSignature.swift */; };
+		0A7DCD1222B105FD00591DD9 /* GetSafeInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DCD1122B105FD00591DD9 /* GetSafeInfoRequest.swift */; };
 		0A7F3A8C2126BD890062CB1E /* RetryWithIncreasingDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F3A8B2126BD890062CB1E /* RetryWithIncreasingDelay.swift */; };
 		0A7F3A992126BDCA0062CB1E /* RetryWithIncreasingDelayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F3A982126BDCA0062CB1E /* RetryWithIncreasingDelayTests.swift */; };
 		0A7F3A9B2126C53E0062CB1E /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F3A9A2126C53E0062CB1E /* Repeater.swift */; };
@@ -535,6 +536,7 @@
 		0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAccountRepository.swift; sourceTree = "<group>"; };
 		0A77D0C3211AD952003582DD /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		0A77D0FF211B0CD6003582DD /* EthSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthSignature.swift; sourceTree = "<group>"; };
+		0A7DCD1122B105FD00591DD9 /* GetSafeInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSafeInfoRequest.swift; sourceTree = "<group>"; };
 		0A7F3A8B2126BD890062CB1E /* RetryWithIncreasingDelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryWithIncreasingDelay.swift; sourceTree = "<group>"; };
 		0A7F3A982126BDCA0062CB1E /* RetryWithIncreasingDelayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryWithIncreasingDelayTests.swift; sourceTree = "<group>"; };
 		0A7F3A9A2126C53E0062CB1E /* Repeater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repeater.swift; sourceTree = "<group>"; };
@@ -922,6 +924,7 @@
 				0AD899D42282C886008AE325 /* SafeCreationRequest.swift */,
 				0A9E379C20F4A4D10085E8D7 /* GetSafeCreationStatusRequest.swift */,
 				0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */,
+				0A7DCD1122B105FD00591DD9 /* GetSafeInfoRequest.swift */,
 				0AE0FE97229E7A5E00ABC552 /* MultiTokenEstimateTransactionRequest.swift */,
 				0A442DEA210B1DC200F19F80 /* SubmitTransactionRequest.swift */,
 				0A55567E218057A70023825E /* SubmitTransactionRequestTests.swift */,
@@ -1746,6 +1749,7 @@
 				55CC279A20F667FB00AC12D6 /* PairingRequest.swift in Sources */,
 				55FB25AE2124760200E81666 /* TokenListDomainService.swift in Sources */,
 				0A23C82120A1CF1D00C72483 /* Portfolio.swift in Sources */,
+				0A7DCD1222B105FD00591DD9 /* GetSafeInfoRequest.swift in Sources */,
 				555C949520E2A60F00A0621D /* WalletRepository.swift in Sources */,
 				0A8272F221243B0300EB5C21 /* EventPublisher.swift in Sources */,
 				0A9E381020F4A4F20085E8D7 /* EthereumNodeDomainService.swift in Sources */,

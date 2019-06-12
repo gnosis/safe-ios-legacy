@@ -73,20 +73,20 @@ struct Safe {
         let response = try _test.relayService.estimateTransaction(request: request)
         // Gas is adjusted because server-side gas estimate is
         // inherently inaccurate: (dataGas + txGas) is not enough for funding the fees.
-        let fee = (BigInt(response.baseGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas) +
-            gasAdjustment) * BigInt(response.gasPrice)
+        let fee = (response.baseGas.value + response.safeTxGas.value + response.operationalGas.value +
+            gasAdjustment) * response.gasPrice.value
         let nonce = response.nextNonce
         let tx = Transaction(id: TransactionID(),
                              type: type,
                              walletID: walletID,
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
         tx.change(sender: address)
-            .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas,
-                                                        dataGas: response.baseGas,
-                                                        operationalGas: response.operationalGas,
-                                                        gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
+            .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas.value,
+                                                        dataGas: response.baseGas.value,
+                                                        operationalGas: response.operationalGas.value,
+                                                        gasPrice: TokenAmount(amount: response.gasPrice.value,
                                                                               token: feePaymentToken)))
-            .change(fee: TokenAmount(amount: TokenInt(fee), token: feePaymentToken))
+            .change(fee: TokenAmount(amount: fee, token: feePaymentToken))
             .change(nonce: String(nonce))
             .change(recipient: recipient)
             .change(data: data)

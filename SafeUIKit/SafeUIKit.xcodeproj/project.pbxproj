@@ -307,8 +307,6 @@
 		5539C13821A55AF5006BF834 /* TransactionHeaderCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */; };
 		5539C13A21A55C74006BF834 /* TransferViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13921A55C74006BF834 /* TransferViewCell.swift */; };
 		5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */; };
-		5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13D21A55E8D006BF834 /* TransactionFeeCell.swift */; };
-		5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */; };
 		553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
 		553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */; };
 		553AEB13229EA42400EA3248 /* RBEIntroViewControllerErrorStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */; };
@@ -346,8 +344,6 @@
 		555EB71B216DF19800E06553 /* VerifiableInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB71A216DF19800E06553 /* VerifiableInputTests.swift */; };
 		555EB71D216DF23700E06553 /* VerifiableInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */; };
 		555EB71F216DF48900E06553 /* VerifiableInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 555EB71E216DF48900E06553 /* VerifiableInput.xib */; };
-		556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */; };
-		556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */; };
 		556251F9214912AA00F569EE /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251F8214912AA00F569EE /* QRCodeView.swift */; };
 		556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251FA2149135F00F569EE /* QRCodeViewController.swift */; };
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
@@ -405,9 +401,6 @@
 		55E8AFE5219B353C002930A1 /* TransferViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8AFE4219B353C002930A1 /* TransferViewTests.swift */; };
 		55E8AFE7219B37F8002930A1 /* TransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E8AFE6219B37F8002930A1 /* TransferView.xib */; };
 		55E8AFE9219B41A7002930A1 /* TransferViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */; };
-		55E8AFFD219C4A45002930A1 /* TransactionFeeViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */; };
-		55E8B000219C4A93002930A1 /* TransactionFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8AFFF219C4A93002930A1 /* TransactionFeeView.swift */; };
-		55E8B002219C4AF1002930A1 /* TransactionFeeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8B001219C4AF1002930A1 /* TransactionFeeViewTests.swift */; };
 		55E8B006219EC213002930A1 /* TransactionHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */; };
 		55E8B009219EC29A002930A1 /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8B008219EC29A002930A1 /* TransactionHeaderView.swift */; };
 		55E8B00B219EC2B9002930A1 /* TransactionHeaderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8B00A219EC2B9002930A1 /* TransactionHeaderViewTests.swift */; };
@@ -698,7 +691,6 @@
 		0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 		0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputViewControllerTests.swift; sourceTree = "<group>"; };
-		0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenNumberFormatter.swift; sourceTree = "<group>"; };
 		0A4DF81F20CE6FC70095C00D /* AssetViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewViewController.swift; sourceTree = "<group>"; };
 		0A4DF82320CE6FE20095C00D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A4DF82C20CE9A080095C00D /* AssetViewViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewViewControllerTests.swift; sourceTree = "<group>"; };
@@ -904,8 +896,6 @@
 		5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		5539C13921A55C74006BF834 /* TransferViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCell.swift; sourceTree = "<group>"; };
 		5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCellTests.swift; sourceTree = "<group>"; };
-		5539C13D21A55E8D006BF834 /* TransactionFeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeCell.swift; sourceTree = "<group>"; };
-		5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeCellTests.swift; sourceTree = "<group>"; };
 		553B9DEF22969E8F006E93C9 /* CreationFeeIntroHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreationFeeIntroHeaderView.xib; sourceTree = "<group>"; };
 		553B9DFF22969F87006E93C9 /* CreationFeeIntroHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFeeIntroHeaderView.swift; sourceTree = "<group>"; };
 		553B9E012296D15A006E93C9 /* OnboardingPaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -993,9 +983,6 @@
 		55E8AFE4219B353C002930A1 /* TransferViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewTests.swift; sourceTree = "<group>"; };
 		55E8AFE6219B37F8002930A1 /* TransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferView.xib; sourceTree = "<group>"; };
 		55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewViewController.swift; sourceTree = "<group>"; };
-		55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeViewViewController.swift; sourceTree = "<group>"; };
-		55E8AFFF219C4A93002930A1 /* TransactionFeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeView.swift; sourceTree = "<group>"; };
-		55E8B001219C4AF1002930A1 /* TransactionFeeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeViewTests.swift; sourceTree = "<group>"; };
 		55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderViewController.swift; sourceTree = "<group>"; };
 		55E8B008219EC29A002930A1 /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
 		55E8B00A219EC2B9002930A1 /* TransactionHeaderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderViewTests.swift; sourceTree = "<group>"; };
@@ -1003,7 +990,6 @@
 		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
 		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
 		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
-		B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenNumberFormatterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1478,8 +1464,6 @@
 				0ACCA8C1221C116F00D37594 /* NibUIView.swift */,
 				0AD89989228042CC008AE325 /* BaseCustomButton.swift */,
 				0ACCA8C8221C125C00D37594 /* AttributedStringStyle.swift */,
-				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
-				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 				0AC950A3228D86A700D77DE9 /* TokenFormatter.swift */,
 				0AC950B3228D8B8B00D77DE9 /* TokenFormatterTests.swift */,
 				0AD899842280325D008AE325 /* DashedSeparatorView.swift */,
@@ -1721,7 +1705,6 @@
 				555EB6EB216CA42100E06553 /* TextInputViewController.swift */,
 				55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */,
 				55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */,
-				55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */,
 				55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */,
 				55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */,
 				555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */,
@@ -1822,7 +1805,7 @@
 				556251CF2146710800F569EE /* BasicTableViewCell */,
 				550E7CDF21708F800032DE6C /* TokenInput */,
 				55126B5521AC372D00A9F810 /* TransactionConfirmationView */,
-				55E8AFFE219C4A62002930A1 /* TransactionFeeView */,
+				55E8AFFE219C4A62002930A1 /* FeeCalculationCell */,
 				55E8B007219EC254002930A1 /* TransactionHeaderView */,
 				55E8AFE1219B34D9002930A1 /* TransferView */,
 			);
@@ -2132,16 +2115,12 @@
 			path = TransferView;
 			sourceTree = "<group>";
 		};
-		55E8AFFE219C4A62002930A1 /* TransactionFeeView */ = {
+		55E8AFFE219C4A62002930A1 /* FeeCalculationCell */ = {
 			isa = PBXGroup;
 			children = (
-				55E8AFFF219C4A93002930A1 /* TransactionFeeView.swift */,
-				55E8B001219C4AF1002930A1 /* TransactionFeeViewTests.swift */,
-				5539C13D21A55E8D006BF834 /* TransactionFeeCell.swift */,
 				0AD8998622803858008AE325 /* FeeCalculationCell.swift */,
-				5539C13F21A55EA5006BF834 /* TransactionFeeCellTests.swift */,
 			);
-			path = TransactionFeeView;
+			path = FeeCalculationCell;
 			sourceTree = "<group>";
 		};
 		55E8B007219EC254002930A1 /* TransactionHeaderView */ = {
@@ -2702,7 +2681,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				55DE530B217B467900613B90 /* ScanButtonViewController.swift in Sources */,
-				55E8AFFD219C4A45002930A1 /* TransactionFeeViewViewController.swift in Sources */,
 				55D0EC62216F7383003D9A53 /* TokenInputViewController.swift in Sources */,
 				555EB6EC216CA42100E06553 /* TextInputViewController.swift in Sources */,
 				55126B6921AC38A900A9F810 /* TransactionConfirmationViewController.swift in Sources */,
@@ -2743,7 +2721,6 @@
 				55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */,
 				5549B2CA2285C62300F3B5B7 /* InfoLabel.swift in Sources */,
 				0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */,
-				5539C13E21A55E8D006BF834 /* TransactionFeeCell.swift in Sources */,
 				0AD1D1E021A8430300941EA1 /* EthereumAddressFormatter.swift in Sources */,
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
@@ -2752,7 +2729,6 @@
 				5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */,
 				0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */,
 				5549B2CC228AB51D00F3B5B7 /* TableHeaderStyle.swift in Sources */,
-				55E8B000219C4A93002930A1 /* TransactionFeeView.swift in Sources */,
 				5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */,
 				550E7CDE21708E540032DE6C /* UITextField+TokenInput.swift in Sources */,
 				0AD89976228031D0008AE325 /* FeeCalculationView.swift in Sources */,
@@ -2803,7 +2779,6 @@
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */,
 				55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */,
-				556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */,
 				55C428FA217B426D00BF8922 /* ScanBarButtonItem.swift in Sources */,
 				0AD89980228031DB008AE325 /* UIView+Pin.swift in Sources */,
 				55126B5C21AC372D00A9F810 /* TransactionConfirmationView.swift in Sources */,
@@ -2824,7 +2799,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				556252062149201500F569EE /* QRCodeViewTests.swift in Sources */,
-				5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */,
 				0AB3F13921F73A5200D351C7 /* CollectionUIModelTests.swift in Sources */,
 				55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */,
 				55126B6021AC376F00A9F810 /* TransactionConfirmationCellTests.swift in Sources */,
@@ -2838,14 +2812,12 @@
 				555EB71B216DF19800E06553 /* VerifiableInputTests.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */,
 				55E8B00B219EC2B9002930A1 /* TransactionHeaderViewTests.swift in Sources */,
-				55E8B002219C4AF1002930A1 /* TransactionFeeViewTests.swift in Sources */,
 				55C428FC217B428100BF8922 /* ScanBarButtonItemTests.swift in Sources */,
 				5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				55E8AFE5219B353C002930A1 /* TransferViewTests.swift in Sources */,
 				0ABA592121AC09CC009D249F /* EthereumAddressLabelTests.swift in Sources */,
 				55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */,
-				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				0AD1D1E221A8432800941EA1 /* EthereumAddressFormatterTests.swift in Sources */,
 				5539C13821A55AF5006BF834 /* TransactionHeaderCellTests.swift in Sources */,

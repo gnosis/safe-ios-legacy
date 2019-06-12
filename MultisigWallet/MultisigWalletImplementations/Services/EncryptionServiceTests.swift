@@ -211,8 +211,8 @@ ef8553f949acc5f0cb8002523b7a4f8e02664b6637eddc74ad72bb8e38588309
             .change(data: Data(ethHex: fixture.data))
             .change(operation: WalletOperation(rawValue: Int(fixture.operation)!)!)
             .change(nonce: fixture.nonce)
-            .change(feeEstimate: TransactionFeeEstimate(gas: Int(fixture.txGas)!,
-                                                        dataGas: Int(fixture.dataGas)!,
+            .change(feeEstimate: TransactionFeeEstimate(gas: BigInt(fixture.txGas)!,
+                                                        dataGas: BigInt(fixture.dataGas)!,
                                                         operationalGas: 0,
                                                         gasPrice: newGasPrice(fixture.gasPrice, fixture.gasToken)))
     }

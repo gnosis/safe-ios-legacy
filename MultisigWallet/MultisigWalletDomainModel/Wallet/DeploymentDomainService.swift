@@ -60,7 +60,18 @@ public class DeploymentDomainService {
         DomainRegistry.eventPublisher.subscribe(self, creationFailed)
         DomainRegistry.eventPublisher.subscribe(self, deploymentAborted)
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        wallet.resume()
+        do {
+            guard let address = wallet.address else {
+                wallet.resume()
+                return
+            }
+            // probe the address, if it is a valid response, then safe was created while the app was not working
+            _ = try DomainRegistry.transactionRelayService.safeInfo(address: address)
+            wallet.state = wallet.finalizingDeploymentState
+            wallet.proceed()
+        } catch {
+            wallet.resume()
+        }
     }
 
     public func createNewDraftWallet() {

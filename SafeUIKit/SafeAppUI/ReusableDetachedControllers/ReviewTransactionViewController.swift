@@ -259,11 +259,7 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     internal func updateTransactionFeeCell() {
-        precondition(Thread.isMainThread)
-        cells[feeCellIndexPath] = transactionFeeCell()
-        if feeCellIndexPath.row < tableView.numberOfRows(inSection: feeCellIndexPath.section) {
-            tableView.reloadRows(at: [feeCellIndexPath], with: .none)
-        }
+        // override in subclass
     }
 
     private func updateConfirmationCell() {
@@ -301,27 +297,8 @@ public class ReviewTransactionViewController: UITableViewController {
         return cell
     }
 
-
-    internal func transactionFeeCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.amountTokenData)!
-        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0) - abs(tx.feeTokenData.balance ?? 0)
-        return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
-                       transactionFee: tx.feeTokenData,
-                       resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
-    }
-
     internal func balance(of token: TokenData) -> BigInt? {
         return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address))
-    }
-
-    internal func feeCell(currentBalance: TokenData?,
-                          transactionFee: TokenData?,
-                          resultingBalance: TokenData) -> UITableViewCell {
-        let cell = TransactionFeeCell(frame: .zero)
-        cell.transactionFeeView.configure(currentBalance: currentBalance,
-                                          transactionFee: transactionFee,
-                                          resultingBalance: resultingBalance)
-        return cell
     }
 
     // MARK: - Other
