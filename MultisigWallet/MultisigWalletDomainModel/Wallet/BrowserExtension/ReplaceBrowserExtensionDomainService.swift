@@ -99,10 +99,10 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         let request = estimationRequest(for: tx)
         let response = try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
         let feeToken = DomainRegistry.tokenListItemRepository.find(id: TokenID(response.gasToken))?.token ?? Token.Ether
-        let estimate = TransactionFeeEstimate(gas: response.safeTxGas,
-                                              dataGas: response.baseGas,
-                                              operationalGas: response.operationalGas,
-                                              gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
+        let estimate = TransactionFeeEstimate(gas: response.safeTxGas.value,
+                                              dataGas: response.baseGas.value,
+                                              operationalGas: response.operationalGas.value,
+                                              gasPrice: TokenAmount(amount: response.gasPrice.value,
                                                                     token: feeToken))
         tx.change(fee: estimate.totalSubmittedToBlockchain)
             .change(feeEstimate: estimate)

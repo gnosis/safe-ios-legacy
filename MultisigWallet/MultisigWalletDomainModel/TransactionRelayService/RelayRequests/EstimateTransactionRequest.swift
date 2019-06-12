@@ -46,13 +46,13 @@ public struct EstimateTransactionRequest: Encodable {
 
     public struct Response: Decodable {
 
-        public let safeTxGas: Int
+        public let safeTxGas: StringifiedBigInt
         /// Deprecated, will be removed in the future. Use `baseGas` instead
-        public let baseGas: Int
+        public let baseGas: StringifiedBigInt
         // TODO: deprecated, should be removed
-        public let dataGas: Int
-        public let gasPrice: Int
-        public let operationalGas: Int
+        public let dataGas: StringifiedBigInt
+        public let gasPrice: StringifiedBigInt
+        public let operationalGas: StringifiedBigInt
         public let lastUsedNonce: Int?
         public let gasToken: String
 
@@ -61,10 +61,10 @@ public struct EstimateTransactionRequest: Encodable {
             return 0
         }
 
-        public init(safeTxGas: Int,
-                    dataGas: Int,
-                    operationalGas: Int,
-                    gasPrice: Int,
+        public init(safeTxGas: StringifiedBigInt,
+                    dataGas: StringifiedBigInt,
+                    operationalGas: StringifiedBigInt,
+                    gasPrice: StringifiedBigInt,
                     lastUsedNonce: Int?,
                     gasToken: String) {
             self.safeTxGas = safeTxGas
@@ -78,7 +78,7 @@ public struct EstimateTransactionRequest: Encodable {
 
         /// The value displayed to user includes operationalGas parameter.
         public var totalDisplayedToUser: BigInt {
-            return BigInt(gasPrice) * (BigInt(dataGas) + BigInt(safeTxGas) + BigInt(operationalGas))
+            return gasPrice.value * (dataGas.value + safeTxGas.value + operationalGas.value)
         }
 
     }

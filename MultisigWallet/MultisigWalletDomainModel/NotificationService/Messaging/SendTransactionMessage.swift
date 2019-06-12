@@ -13,9 +13,9 @@ public class SendTransactionMessage: Message {
     public let value: BigInt
     public let data: Data
     public let operation: WalletOperation
-    public let txGas: Int
-    public let dataGas: Int
-    public let operationalGas: Int
+    public let txGas: BigInt
+    public let dataGas: BigInt
+    public let operationalGas: BigInt
     public let gasPrice: BigInt
     public let gasToken: Address
     public let nonce: Int
@@ -38,10 +38,10 @@ public class SendTransactionMessage: Message {
               let dataString = userInfo["data"] as? String, let data = Optional(Data(ethHex: dataString)),
               let operationString = userInfo["operation"] as? String, let operationInt = Int(operationString),
               let operation = WalletOperation(rawValue: operationInt),
-              let txGasString = userInfo["txGas"] as? String, let txGas = Int(txGasString),
-              let dataGasString = userInfo["dataGas"] as? String, let dataGas = Int(dataGasString),
+              let txGasString = userInfo["txGas"] as? String, let txGas = BigInt(txGasString),
+              let dataGasString = userInfo["dataGas"] as? String, let dataGas = BigInt(dataGasString),
               let operationalGasString = userInfo["operationalGas"] as? String,
-              let operationalGas = Int(operationalGasString),
+              let operationalGas = BigInt(operationalGasString),
               let gasPriceString = userInfo["gasPrice"] as? String, let gasPrice = BigInt(gasPriceString),
               let gasTokenString = userInfo["gasToken"] as? String, let gasToken = Address(rawValue: gasTokenString),
               let nonceString = userInfo["nonce"] as? String, let nonce = Int(nonceString),

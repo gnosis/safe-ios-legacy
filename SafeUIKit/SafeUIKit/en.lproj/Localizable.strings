@@ -19,9 +19,6 @@
 /* Authentication required */
 "authentication_required" = "Authentication required";
 
-/* Balance after transfer */
-"balance_after_transfer" = "Balance after transfer";
-
 /* Transaction approved by the browser extension */
 "browser_extension_approved" = "The browser extension has approved this transaction.";
 
@@ -40,9 +37,6 @@
 
 /* Error */
 "error" = "Error";
-
-/* Warning about not enough funds */
-"exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* Button name to allow camera access */
 "ios_camera_allow" = "Allow Camera";
@@ -64,12 +58,6 @@
 
 /* Error to display if entered value is too big. */
 "ios_token_input_value_is_too_big" = "Value is too big.";
-
-/* Displayed in parentheses */
-"ios_transaction_fee_ether" = "Ether";
-
-/* Displayed in parentheses */
-"ios_transaction_fee_token" = "token";
 
 /* Loading... */
 "loading" = "Loading…";
@@ -95,15 +83,9 @@
 /* Resend */
 "resend" = "Resend";
 
-/* Current balance */
-"safe_balance" = "Safe balance";
-
 /* Scan QR code alert item. */
 "scan_qr_code" = "Scan QR Code";
 
 /* Submit transaction */
 "submit" = "Submit";
-
-/* Network fee */
-"transaction_fee" = "Network fee";
 

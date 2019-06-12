@@ -63,11 +63,14 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
         payButton.addTarget(self, action: #selector(pay), for: .touchUpInside)
         payButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(payButton)
+        let height: CGFloat = 56
+        let padding: CGFloat = 16
         NSLayoutConstraint.activate([
-            payButton.heightAnchor.constraint(equalToConstant: 56),
-            payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            payButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)])
+            payButton.heightAnchor.constraint(equalToConstant: height),
+            payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            payButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding)])
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: padding * 2 + height, right: 0)
     }
 
     private func updatePayButtonTitle() {

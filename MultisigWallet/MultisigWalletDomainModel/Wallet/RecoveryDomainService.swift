@@ -605,10 +605,10 @@ class RecoveryTransactionBuilder: Assertable {
     fileprivate func calculateFees(basedOn estimationResponse: EstimateTransactionRequest.Response) {
         let feeToken = DomainRegistry.tokenListItemRepository
             .find(id: TokenID(estimationResponse.gasToken))?.token ?? Token.Ether
-        let gasPrice = TokenAmount(amount: TokenInt(estimationResponse.gasPrice), token: feeToken)
-        let estimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
-                                              dataGas: estimationResponse.baseGas,
-                                              operationalGas: estimationResponse.operationalGas,
+        let gasPrice = TokenAmount(amount: estimationResponse.gasPrice.value, token: feeToken)
+        let estimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas.value,
+                                              dataGas: estimationResponse.baseGas.value,
+                                              operationalGas: estimationResponse.operationalGas.value,
                                               gasPrice: gasPrice)
         transaction.change(fee: estimate.totalSubmittedToBlockchain)
             .change(feeEstimate: estimate)

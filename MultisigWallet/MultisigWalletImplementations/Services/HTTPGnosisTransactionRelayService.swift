@@ -70,6 +70,10 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
         return try httpClient.execute(request: request)
     }
 
+    public func safeInfo(address: Address) throws -> GetSafeInfoRequest.Response {
+        return try httpClient.execute(request: GetSafeInfoRequest(address: address.value))
+    }
+
 }
 
 extension EstimateSafeCreationRequest: JSONRequest {
@@ -121,7 +125,7 @@ struct SafeGasPriceRequest: JSONRequest {
 extension EstimateTransactionRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
-    public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/estimate/" }
+    public var urlPath: String { return "/api/v2/safes/\(safe)/transactions/estimate/" }
 
     public typealias ResponseType = Response
 
@@ -140,6 +144,15 @@ extension SubmitTransactionRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/" }
+
+    public typealias ResponseType = Response
+
+}
+
+extension GetSafeInfoRequest: JSONRequest {
+
+    public var httpMethod: String { return "GET" }
+    public var urlPath: String { return "/api/v1/safes/\(address)/" }
 
     public typealias ResponseType = Response
 

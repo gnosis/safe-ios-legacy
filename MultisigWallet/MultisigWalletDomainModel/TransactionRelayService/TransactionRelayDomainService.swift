@@ -35,6 +35,8 @@ public protocol TransactionRelayDomainService {
     /// - Throws: network or server error
     func safeCreationTransactionHash(address: Address) throws -> TransactionHash?
 
+    func safeInfo(address: Address) throws -> GetSafeInfoRequest.Response
+
     /// Fetches current gas price
     ///
     /// - Returns: gas price response

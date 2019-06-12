@@ -67,10 +67,10 @@ extension ReplaceBrowserExtensionDomainServiceBaseTestCase {
     }
 
     func setNetworkFee(safeGas: Int, dataGas: Int, operationGas: Int, gasPrice: Int) {
-        mockRelayService.estimateTransaction_output = .init(safeTxGas: safeGas,
-                                                            dataGas: dataGas,
-                                                            operationalGas: operationGas,
-                                                            gasPrice: gasPrice,
+        mockRelayService.estimateTransaction_output = .init(safeTxGas: StringifiedBigInt(safeGas),
+                                                            dataGas: StringifiedBigInt(dataGas),
+                                                            operationalGas: StringifiedBigInt(operationGas),
+                                                            gasPrice: StringifiedBigInt(gasPrice),
                                                             lastUsedNonce: nil,
                                                             gasToken: Token.Ether.address.value)
     }

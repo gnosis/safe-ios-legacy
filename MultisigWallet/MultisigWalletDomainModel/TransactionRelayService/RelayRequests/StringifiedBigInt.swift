@@ -46,7 +46,7 @@ extension StringifiedBigInt: Decodable {
         }
         self.init(value)
     }
-    
+
 }
 
 extension StringifiedBigInt: ExpressibleByIntegerLiteral {

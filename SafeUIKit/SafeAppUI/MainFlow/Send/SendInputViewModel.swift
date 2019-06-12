@@ -74,7 +74,9 @@ class SendInputViewModel {
             guard let `self` = self else { return }
             if op.isCancelled { return }
             self.estimatedFee = self.walletService.estimateTransferFee(amount: self.amount ?? 0,
-                                                                       address: self.recipient)
+                                                                       recipientAddress: self.recipient,
+                                                                       token: self.transferTokenID.id,
+                                                                       feeToken: self.feeTokenID.id)
             if op.isCancelled { return }
             self.updateBalances()
         })

@@ -173,7 +173,6 @@ extension OnboardingCreationFeeViewController: LongProcessTrackerDelegate {
 
     func startProcess(errorHandler: @escaping (Error) -> Void) {
         ApplicationServiceRegistry.walletService.deployWallet(subscriber: self, onError: errorHandler)
-        ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
     }
 
     func processDidFail() {
