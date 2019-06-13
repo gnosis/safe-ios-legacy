@@ -6,6 +6,7 @@ import Foundation
 import UIKit
 import MultisigWalletDomainModel
 import MultisigWalletApplication
+import CFNetwork // for handling errors
 
 public class SynchronisationService: SynchronisationDomainService {
 
@@ -48,10 +49,7 @@ public class SynchronisationService: SynchronisationDomainService {
             let tokenList = try DomainRegistry.tokenListService.items()
             merger.mergeStoredTokenItems(with: tokenList)
         } catch {
-            // GH-681 Skip logging of the "Request timed out" error, because sync will happen again
-            if error.domain == NSURLErrorDomain && error.code == -1_001 {
-                return
-            }
+            if isNetworkError(error) { return }
             ApplicationServiceRegistry.logger.error("Failed to sync token list", error: error)
         }
     }
@@ -62,12 +60,16 @@ public class SynchronisationService: SynchronisationDomainService {
         do {
             try DomainRegistry.accountUpdateService.updateAccountsBalances()
         } catch {
-            // GH-680 Skip logging of the posix error (something wrong with the system, nothing we can do)
-            if error.domain == NSPOSIXErrorDomain && error.code == 53 {
-                return
-            }
+            if isNetworkError(error) { return }
             ApplicationServiceRegistry.logger.error("Failed to sync account balances", error: error)
         }
+    }
+
+    // we skip network failures because sync will be attempted again
+    private func isNetworkError(_ error: Error) -> Bool {
+        return error.domain == NSPOSIXErrorDomain ||
+            error.domain == NSURLErrorDomain ||
+            error.domain == kCFErrorDomainCFNetwork as String
     }
 
     /// Synchronizes statuses of pending transactions. Errors are logged but not thrown.
@@ -76,6 +78,7 @@ public class SynchronisationService: SynchronisationDomainService {
         do {
             try DomainRegistry.transactionService.updatePendingTransactions()
         } catch {
+            if isNetworkError(error) { return }
             ApplicationServiceRegistry.logger.error("Failed to sync pending transactions", error: error)
         }
     }
@@ -95,6 +98,7 @@ public class SynchronisationService: SynchronisationDomainService {
             guard hasAccessToFilesystem else { return }
             try DomainRegistry.replacePhraseService.postProcessTransactions()
         } catch {
+            if isNetworkError(error) { return }
             ApplicationServiceRegistry.logger.error("Failed to post process transactions", error: error)
         }
     }
