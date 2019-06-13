@@ -65,6 +65,7 @@ public class SynchronisationService: SynchronisationDomainService {
         }
     }
 
+    // we skip network failures because sync will be attempted again
     private func isNetworkError(_ error: Error) -> Bool {
         return error.domain == NSPOSIXErrorDomain ||
             error.domain == NSURLErrorDomain ||
