@@ -11,13 +11,13 @@ public protocol SingleGatekeeperRepository {
     ///
     /// - Parameter gatekeeper: gatekeeper entity
     /// - Throws: error during persisting gatekeeper
-    func save(_ gatekeeper: Gatekeeper) throws
+    func save(_ gatekeeper: Gatekeeper)
 
     /// Removes persisted gatekeeper
     ///
     /// - Parameter gatekeeper: gatekeeper entity
     /// - Throws: error during removing gatekeeper
-    func remove(_ gatekeeper: Gatekeeper) throws
+    func remove(_ gatekeeper: Gatekeeper)
 
     /// Returns persisted gatekeeper, if any
     ///

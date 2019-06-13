@@ -82,7 +82,7 @@ public class IdentityService: Assertable {
                                               maxFailedAttempts: maxFailedAttempts,
                                               blockDuration: blockDuration)
         let gatekeeper = Gatekeeper(id: gatekeeperRepository.nextId(), policy: policy)
-        try gatekeeperRepository.save(gatekeeper)
+        gatekeeperRepository.save(gatekeeper)
         return gatekeeper
     }
 
@@ -99,7 +99,7 @@ public class IdentityService: Assertable {
         try validatePlaintextPassword(password)
         let encryptedPassword = encryptionService.encrypted(password)
         let user = User(id: userRepository.nextId(), password: encryptedPassword)
-        try userRepository.save(user)
+        userRepository.save(user)
         try biometricService.activate()
         return user.id
     }
@@ -113,7 +113,7 @@ public class IdentityService: Assertable {
         try validatePlaintextPassword(password)
         let encryptedPassword = encryptionService.encrypted(password)
         let updatedUser = User(id: userRepository.primaryUser()!.id, password: encryptedPassword)
-        try userRepository.save(updatedUser)
+        userRepository.save(updatedUser)
     }
 
     private func validatePlaintextPassword(_ password: String) throws {
@@ -141,21 +141,19 @@ public class IdentityService: Assertable {
     }
 
     private func authenticate(at time: Date, _ authenticate: () throws -> User?) throws -> UserID? {
-        guard let gatekeeper = gatekeeperRepository.gatekeeper() else {
-            throw AuthenticationError.gatekeeperNotFound
-        }
+        let gatekeeper = gatekeeperRepository.gatekeeper()!
         guard gatekeeper.isAccessPossible(at: time) else {
             return nil
         }
         guard let user = try authenticate() else {
             gatekeeper.denyAccess(at: time)
-            try gatekeeperRepository.save(gatekeeper)
+            gatekeeperRepository.save(gatekeeper)
             return nil
         }
         let session = try gatekeeper.allowAccess(at: time)
-        try gatekeeperRepository.save(gatekeeper)
+        gatekeeperRepository.save(gatekeeper)
         user.attachSession(id: session)
-        try userRepository.save(user)
+        userRepository.save(user)
         return user.id
     }
 
@@ -167,7 +165,7 @@ public class IdentityService: Assertable {
     @discardableResult
     public func authenticateUserBiometrically(at time: Date) throws -> UserID? {
         return try authenticate(at: time) {
-            guard biometricService.authenticate() else { return nil }
+            guard try biometricService.authenticate() else { return nil }
             return userRepository.primaryUser()
         }
     }

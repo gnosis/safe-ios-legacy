@@ -11,13 +11,13 @@ public protocol SingleUserRepository {
     ///
     /// - Parameter user: user entity
     /// - Throws: error in case persisting fails
-    func save(_ user: User) throws
+    func save(_ user: User)
 
     /// Removes user from repository.
     ///
     /// - Parameter user: existing user
     /// - Throws: error if removing fails
-    func remove(_ user: User) throws
+    func remove(_ user: User)
 
     /// Returns single user, if it exists
     ///

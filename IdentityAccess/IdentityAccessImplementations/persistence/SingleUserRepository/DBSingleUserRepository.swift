@@ -34,16 +34,16 @@ CREATE TABLE IF NOT EXISTS tbl_user (
         return UserID()
     }
 
-    public func setUp() throws {
-        try db.execute(sql: SQL.createTable)
+    public func setUp() {
+        try! db.execute(sql: SQL.createTable)
     }
 
-    public func save(_ user: User) throws {
-        try db.execute(sql: SQL.insertUser, bindings: [user.id.id, user.password, user.sessionID?.id])
+    public func save(_ user: User) {
+        try! db.execute(sql: SQL.insertUser, bindings: [user.id.id, user.password, user.sessionID?.id])
     }
 
-    public func remove(_ user: User) throws {
-        try db.execute(sql: SQL.deleteUser, bindings: [user.id.id])
+    public func remove(_ user: User) {
+        try! db.execute(sql: SQL.deleteUser, bindings: [user.id.id])
     }
 
     public func primaryUser() -> User? {

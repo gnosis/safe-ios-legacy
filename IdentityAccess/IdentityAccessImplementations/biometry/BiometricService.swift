@@ -71,48 +71,38 @@ public final class BiometricService: BiometricAuthenticationService {
     }
 
     public func activate() throws {
-        requestBiometry(reason: String(format: Strings.activate, biometryType.localizedDescription))
+        _ = try? requestBiometry(reason: String(format: Strings.activate, biometryType.localizedDescription))
     }
 
-    public func authenticate() -> Bool {
-        return requestBiometry(reason: String(format: Strings.unlock, biometryType.localizedDescription))
+    public func authenticate() throws -> Bool {
+        return try requestBiometry(reason: String(format: Strings.unlock, biometryType.localizedDescription))
     }
 
     @discardableResult
-    private func requestBiometry(reason: String) -> Bool {
+    private func requestBiometry(reason: String) throws -> Bool {
         guard isAuthenticationAvailable else { return false }
         var success: Bool = false
+        var evaluationError: Error?
         let semaphore = DispatchSemaphore(value: 0)
         let policy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
-        context.evaluatePolicy(policy, localizedReason: reason) { [unowned self] result, errorOrNil in
-            if let error = errorOrNil, !(error is LAError) || self.isUnexpectedFailureReason(error as! LAError) {
-                ApplicationServiceRegistry.logger.error("Failed to evaluate authentication policy", error: error)
-            }
+        context.evaluatePolicy(policy, localizedReason: reason) { result, errorOrNil in
+            evaluationError = errorOrNil
             success = result
             semaphore.signal()
         }
         semaphore.wait()
-        return success
-    }
-
-    private func isUnexpectedFailureReason(_ error: LAError) -> Bool {
-            switch error.code {
-            case .authenticationFailed,
-                 .userCancel,
-                 .userFallback,
-                 .systemCancel,
-                 .passcodeNotSet,
-                 .biometryNotAvailable,
-                 .biometryNotEnrolled,
-                 .biometryLockout,
-                 .notInteractive,
-                 .appCancel:
+        if let error = evaluationError {
+            switch error {
+            case LAError.authenticationFailed:
                 return false
-            case .invalidContext:
-                return true
-            default: // these are deprecated touchID* cases
-                return false
+            default:
+                // other error cases include cancelling biometry alert by user, by system,
+                // biometry unenrolled, or failure. In this case we can't say user authentication failed - it just
+                // didn't happen, so we throw that error.
+                throw error
             }
+        }
+        return success
     }
 
 }

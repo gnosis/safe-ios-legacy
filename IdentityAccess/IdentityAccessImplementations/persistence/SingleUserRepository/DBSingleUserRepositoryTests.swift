@@ -24,7 +24,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
 
     func test_setUp() throws {
         db.exists = false
-        try repository.setUp()
+        repository.setUp()
         let expectedCalls = [
             "db.connection()",
             "conn.prepare(\(DBSingleUserRepository.SQL.createTable))",
@@ -34,7 +34,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
     }
 
     func test_save() throws {
-        try repository.save(user)
+        repository.save(user)
         let expectedCalls = [
             "db.connection()",
             "conn.prepare(\(DBSingleUserRepository.SQL.insertUser))",
@@ -47,7 +47,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
     }
 
     func test_remove() throws {
-        try repository.remove(user)
+        repository.remove(user)
         let expectedCalls = [
             "db.connection()",
             "conn.prepare(\(DBSingleUserRepository.SQL.deleteUser))",
