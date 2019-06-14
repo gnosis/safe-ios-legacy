@@ -11,7 +11,8 @@ struct WalletMigrations {
         M0002_AddFeeTokenToWallet(),
         M0003_AddCanPayTransactionFeeToTokenListItem(),
         M0004_AddColumnsToWallet(),
-        M0005_ChangeTransactionFeeColumnType()
+        M0005_ChangeTransactionFeeColumnType(),
+        M0006_RemoveWalletIDFromTransactions()
     ]
 
     static let latest = all.last!

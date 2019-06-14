@@ -151,7 +151,6 @@ extension TransactionTests {
         let walletID = WalletID()
         transaction = Transaction(id: TransactionID(),
                                   type: .transfer,
-                                  walletID: walletID,
                                   accountID: AccountID(tokenID: Token.gno.id, walletID: walletID))
     }
 

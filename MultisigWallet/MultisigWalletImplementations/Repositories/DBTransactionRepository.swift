@@ -13,7 +13,6 @@ public class DBTransactionRepository: TransactionRepository {
         static let createTable = """
 CREATE TABLE IF NOT EXISTS tbl_transactions (
     id TEXT NOT NULL PRIMARY KEY,
-    wallet_id TEXT NOT NULL,
     account_id TEXT NOT NULL,
     transaction_type INTEGER NOT NULL,
     transaction_status INTEGER NOT NULL,
@@ -45,14 +44,13 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
     ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?,
-    ?, ?, ?, ?
+    ?, ?, ?
 );
 """
         static let delete = "DELETE FROM tbl_transactions WHERE id = ?;"
 
         static let fieldList = """
     id,
-    wallet_id,
     account_id,
     transaction_type,
     transaction_status,
@@ -95,7 +93,8 @@ LIMIT 1;
         static let findByTypeAndWallet = """
         SELECT \(fieldList)
         FROM tbl_transactions
-        WHERE transaction_type = ? AND wallet_id = ?
+        WHERE transaction_type = ? AND account_id GLOB ?
+        ORDER BY rowid
         LIMIT 1;
         """
         static let findByHash = "SELECT \(fieldList) FROM tbl_transactions WHERE hash = ? ORDER BY rowid LIMIT 1;"
@@ -117,7 +116,6 @@ LIMIT 1;
         try! db.execute(sql: SQL.insert, bindings:
             [
                 transaction.id.id,
-                transaction.walletID.id,
                 transaction.accountID.id,
                 transaction.type.rawValue,
                 transaction.status.rawValue,
@@ -190,7 +188,7 @@ LIMIT 1;
 
     public func find(type: TransactionType, wallet: WalletID) -> Transaction? {
         return try! db.execute(sql: SQL.findByTypeAndWallet,
-                               bindings: [type.rawValue, wallet.id],
+                               bindings: [type.rawValue, "*:" + wallet.id],
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
@@ -200,10 +198,9 @@ LIMIT 1;
 
     private func transactionFromResultSet(_ rs: ResultSet) -> Transaction? {
         let it = rs.rowIterator()
-        let (idOrNil, walletIDOrNil, accountIDOrNil, rawTransactionTypeOrNil, rawTransactionStatusOrNil) =
-            (it.nextString(), it.nextString(), it.nextString(), it.nextInt(), it.nextInt())
+        let (idOrNil, accountIDOrNil, rawTransactionTypeOrNil, rawTransactionStatusOrNil) =
+            (it.nextString(), it.nextString(), it.nextInt(), it.nextInt())
         guard let id = idOrNil,
-            let walletID = walletIDOrNil,
             let accountID = accountIDOrNil,
             let rawTransactionType = rawTransactionTypeOrNil,
             let transactionType = TransactionType(rawValue: rawTransactionType),
@@ -213,7 +210,6 @@ LIMIT 1;
         }
         let transaction = Transaction(id: TransactionID(id),
                                       type: transactionType,
-                                      walletID: WalletID(walletID),
                                       accountID: AccountID(accountID))
         let timestamps = update(it, transaction)
 

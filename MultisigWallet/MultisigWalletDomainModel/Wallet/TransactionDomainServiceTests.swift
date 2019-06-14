@@ -31,7 +31,6 @@ class TransactionDomainServiceTests: XCTestCase {
         portfolioRepo.save(portfolio)
         tx = Transaction(id: repo.nextID(),
                          type: .transfer,
-                         walletID: walletID,
                          accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
 
     }
@@ -299,7 +298,6 @@ extension Transaction {
         let accountID = AccountID(tokenID: Token.Ether.id, walletID: walletID)
         return Transaction(id: TransactionID(),
                            type: .transfer,
-                           walletID: walletID,
                            accountID: accountID)
     }
 

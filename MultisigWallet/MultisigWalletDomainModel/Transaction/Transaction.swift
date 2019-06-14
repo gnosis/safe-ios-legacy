@@ -65,16 +65,14 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var data: Data?
     public private(set) var operation: WalletOperation?
     public private(set) var nonce: String?
-    public let walletID: WalletID
     public let accountID: AccountID
 
     private var state: TransactionStatus
 
     // MARK: - Creating Transaction
 
-    public init(id: TransactionID, type: TransactionType, walletID: WalletID, accountID: AccountID) {
+    public init(id: TransactionID, type: TransactionType, accountID: AccountID) {
         self.type = type
-        self.walletID = walletID
         self.accountID = accountID
         self.state = DraftTransactionStatus()
         super.init(id: id)

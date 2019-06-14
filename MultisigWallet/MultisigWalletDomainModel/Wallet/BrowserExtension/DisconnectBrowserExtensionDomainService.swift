@@ -44,7 +44,7 @@ open class DisconnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomai
         guard let tx = repository.find(id: transactionID),
             tx.type == transactionType,
             tx.status == .success || tx.status == .failed,
-            let wallet = DomainRegistry.walletRepository.find(id: tx.walletID) else { return }
+            let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
         if tx.status == .success {
             try removeOldOwner(from: wallet)
             wallet.changeConfirmationCount(1)
