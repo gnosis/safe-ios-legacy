@@ -133,9 +133,9 @@ public class ReviewTransactionViewController: UITableViewController {
             ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
             doRequest()
         } else if tx.status == .readyToSubmit {
-            delegate.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [unowned self] allowed in
+            delegate.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [weak self] allowed in
                 if allowed {
-                    self.doSubmit()
+                    self?.doSubmit()
                 }
             }
         } else {
@@ -181,12 +181,10 @@ public class ReviewTransactionViewController: UITableViewController {
             return
         }
         if isLoading {
-            navigationItem.hidesBackButton = true
             submitButton?.isEnabled = false
             submitBarButton?.isEnabled = false
             navigationItem.titleView = LoadingTitleView()
         } else {
-            navigationItem.hidesBackButton = false
             submitButton?.isEnabled = true
             submitBarButton?.isEnabled = true
             navigationItem.titleView = nil
@@ -234,14 +232,14 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func notifyOfStatus() {
-        switch self.tx.status {
+        switch tx.status {
         case .readyToSubmit:
-            self.didConfirm()
+            didConfirm()
         case .rejected:
-            self.didReject()
+            didReject()
         case .success, .pending, .failed, .discarded:
-            self.didSubmit()
-            self.delegate.reviewTransactionViewControllerDidFinishReview(self)
+            didSubmit()
+            delegate.reviewTransactionViewControllerDidFinishReview(self)
         default: break
         }
     }
