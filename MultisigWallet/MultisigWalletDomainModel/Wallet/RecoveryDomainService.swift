@@ -554,7 +554,6 @@ class RecoveryTransactionBuilder: Assertable {
     fileprivate func newTransaction() -> Transaction {
         return Transaction(id: DomainRegistry.transactionRepository.nextID(),
                            type: .walletRecovery,
-                           walletID: wallet.id,
                            accountID: accountID)
     }
 

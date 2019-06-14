@@ -115,7 +115,6 @@ class BaseWalletApplicationServiceTests: XCTestCase {
             let walletID = WalletID()
             let transaction = Transaction(id: TransactionID(),
                                           type: .transfer,
-                                          walletID: walletID,
                                           accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
             transaction.change(hash: message.hash)
                 .change(sender: Address.safeAddress)

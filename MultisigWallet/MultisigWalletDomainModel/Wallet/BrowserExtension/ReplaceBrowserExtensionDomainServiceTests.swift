@@ -39,7 +39,6 @@ class ReplaceBrowserExtensionDomainServiceTests: ReplaceBrowserExtensionDomainSe
         XCTAssertEqual(tx.sender, wallet.address)
         XCTAssertEqual(tx.accountID.tokenID, Token.Ether.id)
         XCTAssertEqual(tx.accountID.walletID, wallet.id)
-        XCTAssertEqual(tx.walletID, wallet.id)
         XCTAssertEqual(tx.amount, TokenAmount.ether(0))
         XCTAssertEqual(tx.type, .replaceBrowserExtension)
     }

@@ -23,7 +23,6 @@ public class TransactionDomainService {
         let repository = DomainRegistry.transactionRepository
         let transaction = Transaction(id: repository.nextID(),
                                       type: .transfer,
-                                      walletID: wallet.id,
                                       accountID: AccountID(tokenID: TokenID(token.value), walletID: wallet.id))
         transaction.change(sender: wallet.address!)
         repository.save(transaction)
@@ -39,7 +38,7 @@ public class TransactionDomainService {
                 tx.status != .signing &&
                 tx.status != .discarded &&
                 tx.status != .rejected &&
-                tx.walletID == walletID
+                tx.accountID.walletID == walletID
             }
             .sorted { lhs, rhs in
                 var lDates = lhs.allEventDates.makeIterator()

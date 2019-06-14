@@ -50,7 +50,6 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         let token = requiredWallet.feePaymentTokenAddress ?? Token.Ether.address
         let tx = Transaction(id: repository.nextID(),
                              type: transactionType,
-                             walletID: requiredWallet.id,
                              accountID: AccountID(tokenID: TokenID(token.value), walletID: requiredWallet.id))
         tx.change(amount: .ether(0)).change(sender: requiredWallet.address!)
         repository.save(tx)
@@ -244,7 +243,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         guard let tx = repository.find(id: transactionID),
             tx.type == transactionType,
             tx.status == .success || tx.status == .failed,
-            let wallet = DomainRegistry.walletRepository.find(id: tx.walletID) else { return }
+            let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
         guard let newOwner = newOwnerAddress(from: transactionID) else {
             unregisterPostProcessing(for: transactionID)
             return
@@ -253,7 +252,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
             try processSuccess(with: newOwner, in: wallet)
             try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
         } else {
-            try DomainRegistry.communicationService.deletePair(walletID: tx.walletID, other: newOwner)
+            try DomainRegistry.communicationService.deletePair(walletID: tx.accountID.walletID, other: newOwner)
         }
         unregisterPostProcessing(for: transactionID)
     }

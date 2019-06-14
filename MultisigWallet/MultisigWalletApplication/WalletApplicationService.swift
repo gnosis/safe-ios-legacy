@@ -608,7 +608,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func transactionHasEnoughSignaturesToSubmit(_ tx: Transaction) -> Bool {
-        let wallet = DomainRegistry.walletRepository.find(id: tx.walletID)!
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
         return tx.signatures.count >= wallet.confirmationCount - 1 // When submititg we add device signature.
     }
 

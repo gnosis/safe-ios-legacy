@@ -114,7 +114,7 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceBrowserExtensionDomainSe
         guard let tx = repository.find(id: transactionID),
             tx.type == transactionType,
             tx.status == .success || tx.status == .failed,
-            let wallet = DomainRegistry.walletRepository.find(id: tx.walletID) else { return }
+            let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
         guard let data = tx.data,
             let transactions = multiSendProxy.decodeMultiSendArguments(from: data),
             transactions.count >= 2,

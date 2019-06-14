@@ -78,7 +78,6 @@ struct Safe {
         let nonce = response.nextNonce
         let tx = Transaction(id: TransactionID(),
                              type: type,
-                             walletID: walletID,
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
         tx.change(sender: address)
             .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas.value,

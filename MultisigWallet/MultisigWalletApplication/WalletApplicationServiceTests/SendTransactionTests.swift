@@ -193,7 +193,6 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let walletID = WalletID()
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
-                             walletID: walletID,
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
         tx.change(sender: Address.safeAddress)
             .change(recipient: Address.testAccount1)

@@ -134,7 +134,6 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
         }
         let otherTypeTx = Transaction(id: TransactionID(),
                                       type: .replaceRecoveryPhrase,
-                                      walletID: wallet.id,
                                       accountID: tx.accountID)
         transactionRepo.save(otherTypeTx)
         let doNotCleanUpTransactions = transactionRepo.all().filter { doNotCleanUpStatuses.contains($0.status) } +
