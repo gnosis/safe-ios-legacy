@@ -21,32 +21,25 @@ class InMemoryUserRepositoryTests: XCTestCase {
         do {
             _ = try DomainRegistry.identityService.registerUser(password: "Mypass123")
             user = repository.primaryUser()!
-            try removePrimaryUser()
+            removePrimaryUser()
             _ = try DomainRegistry.identityService.registerUser(password: "Otherpass123")
             other = repository.primaryUser()
-            try removePrimaryUser()
+            removePrimaryUser()
         } catch {
             XCTFail("Failed to setUp")
         }
     }
 
-    private func removePrimaryUser() throws {
+    private func removePrimaryUser() {
         if let user = repository.primaryUser() {
-            try repository.remove(user)
+            repository.remove(user)
         }
     }
 
-    func test_save_makesPrimaryUser() throws {
-        try repository.save(user)
+    func test_save_makesPrimaryUser() {
+        repository.save(user)
         let savedUser = repository.primaryUser()
         XCTAssertEqual(savedUser, user)
-    }
-
-    func test_save_whenAlreadySavedUser_onlyAllowsModificationsOnSave() throws {
-        try repository.save(user)
-        XCTAssertThrowsError(try repository.save(other)) { error in
-            XCTAssertEqual(error as? InMemoryUserRepository.Error, .primaryUserAlreadyExists)
-        }
     }
 
     func test_nextId_returnsUniqueIdEveryTime() {
@@ -54,26 +47,19 @@ class InMemoryUserRepositoryTests: XCTestCase {
         XCTAssertEqual(Set(ids).count, ids.count)
     }
 
-    func test_remove_removesUser() throws {
-        try repository.save(user)
-        try repository.remove(user)
+    func test_remove_removesUser() {
+        repository.save(user)
+        repository.remove(user)
         XCTAssertNil(repository.primaryUser())
     }
 
-    func test_remove_whenRemovingDifferentUser_throwsError() throws {
-        try repository.save(user)
-        XCTAssertThrowsError(try repository.remove(other)) { error in
-            XCTAssertEqual(error as? InMemoryUserRepository.Error, .userNotFound)
-        }
-    }
-
-    func test_user_whenSearchingWithExactPassword_thenFindsIt() throws {
-        try repository.save(user)
+    func test_user_whenSearchingWithExactPassword_thenFindsIt() {
+        repository.save(user)
         XCTAssertEqual(repository.user(encryptedPassword: user.password), user)
     }
 
-    func test_user_whenSearchingWithWrongPassword_thenNotFound() throws {
-        try repository.save(user)
+    func test_user_whenSearchingWithWrongPassword_thenNotFound() {
+        repository.save(user)
         XCTAssertNil(repository.user(encryptedPassword: user.password + "a"))
     }
 

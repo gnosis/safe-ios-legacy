@@ -19,13 +19,12 @@ public class InMemoryUserRepository: SingleUserRepository {
 
     public init() {}
 
-    public func save(_ user: User) throws {
-        try assertEmptyOrUserExists(user, otherwise: .primaryUserAlreadyExists)
+    public func save(_ user: User) {
         storedUser = user
     }
 
-    public func remove(_ user: User) throws {
-        try assertEmptyOrUserExists(user, otherwise: .userNotFound)
+    public func remove(_ user: User) {
+        if isEmpty || user != storedUser { return }
         storedUser = nil
     }
 
@@ -35,12 +34,6 @@ public class InMemoryUserRepository: SingleUserRepository {
 
     public func nextId() -> UserID {
         return UserID()
-    }
-
-    func assertEmptyOrUserExists(_ user: User, otherwise error: Error) throws {
-        if !isEmpty && user != storedUser {
-            throw error
-        }
     }
 
     public func user(encryptedPassword: String) -> User? {

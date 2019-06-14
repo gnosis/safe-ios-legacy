@@ -21,7 +21,7 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
     }
 
     func test_authenticateUser_whenNotRegisteredThenFails() throws {
-        try authenticationService.reset()
+        authenticationService.reset()
         let result = try authenticationService.authenticateUser(.password(password))
         XCTAssertEqual(result, .failure)
     }
@@ -99,7 +99,7 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
 
     func test_isAuthenticated_whenNotRegistered_thenFails() throws {
         _ = try authenticationService.authenticateUser(.password(password))
-        try authenticationService.reset()
+        authenticationService.reset()
         XCTAssertFalse(authenticationService.isUserAuthenticated)
     }
 
@@ -133,7 +133,7 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
 
     func test_whenCreatingGatekeeper_thenChangesRepository() throws {
         if let gatekeeper = gatekeeperRepository.gatekeeper() {
-            try gatekeeperRepository.remove(gatekeeper)
+            gatekeeperRepository.remove(gatekeeper)
         }
         try authenticationService.createAuthenticationPolicy(sessionDuration: 1,
                                                              maxPasswordAttempts: 1,

@@ -102,7 +102,7 @@ extension BiometricAuthenticationServiceTests {
 
     func authenticate() -> Bool {
         context.evaluatePolicyInvoked = false
-        let success = biometricService.authenticate()
+        let success = try! biometricService.authenticate()
         return success
     }
 
