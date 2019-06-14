@@ -154,6 +154,11 @@ open class VerifiableInput: UIView {
         stackView.addArrangedSubview(ruleLabel)
     }
 
+    public func removeAllRules() {
+        allRules.forEach { $0.removeFromSuperview() }
+        spacingView?.removeFromSuperview()
+    }
+
     private func addSpacingIfNeeded() {
         guard allRules.isEmpty else { return }
         spacingView = UIView()

@@ -140,6 +140,16 @@ public class IdentityService: Assertable {
         }
     }
 
+    /// Verifies if the password is correct
+    ///
+    /// - Parameter plaintextPassword: password in plain text
+    /// - Returns: true, if password matches user's password, false otherwise.
+    public func verifyPassword(_ plaintextPassword: String) -> Bool {
+        let encryptedPassword = encryptionService.encrypted(plaintextPassword)
+        let user = userRepository.user(encryptedPassword: encryptedPassword)
+        return user != nil
+    }
+
     private func authenticate(at time: Date, _ authenticate: () throws -> User?) throws -> UserID? {
         let gatekeeper = gatekeeperRepository.gatekeeper()!
         guard gatekeeper.isAccessPossible(at: time) else {
