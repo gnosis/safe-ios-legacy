@@ -125,6 +125,14 @@ open class AuthenticationApplicationService {
         }
     }
 
+    /// Verifies if the password is correct
+    ///
+    /// - Parameter plaintextPassword: password in plain text
+    /// - Returns: true, if password matches user's password, false otherwise.
+    open func verifyPassword(_ plaintextPassword: String) -> Bool {
+        return identityService.verifyPassword(plaintextPassword)
+    }
+
     /// Sets user password. The password must be:
     ///     - At least 6 characters long
     ///     - Less than 100 characters long

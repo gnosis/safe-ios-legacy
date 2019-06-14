@@ -163,6 +163,9 @@
 /* How this works */
 "how_this_works" = "How this works";
 
+/* Incorrect password */
+"incorrect_password" = "Incorrect password";
+
 /* Error format for invalid recovery phrase */
 "incorrect_seed" = "Incorrect recovery phrase";
 
