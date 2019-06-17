@@ -48,15 +48,15 @@ public struct SafeCreationRequest: Codable {
         public let masterCopy: String
         public let proxyFactory: String
         public let paymentToken: String
-        public let payment: Int
+        public let payment: StringifiedBigInt
         public let paymentReceiver: String
         public let setupData: String
 
         /// Expected gas (eth)
-        public let gasEstimated: Int
+        public let gasEstimated: StringifiedBigInt
 
         /// Expected eth price per 1 gas
-        public let gasPriceEstimated: Int
+        public let gasPriceEstimated: StringifiedBigInt
 
         /// Safe address (calculated based on the initial transaction data)
         public var safeAddress: Address {
@@ -80,7 +80,7 @@ public struct SafeCreationRequest: Codable {
 
         /// The contract creation fee
         public var deploymentFee: BigInt {
-            return BigInt(payment)
+            return payment.value
         }
 
         /// Receiver of creation fee.

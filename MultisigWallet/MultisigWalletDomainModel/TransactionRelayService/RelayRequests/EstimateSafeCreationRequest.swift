@@ -16,14 +16,14 @@ public struct EstimateSafeCreationRequest: Encodable {
     public struct Estimation: Decodable {
 
         public let paymentToken: String
-        public let gas: Int
-        public let gasPrice: Int
-        public let payment: Int
+        public let gas: StringifiedBigInt
+        public let gasPrice: StringifiedBigInt
+        public let payment: StringifiedBigInt
 
         public init(paymentToken: String,
-                    gas: Int,
-                    gasPrice: Int,
-                    payment: Int) {
+                    gas: StringifiedBigInt,
+                    gasPrice: StringifiedBigInt,
+                    payment: StringifiedBigInt) {
             self.paymentToken = paymentToken
             self.gas = gas
             self.gasPrice = gasPrice

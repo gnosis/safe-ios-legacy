@@ -15,16 +15,24 @@ class TransactionDomainServiceTests: XCTestCase {
     var tx: Transaction!
     let nodeService = MockEthereumNodeService1()
     let eventPublisher = MockEventPublisher()
+    let portfolioRepo = InMemorySinglePortfolioRepository()
+    var walletID: WalletID!
 
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
         DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
         DomainRegistry.put(service: repo, for: TransactionRepository.self)
+        DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
+        walletID = WalletID()
+        let portfolio = Portfolio(id: PortfolioID(),
+                                  wallets: WalletIDList([walletID]),
+                                  selectedWallet: walletID)
+        portfolioRepo.save(portfolio)
         tx = Transaction(id: repo.nextID(),
                          type: .transfer,
-                         walletID: WalletID(),
-                         accountID: AccountID(tokenID: Token.Ether.id, walletID: WalletID()))
+                         walletID: walletID,
+                         accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
 
     }
 
@@ -287,7 +295,7 @@ extension Transaction {
     }
 
     static func bare() -> Transaction {
-        let walletID = WalletID()
+        let walletID = DomainRegistry.portfolioRepository.portfolio()!.selectedWallet!
         let accountID = AccountID(tokenID: Token.Ether.id, walletID: walletID)
         return Transaction(id: TransactionID(),
                            type: .transfer,

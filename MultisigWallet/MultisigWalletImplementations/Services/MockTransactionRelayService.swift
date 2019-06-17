@@ -94,4 +94,8 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
             return .init(lastUsedNonce: nil, safeTxGas: nil, operationalGas: nil, estimations: [])
     }
 
+    public func safeInfo(address: Address) throws -> GetSafeInfoRequest.Response {
+        throw TestError.error
+    }
+
 }

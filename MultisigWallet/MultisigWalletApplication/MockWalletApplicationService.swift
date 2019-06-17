@@ -299,7 +299,10 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public var estimatedFee_output: BigInt?
-    public override func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
+    public override func estimateTransferFee(amount: BigInt,
+                                             recipientAddress: String?,
+                                             token: String,
+                                             feeToken: String) -> BigInt? {
         return estimatedFee_output
     }
 

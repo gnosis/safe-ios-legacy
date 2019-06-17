@@ -15,7 +15,7 @@ public protocol TransactionViewViewControllerDelegate: class {
 public class TransactionViewViewController: UITableViewController, EventSubscriber {
 
     private var model = CollectionUIModel<TransactionGroupData>()
-    private var pendingTransactionsToStartAnimation = Set<String>()
+    private var pendingAnimatedTransactions = Set<String>()
     public weak var delegate: TransactionViewViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
     let emptyView = EmptyResultsView()
@@ -53,9 +53,6 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
         dispatch.asynchronous(updateQueue) {
             let sections = ApplicationServiceRegistry.walletService.grouppedTransactions()
             self.model = CollectionUIModel(sections)
-            if let pending = sections.first(where: { $0.type == .pending }) {
-                self.pendingTransactionsToStartAnimation = Set(pending.transactions.map { $0.id })
-            }
         }.then(.main, closure: displayUpdatedData)
     }
 
@@ -109,9 +106,9 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
                                    willDisplay cell: UITableViewCell,
                                    forRowAt indexPath: IndexPath) {
         guard let transaction = model[indexPath], let cell = cell as? TransactionTableViewCell else { return }
-        if pendingTransactionsToStartAnimation.contains(transaction.id) {
+        if transaction.status == .pending && !pendingAnimatedTransactions.contains(transaction.id) {
             cell.showProgress(transaction, animated: true)
-            pendingTransactionsToStartAnimation.remove(transaction.id)
+            pendingAnimatedTransactions.insert(transaction.id)
         } else {
             cell.showProgress(transaction, animated: false)
         }

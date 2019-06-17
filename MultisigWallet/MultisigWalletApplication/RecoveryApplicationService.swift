@@ -59,6 +59,7 @@ public class RecoveryApplicationService {
                                           onError errorHandler: @escaping (Error) -> Void) {
         withEnvironment(for: subscriber, errorHandler: errorHandler) {
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletBecameReadyForRecovery.self)
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
             DomainRegistry.recoveryService.createRecoveryTransaction()
         }
     }
@@ -141,10 +142,6 @@ public class RecoveryApplicationService {
 
     public func cancelRecovery() {
         DomainRegistry.recoveryService.cancelRecovery()
-    }
-
-    public func observeBalance(subscriber: EventSubscriber) {
-        ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
     }
 
     public func resumeRecovery(subscriber: EventSubscriber,

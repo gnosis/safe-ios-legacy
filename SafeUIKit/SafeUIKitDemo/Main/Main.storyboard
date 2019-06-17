@@ -410,28 +410,8 @@
                                             <segue destination="igh-jp-e1w" kind="show" id="ruI-bN-8Zq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TransactionFeeView" textLabel="UcV-8e-ymG" style="IBUITableViewCellStyleDefault" id="qjD-he-gu5">
-                                        <rect key="frame" x="0.0" y="616" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qjD-he-gu5" id="9mm-mq-fRQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="TransactionFeeView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UcV-8e-ymG">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="tc6-y7-y5y" kind="show" id="aR8-1a-1KW"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TransactionHeaderView" textLabel="KLe-OM-KUR" style="IBUITableViewCellStyleDefault" id="vLd-OA-gde">
-                                        <rect key="frame" x="0.0" y="660" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="616" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vLd-OA-gde" id="EhT-ol-kli">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -451,7 +431,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TransferView" textLabel="R8a-Gg-qK1" style="IBUITableViewCellStyleDefault" id="OFB-Oo-Fmt">
-                                        <rect key="frame" x="0.0" y="704" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="660" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OFB-Oo-Fmt" id="7hF-RF-edl">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -1378,60 +1358,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elE-H4-Ezx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1674" y="32"/>
-        </scene>
-        <!--TransactionFeeView-->
-        <scene sceneID="R1g-Nn-tl6">
-            <objects>
-                <viewController title="TransactionFeeView" id="tc6-y7-y5y" customClass="TransactionFeeViewViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="64e-hp-nqM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rnr-iK-dAe" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="84" width="375" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" placeholder="YES" id="wLL-Uy-0cN"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4OT-gH-5la" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="184" width="375" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" placeholder="YES" id="CFl-7s-346"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBQ-Nx-WoV" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="284" width="375" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" placeholder="YES" id="qcD-sR-lkT"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="4OT-gH-5la" firstAttribute="top" secondItem="Rnr-iK-dAe" secondAttribute="bottom" constant="20" id="0ZY-zt-k6y"/>
-                            <constraint firstItem="4OT-gH-5la" firstAttribute="trailing" secondItem="lTI-t6-7YU" secondAttribute="trailing" id="6ib-0g-2cn"/>
-                            <constraint firstItem="Rnr-iK-dAe" firstAttribute="top" secondItem="lTI-t6-7YU" secondAttribute="top" constant="20" id="FOo-Z4-tRR"/>
-                            <constraint firstItem="4OT-gH-5la" firstAttribute="leading" secondItem="lTI-t6-7YU" secondAttribute="leading" id="aNN-PO-mZk"/>
-                            <constraint firstItem="lBQ-Nx-WoV" firstAttribute="top" secondItem="4OT-gH-5la" secondAttribute="bottom" constant="20" id="axP-e4-KMq"/>
-                            <constraint firstItem="lBQ-Nx-WoV" firstAttribute="trailing" secondItem="lTI-t6-7YU" secondAttribute="trailing" id="dG1-Q0-iX0"/>
-                            <constraint firstItem="Rnr-iK-dAe" firstAttribute="leading" secondItem="lTI-t6-7YU" secondAttribute="leading" id="der-vz-235"/>
-                            <constraint firstItem="lBQ-Nx-WoV" firstAttribute="leading" secondItem="lTI-t6-7YU" secondAttribute="leading" id="t5S-HG-i8u"/>
-                            <constraint firstItem="lTI-t6-7YU" firstAttribute="trailing" secondItem="Rnr-iK-dAe" secondAttribute="trailing" id="wBo-Yn-tsw"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="lTI-t6-7YU"/>
-                    </view>
-                    <connections>
-                        <outlet property="transactionFee1" destination="Rnr-iK-dAe" id="IOI-qo-VgV"/>
-                        <outlet property="transactionFee2" destination="4OT-gH-5la" id="kjd-wl-xBl"/>
-                        <outlet property="transactionFee3" destination="lBQ-Nx-WoV" id="Aq8-WA-F1E"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tsS-il-gmC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4044" y="-1117.6911544227887"/>
         </scene>
         <!--TransactionHeaderView-->
         <scene sceneID="PuY-hV-fgo">

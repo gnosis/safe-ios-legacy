@@ -28,9 +28,9 @@ CREATE TABLE IF NOT EXISTS tbl_transactions (
     submission_date TEXT,
     processed_date TEXT,
     transaction_hash TEXT,
-    fee_estimate_gas INTEGER,
-    fee_estimate_data_gas INTEGER,
-    fee_estimate_operational_gas INTEGER,
+    fee_estimate_gas TEXT,
+    fee_estimate_data_gas TEXT,
+    fee_estimate_operational_gas TEXT,
     fee_estimate_gas_price TEXT,
     data BLOB,
     operation INTEGER,
@@ -132,9 +132,9 @@ LIMIT 1;
                 serialized(date: transaction.submittedDate),
                 serialized(date: transaction.processedDate),
                 transaction.transactionHash?.value,
-                transaction.feeEstimate?.gas,
-                transaction.feeEstimate?.dataGas,
-                transaction.feeEstimate?.operationalGas,
+                transaction.feeEstimate?.gas.serializedValue,
+                transaction.feeEstimate?.dataGas.serializedValue,
+                transaction.feeEstimate?.operationalGas.serializedValue,
                 transaction.feeEstimate?.gasPrice.serializedStringValue,
                 transaction.data,
                 transaction.operation?.rawValue,
@@ -303,12 +303,11 @@ LIMIT 1;
 
     private func updateRemaining(_ it: ResultSetRowIterator, _ transaction: Transaction) {
         let (gasOrNil, dataGasOrNil, operationalGasOrNil, gasPriceStringOrNil) =
-            (it.nextInt(), it.nextInt(), it.nextInt(), it.nextString())
-        if let gas = gasOrNil,
-            let dataGas = dataGasOrNil,
-            let operationalGas = operationalGasOrNil,
-            let gasPriceString = gasPriceStringOrNil,
-            let gasPrice = TokenAmount(gasPriceString) {
+            (it.nextString(), it.nextString(), it.nextString(), it.nextString())
+        if let gasString = gasOrNil, let gas = TokenInt(gasString),
+            let dataGasString = dataGasOrNil, let dataGas = TokenInt(dataGasString),
+            let operationalGasString = operationalGasOrNil, let operationalGas = TokenInt(operationalGasString),
+            let gasPriceString = gasPriceStringOrNil, let gasPrice = TokenAmount(gasPriceString) {
             transaction.change(feeEstimate: TransactionFeeEstimate(gas: gas,
                                                                    dataGas: dataGas,
                                                                    operationalGas: operationalGas,
