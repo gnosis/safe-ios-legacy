@@ -281,7 +281,11 @@ open class EncryptionService: EncryptionDomainService {
 
     private func rawSignature(of data: Data, with privateKey: Data) -> Data {
         do {
-            return try Crypto.sign(data, privateKey: privateKey)
+            // We left-pad private key because of the bug in EthereumKit
+            // https://github.com/D-Technologies/EthereumKit/issues/168
+            // This affects previously generated private keys that will be in the Keychain for production apps
+            // that would store the short private key. Proper fix is pending.
+            return try Crypto.sign(data, privateKey: privateKey.leftPadded(to: 32))
         } catch {
             let logError = NSError(domain: "io.gnosis.safe",
                                    code: -992,
