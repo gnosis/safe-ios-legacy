@@ -58,7 +58,6 @@ class DBTransactionRepositoryTests: XCTestCase {
             return
         }
         XCTAssertEqual(lhs.type, rhs.type, "type", file: file, line: line)
-        XCTAssertEqual(lhs.walletID, rhs.walletID, "walletID", file: file, line: line)
         XCTAssertEqual(lhs.amount, rhs.amount, "amount", file: file, line: line)
         XCTAssertEqual(lhs.fee, rhs.fee, "fee", file: file, line: line)
         XCTAssertEqual(lhs.feeEstimate, rhs.feeEstimate, "feeEstimate", file: file, line: line)
@@ -96,7 +95,7 @@ class DBTransactionRepositoryTests: XCTestCase {
     private func txDraft() -> Transaction {
         let walletID = WalletID()
         let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
-        return Transaction(id: repo.nextID(), type: .transfer, walletID: walletID, accountID: accountID)
+        return Transaction(id: repo.nextID(), type: .transfer, accountID: accountID)
             .change(amount: .ether(3))
             .change(fee: .ether(1))
             .change(feeEstimate: TransactionFeeEstimate(gas: 100,
@@ -146,6 +145,13 @@ class DBTransactionRepositoryTests: XCTestCase {
         let found = repo.all()
 
         XCTAssertEqual(found, txs)
+    }
+
+    func test_findByWallet() {
+        let txDraft = self.txDraft()
+        repo.save(txDraft)
+        let found = repo.find(type: txDraft.type, wallet: txDraft.accountID.walletID)
+        XCTAssertEqual(found, txDraft)
     }
 
 }

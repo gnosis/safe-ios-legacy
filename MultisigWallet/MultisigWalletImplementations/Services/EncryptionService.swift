@@ -327,7 +327,7 @@ open class EncryptionService: EncryptionDomainService {
 
     func txTypeHash(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
         let metadataRepository = DomainRegistry.safeContractMetadataRepository
-        if let wallet = DomainRegistry.walletRepository.find(id: transaction.walletID),
+        if let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID),
             let masterCopy = wallet.masterCopyAddress,
             let result = metadataRepository.EIP712SafeAppTxTypeHash(masterCopyAddress: masterCopy) {
             return result
@@ -337,7 +337,7 @@ open class EncryptionService: EncryptionDomainService {
 
     func domainSeparatorTypeHash(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
         let metadataRepository = DomainRegistry.safeContractMetadataRepository
-        if let wallet = DomainRegistry.walletRepository.find(id: transaction.walletID),
+        if let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID),
             let masterCopy = wallet.masterCopyAddress,
             let result = metadataRepository.EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: masterCopy) {
             return result
