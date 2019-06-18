@@ -406,7 +406,6 @@
 		55E8B00D219ED3CF002930A1 /* TransactionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E8B00C219ED3CF002930A1 /* TransactionHeaderView.xib */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
 		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
-		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -987,7 +986,6 @@
 		55E8B00C219ED3CF002930A1 /* TransactionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionHeaderView.xib; sourceTree = "<group>"; };
 		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
 		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
-		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1482,7 +1480,6 @@
 				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
 				0AD89981228031E8008AE325 /* ArrayBasedCollection.swift */,
 				0AD8997F228031DA008AE325 /* UIView+Pin.swift */,
-				55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */,
 				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
 				0AE950CF20D29D9E0099B79D /* BaseCustomView.swift */,
 				0AD1D1E521A8710500941EA1 /* BaseCustomLabel.swift */,
@@ -2730,7 +2727,6 @@
 				5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */,
 				550E7CDE21708E540032DE6C /* UITextField+TokenInput.swift in Sources */,
 				0AD89976228031D0008AE325 /* FeeCalculationView.swift in Sources */,
-				55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */,
 				0AD89978228031D0008AE325 /* FeeCalculationErrorLine.swift in Sources */,
 				0AD8997B228031D0008AE325 /* FeeCalculationAssetLine.swift in Sources */,
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
