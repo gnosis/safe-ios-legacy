@@ -71,7 +71,7 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
     }
 
     public func safeInfo(address: Address) throws -> GetSafeInfoRequest.Response {
-        return try httpClient.execute(request: GetSafeInfoRequest(address: address.value), skipLoggingStatus: 404)
+        return try httpClient.execute(request: GetSafeInfoRequest(address: address.value))
     }
 
 }

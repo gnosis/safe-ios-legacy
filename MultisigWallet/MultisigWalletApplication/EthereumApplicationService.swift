@@ -191,25 +191,19 @@ open class EthereumApplicationService: Assertable {
                                        code: -995,
                                        userInfo: [NSLocalizedDescriptionKey: "EOA was found after lowercasing",
                                                   "signMessage": message,
-                                                  "signAddress": address,
-                                                  "walletInfo": dumpWalletInformation()])
+                                                  "signAddress": address])
             ApplicationServiceRegistry.logger.error("EOA not found for address", error: notification)
         } else {
             let error = NSError(domain: "io.gnosis.safe",
                                 code: -994,
                                 userInfo: [NSLocalizedDescriptionKey: "EOA not found for address",
                                            "signMessage": message,
-                                           "signAddress": address,
-                                           "walletInfo": dumpWalletInformation()])
+                                           "signAddress": address])
             ApplicationServiceRegistry.logger.error("EOA not found for address", error: error)
             return nil
         }
         let service = DomainRegistry.encryptionService
         return service.sign(message: message, privateKey: eoa.privateKey)
-    }
-
-    private func dumpWalletInformation() -> [String: Any] {
-        return DomainRegistry.walletRepository.selectedWallet()?.dump() ?? [:]
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {

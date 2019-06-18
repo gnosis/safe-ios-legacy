@@ -309,13 +309,11 @@ public class WalletApplicationService: Assertable {
         if let err = error as? TokensListError {
             switch err {
             case .inconsistentData_notAmongWhitelistedToken:
-                ApplicationServiceRegistry.logger.error(
-                    "Trying to rearrange not equal to whitelisted amount tokens",
-                    error: err)
+                ApplicationServiceRegistry.logger
+                    .error("Trying to rearrange not equal to whitelisted amount tokens")
             case .inconsistentData_notEqualToWhitelistedAmount:
-                ApplicationServiceRegistry.logger.error(
-                    "Trying to rearrange token that is not among whitelisted",
-                    error: err)
+                ApplicationServiceRegistry.logger
+                    .error("Trying to rearrange token that is not among whitelisted")
             }
         }
     }
