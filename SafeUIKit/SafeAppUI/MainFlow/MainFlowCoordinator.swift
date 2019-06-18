@@ -7,6 +7,7 @@ import MultisigWalletApplication
 import IdentityAccessApplication
 import Common
 import UserNotifications
+import Crashlytics
 
 open class MainFlowCoordinator: FlowCoordinator {
 
@@ -52,6 +53,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     func appDidFinishLaunching() {
+        updateUserIdentifier()
         if !ApplicationServiceRegistry.authenticationService.isUserRegistered {
             push(OnboardingWelcomeViewController.create(delegate: self))
             applicationRootViewController = rootViewController
@@ -66,9 +68,15 @@ open class MainFlowCoordinator: FlowCoordinator {
         requestToUnlockApp()
     }
 
+    private func updateUserIdentifier() {
+        guard let wallet = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+        Crashlytics.sharedInstance().setUserIdentifier(wallet)
+    }
+
     func switchToRootController() {
         let nextController: UIViewController
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            updateUserIdentifier()
             DispatchQueue.main.async(execute: registerForRemoteNotifciations)
             let mainVC = MainViewController.create(delegate: self)
             mainVC.navigationItem.backBarButtonItem = .backButton()

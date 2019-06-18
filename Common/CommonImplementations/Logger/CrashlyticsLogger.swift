@@ -29,7 +29,11 @@ final class CrashlyticsLogger: LogWriter {
              file: StaticString,
              line: UInt,
              function: StaticString) {
-        guard let error = error else { return }
+        guard let error = error else {
+            CLSLogv("[%@] %@:%@:%@: %@",
+                    getVaList([level.string, file.description, String(line), function.description, message]))
+            return
+        }
         let nsError: NSError
         if let loggable = error as? LoggableError {
             nsError = loggable.nsError()
