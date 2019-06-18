@@ -7,7 +7,6 @@ import SafeUIKit
 import MultisigWalletApplication
 
 protocol MainViewControllerDelegate: class {
-    func mainViewDidAppear()
     func createNewTransaction(token: String)
     func openMenu()
     func manageTokens()
@@ -113,15 +112,6 @@ class MainViewController: UIViewController {
 
     @IBAction func didTapAddress(_ sender: Any) {
         assetViewController.delegate?.openAddressDetails()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // Without async appearing animations is not finished yet, but we call in delegate
-        // system push notifications alert. This causes wrong views displaying.
-        DispatchQueue.main.async {
-            self.assetViewController.delegate?.mainViewDidAppear()
-        }
     }
 
     // MARK: - Segments Management

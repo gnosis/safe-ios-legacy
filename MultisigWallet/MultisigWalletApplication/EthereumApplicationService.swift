@@ -179,17 +179,43 @@ open class EthereumApplicationService: Assertable {
     open func sign(message: String, by address: String) -> EthSignature? {
         let repository = DomainRegistry.externallyOwnedAccountRepository
         let eoaAddress = Address(address)
-        guard let eoa = repository.find(by: eoaAddress) else {
+
+        let eoa: ExternallyOwnedAccount
+
+        if let found = repository.find(by: eoaAddress) {
+            eoa = found
+        } else if let found = repository.find(by: Address(address.lowercased())) {
+            eoa = found
+
+            let notification = NSError(domain: "io.gnosis.safe",
+                                code: -995,
+                                userInfo: [NSLocalizedDescriptionKey: "EOA was found after lowercasing",
+                                           "signMessage": message,
+                                           "signAddress": address,
+                                           "walletInfo": dumpWalletInformation()])
+            ApplicationServiceRegistry.logger.error("EOA not found for address", error: notification)
+        } else {
             let error = NSError(domain: "io.gnosis.safe",
                                 code: -994,
                                 userInfo: [NSLocalizedDescriptionKey: "EOA not found for address",
-                                           "message": message,
-                                           "address": address])
+                                           "signMessage": message,
+                                           "signAddress": address,
+                                           "walletInfo": dumpWalletInformation()])
             ApplicationServiceRegistry.logger.error("EOA not found for address", error: error)
             return nil
         }
         let service = DomainRegistry.encryptionService
         return service.sign(message: message, privateKey: eoa.privateKey)
+    }
+
+    private func dumpWalletInformation() -> [String: Any] {
+        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return [:] }
+        var result: [String: Any] = [:]
+        result["wallet"] = wallet.address
+        result["walletOwners"] = wallet.allOwners()
+        result["walletConfirmationCount"] = wallet.confirmationCount
+        result["walletState"] = wallet.state.state
+        return result
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {

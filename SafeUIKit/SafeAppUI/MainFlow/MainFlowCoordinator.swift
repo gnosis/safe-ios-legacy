@@ -6,6 +6,7 @@ import UIKit
 import MultisigWalletApplication
 import IdentityAccessApplication
 import Common
+import UserNotifications
 
 open class MainFlowCoordinator: FlowCoordinator {
 
@@ -68,6 +69,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     func switchToRootController() {
         let nextController: UIViewController
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            DispatchQueue.main.async(execute: registerForRemoteNotifciations)
             let mainVC = MainViewController.create(delegate: self)
             mainVC.navigationItem.backBarButtonItem = .backButton()
             nextController = mainVC
@@ -142,6 +144,15 @@ open class MainFlowCoordinator: FlowCoordinator {
         }
     }
 
+    func registerForRemoteNotifciations() {
+        // notification registration must be on the main thread
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
+        UIApplication.shared.registerForRemoteNotifications()
+        DispatchQueue.global.async {
+            try? ApplicationServiceRegistry.walletService.auth()
+        }
+    }
+
 }
 
 extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
@@ -197,17 +208,6 @@ extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 }
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
-
-    func mainViewDidAppear() {
-        UIApplication.shared.requestRemoteNotificationsRegistration()
-        DispatchQueue.global().async {
-            do {
-                try ApplicationServiceRegistry.walletService.auth()
-            } catch let e {
-                MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Error in auth(): \(e)")
-            }
-        }
-    }
 
     func createNewTransaction(token: String) {
         sendFlowCoordinator.token = token
