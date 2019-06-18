@@ -81,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     private func createWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+        coordinator.crashlytics = Crashlytics.sharedInstance()
         coordinator.setUp()
     }
 

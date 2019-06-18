@@ -7,7 +7,6 @@ import MultisigWalletApplication
 import IdentityAccessApplication
 import Common
 import UserNotifications
-import Crashlytics
 
 open class MainFlowCoordinator: FlowCoordinator {
 
@@ -17,6 +16,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     let newSafeFlowCoordinator = CreateSafeFlowCoordinator()
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionFlowCoordinator = IncomingTransactionFlowCoordinator()
+    public var crashlytics: CrashlyticsProtocol?
 
     private var lockedViewController: UIViewController!
 
@@ -69,8 +69,9 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     private func updateUserIdentifier() {
-        guard let wallet = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        Crashlytics.sharedInstance().setUserIdentifier(wallet)
+        guard let crashlytics = crashlytics,
+            let wallet = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+        crashlytics.setUserIdentifier(wallet)
     }
 
     func switchToRootController() {
