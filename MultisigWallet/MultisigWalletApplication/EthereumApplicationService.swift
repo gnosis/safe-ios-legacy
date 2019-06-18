@@ -188,11 +188,11 @@ open class EthereumApplicationService: Assertable {
             eoa = found
 
             let notification = NSError(domain: "io.gnosis.safe",
-                                code: -995,
-                                userInfo: [NSLocalizedDescriptionKey: "EOA was found after lowercasing",
-                                           "signMessage": message,
-                                           "signAddress": address,
-                                           "walletInfo": dumpWalletInformation()])
+                                       code: -995,
+                                       userInfo: [NSLocalizedDescriptionKey: "EOA was found after lowercasing",
+                                                  "signMessage": message,
+                                                  "signAddress": address,
+                                                  "walletInfo": dumpWalletInformation()])
             ApplicationServiceRegistry.logger.error("EOA not found for address", error: notification)
         } else {
             let error = NSError(domain: "io.gnosis.safe",
@@ -209,13 +209,7 @@ open class EthereumApplicationService: Assertable {
     }
 
     private func dumpWalletInformation() -> [String: Any] {
-        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return [:] }
-        var result: [String: Any] = [:]
-        result["wallet"] = wallet.address
-        result["walletOwners"] = wallet.allOwners()
-        result["walletConfirmationCount"] = wallet.confirmationCount
-        result["walletState"] = wallet.state.state
-        return result
+        return DomainRegistry.walletRepository.selectedWallet()?.dump() ?? [:]
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {

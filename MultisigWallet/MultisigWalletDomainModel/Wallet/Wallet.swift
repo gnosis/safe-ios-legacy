@@ -225,4 +225,13 @@ public class Wallet: IdentifiableEntity<WalletID> {
         minimumDeploymentTransactionAmount = nil
     }
 
+    public func dump() -> [String: Any] {
+        var result: [String: Any] = [:]
+        result["wallet"] = address
+        result["walletOwners"] = allOwners()
+        result["walletConfirmationCount"] = confirmationCount
+        result["walletState"] = state.state
+        return result
+    }
+
 }
