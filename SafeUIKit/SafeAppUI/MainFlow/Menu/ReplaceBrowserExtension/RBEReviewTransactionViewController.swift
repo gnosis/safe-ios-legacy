@@ -55,7 +55,7 @@ public class RBEReviewTransactionViewController: ReviewTransactionViewController
         let cell = ReviewFeeCell(frame: .zero)
         let calculation = OwnerModificationFeeCalculation()
         let currentFeeTokenBalance = balance(of: tx.feeTokenData)
-        let resultingFeeTokenBalance = currentFeeTokenBalance - abs(tx.feeTokenData)
+        let resultingFeeTokenBalance = subtract(currentFeeTokenBalance, abs(tx.feeTokenData))
         calculation.currentBalanceLine.set(value: tx.feeTokenData.withBalance(currentFeeTokenBalance))
         calculation.resultingBalanceLine.set(value: tx.feeTokenData.withBalance(resultingFeeTokenBalance))
         calculation.networkFeeLine.set(value: abs(tx.feeTokenData), roundUp: true)

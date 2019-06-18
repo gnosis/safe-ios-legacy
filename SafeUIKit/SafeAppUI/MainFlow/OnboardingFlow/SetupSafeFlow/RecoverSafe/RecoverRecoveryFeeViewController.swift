@@ -114,7 +114,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
 
         feeRequestView.amountReceivedAmountLabel.amount = tx.feeTokenData.withBalance(balance)
         feeRequestView.amountNeededAmountLabel.amount = abs(tx.feeTokenData)
-        let remaining = max((abs(tx.feeTokenData.balance) - balance) ?? 0, 0)
+        let remaining = max(subtract(abs(tx.feeTokenData.balance), balance) ?? 0, 0)
         feeRequestView.remainderAmountLabel.amount = tx.feeTokenData.withBalance(remaining)
 
         scrollView.isHidden = false
