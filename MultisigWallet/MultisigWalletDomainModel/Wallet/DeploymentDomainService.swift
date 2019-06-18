@@ -59,19 +59,9 @@ public class DeploymentDomainService {
         DomainRegistry.eventPublisher.subscribe(self, walletCreated)
         DomainRegistry.eventPublisher.subscribe(self, creationFailed)
         DomainRegistry.eventPublisher.subscribe(self, deploymentAborted)
+
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        do {
-            guard let address = wallet.address else {
-                wallet.resume()
-                return
-            }
-            // probe the address, if it is a valid response, then safe was created while the app was not working
-            _ = try DomainRegistry.transactionRelayService.safeInfo(address: address)
-            wallet.state = wallet.finalizingDeploymentState
-            wallet.proceed()
-        } catch {
-            wallet.resume()
-        }
+        wallet.resume()
     }
 
     public func createNewDraftWallet() {
@@ -157,9 +147,31 @@ public class DeploymentDomainService {
     }
 
     private func `repeat`(delay: TimeInterval, closure: @escaping (Repeater) throws -> Void) throws {
-        let repeater = Repeater(delay: delay, closure)
+        let repeater = Repeater(delay: delay) { [unowned self] repeater in
+            let wallet = DomainRegistry.walletRepository.selectedWallet()!
+            if self.walletAlreadyCreated(wallet) {
+                self.forceFinalizeDeployment(wallet)
+                return
+            }
+            try closure(repeater)
+        }
         repeaters.add(repeater)
         try repeater.start()
+    }
+
+    private func walletAlreadyCreated(_ wallet: Wallet) -> Bool {
+        do {
+            _ = try DomainRegistry.transactionRelayService.safeInfo(address: wallet.address!)
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    private func forceFinalizeDeployment(_ wallet: Wallet) {
+        repeaters.stopAll()
+        wallet.state = wallet.finalizingDeploymentState
+        wallet.proceed()
     }
 
     func walletFunded(_ event: DeploymentFunded) {
@@ -173,6 +185,7 @@ public class DeploymentDomainService {
         handleError { wallet in
             synchronise()
             try waitForCreationTransactionHash(wallet)
+            guard !wallet.isReadyToUse else { return }
             try waitForCreationTransactionCompletion(wallet)
         }
     }
