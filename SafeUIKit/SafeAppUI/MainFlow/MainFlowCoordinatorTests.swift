@@ -25,8 +25,8 @@ class MainFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is MainViewController)
     }
 
-    func test_whenMainViewDidAppeatCalled_thenAuthWithPushTokenCalled() {
-        mainFlowCoordinator.mainViewDidAppear()
+    func test_whenRegistering_thenAuthWithPushTokenCalled() {
+        mainFlowCoordinator.registerForRemoteNotifciations()
         XCTAssertNotNil(walletService.authCalled)
     }
 
