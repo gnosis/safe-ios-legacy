@@ -7,6 +7,8 @@ import XCTest
 import MultisigWalletImplementations
 import CommonTestSupport
 import BigInt
+import Common
+import CommonImplementations
 
 class BaseDeploymentDomainServiceTests: XCTestCase {
 
@@ -45,6 +47,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: syncService, for: SynchronisationDomainService.self)
         DomainRegistry.put(service: communicationService, for: CommunicationDomainService.self)
         DomainRegistry.put(service: metadataRepo, for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: MockLogger(), for: Logger.self)
     }
 
     func start() {
