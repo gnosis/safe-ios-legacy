@@ -15,7 +15,7 @@ final class ManageTokensFlowCoordinator: FlowCoordinator {
         super.setUp()
         manageTokensVC = ManageTokensTableViewController()
         manageTokensVC.delegate = self
-        let navController = UINavigationController(rootViewController: manageTokensVC)
+        let navController = CustomNavigationController(rootViewController: manageTokensVC)
         navController.navigationBar.isTranslucent = false
         presentModally(navController)
     }
