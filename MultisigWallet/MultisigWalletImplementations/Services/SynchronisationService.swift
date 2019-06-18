@@ -50,7 +50,7 @@ public class SynchronisationService: SynchronisationDomainService {
             merger.mergeStoredTokenItems(with: tokenList)
         } catch {
             if isNetworkError(error) { return }
-            ApplicationServiceRegistry.logger.error("Failed to sync token list", error: error)
+            ApplicationServiceRegistry.logger.error("Failed to sync token list \(error)")
         }
     }
 
@@ -61,7 +61,7 @@ public class SynchronisationService: SynchronisationDomainService {
             try DomainRegistry.accountUpdateService.updateAccountsBalances()
         } catch {
             if isNetworkError(error) { return }
-            ApplicationServiceRegistry.logger.error("Failed to sync account balances", error: error)
+            ApplicationServiceRegistry.logger.error("Failed to sync account balances \(error)")
         }
     }
 
@@ -79,7 +79,7 @@ public class SynchronisationService: SynchronisationDomainService {
             try DomainRegistry.transactionService.updatePendingTransactions()
         } catch {
             if isNetworkError(error) { return }
-            ApplicationServiceRegistry.logger.error("Failed to sync pending transactions", error: error)
+            ApplicationServiceRegistry.logger.error("Failed to sync pending transactions \(error)")
         }
     }
 

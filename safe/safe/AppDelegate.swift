@@ -129,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        LogService.shared.error("Failed to registed to remote notifications", error: error)
+        LogService.shared.error("Failed to registed to remote notifications \(error)")
     }
 
 }

@@ -235,16 +235,16 @@ public class WalletApplicationService: Assertable {
 
     private func logNetworkError(_ request: URLRequest, _ response: URLResponse?, _ data: Data?) {
         #if DEBUG
-        var userInfo = [String: Any]()
-        userInfo["request"] = request
-        if let response = response {
-            userInfo["response"] = response
-        }
-        if let data = data, let string = String(data: data, encoding: .utf8) {
-            userInfo["data"] = string
-        }
-        let nsError = NSError(domain: "io.gnosis.safe", code: 1, userInfo: userInfo)
-        ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
+            var userInfo = [String: Any]()
+            userInfo["request"] = request
+            if let response = response {
+                userInfo["response"] = response
+            }
+            if let data = data, let string = String(data: data, encoding: .utf8) {
+                userInfo["data"] = string
+            }
+            let nsError = NSError(domain: "io.gnosis.safe", code: 1, userInfo: userInfo)
+            ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
         #endif
     }
 
