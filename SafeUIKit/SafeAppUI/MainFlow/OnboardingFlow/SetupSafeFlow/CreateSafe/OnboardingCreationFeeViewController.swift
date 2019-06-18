@@ -73,13 +73,17 @@ class OnboardingCreationFeeViewController: CardViewController {
         addressDetailView.isHidden = true
 
         footerButton.isHidden = true
-
-        creationProcessTracker.start()
     }
 
     func setFootnoteTokenCode(_ code: String) {
         let template = LocalizedString("please_send_x", comment: "Please send %")
         addressDetailView.footnoteLabel.text = String(format: template, code)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // should be called when app enteres foreground to avoid inconsistent state
+        creationProcessTracker.start()
     }
 
     override func viewDidAppear(_ animated: Bool) {
