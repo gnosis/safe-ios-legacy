@@ -74,6 +74,8 @@ open class AttributedStringStyle {
     }
 
     open var paragraphStyle: NSParagraphStyle {
+        precondition(spacingAfterParagraph >= 0)
+        precondition(spacingBeforeParagraph >= 0)
         let style = NSMutableParagraphStyle()
         style.alignment = alignment
         style.paragraphSpacing = CGFloat(spacingAfterParagraph)
