@@ -16,7 +16,7 @@ extension FeeCalculationAssetLine {
     func set(value: TokenData, roundUp: Bool = false) {
         guard value.balance != nil else {
             tooltipSource?.message = nil
-            set(value: SameTransferAndPaymentTokensFeeCalculation.Strings.loading)
+            set(value: "\(SameTransferAndPaymentTokensFeeCalculation.Strings.loading) \(value.code)")
             return
         }
         let formatter = TokenFormatter()
@@ -40,6 +40,7 @@ extension FeeCalculationAssetLine {
             valueButtonStr = formatter.localizedString(from: value)
         } else {
             tooltipSource?.message = nil
+            valueButtonStr = "\(SameTransferAndPaymentTokensFeeCalculation.Strings.loading) \(value.code)"
         }
         set(valueButton: valueButtonStr, icon: nil, target: target, action: action)
     }

@@ -12,7 +12,7 @@ class SameTransferAndPaymentTokensFeeCalculation: FeeCalculation {
         static let currentBalance = LocalizedString("safe_balance", comment: "Current balance")
         static let networkFee = LocalizedString("transaction_fee", comment: "Network fee")
         static let resultingBalance = LocalizedString("balance_after_transfer", comment: "Balance after transfer")
-        static let loading = "-"
+        static let loading = "--"
         static let feeInfo = "[?]"
 
     }

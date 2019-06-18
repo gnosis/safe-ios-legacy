@@ -89,22 +89,20 @@ class SendInputViewModel {
     }
 
     private func updateFeeData() {
-        let feeTokenBalance = self.walletService.tokenData(id: self.feeTokenID.id)!
-        self.feeBalanceTokenData = feeTokenBalance
-        self.feeEstimatedAmountTokenData = feeTokenBalance.withBalance(estimatedFee != nil ? -estimatedFee! : nil)
+        let fee = self.walletService.tokenData(id: self.feeTokenID.id)!
+        feeBalanceTokenData = fee
+        feeEstimatedAmountTokenData = fee.withBalance(estimatedFee != nil ? -estimatedFee! : nil)
     }
 
     private func updateResultingData() {
-        let intAmount = amount ?? 0
-        let feeAmount = abs(self.feeEstimatedAmountTokenData.balance ?? 0)
-        let feeAccountbalance = self.feeBalanceTokenData.balance ?? 0
-        let accountBalance = self.accountBalanceTokenData.balance ?? 0
         if feeTokenID == transferTokenID {
-            let newBalance = feeAccountbalance - intAmount - feeAmount
-            self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(newBalance)
+            let newBalance = feeBalanceTokenData.balance - amount - feeEstimatedAmountTokenData
+            feeResultingBalanceTokenData = feeBalanceTokenData.withBalance(newBalance)
         } else {
-            self.resultingBalanceTokenData = self.accountBalanceTokenData.withBalance(accountBalance - intAmount)
-            self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(feeAccountbalance - feeAmount)
+            let resultingToken = accountBalanceTokenData.balance - amount
+            let resultingFee = feeBalanceTokenData.balance - feeEstimatedAmountTokenData
+            resultingBalanceTokenData = accountBalanceTokenData.withBalance(resultingToken)
+            feeResultingBalanceTokenData = feeBalanceTokenData.withBalance(resultingFee)
         }
     }
 

@@ -101,7 +101,7 @@ public class RBEIntroViewController: UIViewController {
         feeCalculation = OwnerModificationFeeCalculation()
         guard let data = calculationData else { return }
         feeCalculation.currentBalanceLine.set(value: data.currentBalance)
-        feeCalculation.networkFeeLine.set(valueButton: data.networkFee.withNonNegativeBalance(),
+        feeCalculation.networkFeeLine.set(valueButton: abs(data.networkFee),
                                           target: self,
                                           action: #selector(changePaymentMethod),
                                           roundUp: true)
