@@ -369,7 +369,6 @@
 		55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C3022956E01007B3105 /* BasePaymentMethodViewController.swift */; };
 		55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */; };
 		55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55AA3C4922959151007B3105 /* PaymentMethodFooterView.xib */; };
-		55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */; };
 		55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */; };
 		55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */; };
 		55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
@@ -948,7 +947,6 @@
 		55AA3C3022956E01007B3105 /* BasePaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaymentMethodViewController.swift; sourceTree = "<group>"; };
 		55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodFooterView.swift; sourceTree = "<group>"; };
 		55AA3C4922959151007B3105 /* PaymentMethodFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentMethodFooterView.xib; sourceTree = "<group>"; };
-		55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSafeCommand.swift; sourceTree = "<group>"; };
 		55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensCommand.swift; sourceTree = "<group>"; };
 		55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseCommand.swift; sourceTree = "<group>"; };
 		55BAB0E321789285007539CF /* StandardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
@@ -2032,7 +2030,6 @@
 		55B5DF5122782B28001A32F4 /* SelectSafe */ = {
 			isa = PBXGroup;
 			children = (
-				55B5DF6022782B40001A32F4 /* SelectSafeCommand.swift */,
 				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
 				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
 			);
@@ -2846,7 +2843,6 @@
 				55980003225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
-				55B5DF6122782B40001A32F4 /* SelectSafeCommand.swift in Sources */,
 				0A2D588222575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift in Sources */,
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
 				553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */,

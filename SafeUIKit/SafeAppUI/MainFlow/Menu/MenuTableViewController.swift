@@ -64,10 +64,6 @@ final class MenuTableViewController: UITableViewController {
 
     // MARK: - Commands
 
-    var switchSafeCommands: [MenuCommand] {
-        return [SelectSafeCommand()]
-    }
-
     var portfolioCommands: [MenuCommand] {
         return [ManageTokensCommand()]
     }

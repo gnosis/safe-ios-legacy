@@ -118,28 +118,6 @@ public class TransactionDomainService {
         }
     }
 
-    // see note on `updatePendingTransactions()` above
-    public func updateTimestampsOfProcessedTransactions() throws {
-        let transactions = DomainRegistry.transactionRepository.all()
-            .filter { $0.status == .success || $0.status == .failed }
-        let nodeService = DomainRegistry.ethereumNodeService
-        for tx in transactions {
-            guard let hash = tx.transactionHash else {
-                assertionFailure("Transaction hash is missing: \(tx)")
-                throw TransactionDomainServiceError.transactionHashNotSet("Processed transaction missing hash: \(tx)")
-            }
-            guard let receipt = try nodeService.eth_getTransactionReceipt(transaction: hash) else {
-                throw TransactionDomainServiceError.transactionReceiptNotFound("Transaction hash \(hash)")
-            }
-            if let block = try nodeService.eth_getBlockByHash(hash: receipt.blockHash) {
-                timestamp(transaction: tx, from: block)
-            }
-        }
-        if !transactions.isEmpty {
-            DomainRegistry.eventPublisher.publish(TransactionStatusUpdated())
-        }
-    }
-
     private func timestamp(transaction: Transaction, from block: EthBlock) {
         transaction.timestampProcessed(at: block.timestamp).timestampUpdated(at: Date())
         DomainRegistry.transactionRepository.save(transaction)

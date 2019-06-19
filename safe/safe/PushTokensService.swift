@@ -15,7 +15,7 @@ final class PushTokensService: PushTokensDomainService {
         var token: String?
         InstanceID.instanceID().instanceID { result, error in
             if error != nil {
-                LogService.shared.error("Can't get fcmToken \(error)")
+                LogService.shared.error("Can't get fcmToken \(String(describing: error))")
             }
             token = result?.token
             semaphore.signal()
