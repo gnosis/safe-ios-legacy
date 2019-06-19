@@ -727,6 +727,8 @@ public class WalletApplicationService: Assertable {
         let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
         let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
         let service = ApplicationServiceRegistry.ethereumService
+        // it may happen that this code is executing while the Keychain is locked (device is locked)
+        // that means that we don't have access to the private key, so we exit.
         guard let signature = service.sign(message: dataString, by: deviceOwnerAddress) else { return }
         let request = AuthRequest(pushToken: pushToken,
                                   signatures: [signature],
