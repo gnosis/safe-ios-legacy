@@ -726,7 +726,8 @@ public class WalletApplicationService: Assertable {
         let client = "ios"
         let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
         let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
-        let signature = sign(string: dataString, address: deviceOwnerAddress)
+        let service = ApplicationServiceRegistry.ethereumService
+        guard let signature = service.sign(message: dataString, by: deviceOwnerAddress) else { return }
         let request = AuthRequest(pushToken: pushToken,
                                   signatures: [signature],
                                   buildNumber: buildNumber,
@@ -737,22 +738,6 @@ public class WalletApplicationService: Assertable {
         try handleNotificationServiceError {
             try notificationService.auth(request: request)
         }
-    }
-
-    // GH-649 The implementation tries to put 1 expression on 1 line to track down crash reason.
-    // Logging added to gather context of the crash.
-    private func sign(string: String, address: String) -> EthSignature {
-        let service = ApplicationServiceRegistry.ethereumService
-        guard let signature = service.sign(message: string, by: address) else {
-            let error = NSError(domain: "io.gnosis.safe",
-                                code: -993,
-                                userInfo: [NSLocalizedDescriptionKey: "Signing failed",
-                                           "signingString": string,
-                                           "signingAddress": address])
-            ApplicationServiceRegistry.logger.error("Signing failed", error: error)
-            preconditionFailure("Signing failed")
-        }
-        return signature
     }
 
     // MARK: - Message Handling
