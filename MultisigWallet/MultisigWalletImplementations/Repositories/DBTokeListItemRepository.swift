@@ -10,7 +10,6 @@ import CommonImplementations
 public class DBTokenListItemRepository: DBEntityRepository<TokenListItem, TokenID>, TokenListItemRepository {
 
     public override var table: TableSchema {
-        // IMPORTANT: If you are adding new field to the SQL table, then add it to the end of the list.
         return .init("tbl_token_list_items",
                      "id TEXT NOT NULL PRIMARY KEY",
                      "token TEXT NOT NULL",

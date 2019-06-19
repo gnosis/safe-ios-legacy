@@ -82,7 +82,6 @@ open class MainFlowCoordinator: FlowCoordinator {
             let mainVC = MainViewController.create(delegate: self)
             mainVC.navigationItem.backBarButtonItem = .backButton()
             nextController = mainVC
-
         } else {
             nextController = OnboardingCreateOrRestoreViewController.create(delegate: self)
         }

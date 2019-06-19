@@ -131,10 +131,6 @@ public class SynchronisationService: SynchronisationDomainService {
         }
     }
 
-    public static func syncProcessedTransactions() throws {
-        try DomainRegistry.transactionService.updateTimestampsOfProcessedTransactions()
-    }
-
 }
 
 fileprivate extension Error {
