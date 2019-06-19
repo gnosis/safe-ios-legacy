@@ -7,7 +7,7 @@ import Foundation
 struct WalletMigrations {
 
     static let all = [
-        M0001_UpdateProcessedTransactionsMigration(),
+//        M0001_UpdateProcessedTransactionsMigration(), // this needs to be a startup backgroud task and not a migration
         M0002_AddFeeTokenToWallet(),
         M0003_AddCanPayTransactionFeeToTokenListItem(),
         M0004_AddColumnsToWallet(),
