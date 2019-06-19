@@ -217,9 +217,7 @@ public class DeploymentDomainService {
             if receipt.status == .success {
                 wallet.proceed()
             } else {
-                let userInfo: [String: Any] = [NSLocalizedDescriptionKey: "Creation transaction failed",
-                                               "walletCreationTransactionHash": wallet.creationTransactionHash!,
-                                               "walletInfo": wallet.dump()]
+                let userInfo: [String: Any] = [NSLocalizedDescriptionKey: "Creation transaction failed"]
                 let error = NSError(domain: "DeploymentDomainService", code: -1, userInfo: userInfo)
                 DomainRegistry.logger.error("Wallet creation transaction failed", error: error)
                 wallet.cancel()
@@ -261,8 +259,7 @@ public class DeploymentDomainService {
                 }
             default:
                 let userInfo: [String: Any] = [NSLocalizedDescriptionKey: "Deployment error",
-                                               NSUnderlyingErrorKey: error,
-                                               "walletInfo": wallet.dump()]
+                                               NSUnderlyingErrorKey: error]
                 let loggedError = NSError(domain: "DeploymentDomainService", code: -2, userInfo: userInfo)
                 DomainRegistry.logger.error("Error during deployment operation", error: loggedError)
                 wallet.cancel()
