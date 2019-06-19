@@ -235,16 +235,16 @@ public class WalletApplicationService: Assertable {
 
     private func logNetworkError(_ request: URLRequest, _ response: URLResponse?, _ data: Data?) {
         #if DEBUG
-        var userInfo = [String: Any]()
-        userInfo["request"] = request
-        if let response = response {
-            userInfo["response"] = response
-        }
-        if let data = data, let string = String(data: data, encoding: .utf8) {
-            userInfo["data"] = string
-        }
-        let nsError = NSError(domain: "io.gnosis.safe", code: 1, userInfo: userInfo)
-        ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
+            var userInfo = [String: Any]()
+            userInfo["request"] = request
+            if let response = response {
+                userInfo["response"] = response
+            }
+            if let data = data, let string = String(data: data, encoding: .utf8) {
+                userInfo["data"] = string
+            }
+            let nsError = NSError(domain: "io.gnosis.safe", code: 1, userInfo: userInfo)
+            ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
         #endif
     }
 
@@ -309,13 +309,11 @@ public class WalletApplicationService: Assertable {
         if let err = error as? TokensListError {
             switch err {
             case .inconsistentData_notAmongWhitelistedToken:
-                ApplicationServiceRegistry.logger.error(
-                    "Trying to rearrange not equal to whitelisted amount tokens",
-                    error: err)
+                ApplicationServiceRegistry.logger
+                    .error("Trying to rearrange not equal to whitelisted amount tokens")
             case .inconsistentData_notEqualToWhitelistedAmount:
-                ApplicationServiceRegistry.logger.error(
-                    "Trying to rearrange token that is not among whitelisted",
-                    error: err)
+                ApplicationServiceRegistry.logger
+                    .error("Trying to rearrange token that is not among whitelisted")
             }
         }
     }

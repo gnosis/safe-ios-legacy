@@ -62,8 +62,7 @@ public final class BiometricService: BiometricAuthenticationService {
         case .faceID: return .faceID
         case .touchID: return .touchID
         case .none:
-            ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none",
-                                                    error: BiometricServiceError.unexpectedBiometryType)
+            ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none")
             return .none
         @unknown default:
             return .none
