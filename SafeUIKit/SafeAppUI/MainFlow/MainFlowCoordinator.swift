@@ -156,6 +156,10 @@ open class MainFlowCoordinator: FlowCoordinator {
         // notification registration must be on the main thread
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
         UIApplication.shared.registerForRemoteNotifications()
+        updatePushToken()
+    }
+
+    public func updatePushToken() {
         DispatchQueue.global.async {
             try? ApplicationServiceRegistry.walletService.auth()
         }

@@ -724,8 +724,8 @@ public class WalletApplicationService: Assertable {
 
     public func auth() throws {
         precondition(!Thread.isMainThread)
-        guard let pushToken = pushTokensService.pushToken() else { return }
-        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
+        guard let deviceOwnerAddress = ownerAddress(of: .thisDevice),
+            let pushToken = pushTokensService.pushToken() else { return }
         let buildNumber = SystemInfo.buildNumber ?? 0
         let versionName = SystemInfo.marketingVersion ?? "0.0.0"
         let client = "ios"
