@@ -98,10 +98,16 @@ class FeePaidViewController: UIViewController {
                            delay: 0,
                            usingSpringWithDamping: 1.0,
                            initialSpringVelocity: 0,
-                           options: [],
+                           options: [.beginFromCurrentState],
                            animations: { [weak self] in
                             self?.progressView.setProgress(value, animated: true)
                 }, completion: nil)
+        }
+
+        func stop() {
+            guard isAnimating else { return }
+            isAnimating = false
+            self.progressView.layer.removeAllAnimations()
         }
 
         func finish(duration: TimeInterval, completion: @escaping () -> Void) {
