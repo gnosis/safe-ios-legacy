@@ -95,14 +95,16 @@ class SendInputViewModel {
     }
 
     private func updateResultingData() {
+        let intAmount = amount ?? 0
+        let feeAmount = abs(feeEstimatedAmountTokenData.balance ?? 0)
+        let feeAccountbalance = feeBalanceTokenData.balance ?? 0
+        let accountBalance = accountBalanceTokenData.balance ?? 0
         if feeTokenID == transferTokenID {
-            let newBalance = subtract(subtract(feeBalanceTokenData.balance, amount), feeEstimatedAmountTokenData)
+            let newBalance = feeAccountbalance - intAmount - feeAmount
             feeResultingBalanceTokenData = feeBalanceTokenData.withBalance(newBalance)
         } else {
-            let resultingToken = subtract(accountBalanceTokenData.balance, amount)
-            let resultingFee = subtract(feeBalanceTokenData.balance, feeEstimatedAmountTokenData)
-            resultingBalanceTokenData = accountBalanceTokenData.withBalance(resultingToken)
-            feeResultingBalanceTokenData = feeBalanceTokenData.withBalance(resultingFee)
+            resultingBalanceTokenData = accountBalanceTokenData.withBalance(accountBalance - intAmount)
+            feeResultingBalanceTokenData = feeBalanceTokenData.withBalance(feeAccountbalance - feeAmount)
         }
     }
 
