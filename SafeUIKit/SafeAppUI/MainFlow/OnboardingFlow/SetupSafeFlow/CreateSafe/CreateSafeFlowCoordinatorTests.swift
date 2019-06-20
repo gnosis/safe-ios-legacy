@@ -43,7 +43,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     func test_whenWalletServiceThrowsDuringPairing_thenAlertIsHandled() {
         walletService.shouldThrow = true
         pairWithBrowserExtension()
-        XCTAssertAlertShown(message: TwoFAViewController.Strings.invalidCode)
+        XCTAssertAlertShown(message: WalletApplicationServiceError.networkError.localizedDescription)
         assert(topViewController, is: TwoFAViewController.self)
     }
 
