@@ -181,15 +181,6 @@
 /* App slogan */
 "ios_app_slogan" = "Enter the\ndecentralized web.";
 
-/* Network error message */
-"ios_be_error_expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
-
-/* Invalid extension code */
-"ios_be_error_invalid" = "Failed to pair because of invalid QR code.";
-
-/* Browser Extension Expired Message */
-"ios_be_error_network" = "Failed to pair because of network error. Please try again later.";
-
 /* Connect browser extension
    Header for add browser extension screen */
 "ios_connect_browser_extension" = "Connect browser\nextension";
