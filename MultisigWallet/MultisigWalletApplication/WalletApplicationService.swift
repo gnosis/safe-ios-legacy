@@ -431,6 +431,11 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.accountRepository.save(account)
     }
 
+    public func subscribeForBalanceUpdates(subscriber: EventSubscriber) {
+        ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
+        ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
+    }
+
     // MARK: - Transactions
 
     public func subscribeForTransactionUpdates(subscriber: EventSubscriber) {

@@ -54,6 +54,7 @@ class SendInputViewModel {
     func update() {
         enqueueFeeEstimation()
         updateBalances()
+        ApplicationServiceRegistry.walletService.subscribeForBalanceUpdates(subscriber: self)
     }
 
     func change(amount: BigInt) {
@@ -138,6 +139,14 @@ class SendInputViewModel {
         } else {
             return accountBalance >= intAmount && feeBalance >= feeAmount
         }
+    }
+
+}
+
+extension SendInputViewModel: EventSubscriber {
+
+    func notify() {
+        updateBalances()
     }
 
 }

@@ -369,4 +369,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         return receive_output
     }
 
+    public override func subscribeForBalanceUpdates(subscriber: EventSubscriber) {
+        // empty
+    }
+
 }
