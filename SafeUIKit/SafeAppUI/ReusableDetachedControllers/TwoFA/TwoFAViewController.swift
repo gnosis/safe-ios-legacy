@@ -32,12 +32,6 @@ public final class TwoFAViewController: CardViewController {
                                                comment: "Skip button text")
         static let scan = LocalizedString("scan",
                                           comment: "Scan button title in extension setup screen")
-        static let browserExtensionExpired = LocalizedString("ios_be_error_network",
-                                                             comment: "Browser Extension Expired Message")
-        static let networkError = LocalizedString("ios_be_error_expired",
-                                                  comment: "Network error message")
-        static let invalidCode = LocalizedString("ios_be_error_invalid",
-                                                 comment: "Invalid extension code")
     }
 
     weak var delegate: TwoFAViewControllerDelegate?
@@ -147,20 +141,8 @@ public final class TwoFAViewController: CardViewController {
     }
 
     func handleError(_ error: Error) {
-        guard let err = error as? WalletApplicationServiceError else {
-            showError(message: Strings.invalidCode, log: "Failed to pair with extension: \(error)")
-            return
-        }
-        switch err {
-        case .validationFailed:
-            showError(message: Strings.invalidCode, log: "Invalid browser extension code")
-        case .networkError, .clientError:
-            showError(message: Strings.networkError, log: "Network Error in pairing")
-        case .exceededExpirationDate:
-            showError(message: Strings.browserExtensionExpired, log: "Browser Extension code is expired")
-        default:
-            showError(message: Strings.invalidCode, log: "Failed to pair with extension: \(error)")
-        }
+        let err = (error as? WalletApplicationServiceError) ?? WalletApplicationServiceError.networkError
+        showError(message: err.localizedDescription, log: err.localizedDescription)
     }
 
     private func configureScanButton() {
