@@ -53,7 +53,12 @@ public final class BiometricService: BiometricAuthenticationService {
 
     public var isAuthenticationAvailable: Bool {
         context = contextProvider()
-        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+        var evaluationError: NSError?
+        let result = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &evaluationError)
+        if let error = evaluationError {
+            ApplicationServiceRegistry.logger.error("Can't evaluate policy: \(error)")
+        }
+        return result
     }
 
     public var biometryType: BiometryType {

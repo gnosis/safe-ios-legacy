@@ -44,12 +44,14 @@ class PasswordViewControllerTests: SafeTestCase {
     func test_whenPasswordIsConfirmed_thenDelegateIsCalled() {
         prepareConfirmPasswordViewController()
         vc.verifiableInputDidReturn(vc.verifiableInput)
+        delay()
         XCTAssertTrue(delegate.didConfirm)
     }
 
     func test_whenPasswordIsConfirmedAndNextTapped_thenDelegateIsCalled() {
         prepareConfirmPasswordViewController()
         vc.proceed(vc as Any)
+        delay()
         XCTAssertTrue(delegate.didConfirm)
     }
 
@@ -57,6 +59,7 @@ class PasswordViewControllerTests: SafeTestCase {
         prepareConfirmPasswordViewController()
         XCTAssertFalse(authenticationService.isUserRegistered)
         vc.verifiableInputDidReturn(vc.verifiableInput)
+        delay()
         XCTAssertTrue(authenticationService.isUserRegistered)
     }
 
@@ -64,6 +67,7 @@ class PasswordViewControllerTests: SafeTestCase {
         prepareConfirmPasswordViewController()
         XCTAssertFalse(authenticationService.isUserRegistered)
         vc.proceed(vc as Any)
+        delay()
         XCTAssertTrue(authenticationService.isUserRegistered)
     }
 
