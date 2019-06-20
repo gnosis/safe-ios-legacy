@@ -57,16 +57,16 @@ final class SendReviewViewController: ReviewTransactionViewController {
 
     private func feeCalculationCell() -> UITableViewCell {
         let cell = FeeCalculationCell(frame: .zero)
-        var balanceAfter = subtract(balance(of: tx.amountTokenData), abs(tx.amountTokenData))
+        var balanceAfter = subtract(balance(of: tx.amountTokenData), abs(tx.amountTokenData.balance) ?? 0)
 
         if tx.amountTokenData.address == tx.feeTokenData.address {
-            balanceAfter = subtract(balanceAfter, abs(tx.feeTokenData))
+            balanceAfter = subtract(balanceAfter, abs(tx.feeTokenData.balance) ?? 0)
             let calculation = SameTransferAndPaymentTokensFeeCalculation()
             calculation.networkFeeLine.set(value: abs(tx.feeTokenData), roundUp: true)
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(balanceAfter))
             cell.feeCalculationView.calculation = calculation
         } else {
-            let feeResultingBalance = subtract(balance(of: tx.feeTokenData), abs(tx.feeTokenData))
+            let feeResultingBalance = subtract(balance(of: tx.feeTokenData) ?? 0, abs(tx.feeTokenData.balance) ?? 0)
             let calculation = DifferentTransferAndPaymentTokensFeeCalculation()
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(balanceAfter))
             calculation.networkFeeLine.set(value: abs(tx.feeTokenData), roundUp: true)
