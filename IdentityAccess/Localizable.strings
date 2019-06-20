@@ -1,0 +1,15 @@
+/* Reason to activate Touch ID or Face ID. */
+"ios_biometry_activation" = "ios_biometry_activation";
+
+/* Description of unlock with Touch ID. */
+"ios_biometry_reason" = "ios_biometry_reason";
+
+/* Face ID name */
+"ios_faceid" = "ios_faceid";
+
+/* Unrecognized biometry type */
+"ios_none" = "ios_none";
+
+/* Touch ID */
+"ios_touchid" = "ios_touchid";
+
