@@ -161,16 +161,20 @@ public final class UnlockViewController: UIViewController {
             focusPasswordField()
             return
         }
-        do {
-            let result = try Authenticator.instance.authenticate(.biometry())
-            if result.isSuccess {
-                unlockCompletion(true)
-            } else if !startCountdownIfNeeded() {
-                focusPasswordField()
+        DispatchQueue.global.async {
+            do {
+                let result = try Authenticator.instance.authenticate(.biometry())
+                DispatchQueue.main.async {
+                    if result.isSuccess {
+                        self.unlockCompletion(true)
+                    } else if !self.startCountdownIfNeeded() {
+                        self.focusPasswordField()
+                    }
+                }
+            } catch {
+                ApplicationServiceRegistry.logger.debug("Failed to authenticate with biometry: \(error)")
+                DispatchQueue.main.async(execute: self.focusPasswordField)
             }
-        } catch {
-            ApplicationServiceRegistry.logger.debug("Failed to authenticate with biometry: \(error)")
-            focusPasswordField()
         }
     }
 

@@ -31,6 +31,7 @@ class UnlockViewControllerTests: SafeTestCase {
 
     func test_whenAppeared_thenRequestsBiometricAuthentication() {
         vc.viewDidAppear(false)
+        delay()
         XCTAssertTrue(authenticationService.didRequestBiometricAuthentication)
     }
 
