@@ -464,7 +464,7 @@
 "recovering_safe" = "Recovering your Safe…";
 
 /* Title for setup recovery phrase screen. */
-"recovery_phrase" = "Recovery Phrase";
+"recovery_phrase" = "Recovery phrase";
 
 /* Refresh */
 "refresh" = "Refresh";
