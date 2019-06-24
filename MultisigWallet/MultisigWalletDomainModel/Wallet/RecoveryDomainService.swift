@@ -20,6 +20,8 @@ public enum RecoveryServiceError: Error {
     case internalServerError
 }
 
+public class RecoveryTransactionHashIsKnown: DomainEvent {}
+
 public class RecoveryDomainService: Assertable {
 
     public init() {}
@@ -235,6 +237,7 @@ public class RecoveryDomainService: Assertable {
         tx.set(hash: txHash)
         tx.proceed()
         DomainRegistry.transactionRepository.save(tx)
+        DomainRegistry.eventPublisher.publish(RecoveryTransactionHashIsKnown())
 
         wallet.proceed()
         DomainRegistry.walletRepository.save(wallet)
@@ -554,7 +557,6 @@ class RecoveryTransactionBuilder: Assertable {
     fileprivate func newTransaction() -> Transaction {
         return Transaction(id: DomainRegistry.transactionRepository.nextID(),
                            type: .walletRecovery,
-                           walletID: wallet.id,
                            accountID: accountID)
     }
 

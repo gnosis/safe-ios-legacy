@@ -17,10 +17,11 @@ public protocol ExternallyOwnedAccountRepository {
     /// - Parameter address: address of an account to remove
     func remove(address: Address)
 
-    /// Searches for an account by its address
+    /// Searches for an account by its address.
     ///
     /// - Parameter address: address of an externally owned account
-    /// - Returns: account if found, nil otherwise
+    /// - Returns: account if found, nil if not found, or if underlying database or item in it is not available
+    ///            for example, during the device locked phase.
     func find(by address: Address) -> ExternallyOwnedAccount?
 
 }

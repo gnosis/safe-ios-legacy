@@ -125,6 +125,14 @@ open class AuthenticationApplicationService {
         }
     }
 
+    /// Verifies if the password is correct
+    ///
+    /// - Parameter plaintextPassword: password in plain text
+    /// - Returns: true, if password matches user's password, false otherwise.
+    open func verifyPassword(_ plaintextPassword: String) -> Bool {
+        return identityService.verifyPassword(plaintextPassword)
+    }
+
     /// Sets user password. The password must be:
     ///     - At least 6 characters long
     ///     - Less than 100 characters long
@@ -153,7 +161,7 @@ open class AuthenticationApplicationService {
     open func configureSession(_ duration: TimeInterval) throws {
         guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return }
         try gatekeeper.changeSessionDuration(duration)
-        try gatekeeperRepository.save(gatekeeper)
+        gatekeeperRepository.save(gatekeeper)
     }
 
     /// Changes number of maximum failed attempts before blocking authentication.
@@ -163,7 +171,7 @@ open class AuthenticationApplicationService {
     open func configureMaxPasswordAttempts(_ count: Int) throws {
         guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return }
         try gatekeeper.changeMaxFailedAttempts(count)
-        try gatekeeperRepository.save(gatekeeper)
+        gatekeeperRepository.save(gatekeeper)
     }
 
     /// Changes duration of the blocking period.
@@ -173,7 +181,7 @@ open class AuthenticationApplicationService {
     open func configureBlockDuration(_ duration: TimeInterval) throws {
         guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return }
         try gatekeeper.changeBlockDuration(duration)
-        try gatekeeperRepository.save(gatekeeper)
+        gatekeeperRepository.save(gatekeeper)
     }
 
     /// Creates new authentication policy with provided parameters
@@ -192,15 +200,13 @@ open class AuthenticationApplicationService {
     }
 
     /// Deletes registered user and any authentication policies created earlier
-    ///
-    /// - Throws: Throws error if there was an internal error.
-    open func reset() throws {
+    open func reset() {
         if let user = userRepository.primaryUser() {
-            try userRepository.remove(user)
+            userRepository.remove(user)
         }
         if let gatekeeper = gatekeeperRepository.gatekeeper() {
             gatekeeper.reset()
-            try DomainRegistry.gatekeeperRepository.save(gatekeeper)
+            DomainRegistry.gatekeeperRepository.save(gatekeeper)
         }
     }
 

@@ -60,7 +60,7 @@ public class SendInputViewController: UIViewController {
         addressInput.spacingAfterInput = 0
 
         tokenInput.addRule("", identifier: "notEnoughFunds") { [weak self] in
-            guard let `self` = self else { return true }
+            guard let `self` = self, self.model.feeEstimatedAmountTokenData.balance != nil else { return true }
             let number = self.tokenInput.formatter.number(from: $0,
                                                           precision: self.model.accountBalanceTokenData.decimals)
             guard let amount = number else { return true }
@@ -121,7 +121,7 @@ public class SendInputViewController: UIViewController {
         accountBalanceHeaderView.amount = model.accountBalanceTokenData
         if tokenID == feeTokenID {
             let calculation = SameTransferAndPaymentTokensFeeCalculation()
-            calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
+            calculation.networkFeeLine.set(valueButton: abs(model.feeEstimatedAmountTokenData),
                                            target: self,
                                            action: #selector(changePaymentMethod),
                                            roundUp: true)
@@ -132,7 +132,7 @@ public class SendInputViewController: UIViewController {
             let calculation = DifferentTransferAndPaymentTokensFeeCalculation()
             calculation.resultingBalanceLine.set(value: model.resultingBalanceTokenData)
             calculation.setBalanceError(tokenBalanceError())
-            calculation.networkFeeLine.set(valueButton: model.feeEstimatedAmountTokenData.withNonNegativeBalance(),
+            calculation.networkFeeLine.set(valueButton: abs(model.feeEstimatedAmountTokenData),
                                            target: self,
                                            action: #selector(changePaymentMethod),
                                            roundUp: true)
@@ -140,8 +140,8 @@ public class SendInputViewController: UIViewController {
             calculation.setFeeBalanceError(feeBalanceError())
             feeCalculationView.calculation = calculation
         }
-        nextBarButton.isEnabled = model.canProceedToSigning
         tokenInput.revalidateText()
+        nextBarButton.isEnabled = model.canProceedToSigning && tokenInput.isValid
     }
 
     private func tokenBalanceError() -> Error? {

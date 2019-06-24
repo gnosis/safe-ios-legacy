@@ -12,6 +12,7 @@ protocol RecoverFeePaidViewControllerDelegate: class {
     func recoverFeePaidViewControllerDidFail()
     func recoverFeePaidViewControllerDidSuccess()
 }
+
 class RecoverFeePaidViewController: FeePaidViewController {
 
     weak var delegate: RecoverFeePaidViewControllerDelegate?
@@ -59,8 +60,17 @@ class RecoverFeePaidViewController: FeePaidViewController {
         recoveryProcessTracker.start()
     }
 
-    func success() {
-        delegate?.recoverFeePaidViewControllerDidSuccess()
+    // Called when wallet is recovered or transactoin hash is known
+    func update() {
+        progressAnimator.stop()
+        if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            progressAnimator.finish(duration: 0.7) { [weak self] in
+                self?.delegate?.recoverFeePaidViewControllerDidSuccess()
+            }
+        } else {
+            progressAnimator.resume(to: 0.97, duration: 100)
+            button.isEnabled = true
+        }
     }
 
     override func tapAction(_ sender: Any) {
@@ -78,7 +88,7 @@ class RecoverFeePaidViewController: FeePaidViewController {
 extension RecoverFeePaidViewController: EventSubscriber {
 
     public func notify() {
-        DispatchQueue.main.async(execute: success)
+        DispatchQueue.main.async(execute: update)
     }
 
 }

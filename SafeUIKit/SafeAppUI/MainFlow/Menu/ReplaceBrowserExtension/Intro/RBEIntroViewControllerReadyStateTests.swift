@@ -18,7 +18,7 @@ class RBEIntroViewControllerReadyStateTests: RBEIntroViewControllerBaseTestCase 
         vc.disableStart()
         vc.transition(to: RBEIntroViewController.ReadyState())
         XCTAssertEqual(vc.feeCalculation.currentBalanceLine.asset.value, "3 ETH")
-        XCTAssertEqual(vc.feeCalculation.networkFeeLine.asset.value, "-")
+        XCTAssertEqual(vc.feeCalculation.networkFeeLine.asset.value, "--")
         XCTAssertEqual(vc.feeCalculation.resultingBalanceLine.asset.value, "-1 ETH")
         XCTAssertNil(vc.feeCalculation.resultingBalanceLine.asset.error)
         XCTAssertNotNil(vc.feeCalculation.errorLine)

@@ -18,7 +18,7 @@ class IdentityServiceTests: DomainTestCase {
                                                            maxFailedAttempts: 2,
                                                            blockDuration: 1))
         gatekeeper = Gatekeeper(id: gatekeeperRepository.nextId(), policy: policy)
-        XCTAssertNoThrow(try gatekeeperRepository.save(gatekeeper))
+        gatekeeperRepository.save(gatekeeper)
     }
 
     // MARK: - Register user
@@ -132,7 +132,7 @@ class IdentityServiceTests: DomainTestCase {
     }
 
     func test_whenNoGatekeeper_thenNotAuthenticated() throws {
-        try gatekeeperRepository.remove(gatekeeper)
+        gatekeeperRepository.remove(gatekeeper)
         XCTAssertFalse(identityService.isUserAuthenticated(at: mockClockService.currentTime))
     }
 

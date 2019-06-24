@@ -41,7 +41,7 @@ class IdentityAccessConfigurator {
 
             if !db.exists {
                 try db.create()
-                try userRepo.setUp()
+                userRepo.setUp()
                 gatekeeperRepo.setUp()
 
                 try ApplicationServiceRegistry.authenticationService

@@ -42,13 +42,10 @@ final public class HTTPNotificationService: NotificationDomainService {
         })
         let actualItems = Set(response)
         guard actualItems == expectedItems else {
-            let message = "authV2: unexpected response. Check that signatures and other data are correct"
             let error = NSError(domain: "io.gnosis.safe",
                                 code: -801,
-                                userInfo: [NSLocalizedDescriptionKey: message,
-                                           "expected": Array(expectedItems),
-                                           "actual": response])
-            ApplicationServiceRegistry.logger.error(message, error: error)
+                                userInfo: [NSLocalizedDescriptionKey: "authV2: unexpected response."])
+            ApplicationServiceRegistry.logger.error("Failed to register push token", error: error)
             throw NotificationDomainServiceError.validationFailed
         }
     }

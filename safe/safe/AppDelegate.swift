@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         Tracker.shared.append(handler: ConsoleTracker())
         #endif
         Tracker.shared.append(handler: FirebaseTrackingHandler())
+        Tracker.shared.append(handler: CrashlyticsTrackingHandler())
     }
 
     func configureFeatureFlags() {
@@ -80,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     private func createWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+        coordinator.crashlytics = Crashlytics.sharedInstance()
         coordinator.setUp()
     }
 
@@ -127,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        LogService.shared.error("Failed to registed to remote notifications", error: error)
+        LogService.shared.error("Failed to registed to remote notifications \(error)")
     }
 
 }
@@ -160,6 +162,7 @@ extension AppDelegate: MessagingDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         LogService.shared.debug("Firebase registration token: \(fcmToken)")
+        coordinator.updatePushToken()
     }
 
     // This is called if APNS messaging is disabled and the app is in foreground

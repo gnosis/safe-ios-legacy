@@ -117,10 +117,11 @@ public final class UnlockViewController: UIViewController {
         UIView.commitAnimations()
     }
 
-    private func startCountdownIfNeeded() {
+    @discardableResult
+    private func startCountdownIfNeeded() -> Bool {
         guard authenticationService.isAuthenticationBlocked else {
             countdownStack.isHidden = true
-            return
+            return false
         }
         countdownStack.isHidden = false
         verifiableInput.isEnabled = false
@@ -131,6 +132,7 @@ public final class UnlockViewController: UIViewController {
             self.countdownStack.isHidden = true
             self.focusPasswordField()
         }
+        return true
     }
 
     private func updateBiometryButtonVisibility() {
@@ -159,15 +161,20 @@ public final class UnlockViewController: UIViewController {
             focusPasswordField()
             return
         }
-        do {
-            let result = try Authenticator.instance.authenticate(.biometry())
-            if result.isSuccess {
-                unlockCompletion(true)
-            } else {
-                focusPasswordField()
+        DispatchQueue.global.async {
+            do {
+                let result = try Authenticator.instance.authenticate(.biometry())
+                DispatchQueue.main.async {
+                    if result.isSuccess {
+                        self.unlockCompletion(true)
+                    } else if !self.startCountdownIfNeeded() {
+                        self.focusPasswordField()
+                    }
+                }
+            } catch {
+                ApplicationServiceRegistry.logger.debug("Failed to authenticate with biometry: \(error)")
+                DispatchQueue.main.async(execute: self.focusPasswordField)
             }
-        } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to authenticate with biometry", error: e)
         }
     }
 

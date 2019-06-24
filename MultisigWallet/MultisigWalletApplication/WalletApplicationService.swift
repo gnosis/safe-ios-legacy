@@ -235,16 +235,16 @@ public class WalletApplicationService: Assertable {
 
     private func logNetworkError(_ request: URLRequest, _ response: URLResponse?, _ data: Data?) {
         #if DEBUG
-        var userInfo = [String: Any]()
-        userInfo["request"] = request
-        if let response = response {
-            userInfo["response"] = response
-        }
-        if let data = data, let string = String(data: data, encoding: .utf8) {
-            userInfo["data"] = string
-        }
-        let nsError = NSError(domain: "io.gnosis.safe", code: 1, userInfo: userInfo)
-        ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
+            var userInfo = [String: Any]()
+            userInfo["request"] = request
+            if let response = response {
+                userInfo["response"] = response
+            }
+            if let data = data, let string = String(data: data, encoding: .utf8) {
+                userInfo["data"] = string
+            }
+            let nsError = NSError(domain: "io.gnosis.safe", code: 1, userInfo: userInfo)
+            ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
         #endif
     }
 
@@ -309,13 +309,11 @@ public class WalletApplicationService: Assertable {
         if let err = error as? TokensListError {
             switch err {
             case .inconsistentData_notAmongWhitelistedToken:
-                ApplicationServiceRegistry.logger.error(
-                    "Trying to rearrange not equal to whitelisted amount tokens",
-                    error: err)
+                ApplicationServiceRegistry.logger
+                    .error("Trying to rearrange not equal to whitelisted amount tokens")
             case .inconsistentData_notEqualToWhitelistedAmount:
-                ApplicationServiceRegistry.logger.error(
-                    "Trying to rearrange token that is not among whitelisted",
-                    error: err)
+                ApplicationServiceRegistry.logger
+                    .error("Trying to rearrange token that is not among whitelisted")
             }
         }
     }
@@ -431,6 +429,11 @@ public class WalletApplicationService: Assertable {
         let account = findAccount(tokenID)!
         closure(account)
         DomainRegistry.accountRepository.save(account)
+    }
+
+    public func subscribeForBalanceUpdates(subscriber: EventSubscriber) {
+        ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
+        ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
     }
 
     // MARK: - Transactions
@@ -608,7 +611,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func transactionHasEnoughSignaturesToSubmit(_ tx: Transaction) -> Bool {
-        let wallet = DomainRegistry.walletRepository.find(id: tx.walletID)!
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
         return tx.signatures.count >= wallet.confirmationCount - 1 // When submititg we add device signature.
     }
 
@@ -721,14 +724,17 @@ public class WalletApplicationService: Assertable {
 
     public func auth() throws {
         precondition(!Thread.isMainThread)
-        guard let pushToken = pushTokensService.pushToken() else { return }
-        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
+        guard let deviceOwnerAddress = ownerAddress(of: .thisDevice),
+            let pushToken = pushTokensService.pushToken() else { return }
         let buildNumber = SystemInfo.buildNumber ?? 0
         let versionName = SystemInfo.marketingVersion ?? "0.0.0"
         let client = "ios"
         let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
         let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
-        let signature = sign(string: dataString, address: deviceOwnerAddress)
+        let service = ApplicationServiceRegistry.ethereumService
+        // it may happen that this code is executing while the Keychain is locked (device is locked)
+        // that means that we don't have access to the private key, so we exit.
+        guard let signature = service.sign(message: dataString, by: deviceOwnerAddress) else { return }
         let request = AuthRequest(pushToken: pushToken,
                                   signatures: [signature],
                                   buildNumber: buildNumber,
@@ -739,22 +745,6 @@ public class WalletApplicationService: Assertable {
         try handleNotificationServiceError {
             try notificationService.auth(request: request)
         }
-    }
-
-    // GH-649 The implementation tries to put 1 expression on 1 line to track down crash reason.
-    // Logging added to gather context of the crash.
-    private func sign(string: String, address: String) -> EthSignature {
-        let service = ApplicationServiceRegistry.ethereumService
-        guard let signature = service.sign(message: string, by: address) else {
-            let error = NSError(domain: "io.gnosis.safe",
-                                code: -993,
-                                userInfo: [NSLocalizedDescriptionKey: "Signing failed",
-                                           "signingString": string,
-                                           "signingAddress": address])
-            ApplicationServiceRegistry.logger.error("Signing failed", error: error)
-            preconditionFailure("Signing failed")
-        }
-        return signature
     }
 
     // MARK: - Message Handling

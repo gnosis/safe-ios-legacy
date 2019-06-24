@@ -25,6 +25,7 @@
 		0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B5C20A07C2D00E064E1 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A1B2AC5221EFDDA00E92990 /* UIKitFileSystemGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */; };
 		0A3476BE22B131E100FEA7FC /* M0005_ChangeTransactionFeeColumnType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3476BD22B131E100FEA7FC /* M0005_ChangeTransactionFeeColumnType.swift */; };
+		0A34773422B3A22C00FEA7FC /* M0006_RemoveWalletIDFromTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34773322B3A22C00FEA7FC /* M0006_RemoveWalletIDFromTransactions.swift */; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
 		0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A364B3222688473002E80B7 /* MultisigWalletConfigurator.swift */; };
 		0A364B40226886DB002E80B7 /* IdentityAccessConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A364B3F226886DB002E80B7 /* IdentityAccessConfigurator.swift */; };
@@ -34,7 +35,6 @@
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
 		0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC58A209CA2E500BA7A06 /* libCommon.a */; };
-		0A7A4D84227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A4D83227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift */; };
 		0A814EEB225369C90099C45E /* NewSafeGuidelinesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */; };
 		0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84BBDE21060F6100708DE5 /* AppConfig.swift */; };
 		0A84BBF42106168600708DE5 /* AppConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A84BBE82106168600708DE5 /* AppConfig.json */; };
@@ -291,6 +291,7 @@
 		0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccess.xcodeproj; path = ../IdentityAccess/IdentityAccess.xcodeproj; sourceTree = "<group>"; };
 		0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitFileSystemGuard.swift; sourceTree = "<group>"; };
 		0A3476BD22B131E100FEA7FC /* M0005_ChangeTransactionFeeColumnType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0005_ChangeTransactionFeeColumnType.swift; sourceTree = "<group>"; };
+		0A34773322B3A22C00FEA7FC /* M0006_RemoveWalletIDFromTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0006_RemoveWalletIDFromTransactions.swift; sourceTree = "<group>"; };
 		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A364B3222688473002E80B7 /* MultisigWalletConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultisigWalletConfigurator.swift; sourceTree = "<group>"; };
 		0A364B3F226886DB002E80B7 /* IdentityAccessConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityAccessConfigurator.swift; sourceTree = "<group>"; };
@@ -303,7 +304,6 @@
 		0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A5DC58A209CA2E500BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A7A4D83227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0001_UpdateProcessedTransactionsMigration.swift; sourceTree = "<group>"; };
 		0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewSafeGuidelinesScreen.swift; path = safeUITests/screens/OnboardingFlow/NewSafeGuidelinesScreen.swift; sourceTree = SOURCE_ROOT; };
 		0A84BBDE21060F6100708DE5 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		0A84BBE82106168600708DE5 /* AppConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AppConfig.json; path = ../AppConfig.json; sourceTree = "<group>"; };
@@ -511,11 +511,11 @@
 		0A7A4D902270644100706B43 /* Migrations */ = {
 			isa = PBXGroup;
 			children = (
-				0A7A4D83227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift */,
 				551D76F1227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift */,
 				551D770C227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift */,
 				0AD899F222845D33008AE325 /* M0004_AddColumnsToWallet.swift */,
 				0A3476BD22B131E100FEA7FC /* M0005_ChangeTransactionFeeColumnType.swift */,
+				0A34773322B3A22C00FEA7FC /* M0006_RemoveWalletIDFromTransactions.swift */,
 				55B5DF97227C567D001A32F4 /* Migrations.swift */,
 			);
 			path = Migrations;
@@ -1193,8 +1193,8 @@
 				0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */,
 				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,
 				551D76F2227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift in Sources */,
+				0A34773422B3A22C00FEA7FC /* M0006_RemoveWalletIDFromTransactions.swift in Sources */,
 				0AD899F322845D33008AE325 /* M0004_AddColumnsToWallet.swift in Sources */,
-				0A7A4D84227063CF00706B43 /* M0001_UpdateProcessedTransactionsMigration.swift in Sources */,
 				551D770D227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift in Sources */,
 				0A3476BE22B131E100FEA7FC /* M0005_ChangeTransactionFeeColumnType.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,

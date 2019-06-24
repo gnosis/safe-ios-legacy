@@ -54,6 +54,7 @@ class SendInputViewModel {
     func update() {
         enqueueFeeEstimation()
         updateBalances()
+        ApplicationServiceRegistry.walletService.subscribeForBalanceUpdates(subscriber: self)
     }
 
     func change(amount: BigInt) {
@@ -89,22 +90,22 @@ class SendInputViewModel {
     }
 
     private func updateFeeData() {
-        let feeTokenBalance = self.walletService.tokenData(id: self.feeTokenID.id)!
-        self.feeBalanceTokenData = feeTokenBalance
-        self.feeEstimatedAmountTokenData = feeTokenBalance.withBalance(estimatedFee != nil ? -estimatedFee! : nil)
+        let fee = self.walletService.tokenData(id: self.feeTokenID.id)!
+        feeBalanceTokenData = fee
+        feeEstimatedAmountTokenData = fee.withBalance(estimatedFee != nil ? -estimatedFee! : nil)
     }
 
     private func updateResultingData() {
         let intAmount = amount ?? 0
-        let feeAmount = abs(self.feeEstimatedAmountTokenData.balance ?? 0)
-        let feeAccountbalance = self.feeBalanceTokenData.balance ?? 0
-        let accountBalance = self.accountBalanceTokenData.balance ?? 0
+        let feeAmount = abs(feeEstimatedAmountTokenData.balance ?? 0)
+        let feeAccountbalance = feeBalanceTokenData.balance ?? 0
+        let accountBalance = accountBalanceTokenData.balance ?? 0
         if feeTokenID == transferTokenID {
             let newBalance = feeAccountbalance - intAmount - feeAmount
-            self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(newBalance)
+            feeResultingBalanceTokenData = feeBalanceTokenData.withBalance(newBalance)
         } else {
-            self.resultingBalanceTokenData = self.accountBalanceTokenData.withBalance(accountBalance - intAmount)
-            self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(feeAccountbalance - feeAmount)
+            resultingBalanceTokenData = accountBalanceTokenData.withBalance(accountBalance - intAmount)
+            feeResultingBalanceTokenData = feeBalanceTokenData.withBalance(feeAccountbalance - feeAmount)
         }
     }
 
@@ -138,6 +139,14 @@ class SendInputViewModel {
         } else {
             return accountBalance >= intAmount && feeBalance >= feeAmount
         }
+    }
+
+}
+
+extension SendInputViewModel: EventSubscriber {
+
+    func notify() {
+        updateBalances()
     }
 
 }

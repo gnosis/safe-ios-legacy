@@ -4,6 +4,8 @@
 
 import Foundation
 import SafeUIKit
+import BigInt
+import Common
 
 final class SendReviewViewController: ReviewTransactionViewController {
 
@@ -49,27 +51,25 @@ final class SendReviewViewController: ReviewTransactionViewController {
         cell.transferView.fromAddress = tx.sender
         cell.transferView.toAddress = tx.recipient
         cell.transferView.tokenData = tx.amountTokenData
-        cell.transferView.balanceData = tx.amountTokenData.withBalance(balance(of: tx.amountTokenData)!)
+        cell.transferView.balanceData = tx.amountTokenData.withBalance(balance(of: tx.amountTokenData))
         return cell
     }
 
     private func feeCalculationCell() -> UITableViewCell {
         let cell = FeeCalculationCell(frame: .zero)
-        let amountBalance = balance(of: tx.amountTokenData)!
-        var balanceAfter = max(amountBalance - abs(tx.amountTokenData.balance ?? 0), 0)
+        var balanceAfter = subtract(balance(of: tx.amountTokenData), abs(tx.amountTokenData.balance) ?? 0)
 
         if tx.amountTokenData.address == tx.feeTokenData.address {
-            balanceAfter = max(balanceAfter - (tx.feeTokenData.withNonNegativeBalance().balance ?? 0), 0)
+            balanceAfter = subtract(balanceAfter, abs(tx.feeTokenData.balance) ?? 0)
             let calculation = SameTransferAndPaymentTokensFeeCalculation()
-            calculation.networkFeeLine.set(value: tx.feeTokenData.withNonNegativeBalance(), roundUp: true)
+            calculation.networkFeeLine.set(value: abs(tx.feeTokenData), roundUp: true)
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(balanceAfter))
             cell.feeCalculationView.calculation = calculation
         } else {
-            let feeBalance = balance(of: tx.feeTokenData) ?? 0
-            let feeResultingBalance = max(feeBalance - abs(tx.feeTokenData.balance ?? 0), 0)
+            let feeResultingBalance = subtract(balance(of: tx.feeTokenData) ?? 0, abs(tx.feeTokenData.balance) ?? 0)
             let calculation = DifferentTransferAndPaymentTokensFeeCalculation()
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(balanceAfter))
-            calculation.networkFeeLine.set(value: tx.feeTokenData.withNonNegativeBalance(), roundUp: true)
+            calculation.networkFeeLine.set(value: abs(tx.feeTokenData), roundUp: true)
             calculation.networkFeeResultingBalanceLine.set(value: tx.feeTokenData.withBalance(feeResultingBalance))
             cell.feeCalculationView.calculation = calculation
         }

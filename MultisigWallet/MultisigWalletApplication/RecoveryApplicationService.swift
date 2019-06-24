@@ -148,6 +148,7 @@ public class RecoveryApplicationService {
                                onError errorHandler: @escaping (Error) -> Void) {
         withEnvironment(for: subscriber, errorHandler: errorHandler) {
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletRecovered.self)
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: RecoveryTransactionHashIsKnown.self)
             DomainRegistry.recoveryService.resume()
         }
     }

@@ -22,6 +22,7 @@ class MultisigWalletConfigurator {
                                        for: WalletSettingsApplicationService.self)
         ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
 
+        DomainRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: config.notificationServiceURL,
                                                           logger: LogService.shared)
         DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)

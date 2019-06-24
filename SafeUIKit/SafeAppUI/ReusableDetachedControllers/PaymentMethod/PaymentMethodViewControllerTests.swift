@@ -32,7 +32,7 @@ class PaymentMethodViewControllerTests: SafeTestCase {
         let headerView = controller.tableView(controller.tableView,
                                               viewForHeaderInSection: 0) as! PaymentMethodHeaderView
         headerView.onTextSelected!()
-        XCTAssertAlertShown(message: PaymentMethodViewController.Strings.Alert.description, actionCount: 1)
+        XCTAssertAlertShown()
     }
 
 }

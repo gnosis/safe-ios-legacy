@@ -29,7 +29,8 @@ public protocol BiometricAuthenticationService {
 
     /// Authenticates user with activated biometry type.
     ///
-    /// - Returns: True if user authenticated successfully, false otherwise.
-    func authenticate() -> Bool
+    /// - Returns: True if user authenticated successfully, false when authentication credentials were wrong.
+    /// - Throws: Throws error when authentication was cancelled by user, system, or underlying auth mechanism failed.
+    func authenticate() throws -> Bool
 
 }

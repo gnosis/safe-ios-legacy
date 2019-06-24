@@ -31,6 +31,12 @@ public protocol TransactionRepository {
 
     func find(hash: Data) -> Transaction?
 
+    /// Searches for the first transaction matching type and wallet ID
+    ///
+    /// - Parameters:
+    ///   - type: kind of a transaction
+    ///   - wallet: id of a wallet to which transaction belongs to
+    /// - Returns: found result or nil
     func find(type: TransactionType, wallet: WalletID) -> Transaction?
 
     /// Generates new transaction identifier

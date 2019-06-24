@@ -73,7 +73,6 @@ class OnboardingCreationFeeViewController: CardViewController {
         addressDetailView.isHidden = true
 
         footerButton.isHidden = true
-
         creationProcessTracker.start()
     }
 

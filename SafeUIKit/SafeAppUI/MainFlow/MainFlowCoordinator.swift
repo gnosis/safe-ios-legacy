@@ -6,6 +6,7 @@ import UIKit
 import MultisigWalletApplication
 import IdentityAccessApplication
 import Common
+import UserNotifications
 
 open class MainFlowCoordinator: FlowCoordinator {
 
@@ -15,6 +16,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     let newSafeFlowCoordinator = CreateSafeFlowCoordinator()
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionFlowCoordinator = IncomingTransactionFlowCoordinator()
+    public var crashlytics: CrashlyticsProtocol?
 
     private var lockedViewController: UIViewController!
 
@@ -51,6 +53,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     func appDidFinishLaunching() {
+        updateUserIdentifier()
         if !ApplicationServiceRegistry.authenticationService.isUserRegistered {
             push(OnboardingWelcomeViewController.create(delegate: self))
             applicationRootViewController = rootViewController
@@ -65,13 +68,20 @@ open class MainFlowCoordinator: FlowCoordinator {
         requestToUnlockApp()
     }
 
+    private func updateUserIdentifier() {
+        guard let crashlytics = crashlytics,
+            let wallet = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+        crashlytics.setUserIdentifier(wallet)
+    }
+
     func switchToRootController() {
         let nextController: UIViewController
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            updateUserIdentifier()
+            DispatchQueue.main.async(execute: registerForRemoteNotifciations)
             let mainVC = MainViewController.create(delegate: self)
             mainVC.navigationItem.backBarButtonItem = .backButton()
             nextController = mainVC
-
         } else {
             nextController = OnboardingCreateOrRestoreViewController.create(delegate: self)
         }
@@ -142,6 +152,19 @@ open class MainFlowCoordinator: FlowCoordinator {
         }
     }
 
+    func registerForRemoteNotifciations() {
+        // notification registration must be on the main thread
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
+        UIApplication.shared.registerForRemoteNotifications()
+        updatePushToken()
+    }
+
+    public func updatePushToken() {
+        DispatchQueue.global.async {
+            try? ApplicationServiceRegistry.walletService.auth()
+        }
+    }
+
 }
 
 extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
@@ -197,17 +220,6 @@ extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 }
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
-
-    func mainViewDidAppear() {
-        UIApplication.shared.requestRemoteNotificationsRegistration()
-        DispatchQueue.global().async {
-            do {
-                try ApplicationServiceRegistry.walletService.auth()
-            } catch let e {
-                MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Error in auth(): \(e)")
-            }
-        }
-    }
 
     func createNewTransaction(token: String) {
         sendFlowCoordinator.token = token

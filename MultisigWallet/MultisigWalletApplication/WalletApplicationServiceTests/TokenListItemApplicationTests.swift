@@ -118,7 +118,6 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         service.rearrange(tokens: rearranged)
         delay()
         XCTAssertTrue(logger.errorLogged)
-        XCTAssertEqual(logger.loggedError as? TokensListError, .inconsistentData_notEqualToWhitelistedAmount)
     }
 
     func test_whenErrorInRearrangingNotAmongWhitelistedToken_thenErrorIsReceived() {
@@ -131,7 +130,6 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         service.rearrange(tokens: rearranged)
         delay()
         XCTAssertTrue(logger.errorLogged)
-        XCTAssertEqual(logger.loggedError as? TokensListError, .inconsistentData_notAmongWhitelistedToken)
     }
 
     func test_whenRequestingTokenDataEth_thenReturnsIt() {

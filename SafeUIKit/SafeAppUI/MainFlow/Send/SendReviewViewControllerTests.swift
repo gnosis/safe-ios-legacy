@@ -30,7 +30,7 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
         let calculation = cell.feeCalculationView.calculation as! SameTransferAndPaymentTokensFeeCalculation
 
         XCTAssertEqual(calculation.networkFeeLine.asset.value,
-                       formatter.string(from: data.feeTokenData.withNonNegativeBalance()))
+                       formatter.string(from: abs(data.feeTokenData)))
         XCTAssertEqual(calculation.resultingBalanceLine.asset.value,
                        formatter.string(from: data.amountTokenData.withBalance(resultingBalance)))
     }

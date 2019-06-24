@@ -16,11 +16,11 @@ public class InMemoryGatekeeperRepository: SingleGatekeeperRepository {
         return _gatekeeper
     }
 
-    public func save(_ keeper: Gatekeeper) throws {
+    public func save(_ keeper: Gatekeeper) {
         _gatekeeper = keeper
     }
 
-    public func remove(_ gatekeeper: Gatekeeper) throws {
+    public func remove(_ gatekeeper: Gatekeeper) {
         guard gatekeeper == _gatekeeper else { return }
         _gatekeeper = nil
     }

@@ -222,7 +222,6 @@ ef8553f949acc5f0cb8002523b7a4f8e02664b6637eddc74ad72bb8e38588309
         let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
         return MultisigWalletDomainModel.Transaction(id: TransactionID(),
                                                      type: .transfer,
-                                                     walletID: walletID,
                                                      accountID: accountID)
     }
 

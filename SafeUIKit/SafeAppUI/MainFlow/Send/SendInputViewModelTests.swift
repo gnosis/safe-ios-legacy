@@ -69,7 +69,6 @@ class SendInputViewModelTests: XCTestCase {
         model.change(recipient: walletAddress)
         delay()
         XCTAssertEqual(model.feeEstimatedAmountTokenData.balance, -100)
-        XCTAssertEqual(model.feeResultingBalanceTokenData.balance, balance - 100)
     }
 
     func test_whenEnteredAllValidData_thenCanProceedToSigning() {

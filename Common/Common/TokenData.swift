@@ -58,13 +58,32 @@ public struct TokenData: Equatable, Hashable {
         return address == other.address
     }
 
-    public func withNonNegativeBalance() -> TokenData {
+    fileprivate func withNonNegativeBalance() -> TokenData {
         return TokenData(address: address,
                          code: code,
                          name: name,
                          logoURL: logoURL?.absoluteString ?? "",
                          decimals: decimals,
-                         balance: balance != nil ? abs(balance!) : nil)
+                         balance: abs(balance))
     }
 
+}
+
+public func subtract(_ lhs: BigInt?, _ rhs: TokenData) -> BigInt? {
+    guard let balance = lhs, let value = rhs.balance else { return  nil }
+    return balance - value
+}
+
+public func subtract(_ lhs: BigInt?, _ rhs: BigInt?) -> BigInt? {
+    guard let lhs = lhs, let rhs = rhs else { return  nil }
+    return lhs - rhs
+}
+
+public func abs(_ value: BigInt?) -> BigInt? {
+    guard let value = value else { return nil }
+    return Swift.abs(value)
+}
+
+public func abs(_ value: TokenData) -> TokenData {
+    return value.withNonNegativeBalance()
 }
