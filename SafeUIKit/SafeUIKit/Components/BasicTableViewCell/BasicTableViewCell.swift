@@ -12,6 +12,9 @@ open class BasicTableViewCell: UITableViewCell {
     @IBOutlet public private(set) weak var separatorView: UIView!
     @IBOutlet public private(set) weak var rightTrailingConstraint: NSLayoutConstraint!
 
+    public static let titleOnlyHeight: CGFloat = 62
+    public static let titleAndSubtitleHeight: CGFloat = 70
+
     /// Used if table view section index should be displayed
     public var withTrailingSpace: Bool = false {
         didSet {
@@ -42,5 +45,32 @@ open class BasicTableViewCell: UITableViewCell {
         selectedView.backgroundColor = ColorName.paleGreyThree.color
         selectedBackgroundView = selectedView
     }
+
+    open func splitLeftTextLabel(title: String, subtitle: String) {
+        let fullText = NSMutableAttributedString()
+        let titleText = NSAttributedString(string: title + "\n", style: TitleStyle())
+        let subtitleText = NSAttributedString(string: subtitle, style: SubtitleStyle())
+        fullText.append(titleText)
+        fullText.append(subtitleText)
+        leftTextLabel.numberOfLines = 0
+        leftTextLabel.attributedText = fullText
+    }
+
+}
+
+fileprivate class TitleStyle: AttributedStringStyle {
+
+    override var fontSize: Double { return 16 }
+    override var fontWeight: UIFont.Weight { return .medium }
+    override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+    override var spacingAfterParagraph: Double { return 4 }
+
+}
+
+fileprivate class SubtitleStyle: AttributedStringStyle {
+
+    override var fontSize: Double { return 13 }
+    override var fontWeight: UIFont.Weight { return .medium }
+    override var fontColor: UIColor { return ColorName.battleshipGrey.color }
 
 }

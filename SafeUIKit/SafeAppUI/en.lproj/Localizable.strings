@@ -1,3 +1,6 @@
+/* Active sessions */
+"active_sessions" = "Active sessions";
+
 /* Add token button
    Title for Add Token screen. */
 "add_token" = "Add Token";
@@ -36,8 +39,7 @@
 "browser_extension" = "Browser extension";
 
 /* Cancel
-   Cancel button.
-   Cancel response button title */
+   Cancel button. */
 "cancel" = "Cancel";
 
 /* Message body of abort alert */
@@ -96,6 +98,9 @@
 
 /* Current password */
 "current_password" = "Current password";
+
+/* Disconnect */
+"disconnect" = "Disconnect";
 
 /* Disconnect browser extension description */
 "disconnect_2fa_description" = "Once this process is complete, you won't need to confirm transactions with browser extension.\n\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
@@ -383,6 +388,9 @@
    Next button. */
 "next" = "Next";
 
+/* No active sessions */
+"no_active_sessions" = "No active sessions";
+
 /* No results found */
 "no_results_found" = "No results found";
 
@@ -495,7 +503,8 @@
 /* Save button */
 "save" = "Save";
 
-/* Scan button title in extension setup screen */
+/* Scan
+   Scan button title in extension setup screen */
 "scan" = "Scan";
 
 /* Scan QR code */
@@ -615,7 +624,7 @@
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
-/* WallectConnect */
+/* WalletConnect */
 "walletconnect" = "WalletConnect";
 
 /* Safe Creation Fee */
@@ -623,4 +632,7 @@
 
 /* Safe Creation Fee */
 "what_is_safe_recovery_fee" = "What is the Safe recovery fee?";
+
+/* You are disconnecting from... */
+"you_are_disconnecting_from" = "You are disconnecting from %@";
 

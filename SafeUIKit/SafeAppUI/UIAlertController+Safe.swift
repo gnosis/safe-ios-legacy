@@ -25,14 +25,17 @@ extension UIAlertController {
         return self
     }
 
+    func withCancelAction(handler: @escaping () -> Void = {}) -> UIAlertController {
+        addAction(UIAlertAction(title: LocalizedString("cancel", comment: "Cancel"),
+                                style: .cancel,
+                                handler: wrapNoArguments(closure: handler)))
+        return self
+    }
+
     func withDestructiveAction(title: String, action: @escaping () -> Void) -> UIAlertController {
         addAction(UIAlertAction(title: title, style: .destructive, handler: wrapNoArguments(closure: action)))
         return self
     }
-
-}
-
-extension UIAlertController {
 
     static func networkFee() -> UIAlertController {
         return create(title: LocalizedString("transaction_fee", comment: "Network fee"),
@@ -80,10 +83,19 @@ extension UIAlertController {
                                                              comment: "Affirmative response button title"),
                                       style: .default,
                                       handler: wrapNoArguments(closure: handler)))
-        alert.addAction(UIAlertAction(title: LocalizedString("cancel", comment: "Cancel response button title"),
-                                      style: .cancel,
-                                      handler: nil))
-        return alert
+        return alert.withCancelAction()
+    }
+
+    static func disconnectWCSession(sessionName: String, disconnectCompletion: @escaping () -> Void) -> UIAlertController {
+        let message = String(format: LocalizedString("you_are_disconnecting_from",
+                                                     comment: "You are disconnecting from..."),
+                             sessionName)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+        let disconnectAction = UIAlertAction(title: LocalizedString("disconnect", comment: "Disconnect"),
+                                             style: .destructive,
+                                             handler: wrapNoArguments(closure: disconnectCompletion))
+        alert.addAction(disconnectAction)
+        return alert.withCancelAction()
     }
 
 }
