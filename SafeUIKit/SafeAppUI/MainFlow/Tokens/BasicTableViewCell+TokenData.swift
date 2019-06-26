@@ -8,14 +8,6 @@ import Common
 
 extension BasicTableViewCell {
 
-    static var tokenDataCellHeight: CGFloat {
-        return 62
-    }
-
-    static var tokenDataWithNameCellHeight: CGFloat {
-        return 70
-    }
-
     func configure(tokenData: TokenData,
                    displayBalance: Bool,
                    displayFullName: Bool,

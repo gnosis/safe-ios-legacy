@@ -19,7 +19,7 @@ final class AssetViewViewController: UITableViewController {
         let bundle = Bundle(for: AssetViewViewController.self)
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
-        tableView.rowHeight = BasicTableViewCell.tokenDataCellHeight
+        tableView.rowHeight = BasicTableViewCell.titleOnlyHeight
         tableView.separatorStyle = .none
 
         refreshControl = UIRefreshControl()

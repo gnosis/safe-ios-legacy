@@ -106,7 +106,7 @@ class AddTokenTableViewController: UITableViewController {
         tableView.sectionFooterHeight = 0
         tableView.separatorStyle = .none
 
-        tableView.rowHeight = BasicTableViewCell.tokenDataWithNameCellHeight
+        tableView.rowHeight = BasicTableViewCell.titleAndSubtitleHeight
         tableView.backgroundColor = ColorName.paleGrey.color
 
         tableView.sectionIndexMinimumDisplayRowCount = 15

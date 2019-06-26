@@ -36,6 +36,7 @@ final class WCSessionListTableViewController: UITableViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+        addMockData()
         update()
     }
 
@@ -48,10 +49,22 @@ final class WCSessionListTableViewController: UITableViewController {
     private func configureTableView() {
         noSessionsView.text = Strings.noActiveSessions
         noSessionsView.centerPadding = view.frame.height / 4
+        tableView.rowHeight = BasicTableViewCell.titleAndSubtitleHeight
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.paleGrey.color
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
+    }
+
+    // TODO: delete
+    private func addMockData() {
+        struct Data: WCSessionData {
+            var image: UIImage
+            var title: String
+            var subtitle: String
+        }
+        sessions.append(Data(image: Asset.congratulations.image, title: "Titile", subtitle: "Subtitle"))
     }
 
     @objc private func scan() {}
@@ -72,6 +85,35 @@ final class WCSessionListTableViewController: UITableViewController {
                                                  for: indexPath) as! BasicTableViewCell
         cell.configure(wcSessionData: sessions[indexPath.row])
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    // TODO: clarify with product one more time if we should display this alert at all.
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        showDisconnectAlert(for: indexPath)
+    }
+
+    private func showDisconnectAlert(for indexPath: IndexPath) {
+        let session = sessions[indexPath.row]
+        let alert = UIAlertController.disconnectWCSession(sessionName: session.title, disconnectCompletion: {})
+        present(alert, animated: true)
+    }
+
+    // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        showDisconnectAlert(for: indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return Strings.disconnect
     }
 
 }

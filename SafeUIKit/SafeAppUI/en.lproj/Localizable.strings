@@ -39,8 +39,7 @@
 "browser_extension" = "Browser extension";
 
 /* Cancel
-   Cancel button.
-   Cancel response button title */
+   Cancel button. */
 "cancel" = "Cancel";
 
 /* Message body of abort alert */
@@ -633,4 +632,7 @@
 
 /* Safe Creation Fee */
 "what_is_safe_recovery_fee" = "What is the Safe recovery fee?";
+
+/* You are disconnecting from... */
+"you_are_disconnecting_from" = "You are disconnecting from %@";
 
