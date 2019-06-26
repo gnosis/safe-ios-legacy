@@ -43,4 +43,31 @@ open class BasicTableViewCell: UITableViewCell {
         selectedBackgroundView = selectedView
     }
 
+    open func splitLeftTextLabel(title: String, subtitle: String) {
+        let fullText = NSMutableAttributedString()
+        let titleText = NSAttributedString(string: title + "\n", style: TitleStyle())
+        let subtitleText = NSAttributedString(string: subtitle, style: SubtitleStyle())
+        fullText.append(titleText)
+        fullText.append(subtitleText)
+        leftTextLabel.numberOfLines = 0
+        leftTextLabel.attributedText = fullText
+    }
+
+}
+
+fileprivate class TitleStyle: AttributedStringStyle {
+
+    override var fontSize: Double { return 16 }
+    override var fontWeight: UIFont.Weight { return .medium }
+    override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+    override var spacingAfterParagraph: Double { return 4 }
+
+}
+
+fileprivate class SubtitleStyle: AttributedStringStyle {
+
+    override var fontSize: Double { return 13 }
+    override var fontWeight: UIFont.Weight { return .medium }
+    override var fontColor: UIColor { return ColorName.battleshipGrey.color }
+
 }

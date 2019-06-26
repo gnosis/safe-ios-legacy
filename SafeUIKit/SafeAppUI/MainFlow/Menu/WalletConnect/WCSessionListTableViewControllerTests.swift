@@ -5,13 +5,13 @@
 import XCTest
 @testable import SafeAppUI
 
-class WCSessionListViewControllerTests: XCTestCase {
+class WCSessionListTableViewControllerTests: XCTestCase {
 
-    var controller: WCSessionListViewController!
+    var controller: WCSessionListTableViewController!
 
     override func setUp() {
         super.setUp()
-        controller = WCSessionListViewController()
+        controller = WCSessionListTableViewController()
         controller.viewDidLoad()
     }
 

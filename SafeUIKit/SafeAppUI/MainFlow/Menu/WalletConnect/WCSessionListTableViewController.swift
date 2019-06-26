@@ -3,10 +3,15 @@
 //
 
 import UIKit
+import SafeUIKit
 
-protocol MockSessionData {}
+protocol WCSessionData {
+    var image: UIImage { get }
+    var title: String { get }
+    var subtitle: String { get }
+}
 
-final class WCSessionListViewController: UITableViewController {
+final class WCSessionListTableViewController: UITableViewController {
 
     var scanButtonItem: UIBarButtonItem!
     let noSessionsView = EmptyResultsView()
@@ -19,7 +24,7 @@ final class WCSessionListViewController: UITableViewController {
         static let noActiveSessions = LocalizedString("no_active_sessions", comment: "No active sessions")
     }
 
-    var sessions = [MockSessionData]() {
+    var sessions = [WCSessionData]() {
         didSet {
             DispatchQueue.main.async {
                 self.update()
@@ -29,14 +34,24 @@ final class WCSessionListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
+        configureTableView()
+        update()
+    }
+
+    private func configureNavigationBar() {
         title = Strings.title
-        noSessionsView.text = Strings.noActiveSessions
-        noSessionsView.centerPadding = view.frame.height / 4
         scanButtonItem = UIBarButtonItem(title: Strings.scan, style: .done, target: self, action: #selector(scan))
         navigationItem.rightBarButtonItem = scanButtonItem
+    }
+
+    private func configureTableView() {
+        noSessionsView.text = Strings.noActiveSessions
+        noSessionsView.centerPadding = view.frame.height / 4
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.paleGrey.color
-        update()
+        tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
+                           forCellReuseIdentifier: "BasicTableViewCell")
     }
 
     @objc private func scan() {}
@@ -53,7 +68,10 @@ final class WCSessionListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
+                                                 for: indexPath) as! BasicTableViewCell
+        cell.configure(wcSessionData: sessions[indexPath.row])
+        return cell
     }
 
 }

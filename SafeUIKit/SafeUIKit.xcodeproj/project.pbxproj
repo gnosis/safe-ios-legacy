@@ -325,6 +325,7 @@
 		5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545970522689A63009B4A0B /* LicensesCommand.swift */; };
 		554597082268AB22009B4A0B /* TermsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554597072268AB22009B4A0B /* TermsCommand.swift */; };
 		5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */; };
+		5549193722C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */; };
 		5549B26F2282CF5000F3B5B7 /* BasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549B26E2282CF5000F3B5B7 /* BasicTableViewCell.swift */; };
 		5549B2812282E37400F3B5B7 /* BasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5549B2802282E37400F3B5B7 /* BasicTableViewCell.xib */; };
 		5549B28322830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549B28222830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift */; };
@@ -356,10 +357,10 @@
 		557353722294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */; };
 		5579C57622C3664300BB93CA /* WCMenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57522C3664300BB93CA /* WCMenuCommand.swift */; };
 		5579C57822C367C400BB93CA /* WCFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57722C367C400BB93CA /* WCFlowCoordinator.swift */; };
-		5579C57A22C3687500BB93CA /* WCSessionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57922C3687500BB93CA /* WCSessionListViewController.swift */; };
+		5579C57A22C3687500BB93CA /* WCSessionListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */; };
 		5579C57C22C36A7A00BB93CA /* WCMenuCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */; };
 		5579C57E22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */; };
-		5579C58022C3739400BB93CA /* WCSessionListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57F22C3739400BB93CA /* WCSessionListViewControllerTests.swift */; };
+		5579C58022C3739400BB93CA /* WCSessionListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
 		55980001225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE9225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift */; };
@@ -908,6 +909,7 @@
 		5545970522689A63009B4A0B /* LicensesCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesCommand.swift; sourceTree = "<group>"; };
 		554597072268AB22009B4A0B /* TermsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCommand.swift; sourceTree = "<group>"; };
 		554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyCommand.swift; sourceTree = "<group>"; };
+		5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTableViewCell+WCSessionData.swift"; sourceTree = "<group>"; };
 		5549B26E2282CF5000F3B5B7 /* BasicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTableViewCell.swift; sourceTree = "<group>"; };
 		5549B2802282E37400F3B5B7 /* BasicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicTableViewCell.xib; sourceTree = "<group>"; };
 		5549B28222830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTableViewCell+TokenData.swift"; sourceTree = "<group>"; };
@@ -940,10 +942,10 @@
 		557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeIntroViewController.swift; sourceTree = "<group>"; };
 		5579C57522C3664300BB93CA /* WCMenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCMenuCommand.swift; sourceTree = "<group>"; };
 		5579C57722C367C400BB93CA /* WCFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCFlowCoordinator.swift; sourceTree = "<group>"; };
-		5579C57922C3687500BB93CA /* WCSessionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListViewController.swift; sourceTree = "<group>"; };
+		5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListTableViewController.swift; sourceTree = "<group>"; };
 		5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCMenuCommandTests.swift; sourceTree = "<group>"; };
 		5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		5579C57F22C3739400BB93CA /* WCSessionListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListViewControllerTests.swift; sourceTree = "<group>"; };
+		5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListTableViewControllerTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		5598FFE5225B73B3006D5792 /* SetupNewPasswordViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1990,8 +1992,9 @@
 				5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */,
 				5579C57522C3664300BB93CA /* WCMenuCommand.swift */,
 				5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */,
-				5579C57922C3687500BB93CA /* WCSessionListViewController.swift */,
-				5579C57F22C3739400BB93CA /* WCSessionListViewControllerTests.swift */,
+				5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */,
+				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
+				5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -2909,6 +2912,7 @@
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
 				55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */,
 				553B9E022296D15A006E93C9 /* OnboardingPaymentMethodViewController.swift in Sources */,
+				5549193722C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
 				0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */,
@@ -2926,7 +2930,7 @@
 				5579C57822C367C400BB93CA /* WCFlowCoordinator.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
 				5549B2A522859F4700F3B5B7 /* PaymentMethodHeaderView.swift in Sources */,
-				5579C57A22C3687500BB93CA /* WCSessionListViewController.swift in Sources */,
+				5579C57A22C3687500BB93CA /* WCSessionListTableViewController.swift in Sources */,
 				0ABD146D2294489D00922964 /* HeaderScrollDelegate.swift in Sources */,
 				5549B28322830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift in Sources */,
 				554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */,
@@ -3043,7 +3047,7 @@
 				553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */,
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */,
-				5579C58022C3739400BB93CA /* WCSessionListViewControllerTests.swift in Sources */,
+				5579C58022C3739400BB93CA /* WCSessionListTableViewControllerTests.swift in Sources */,
 				55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */,
 				550D1EDD213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift in Sources */,
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,

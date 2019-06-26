@@ -31,13 +31,7 @@ extension BasicTableViewCell {
             leftImageView.image = Asset.TokenIcons.defaultToken.image
         }
         if displayFullName {
-            let tokenFullName = NSMutableAttributedString()
-            let tokenCode = NSAttributedString(string: tokenData.code + "\n", style: TokenCodeStyle())
-            let tokenName = NSAttributedString(string: tokenData.name, style: TokenNameStyle())
-            tokenFullName.append(tokenCode)
-            tokenFullName.append(tokenName)
-            leftTextLabel.numberOfLines = 0
-            leftTextLabel.attributedText = tokenFullName
+            splitLeftTextLabel(title: tokenData.code, subtitle: tokenData.name)
         } else {
             leftTextLabel.text = tokenData.code
         }
@@ -50,22 +44,5 @@ extension BasicTableViewCell {
         formatter.roundingBehavior = roundUp ? .roundUp : .cutoff
         return formatter.localizedString(from: decimal)
     }
-
-}
-
-fileprivate class TokenCodeStyle: AttributedStringStyle {
-
-    override var fontSize: Double { return 16 }
-    override var fontWeight: UIFont.Weight { return .medium }
-    override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
-    override var spacingAfterParagraph: Double { return 4 }
-
-}
-
-fileprivate class TokenNameStyle: AttributedStringStyle {
-
-    override var fontSize: Double { return 13 }
-    override var fontWeight: UIFont.Weight { return .medium }
-    override var fontColor: UIColor { return ColorName.battleshipGrey.color }
 
 }

@@ -12,7 +12,7 @@ final class WCFlowCoordinator: FlowCoordinator {
     }
 
     func showSessionList() {
-        push(WCSessionListViewController())
+        push(WCSessionListTableViewController())
     }
 
 }
