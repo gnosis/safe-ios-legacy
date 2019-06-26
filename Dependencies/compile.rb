@@ -32,7 +32,12 @@ deps.each do |dependency|
             "FRAMEWORK_SEARCH_PATHS='${SRCROOT}/../../Library/${PLATFORM_NAME}'",
             "LIBRARY_SEARCH_PATHS='${SRCROOT}/../../Library/${PLATFORM_NAME}'",
             "HEADER_SEARCH_PATHS='${SRCROOT}/../../Library/${PLATFORM_NAME}/include'",
-            "INSTALL_PATH=/ DWARF_DSYM_FOLDER_PATH='${DSTROOT}'",
+            # PromiseKit couldn't be built because the emitted objc-header "PromiseKit-Swift.h"
+            # could not be found by the build system. Commenting the INSTALL_PATH
+            # solved it, but that means we have to move the products after
+            # the command finishes instead of relying on Xcode's installation.
+            # "INSTALL_PATH=/", 
+            "DWARF_DSYM_FOLDER_PATH='${DSTROOT}'",
             "DEBUG_INFORMATION_FORMAT=dwarf-with-dsym",
             "COPY_PHASE_STRIP=NO",
             "GCC_GENERATE_DEBUGGING_SYMBOLS=YES",
@@ -40,5 +45,13 @@ deps.each do |dependency|
             "SKIP_INSTALL=NO install"].join(" ")
         puts cmd
         abort unless system cmd
+
+        # move the built products to the destination because the INSTALL_PATH 
+        # could not be used.
+        destination = "../Library/#{sdk}/"
+        installation_dir = "../Library/#{sdk}/Library/Frameworks"
+        product = "#{dependency_name}.framework"
+        abort unless system "mv #{installation_dir}/#{product} #{destination}"
+        abort unless system "rm -rf #{installation_dir}"
     end
 end

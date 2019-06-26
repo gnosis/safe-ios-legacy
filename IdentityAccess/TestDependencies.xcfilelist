@@ -5,3 +5,6 @@
 # Build settings will be expanded, e.g. $(SRCROOT)/fileName
 ${SRCROOT}/../Library/${PLATFORM_NAME}/CryptoSwift.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/EthereumKit.framework
+${SRCROOT}/../Library/${PLATFORM_NAME}/Starscream.framework
+${SRCROOT}/../Library/${PLATFORM_NAME}/PromiseKit.framework
+${SRCROOT}/../Library/${PLATFORM_NAME}/WalletConnect.framework

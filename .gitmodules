@@ -26,3 +26,12 @@
 [submodule "DateTools"]
 	path = Dependencies/DateTools
 	url = https://github.com/gnosis/DateTools.git
+[submodule "PromiseKit"]
+	path = Dependencies/PromiseKit
+	url = git@github.com:mxcl/PromiseKit.git
+[submodule "Starscream"]
+	path = Dependencies/Starscream
+	url = git@github.com:daltoniam/Starscream.git
+[submodule "WalletConnect"]
+	path = Dependencies/WalletConnect
+	url = git@github.com:gnosis/wallet-connect-swift.git
