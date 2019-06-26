@@ -615,6 +615,9 @@
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
+/* WallectConnect */
+"walletconnect" = "WalletConnect";
+
 /* Safe Creation Fee */
 "what_is_safe_creation_fee" = "What is the Safe creation fee?";
 
