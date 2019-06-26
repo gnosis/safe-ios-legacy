@@ -29,3 +29,6 @@
 [submodule "PromiseKit"]
 	path = Dependencies/PromiseKit
 	url = git@github.com:mxcl/PromiseKit.git
+[submodule "Starscream"]
+	path = Dependencies/Starscream
+	url = git@github.com:daltoniam/Starscream.git
