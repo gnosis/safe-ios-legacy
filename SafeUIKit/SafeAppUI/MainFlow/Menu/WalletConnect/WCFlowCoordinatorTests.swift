@@ -17,7 +17,7 @@ class WCFlowCoordinatorTests: XCTestCase {
     }
 
     func test_onEnter_pushesSessionListViewController() {
-        XCTAssertTrue(nav.topViewController is WCSessionListViewController)
+        XCTAssertTrue(nav.topViewController is WCSessionListTableViewController)
     }
 
 }

@@ -4,6 +4,8 @@
 
 import XCTest
 @testable import SafeAppUI
+import CommonTestSupport
+
 
 class WCSessionListTableViewControllerTests: XCTestCase {
 
@@ -16,6 +18,9 @@ class WCSessionListTableViewControllerTests: XCTestCase {
     }
 
     func test_whenNoActiveSessions_thenShowsNoSessionsView() {
+        // TODO: remove when services are ready
+        controller.sessions = []
+        delay()
         XCTAssertTrue(controller.tableView.backgroundView is EmptyResultsView)
     }
 
