@@ -45,7 +45,7 @@ class MenuTableViewControllerTests: XCTestCase {
 
     func test_whenCreated_thenConfigured() {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 1)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: securitySection), 5)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: securitySection), 6)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: portfolioSection), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 4)
     }
@@ -106,6 +106,11 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenSelectingChangePassword_thenCommandIsCalled() {
         selectCell(row: 1, section: securitySection)
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
+    }
+
+    func test_whenSelectingWalletConnect_thenCommandIsCalled() {
+        selectCell(row: 5, section: securitySection)
+        XCTAssertTrue(delegate.selectedCommand is WCMenuCommand)
     }
 
     func test_whenSelectingTerms_thenCallsCommand() {
