@@ -7,7 +7,7 @@ import Foundation
 final class WCMenuCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("walletconnect", comment: "WallectConnect")
+        return LocalizedString("walletconnect", comment: "WalletConnect")
     }
 
     override init() {

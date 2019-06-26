@@ -8,6 +8,10 @@ final class WCFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
+        showSessionList()
+    }
+
+    func showSessionList() {
         push(WCSessionListViewController())
     }
 

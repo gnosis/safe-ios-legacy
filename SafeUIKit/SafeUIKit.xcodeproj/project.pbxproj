@@ -359,6 +359,7 @@
 		5579C57A22C3687500BB93CA /* WCSessionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57922C3687500BB93CA /* WCSessionListViewController.swift */; };
 		5579C57C22C36A7A00BB93CA /* WCMenuCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */; };
 		5579C57E22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */; };
+		5579C58022C3739400BB93CA /* WCSessionListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57F22C3739400BB93CA /* WCSessionListViewControllerTests.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
 		55980001225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE9225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift */; };
@@ -942,6 +943,7 @@
 		5579C57922C3687500BB93CA /* WCSessionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListViewController.swift; sourceTree = "<group>"; };
 		5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCMenuCommandTests.swift; sourceTree = "<group>"; };
 		5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		5579C57F22C3739400BB93CA /* WCSessionListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListViewControllerTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		5598FFE5225B73B3006D5792 /* SetupNewPasswordViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1984,11 +1986,12 @@
 		5579C56622C3662500BB93CA /* WalletConnect */ = {
 			isa = PBXGroup;
 			children = (
-				5579C57522C3664300BB93CA /* WCMenuCommand.swift */,
 				5579C57722C367C400BB93CA /* WCFlowCoordinator.swift */,
-				5579C57922C3687500BB93CA /* WCSessionListViewController.swift */,
-				5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */,
 				5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */,
+				5579C57522C3664300BB93CA /* WCMenuCommand.swift */,
+				5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */,
+				5579C57922C3687500BB93CA /* WCSessionListViewController.swift */,
+				5579C57F22C3739400BB93CA /* WCSessionListViewControllerTests.swift */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -3040,6 +3043,7 @@
 				553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */,
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */,
+				5579C58022C3739400BB93CA /* WCSessionListViewControllerTests.swift in Sources */,
 				55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */,
 				550D1EDD213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift in Sources */,
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,
