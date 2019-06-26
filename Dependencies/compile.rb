@@ -34,8 +34,8 @@ deps.each do |dependency|
             "HEADER_SEARCH_PATHS='${SRCROOT}/../../Library/${PLATFORM_NAME}/include'",
             # PromiseKit couldn't be built because the emitted objc-header "PromiseKit-Swift.h"
             # could not be found by the build system. Commenting the INSTALL_PATH
-            # solved it, but that means we have to move the products manually after
-            # the command finishes.
+            # solved it, but that means we have to move the products after
+            # the command finishes instead of relying on Xcode's installation.
             # "INSTALL_PATH=/", 
             "DWARF_DSYM_FOLDER_PATH='${DSTROOT}'",
             "DEBUG_INFORMATION_FORMAT=dwarf-with-dsym",
