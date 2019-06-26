@@ -26,3 +26,6 @@
 [submodule "DateTools"]
 	path = Dependencies/DateTools
 	url = https://github.com/gnosis/DateTools.git
+[submodule "PromiseKit"]
+	path = Dependencies/PromiseKit
+	url = git@github.com:mxcl/PromiseKit.git
