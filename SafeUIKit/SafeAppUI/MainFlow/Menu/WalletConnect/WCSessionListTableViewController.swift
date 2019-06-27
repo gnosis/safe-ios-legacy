@@ -107,12 +107,12 @@ final class WCSessionListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
-        showDisconnectAlert(for: indexPath)
+        showDisconnectAlert(for: indexPath, withTitle: true)
     }
 
-    private func showDisconnectAlert(for indexPath: IndexPath) {
+    private func showDisconnectAlert(for indexPath: IndexPath, withTitle: Bool) {
         let session = sessions[indexPath.row]
-        let alert = UIAlertController.disconnectWCSession(sessionName: session.title) {}
+        let alert = UIAlertController.disconnectWCSession(sessionName: session.title, withTitle: withTitle) {}
         present(alert, animated: true)
     }
 
@@ -120,7 +120,7 @@ final class WCSessionListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        showDisconnectAlert(for: indexPath)
+        showDisconnectAlert(for: indexPath, withTitle: false)
     }
 
     override func tableView(_ tableView: UITableView,
