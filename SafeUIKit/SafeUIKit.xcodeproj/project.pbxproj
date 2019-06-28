@@ -350,6 +350,7 @@
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
 		5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562E64D216E1C0F00C54D57 /* RuleLabel.swift */; };
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
+		5568A19522C64E2D007C9E0C /* WCSendReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A19422C64E2D007C9E0C /* WCSendReviewViewController.swift */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */; };
@@ -935,6 +936,7 @@
 		55625213214A601900F569EE /* SafeTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTableViewCellTests.swift; sourceTree = "<group>"; };
 		5562E64D216E1C0F00C54D57 /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
 		5562E64F216E1CF500C54D57 /* RuleLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RuleLabel.xib; sourceTree = "<group>"; };
+		5568A19422C64E2D007C9E0C /* WCSendReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSendReviewViewController.swift; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1995,6 +1997,7 @@
 				5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */,
 				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
 				5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */,
+				5568A19422C64E2D007C9E0C /* WCSendReviewViewController.swift */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -2948,6 +2951,7 @@
 				0AE0FEA0229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */,
+				5568A19522C64E2D007C9E0C /* WCSendReviewViewController.swift in Sources */,
 				0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */,
 				0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,

@@ -10,6 +10,7 @@ extension BasicTableViewCell {
         accessoryType = .none
         leftImageView.image = wcSessionData.image
         splitLeftTextLabel(title: wcSessionData.title, subtitle: wcSessionData.subtitle)
+        rightTextLabel.text = nil
     }
 
 }
