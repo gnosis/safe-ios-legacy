@@ -86,11 +86,13 @@ extension UIAlertController {
         return alert.withCancelAction()
     }
 
-    static func disconnectWCSession(sessionName: String, disconnectCompletion: @escaping () -> Void) -> UIAlertController {
+    static func disconnectWCSession(sessionName: String,
+                                    withTitle: Bool,
+                                    disconnectCompletion: @escaping () -> Void) -> UIAlertController {
         let message = String(format: LocalizedString("you_are_disconnecting_from",
                                                      comment: "You are disconnecting from..."),
                              sessionName)
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: withTitle ? message : nil, preferredStyle: .actionSheet)
         let disconnectAction = UIAlertAction(title: LocalizedString("disconnect", comment: "Disconnect"),
                                              style: .destructive,
                                              handler: wrapNoArguments(closure: disconnectCompletion))
