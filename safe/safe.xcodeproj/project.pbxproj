@@ -18,6 +18,7 @@
 		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C874920976D3A00471885 /* NewSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */; };
+		0A0E837122CA00050027A96E /* WalletConnectIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E837022CA00050027A96E /* WalletConnectIntegrationTests.swift */; };
 		0A0FD8A42254ED27008475E7 /* PendingSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */; };
 		0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B6020A07C2D00E064E1 /* SafeAppUI.framework */; };
 		0A160B8620A07C7300E064E1 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B6020A07C2D00E064E1 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -287,6 +288,7 @@
 		0A0C86FD2097461700471885 /* SafeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SafeUIKit.strings; sourceTree = "<group>"; };
 		0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IdentityAccessImplementationsResources.bundle; sourceTree = "<group>"; };
 		0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeScreenUITests.swift; sourceTree = "<group>"; };
+		0A0E837022CA00050027A96E /* WalletConnectIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectIntegrationTests.swift; sourceTree = "<group>"; };
 		0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SafeUIKit.xcodeproj; path = ../SafeUIKit/SafeUIKit.xcodeproj; sourceTree = "<group>"; };
 		0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccess.xcodeproj; path = ../IdentityAccess/IdentityAccess.xcodeproj; sourceTree = "<group>"; };
 		0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitFileSystemGuard.swift; sourceTree = "<group>"; };
@@ -693,6 +695,7 @@
 				555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */,
 				0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */,
 				55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */,
+				0A0E837022CA00050027A96E /* WalletConnectIntegrationTests.swift */,
 				0A364B4122688891002E80B7 /* Safe.swift */,
 				0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */,
 				55FB25C0212582EC00E81666 /* HTTPTokenListServiceTests.swift */,
@@ -1208,6 +1211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0E837122CA00050027A96E /* WalletConnectIntegrationTests.swift in Sources */,
 				555C94F120E537E900A0621D /* HTTPNotificatonServiceTests.swift in Sources */,
 				0A364B4222688891002E80B7 /* Safe.swift in Sources */,
 				0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */,
