@@ -8,23 +8,46 @@ import MultisigWalletImplementations
 
 class WalletConnectIntegrationTests: XCTestCase {
 
-//    class SendTransactionHandler: RequestHandler {
-//
-//    }
-//
-//    class MyServerDelegate: ServerDelegate {
-//
-//    }
-//
-//    func test_connection() {
-//        let delegate = MyServerDelegate()
-//        let server = Server(delegate: delegate)
-//        server.register(handler: SendTransactionHandler())
-//        let url = URL(string: "")!
-//        server.connect(to: url)
-//
-//        let exp = expectation(description: "wait")
-//        waitForExpectations(timeout: 300, handler: nil)
-//    }
+    let wcURL = "wc:6c70440f-0b08-42c6-b710-17949642ce13@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=d41ccf1b7a59630d4ee9a5f843d645cd8f653e9e4005f1c861f1ce3c1bff2df2"
+
+    func test_connection() {
+        let delegate = MockServerDelegate()
+        let server = Server(delegate: delegate)
+        server.register(handler: SendTransactionHandler())
+        server.connect(to: WCURL(wcURL)!)
+        let exp = expectation(description: "wait")
+        waitForExpectations(timeout: 300, handler: nil)
+    }
+
+}
+
+class MockServerDelegate: ServerDelegate {
+
+    func server(_ server: Server, shouldStart session: Session, completion: (Session.Info) -> Void) {
+        print("WC shouldStart session: \(session)")
+        let info = Session.Info(approved: true, accounts: ["0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95"], chainId: 1)
+        completion(info)
+    }
+
+    func server(_ server: Server, didConnect session: Session) {
+        print("WC didConnect session: \(session)")
+    }
+
+    func server(_ server: Server, didDisconnect session: Session, error: Error?) {
+        print("WC didDisconnect session: \(session); error: \(error)")
+    }
+
+}
+
+class SendTransactionHandler: RequestHandler {
+
+    func canHandle(request: Request) -> Bool {
+        return request.payload.method == "eth_sendTransaction"
+    }
+
+    func handle(request: Request) {
+        print("WC eth_sendTransaction: [url: \(request.url)] [payload: \(try! request.payload.json().string)]")
+    }
+
 
 }

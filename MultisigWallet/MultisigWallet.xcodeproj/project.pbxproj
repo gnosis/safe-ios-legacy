@@ -14,7 +14,6 @@
 		0A0CEFFF2125656200772AB3 /* DeploymentDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */; };
 		0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF00B2125684000772AB3 /* ErrorStream.swift */; };
 		0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */; };
-		0A0E836C22C9FBD00027A96E /* WalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E836B22C9FBCF0027A96E /* WalletConnect.swift */; };
 		0A0E836E22C9FBF50027A96E /* WebSocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E836D22C9FBF50027A96E /* WebSocketConnection.swift */; };
 		0A0E838622CA00E00027A96E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E838522CA00E00027A96E /* Server.swift */; };
 		0A0E838C22CA14B60027A96E /* AES_256_CBC_HMAC_SHA256_Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E838B22CA14B60027A96E /* AES_256_CBC_HMAC_SHA256_Codec.swift */; };
@@ -462,7 +461,6 @@
 		0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainService.swift; sourceTree = "<group>"; };
 		0A0CF00B2125684000772AB3 /* ErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStream.swift; sourceTree = "<group>"; };
 		0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainServiceTests.swift; sourceTree = "<group>"; };
-		0A0E836B22C9FBCF0027A96E /* WalletConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletConnect.swift; sourceTree = "<group>"; };
 		0A0E836D22C9FBF50027A96E /* WebSocketConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketConnection.swift; sourceTree = "<group>"; };
 		0A0E838522CA00E00027A96E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		0A0E838B22CA14B60027A96E /* AES_256_CBC_HMAC_SHA256_Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES_256_CBC_HMAC_SHA256_Codec.swift; sourceTree = "<group>"; };
@@ -791,7 +789,6 @@
 				0A0E838522CA00E00027A96E /* Server.swift */,
 				5568A1C922CCEA9B007C9E0C /* Session.swift */,
 				5568A1CB22CCEB22007C9E0C /* SessionTests.swift */,
-				0A0E836B22C9FBCF0027A96E /* WalletConnect.swift */,
 				0A0E836D22C9FBF50027A96E /* WebSocketConnection.swift */,
 				5568A1C422CBB3AA007C9E0C /* JSONRPC_2_0 */,
 			);
@@ -1949,7 +1946,6 @@
 				0A9E384920F4AE510085E8D7 /* EthBlockNumber.swift in Sources */,
 				55FB25BB2124772C00E81666 /* HTTPTokenListService.swift in Sources */,
 				0A9E385020F4AE510085E8D7 /* MockTransactionRelayService.swift in Sources */,
-				0A0E836C22C9FBD00027A96E /* WalletConnect.swift in Sources */,
 				0A76BE5E20AF167D00D07770 /* InMemoryAccountRepository.swift in Sources */,
 				552C600B212B0CCE00BF973A /* MockSynchronisationService.swift in Sources */,
 				0A442DF7210B25EE00F19F80 /* MessageCallRequest.swift in Sources */,
