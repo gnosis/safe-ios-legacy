@@ -8,14 +8,14 @@ import MultisigWalletImplementations
 
 class WalletConnectIntegrationTests: XCTestCase {
 
-    let wcURL = "wc:e0a6ab5e-26d0-4b26-9ee8-2e5415eca1a6@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=f38300886d415a638cbb8a421e15480941d659918badf5b704d93608bd048f72"
+    let wcURL = "wc:c6eb2ad8-381d-4381-8952-33a32052b901@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=8de3487f5bd694ef6ae784d6c8f807a8d12405461b5cb968309f8a5162272a2a"
 
     func test_connection() {
         let delegate = MockServerDelegate()
         let server = Server(delegate: delegate)
         server.register(handler: SendTransactionHandler())
         server.connect(to: WCURL(wcURL)!)
-        let exp = expectation(description: "wait")
+        _ = expectation(description: "wait")
         waitForExpectations(timeout: 300, handler: nil)
     }
 
@@ -36,25 +36,21 @@ class MockServerDelegate: ServerDelegate {
         completion(info)
     }
 
-    func server(_ server: Server, didConnect session: Session) {
-        print("WC: server didConnect session: \(session)")
-    }
+    func server(_ server: Server, didConnect session: Session) {}
 
-    func server(_ server: Server, didDisconnect session: Session, error: Error?) {
-        print("WC: server didDisconnect session: \(session); error: \(error.debugDescription)")
-    }
+    func server(_ server: Server, didDisconnect session: Session, error: Error?) {}
 
 }
 
 class SendTransactionHandler: RequestHandler {
 
     func canHandle(request: Request) -> Bool {
+        print("WC: canHandel method: \(request.payload.method)")
         return request.payload.method == "eth_sendTransaction"
     }
 
     func handle(request: Request) {
-        print("WC: eth_sendTransaction: [url: \(request.url)] [payload: \(try! request.payload.json().string)]")
+        print("WC: handle: \(request.payload.method): [payload: \(try! request.payload.json().string)]")
     }
-
 
 }
