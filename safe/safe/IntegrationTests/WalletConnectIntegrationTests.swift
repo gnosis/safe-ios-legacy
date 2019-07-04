@@ -8,7 +8,7 @@ import MultisigWalletImplementations
 
 class WalletConnectIntegrationTests: XCTestCase {
 
-    let wcURL = "wc:6c70440f-0b08-42c6-b710-17949642ce13@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=d41ccf1b7a59630d4ee9a5f843d645cd8f653e9e4005f1c861f1ce3c1bff2df2"
+    let wcURL = "wc:e0a6ab5e-26d0-4b26-9ee8-2e5415eca1a6@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=f38300886d415a638cbb8a421e15480941d659918badf5b704d93608bd048f72"
 
     func test_connection() {
         let delegate = MockServerDelegate()
@@ -24,7 +24,7 @@ class WalletConnectIntegrationTests: XCTestCase {
 class MockServerDelegate: ServerDelegate {
 
     func server(_ server: Server, shouldStart session: Session, completion: (Session.WalletInfo) -> Void) {
-        print("WC: shouldStart session: \(session)")
+        print("WC: server shouldStart session: \(session)")
         let info = Session.WalletInfo(approved: true,
                                       accounts: ["0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95"],
                                       chainId: 1,
@@ -37,11 +37,11 @@ class MockServerDelegate: ServerDelegate {
     }
 
     func server(_ server: Server, didConnect session: Session) {
-        print("WC: didConnect session: \(session)")
+        print("WC: server didConnect session: \(session)")
     }
 
     func server(_ server: Server, didDisconnect session: Session, error: Error?) {
-        print("WC: didDisconnect session: \(session); error: \(error)")
+        print("WC: server didDisconnect session: \(session); error: \(error.debugDescription)")
     }
 
 }

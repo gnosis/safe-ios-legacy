@@ -83,7 +83,7 @@
 		0A5E016A22607CA3007F4F38 /* SystemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5E016922607CA3007F4F38 /* SystemInfo.swift */; };
 		0A60B522211343F70066821A /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B521211343F70066821A /* TransactionData.swift */; };
 		0A6346EC22CA4B38003DF66A /* BridgeTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6346EB22CA4B38003DF66A /* BridgeTransport.swift */; };
-		0A6346F222CA4B5C003DF66A /* PubSubAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6346F122CA4B5C003DF66A /* PubSubAdapter.swift */; };
+		0A6346F222CA4B5C003DF66A /* PubSubMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6346F122CA4B5C003DF66A /* PubSubMessage.swift */; };
 		0A6346F422CA4B8F003DF66A /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6346F322CA4B8F003DF66A /* Serializer.swift */; };
 		0A6346F622CA4BC7003DF66A /* HandshakeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6346F522CA4BC7003DF66A /* HandshakeHandler.swift */; };
 		0A6AE029216CB539002FBE3D /* EthereumContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */; };
@@ -532,7 +532,7 @@
 		0A5E016922607CA3007F4F38 /* SystemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfo.swift; sourceTree = "<group>"; };
 		0A60B521211343F70066821A /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		0A6346EB22CA4B38003DF66A /* BridgeTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeTransport.swift; sourceTree = "<group>"; };
-		0A6346F122CA4B5C003DF66A /* PubSubAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubSubAdapter.swift; sourceTree = "<group>"; };
+		0A6346F122CA4B5C003DF66A /* PubSubMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubSubMessage.swift; sourceTree = "<group>"; };
 		0A6346F322CA4B8F003DF66A /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
 		0A6346F522CA4BC7003DF66A /* HandshakeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandshakeHandler.swift; sourceTree = "<group>"; };
 		0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxy.swift; sourceTree = "<group>"; };
@@ -784,7 +784,7 @@
 				0A0E838B22CA14B60027A96E /* AES_256_CBC_HMAC_SHA256_Codec.swift */,
 				0A6346EB22CA4B38003DF66A /* BridgeTransport.swift */,
 				0A6346F522CA4BC7003DF66A /* HandshakeHandler.swift */,
-				0A6346F122CA4B5C003DF66A /* PubSubAdapter.swift */,
+				0A6346F122CA4B5C003DF66A /* PubSubMessage.swift */,
 				0A6346F322CA4B8F003DF66A /* Serializer.swift */,
 				0A0E838522CA00E00027A96E /* Server.swift */,
 				5568A1C922CCEA9B007C9E0C /* Session.swift */,
@@ -1940,7 +1940,7 @@
 				0A4A1D7D2136E4C00088F9EC /* DBTokeListItemRepository.swift in Sources */,
 				0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */,
 				0A9E384D20F4AE510085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift in Sources */,
-				0A6346F222CA4B5C003DF66A /* PubSubAdapter.swift in Sources */,
+				0A6346F222CA4B5C003DF66A /* PubSubMessage.swift in Sources */,
 				0A9E383A20F4AE510085E8D7 /* EncryptionService.swift in Sources */,
 				0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */,
 				0A9E384920F4AE510085E8D7 /* EthBlockNumber.swift in Sources */,
