@@ -9,12 +9,12 @@ import MultisigWalletImplementations
 // swiftlint:disable line_length
 fileprivate enum Stub {
 
-    static let wcURL = "wc:a5adc705-6d24-4173-a6ee-355d173f0eaf@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=b0c02c1f0f9c651dfd311fd1a8812bab9c3e2aaca1eaa5060389a7c0d4f5cf92"
+    static let wcURL = "wc:35ec61cd-bd2a-4c44-8fba-c283bdfc003e@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=16a47a31c72fb3f2a4a4e1af092802d2e3df596ff6626051ca8daf7f5b84741d"
 
     // set proper peerId when testing session re-Connect responses sending
     static let dAppInfoJSON = """
 {
-    "peerId": "465569cf-48e1-491f-a229-0db32151f15a",
+    "peerId": "171cfd57-94a9-42e5-9c0b-4cff7290b5f3",
     "peerMeta": {
         "description": "Good trades take time",
         "url": "https://slow.trade",
@@ -30,7 +30,7 @@ fileprivate enum Stub {
     "approved": true,
     "accounts": ["0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95"],
     "chainId": 1,
-    "peerId": "try_test_session_1",
+    "peerId": "try_test_session_8",
     "peerMeta": {
         "name": "Gnosis Safe",
         "description": "2FA smart wallet",
@@ -50,16 +50,16 @@ class WalletConnectIntegrationTests: XCTestCase {
         let server = Server(delegate: delegate)
         server.register(handler: SendTransactionHandler())
 
-        try! server.connect(to: WCURL(Stub.wcURL)!)
+//        try! server.connect(to: WCURL(Stub.wcURL)!)
 
-//        let dAppInfo = try! JSONDecoder().decode(Session.DAppInfo.self, from: Stub.dAppInfoJSON.data(using: .utf8)!)
-//        let walletInfo = try! JSONDecoder().decode(Session.WalletInfo.self, from: Stub.walletInfoJSON.data(using: .utf8)!)
-//        let session = Session(url: WCURL(Stub.wcURL)!,
-//                              dAppInfo: dAppInfo,
-//                              walletInfo: walletInfo)
-//        try! server.reConnect(to: session)
-//
-//        _ = expectation(description: "wait")
+        let dAppInfo = try! JSONDecoder().decode(Session.DAppInfo.self, from: Stub.dAppInfoJSON.data(using: .utf8)!)
+        let walletInfo = try! JSONDecoder().decode(Session.WalletInfo.self, from: Stub.walletInfoJSON.data(using: .utf8)!)
+        let session = Session(url: WCURL(Stub.wcURL)!,
+                              dAppInfo: dAppInfo,
+                              walletInfo: walletInfo)
+        try! server.reConnect(to: session)
+
+        _ = expectation(description: "wait")
         waitForExpectations(timeout: 300, handler: nil)
     }
 
@@ -77,9 +77,13 @@ class MockServerDelegate: ServerDelegate {
         completion(walletInfo)
     }
 
-    func server(_ server: Server, didConnect session: Session) {}
+    func server(_ server: Server, didConnect session: Session) {
+        print("WC: server didConnect url: \(session.url.bridgeURL.absoluteString)")
+    }
 
-    func server(_ server: Server, didDisconnect session: Session, error: Error?) {}
+    func server(_ server: Server, didDisconnect session: Session, error: Error?) {
+        print("WC: server didDisconnect url: \(session.url.bridgeURL.absoluteString)")
+    }
 
 }
 
@@ -91,7 +95,7 @@ class SendTransactionHandler: RequestHandler {
     }
 
     func handle(request: Request) {
-        print("WC: handle: \(request.payload.method): [payload: \(try! request.payload.json().string)]")
+        print("WC: handle: \(request.payload.method)")
     }
 
 }
