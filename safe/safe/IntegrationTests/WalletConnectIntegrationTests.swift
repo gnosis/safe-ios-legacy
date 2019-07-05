@@ -9,7 +9,7 @@ import MultisigWalletImplementations
 // swiftlint:disable line_length
 fileprivate enum Stub {
 
-    static let wcURL = "wc:35ec61cd-bd2a-4c44-8fba-c283bdfc003e@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=16a47a31c72fb3f2a4a4e1af092802d2e3df596ff6626051ca8daf7f5b84741d"
+    static let wcURL = "wc:3ac12c8f-c009-4af8-b126-9b1356b077d5@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=7ae171380e921ae91726e19852fd5376c2acc9b2326f5a2f79e03aede0b321fd"
 
     // set proper peerId when testing session re-Connect responses sending
     static let dAppInfoJSON = """
@@ -30,7 +30,7 @@ fileprivate enum Stub {
     "approved": true,
     "accounts": ["0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95"],
     "chainId": 1,
-    "peerId": "try_test_session_8",
+    "peerId": "try_test_session_9",
     "peerMeta": {
         "name": "Gnosis Safe",
         "description": "2FA smart wallet",
