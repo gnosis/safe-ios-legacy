@@ -6,16 +6,60 @@ import XCTest
 @testable import safe
 import MultisigWalletImplementations
 
-class WalletConnectIntegrationTests: XCTestCase {
+// swiftlint:disable line_length
+fileprivate enum Stub {
 
-    let wcURL = "wc:c6eb2ad8-381d-4381-8952-33a32052b901@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=8de3487f5bd694ef6ae784d6c8f807a8d12405461b5cb968309f8a5162272a2a"
+    static let wcURL = "wc:a5adc705-6d24-4173-a6ee-355d173f0eaf@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=b0c02c1f0f9c651dfd311fd1a8812bab9c3e2aaca1eaa5060389a7c0d4f5cf92"
+
+    // set proper peerId when testing session re-Connect responses sending
+    static let dAppInfoJSON = """
+{
+    "peerId": "465569cf-48e1-491f-a229-0db32151f15a",
+    "peerMeta": {
+        "description": "Good trades take time",
+        "url": "https://slow.trade",
+        "icons": ["https://example.com/1.png", "https://example.com/2.png"],
+        "name": "Slow Trade"
+    }
+}
+"""
+
+    // provide new peerId for clean test
+    static let walletInfoJSON = """
+{
+    "approved": true,
+    "accounts": ["0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95"],
+    "chainId": 1,
+    "peerId": "try_test_session_1",
+    "peerMeta": {
+        "name": "Gnosis Safe",
+        "description": "2FA smart wallet",
+        "icons": ["https://example.com/1.png"],
+        "url": "https://safe.gnosis.io"
+    }
+}
+"""
+
+}
+
+// Run manually only
+class WalletConnectIntegrationTests: XCTestCase {
 
     func test_connection() {
         let delegate = MockServerDelegate()
         let server = Server(delegate: delegate)
         server.register(handler: SendTransactionHandler())
-        server.connect(to: WCURL(wcURL)!)
-        _ = expectation(description: "wait")
+
+        server.connect(to: WCURL(Stub.wcURL)!)
+
+//        let dAppInfo = try! JSONDecoder().decode(Session.DAppInfo.self, from: Stub.dAppInfoJSON.data(using: .utf8)!)
+//        let walletInfo = try! JSONDecoder().decode(Session.WalletInfo.self, from: Stub.walletInfoJSON.data(using: .utf8)!)
+//        let session = Session(url: WCURL(Stub.wcURL)!,
+//                              dAppInfo: dAppInfo,
+//                              walletInfo: walletInfo)
+//        try! server.reConnect(to: session)
+//
+//        _ = expectation(description: "wait")
         waitForExpectations(timeout: 300, handler: nil)
     }
 
@@ -24,16 +68,9 @@ class WalletConnectIntegrationTests: XCTestCase {
 class MockServerDelegate: ServerDelegate {
 
     func server(_ server: Server, shouldStart session: Session, completion: (Session.WalletInfo) -> Void) {
-        print("WC: server shouldStart session: \(session)")
-        let info = Session.WalletInfo(approved: true,
-                                      accounts: ["0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95"],
-                                      chainId: 1,
-                                      peerId: UUID().uuidString,
-                                      peerMeta: Session.ClientMeta(name: "Gnosis Safe",
-                                                                   description: "Secure Wallet",
-                                                                   icons: [URL(string: "https://example.com/1.png")!],
-                                                                   url: URL(string: "gnosissafe://")!))
-        completion(info)
+        print("WC: server shouldStart session: \(session.dAppInfo)")
+        let walletInfo = try! JSONDecoder().decode(Session.WalletInfo.self, from: Stub.walletInfoJSON.data(using: .utf8)!)
+        completion(walletInfo)
     }
 
     func server(_ server: Server, didConnect session: Session) {}
