@@ -50,7 +50,7 @@ class WalletConnectIntegrationTests: XCTestCase {
         let server = Server(delegate: delegate)
         server.register(handler: SendTransactionHandler())
 
-        server.connect(to: WCURL(Stub.wcURL)!)
+        try! server.connect(to: WCURL(Stub.wcURL)!)
 
 //        let dAppInfo = try! JSONDecoder().decode(Session.DAppInfo.self, from: Stub.dAppInfoJSON.data(using: .utf8)!)
 //        let walletInfo = try! JSONDecoder().decode(Session.WalletInfo.self, from: Stub.walletInfoJSON.data(using: .utf8)!)
@@ -66,6 +66,10 @@ class WalletConnectIntegrationTests: XCTestCase {
 }
 
 class MockServerDelegate: ServerDelegate {
+
+    func server(_ server: Server, didFailToConnect url: WCURL) {
+        print("WC: server didFailToConnect url: \(url.bridgeURL.absoluteString)")
+    }
 
     func server(_ server: Server, shouldStart session: Session, completion: (Session.WalletInfo) -> Void) {
         print("WC: server shouldStart session: \(session.dAppInfo)")

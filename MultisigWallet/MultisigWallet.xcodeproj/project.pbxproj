@@ -251,6 +251,8 @@
 		5568A1C822CBB40F007C9E0C /* JSONRPC_2_0_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1C722CBB40F007C9E0C /* JSONRPC_2_0_Tests.swift */; };
 		5568A1CA22CCEA9B007C9E0C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1C922CCEA9B007C9E0C /* Session.swift */; };
 		5568A1CC22CCEB22007C9E0C /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1CB22CCEB22007C9E0C /* SessionTests.swift */; };
+		5568A1CE22CF9C3B007C9E0C /* UpdateSessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1CD22CF9C3B007C9E0C /* UpdateSessionHandler.swift */; };
+		5568A1D022CFA2E6007C9E0C /* UpdateSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1CF22CFA2E6007C9E0C /* UpdateSessionRequest.swift */; };
 		5573536122941DDE00248F87 /* EstimateSafeCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5573536022941DDE00248F87 /* EstimateSafeCreationRequest.swift */; };
 		55B5DFB3227C6212001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
 		55B5DFB4227C6247001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */; };
@@ -698,6 +700,8 @@
 		5568A1C722CBB40F007C9E0C /* JSONRPC_2_0_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRPC_2_0_Tests.swift; sourceTree = "<group>"; };
 		5568A1C922CCEA9B007C9E0C /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		5568A1CB22CCEB22007C9E0C /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
+		5568A1CD22CF9C3B007C9E0C /* UpdateSessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSessionHandler.swift; sourceTree = "<group>"; };
+		5568A1CF22CFA2E6007C9E0C /* UpdateSessionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSessionRequest.swift; sourceTree = "<group>"; };
 		5573536022941DDE00248F87 /* EstimateSafeCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateSafeCreationRequest.swift; sourceTree = "<group>"; };
 		55CC279620F667FB00AC12D6 /* AuthRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		55CC279720F667FB00AC12D6 /* PairingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingRequest.swift; sourceTree = "<group>"; };
@@ -789,6 +793,8 @@
 				0A0E838522CA00E00027A96E /* Server.swift */,
 				5568A1C922CCEA9B007C9E0C /* Session.swift */,
 				5568A1CB22CCEB22007C9E0C /* SessionTests.swift */,
+				5568A1CD22CF9C3B007C9E0C /* UpdateSessionHandler.swift */,
+				5568A1CF22CFA2E6007C9E0C /* UpdateSessionRequest.swift */,
 				0A0E836D22C9FBF50027A96E /* WebSocketConnection.swift */,
 				5568A1C422CBB3AA007C9E0C /* JSONRPC_2_0 */,
 			);
@@ -1932,6 +1938,7 @@
 				552C600A212B0CCE00BF973A /* SynchronisationService.swift in Sources */,
 				0A9E384220F4AE510085E8D7 /* GetBalanceRequest.swift in Sources */,
 				0A9E384120F4AE510085E8D7 /* GasPriceRequest.swift in Sources */,
+				5568A1D022CFA2E6007C9E0C /* UpdateSessionRequest.swift in Sources */,
 				0AAA175320E27398003B35B3 /* BaseInMemoryRepository.swift in Sources */,
 				0AD5294421B6E521009559ED /* OwnerList+DBSerializable.swift in Sources */,
 				0A9E384720F4AE510085E8D7 /* BigInt+Hex.swift in Sources */,
@@ -1960,6 +1967,7 @@
 				0AD5294F21B6E567009559ED /* WalletState+DBSerializable.swift in Sources */,
 				0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */,
 				0A9E383D20F4AE510085E8D7 /* HTTPGnosisTransactionRelayService.swift in Sources */,
+				5568A1CE22CF9C3B007C9E0C /* UpdateSessionHandler.swift in Sources */,
 				0A6346F622CA4BC7003DF66A /* HandshakeHandler.swift in Sources */,
 				0A6346F422CA4B8F003DF66A /* Serializer.swift in Sources */,
 				0A1B2AB1221EB29600E92990 /* DBRBETransactionMonitorRepository.swift in Sources */,
