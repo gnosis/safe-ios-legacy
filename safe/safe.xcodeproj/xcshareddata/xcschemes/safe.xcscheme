@@ -172,6 +172,9 @@
                <Test
                   Identifier = "InfuraEthereumNodeServiceTests">
                </Test>
+               <Test
+                  Identifier = "WalletConnectIntegrationTests">
+               </Test>
             </SkippedTests>
          </TestableReference>
          <TestableReference
