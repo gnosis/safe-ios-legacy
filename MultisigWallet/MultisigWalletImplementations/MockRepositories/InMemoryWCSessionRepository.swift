@@ -23,13 +23,9 @@ public class InMemoryWCSessionRepository: WCSessionRepository {
         return sessions[id]
     }
 
-    public func all(withClientMetaOnly: Bool) -> [WCSession] {
+    public func all() -> [WCSession] {
         let sessionList = Array(sessions.values)
-        if withClientMetaOnly {
-            return sessionList.filter { $0.peerMeta != nil }.sorted { $0.peerMeta!.name < $1.peerMeta!.name }
-        } else {
-            return sessionList
-        }
+        return sessionList.sorted { $0.dAppInfo.peerMeta.name < $1.dAppInfo.peerMeta.name }
     }
 
 }

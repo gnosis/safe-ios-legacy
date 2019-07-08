@@ -57,7 +57,7 @@ class WalletConnectIntegrationTests: XCTestCase {
         let session = Session(url: WCURL(Stub.wcURL)!,
                               dAppInfo: dAppInfo,
                               walletInfo: walletInfo)
-        try! server.reConnect(to: session)
+        try! server.reconnect(to: session)
 
         _ = expectation(description: "wait")
         waitForExpectations(timeout: 300, handler: nil)

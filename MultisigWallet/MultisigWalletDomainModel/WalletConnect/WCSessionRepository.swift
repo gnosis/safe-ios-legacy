@@ -9,6 +9,6 @@ public protocol WCSessionRepository {
     func save(_ item: WCSession)
     func remove(id: WCSessionID)
     func find(id: WCSessionID) -> WCSession?
-    func all(withClientMetaOnly: Bool) -> [WCSession]
+    func all() -> [WCSession]
 
 }
