@@ -71,6 +71,7 @@ public enum WCSessionStatus {
 
     case connecting
     case connected
+    case disconnected
 
 }
 

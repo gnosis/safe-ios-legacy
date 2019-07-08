@@ -259,6 +259,7 @@
 		5568A1F522D333AF007C9E0C /* WCSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1F322D333AF007C9E0C /* WCSession.swift */; };
 		5568A1F722D3402D007C9E0C /* WalletConnectDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1F622D3402D007C9E0C /* WalletConnectDomainService.swift */; };
 		5568A1F922D34CB3007C9E0C /* WalletConnectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1F822D34CB3007C9E0C /* WalletConnectService.swift */; };
+		5568A20522D39433007C9E0C /* WalletConnectServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A20422D39433007C9E0C /* WalletConnectServiceTests.swift */; };
 		5573536122941DDE00248F87 /* EstimateSafeCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5573536022941DDE00248F87 /* EstimateSafeCreationRequest.swift */; };
 		55B5DFB3227C6212001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
 		55B5DFB4227C6247001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */; };
@@ -714,6 +715,7 @@
 		5568A1F322D333AF007C9E0C /* WCSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSession.swift; sourceTree = "<group>"; };
 		5568A1F622D3402D007C9E0C /* WalletConnectDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectDomainService.swift; sourceTree = "<group>"; };
 		5568A1F822D34CB3007C9E0C /* WalletConnectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectService.swift; sourceTree = "<group>"; };
+		5568A20422D39433007C9E0C /* WalletConnectServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectServiceTests.swift; sourceTree = "<group>"; };
 		5573536022941DDE00248F87 /* EstimateSafeCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateSafeCreationRequest.swift; sourceTree = "<group>"; };
 		55CC279620F667FB00AC12D6 /* AuthRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		55CC279720F667FB00AC12D6 /* PairingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingRequest.swift; sourceTree = "<group>"; };
@@ -1299,6 +1301,7 @@
 				552C6007212B0CCD00BF973A /* SynchronisationService.swift */,
 				552C6009212B0CCE00BF973A /* SynchronisationServiceTests.swift */,
 				5568A1F822D34CB3007C9E0C /* WalletConnectService.swift */,
+				5568A20422D39433007C9E0C /* WalletConnectServiceTests.swift */,
 				0A0E836F22C9FBFC0027A96E /* WalletConnectLib */,
 			);
 			path = Services;
@@ -2048,6 +2051,7 @@
 				55B5DFB3227C6212001A32F4 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
 				55B5DFB5227C624A001A32F4 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */,
 				5568A1F022D33312007C9E0C /* InMemoryWCSessionRepositoryTests.swift in Sources */,
+				5568A20522D39433007C9E0C /* WalletConnectServiceTests.swift in Sources */,
 				552C60882130048300BF973A /* TokenListItemRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
