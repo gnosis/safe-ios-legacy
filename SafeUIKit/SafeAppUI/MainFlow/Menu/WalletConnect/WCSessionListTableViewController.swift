@@ -13,7 +13,7 @@ protocol WCSessionData {
 
 final class WCSessionListTableViewController: UITableViewController {
 
-    var scanButtonItem: UIBarButtonItem!
+    var scanButtonItem: ScanBarButtonItem!
     let noSessionsView = EmptyResultsView()
 
     enum Strings {
@@ -40,9 +40,19 @@ final class WCSessionListTableViewController: UITableViewController {
         update()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(WCTrackingEvent.sessionList)
+    }
+
     private func configureNavigationBar() {
         title = Strings.title
-        scanButtonItem = UIBarButtonItem(title: Strings.scan, style: .done, target: self, action: #selector(scan))
+        scanButtonItem = ScanBarButtonItem(title: Strings.scan)
+        scanButtonItem.delegate = self
+        scanButtonItem.scanValidatedConverter = { code in
+            guard code.starts(with: "wc:") else { return nil }
+            return code
+        }
         navigationItem.rightBarButtonItem = scanButtonItem
     }
 
@@ -97,12 +107,12 @@ final class WCSessionListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
-        showDisconnectAlert(for: indexPath)
+        showDisconnectAlert(for: indexPath, withTitle: true)
     }
 
-    private func showDisconnectAlert(for indexPath: IndexPath) {
+    private func showDisconnectAlert(for indexPath: IndexPath, withTitle: Bool) {
         let session = sessions[indexPath.row]
-        let alert = UIAlertController.disconnectWCSession(sessionName: session.title) {}
+        let alert = UIAlertController.disconnectWCSession(sessionName: session.title, withTitle: withTitle) {}
         present(alert, animated: true)
     }
 
@@ -110,7 +120,7 @@ final class WCSessionListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        showDisconnectAlert(for: indexPath)
+        showDisconnectAlert(for: indexPath, withTitle: false)
     }
 
     override func tableView(_ tableView: UITableView,
@@ -128,5 +138,16 @@ final class WCSessionListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return BackgroundHeaderFooterView.height
     }
+
+}
+
+extension WCSessionListTableViewController: ScanBarButtonItemDelegate {
+
+    func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
+        present(controller, animated: true)
+        self.trackEvent(WCTrackingEvent.scan)
+    }
+
+    func scanBarButtonItemDidScanValidCode(_ code: String) {}
 
 }

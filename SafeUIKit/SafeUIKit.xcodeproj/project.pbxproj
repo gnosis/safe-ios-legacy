@@ -326,6 +326,7 @@
 		554597082268AB22009B4A0B /* TermsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554597072268AB22009B4A0B /* TermsCommand.swift */; };
 		5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */; };
 		5549193722C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */; };
+		5549194B22C3C94E003E63E0 /* WCTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */; };
 		5549B26F2282CF5000F3B5B7 /* BasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549B26E2282CF5000F3B5B7 /* BasicTableViewCell.swift */; };
 		5549B2812282E37400F3B5B7 /* BasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5549B2802282E37400F3B5B7 /* BasicTableViewCell.xib */; };
 		5549B28322830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549B28222830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift */; };
@@ -910,6 +911,7 @@
 		554597072268AB22009B4A0B /* TermsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCommand.swift; sourceTree = "<group>"; };
 		554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyCommand.swift; sourceTree = "<group>"; };
 		5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTableViewCell+WCSessionData.swift"; sourceTree = "<group>"; };
+		5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTrackingEvent.swift; sourceTree = "<group>"; };
 		5549B26E2282CF5000F3B5B7 /* BasicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTableViewCell.swift; sourceTree = "<group>"; };
 		5549B2802282E37400F3B5B7 /* BasicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicTableViewCell.xib; sourceTree = "<group>"; };
 		5549B28222830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTableViewCell+TokenData.swift"; sourceTree = "<group>"; };
@@ -1995,6 +1997,7 @@
 				5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */,
 				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
 				5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */,
+				5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -2959,6 +2962,7 @@
 				0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */,
 				55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
+				5549194B22C3C94E003E63E0 /* WCTrackingEvent.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* UIAlertController+Safe.swift in Sources */,
