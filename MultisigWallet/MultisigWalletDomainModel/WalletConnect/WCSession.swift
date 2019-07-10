@@ -5,14 +5,12 @@
 import Foundation
 import Common
 
-public class WCSessionID: BaseID {}
+public struct WCURL {
 
-public struct WCURL: Hashable {
-
-    public var topic: String
-    public var version: String
-    public var bridgeURL: URL
-    public var key: String
+    public let topic: String
+    public let version: String
+    public let bridgeURL: URL
+    public let key: String
 
     public init(topic: String, version: String, bridgeURL: URL, key: String) {
         self.topic = topic
@@ -23,42 +21,75 @@ public struct WCURL: Hashable {
 
 }
 
-public struct WCPeerMeta {
+public struct WCClientMeta {
 
-    public var url: URL
-    public var name: String
-    public var description: String
-    public var icons: [URL]
+    public let name: String
+    public let description: String
+    public let icons: [URL]
+    public let url: URL
 
-    public init(url: URL, name: String, description: String, icons: [URL]) {
-        self.url = url
+    public init(name: String, description: String, icons: [URL], url: URL) {
         self.name = name
         self.description = description
         self.icons = icons
+        self.url = url
+    }
+
+}
+
+public struct WCDAppInfo {
+
+    public let peerId: String
+    public let peerMeta: WCClientMeta
+
+    public init(peerId: String, peerMeta: WCClientMeta) {
+        self.peerId = peerId
+        self.peerMeta = peerMeta
+    }
+
+}
+
+public struct WCWalletInfo {
+
+    public let approved: Bool
+    public let accounts: [String]
+    public let chainId: Int
+    public let peerId: String
+    public let peerMeta: WCClientMeta
+
+    public init(approved: Bool, accounts: [String], chainId: Int, peerId: String, peerMeta: WCClientMeta) {
+        self.approved = approved
+        self.accounts = accounts
+        self.chainId = chainId
+        self.peerId = peerId
+        self.peerMeta = peerMeta
     }
 
 }
 
 public enum WCSessionStatus {
 
+    case connecting
     case connected
     case disconnected
-    case connecting
-    case error(String)
 
 }
+
+public class WCSessionID: BaseID {}
 
 public class WCSession: IdentifiableEntity<WCSessionID> {
 
     public let url: WCURL
-    public var status: WCSessionStatus
-    public var peerMeta: WCPeerMeta?
+    public let dAppInfo: WCDAppInfo
+    public let walletInfo: WCWalletInfo
+    public let status: WCSessionStatus?
 
-    public init(url: WCURL, status: WCSessionStatus, peerMeta: WCPeerMeta?) {
+    public init(url: WCURL, dAppInfo: WCDAppInfo, walletInfo: WCWalletInfo, status: WCSessionStatus?) {
         self.url = url
+        self.dAppInfo = dAppInfo
+        self.walletInfo = walletInfo
         self.status = status
-        self.peerMeta = peerMeta
-        super.init(id: WCSessionID(String(url.hashValue)))
+        super.init(id: WCSessionID(String(dAppInfo.peerId)))
     }
 
 }
