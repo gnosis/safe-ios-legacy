@@ -20,11 +20,10 @@ public protocol WalletConnectDomainServiceDelegate: class {
     /// - Parameter url: WalletConnect url object
     func didFailToConnect(url: WCURL)
 
-
     /// Requesting permission to establish a new connection.
     ///
     /// - Parameters:
-    ///   - session: WalletConnect session with dApp info.
+    ///   - session: WalletConnect session with dApp info
     ///   - completion: wallet info object
     func shouldStart(session: WCSession, completion: (WCWalletInfo) -> Void)
 
@@ -38,10 +37,26 @@ public protocol WalletConnectDomainServiceDelegate: class {
     /// - Parameter session: WalletConnect session object
     func didDisconnect(session: WCSession)
 
+    /// Handle WalletConnect send transaction request.
+    /// https://docs.walletconnect.org/json-rpc/ethereum#eth_sendtransaction
+    ///
+    /// - Parameters:
+    ///   - request: WCSendTransactionRequest object
+    ///   - completion: Result object with request hash or error
+    func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
+                                      completion: @escaping (Result<String, Error>) -> Void)
+
+
+    /// Handle WalletConnect Ethereum Node request.
+    ///
+    /// - Parameters:
+    ///   - request: WCMessage object
+    ///   - completion: WCMessage object
+    func handleEthereumNodeRequest(_ request: WCMessage, completion: (WCMessage) -> Void)
+
 }
 
 public protocol WalletConnectDomainService {
-
 
     /// Connect to WalletConnect URL. Should not be called if WalletConnect session exists for this url.
     ///

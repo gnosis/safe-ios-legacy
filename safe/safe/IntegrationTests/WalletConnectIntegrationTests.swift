@@ -9,7 +9,7 @@ import MultisigWalletImplementations
 // swiftlint:disable line_length
 fileprivate enum Stub {
 
-    static let wcURL = "wc:3ac12c8f-c009-4af8-b126-9b1356b077d5@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=7ae171380e921ae91726e19852fd5376c2acc9b2326f5a2f79e03aede0b321fd"
+    static let wcURL = "wc:f5d0d877-0421-4197-81e7-1fc410d72693@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=b9c51c98463aae4fe379315e12fc98a63325c169f72ee76802759a04264a8af1"
 
     // set proper peerId when testing session re-Connect responses sending
     static let dAppInfoJSON = """
@@ -30,7 +30,7 @@ fileprivate enum Stub {
     "approved": true,
     "accounts": ["0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95"],
     "chainId": 1,
-    "peerId": "try_test_session_9",
+    "peerId": "try_test_session_10",
     "peerMeta": {
         "name": "Gnosis Safe",
         "description": "2FA smart wallet",
@@ -50,14 +50,14 @@ class WalletConnectIntegrationTests: XCTestCase {
         let server = Server(delegate: delegate)
         server.register(handler: SendTransactionHandler())
 
-//        try! server.connect(to: WCURL(Stub.wcURL)!)
+        try! server.connect(to: WCURL(Stub.wcURL)!)
 
-        let dAppInfo = try! JSONDecoder().decode(Session.DAppInfo.self, from: Stub.dAppInfoJSON.data(using: .utf8)!)
-        let walletInfo = try! JSONDecoder().decode(Session.WalletInfo.self, from: Stub.walletInfoJSON.data(using: .utf8)!)
-        let session = Session(url: WCURL(Stub.wcURL)!,
-                              dAppInfo: dAppInfo,
-                              walletInfo: walletInfo)
-        try! server.reconnect(to: session)
+//        let dAppInfo = try! JSONDecoder().decode(Session.DAppInfo.self, from: Stub.dAppInfoJSON.data(using: .utf8)!)
+//        let walletInfo = try! JSONDecoder().decode(Session.WalletInfo.self, from: Stub.walletInfoJSON.data(using: .utf8)!)
+//        let session = Session(url: WCURL(Stub.wcURL)!,
+//                              dAppInfo: dAppInfo,
+//                              walletInfo: walletInfo)
+//        try! server.reconnect(to: session)
 
         _ = expectation(description: "wait")
         waitForExpectations(timeout: 300, handler: nil)
