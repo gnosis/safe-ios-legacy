@@ -57,7 +57,10 @@ public protocol WalletConnectDomainServiceDelegate: class {
 
 public protocol WalletConnectDomainService {
 
-    var delegate: WalletConnectDomainServiceDelegate! { get set }
+    /// Updates service delegate.
+    ///
+    /// - Parameter delegate: WalletConnectDomainServiceDelegate object.
+    func updateDelegate(_ delegate: WalletConnectDomainServiceDelegate)
 
     /// Connect to WalletConnect URL. Should not be called if WalletConnect session exists for this url.
     ///

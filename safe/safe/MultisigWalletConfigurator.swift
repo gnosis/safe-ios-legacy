@@ -16,13 +16,14 @@ class MultisigWalletConfigurator {
 
     class func configure(with appDelegate: AppDelegate) {
         let config = appDelegate.appConfig!
+        let chainId = config.encryptionServiceChainId
         let walletService = WalletApplicationService(configuration: config.walletApplicationServiceConfiguration)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: RecoveryApplicationService(), for: RecoveryApplicationService.self)
         ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
                                        for: WalletSettingsApplicationService.self)
         ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        ApplicationServiceRegistry.put(service: WalletConnectApplicationService(),
+        ApplicationServiceRegistry.put(service: WalletConnectApplicationService(chainId: chainId),
                                        for: WalletConnectApplicationService.self)
 
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
