@@ -46,7 +46,6 @@ public protocol WalletConnectDomainServiceDelegate: class {
     func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
                                       completion: @escaping (Result<String, Error>) -> Void)
 
-
     /// Handle WalletConnect Ethereum Node request.
     ///
     /// - Parameters:
@@ -57,6 +56,8 @@ public protocol WalletConnectDomainServiceDelegate: class {
 }
 
 public protocol WalletConnectDomainService {
+
+    var delegate: WalletConnectDomainServiceDelegate! { get set }
 
     /// Connect to WalletConnect URL. Should not be called if WalletConnect session exists for this url.
     ///
@@ -69,7 +70,6 @@ public protocol WalletConnectDomainService {
     /// - Parameter session: WalletConnect session
     /// - Throws: wrong session format error
     func reconnect(session: WCSession) throws
-
 
     /// Disconnect WalletConnect session.
     ///

@@ -43,6 +43,10 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: EthereumApplicationService.self)
     }
 
+    public static var walletConnectService: WalletConnectApplicationService {
+        return service(for: WalletConnectApplicationService.self)
+    }
+
     static var eventRelay: EventRelay {
         return service(for: EventRelay.self)
     }

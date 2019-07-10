@@ -11,6 +11,7 @@ import MultisigWalletApplication
 import MultisigWalletImplementations
 import SafeAppUI
 
+// swiftlint:disable function_body_length
 class MultisigWalletConfigurator {
 
     class func configure(with appDelegate: AppDelegate) {
@@ -21,6 +22,8 @@ class MultisigWalletConfigurator {
         ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
                                        for: WalletSettingsApplicationService.self)
         ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
+        ApplicationServiceRegistry.put(service: WalletConnectApplicationService(),
+                                       for: WalletConnectApplicationService.self)
 
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: config.notificationServiceURL,
@@ -48,6 +51,7 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: CommunicationDomainService(), for: CommunicationDomainService.self)
         DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata),
                            for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
 
         let relay = EventRelay(publisher: DomainRegistry.eventPublisher)
         ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)

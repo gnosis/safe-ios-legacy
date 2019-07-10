@@ -120,6 +120,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: RBETransactionMonitorRepository.self)
     }
 
+    public static var walletConnectService: WalletConnectDomainService {
+        return service(for: WalletConnectDomainService.self)
+    }
+
     public static var logger: Logger {
         return service(for: Logger.self)
     }
