@@ -255,7 +255,7 @@
 		5568A1D022CFA2E6007C9E0C /* UpdateSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1CF22CFA2E6007C9E0C /* UpdateSessionRequest.swift */; };
 		5568A1EF22D3330C007C9E0C /* InMemoryWCSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1ED22D3330C007C9E0C /* InMemoryWCSessionRepository.swift */; };
 		5568A1F022D33312007C9E0C /* InMemoryWCSessionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1E822D3330C007C9E0C /* InMemoryWCSessionRepositoryTests.swift */; };
-		5568A1F422D333AF007C9E0C /* WCSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1F222D333AF007C9E0C /* WCSessionRepository.swift */; };
+		5568A1F422D333AF007C9E0C /* WalletConnectSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1F222D333AF007C9E0C /* WalletConnectSessionRepository.swift */; };
 		5568A1F522D333AF007C9E0C /* WCSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1F322D333AF007C9E0C /* WCSession.swift */; };
 		5568A1F722D3402D007C9E0C /* WalletConnectDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1F622D3402D007C9E0C /* WalletConnectDomainService.swift */; };
 		5568A1F922D34CB3007C9E0C /* WalletConnectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A1F822D34CB3007C9E0C /* WalletConnectService.swift */; };
@@ -714,7 +714,7 @@
 		5568A1CF22CFA2E6007C9E0C /* UpdateSessionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSessionRequest.swift; sourceTree = "<group>"; };
 		5568A1E822D3330C007C9E0C /* InMemoryWCSessionRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryWCSessionRepositoryTests.swift; sourceTree = "<group>"; };
 		5568A1ED22D3330C007C9E0C /* InMemoryWCSessionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryWCSessionRepository.swift; sourceTree = "<group>"; };
-		5568A1F222D333AF007C9E0C /* WCSessionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSessionRepository.swift; sourceTree = "<group>"; };
+		5568A1F222D333AF007C9E0C /* WalletConnectSessionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletConnectSessionRepository.swift; sourceTree = "<group>"; };
 		5568A1F322D333AF007C9E0C /* WCSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSession.swift; sourceTree = "<group>"; };
 		5568A1F622D3402D007C9E0C /* WalletConnectDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectDomainService.swift; sourceTree = "<group>"; };
 		5568A1F822D34CB3007C9E0C /* WalletConnectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectService.swift; sourceTree = "<group>"; };
@@ -1246,7 +1246,7 @@
 		5568A1F122D333AF007C9E0C /* WalletConnect */ = {
 			isa = PBXGroup;
 			children = (
-				5568A1F222D333AF007C9E0C /* WCSessionRepository.swift */,
+				5568A1F222D333AF007C9E0C /* WalletConnectSessionRepository.swift */,
 				5568A1F322D333AF007C9E0C /* WCSession.swift */,
 				5568A1F622D3402D007C9E0C /* WalletConnectDomainService.swift */,
 				5568A20B22D4B91B007C9E0C /* WCSendTransactionRequest.swift */,
@@ -1790,7 +1790,7 @@
 				552C6030212C2AE800BF973A /* AccountUpdateDomainService.swift in Sources */,
 				555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */,
 				55E2FED1213D539F005F8074 /* MockAccountUpdateService.swift in Sources */,
-				5568A1F422D333AF007C9E0C /* WCSessionRepository.swift in Sources */,
+				5568A1F422D333AF007C9E0C /* WalletConnectSessionRepository.swift in Sources */,
 				0A9E380E20F4A4F20085E8D7 /* ECDSASignatureBounds.swift in Sources */,
 				0AD899E32283060E008AE325 /* GnosisSafeContractProxy.swift in Sources */,
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,

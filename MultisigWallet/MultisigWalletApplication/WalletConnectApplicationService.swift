@@ -12,9 +12,10 @@ public class WalletConnectApplicationService {
 
     let chainId: Int
 
-    private var service: WalletConnectDomainService {
-        return DomainRegistry.walletConnectService
-    }
+    private var service: WalletConnectDomainService { return DomainRegistry.walletConnectService }
+    private var eventRelay: EventRelay { return ApplicationServiceRegistry.eventRelay }
+    private var eventPublisher: EventPublisher { return  DomainRegistry.eventPublisher }
+    private var sessionRepo: WalletConnectSessionRepository { return DomainRegistry.walletConnectSessionRepository }
 
     private enum Strings {
         static let safeDescription = LocalizedString("ios_app_slogan", comment: "App slogan")
@@ -33,20 +34,24 @@ public class WalletConnectApplicationService {
         try service.connect(url: url)
     }
 
-    public func disconnect(session: WCSession) {
-
+    public func disconnect(session: WCSession) throws {
+        try service.disconnect(session: session)
     }
 
-    public func sessions() -> [WCSession] { return [] }
+    public func sessions() -> [WCSession] {
+        return service.openSessions()
+    }
 
-    public func subscribeForSessionUpdates(_ subscriber: EventSubscriber) {}
+    public func subscribeForSessionUpdates(_ subscriber: EventSubscriber) {
+        eventRelay.subscribe(subscriber, for: SessionUpdated.self)
+    }
 
 }
 
 extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
 
     public func didFailToConnect(url: WCURL) {
-        DomainRegistry.eventPublisher.publish(FailedToConnectSession())
+        eventPublisher.publish(FailedToConnectSession())
     }
 
     public func shouldStart(session: WCSession, completion: (WCWalletInfo) -> Void) {
@@ -62,14 +67,26 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
         completion(walletInfo)
     }
 
-    public func didConnect(session: WCSession) {}
+    public func didConnect(session: WCSession) {
+        sessionRepo.save(session)
+        eventPublisher.publish(SessionUpdated())
+    }
 
-    public func didDisconnect(session: WCSession) {}
+    public func didDisconnect(session: WCSession) {
+        sessionRepo.remove(id: session.id)
+        eventPublisher.publish(SessionUpdated())
+    }
 
     public func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
-                                             completion: @escaping (Result<String, Error>) -> Void) {}
+                                             completion: @escaping (Result<String, Error>) -> Void) {
+        // TODO: incoming requests stack
+        // - put request into the stack
+        // - publish incoming request event
+        // - provide public method to pop request from the stack
+    }
 
-    public func handleEthereumNodeRequest(_ request: WCMessage, completion: (WCMessage) -> Void) {}
-
+    public func handleEthereumNodeRequest(_ request: WCMessage, completion: (WCMessage) -> Void) {
+        // TODO: use InfuraEthereumNodeService & JSONHTTPClient to proxy requests
+    }
 
 }
