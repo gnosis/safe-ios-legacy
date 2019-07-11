@@ -12,7 +12,7 @@ final class WalletConnectMenuCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return ApplicationServiceRegistry.walletConnectService.isAvaliable
+        return !ApplicationServiceRegistry.walletConnectService.isAvaliable
     }
 
     override init() {

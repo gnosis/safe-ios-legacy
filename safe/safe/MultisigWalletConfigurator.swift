@@ -16,15 +16,12 @@ class MultisigWalletConfigurator {
 
     class func configure(with appDelegate: AppDelegate) {
         let config = appDelegate.appConfig!
-        let chainId = config.encryptionServiceChainId
         let walletService = WalletApplicationService(configuration: config.walletApplicationServiceConfiguration)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: RecoveryApplicationService(), for: RecoveryApplicationService.self)
         ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
                                        for: WalletSettingsApplicationService.self)
         ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        ApplicationServiceRegistry.put(service: WalletConnectApplicationService(chainId: chainId),
-                                       for: WalletConnectApplicationService.self)
 
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: config.notificationServiceURL,
@@ -52,8 +49,7 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: CommunicationDomainService(), for: CommunicationDomainService.self)
         DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata),
                            for: SafeContractMetadataRepository.self)
-        DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
-        DomainRegistry.put(service: InMemoryWCSessionRepository(), for: WalletConnectSessionRepository.self)
+
 
         let relay = EventRelay(publisher: DomainRegistry.eventPublisher)
         ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
@@ -74,6 +70,7 @@ class MultisigWalletConfigurator {
 
         configureEthereum(with: appDelegate)
         setUpMultisigDatabase(with: appDelegate)
+        configureWalletConnect(chainId: config.encryptionServiceChainId)
     }
 
     class func setUpMultisigDatabase(with appDelegate: AppDelegate) {
@@ -169,6 +166,13 @@ class MultisigWalletConfigurator {
         let nodeService = InfuraEthereumNodeService(url: appConfig.nodeServiceConfig.url,
                                                     chainId: appConfig.nodeServiceConfig.chainId)
         DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
+    }
+
+    private class func configureWalletConnect(chainId: Int) {
+        DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
+        DomainRegistry.put(service: InMemoryWCSessionRepository(), for: WalletConnectSessionRepository.self)
+        ApplicationServiceRegistry.put(service: WalletConnectApplicationService(chainId: chainId),
+                                       for: WalletConnectApplicationService.self)
     }
 
 }

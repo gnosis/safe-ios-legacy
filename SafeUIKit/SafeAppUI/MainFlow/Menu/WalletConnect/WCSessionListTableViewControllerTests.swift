@@ -6,7 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
 
-class WCSessionListTableViewControllerTests: XCTestCase {
+class WCSessionListTableViewControllerTests: SafeTestCase {
 
     var controller: WCSessionListTableViewController!
 
@@ -17,8 +17,6 @@ class WCSessionListTableViewControllerTests: XCTestCase {
     }
 
     func test_whenNoActiveSessions_thenShowsNoSessionsView() {
-        // TODO: remove when services are ready
-        controller.sessions = []
         delay()
         XCTAssertTrue(controller.tableView.backgroundView is EmptyResultsView)
     }
@@ -37,6 +35,15 @@ class WCSessionListTableViewControllerTests: XCTestCase {
     func test_scanValidatorConverter() {
         XCTAssertNotNil(controller.scanButtonItem.scanValidatedConverter?("wc:some"))
         XCTAssertNil(controller.scanButtonItem.scanValidatedConverter!("some"))
+    }
+
+    func test_whenScanningValidURL_thenCallsService() {
+        controller.scanBarButtonItemDidScanValidCode("some")
+        XCTAssertNotNil(walletConnectService.connectURL)
+    }
+
+    func test_whenCreated_thenSubscribesOnEvents() {
+        XCTAssertTrue(walletConnectService.didSubscribe)
     }
 
 }
