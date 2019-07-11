@@ -6,13 +6,16 @@ import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
 import MultisigWalletImplementations
+import CommonTestSupport
 
 class WalletConnectApplicationServiceTests: XCTestCase {
 
     var appService: WalletConnectApplicationService!
+    let walletService = MockWalletApplicationService()
     let domainService = MockWalletConnectDomainService()
     let repo = InMemoryWCSessionRepository()
     let eventPublisher = MockEventPublisher()
+    let subscriber = MockSubscriber()
     var relayService: MockEventRelay!
 
     override func setUp() {
@@ -21,6 +24,7 @@ class WalletConnectApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: domainService, for: WalletConnectDomainService.self)
         DomainRegistry.put(service: repo, for: WalletConnectSessionRepository.self)
         DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
+        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: relayService, for: EventRelay.self)
         appService = WalletConnectApplicationService(chainId: 1)
     }
@@ -30,59 +34,96 @@ class WalletConnectApplicationServiceTests: XCTestCase {
     }
 
     func test_isAvailable() {
+        XCTAssertFalse(appService.isAvaliable)
+        walletService.createReadyToUseWallet()
+        XCTAssertTrue(appService.isAvaliable)
     }
 
-    func test_connect_callsDomainService() {
+    func test_connect_callsDomainService() throws {
+        try appService.connect(url: "some")
+        XCTAssertEqual(domainService.connectUrl, "some")
     }
 
-    func test_connect_whenDomainServiceThrows_thenThrows() {
+    func test_connect_whenDomainServiceThrows_thenThrows() throws {
+        domainService.shouldThrow = true
+        XCTAssertThrowsError(try appService.connect(url: "some"))
     }
 
-    func test_disconnect_callsDomainService() {
+    func test_disconnect_callsDomainService() throws {
+        try appService.disconnect(session: WCSession.testSession)
+        XCTAssertEqual(domainService.disconnectSession, WCSession.testSession)
     }
 
     func test_disconnect_whenDomainServiceThrows_thenThrows() {
+        domainService.shouldThrow = true
+        XCTAssertThrowsError(try appService.disconnect(session: WCSession.testSession))
     }
 
     func test_sessions() {
+        domainService.sessions = [WCSession.testSession]
+        XCTAssertEqual(appService.sessions(), domainService.sessions)
     }
 
     func test_subscribeForSessionUpdates() {
+        relayService.expect_subscribe(subscriber, for: SessionUpdated.self)
+        appService.subscribeForSessionUpdates(subscriber)
+        XCTAssertTrue(relayService.verify())
     }
 
     func test_didFailToConnect_publishesEvent() {
+        eventPublisher.expectToPublish(FailedToConnectSession.self)
+        appService.didFailToConnect(url: WCURL.testURL)
+        XCTAssertTrue(eventPublisher.verify())
     }
 
     func test_shouldStar_approvesConnection() {
+        walletService.createReadyToUseWallet()
+        let exp = expectation(description: "Waiting for approval")
+        appService.shouldStart(session: WCSession.testSession) { info in
+            XCTAssertTrue(info.approved)
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 1)
     }
 
     func test_didConnect_savesSession() {
+        XCTAssertTrue(repo.all().isEmpty)
+        appService.didConnect(session: WCSession.testSession)
+        XCTAssertEqual(repo.find(id: WCSession.testSession.id), WCSession.testSession)
     }
 
     func test_didConnect_publishesEvent() {
+        eventPublisher.expectToPublish(SessionUpdated.self)
+        appService.didConnect(session: WCSession.testSession)
+        XCTAssertTrue(eventPublisher.verify())
     }
 
 }
 
 class MockWalletConnectDomainService: WalletConnectDomainService {
 
-    var delegate: WalletConnectDomainServiceDelegate!
+    var shouldThrow = false
+
+    weak var delegate: WalletConnectDomainServiceDelegate!
     func updateDelegate(_ delegate: WalletConnectDomainServiceDelegate) {
         self.delegate = delegate
     }
 
     var connectUrl: String?
     func connect(url: String) throws {
+        if shouldThrow { throw TestError.error }
         connectUrl = url
     }
 
     var reconnectSession: WCSession?
     func reconnect(session: WCSession) throws {
+        if shouldThrow { throw TestError.error }
         reconnectSession = session
     }
 
     var disconnectSession: WCSession?
     func disconnect(session: WCSession) throws {
+        if shouldThrow { throw TestError.error }
         disconnectSession = session
     }
 

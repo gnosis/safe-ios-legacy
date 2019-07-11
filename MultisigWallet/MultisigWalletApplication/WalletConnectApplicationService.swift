@@ -13,6 +13,7 @@ public class WalletConnectApplicationService {
     let chainId: Int
 
     private var service: WalletConnectDomainService { return DomainRegistry.walletConnectService }
+    private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
     private var eventRelay: EventRelay { return ApplicationServiceRegistry.eventRelay }
     private var eventPublisher: EventPublisher { return  DomainRegistry.eventPublisher }
     private var sessionRepo: WalletConnectSessionRepository { return DomainRegistry.walletConnectSessionRepository }
@@ -27,7 +28,7 @@ public class WalletConnectApplicationService {
     }
 
     public var isAvaliable: Bool {
-        return ApplicationServiceRegistry.walletService.hasReadyToUseWallet
+        return walletService.hasReadyToUseWallet
     }
 
     public func connect(url: String) throws {
