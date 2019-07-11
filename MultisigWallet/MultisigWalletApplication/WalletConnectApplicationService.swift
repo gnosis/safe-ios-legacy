@@ -18,6 +18,7 @@ public class WalletConnectApplicationService {
     private var eventRelay: EventRelay { return ApplicationServiceRegistry.eventRelay }
     private var eventPublisher: EventPublisher { return  DomainRegistry.eventPublisher }
     private var sessionRepo: WalletConnectSessionRepository { return DomainRegistry.walletConnectSessionRepository }
+    private var ethereumNodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
 
     private enum Strings {
         static let safeDescription = LocalizedString("ios_app_slogan", comment: "App slogan")
@@ -86,10 +87,16 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
         // - put request into the stack
         // - publish incoming request event
         // - provide public method to pop request from the stack
+        print("WC: ApplicationService: handleSendTransactionRequest")
     }
 
-    public func handleEthereumNodeRequest(_ request: WCMessage, completion: (WCMessage) -> Void) {
-        // TODO: use InfuraEthereumNodeService & JSONHTTPClient to proxy requests
+    public func handleEthereumNodeRequest(_ request: WCMessage, completion: (Result<WCMessage, Error>) -> Void) {
+        do {
+            let response = try ethereumNodeService.rawCall(payload: request.payload)
+            completion(.success(WCMessage(payload: response, url: request.url)))
+        } catch {
+            completion(.failure(error))
+        }        
     }
 
 }

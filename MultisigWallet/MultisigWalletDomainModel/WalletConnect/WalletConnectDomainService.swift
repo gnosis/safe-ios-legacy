@@ -42,7 +42,7 @@ public protocol WalletConnectDomainServiceDelegate: class {
     ///
     /// - Parameters:
     ///   - request: WCSendTransactionRequest object
-    ///   - completion: Result object with request hash or error
+    ///   - completion: Result with request hash or error
     func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
                                       completion: @escaping (Result<String, Error>) -> Void)
 
@@ -50,8 +50,8 @@ public protocol WalletConnectDomainServiceDelegate: class {
     ///
     /// - Parameters:
     ///   - request: WCMessage object
-    ///   - completion: WCMessage object
-    func handleEthereumNodeRequest(_ request: WCMessage, completion: (WCMessage) -> Void)
+    ///   - completion: Result with WCMessage or error
+    func handleEthereumNodeRequest(_ request: WCMessage, completion: (Result<WCMessage, Error>) -> Void)
 
 }
 

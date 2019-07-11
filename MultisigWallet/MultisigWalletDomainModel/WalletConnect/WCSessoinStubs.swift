@@ -47,3 +47,9 @@ extension WCSession {
                                        status: .connected)
 
 }
+
+extension WCMessage {
+
+    static let testMessage = WCMessage(payload: "", url: WCURL.testURL)
+
+}

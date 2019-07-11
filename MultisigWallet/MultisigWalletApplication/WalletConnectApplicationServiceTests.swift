@@ -17,6 +17,7 @@ class WalletConnectApplicationServiceTests: XCTestCase {
     let eventPublisher = MockEventPublisher()
     let subscriber = MockSubscriber()
     var relayService: MockEventRelay!
+    let ethereumNodeService = MockEthereumNodeService()
 
     override func setUp() {
         super.setUp()
@@ -24,6 +25,7 @@ class WalletConnectApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: domainService, for: WalletConnectDomainService.self)
         DomainRegistry.put(service: repo, for: WalletConnectSessionRepository.self)
         DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
+        DomainRegistry.put(service: ethereumNodeService, for: EthereumNodeDomainService.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: relayService, for: EventRelay.self)
         appService = WalletConnectApplicationService(chainId: 1)
@@ -104,6 +106,29 @@ class WalletConnectApplicationServiceTests: XCTestCase {
         eventPublisher.expectToPublish(SessionUpdated.self)
         appService.didConnect(session: WCSession.testSession)
         XCTAssertTrue(eventPublisher.verify())
+    }
+
+    func test_handleEthereumNodeRequest_callsEthereumNodeService() {
+        XCTAssertNil(ethereumNodeService.rawCall_input)
+        let exp = expectation(description: "call ethereum node service")
+        appService.handleEthereumNodeRequest(WCMessage.testMessage) { response in
+            if case Result.success(_) = response {
+                exp.fulfill()
+            }
+        }
+        XCTAssertNotNil(ethereumNodeService.rawCall_input)
+        waitForExpectations(timeout: 1)
+    }
+
+    func test_handleEthereumNodeRequest_whenThrows_thenReturnsErrorInCompletion() {
+        ethereumNodeService.shouldThrow = true
+        let exp = expectation(description: "call ethereum node service")
+        appService.handleEthereumNodeRequest(WCMessage.testMessage) { response in
+            if case Result.failure(_) = response {
+                exp.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 1)
     }
 
 }

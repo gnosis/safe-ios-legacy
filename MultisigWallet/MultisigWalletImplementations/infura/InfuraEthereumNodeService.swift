@@ -72,6 +72,14 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         return try execute(request: MessageCallRequest(transaction, blockNumber))
     }
 
+    public func rawCall(payload: String) throws -> String {
+        // TODO: https://github.com/gnosis/safe-ios/issues/934
+        // Use JSONHTTPClient to proxy requests
+        // - proxy only eth_ requests
+        print("WC: handleEthereumNodeRequest: \(payload)")
+        return ""
+    }
+
     /// Executes JSONRPCRequest synchronously. This method is blocking until response or error is received.
     ///
     /// - Parameter request: JSON RPC request to send

@@ -41,6 +41,14 @@ public protocol EthereumNodeDomainService {
     /// Returns the value from a storage position at a given address.
     func eth_getStorageAt(address: Address, position: Int) throws -> Data
 
+
+    /// Execute call with arbitarary payload.
+    ///
+    /// - Parameter payload: json string
+    /// - Returns: response as string
+    /// - Throws: NetworkServiceError
+    func rawCall(payload: String) throws -> String
+
 }
 
 /// Thrown by any network-based service
