@@ -100,4 +100,10 @@ extension UIAlertController {
         return alert.withCancelAction()
     }
 
+    static func failedToConnectWCUrl() -> UIAlertController {
+        let alert = create(title: LocalizedString("failed_to_connect", comment: "Failed to connect."),
+                           message: LocalizedString("please_try_again_later", comment: "Please try again later."))
+        return alert.withCancelAction()
+    }
+
 }

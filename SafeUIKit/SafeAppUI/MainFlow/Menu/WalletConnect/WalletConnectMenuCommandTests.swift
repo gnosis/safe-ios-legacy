@@ -5,12 +5,12 @@
 import XCTest
 @testable import SafeAppUI
 
-class WCMenuCommandTests: XCTestCase {
+class WalletConnectMenuCommandTests: XCTestCase {
 
-    let command = WCMenuCommand()
+    let command = WalletConnectMenuCommand()
 
     func test_whenCreated_thenSetsProperChildFlowCoordinator() {
-        XCTAssertTrue(command.childFlowCoordinator is WCFlowCoordinator)
+        XCTAssertTrue(command.childFlowCoordinator is WalletConnectFlowCoordinator)
     }
 
 }

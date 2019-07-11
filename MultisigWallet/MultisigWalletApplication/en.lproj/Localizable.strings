@@ -1,8 +1,11 @@
+/* Connecting... */
+"connecting" = "Connecting...";
+
 /* Insufficient funds to perform this transaction. */
 "exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* App slogan */
-"ios_app_slogan" = "ios_app_slogan";
+"ios_app_slogan" = "Enter the\ndecentralized web.";
 
 /* Browser extension is already connected. */
 "ios_error_extension_exists" = "Browser extension is already connected.";

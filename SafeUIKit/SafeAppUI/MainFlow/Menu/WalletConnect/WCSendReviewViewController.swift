@@ -3,6 +3,8 @@
 //
 
 import SafeUIKit
+import MultisigWalletApplication
+import Common
 
 final class WCSendReviewViewController: SendReviewViewController {
 
@@ -25,12 +27,8 @@ final class WCSendReviewViewController: SendReviewViewController {
     private func dappCell() -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell") as! BasicTableViewCell
         // TODO: use real data from session repository
-        struct Data: WCSessionData {
-            var image: UIImage
-            var title: String
-            var subtitle: String
-        }
-        cell.configure(wcSessionData: Data(image: Asset.congratulations.image, title: "Titile", subtitle: "Subtitle"))
+        let data = WCSessionData(id: BaseID("1"), imageURL: nil, title: "title", subtitle: "subtitle")
+        cell.configure(wcSessionData: data)
         return cell
     }
 

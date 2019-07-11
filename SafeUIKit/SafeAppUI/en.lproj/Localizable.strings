@@ -140,6 +140,9 @@
 /* Transaction details */
 "existing_safe_recovered" = "The existing Safe will be recovered and associated with this device.";
 
+/* Failed to connect. */
+"failed_to_connect" = "Failed to connect.";
+
 /* Fee */
 "fee" = "Fee";
 
@@ -439,6 +442,9 @@
 
 /* Please send % */
 "please_send_x" = "Please only send %@";
+
+/* Please try again later. */
+"please_try_again_later" = "Please try again later.";
 
 /* Title for portfolio section. */
 "portfolio" = "Portfolio";

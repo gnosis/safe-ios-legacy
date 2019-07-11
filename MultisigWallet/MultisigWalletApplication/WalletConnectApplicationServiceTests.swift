@@ -50,18 +50,26 @@ class WalletConnectApplicationServiceTests: XCTestCase {
     }
 
     func test_disconnect_callsDomainService() throws {
-        try appService.disconnect(session: WCSession.testSession)
+        repo.save(WCSession.testSession)
+        try appService.disconnect(sessionID: WCSession.testSession.id)
         XCTAssertEqual(domainService.disconnectSession, WCSession.testSession)
     }
 
     func test_disconnect_whenDomainServiceThrows_thenThrows() {
+        repo.save(WCSession.testSession)
         domainService.shouldThrow = true
-        XCTAssertThrowsError(try appService.disconnect(session: WCSession.testSession))
+        XCTAssertThrowsError(try appService.disconnect(sessionID: WCSession.testSession.id))
+    }
+
+    func test_disconnect_whenSessionIsNotFoundInRepo_thenIgnores() {
+        domainService.shouldThrow = true
+        XCTAssertNoThrow(try appService.disconnect(sessionID: WCSession.testSession.id))
+        XCTAssertNil(domainService.disconnectSession)
     }
 
     func test_sessions() {
         domainService.sessions = [WCSession.testSession]
-        XCTAssertEqual(appService.sessions(), domainService.sessions)
+        XCTAssertEqual(appService.sessions().count, 1)
     }
 
     func test_subscribeForSessionUpdates() {

@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import Common
 
 public class FailedToConnectSession: DomainEvent {}
 public class SessionUpdated: DomainEvent {}
@@ -35,12 +36,13 @@ public class WalletConnectApplicationService {
         try service.connect(url: url)
     }
 
-    public func disconnect(session: WCSession) throws {
+    public func disconnect(sessionID: BaseID) throws {
+        guard let session = sessionRepo.find(id: WCSessionID(sessionID.id)) else { return }
         try service.disconnect(session: session)
     }
 
-    public func sessions() -> [WCSession] {
-        return service.openSessions()
+    public func sessions() -> [WCSessionData] {
+        return service.openSessions().map { WCSessionData(wcSession: $0) }
     }
 
     public func subscribeForSessionUpdates(_ subscriber: EventSubscriber) {

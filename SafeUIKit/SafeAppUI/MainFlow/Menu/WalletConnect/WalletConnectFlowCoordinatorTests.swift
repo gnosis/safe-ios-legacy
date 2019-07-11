@@ -5,14 +5,14 @@
 import XCTest
 @testable import SafeAppUI
 
-class WCFlowCoordinatorTests: XCTestCase {
+class WalletConnectFlowCoordinatorTests: XCTestCase {
 
     let nav = UINavigationController()
-    var fc: WCFlowCoordinator!
+    var fc: WalletConnectFlowCoordinator!
 
     override func setUp() {
         super.setUp()
-        fc = WCFlowCoordinator(rootViewController: nav)
+        fc = WalletConnectFlowCoordinator(rootViewController: nav)
         fc.setUp()
     }
 

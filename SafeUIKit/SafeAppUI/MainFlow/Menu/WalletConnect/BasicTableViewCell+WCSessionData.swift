@@ -3,12 +3,19 @@
 //
 
 import SafeUIKit
+import MultisigWalletApplication
+import Kingfisher
 
 extension BasicTableViewCell {
 
     func configure(wcSessionData: WCSessionData) {
         accessoryType = .none
-        leftImageView.image = wcSessionData.image
+        // TODO: what is a proper placeholder image?
+        if let imageURL = wcSessionData.imageURL {
+            leftImageView.kf.setImage(with: imageURL, placeholder: Asset.TokenIcons.defaultToken.image)
+        } else {
+            leftImageView.image = Asset.TokenIcons.defaultToken.image
+        }
         splitLeftTextLabel(title: wcSessionData.title, subtitle: wcSessionData.subtitle)
         rightTextLabel.text = nil
     }

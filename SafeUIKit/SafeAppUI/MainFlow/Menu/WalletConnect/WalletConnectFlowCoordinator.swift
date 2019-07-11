@@ -6,12 +6,11 @@ import Foundation
 import MultisigWalletApplication
 import BigInt
 
-final class WCFlowCoordinator: FlowCoordinator {
+final class WalletConnectFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-//        showSessionList()
-        showSendReview()
+        showSessionList()
     }
 
     func showSessionList() {
@@ -31,7 +30,7 @@ final class WCFlowCoordinator: FlowCoordinator {
 
 }
 
-extension WCFlowCoordinator: ReviewTransactionViewControllerDelegate {
+extension WalletConnectFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
     func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
                                                                  completion: @escaping (Bool) -> Void) {
