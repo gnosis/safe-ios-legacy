@@ -53,3 +53,14 @@ extension WCMessage {
     static let testMessage = WCMessage(payload: "", url: WCURL.testURL)
 
 }
+
+extension WCSendTransactionRequest {
+
+    static let testRequest = WCSendTransactionRequest(from: "0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95",
+                                                      to: "0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95",
+                                                      gasLimit: "0x5208",
+                                                      gasPrice: "0x3b9aca00",
+                                                      value: "0x00",
+                                                      data: "0x",
+                                                      nonce: "0x00")
+}

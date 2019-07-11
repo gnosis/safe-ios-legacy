@@ -8,6 +8,9 @@ import Common
 
 public class FailedToConnectSession: DomainEvent {}
 public class SessionUpdated: DomainEvent {}
+public class SendTransactionRequested: DomainEvent {}
+
+public typealias WCPendingTransaction = (request: WCSendTransactionRequest, completion: (Result<String, Error>) -> Void)
 
 public class WalletConnectApplicationService {
 
@@ -19,6 +22,8 @@ public class WalletConnectApplicationService {
     private var eventPublisher: EventPublisher { return  DomainRegistry.eventPublisher }
     private var sessionRepo: WalletConnectSessionRepository { return DomainRegistry.walletConnectSessionRepository }
     private var ethereumNodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
+
+    internal var pendingTransactions = [WCPendingTransaction]()
 
     private enum Strings {
         static let safeDescription = LocalizedString("ios_app_slogan", comment: "App slogan")
@@ -48,6 +53,13 @@ public class WalletConnectApplicationService {
 
     public func subscribeForSessionUpdates(_ subscriber: EventSubscriber) {
         eventRelay.subscribe(subscriber, for: SessionUpdated.self)
+    }
+
+    public func popPendingTransactions() -> [WCPendingTransaction] {
+        defer {
+            pendingTransactions = []
+        }
+        return pendingTransactions
     }
 
 }
@@ -83,11 +95,8 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
 
     public func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
                                              completion: @escaping (Result<String, Error>) -> Void) {
-        // TODO: incoming requests stack
-        // - put request into the stack
-        // - publish incoming request event
-        // - provide public method to pop request from the stack
-        print("WC: ApplicationService: handleSendTransactionRequest")
+        pendingTransactions.append((request: request, completion: completion))
+        eventPublisher.publish(SendTransactionRequested())
     }
 
     public func handleEthereumNodeRequest(_ request: WCMessage, completion: (Result<WCMessage, Error>) -> Void) {
@@ -96,7 +105,7 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
             completion(.success(WCMessage(payload: response, url: request.url)))
         } catch {
             completion(.failure(error))
-        }        
+        }
     }
 
 }

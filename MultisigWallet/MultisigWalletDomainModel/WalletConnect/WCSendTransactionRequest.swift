@@ -5,7 +5,7 @@
 import Foundation
 
 /// https://docs.walletconnect.org/client-sdk#send-transaction-eth_sendtransaction
-public struct WCSendTransactionRequest: Decodable {
+public struct WCSendTransactionRequest: Decodable, Equatable {
 
     public var from: String
     public var to: String
@@ -14,6 +14,22 @@ public struct WCSendTransactionRequest: Decodable {
     public var value: String
     public var data: String
     public var nonce: String
+
+    public init(from: String,
+                to: String,
+                gasLimit: String,
+                gasPrice: String,
+                value: String,
+                data: String,
+                nonce: String) {
+        self.from = from
+        self.to = to
+        self.gasLimit = gasLimit
+        self.gasPrice = gasPrice
+        self.value = value
+        self.data = data
+        self.nonce = nonce
+    }
 
 }
 

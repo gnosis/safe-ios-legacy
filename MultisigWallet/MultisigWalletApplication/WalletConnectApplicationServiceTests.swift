@@ -80,6 +80,18 @@ class WalletConnectApplicationServiceTests: XCTestCase {
         XCTAssertTrue(relayService.verify())
     }
 
+    func test_popPendingTransactions_after_handleSendTransactionRequest() {
+        XCTAssertTrue(appService.pendingTransactions.isEmpty)
+        appService.handleSendTransactionRequest(WCSendTransactionRequest.testRequest) { _ in }
+        XCTAssertFalse(appService.pendingTransactions.isEmpty)
+        let transacitons = appService.popPendingTransactions()
+        XCTAssertEqual(transacitons.count, 1)
+        XCTAssertEqual(transacitons[0].request, WCSendTransactionRequest.testRequest)
+        XCTAssertTrue(appService.pendingTransactions.isEmpty)
+    }
+
+    // MARK: - WalletConnectDomainServiceDelegate
+
     func test_didFailToConnect_publishesEvent() {
         eventPublisher.expectToPublish(FailedToConnectSession.self)
         appService.didFailToConnect(url: WCURL.testURL)
@@ -105,6 +117,12 @@ class WalletConnectApplicationServiceTests: XCTestCase {
     func test_didConnect_publishesEvent() {
         eventPublisher.expectToPublish(SessionUpdated.self)
         appService.didConnect(session: WCSession.testSession)
+        XCTAssertTrue(eventPublisher.verify())
+    }
+
+    func test_handleSendTransactionRequest_publeshesEvent() {
+        eventPublisher.expectToPublish(SendTransactionRequested.self)
+        appService.handleSendTransactionRequest(WCSendTransactionRequest.testRequest) { _ in }
         XCTAssertTrue(eventPublisher.verify())
     }
 
