@@ -76,7 +76,7 @@ final class WCSessionListTableViewController: UITableViewController {
             var title: String
             var subtitle: String
         }
-        sessions.append(Data(image: Asset.congratulations.image, title: "Titile", subtitle: "Subtitle"))
+        sessions.append(Data(image: Asset.congratulations.image, title: "Title", subtitle: "Subtitle"))
     }
 
     @objc private func scan() {}
