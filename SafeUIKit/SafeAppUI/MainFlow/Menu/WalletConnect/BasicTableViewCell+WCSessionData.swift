@@ -6,6 +6,7 @@ import SafeUIKit
 import MultisigWalletApplication
 import Kingfisher
 
+// TODO: remove. Use WCSessionListCell
 extension BasicTableViewCell {
 
     func configure(wcSessionData: WCSessionData) {

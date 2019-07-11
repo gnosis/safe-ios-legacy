@@ -69,8 +69,8 @@ final class WCSessionListTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.paleGrey.color
-        tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
-                           forCellReuseIdentifier: "BasicTableViewCell")
+        tableView.register(UINib(nibName: "WCSessionListCell", bundle: Bundle(for: WCSessionListCell.self)),
+                           forCellReuseIdentifier: "WCSessionListCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
     }
@@ -109,8 +109,8 @@ final class WCSessionListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
-                                                 for: indexPath) as! BasicTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WCSessionListCell",
+                                                 for: indexPath) as! WCSessionListCell
         cell.configure(wcSessionData: sessions[indexPath.row])
         return cell
     }
