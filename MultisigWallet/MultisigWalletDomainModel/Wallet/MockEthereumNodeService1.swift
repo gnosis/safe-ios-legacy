@@ -84,4 +84,8 @@ class MockEthereumNodeService1: EthereumNodeDomainService {
         return Data()
     }
 
+    func rawCall(payload: String) throws -> String {
+        return ""
+    }
+
 }

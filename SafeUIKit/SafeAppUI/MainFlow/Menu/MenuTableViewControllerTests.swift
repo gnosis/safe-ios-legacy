@@ -110,7 +110,7 @@ class MenuTableViewControllerTests: XCTestCase {
 
     func test_whenSelectingWalletConnect_thenCommandIsCalled() {
         selectCell(row: 5, section: securitySection)
-        XCTAssertTrue(delegate.selectedCommand is WCMenuCommand)
+        XCTAssertTrue(delegate.selectedCommand is WalletConnectMenuCommand)
     }
 
     func test_whenSelectingTerms_thenCallsCommand() {

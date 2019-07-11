@@ -351,16 +351,19 @@
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
 		5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562E64D216E1C0F00C54D57 /* RuleLabel.swift */; };
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
+		5568A24E22D7284C007C9E0C /* WCSendReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */; };
+		5568A25C22D7854D007C9E0C /* WCSessionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A25B22D7854D007C9E0C /* WCSessionListCell.swift */; };
+		5568A25E22D78583007C9E0C /* WCSessionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5568A25D22D78583007C9E0C /* WCSessionListCell.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */; };
 		5573535B2293F0C500248F87 /* ReceiveFundsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */; };
 		557353722294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */; };
-		5579C57622C3664300BB93CA /* WCMenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57522C3664300BB93CA /* WCMenuCommand.swift */; };
-		5579C57822C367C400BB93CA /* WCFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57722C367C400BB93CA /* WCFlowCoordinator.swift */; };
+		5579C57622C3664300BB93CA /* WalletConnectMenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57522C3664300BB93CA /* WalletConnectMenuCommand.swift */; };
+		5579C57822C367C400BB93CA /* WalletConnectFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57722C367C400BB93CA /* WalletConnectFlowCoordinator.swift */; };
 		5579C57A22C3687500BB93CA /* WCSessionListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */; };
-		5579C57C22C36A7A00BB93CA /* WCMenuCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */; };
-		5579C57E22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */; };
+		5579C57C22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */; };
+		5579C57E22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */; };
 		5579C58022C3739400BB93CA /* WCSessionListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
@@ -937,16 +940,19 @@
 		55625213214A601900F569EE /* SafeTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTableViewCellTests.swift; sourceTree = "<group>"; };
 		5562E64D216E1C0F00C54D57 /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
 		5562E64F216E1CF500C54D57 /* RuleLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RuleLabel.xib; sourceTree = "<group>"; };
+		5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSendReviewViewController.swift; sourceTree = "<group>"; };
+		5568A25B22D7854D007C9E0C /* WCSessionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListCell.swift; sourceTree = "<group>"; };
+		5568A25D22D78583007C9E0C /* WCSessionListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCSessionListCell.xib; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		557353552293F0AB00248F87 /* ReceiveFundsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewControllerTests.swift; sourceTree = "<group>"; };
 		557353572293F0AB00248F87 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
 		557353712294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeIntroViewController.swift; sourceTree = "<group>"; };
-		5579C57522C3664300BB93CA /* WCMenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCMenuCommand.swift; sourceTree = "<group>"; };
-		5579C57722C367C400BB93CA /* WCFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCFlowCoordinator.swift; sourceTree = "<group>"; };
+		5579C57522C3664300BB93CA /* WalletConnectMenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectMenuCommand.swift; sourceTree = "<group>"; };
+		5579C57722C367C400BB93CA /* WalletConnectFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectFlowCoordinator.swift; sourceTree = "<group>"; };
 		5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListTableViewController.swift; sourceTree = "<group>"; };
-		5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCMenuCommandTests.swift; sourceTree = "<group>"; };
-		5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectMenuCommandTests.swift; sourceTree = "<group>"; };
+		5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListTableViewControllerTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
@@ -1990,14 +1996,17 @@
 		5579C56622C3662500BB93CA /* WalletConnect */ = {
 			isa = PBXGroup;
 			children = (
-				5579C57722C367C400BB93CA /* WCFlowCoordinator.swift */,
-				5579C57D22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift */,
-				5579C57522C3664300BB93CA /* WCMenuCommand.swift */,
-				5579C57B22C36A7A00BB93CA /* WCMenuCommandTests.swift */,
+				5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */,
+				5579C57722C367C400BB93CA /* WalletConnectFlowCoordinator.swift */,
+				5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */,
+				5579C57522C3664300BB93CA /* WalletConnectMenuCommand.swift */,
+				5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */,
+				5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */,
+				5568A25B22D7854D007C9E0C /* WCSessionListCell.swift */,
 				5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */,
 				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
-				5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */,
 				5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */,
+				5568A25D22D78583007C9E0C /* WCSessionListCell.xib */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -2536,6 +2545,7 @@
 				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
+				5568A25E22D78583007C9E0C /* WCSessionListCell.xib in Resources */,
 				0A3BD90422254833007039B4 /* IntroContentView.xib in Resources */,
 				0A2C0E1A2296F2E3008A30AC /* AddressDetailView.xib in Resources */,
 				0A2C0E2B2297DCFF008A30AC /* FeePaidViewController.xib in Resources */,
@@ -2930,7 +2940,7 @@
 				55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* OnboardingCreateOrRestoreViewController.swift in Sources */,
 				0A3BD90922254833007039B4 /* RBEIntroViewControllerErrorState.swift in Sources */,
-				5579C57822C367C400BB93CA /* WCFlowCoordinator.swift in Sources */,
+				5579C57822C367C400BB93CA /* WalletConnectFlowCoordinator.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
 				5549B2A522859F4700F3B5B7 /* PaymentMethodHeaderView.swift in Sources */,
 				5579C57A22C3687500BB93CA /* WCSessionListTableViewController.swift in Sources */,
@@ -2939,6 +2949,7 @@
 				554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */,
 				0A2D587E225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift in Sources */,
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,
+				5568A25C22D7854D007C9E0C /* WCSessionListCell.swift in Sources */,
 				0AFD05F822A6906000888956 /* ChangePasswordTrackingEvent.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
 				0A2D58862257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift in Sources */,
@@ -2958,7 +2969,7 @@
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
-				5579C57622C3664300BB93CA /* WCMenuCommand.swift in Sources */,
+				5579C57622C3664300BB93CA /* WalletConnectMenuCommand.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */,
 				55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
@@ -2982,6 +2993,7 @@
 				0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0AE0FE42229C484000ABC552 /* CustomNavigationController.swift in Sources */,
 				0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */,
+				5568A24E22D7284C007C9E0C /* WCSendReviewViewController.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
 				0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */,
@@ -3055,7 +3067,7 @@
 				55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */,
 				550D1EDD213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift in Sources */,
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,
-				5579C57E22C36AFF00BB93CA /* WCFlowCoordinatorTests.swift in Sources */,
+				5579C57E22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift in Sources */,
 				0A334E6D209C8F8800ABC6AE /* ErrorHandlerTests.swift in Sources */,
 				0A334E5F209C8E6800ABC6AE /* PasswordViewControllerTests.swift in Sources */,
 				0A2D58942257674C001B8BF4 /* OnboardingIntroViewControllerTests.swift in Sources */,
@@ -3080,7 +3092,7 @@
 				0A334DC1209C6D8D00ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift in Sources */,
 				553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */,
 				553AEB19229EA43900EA3248 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,
-				5579C57C22C36A7A00BB93CA /* WCMenuCommandTests.swift in Sources */,
+				5579C57C22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift in Sources */,
 				0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */,
 				553AEB13229EA42400EA3248 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				5549B2A222857F7500F3B5B7 /* PaymentMethodViewControllerTests.swift in Sources */,

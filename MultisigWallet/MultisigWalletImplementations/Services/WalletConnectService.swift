@@ -7,17 +7,21 @@ import MultisigWalletDomainModel
 
 public class WalletConnectService: WalletConnectDomainService {
 
-    var server: Server!
     private weak var delegate: WalletConnectDomainServiceDelegate!
+
+    var server: Server!
 
     enum ErrorCode: Int {
         case declinedSendTransactionRequest = -10_000
         case wrongSendTransactionRequest = -10_001
     }
 
-    public init(delegate: WalletConnectDomainServiceDelegate) {
+    public init() {
         server = Server(delegate: self)
         server.register(handler: self)
+    }
+
+    public func updateDelegate(_ delegate: WalletConnectDomainServiceDelegate) {
         self.delegate = delegate
     }
 
@@ -112,17 +116,20 @@ extension WalletConnectService: RequestHandler {
                 DomainRegistry.logger.error("Could not handle eth_sendTransaction from WalletConnect", error: error)
             }
         } else {
-            // TODO: Discuss:
-            // 1) should we allow to handle requests to a node at all?
-            // 2) if yes, should Ethereum JSON RPC request handling be part of the lib itself?
-            // 3) if no, send a method not supported response.
-            delegate.handleEthereumNodeRequest(request.wcRequest) { [weak self] wcResponse in
+            // TODO: Discuss: should Ethereum JSON RPC request handling be part of the lib itself?
+            delegate.handleEthereumNodeRequest(request.wcRequest) { [weak self] result in
                 guard let self = self else { return }
-                do {
-                    let response = try Response(wcResponse: wcResponse)
-                    self.server.send(response)
-                } catch {
-                    let message = "Could not create a Wallet Connect Response from: \(wcResponse.payload)"
+                switch result {
+                case .success(let wcResponse):
+                    do {
+                        let response = try Response(wcResponse: wcResponse)
+                        self.server.send(response)
+                    } catch {
+                        let message = "Could not create a WalletConnect Response from: \(wcResponse.payload)"
+                        DomainRegistry.logger.error(message, error: error)
+                    }
+                case .failure(let error):
+                    let message = "Could not send a WalletConnect request: \(request.payload)"
                     DomainRegistry.logger.error(message, error: error)
                 }
             }
@@ -201,13 +208,13 @@ extension Session {
     init(wcSession: WCSession) {
         self.init(url: WCURL(wcURL: wcSession.url),
                   dAppInfo: DAppInfo(wcDAppInfo: wcSession.dAppInfo),
-                  walletInfo: Session.WalletInfo(wcWalletInfo: wcSession.walletInfo))
+                  walletInfo: Session.WalletInfo(wcWalletInfo: wcSession.walletInfo!))
     }
 
     func wcSession(status: WCSessionStatus) -> WCSession {
         return WCSession(url: url.wcURL,
                          dAppInfo: dAppInfo.wcDAppInfo,
-                         walletInfo: walletInfo!.wcWalletInfo,
+                         walletInfo: walletInfo?.wcWalletInfo,
                          status: status)
     }
 

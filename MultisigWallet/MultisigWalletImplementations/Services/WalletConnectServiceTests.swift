@@ -19,7 +19,8 @@ class WalletConnectServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        service = WalletConnectService(delegate: delegate)
+        service = WalletConnectService()
+        service.updateDelegate(delegate)
         server = MockServer(delegate: service)
         service.server = server
         DomainRegistry.put(service: logger, for: Logger.self)
@@ -128,49 +129,6 @@ class WalletConnectServiceTests: XCTestCase {
 
 }
 
-extension MultisigWalletDomainModel.WCURL {
-
-    static let testURL = MultisigWalletDomainModel.WCURL(topic: "topic1",
-                                                         version: "1",
-                                                         bridgeURL: URL(string: "http://test.com")!,
-                                                         key: "key")
-
-}
-
-extension WCClientMeta {
-
-    static let testMeta = WCClientMeta(name: "name",
-                                       description: "description",
-                                       icons: [],
-                                       url: URL(string: "http://test.com")!)
-
-}
-
-extension WCDAppInfo {
-
-    static let testDAppInfo = WCDAppInfo(peerId: "peer1", peerMeta: WCClientMeta.testMeta)
-
-}
-
-extension WCWalletInfo {
-
-    static let testWalletInfo = WCWalletInfo(approved: true,
-                                             accounts: [],
-                                             chainId: 1,
-                                             peerId: "peer1",
-                                             peerMeta: WCClientMeta.testMeta)
-
-}
-
-extension WCSession {
-
-    static let testSession = WCSession(url: MultisigWalletDomainModel.WCURL.testURL,
-                                       dAppInfo: WCDAppInfo.testDAppInfo,
-                                       walletInfo: WCWalletInfo.testWalletInfo,
-                                       status: .connected)
-
-}
-
 fileprivate class MockServer: Server {
 
     var shouldThrow = false
@@ -229,7 +187,7 @@ fileprivate class MockWalletConnectDelegate: WalletConnectDomainServiceDelegate 
     }
 
     var ethereumNodeRequest: WCMessage?
-    func handleEthereumNodeRequest(_ request: WCMessage, completion: (WCMessage) -> Void) {
+    func handleEthereumNodeRequest(_ request: WCMessage, completion: (Result<WCMessage, Error>) -> Void) {
         ethereumNodeRequest = request
     }
 

@@ -38,6 +38,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: SafeContractMetadataRepository.self)
     }
 
+    public static var walletConnectSessionRepository: WalletConnectSessionRepository {
+        return service(for: WalletConnectSessionRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {
@@ -118,6 +122,10 @@ public class DomainRegistry: AbstractRegistry {
 
     public static var transactionMonitorRepository: RBETransactionMonitorRepository {
         return service(for: RBETransactionMonitorRepository.self)
+    }
+
+    public static var walletConnectService: WalletConnectDomainService {
+        return service(for: WalletConnectDomainService.self)
     }
 
     public static var logger: Logger {

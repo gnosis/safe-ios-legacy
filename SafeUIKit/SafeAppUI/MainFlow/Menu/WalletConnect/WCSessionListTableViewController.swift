@@ -4,17 +4,16 @@
 
 import UIKit
 import SafeUIKit
-
-protocol WCSessionData {
-    var image: UIImage { get }
-    var title: String { get }
-    var subtitle: String { get }
-}
+import MultisigWalletApplication
 
 final class WCSessionListTableViewController: UITableViewController {
 
     var scanButtonItem: ScanBarButtonItem!
     let noSessionsView = EmptyResultsView()
+
+    var wcService: WalletConnectApplicationService {
+        return ApplicationServiceRegistry.walletConnectService
+    }
 
     enum Strings {
         static let title = LocalizedString("walletconnect", comment: "WalletConnect")
@@ -24,19 +23,26 @@ final class WCSessionListTableViewController: UITableViewController {
         static let noActiveSessions = LocalizedString("no_active_sessions", comment: "No active sessions")
     }
 
-    var sessions = [WCSessionData]() {
+    private var sessions = [WCSessionData]()
+    private var isRequestingNetwork = false {
         didSet {
-            DispatchQueue.main.async {
-                self.update()
-            }
+            updateLoading()
         }
+    }
+
+    init() {
+        super.init(style: .grouped)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
-        addMockData()
+        subscribeForSessionUpdates()
         update()
     }
 
@@ -63,27 +69,37 @@ final class WCSessionListTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.paleGrey.color
-        tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
-                           forCellReuseIdentifier: "BasicTableViewCell")
+        tableView.register(UINib(nibName: "WCSessionListCell", bundle: Bundle(for: WCSessionListCell.self)),
+                           forCellReuseIdentifier: "WCSessionListCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
     }
 
-    // TODO: delete
-    private func addMockData() {
-        struct Data: WCSessionData {
-            var image: UIImage
-            var title: String
-            var subtitle: String
-        }
-        sessions.append(Data(image: Asset.congratulations.image, title: "Titile", subtitle: "Subtitle"))
+    private func subscribeForSessionUpdates() {
+        wcService.subscribeForSessionUpdates(self)
     }
 
-    @objc private func scan() {}
-
     private func update() {
-        tableView.backgroundView = sessions.isEmpty ? noSessionsView : nil
-        tableView.reloadData()
+        sessions = wcService.sessions()
+        DispatchQueue.main.async {
+            self.isRequestingNetwork = false
+            self.tableView.backgroundView = self.sessions.isEmpty ? self.noSessionsView : nil
+            self.tableView.reloadData()
+        }
+    }
+
+    private func updateLoading() {
+        guard Thread.isMainThread else {
+            DispatchQueue.main.async(execute: updateLoading)
+            return
+        }
+        if isRequestingNetwork {
+            scanButtonItem.isEnabled = false
+            navigationItem.titleView = LoadingTitleView()
+        } else {
+            scanButtonItem.isEnabled = true
+            navigationItem.titleView = nil
+        }
     }
 
     // MARK: - UITableViewDataSource
@@ -93,8 +109,8 @@ final class WCSessionListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
-                                                 for: indexPath) as! BasicTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WCSessionListCell",
+                                                 for: indexPath) as! WCSessionListCell
         cell.configure(wcSessionData: sessions[indexPath.row])
         return cell
     }
@@ -112,7 +128,11 @@ final class WCSessionListTableViewController: UITableViewController {
 
     private func showDisconnectAlert(for indexPath: IndexPath, withTitle: Bool) {
         let session = sessions[indexPath.row]
-        let alert = UIAlertController.disconnectWCSession(sessionName: session.title, withTitle: withTitle) {}
+        let alert = UIAlertController
+            .disconnectWCSession(sessionName: session.title, withTitle: withTitle) { [unowned self] in
+                self.isRequestingNetwork = true
+                try? self.wcService.disconnect(sessionID: session.id)
+        }
         present(alert, animated: true)
     }
 
@@ -129,6 +149,7 @@ final class WCSessionListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard !sessions.isEmpty else { return nil }
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BackgroundHeaderFooterView")
             as! BackgroundHeaderFooterView
         view.title = Strings.activeSessions
@@ -136,7 +157,7 @@ final class WCSessionListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return BackgroundHeaderFooterView.height
+        return sessions.isEmpty ? 0 : BackgroundHeaderFooterView.height
     }
 
 }
@@ -148,6 +169,22 @@ extension WCSessionListTableViewController: ScanBarButtonItemDelegate {
         self.trackEvent(WCTrackingEvent.scan)
     }
 
-    func scanBarButtonItemDidScanValidCode(_ code: String) {}
+    func scanBarButtonItemDidScanValidCode(_ code: String) {
+        do {
+            isRequestingNetwork = true
+            try wcService.connect(url: code)
+        } catch {
+            present(UIAlertController.failedToConnectWCUrl(), animated: true)
+        }
+    }
+
+}
+
+extension WCSessionListTableViewController: EventSubscriber {
+
+    // FailedToConnectSession, SessionUpdated (connected/disconnected/-reconnecting?-)
+    func notify() {
+        update()
+    }
 
 }

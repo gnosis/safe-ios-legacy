@@ -22,12 +22,16 @@ class SafeTestCase: XCTestCase {
     let clock = MockClockService()
     let logger = MockLogger()
     let eventPublisher = MockEventPublisher()
+    var walletConnectService: MockWalletConnectApplicationService!
+
+    let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
 
     override func setUp() {
         super.setUp()
         configureMultisigWalletModule()
         configureIdentityAccessModule()
         configureEthereumModule()
+        configureWalletConnectModule()
     }
 
     private func configureIdentityAccessModule() {
@@ -50,14 +54,19 @@ class SafeTestCase: XCTestCase {
     }
 
     private func configureMultisigWalletModule() {
-        let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
         applicationRegistry.put(service: walletService, for: WalletApplicationService.self)
         applicationRegistry.put(service: recoveryService, for: RecoveryApplicationService.self)
     }
 
     private func configureEthereumModule() {
-        let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
         applicationRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
+    }
+
+    private func configureWalletConnectModule() {
+        MultisigWalletDomainModel.DomainRegistry.put(service: WalletConnectService(),
+                                                     for: WalletConnectDomainService.self)
+        walletConnectService = MockWalletConnectApplicationService(chainId: 1)
+        applicationRegistry.put(service: walletConnectService, for: WalletConnectApplicationService.self)
     }
 
     internal func reconfigureService(with config: WalletApplicationServiceConfiguration) {

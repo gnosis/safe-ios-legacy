@@ -81,10 +81,10 @@ public class WCSession: IdentifiableEntity<WCSessionID> {
 
     public let url: WCURL
     public let dAppInfo: WCDAppInfo
-    public let walletInfo: WCWalletInfo
-    public let status: WCSessionStatus?
+    public let walletInfo: WCWalletInfo?
+    public let status: WCSessionStatus
 
-    public init(url: WCURL, dAppInfo: WCDAppInfo, walletInfo: WCWalletInfo, status: WCSessionStatus?) {
+    public init(url: WCURL, dAppInfo: WCDAppInfo, walletInfo: WCWalletInfo?, status: WCSessionStatus) {
         self.url = url
         self.dAppInfo = dAppInfo
         self.walletInfo = walletInfo

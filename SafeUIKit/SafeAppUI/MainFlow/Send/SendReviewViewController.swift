@@ -7,7 +7,7 @@ import SafeUIKit
 import BigInt
 import Common
 
-final class SendReviewViewController: ReviewTransactionViewController {
+class SendReviewViewController: ReviewTransactionViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -46,7 +46,7 @@ final class SendReviewViewController: ReviewTransactionViewController {
         }
     }
 
-    private func transferViewCell() -> UITableViewCell {
+    func transferViewCell() -> UITableViewCell {
         let cell = TransferViewCell(frame: .zero)
         cell.transferView.fromAddress = tx.sender
         cell.transferView.toAddress = tx.recipient
@@ -55,7 +55,7 @@ final class SendReviewViewController: ReviewTransactionViewController {
         return cell
     }
 
-    private func feeCalculationCell() -> UITableViewCell {
+    func feeCalculationCell() -> UITableViewCell {
         let cell = FeeCalculationCell(frame: .zero)
         var balanceAfter = subtract(balance(of: tx.amountTokenData), abs(tx.amountTokenData.balance) ?? 0)
 

@@ -11,6 +11,7 @@ import MultisigWalletApplication
 import MultisigWalletImplementations
 import SafeAppUI
 
+// swiftlint:disable function_body_length
 class MultisigWalletConfigurator {
 
     class func configure(with appDelegate: AppDelegate) {
@@ -49,6 +50,7 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata),
                            for: SafeContractMetadataRepository.self)
 
+
         let relay = EventRelay(publisher: DomainRegistry.eventPublisher)
         ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
 
@@ -68,6 +70,7 @@ class MultisigWalletConfigurator {
 
         configureEthereum(with: appDelegate)
         setUpMultisigDatabase(with: appDelegate)
+        configureWalletConnect(chainId: config.encryptionServiceChainId)
     }
 
     class func setUpMultisigDatabase(with appDelegate: AppDelegate) {
@@ -163,6 +166,13 @@ class MultisigWalletConfigurator {
         let nodeService = InfuraEthereumNodeService(url: appConfig.nodeServiceConfig.url,
                                                     chainId: appConfig.nodeServiceConfig.chainId)
         DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
+    }
+
+    private class func configureWalletConnect(chainId: Int) {
+        DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
+        DomainRegistry.put(service: InMemoryWCSessionRepository(), for: WalletConnectSessionRepository.self)
+        ApplicationServiceRegistry.put(service: WalletConnectApplicationService(chainId: chainId),
+                                       for: WalletConnectApplicationService.self)
     }
 
 }

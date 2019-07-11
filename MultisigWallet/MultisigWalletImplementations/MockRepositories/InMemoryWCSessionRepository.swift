@@ -5,7 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 
-public class InMemoryWCSessionRepository: WCSessionRepository {
+public class InMemoryWCSessionRepository: WalletConnectSessionRepository {
 
     private var sessions = [WCSessionID: WCSession]()
 

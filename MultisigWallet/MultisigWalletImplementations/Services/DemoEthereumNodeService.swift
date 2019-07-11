@@ -52,4 +52,8 @@ public class DemoEthereumNodeService: EthereumNodeDomainService {
         return Data()
     }
 
+    public func rawCall(payload: String) throws -> String {
+        return ""
+    }
+
 }
