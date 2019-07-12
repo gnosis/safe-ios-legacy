@@ -86,6 +86,7 @@ class MultisigWalletConfigurator {
             let transactionRepo = DBTransactionRepository(db: db)
             let tokenListItemRepo = DBTokenListItemRepository(db: db)
             let monitorRepo = DBRBETransactionMonitorRepository(db: db)
+            let walletConnectRepo = DBWalletConnectSessionRepository(db: db)
             let migrationRepo = DBMigrationRepository(db: db)
             let migrationService = DBMigrationService(repository: migrationRepo)
             DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
@@ -94,6 +95,7 @@ class MultisigWalletConfigurator {
             DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
             DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
             DomainRegistry.put(service: monitorRepo, for: RBETransactionMonitorRepository.self)
+            DomainRegistry.put(service: walletConnectRepo, for: WalletConnectSessionRepository.self)
 
             let noDatabase = !db.exists
             if noDatabase {
@@ -106,6 +108,7 @@ class MultisigWalletConfigurator {
             transactionRepo.setUp()
             tokenListItemRepo.setUp()
             monitorRepo.setUp()
+            walletConnectRepo.setUp()
             migrationRepo.setUp()
 
             if noDatabase {
@@ -170,7 +173,6 @@ class MultisigWalletConfigurator {
 
     private class func configureWalletConnect(chainId: Int) {
         DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
-        DomainRegistry.put(service: InMemoryWCSessionRepository(), for: WalletConnectSessionRepository.self)
         ApplicationServiceRegistry.put(service: WalletConnectApplicationService(chainId: chainId),
                                        for: WalletConnectApplicationService.self)
     }

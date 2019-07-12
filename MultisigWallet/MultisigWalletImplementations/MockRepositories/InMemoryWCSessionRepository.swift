@@ -15,8 +15,8 @@ public class InMemoryWCSessionRepository: WalletConnectSessionRepository {
         sessions[item.id] = item
     }
 
-    public func remove(id: WCSessionID) {
-        sessions.removeValue(forKey: id)
+    public func remove(_ item: WCSession) {
+        sessions.removeValue(forKey: item.id)
     }
 
     public func find(id: WCSessionID) -> WCSession? {

@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public struct WCURL {
+public struct WCURL: Codable {
 
     public let topic: String
     public let version: String
@@ -19,9 +19,18 @@ public struct WCURL {
         self.key = key
     }
 
+    public init?(data: Data) {
+        guard let url = try? JSONDecoder().decode(WCURL.self, from: data) else { return nil }
+        self = url
+    }
+
+    public var data: Data {
+        return try! JSONEncoder().encode(self)
+    }
+
 }
 
-public struct WCClientMeta {
+public struct WCClientMeta: Codable {
 
     public let name: String
     public let description: String
@@ -37,7 +46,7 @@ public struct WCClientMeta {
 
 }
 
-public struct WCDAppInfo {
+public struct WCDAppInfo: Codable {
 
     public let peerId: String
     public let peerMeta: WCClientMeta
@@ -47,9 +56,18 @@ public struct WCDAppInfo {
         self.peerMeta = peerMeta
     }
 
+    public init?(data: Data) {
+        guard let info = try? JSONDecoder().decode(WCDAppInfo.self, from: data) else { return nil }
+        self = info
+    }
+
+    public var data: Data {
+        return try! JSONEncoder().encode(self)
+    }
+
 }
 
-public struct WCWalletInfo {
+public struct WCWalletInfo: Codable {
 
     public let approved: Bool
     public let accounts: [String]
@@ -65,9 +83,18 @@ public struct WCWalletInfo {
         self.peerMeta = peerMeta
     }
 
+    public init?(data: Data) {
+        guard let info = try? JSONDecoder().decode(WCWalletInfo.self, from: data) else { return nil }
+        self = info
+    }
+
+    public var data: Data {
+        return try! JSONEncoder().encode(self)
+    }
+
 }
 
-public enum WCSessionStatus {
+public enum WCSessionStatus: String, Codable {
 
     case connecting
     case connected

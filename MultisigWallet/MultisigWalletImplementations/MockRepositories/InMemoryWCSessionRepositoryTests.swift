@@ -21,7 +21,7 @@ class InMemoryWCSessionRepositoryTests: XCTestCase {
         XCTAssertEqual(session2, saved2)
         let all = repository.all()
         XCTAssertEqual(all.count, 2)
-        repository.remove(id: session2.id)
+        repository.remove(session2)
         XCTAssertNil(repository.find(id: session2.id))
     }
 

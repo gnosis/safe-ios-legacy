@@ -89,7 +89,7 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
     }
 
     public func didDisconnect(session: WCSession) {
-        sessionRepo.remove(id: session.id)
+        sessionRepo.remove(session)
         eventPublisher.publish(SessionUpdated())
     }
 
