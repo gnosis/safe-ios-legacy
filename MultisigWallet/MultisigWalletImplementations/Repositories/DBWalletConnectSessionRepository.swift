@@ -36,3 +36,42 @@ public class DBWalletConnectSessionRepository: DBEntityRepository<WCSession, WCS
     }
 
 }
+
+extension MultisigWalletDomainModel.WCURL {
+
+    init?(data: Data) {
+        guard let url = try? JSONDecoder().decode(MultisigWalletDomainModel.WCURL.self, from: data) else { return nil }
+        self = url
+    }
+
+    var data: Data {
+        return try! JSONEncoder().encode(self)
+    }
+
+}
+
+extension WCDAppInfo {
+
+    init?(data: Data) {
+        guard let info = try? JSONDecoder().decode(WCDAppInfo.self, from: data) else { return nil }
+        self = info
+    }
+
+    var data: Data {
+        return try! JSONEncoder().encode(self)
+    }
+
+}
+
+extension WCWalletInfo {
+
+    init?(data: Data) {
+        guard let info = try? JSONDecoder().decode(WCWalletInfo.self, from: data) else { return nil }
+        self = info
+    }
+
+    var data: Data {
+        return try! JSONEncoder().encode(self)
+    }
+
+}

@@ -19,15 +19,6 @@ public struct WCURL: Codable {
         self.key = key
     }
 
-    public init?(data: Data) {
-        guard let url = try? JSONDecoder().decode(WCURL.self, from: data) else { return nil }
-        self = url
-    }
-
-    public var data: Data {
-        return try! JSONEncoder().encode(self)
-    }
-
 }
 
 public struct WCClientMeta: Codable {
@@ -56,15 +47,6 @@ public struct WCDAppInfo: Codable {
         self.peerMeta = peerMeta
     }
 
-    public init?(data: Data) {
-        guard let info = try? JSONDecoder().decode(WCDAppInfo.self, from: data) else { return nil }
-        self = info
-    }
-
-    public var data: Data {
-        return try! JSONEncoder().encode(self)
-    }
-
 }
 
 public struct WCWalletInfo: Codable {
@@ -81,15 +63,6 @@ public struct WCWalletInfo: Codable {
         self.chainId = chainId
         self.peerId = peerId
         self.peerMeta = peerMeta
-    }
-
-    public init?(data: Data) {
-        guard let info = try? JSONDecoder().decode(WCWalletInfo.self, from: data) else { return nil }
-        self = info
-    }
-
-    public var data: Data {
-        return try! JSONEncoder().encode(self)
     }
 
 }
