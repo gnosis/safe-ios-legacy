@@ -161,7 +161,7 @@ private extension TokenListItemApplicationTests {
 
     func sync() {
         DispatchQueue.global().async {
-            self.syncService.syncOnce()
+            self.syncService.syncTokensAndAccountsOnce()
         }
         delay(0.25) // because of delays in sync job
     }
@@ -176,6 +176,8 @@ private extension TokenListItemApplicationTests {
 
 class MockSyncService: SynchronisationDomainService {
 
+    func syncWalletConnectSessions() {}
+
     private var expected_sync = [String]()
     private var actual_sync = [String]()
 
@@ -183,7 +185,7 @@ class MockSyncService: SynchronisationDomainService {
         expected_sync.append("sync()")
     }
 
-    func syncOnce() {
+    func syncTokensAndAccountsOnce() {
         actual_sync.append(#function)
     }
 

@@ -87,7 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     func sync() {
         DispatchQueue.global.async {
-            DomainRegistry.syncService.syncOnce()
+            DomainRegistry.syncService.syncTokensAndAccountsOnce()
+            DomainRegistry.syncService.syncWalletConnectSessions()
         }
     }
 

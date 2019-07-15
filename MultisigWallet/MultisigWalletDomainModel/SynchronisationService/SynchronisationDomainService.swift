@@ -6,8 +6,18 @@ import Foundation
 
 public protocol SynchronisationDomainService {
 
-    func syncOnce()
+    /// When App restarts we should reconnect to stored WalletConnect sessions
+    /// to get messages from dApps.
+    func syncWalletConnectSessions()
+
+    /// Request available tokens and account balances once.
+    func syncTokensAndAccountsOnce()
+
+    /// Update periodically account balances, pending transactions.
+    /// Make post-processing for transactions.
     func startSyncLoop()
+
+    /// Stop periodic updates.
     func stopSyncLoop()
 
 }

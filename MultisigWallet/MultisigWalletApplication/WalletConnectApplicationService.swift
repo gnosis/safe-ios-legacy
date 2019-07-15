@@ -42,6 +42,10 @@ public class WalletConnectApplicationService {
         try service.connect(url: url)
     }
 
+    public func reconnect(session: WCSession) throws {
+        try service.reconnect(session: session)
+    }
+
     public func disconnect(sessionID: BaseID) throws {
         guard let session = sessionRepo.find(id: WCSessionID(sessionID.id)) else { return }
         try service.disconnect(session: session)
