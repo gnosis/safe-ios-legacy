@@ -51,6 +51,16 @@ class WalletConnectApplicationServiceTests: XCTestCase {
         XCTAssertThrowsError(try appService.connect(url: "some"))
     }
 
+    func test_reconnect_callsDomainService() throws {
+        try appService.reconnect(session: WCSession.testSession)
+        XCTAssertEqual(domainService.reconnectSession, WCSession.testSession)
+    }
+
+    func test_reconnect_whenDomainServiceThrows_thenThrows() {
+        domainService.shouldThrow = true
+        XCTAssertThrowsError(try appService.reconnect(session: WCSession.testSession))
+    }
+
     func test_disconnect_callsDomainService() throws {
         repo.save(WCSession.testSession)
         try appService.disconnect(sessionID: WCSession.testSession.id)

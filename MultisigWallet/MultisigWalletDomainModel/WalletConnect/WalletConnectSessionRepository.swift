@@ -7,7 +7,7 @@ import Foundation
 public protocol WalletConnectSessionRepository {
 
     func save(_ item: WCSession)
-    func remove(id: WCSessionID)
+    func remove(_ item: WCSession)
     func find(id: WCSessionID) -> WCSession?
     func all() -> [WCSession]
 

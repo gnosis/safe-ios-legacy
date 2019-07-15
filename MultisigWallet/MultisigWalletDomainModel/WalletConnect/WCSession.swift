@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public struct WCURL {
+public struct WCURL: Codable {
 
     public let topic: String
     public let version: String
@@ -21,7 +21,7 @@ public struct WCURL {
 
 }
 
-public struct WCClientMeta {
+public struct WCClientMeta: Codable {
 
     public let name: String
     public let description: String
@@ -37,7 +37,7 @@ public struct WCClientMeta {
 
 }
 
-public struct WCDAppInfo {
+public struct WCDAppInfo: Codable {
 
     public let peerId: String
     public let peerMeta: WCClientMeta
@@ -49,7 +49,7 @@ public struct WCDAppInfo {
 
 }
 
-public struct WCWalletInfo {
+public struct WCWalletInfo: Codable {
 
     public let approved: Bool
     public let accounts: [String]
@@ -67,7 +67,7 @@ public struct WCWalletInfo {
 
 }
 
-public enum WCSessionStatus {
+public enum WCSessionStatus: String, Codable {
 
     case connecting
     case connected
