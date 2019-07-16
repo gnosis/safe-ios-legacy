@@ -443,7 +443,7 @@ public struct WalletScheme: Equatable, CustomStringConvertible {
 }
 
 fileprivate func serviceError(from error: Error) -> Error {
-    guard case let JSONHTTPClient.Error.networkRequestFailed(_, response, _) = error else { return error }
+    guard case let HTTPClient.Error.networkRequestFailed(_, response, _) = error else { return error }
     guard let httpResponse = response as? HTTPURLResponse else { return error }
     switch httpResponse.statusCode {
     case 400: return RecoveryServiceError.failedToCreateValidTransactionData

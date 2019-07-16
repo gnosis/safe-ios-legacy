@@ -88,7 +88,7 @@ open class EthereumApplicationService: Assertable {
             return try block()
         } catch let error as NetworkServiceError {
             throw self.error(from: error)
-        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, _) {
+        } catch let HTTPClient.Error.networkRequestFailed(_, response, _) {
             throw self.error(from: response)
         }
     }
@@ -122,7 +122,7 @@ open class EthereumApplicationService: Assertable {
             return try block()
         } catch let error as NetworkServiceError {
             throw self.error(from: error)
-        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, _) {
+        } catch let HTTPClient.Error.networkRequestFailed(_, response, _) {
             throw self.error(from: response)
         }
     }
