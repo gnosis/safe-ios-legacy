@@ -42,6 +42,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: WalletConnectSessionRepository.self)
     }
 
+    public static var appSettingsRepository: AppSettingsRepository {
+        return service(for: AppSettingsRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {
