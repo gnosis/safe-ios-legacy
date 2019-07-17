@@ -47,6 +47,7 @@ class WCOnboardingStepViewController: UIViewController {
 
     func update(content: WCOnboardingStepInfo?) {
         self.content = content
+        guard isViewLoaded else { return }
         imageView.image = content?.image
         titleLabel.text = content?.title
         descriptionLabel.text = content?.description

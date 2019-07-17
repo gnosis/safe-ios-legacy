@@ -6,7 +6,7 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 
-final class WCSessionListTableViewController: UITableViewController {
+ class WCSessionListTableViewController: UITableViewController {
 
     var scanButtonItem: ScanBarButtonItem!
     let noSessionsView = EmptyResultsView()
@@ -76,7 +76,7 @@ final class WCSessionListTableViewController: UITableViewController {
     }
 
     func scan() {
-        scanButtonItem.scan()
+        scanButtonItem?.scan()
     }
 
     private func subscribeForSessionUpdates() {

@@ -36,7 +36,7 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
         if let vc = self.onboardingController {
             self.removeViewControllerFromStack(vc)
         }
-        // wait when push animation duration completed
+        // waiting for showSessionList animation completion
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { [weak self] in
             self?.showScan()
         }

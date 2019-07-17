@@ -41,6 +41,9 @@ open class FlowCoordinator {
     public private(set) var rootViewController: UIViewController!
     private var checkpoints: [UIViewController] = []
 
+    var topViewController: UIViewController? { return navigationController.topViewController }
+    var isAnimationEnabled: Bool = true
+
     var navigationController: UINavigationController {
         if let controller = rootViewController as? UINavigationController {
             return controller
@@ -73,8 +76,8 @@ open class FlowCoordinator {
     }
 
     func push(_ controller: UIViewController, onPop action: (() -> Void)? = nil) {
-        let isAnythingInNavigationStack = !navigationController.viewControllers.isEmpty
-        navigationController.pushViewController(controller, animated: isAnythingInNavigationStack)
+        let animateIfNotRoot = isAnimationEnabled && !navigationController.viewControllers.isEmpty
+        navigationController.pushViewController(controller, animated: animateIfNotRoot)
         guard let action = action else { return }
         navigationController.delegate = navigationTracker
         navigationTracker.trackOnce(navigationController: navigationController,
@@ -85,9 +88,9 @@ open class FlowCoordinator {
 
     func pop(to controller: UIViewController? = nil) {
         if let controller = controller, navigationController.viewControllers.contains(controller) {
-            navigationController.popToViewController(controller, animated: true)
+            navigationController.popToViewController(controller, animated: isAnimationEnabled)
         } else {
-            navigationController.popViewController(animated: true)
+            navigationController.popViewController(animated: isAnimationEnabled)
         }
     }
 
@@ -120,15 +123,15 @@ open class FlowCoordinator {
 
     func presentModally(_ controller: UIViewController) {
         if let presented = rootViewController.presentedViewController {
-            presented.present(controller, animated: true, completion: nil)
+            presented.present(controller, animated: isAnimationEnabled, completion: nil)
         } else {
-            rootViewController.present(controller, animated: true, completion: nil)
+            rootViewController.present(controller, animated: isAnimationEnabled, completion: nil)
         }
     }
 
     func dismissModal(_ completion: (() -> Void)? = nil) {
         if rootViewController.presentedViewController != nil {
-            rootViewController.dismiss(animated: true, completion: completion)
+            rootViewController.dismiss(animated: isAnimationEnabled, completion: completion)
         }
     }
 

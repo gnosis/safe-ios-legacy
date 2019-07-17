@@ -7,11 +7,36 @@ import XCTest
 
 class WCOnboardingToolbarTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
+    let toolbar = WCOnboardingToolbar()
+
+    func test_create() {
+        XCTAssertNotNil(toolbar.pageControl)
+        XCTAssertNotNil(toolbar.actionButtonItem)
     }
 
-    func test_whenCondition_thenResult() {
+    func test_action() {
+        let exp = expectation(description: "Tap")
+        toolbar.action = {
+            exp.fulfill()
+        }
+        toolbar.actionButtonItem.sendAction()
+
+        waitForExpectations(timeout: 0.1, handler: nil)
+    }
+
+    func test_changeTitle() {
+        toolbar.setActionTitle("MyTitle")
+        XCTAssertEqual(toolbar.actionButtonItem.title, "MyTitle")
+    }
+
+}
+
+extension UIBarButtonItem {
+
+    func sendAction() {
+        if let target = target, let action = action {
+            target.performSelector(onMainThread: action, with: nil, waitUntilDone: false)
+        }
     }
 
 }

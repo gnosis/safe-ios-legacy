@@ -33,6 +33,9 @@ public class WalletConnectApplicationService {
 
     public init(chainId: Int) {
         self.chainId = chainId
+    }
+
+    public func setUp() {
         service.updateDelegate(self)
     }
 

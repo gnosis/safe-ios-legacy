@@ -14,24 +14,25 @@ struct WCOnboardingStepInfo {
     var action: () -> Void
 }
 
-public class WCOnboardingViewController: UIPageViewController, UIPageViewControllerDelegate {
+class WCOnboardingViewController: UIPageViewController, UIPageViewControllerDelegate {
 
     private (set) var steps: [WCOnboardingStepInfo] = []
 
-    private var pageDataSource = WCOnboardingPageDataSource()
+    private (set) var pageDataSource = WCOnboardingPageDataSource()
 
-    private var currentViewController: WCOnboardingStepViewController? {
+    var currentViewController: WCOnboardingStepViewController? {
         return viewControllers?.first as? WCOnboardingStepViewController
     }
-    private var currentPageIndex: Int? {
+    var currentPageIndex: Int? {
         guard let vc = currentViewController, let index = pageDataSource.index(of: vc) else { return nil }
         return index
     }
 
-    private let toolbar = WCOnboardingToolbar()
+    let toolbar = WCOnboardingToolbar()
+
     private weak var _navigationController: UINavigationController!
 
-    public static func create(steps: [WCOnboardingStepInfo]) -> WCOnboardingViewController {
+    static func create(steps: [WCOnboardingStepInfo]) -> WCOnboardingViewController {
         let controller = WCOnboardingViewController(transitionStyle: .scroll,
                                                     navigationOrientation: .horizontal,
                                                     options: nil)
@@ -39,7 +40,7 @@ public class WCOnboardingViewController: UIPageViewController, UIPageViewControl
         return controller
     }
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
@@ -70,7 +71,7 @@ public class WCOnboardingViewController: UIPageViewController, UIPageViewControl
         view.bringSubviewToFront(toolbar)
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setCustomBackButton()
         _navigationController = navigationController
@@ -78,12 +79,12 @@ public class WCOnboardingViewController: UIPageViewController, UIPageViewControl
 
     }
 
-    public override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         _navigationController?.navigationBar.shadowImage = Asset.shadow.image
     }
 
-    public func transitionToNextPage() {
+    func transitionToNextPage() {
         if let index = currentPageIndex {
             transition(to: index + 1)
         }
@@ -98,7 +99,7 @@ public class WCOnboardingViewController: UIPageViewController, UIPageViewControl
     }
 
     // called when gesture-based transition finished
-    public func pageViewController(_ pageViewController: UIPageViewController,
+    func pageViewController(_ pageViewController: UIPageViewController,
                             didFinishAnimating finished: Bool,
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool) {

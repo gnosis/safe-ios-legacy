@@ -174,8 +174,9 @@ class MultisigWalletConfigurator {
 
     private class func configureWalletConnect(chainId: Int) {
         DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
-        ApplicationServiceRegistry.put(service: WalletConnectApplicationService(chainId: chainId),
-                                       for: WalletConnectApplicationService.self)
+        let service = WalletConnectApplicationService(chainId: chainId)
+        service.setUp()
+        ApplicationServiceRegistry.put(service: service, for: WalletConnectApplicationService.self)
     }
 
 }
