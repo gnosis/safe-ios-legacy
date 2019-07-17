@@ -576,6 +576,11 @@ public class WalletApplicationService: Assertable {
                                processed: tx.processedDate)
     }
 
+    public func transactionHash(_ id: TransactionID) -> String? {
+        guard let tx = DomainRegistry.transactionRepository.find(id: id) else { return nil }
+        return tx.transactionHash?.value
+    }
+
     private func status(of tx: Transaction) -> TransactionData.Status {
         // TODO: refactor to have similar statuses of transaction in domain model and app
         let hasBrowserExtension = address(of: .browserExtension) != nil
@@ -825,13 +830,14 @@ public class WalletApplicationService: Assertable {
         return transaction.id.id
     }
 
-    public func draftTransaction(wallet: Wallet, sendTransactionData data: SendTransactionRequiredData) -> String? {
+    // TODO: test
+    public func draftTransaction(wallet: Wallet, sendTransactionData data: SendTransactionRequiredData) -> TransactionID {
         let transactionID = DomainRegistry.transactionService
             .newDraftTransaction(in: wallet, token: tokenAddress(toAddress: data.to, data: data.data))
         let transaction = DomainRegistry.transactionRepository.find(id: transactionID)!
         update(transaction: transaction, with: data)
         DomainRegistry.transactionRepository.save(transaction)
-        return transaction.id.id
+        return transaction.id
     }
 
     private func tokenAddress(from message: SendTransactionMessage) -> Address {

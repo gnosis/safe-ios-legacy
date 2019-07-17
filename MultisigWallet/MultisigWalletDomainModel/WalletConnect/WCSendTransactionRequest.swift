@@ -14,6 +14,7 @@ public struct WCSendTransactionRequest: Decodable, Equatable {
     public var value: TokenInt
     public var data: Data
     public var nonce: String
+    public var url: WCURL!
 
     enum CodingKeys: String, CodingKey {
         case from

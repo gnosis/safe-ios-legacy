@@ -3,16 +3,37 @@
 //
 
 import UIKit
+import MultisigWalletApplication
 
 class IncomingTransactionFlowCoordinator: FlowCoordinator {
 
-    var transactionID: String!
+    let transactionID: String
+    private let source: TransactionSource
+    private let sourceMeta: Any?
+
+    enum TransactionSource {
+        case browserExtension
+        case walletConnect
+    }
+
+    init(transactionID: String, source: TransactionSource, sourceMeta: Any?) {
+        self.transactionID = transactionID
+        self.source = source
+        self.sourceMeta = sourceMeta
+    }
 
     override func setUp() {
         super.setUp()
-        assert(transactionID != nil, "TransactionID must be set before entering IncomingTransactionFlowCoordinator")
-        let reviewVC = SendReviewViewController(transactionID: transactionID, delegate: self)
-        push(reviewVC)
+        switch source {
+        case .browserExtension:
+            let reviewVC = SendReviewViewController(transactionID: transactionID, delegate: self)
+            push(reviewVC)
+        case .walletConnect:
+            let wcSessionData = sourceMeta as! WCSessionData
+            let reviewVC = WCSendReviewViewController(transactionID: transactionID, delegate: self)
+            reviewVC.wcSessionData = wcSessionData
+            push(reviewVC)
+        }
     }
 
 }

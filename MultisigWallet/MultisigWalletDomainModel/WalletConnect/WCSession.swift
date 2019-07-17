@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public struct WCURL: Codable {
+public struct WCURL: Codable, Equatable {
 
     public let topic: String
     public let version: String
