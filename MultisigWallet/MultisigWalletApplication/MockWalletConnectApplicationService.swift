@@ -5,7 +5,7 @@
 import Foundation
 
 public class MockWalletConnectApplicationService: WalletConnectApplicationService {
-    
+
     public var connectURL: String?
     override public func connect(url: String) throws {
         connectURL = url
