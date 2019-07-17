@@ -5,18 +5,27 @@
 import Foundation
 import BigInt
 
+public protocol SendTransactionRequiredData {
+
+    var from: Address { get }
+    var to: Address { get }
+    var value: TokenInt { get }
+    var data: Data { get }
+
+}
+
 public class SendTransactionMessage: Message {
 
     public let hash: Data
     public let safe: Address
     public let to: Address
-    public let value: BigInt
+    public let value: TokenInt
     public let data: Data
     public let operation: WalletOperation
-    public let txGas: BigInt
-    public let dataGas: BigInt
-    public let operationalGas: BigInt
-    public let gasPrice: BigInt
+    public let txGas: TokenInt
+    public let dataGas: TokenInt
+    public let operationalGas: TokenInt
+    public let gasPrice: TokenInt
     public let gasToken: Address
     public let nonce: Int
     public let signature: EthSignature
@@ -62,5 +71,11 @@ public class SendTransactionMessage: Message {
         self.nonce = nonce
         super.init(type: SendTransactionMessage.messageType)
     }
+
+}
+
+extension SendTransactionMessage: SendTransactionRequiredData {
+
+    public var from: Address { return safe }
 
 }
