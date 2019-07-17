@@ -113,7 +113,8 @@ open class FlowCoordinator {
         navigationController.setViewControllers([], animated: false)
     }
 
-    func removeViewControllerFromStack(_ vc: UIViewController) {
+    func removeViewControllerFromNavigationStack(_ vc: UIViewController?) {
+        guard let vc = vc else { return }
         var items = navigationController.viewControllers
         if let index = items.firstIndex(of: vc) {
             items.remove(at: index)

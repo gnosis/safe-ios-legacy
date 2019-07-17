@@ -33,13 +33,11 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     func finishOnboarding() {
         ApplicationServiceRegistry.walletConnectService.markOnboardingDone()
         showSessionList()
-        if let vc = self.onboardingController {
-            self.removeViewControllerFromStack(vc)
-        }
         // waiting for showSessionList animation completion
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { [weak self] in
             self?.showScan()
         }
+        removeViewControllerFromNavigationStack(onboardingController)
     }
 
     func showScan() {
