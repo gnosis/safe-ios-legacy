@@ -110,6 +110,14 @@ open class FlowCoordinator {
         navigationController.setViewControllers([], animated: false)
     }
 
+    func removeViewControllerFromStack(_ vc: UIViewController) {
+        var items = navigationController.viewControllers
+        if let index = items.firstIndex(of: vc) {
+            items.remove(at: index)
+            navigationController.setViewControllers(items, animated: false)
+        }
+    }
+
     func presentModally(_ controller: UIViewController) {
         if let presented = rootViewController.presentedViewController {
             presented.present(controller, animated: true, completion: nil)

@@ -75,6 +75,10 @@ final class WCSessionListTableViewController: UITableViewController {
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
     }
 
+    func scan() {
+        scanButtonItem.scan()
+    }
+
     private func subscribeForSessionUpdates() {
         wcService.subscribeForSessionUpdates(self)
     }

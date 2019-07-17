@@ -20,4 +20,13 @@ class WalletConnectFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(nav.topViewController is WCSessionListTableViewController)
     }
 
+    // when onboarding done then shows session list
+    // when onboarding not done then shows onboarding
+    //                                     has 3 steps
+    //                                     1 and 2 step lead to next page
+    //                                     3rd step leads to finishing onboarding
+    // when onboarding finishes then shows session list
+    //                               removes onboarding from stack
+    // when shows scan then scanner shown
+
 }
