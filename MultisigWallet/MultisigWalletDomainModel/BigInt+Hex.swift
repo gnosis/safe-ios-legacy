@@ -4,7 +4,6 @@
 
 import Foundation
 import BigInt
-import EthereumKit
 
 public extension BigInt {
 
@@ -30,6 +29,23 @@ public extension BigUInt {
     /// Returns hex string representation with '0x' prefix.
     var hexString: String {
         return String(self, radix: 16).addHexPrefix()
+    }
+
+}
+
+fileprivate extension String {
+
+    func stripHexPrefix() -> String {
+        var hex = self
+        let prefix = "0x"
+        if hex.hasPrefix(prefix) {
+            hex = String(hex.dropFirst(prefix.count))
+        }
+        return hex
+    }
+
+    func addHexPrefix() -> String {
+        return "0x".appending(self)
     }
 
 }

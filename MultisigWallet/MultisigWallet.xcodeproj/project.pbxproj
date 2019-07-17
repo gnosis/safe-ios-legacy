@@ -147,7 +147,6 @@
 		0A9E384420F4AE510085E8D7 /* GetTransactionReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F120F4A4D20085E8D7 /* GetTransactionReceiptRequest.swift */; };
 		0A9E384520F4AE510085E8D7 /* JSONRPCRequest+BigIntResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F620F4A4D20085E8D7 /* JSONRPCRequest+BigIntResponse.swift */; };
 		0A9E384620F4AE510085E8D7 /* SendRawTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F520F4A4D20085E8D7 /* SendRawTransactionRequest.swift */; };
-		0A9E384720F4AE510085E8D7 /* BigInt+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37E920F4A4D20085E8D7 /* BigInt+Hex.swift */; };
 		0A9E384820F4AE510085E8D7 /* EthAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EA20F4A4D20085E8D7 /* EthAddress.swift */; };
 		0A9E384920F4AE510085E8D7 /* EthBlockNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EB20F4A4D20085E8D7 /* EthBlockNumber.swift */; };
 		0A9E384A20F4AE510085E8D7 /* EthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37E820F4A4D20085E8D7 /* EthData.swift */; };
@@ -161,7 +160,6 @@
 		0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */; };
 		0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EC20F4A4D20085E8D7 /* EthTypesTests.swift */; };
 		0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */; };
-		0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */; };
 		0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */; };
 		0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */; };
 		0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */; };
@@ -240,6 +238,8 @@
 		552C6050212C5AF800BF973A /* AccountUpdateDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C604F212C5AF800BF973A /* AccountUpdateDomainServiceTests.swift */; };
 		552C60872130047D00BF973A /* InMemoryTokenListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */; };
 		552C60882130048300BF973A /* TokenListItemRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2594212301A800E81666 /* TokenListItemRepositoryTests.swift */; };
+		554D17C722DF23DD00B90A70 /* BigInt+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37E920F4A4D20085E8D7 /* BigInt+Hex.swift */; };
+		554D17C822DF23E000B90A70 /* BigInt+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */; };
 		555C949520E2A60F00A0621D /* WalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948A20E2A60F00A0621D /* WalletRepository.swift */; };
 		555C949720E2A60F00A0621D /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948C20E2A60F00A0621D /* AccountRepository.swift */; };
 		555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */; };
@@ -1026,8 +1026,6 @@
 		0A9E37E720F4A4D20085E8D7 /* types */ = {
 			isa = PBXGroup;
 			children = (
-				0A9E37E920F4A4D20085E8D7 /* BigInt+Hex.swift */,
-				0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */,
 				0A9E37EA20F4A4D20085E8D7 /* EthAddress.swift */,
 				0A9E37EB20F4A4D20085E8D7 /* EthBlockNumber.swift */,
 				0A9E37E820F4A4D20085E8D7 /* EthData.swift */,
@@ -1097,6 +1095,8 @@
 			isa = PBXGroup;
 			children = (
 				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
+				0A9E37E920F4A4D20085E8D7 /* BigInt+Hex.swift */,
+				0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */,
 				0AAA175220E27398003B35B3 /* BaseInMemoryRepository.swift */,
 				0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */,
 				0A76BE5420AEF31000D07770 /* DomainRegistry.swift */,
@@ -1828,6 +1828,7 @@
 				0A1B2AAD221EB1A200E92990 /* RBETransactionMonitorRepository.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				5568A1F722D3402D007C9E0C /* WalletConnectDomainService.swift in Sources */,
+				554D17C722DF23DD00B90A70 /* BigInt+Hex.swift in Sources */,
 				0A9E380C20F4A4F20085E8D7 /* ExternallyOwnedAccountRepository.swift in Sources */,
 				55FB258D2121AB3E00E81666 /* TokenList.swift in Sources */,
 				0A9E380920F4A4F20085E8D7 /* GetSafeCreationStatusRequest.swift in Sources */,
@@ -1903,6 +1904,7 @@
 				0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */,
 				0A5C0D482185B6F300988930 /* AllDeploymentStatesTests.swift in Sources */,
 				0ACA9D10212AD37F00E39BB6 /* MockSystem.swift in Sources */,
+				554D17C822DF23E000B90A70 /* BigInt+HexTests.swift in Sources */,
 				0A1B2A97221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift in Sources */,
 				0ACA9D02212ACD4000E39BB6 /* MockTransactionRelayService1.swift in Sources */,
 				0A8272FF2124447D00EB5C21 /* EventPublisherTests.swift in Sources */,
@@ -2004,7 +2006,6 @@
 				5568A1D022CFA2E6007C9E0C /* UpdateSessionRequest.swift in Sources */,
 				0AAA175320E27398003B35B3 /* BaseInMemoryRepository.swift in Sources */,
 				0AD5294421B6E521009559ED /* OwnerList+DBSerializable.swift in Sources */,
-				0A9E384720F4AE510085E8D7 /* BigInt+Hex.swift in Sources */,
 				0A9E384620F4AE510085E8D7 /* SendRawTransactionRequest.swift in Sources */,
 				0A9E384A20F4AE510085E8D7 /* EthData.swift in Sources */,
 				0A4A1D7D2136E4C00088F9EC /* DBTokeListItemRepository.swift in Sources */,
@@ -2066,7 +2067,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */,
 				551D76FE227C7BC9003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				55B5DFB7227C6253001A32F4 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
 				0A8A2B9D20FCDC560003BB7E /* TestFixture.swift in Sources */,
