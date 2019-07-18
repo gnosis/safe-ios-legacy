@@ -674,7 +674,7 @@ public class WalletApplicationService: Assertable {
         if tx.type == .replaceBrowserExtension || tx.type == .disconnectBrowserExtension {
             try proceedTransaction(tx)
         } else {
-            signTransaction(tx)
+            try signTransaction(tx)
             try proceedTransaction(tx)
             try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx))
         }
@@ -687,13 +687,17 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.transactionRepository.save(tx)
     }
 
-    private func signTransaction(_ tx: Transaction) {
+    private func signTransaction(_ tx: Transaction) throws {
         if let extensionAddress = address(of: .browserExtension) {
             try! assertTrue(tx.isSignedBy(extensionAddress), TransactionError.unsignedTransaction)
         }
         let myAddress = address(of: .thisDevice)!
         if !tx.isSignedBy(myAddress) {
-            let pk = DomainRegistry.externallyOwnedAccountRepository.find(by: myAddress)!.privateKey
+            // the eoa may not be available if Keychain is blocked because the device is locked. In that case, the
+            // force unwrapping of the nil eoa will crash.
+            guard let pk = DomainRegistry.externallyOwnedAccountRepository.find(by: myAddress)?.privateKey else {
+                throw WalletApplicationServiceError.failedToSignTransactionByDevice
+            }
             let signatureData = DomainRegistry.encryptionService.sign(transaction: tx, privateKey: pk)
             tx.add(signature: Signature(data: signatureData, address: myAddress))
         }

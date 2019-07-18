@@ -223,6 +223,9 @@
 /* Browser extension code is expired. */
 "ios_error_extension_expired" = "Browser extension code is expired. Please, try again.";
 
+/* Failed to sign. Try again. */
+"ios_error_failed_to_sign_transaction" = "Failed to sign the transaction.Try again.";
+
 /* Application submitted invalid request. */
 "ios_error_generic_client" = "Application submitted invalid request to the server. Try again later.";
 
