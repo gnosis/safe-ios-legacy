@@ -61,6 +61,18 @@ public class Wallet: IdentifiableEntity<WalletID> {
         return state.isFinalizingRecovery
     }
 
+    public var isWaitingForFunding: Bool {
+        return state === notEnoughFundsState
+    }
+
+    public var isWaitingForFirstDeposit: Bool {
+        return state === waitingForFirstDepositState
+    }
+
+    public var isFinalizingDeployment: Bool {
+        return state === finalizingDeploymentState
+    }
+
     public convenience init(id: WalletID,
                             state: WalletState.State,
                             owners: OwnerList,

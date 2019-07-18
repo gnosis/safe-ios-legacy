@@ -114,6 +114,7 @@ public class DeploymentDomainService {
 
     private func waitForFirstDeposit(_ wallet: Wallet) throws {
         try self.repeat(delay: config.balance.repeatDelay) { [unowned self] repeater in
+            guard wallet.isWaitingForFirstDeposit else { return }
             let balance = try self.updateBalance(for: wallet)
             guard balance > 0 else { return }
             self.repeaters.stop(repeater)
@@ -129,6 +130,7 @@ public class DeploymentDomainService {
 
     private func waitForFunding(_ wallet: Wallet) throws {
         try self.repeat(delay: config.balance.repeatDelay) { [unowned self] repeater in
+            guard wallet.isWaitingForFunding else { return }
             let balance = try self.updateBalance(for: wallet)
             guard balance >= wallet.minimumDeploymentTransactionAmount! else { return }
             self.repeaters.stop(repeater)
@@ -202,6 +204,7 @@ public class DeploymentDomainService {
             return
         }
         try self.repeat(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
+            guard wallet.isFinalizingDeployment else { return }
             guard let hash = try self.transactionHash(of: wallet.address!) else { return }
             wallet.assignCreationTransaction(hash: hash.value)
             self.repeaters.stop(repeater)
@@ -212,6 +215,7 @@ public class DeploymentDomainService {
 
     private func waitForCreationTransactionCompletion(_ wallet: Wallet) throws {
         try self.repeat(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
+            guard wallet.isFinalizingDeployment else { return }
             guard let receipt = try self.receipt(of: TransactionHash(wallet.creationTransactionHash!)) else { return }
             self.repeaters.stop(repeater)
             if receipt.status == .success {
