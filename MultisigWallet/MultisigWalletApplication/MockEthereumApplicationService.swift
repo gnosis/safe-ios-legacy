@@ -127,8 +127,10 @@ open class MockEthereumApplicationService: EthereumApplicationService {
 
     open override func generateDerivedExternallyOwnedAccount(address: String) -> ExternallyOwnedAccountData {
         actual_generateDerivedExternallyOwnedAccount.append(address)
-        return expected_generateDerivedExternallyOwnedAccount[
+        let result = expected_generateDerivedExternallyOwnedAccount[
             actual_generateDerivedExternallyOwnedAccount.count - 1].result
+        accounts[result.address] = result
+        return result
     }
 
 }
