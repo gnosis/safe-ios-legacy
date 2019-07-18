@@ -30,12 +30,11 @@ import MultisigWalletApplication
         }
     }
 
-    init() {
-        super.init(style: .grouped)
-    }
+    private (set) var deferredURL: URL?
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    convenience init(url: URL?) {
+        self.init(style: .grouped)
+        deferredURL = url
     }
 
     override func viewDidLoad() {
@@ -44,6 +43,9 @@ import MultisigWalletApplication
         configureTableView()
         subscribeForSessionUpdates()
         update()
+        if let url = deferredURL {
+            scanBarButtonItemDidScanValidCode(url.absoluteString)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

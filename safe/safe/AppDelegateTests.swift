@@ -67,11 +67,21 @@ class AppDelegateTests: XCTestCase {
         // DO NOT CHANGE BECAUSE DEFAULT DATABASE LOCATION MIGHT CHANGE
         XCTAssertEqual(appDelegate.defaultBundleIdentifier, "io.gnosis.safe")
     }
+
+    func test_whenReceivesURL_thenChangesScheme() {
+        let coordinator = MockCoordinator()
+        appDelegate.coordinator = coordinator
+        let url = URL(string: "gnosissafe:123")!
+        _ = appDelegate.application(UIApplication.shared, open: url)
+        XCTAssertEqual(coordinator.url, URL(string: "wc:123"))
+    }
+
 }
 
 class MockCoordinator: MainFlowCoordinator {
 
     var didBecomeActive = false
+    var url: URL?
 
     override func appEntersForeground() {
         didBecomeActive = true
@@ -80,6 +90,10 @@ class MockCoordinator: MainFlowCoordinator {
     override func setUp() {
         super.setUp()
         UIApplication.shared.keyWindow?.rootViewController = UIViewController()
+    }
+
+    override func receive(url: URL) {
+        self.url = url
     }
 
 }

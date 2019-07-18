@@ -11,6 +11,13 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     weak var sessionListController: WCSessionListTableViewController?
     weak var onboardingController: WCOnboardingViewController?
 
+    private var deferredURL: URL?
+
+    convenience init(deferredURL url: URL?, rootViewController: UIViewController? = nil) {
+        self.init(rootViewController: rootViewController)
+        self.deferredURL = url
+    }
+
     override func setUp() {
         super.setUp()
         if ApplicationServiceRegistry.walletConnectService.isOnboardingDone() {
@@ -41,11 +48,11 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     }
 
     func showScan() {
-        self.sessionListController?.scan()
+        sessionListController?.scan()
     }
 
     func showSessionList() {
-        let vc = WCSessionListTableViewController()
+        let vc = WCSessionListTableViewController(url: deferredURL)
         push(vc)
         sessionListController = vc
     }

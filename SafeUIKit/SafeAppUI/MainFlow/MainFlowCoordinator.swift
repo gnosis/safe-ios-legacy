@@ -16,6 +16,8 @@ open class MainFlowCoordinator: FlowCoordinator {
     let newSafeFlowCoordinator = CreateSafeFlowCoordinator()
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionFlowCoordinator = IncomingTransactionFlowCoordinator()
+    private (set) var walletConnectFlowCoordinator: WalletConnectFlowCoordinator!
+
     public var crashlytics: CrashlyticsProtocol?
 
     private var lockedViewController: UIViewController!
@@ -163,6 +165,11 @@ open class MainFlowCoordinator: FlowCoordinator {
         DispatchQueue.global.async {
             try? ApplicationServiceRegistry.walletService.auth()
         }
+    }
+
+    open func receive(url: URL) {
+        walletConnectFlowCoordinator = WalletConnectFlowCoordinator(deferredURL: url)
+        self.enter(flow: walletConnectFlowCoordinator)
     }
 
 }

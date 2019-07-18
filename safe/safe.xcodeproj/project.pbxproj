@@ -653,11 +653,11 @@
 			children = (
 				555C94E320E533C400A0621D /* IntegrationTests */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
+				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
 				0A364B3F226886DB002E80B7 /* IdentityAccessConfigurator.swift */,
 				0A364B3222688473002E80B7 /* MultisigWalletConfigurator.swift */,
 				0A7A4D902270644100706B43 /* Migrations */,
 				0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */,
-				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
 				0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4FA203C3054009C9BE3 /* Info.plist */,
