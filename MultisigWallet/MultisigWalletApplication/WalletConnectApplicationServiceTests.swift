@@ -23,6 +23,7 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
         DomainRegistry.put(service: sessionRepository, for: WalletConnectSessionRepository.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         appService = WalletConnectApplicationService(chainId: 1)
+        appService.setUp()
     }
 
     func test_init_setsDelegate() {

@@ -156,6 +156,9 @@
 /* Explanation text. */
 "funds_did_not_meet_minimum" = "Funds received didn't meet the minimum amount.";
 
+/* Start button title */
+"get_started" = "Get started";
+
 /* Feedback and FAQ menu item */
 "give_feedback" = "Give Feedback";
 
@@ -167,6 +170,9 @@
 
 /* Hide displayed token action. */
 "hide" = "Hide";
+
+/* Onboarding 2 title */
+"how_does_it_work" = "How does it work?";
 
 /* How this works */
 "how_this_works" = "How this works";
@@ -353,6 +359,9 @@
 
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
+
+/* Onboarding 3 title */
+"lets_get_started" = "Let's get started";
 
 /* Licenses */
 "licenses" = "Licenses";
@@ -588,6 +597,9 @@
 /* Text between stars (*) will be emphasized */
 "this_will_generate_new_seed" = "This will generate a new recovery phrase and invalidate your current one.";
 
+/* Onboarding 3 description */
+"to_connect_to_dapp" = "To connect your Safe to the desktop Dapp, scan its QR code.";
+
 /* Title for the transaction details screen */
 "transaction_details" = "Transaction Details";
 
@@ -633,6 +645,12 @@
 /* WalletConnect */
 "walletconnect" = "WalletConnect";
 
+/* Onboarding 1 description */
+"walletconnect_is" = "WalletConnect is a protocol that allows you to connect the Safe to desktop Dapps. The Safe will notify you when the Dapp wants to make a transaction. ";
+
+/* Onboarding 1 title */
+"welcome_to_walletconnect" = "Welcome to WalletConnect";
+
 /* Safe Creation Fee */
 "what_is_safe_creation_fee" = "What is the Safe creation fee?";
 
@@ -641,4 +659,7 @@
 
 /* You are disconnecting from... */
 "you_are_disconnecting_from" = "You are disconnecting from %@";
+
+/* Onboarding 2 description */
+"you_can_manage_connections" = "You can manage connections using the list of active sessions. Transaction requests from Dapps can be confirmed using your Safe.";
 

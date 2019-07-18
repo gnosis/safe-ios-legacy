@@ -73,11 +73,23 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
     }
 
     public func rawCall(payload: String) throws -> String {
-        // TODO: https://github.com/gnosis/safe-ios/issues/934
-        // Use JSONHTTPClient to proxy requests
-        // - proxy only eth_ requests
-        print("WC: handleEthereumNodeRequest: \(payload)")
-        return ""
+        // all requests are proxied to the infura service as is because it is simple to do it now.
+        struct RawJSONRPCRequest: HTTPRequest {
+            var httpMethod: String { return "POST" }
+            var urlPath: String { return "/" }
+            var body: Data?
+            var headers: [String: String] { return ["Content-Type": "application/json"] }
+        }
+        guard let body = payload.data(using: .utf8) else {
+            throw NetworkServiceError.clientError
+        }
+        let request = RawJSONRPCRequest(body: body)
+        let client = Common.HTTPClient(url: url, logger: DomainRegistry.logger)
+        let response = try client.execute(request: request)
+        guard let result = String(data: response, encoding: .utf8) else {
+            throw NetworkServiceError.serverError
+        }
+        return result
     }
 
     /// Executes JSONRPCRequest synchronously. This method is blocking until response or error is received.
@@ -151,12 +163,12 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         }
     }
 
-    private func httpClient() -> HTTPClient {
-        let client = HTTPClient(configuration: Configuration(network: Network.private(chainID: chainId, testUse: false),
-                                                             nodeEndpoint: url.absoluteString,
-                                                             etherscanAPIKey: "",
-                                                             debugPrints: true))
-        return client
+    private func httpClient() -> EthereumKit.HTTPClient {
+        let config = Configuration(network: Network.private(chainID: chainId, testUse: false),
+                                   nodeEndpoint: url.absoluteString,
+                                   etherscanAPIKey: "",
+                                   debugPrints: true)
+        return HTTPClient(configuration: config)
     }
 
 }

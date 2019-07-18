@@ -16,4 +16,17 @@ public class MockWalletConnectApplicationService: WalletConnectApplicationServic
         didSubscribe = true
     }
 
+    public var isOnboardingFinished = false
+    public override func isOnboardingDone() -> Bool {
+        return isOnboardingFinished
+    }
+
+    public override func markOnboardingDone() {
+        isOnboardingFinished = true
+    }
+
+    public override func markOnboardingNeeded() {
+        isOnboardingFinished = false
+    }
+
 }

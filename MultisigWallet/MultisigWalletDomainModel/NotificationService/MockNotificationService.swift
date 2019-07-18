@@ -36,7 +36,7 @@ public final class MockNotificationService: NotificationDomainService {
 
     private func throwIfNeeded() throws {
         if shouldThrowNetworkError {
-            throw JSONHTTPClient.Error.networkRequestFailed(URLRequest(url: URL(string: "http://test.url")!), nil, nil)
+            throw HTTPClient.Error.networkRequestFailed(URLRequest(url: URL(string: "http://test.url")!), nil, nil)
         }
         if shouldThrowValidationFailedError {
             throw NotificationDomainServiceError.validationFailed

@@ -208,7 +208,7 @@ public class WalletApplicationService: Assertable {
             return try block()
         } catch NotificationDomainServiceError.validationFailed {
             throw WalletApplicationServiceError.validationFailed
-        } catch let JSONHTTPClient.Error.networkRequestFailed(request, response, data) {
+        } catch let HTTPClient.Error.networkRequestFailed(request, response, data) {
             logNetworkError(request, response, data)
             if let data = data, let dataStr = String(data: data, encoding: .utf8),
                 dataStr.range(of: "Exceeded expiration date") != nil {
@@ -227,7 +227,7 @@ public class WalletApplicationService: Assertable {
             return try block()
         } catch let error as NetworkServiceError {
             throw self.error(from: error)
-        } catch let JSONHTTPClient.Error.networkRequestFailed(request, response, data) {
+        } catch let HTTPClient.Error.networkRequestFailed(request, response, data) {
             logNetworkError(request, response, data)
             throw self.error(from: response)
         }

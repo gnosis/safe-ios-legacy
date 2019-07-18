@@ -38,7 +38,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
         do {
             try notificationService.pair(pairingRequest: pairingRequest)
             XCTFail("Pairing call should faild for expired browser extension")
-        } catch let e as JSONHTTPClient.Error {
+        } catch let e as HTTPClient.Error {
             switch e {
             case let .networkRequestFailed(_, response, data):
                 XCTAssertNotNil(response)

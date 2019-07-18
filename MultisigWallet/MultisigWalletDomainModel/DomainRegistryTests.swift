@@ -17,6 +17,7 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: InMemoryTransactionRepository(), for: TransactionRepository.self)
         DomainRegistry.put(service: InMemoryTokenListItemRepository(), for: TokenListItemRepository.self)
         DomainRegistry.put(service: InMemoryWCSessionRepository(), for: WalletConnectSessionRepository.self)
+        DomainRegistry.put(service: UserDefaultsAppSettingsRepository(), for: AppSettingsRepository.self)
 
         DomainRegistry.put(service: MockNotificationService(), for: NotificationDomainService.self)
         DomainRegistry.put(service: MockPushTokensDomainService(), for: PushTokensDomainService.self)
@@ -41,6 +42,7 @@ class DomainRegistryTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.transactionRepository)
         XCTAssertNotNil(DomainRegistry.tokenListItemRepository)
         XCTAssertNotNil(DomainRegistry.walletConnectSessionRepository)
+        XCTAssertNotNil(DomainRegistry.appSettingsRepository)
 
         XCTAssertNotNil(DomainRegistry.notificationService)
         XCTAssertNotNil(DomainRegistry.pushTokensService)

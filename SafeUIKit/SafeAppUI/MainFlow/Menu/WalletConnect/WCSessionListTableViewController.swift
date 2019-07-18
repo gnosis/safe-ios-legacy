@@ -6,7 +6,7 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 
-final class WCSessionListTableViewController: UITableViewController {
+ class WCSessionListTableViewController: UITableViewController {
 
     var scanButtonItem: ScanBarButtonItem!
     let noSessionsView = EmptyResultsView()
@@ -30,8 +30,16 @@ final class WCSessionListTableViewController: UITableViewController {
         }
     }
 
+    /// The WalletConnect url to connect to when the screen will load.
+    private (set) var connectionURL: URL?
+
     init() {
         super.init(style: .grouped)
+    }
+
+    init(connectionURL: URL?) {
+        super.init(style: .grouped)
+        self.connectionURL = connectionURL
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -44,6 +52,9 @@ final class WCSessionListTableViewController: UITableViewController {
         configureTableView()
         subscribeForSessionUpdates()
         update()
+        if let url = connectionURL {
+            scanBarButtonItemDidScanValidCode(url.absoluteString)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +84,10 @@ final class WCSessionListTableViewController: UITableViewController {
                            forCellReuseIdentifier: "WCSessionListCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
+    }
+
+    func scan() {
+        scanButtonItem?.scan()
     }
 
     private func subscribeForSessionUpdates() {

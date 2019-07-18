@@ -15,7 +15,7 @@ extension UIViewController {
     /// That means, wherever we want to have a custom back button, we must set in on the view controller
     /// that is below the current one in the navigation stack.
     func setCustomBackButton(_ button: UIBarButtonItem = .backButton()) {
-        if let nav = navigationController, let thisIndex = nav.viewControllers.lastIndex(of: self), thisIndex > 1 {
+        if let nav = navigationController, let thisIndex = nav.viewControllers.lastIndex(of: self), thisIndex >= 1 {
             nav.viewControllers[thisIndex - 1].navigationItem.backBarButtonItem = button
         }
     }

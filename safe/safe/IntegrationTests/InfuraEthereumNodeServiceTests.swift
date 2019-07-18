@@ -123,6 +123,17 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
         XCTAssertEqual(try proxy.getThreshold(), 2)
     }
 
+    func test_rawCall() throws {
+        let payload = """
+{"jsonrpc":"2.0","method":"eth_getUncleCountByBlockNumber","params":["0xe8"],"id":1}
+"""
+        let expectedResponse = """
+{"jsonrpc":"2.0","id":1,"result":"0x0"}
+"""
+        let response = try service.rawCall(payload: payload)
+        XCTAssertEqual(response, expectedResponse)
+    }
+
 }
 
 struct SafeContractInfo {

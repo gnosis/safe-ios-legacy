@@ -111,6 +111,11 @@ enum Asset {
     static let safeHeaderLogo = ImageAsset(name: "safe-header-logo")
     static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   }
+  enum WalletConnect {
+    static let _1 = ImageAsset(name: "1")
+    static let _2 = ImageAsset(name: "2")
+    static let _3 = ImageAsset(name: "3")
+  }
 
   // swiftlint:disable trailing_comma
   static let allColors: [ColorAsset] = [
@@ -161,6 +166,9 @@ enum Asset {
     UnlockScreen.safeHeaderLogoRinkeby,
     UnlockScreen.safeHeaderLogo,
     UnlockScreen.touchIdIcon,
+    WalletConnect._1,
+    WalletConnect._2,
+    WalletConnect._3,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

@@ -134,6 +134,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         LogService.shared.error("Failed to registed to remote notifications \(error)")
     }
 
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        LogService.shared.debug("Received deep link URL: \(url), options: \(options)")
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            LogService.shared.error("Malformed deep link URL: \(url), options: \(options)")
+            return false
+        }
+        components.scheme = "wc"
+        let walletConnectURL = components.url!
+        coordinator.receive(url: walletConnectURL)
+        return true
+    }
+
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
