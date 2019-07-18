@@ -24,7 +24,7 @@ public class TransactionDomainService {
         let transaction = Transaction(id: repository.nextID(),
                                       type: .transfer,
                                       accountID: AccountID(tokenID: TokenID(token.value), walletID: wallet.id))
-        transaction.change(sender: wallet.address!)
+        transaction.change(sender: wallet.address)
         repository.save(transaction)
         return transaction.id
     }

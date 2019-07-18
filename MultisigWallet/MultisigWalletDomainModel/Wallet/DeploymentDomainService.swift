@@ -138,7 +138,7 @@ public class DeploymentDomainService {
 
     private func updateBalance(for wallet: Wallet) throws -> TokenInt {
         let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
-        let balance = try self.balance(of: wallet.address!, for: token)
+        let balance = try self.balance(of: wallet.address, for: token)
         let accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
         let account = DomainRegistry.accountRepository.find(id: accountID)!
         account.update(newAmount: balance)
@@ -161,7 +161,7 @@ public class DeploymentDomainService {
 
     private func walletAlreadyCreated(_ wallet: Wallet) -> Bool {
         do {
-            _ = try DomainRegistry.transactionRelayService.safeInfo(address: wallet.address!)
+            _ = try DomainRegistry.transactionRelayService.safeInfo(address: wallet.address)
             return true
         } catch {
             return false
@@ -176,7 +176,7 @@ public class DeploymentDomainService {
 
     func walletFunded(_ event: DeploymentFunded) {
         handleError { wallet in
-            try DomainRegistry.transactionRelayService.startSafeCreation(address: wallet.address!)
+            try DomainRegistry.transactionRelayService.startSafeCreation(address: wallet.address)
             wallet.proceed()
         }
     }
@@ -202,7 +202,7 @@ public class DeploymentDomainService {
             return
         }
         try self.repeat(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
-            guard let hash = try self.transactionHash(of: wallet.address!) else { return }
+            guard let hash = try self.transactionHash(of: wallet.address) else { return }
             wallet.assignCreationTransaction(hash: hash.value)
             self.repeaters.stop(repeater)
             DomainRegistry.walletRepository.save(wallet)
