@@ -55,7 +55,6 @@ public protocol WalletConnectDomainServiceDelegate: class {
 
 }
 
-// TODO: why is it a protocol? this should be a concrete implementation. Misunderstanding of the domain service role?
 public protocol WalletConnectDomainService {
 
     /// Updates service delegate.

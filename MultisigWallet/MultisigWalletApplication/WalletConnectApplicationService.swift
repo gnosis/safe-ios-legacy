@@ -12,7 +12,6 @@ public class SendTransactionRequested: DomainEvent {}
 
 public typealias WCPendingTransaction = (request: WCSendTransactionRequest, completion: (Result<String, Error>) -> Void)
 
-// TODO: why is it so different from the contract specification? (https://github.com/gnosis/safe-ios/issues/908)
 public class WalletConnectApplicationService {
 
     let chainId: Int
@@ -92,7 +91,6 @@ public class WalletConnectApplicationService {
 
 }
 
-// TODO: why all of these public? these should be internal!
 extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
 
     public func didFailToConnect(url: WCURL) {
