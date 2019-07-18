@@ -139,7 +139,10 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     private func confirmMnemonic() {
-        if !recoveryModeEnabled {
+        let existingPaperWalletAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet)
+        let walletHasMnemonicSet = existingPaperWalletAddress == account.address &&
+            ApplicationServiceRegistry.walletService.isOwnerExists(.paperWalletDerived)
+        if !recoveryModeEnabled && !walletHasMnemonicSet {
             ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
             let derivedAccount = ApplicationServiceRegistry.ethereumService
                 .generateDerivedExternallyOwnedAccount(address: account.address)
