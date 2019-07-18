@@ -150,3 +150,11 @@ extension RecoverRecoveryFeeViewController: LongProcessTrackerDelegate {
     }
 
 }
+
+extension RecoverRecoveryFeeViewController: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
+    }
+
+}

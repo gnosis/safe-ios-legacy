@@ -139,10 +139,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     private func confirmMnemonic() {
-        let existingPaperWalletAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet)
-        let walletHasMnemonicSet = existingPaperWalletAddress == account.address &&
-            ApplicationServiceRegistry.walletService.isOwnerExists(.paperWalletDerived)
-        if !recoveryModeEnabled && !walletHasMnemonicSet {
+        if !recoveryModeEnabled && !hasAlreadySetOwnersFromMnemonic() {
             ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
             let derivedAccount = ApplicationServiceRegistry.ethereumService
                 .generateDerivedExternallyOwnedAccount(address: account.address)
@@ -150,6 +147,16 @@ final class ConfirmMnemonicViewController: UIViewController {
                                                               type: .paperWalletDerived)
         }
         delegate?.confirmMnemonicViewControllerDidConfirm(self)
+    }
+
+    private func hasAlreadySetOwnersFromMnemonic() -> Bool {
+        if let existingPaperWalletAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet),
+            let existingDerivedAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWalletDerived),
+            ApplicationServiceRegistry.ethereumService.findExternallyOwnedAccount(by: existingDerivedAddress) != nil,
+            account.address == existingPaperWalletAddress {
+            return true
+        }
+        return false
     }
 
     private func shakeErrors() {
