@@ -30,8 +30,16 @@ import MultisigWalletApplication
         }
     }
 
+    /// The WalletConnect url to connect to when the screen will load.
+    private (set) var connectionURL: URL?
+
     init() {
         super.init(style: .grouped)
+    }
+
+    init(connectionURL: URL?) {
+        super.init(style: .grouped)
+        self.connectionURL = connectionURL
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -44,6 +52,9 @@ import MultisigWalletApplication
         configureTableView()
         subscribeForSessionUpdates()
         update()
+        if let url = connectionURL {
+            scanBarButtonItemDidScanValidCode(url.absoluteString)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

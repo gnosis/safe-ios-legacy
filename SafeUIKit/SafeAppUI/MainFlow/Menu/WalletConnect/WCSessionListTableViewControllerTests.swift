@@ -13,7 +13,7 @@ class WCSessionListTableViewControllerTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         controller = WCSessionListTableViewController()
-        controller.viewDidLoad()
+        controller.loadViewIfNeeded()
     }
 
     func test_whenNoActiveSessions_thenShowsNoSessionsView() {
@@ -44,6 +44,12 @@ class WCSessionListTableViewControllerTests: SafeTestCase {
 
     func test_whenCreated_thenSubscribesOnEvents() {
         XCTAssertTrue(walletConnectService.didSubscribe)
+    }
+
+    func test_whenInitWithURL_thenConnects() {
+        controller = WCSessionListTableViewController(connectionURL: URL(string: "wc:123")!)
+        controller.loadViewIfNeeded()
+        XCTAssertNotNil(walletConnectService.connectURL)
     }
 
 }

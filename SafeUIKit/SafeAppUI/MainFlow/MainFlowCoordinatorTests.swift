@@ -219,4 +219,9 @@ class MainFlowCoordinatorTests: SafeTestCase {
         XCTAssertEqual(confirmPhraseEvent, .enterSeed)
     }
 
+    func test_whenReceivesURL_thenEntersWalletConnectFlow() {
+        mainFlowCoordinator.receive(url: URL(string: "wc:123")!)
+        XCTAssertNotNil(mainFlowCoordinator.walletConnectFlowCoordinator)
+    }
+
 }

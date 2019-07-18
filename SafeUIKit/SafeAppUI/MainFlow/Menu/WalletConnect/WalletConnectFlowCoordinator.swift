@@ -11,6 +11,17 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     weak var sessionListController: WCSessionListTableViewController?
     weak var onboardingController: WCOnboardingViewController?
 
+    /// URL to connect to when the flow coordinator opens session list (even after onboarding).
+    ///
+    /// We defer connecting to this URL until the session list screen is shown because before that
+    /// the UI is not properly intiialized to show error or other information.
+    private var connectionURL: URL?
+
+    convenience init(connectionURL url: URL?, rootViewController: UIViewController? = nil) {
+        self.init(rootViewController: rootViewController)
+        self.connectionURL = url
+    }
+
     override func setUp() {
         super.setUp()
         if ApplicationServiceRegistry.walletConnectService.isOnboardingDone() {
@@ -41,11 +52,11 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     }
 
     func showScan() {
-        self.sessionListController?.scan()
+        sessionListController?.scan()
     }
 
     func showSessionList() {
-        let vc = WCSessionListTableViewController()
+        let vc = WCSessionListTableViewController(connectionURL: connectionURL)
         push(vc)
         sessionListController = vc
     }
