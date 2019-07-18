@@ -168,7 +168,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     open func receive(url: URL) {
-        walletConnectFlowCoordinator = WalletConnectFlowCoordinator(deferredURL: url)
+        walletConnectFlowCoordinator = WalletConnectFlowCoordinator(connectionURL: url)
         self.enter(flow: walletConnectFlowCoordinator)
     }
 

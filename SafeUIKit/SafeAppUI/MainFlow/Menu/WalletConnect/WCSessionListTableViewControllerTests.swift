@@ -47,7 +47,7 @@ class WCSessionListTableViewControllerTests: SafeTestCase {
     }
 
     func test_whenInitWithURL_thenConnects() {
-        controller = WCSessionListTableViewController(url: URL(string: "wc:123")!)
+        controller = WCSessionListTableViewController(connectionURL: URL(string: "wc:123")!)
         controller.loadViewIfNeeded()
         XCTAssertNotNil(walletConnectService.connectURL)
     }

@@ -72,9 +72,9 @@ class WalletConnectFlowCoordinatorTests: XCTestCase {
 
     func test_whenHasDeferredURL_thenOpensSessionsWithURL() {
         let url = URL(string: "wc:123")!
-        fc = WalletConnectFlowCoordinator(deferredURL: url, rootViewController: nav)
+        fc = WalletConnectFlowCoordinator(connectionURL: url, rootViewController: nav)
         fc.showSessionList()
-        XCTAssertEqual(fc.sessionListController!.deferredURL, url)
+        XCTAssertEqual(fc.sessionListController!.connectionURL, url)
     }
 
 }
