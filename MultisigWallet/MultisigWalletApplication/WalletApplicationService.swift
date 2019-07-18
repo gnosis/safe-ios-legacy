@@ -830,7 +830,6 @@ public class WalletApplicationService: Assertable {
         return transaction.id.id
     }
 
-    // TODO: test
     public func draftTransaction(wallet: Wallet, sendTransactionData data: SendTransactionRequiredData) -> TransactionID {
         let transactionID = DomainRegistry.transactionService
             .newDraftTransaction(in: wallet, token: tokenAddress(toAddress: data.to, data: data.data))

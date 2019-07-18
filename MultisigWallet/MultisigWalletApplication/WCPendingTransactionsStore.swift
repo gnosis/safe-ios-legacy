@@ -11,7 +11,9 @@ public struct WCPendingTransaction {
     public var sessionData: WCSessionData
     public var completion: (Result<String, Error>) -> Void
 
-    init(transactionID: TransactionID, sessionData: WCSessionData, completion: @escaping (Result<String, Error>) -> Void) {
+    init(transactionID: TransactionID,
+         sessionData: WCSessionData,
+         completion: @escaping (Result<String, Error>) -> Void) {
         self.transactionID = transactionID
         self.sessionData = sessionData
         self.completion = completion
@@ -19,7 +21,6 @@ public struct WCPendingTransaction {
 
 }
 
-// TODO: test
 final class WCPendingTransactionsStore {
 
     private var pendingTransactions = [WCPendingTransaction]()
