@@ -34,7 +34,7 @@ public final class ScanBarButtonItem: UIBarButtonItem {
         action = #selector(scan)
     }
 
-    @objc private func scan() {
+    @objc public func scan() {
         scanHandler.scan()
     }
 

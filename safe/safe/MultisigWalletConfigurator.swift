@@ -49,6 +49,7 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: CommunicationDomainService(), for: CommunicationDomainService.self)
         DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata),
                            for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: UserDefaultsAppSettingsRepository(), for: AppSettingsRepository.self)
 
 
         let relay = EventRelay(publisher: DomainRegistry.eventPublisher)
@@ -173,8 +174,9 @@ class MultisigWalletConfigurator {
 
     private class func configureWalletConnect(chainId: Int) {
         DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
-        ApplicationServiceRegistry.put(service: WalletConnectApplicationService(chainId: chainId),
-                                       for: WalletConnectApplicationService.self)
+        let service = WalletConnectApplicationService(chainId: chainId)
+        service.setUp()
+        ApplicationServiceRegistry.put(service: service, for: WalletConnectApplicationService.self)
     }
 
 }

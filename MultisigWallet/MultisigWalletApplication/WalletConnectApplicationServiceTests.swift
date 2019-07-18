@@ -29,6 +29,7 @@ class WalletConnectApplicationServiceTests: XCTestCase {
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: relayService, for: EventRelay.self)
         appService = WalletConnectApplicationService(chainId: 1)
+        appService.setUp()
     }
 
     func test_init_setsDelegate() {

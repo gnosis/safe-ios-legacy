@@ -15,6 +15,7 @@ public typealias WCPendingTransaction = (request: WCSendTransactionRequest, comp
 public class WalletConnectApplicationService {
 
     let chainId: Int
+    private let onboardingKey = "io.gnosis.safe.MultisigWalletApplication.isWalletConnectOnboardingDone"
 
     private var service: WalletConnectDomainService { return DomainRegistry.walletConnectService }
     private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
@@ -22,6 +23,7 @@ public class WalletConnectApplicationService {
     private var eventPublisher: EventPublisher { return  DomainRegistry.eventPublisher }
     private var sessionRepo: WalletConnectSessionRepository { return DomainRegistry.walletConnectSessionRepository }
     private var ethereumNodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
+    private var appSettingsRepository: AppSettingsRepository { return DomainRegistry.appSettingsRepository }
 
     internal var pendingTransactions = [WCPendingTransaction]()
 
@@ -31,6 +33,9 @@ public class WalletConnectApplicationService {
 
     public init(chainId: Int) {
         self.chainId = chainId
+    }
+
+    public func setUp() {
         service.updateDelegate(self)
     }
 
@@ -64,6 +69,25 @@ public class WalletConnectApplicationService {
             pendingTransactions = []
         }
         return pendingTransactions
+    }
+
+    // MARK: Getting Started
+
+    /// Returns status of the Wallet Connect onboarding
+    ///
+    /// - Returns: true if onboarding was marked as done, false otherwise
+    open func isOnboardingDone() -> Bool {
+        return appSettingsRepository.setting(for: onboardingKey) as? Bool == true
+    }
+
+    /// After finishing onboarding, it should not be entered again
+    open func markOnboardingDone() {
+        appSettingsRepository.set(setting: true, for: onboardingKey)
+    }
+
+    /// If user decides that onboarding needed again, this would turn it on
+    open func markOnboardingNeeded() {
+        appSettingsRepository.remove(for: onboardingKey)
     }
 
 }

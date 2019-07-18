@@ -11,7 +11,4 @@ class TestFlowCoordinator: FlowCoordinator {
         super.init(rootViewController: UINavigationController())
     }
 
-    var topViewController: UIViewController? {
-        return navigationController.topViewController
-    }
 }
