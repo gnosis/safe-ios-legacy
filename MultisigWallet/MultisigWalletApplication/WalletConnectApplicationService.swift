@@ -23,6 +23,7 @@ public class WalletConnectApplicationService {
     private var eventPublisher: EventPublisher { return  DomainRegistry.eventPublisher }
     private var sessionRepo: WalletConnectSessionRepository { return DomainRegistry.walletConnectSessionRepository }
     private var ethereumNodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
+    private var appSettingsRepository: AppSettingsRepository { return DomainRegistry.appSettingsRepository }
 
     internal var pendingTransactions = [WCPendingTransaction]()
 
@@ -76,17 +77,17 @@ public class WalletConnectApplicationService {
     ///
     /// - Returns: true if onboarding was marked as done, false otherwise
     open func isOnboardingDone() -> Bool {
-        return DomainRegistry.appSettingsRepository.setting(for: onboardingKey) as? Bool == true
+        return appSettingsRepository.setting(for: onboardingKey) as? Bool == true
     }
 
     /// After finishing onboarding, it should not be entered again
     open func markOnboardingDone() {
-        DomainRegistry.appSettingsRepository.set(setting: true, for: onboardingKey)
+        appSettingsRepository.set(setting: true, for: onboardingKey)
     }
 
     /// If user decides that onboarding needed again, this would turn it on
     open func markOnboardingNeeded() {
-        DomainRegistry.appSettingsRepository.remove(for: onboardingKey)
+        appSettingsRepository.remove(for: onboardingKey)
     }
 
 }
