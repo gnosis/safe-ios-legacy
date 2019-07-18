@@ -76,7 +76,6 @@ class WCOnboardingViewController: UIPageViewController, UIPageViewControllerDele
         setCustomBackButton()
         _navigationController = navigationController
         _navigationController?.navigationBar.shadowImage = UIImage()
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {
