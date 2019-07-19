@@ -108,6 +108,17 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
         XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.enterSeed)
     }
 
+    func test_whenConfirmedTwice_thenDoesNotCrash() {
+        walletService.createNewDraftWallet()
+        walletService.addOwner(address: controller.account.address, type: .paperWallet)
+        let expectedEOA = ExternallyOwnedAccountData(address: "derived",
+                                                     mnemonicWords: controller.account.mnemonicWords)
+        ethereumService.expect_generateDerivedExternallyOwnedAccount(address: controller.account.address,
+                                                                     expectedEOA)
+        typeIntoTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
+        typeIntoTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
+    }
+
 }
 
 extension ConfirmMnemonicViewControllerTests {

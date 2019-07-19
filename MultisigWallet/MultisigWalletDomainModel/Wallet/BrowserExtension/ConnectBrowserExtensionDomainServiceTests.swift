@@ -54,7 +54,7 @@ class BaseBrowserExtensionModificationTestCase: XCTestCase {
     let walletRepo = InMemoryWalletRepository()
     let portfolioRepo = InMemorySinglePortfolioRepository()
     let encryptionService = MockEncryptionService()
-    lazy var proxy = TestableOwnerProxy(wallet.address!)
+    lazy var proxy = TestableOwnerProxy(wallet.address)
     var wallet: Wallet {
         return walletRepo.selectedWallet()!
     }

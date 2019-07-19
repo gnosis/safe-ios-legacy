@@ -26,7 +26,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     override var actionFailureMessageFormat: String {
-        return LocalizedString("incorrect_seed", comment: "Error format for invalid recovery phrase")
+        return LocalizedString("ios_incorrect_seed_error_format", comment: "Error format for invalid recovery phrase")
     }
 
     static let maxInputLength: Int = 500

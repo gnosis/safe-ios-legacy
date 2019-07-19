@@ -28,7 +28,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var recoveryInProgressState: WalletState!
     public private(set) var recoveryPostProcessingState: WalletState!
 
-    public private(set) var address: Address?
+    public private(set) var address: Address!
 
     /// nil is treated as ETH by default
     public private(set) var feePaymentTokenAddress: Address?

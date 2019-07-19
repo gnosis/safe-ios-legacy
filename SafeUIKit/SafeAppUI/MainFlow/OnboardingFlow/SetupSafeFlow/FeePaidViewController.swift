@@ -134,3 +134,11 @@ fileprivate extension UILabel {
     }
 
 }
+
+extension FeePaidViewController: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
+    }
+
+}

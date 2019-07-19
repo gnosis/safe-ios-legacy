@@ -35,7 +35,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     var contractProxy: SafeOwnerManagerContractProxy {
-        return ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
+        return ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address)
     }
 
     public init() {}
@@ -51,7 +51,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         let tx = Transaction(id: repository.nextID(),
                              type: transactionType,
                              accountID: AccountID(tokenID: TokenID(token.value), walletID: requiredWallet.id))
-        tx.change(amount: .ether(0)).change(sender: requiredWallet.address!)
+        tx.change(amount: .ether(0)).change(sender: requiredWallet.address)
         repository.save(tx)
         return tx.id
     }
@@ -62,7 +62,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     public func addDummyData(to transactionID: TransactionID) {
         let tx = transaction(transactionID)
-        tx.change(recipient: requiredWallet.address!)
+        tx.change(recipient: requiredWallet.address)
             .change(operation: .call)
             .change(data: dummyTransactionData())
         repository.save(tx)
@@ -72,7 +72,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         if let linkedList = remoteOwnersList(), let toSwap = linkedList.firstAddress() {
             return contractProxy.swapOwner(prevOwner: linkedList.addressBefore(toSwap),
                                            old: toSwap,
-                                           new: requiredWallet.address!)
+                                           new: requiredWallet.address)
         }
         var remoteList = OwnerLinkedList()
         remoteList.add(.zero)

@@ -8,9 +8,6 @@
 /* Title for safe address section. */
 "address" = "Address";
 
-/* Recovery address validation failed alert's message */
-"address_invalid" = "Address is invalid";
-
 /* Agree */
 "agree" = "Agree";
 
@@ -180,9 +177,6 @@
 /* Incorrect password */
 "incorrect_password" = "Incorrect password";
 
-/* Error format for invalid recovery phrase */
-"incorrect_seed" = "Incorrect recovery phrase";
-
 /* Info */
 "info" = "Info";
 
@@ -256,6 +250,9 @@
 /* Follow its progress on Etherscan.io */
 "ios_follow_progress" = "Follow its progress on Etherscan.io";
 
+/* Error format for invalid recovery phrase */
+"ios_incorrect_seed_error_format" = "Incorrect recovery phrase: %@";
+
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
 "ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
 
@@ -267,6 +264,9 @@
 
 /* Recovered Safe */
 "ios_recovered_safe" = "Recovered\nSafe";
+
+/* Recovery address validation failed alert's message */
+"ios_recovery_address_validation_failure_format" = "Address is invalid: %@";
 
 /* Recovery transaction failed to change Safe confirmation count */
 "ios_recovery_error_changecount" = "Recovery transaction failed to change Safe confirmation count";

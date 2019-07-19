@@ -4,9 +4,17 @@
 
 import UIKit
 
+protocol InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool
+
+}
+
 /// This custom navigation controller enhances default in several ways:
 ///   - updates status bar style based on current child view controller
 ///   - enables swipe back gesture even if custom back button is used (credits https://bit.ly/2RgJtI6)
+///   - adds ability to block swipe back gesture by the top view controller
+///     implementing InteractivePopGestureResponder protocol
 class CustomNavigationController: UINavigationController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -42,6 +50,10 @@ extension CustomNavigationController: UIGestureRecognizerDelegate {
 
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard gestureRecognizer is UIScreenEdgePanGestureRecognizer else { return true }
+        if let responder = topViewController as? InteractivePopGestureResponder,
+            !responder.interactivePopGestureShouldBegin() {
+            return false
+        }
         return viewControllers.count > 1 && !isPushingViewController
     }
 

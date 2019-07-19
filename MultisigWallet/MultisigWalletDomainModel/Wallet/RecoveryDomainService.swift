@@ -96,7 +96,7 @@ public class RecoveryDomainService: Assertable {
 
     private func pullWalletData() throws {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let ownerContract = SafeOwnerManagerContractProxy(wallet.address!)
+        let ownerContract = SafeOwnerManagerContractProxy(wallet.address)
         let existingOwnerAddresses = try ownerContract.getOwners()
         let confirmationCount = try ownerContract.getThreshold()
 
@@ -109,7 +109,7 @@ public class RecoveryDomainService: Assertable {
             wallet.addOwner(Owner(address: address, role: .unknown))
         }
         wallet.changeConfirmationCount(confirmationCount)
-        let proxyContract = WalletProxyContractProxy(wallet.address!)
+        let proxyContract = WalletProxyContractProxy(wallet.address)
         guard let masterCopy = try proxyContract.masterCopyAddress() else {
             throw RecoveryServiceError.invalidContractAddress
         }
@@ -288,7 +288,7 @@ public class RecoveryDomainService: Assertable {
         assert(wallet.isFinalizingRecovery && tx.status == .success, "Invalid post-processing state")
 
         do {
-            let ownersContract = SafeOwnerManagerContractProxy(wallet.address!)
+            let ownersContract = SafeOwnerManagerContractProxy(wallet.address)
 
             let remoteOwners = try ownersContract.getOwners()
                 .map { $0.value.lowercased() }.sorted()
@@ -489,13 +489,13 @@ class RecoveryTransactionBuilder: Assertable {
         let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
         accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
 
-        ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address!)
+        ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address)
         multiSendContractProxy = MultiSendContractProxy(self.multiSendContractAddress)
 
-        print("Wallet \(wallet.id), address \(wallet.address!)")
+        print("Wallet \(wallet.id), address \(wallet.address)")
 
         transaction = newTransaction()
-            .change(sender: wallet.address!)
+            .change(sender: wallet.address)
             .change(amount: .ether(0))
     }
 
@@ -657,11 +657,11 @@ class RecoveryTransactionBuilder: Assertable {
         let input = data.filter { !$0.isEmpty }
         switch input.count {
         case 0: // may happen when the database was not updated but previous recovery tx went through
-            transaction.change(recipient: wallet.address!)
+            transaction.change(recipient: wallet.address)
                 .change(operation: .call)
                 .change(data: nil)
         case 1:
-            transaction.change(recipient: wallet.address!)
+            transaction.change(recipient: wallet.address)
                 .change(operation: .call)
                 .change(data: input.first)
         default:
@@ -710,7 +710,7 @@ class RecoveryTransactionBuilder: Assertable {
 
     private func multiSendData(_ transactionData: [Data]) -> Data {
         return multiSendContractProxy.multiSend(transactionData.filter { !$0.isEmpty }.map {
-            (operation: .call, to: wallet.address!, value: 0, data: $0) })
+            (operation: .call, to: wallet.address, value: 0, data: $0) })
     }
 
     private func isSupportedSafeOwners() -> Bool {

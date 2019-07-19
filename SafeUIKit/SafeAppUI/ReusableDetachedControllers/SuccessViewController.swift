@@ -81,3 +81,11 @@ class SuccessViewController: UIViewController {
     }
 
 }
+
+extension SuccessViewController: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
+    }
+
+}
