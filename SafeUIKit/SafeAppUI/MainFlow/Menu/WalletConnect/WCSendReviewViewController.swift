@@ -28,7 +28,7 @@ final class WCSendReviewViewController: SendReviewViewController {
 
     private func dappCell() -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WCSessionListCell") as! WCSessionListCell
-        cell.configure(wcSessionData: wcSessionData)
+        cell.configure(wcSessionData: wcSessionData, screen: .review)
         return cell
     }
 

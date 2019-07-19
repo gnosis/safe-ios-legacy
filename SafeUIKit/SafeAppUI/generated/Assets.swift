@@ -52,6 +52,7 @@ enum Asset {
   enum ConnectBrowserExtension {
     static let connectIntroIcon = ImageAsset(name: "connect-intro-icon")
   }
+  static let dappPlaceholder = ImageAsset(name: "dapp-placeholder")
   enum MainScreenHeader {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
@@ -127,6 +128,7 @@ enum Asset {
     checkmark,
     congratulations,
     ConnectBrowserExtension.connectIntroIcon,
+    dappPlaceholder,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
     navbarFilled,

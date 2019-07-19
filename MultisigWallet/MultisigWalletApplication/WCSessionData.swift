@@ -23,7 +23,7 @@ public struct WCSessionData {
     init(wcSession: WCSession) {
         let meta = wcSession.dAppInfo.peerMeta
         let subtitle = wcSession.status == .connecting ?
-            LocalizedString("connecting", comment: "Connecting...") : meta.description
+            LocalizedString("connecting", comment: "Connecting...") : meta.url.absoluteString
         self.init(id: wcSession.id,
                   imageURL: meta.icons.isEmpty ? nil : meta.icons[0],
                   title: meta.name,

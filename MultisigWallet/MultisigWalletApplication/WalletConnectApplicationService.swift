@@ -60,7 +60,7 @@ public class WalletConnectApplicationService {
     }
 
     public func sessions() -> [WCSessionData] {
-        return service.openSessions().map { WCSessionData(wcSession: $0) }
+        return service.openSessions().map { WCSessionData(wcSession: $0) }.sorted { $0.title < $1.title }
     }
 
     public func subscribeForSessionUpdates(_ subscriber: EventSubscriber) {

@@ -126,7 +126,7 @@ import MultisigWalletApplication
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WCSessionListCell",
                                                  for: indexPath) as! WCSessionListCell
-        cell.configure(wcSessionData: sessions[indexPath.row])
+        cell.configure(wcSessionData: sessions[indexPath.row], screen: .sessions)
         return cell
     }
 
