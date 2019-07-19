@@ -9,6 +9,7 @@ public struct WCPendingTransaction {
 
     public var transactionID: TransactionID
     public var sessionData: WCSessionData
+    /// should return submitted transaction hash or error
     public var completion: (Result<String, Error>) -> Void
 
     init(transactionID: TransactionID,
@@ -21,15 +22,15 @@ public struct WCPendingTransaction {
 
 }
 
-final class WCPendingTransactionsStore {
+final class WCPendingTransactionsRepository {
 
     private var pendingTransactions = [WCPendingTransaction]()
 
-    func addPendingTransaction(_ transaction: WCPendingTransaction) {
+    func add(_ transaction: WCPendingTransaction) {
         pendingTransactions.append(transaction)
     }
 
-    func popPendingTransactions() -> [WCPendingTransaction] {
+    func popAll() -> [WCPendingTransaction] {
         defer {
             pendingTransactions = []
         }

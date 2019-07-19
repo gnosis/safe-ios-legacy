@@ -15,8 +15,10 @@ extension WCSendTransactionRequest: SendTransactionRequiredData {}
 
 public class WalletConnectApplicationService {
 
+    // TODO: move to domain service
     let chainId: Int
-    let transactionsStore = WCPendingTransactionsStore()
+    let transactionsStore = WCPendingTransactionsRepository()
+
     private let onboardingKey = "io.gnosis.safe.MultisigWalletApplication.isWalletConnectOnboardingDone"
 
     private var service: WalletConnectDomainService { return DomainRegistry.walletConnectService }
@@ -74,7 +76,7 @@ public class WalletConnectApplicationService {
     }
 
     public func popPendingTransactions() -> [WCPendingTransaction] {
-        return transactionsStore.popPendingTransactions()
+        return transactionsStore.popAll()
     }
 
     // MARK: Getting Started
@@ -127,17 +129,15 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
         eventPublisher.publish(SessionUpdated())
     }
 
+    // TODO: move to domain service
     public func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
                                              completion: @escaping (Result<String, Error>) -> Void) {
-        guard let wcSession = sessionRepo.all().first(where: { $0.url == request.url }) else { return }
+        guard let wcSession = sessionRepo.find(url: request.url) else { return }
         let wallet = walletRepository.selectedWallet()!
-        let txID = walletService.draftTransaction(wallet: wallet, sendTransactionData: request)
+        let txID = walletService.createDraftTransaction(in: wallet, sendTransactionData: request)
         let sessionData = WCSessionData(wcSession: wcSession)
-        let transaction = WCPendingTransaction(transactionID: txID, sessionData: sessionData) { [unowned self] in
-            completion($0)
-            self.eventPublisher.publish(NonceUpdated())
-        }
-        transactionsStore.addPendingTransaction(transaction)
+        let transaction = WCPendingTransaction(transactionID: txID, sessionData: sessionData, completion: completion)
+        transactionsStore.add(transaction)
         eventPublisher.publish(SendTransactionRequested())
     }
 

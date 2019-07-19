@@ -577,8 +577,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public func transactionHash(_ id: TransactionID) -> String? {
-        guard let tx = DomainRegistry.transactionRepository.find(id: id) else { return nil }
-        return tx.transactionHash?.value
+        return DomainRegistry.transactionRepository.find(id: id)?.transactionHash?.value
     }
 
     private func status(of tx: Transaction) -> TransactionData.Status {
@@ -830,7 +829,8 @@ public class WalletApplicationService: Assertable {
         return transaction.id.id
     }
 
-    public func draftTransaction(wallet: Wallet, sendTransactionData data: SendTransactionRequiredData) -> TransactionID {
+    public func createDraftTransaction(in wallet: Wallet,
+                                       sendTransactionData data: SendTransactionRequiredData) -> TransactionID {
         let transactionID = DomainRegistry.transactionService
             .newDraftTransaction(in: wallet, token: tokenAddress(toAddress: data.to, data: data.data))
         let transaction = DomainRegistry.transactionRepository.find(id: transactionID)!

@@ -10,16 +10,18 @@ class IncomingTransactionFlowCoordinator: FlowCoordinator {
     let transactionID: String
     private let source: TransactionSource
     private let sourceMeta: Any?
+    private let onBackButton: (() -> Void)?
 
     enum TransactionSource {
         case browserExtension
         case walletConnect
     }
 
-    init(transactionID: String, source: TransactionSource, sourceMeta: Any?) {
+    init(transactionID: String, source: TransactionSource, sourceMeta: Any?, onBackButton: (() -> Void)?) {
         self.transactionID = transactionID
         self.source = source
         self.sourceMeta = sourceMeta
+        self.onBackButton = onBackButton
     }
 
     override func setUp() {
@@ -27,11 +29,17 @@ class IncomingTransactionFlowCoordinator: FlowCoordinator {
         switch source {
         case .browserExtension:
             let reviewVC = SendReviewViewController(transactionID: transactionID, delegate: self)
+            reviewVC.onBack = { [unowned self] in
+                self.onBackButton?()
+            }
             push(reviewVC)
         case .walletConnect:
             let wcSessionData = sourceMeta as! WCSessionData
             let reviewVC = WCSendReviewViewController(transactionID: transactionID, delegate: self)
             reviewVC.wcSessionData = wcSessionData
+            reviewVC.onBack = { [unowned self] in
+                self.onBackButton?()
+            }
             push(reviewVC)
         }
     }

@@ -243,7 +243,7 @@
 		552C60882130048300BF973A /* TokenListItemRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2594212301A800E81666 /* TokenListItemRepositoryTests.swift */; };
 		554D17C722DF23DD00B90A70 /* BigInt+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37E920F4A4D20085E8D7 /* BigInt+Hex.swift */; };
 		554D17C822DF23E000B90A70 /* BigInt+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */; };
-		554D17CA22DF2E3900B90A70 /* WCPendingTransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554D17C922DF2E3900B90A70 /* WCPendingTransactionsStore.swift */; };
+		554D17CA22DF2E3900B90A70 /* WCPendingTransactionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554D17C922DF2E3900B90A70 /* WCPendingTransactionsRepository.swift */; };
 		555C949520E2A60F00A0621D /* WalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948A20E2A60F00A0621D /* WalletRepository.swift */; };
 		555C949720E2A60F00A0621D /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948C20E2A60F00A0621D /* AccountRepository.swift */; };
 		555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */; };
@@ -711,7 +711,7 @@
 		552C600E212B0D0B00BF973A /* TokenListMerger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenListMerger.swift; sourceTree = "<group>"; };
 		552C602F212C2AE800BF973A /* AccountUpdateDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUpdateDomainService.swift; sourceTree = "<group>"; };
 		552C604F212C5AF800BF973A /* AccountUpdateDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUpdateDomainServiceTests.swift; sourceTree = "<group>"; };
-		554D17C922DF2E3900B90A70 /* WCPendingTransactionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCPendingTransactionsStore.swift; sourceTree = "<group>"; };
+		554D17C922DF2E3900B90A70 /* WCPendingTransactionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCPendingTransactionsRepository.swift; sourceTree = "<group>"; };
 		555C948A20E2A60F00A0621D /* WalletRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletRepository.swift; sourceTree = "<group>"; };
 		555C948C20E2A60F00A0621D /* AccountRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePortfolioRepository.swift; sourceTree = "<group>"; };
@@ -1177,7 +1177,7 @@
 				5568A21522D5E8E7007C9E0C /* WalletConnectApplicationServiceTests.swift */,
 				0AB084CA21C01EAC00DC3E81 /* WalletSettingsApplicationService.swift */,
 				0A4C3897212D9411005594DA /* WalletStateEnum.swift */,
-				554D17C922DF2E3900B90A70 /* WCPendingTransactionsStore.swift */,
+				554D17C922DF2E3900B90A70 /* WCPendingTransactionsRepository.swift */,
 				5568A24F22D73AFC007C9E0C /* WCSessionData.swift */,
 				0A364B2522676C7E002E80B7 /* Localizable.strings */,
 				0A4A1D692136C4990088F9EC /* WalletApplicationServiceTests */,
@@ -1965,7 +1965,7 @@
 				0A3BD92C22254FF7007039B4 /* FeeCalculationError.swift in Sources */,
 				0A3BD92A22254FF7007039B4 /* LocalizedString.swift in Sources */,
 				0A54E7CB21305273006BAD93 /* WalletApplicationServiceError.swift in Sources */,
-				554D17CA22DF2E3900B90A70 /* WCPendingTransactionsStore.swift in Sources */,
+				554D17CA22DF2E3900B90A70 /* WCPendingTransactionsRepository.swift in Sources */,
 				0A5E016A22607CA3007F4F38 /* SystemInfo.swift in Sources */,
 				0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */,
 				0A3BD968222564B1007039B4 /* ReplaceBrowserExtensionApplicationService.swift in Sources */,
