@@ -10,5 +10,6 @@ public enum WalletApplicationServiceError: String, Swift.Error, Hashable {
     case clientError
     case serverError
     case validationFailed
+    case failedToSignTransactionByDevice
     case exceededExpirationDate
 }

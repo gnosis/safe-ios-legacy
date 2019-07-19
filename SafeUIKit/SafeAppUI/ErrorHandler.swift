@@ -89,6 +89,8 @@ extension WalletApplicationServiceError: LocalizedError {
             return LocalizedString("ios_error_generic_client", comment: "Application submitted invalid request.")
         case .serverError:
             return LocalizedString("ios_error_generic_server", comment: "Server returned error response.")
+        case .failedToSignTransactionByDevice:
+            return LocalizedString("ios_error_failed_to_sign_transaction", comment: "Failed to sign. Try again.")
         }
     }
 
