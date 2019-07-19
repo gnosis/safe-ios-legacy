@@ -15,7 +15,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     let sendFlowCoordinator = SendFlowCoordinator()
     let newSafeFlowCoordinator = CreateSafeFlowCoordinator()
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
-    let incomingTransactionFlowCoordinator = IncomingTransactionFlowCoordinator()
+    let incomingTransactionsManager = IncomingTransactionsManager()
     private (set) var walletConnectFlowCoordinator: WalletConnectFlowCoordinator!
 
     public var crashlytics: CrashlyticsProtocol?
@@ -68,6 +68,7 @@ open class MainFlowCoordinator: FlowCoordinator {
             switchToRootController()
         }
         requestToUnlockApp()
+        ApplicationServiceRegistry.walletConnectService.subscribeForIncomingTransactions(self)
     }
 
     private func updateUserIdentifier() {
@@ -128,15 +129,32 @@ open class MainFlowCoordinator: FlowCoordinator {
                     tx.id == vc.tx.id {
                     vc.update(with: tx)
                 } else if tx.status != .rejected {
-                    self.incomingTransactionFlowCoordinator.transactionID = transactionID
-                    self.enterTransactionFlow(self.incomingTransactionFlowCoordinator)
+                    self.handleIncomingBETransaction(transactionID)
                 }
             }
         }
     }
 
+    private func handleIncomingBETransaction(_ transactionID: String) {
+        let coordinator = incomingTransactionsManager.coordinator(for: transactionID, source: .browserExtension)
+        enterTransactionFlow(coordinator) { [unowned self] in
+            self.incomingTransactionsManager.releaseCoordinator(by: coordinator.transactionID)
+        }
+    }
+
+    private func handleIncomingWalletConnectTransaction(_ transaction: WCPendingTransaction) {
+        let coordinator = incomingTransactionsManager.coordinator(for: transaction.transactionID.id,
+                                                                  source: .walletConnect,
+                                                                  sourceMeta: transaction.sessionData)
+        enterTransactionFlow(coordinator) { [unowned self] in
+            self.incomingTransactionsManager.releaseCoordinator(by: coordinator.transactionID)
+            let hash = ApplicationServiceRegistry.walletService.transactionHash(transaction.transactionID) ?? "0x"
+            transaction.completion(.success(hash))
+        }
+    }
+
     // Used for incoming transaction and send flow
-    fileprivate func enterTransactionFlow(_ flow: FlowCoordinator) {
+    fileprivate func enterTransactionFlow(_ flow: FlowCoordinator, completion: (() -> Void)? = nil) {
         saveCheckpoint()
         enter(flow: flow) {
             DispatchQueue.main.async { [unowned self] in
@@ -145,6 +163,7 @@ open class MainFlowCoordinator: FlowCoordinator {
                     self.showTransactionList()
                 }
             }
+            completion?()
         }
     }
 
@@ -170,6 +189,19 @@ open class MainFlowCoordinator: FlowCoordinator {
     open func receive(url: URL) {
         walletConnectFlowCoordinator = WalletConnectFlowCoordinator(connectionURL: url)
         self.enter(flow: walletConnectFlowCoordinator)
+    }
+
+}
+
+extension MainFlowCoordinator: EventSubscriber {
+
+    // SendTransactionRequested
+    public func notify() {
+        DispatchQueue.main.async {
+            ApplicationServiceRegistry.walletConnectService.popPendingTransactions().forEach {
+                self.handleIncomingWalletConnectTransaction($0)
+            }
+        }
     }
 
 }

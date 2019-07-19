@@ -334,7 +334,6 @@
 		5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545970522689A63009B4A0B /* LicensesCommand.swift */; };
 		554597082268AB22009B4A0B /* TermsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554597072268AB22009B4A0B /* TermsCommand.swift */; };
 		5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */; };
-		5549193722C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */; };
 		5549194B22C3C94E003E63E0 /* WCTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */; };
 		5549B26F2282CF5000F3B5B7 /* BasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549B26E2282CF5000F3B5B7 /* BasicTableViewCell.swift */; };
 		5549B2812282E37400F3B5B7 /* BasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5549B2802282E37400F3B5B7 /* BasicTableViewCell.xib */; };
@@ -348,6 +347,7 @@
 		554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACCE221F04B80086D303 /* SendReviewViewController.swift */; };
 		554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD4221F08CD0086D303 /* RBEReviewTransactionViewController.swift */; };
 		554CACD7221F19430086D303 /* SendReviewViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD6221F19430086D303 /* SendReviewViewControllerTests.swift */; };
+		554D17F022E0B13100B90A70 /* IncomingTransactionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554D17EF22E0B13100B90A70 /* IncomingTransactionsManager.swift */; };
 		555EB6EC216CA42100E06553 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EB216CA42100E06553 /* TextInputViewController.swift */; };
 		555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EF216CA5CF00E06553 /* TextInput.swift */; };
 		555EB6F2216CA5E900E06553 /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6F1216CA5E900E06553 /* TextInputTests.swift */; };
@@ -931,7 +931,6 @@
 		5545970522689A63009B4A0B /* LicensesCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesCommand.swift; sourceTree = "<group>"; };
 		554597072268AB22009B4A0B /* TermsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCommand.swift; sourceTree = "<group>"; };
 		554597092268AB9F009B4A0B /* PrivacyPolicyCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyCommand.swift; sourceTree = "<group>"; };
-		5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTableViewCell+WCSessionData.swift"; sourceTree = "<group>"; };
 		5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTrackingEvent.swift; sourceTree = "<group>"; };
 		5549B26E2282CF5000F3B5B7 /* BasicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTableViewCell.swift; sourceTree = "<group>"; };
 		5549B2802282E37400F3B5B7 /* BasicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicTableViewCell.xib; sourceTree = "<group>"; };
@@ -945,6 +944,7 @@
 		554CACCE221F04B80086D303 /* SendReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReviewViewController.swift; sourceTree = "<group>"; };
 		554CACD4221F08CD0086D303 /* RBEReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEReviewTransactionViewController.swift; sourceTree = "<group>"; };
 		554CACD6221F19430086D303 /* SendReviewViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReviewViewControllerTests.swift; sourceTree = "<group>"; };
+		554D17EF22E0B13100B90A70 /* IncomingTransactionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingTransactionsManager.swift; sourceTree = "<group>"; };
 		555EB6EB216CA42100E06553 /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		555EB6EF216CA5CF00E06553 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
 		555EB6F1216CA5E900E06553 /* TextInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTests.swift; sourceTree = "<group>"; };
@@ -1350,6 +1350,7 @@
 			children = (
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
 				0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */,
+				554D17EF22E0B13100B90A70 /* IncomingTransactionsManager.swift */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
 				0A334E24209C8E3800ABC6AE /* MainFlowCoordinatorAppTests.swift */,
 				0A334DB3209C6D8600ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift */,
@@ -2014,7 +2015,6 @@
 		5579C56622C3662500BB93CA /* WalletConnect */ = {
 			isa = PBXGroup;
 			children = (
-				5549193622C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift */,
 				5579C57722C367C400BB93CA /* WalletConnectFlowCoordinator.swift */,
 				5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */,
 				5579C57522C3664300BB93CA /* WalletConnectMenuCommand.swift */,
@@ -2955,7 +2955,6 @@
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
 				55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */,
 				553B9E022296D15A006E93C9 /* OnboardingPaymentMethodViewController.swift in Sources */,
-				5549193722C38CED003E63E0 /* BasicTableViewCell+WCSessionData.swift in Sources */,
 				0ADE03EA22DDF9D300CA4705 /* WCOnboardingStepViewController.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
@@ -2992,6 +2991,7 @@
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
 				0AE0FEA0229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift in Sources */,
+				554D17F022E0B13100B90A70 /* IncomingTransactionsManager.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */,
 				0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */,

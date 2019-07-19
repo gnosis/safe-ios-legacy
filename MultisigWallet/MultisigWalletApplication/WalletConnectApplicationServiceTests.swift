@@ -8,26 +8,20 @@ import MultisigWalletDomainModel
 import MultisigWalletImplementations
 import CommonTestSupport
 
-class WalletConnectApplicationServiceTests: XCTestCase {
+class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
 
     var appService: WalletConnectApplicationService!
+
     let walletService = MockWalletApplicationService()
     let domainService = MockWalletConnectDomainService()
-    let repo = InMemoryWCSessionRepository()
-    let eventPublisher = MockEventPublisher()
+    let sessionRepository = InMemoryWCSessionRepository()
     let subscriber = MockSubscriber()
-    var relayService: MockEventRelay!
-    let ethereumNodeService = MockEthereumNodeService()
 
     override func setUp() {
         super.setUp()
-        relayService = MockEventRelay(publisher: eventPublisher)
         DomainRegistry.put(service: domainService, for: WalletConnectDomainService.self)
-        DomainRegistry.put(service: repo, for: WalletConnectSessionRepository.self)
-        DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
-        DomainRegistry.put(service: ethereumNodeService, for: EthereumNodeDomainService.self)
+        DomainRegistry.put(service: sessionRepository, for: WalletConnectSessionRepository.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        ApplicationServiceRegistry.put(service: relayService, for: EventRelay.self)
         appService = WalletConnectApplicationService(chainId: 1)
         appService.setUp()
     }
@@ -63,13 +57,13 @@ class WalletConnectApplicationServiceTests: XCTestCase {
     }
 
     func test_disconnect_callsDomainService() throws {
-        repo.save(WCSession.testSession)
+        sessionRepository.save(WCSession.testSession)
         try appService.disconnect(sessionID: WCSession.testSession.id)
         XCTAssertEqual(domainService.disconnectSession, WCSession.testSession)
     }
 
     func test_disconnect_whenDomainServiceThrows_thenThrows() {
-        repo.save(WCSession.testSession)
+        sessionRepository.save(WCSession.testSession)
         domainService.shouldThrow = true
         XCTAssertThrowsError(try appService.disconnect(sessionID: WCSession.testSession.id))
     }
@@ -86,19 +80,35 @@ class WalletConnectApplicationServiceTests: XCTestCase {
     }
 
     func test_subscribeForSessionUpdates() {
-        relayService.expect_subscribe(subscriber, for: SessionUpdated.self)
+        eventRelay.expect_subscribe(subscriber, for: SessionUpdated.self)
         appService.subscribeForSessionUpdates(subscriber)
-        XCTAssertTrue(relayService.verify())
+        XCTAssertTrue(eventRelay.verify())
+    }
+
+    func test_subscribeForIncomingTransactions() {
+        eventRelay.expect_subscribe(subscriber, for: SendTransactionRequested.self)
+        appService.subscribeForIncomingTransactions(subscriber)
+        XCTAssertTrue(eventRelay.verify())
+    }
+
+    func test_subcribeForNonceApdates() {
+        eventRelay.expect_subscribe(subscriber, for: NonceUpdated.self)
+        appService.subcribeForNonceApdates(subscriber)
+        XCTAssertTrue(eventRelay.verify())
     }
 
     func test_popPendingTransactions_after_handleSendTransactionRequest() {
-        XCTAssertTrue(appService.pendingTransactions.isEmpty)
-        appService.handleSendTransactionRequest(WCSendTransactionRequest.testRequest) { _ in }
-        XCTAssertFalse(appService.pendingTransactions.isEmpty)
-        let transacitons = appService.popPendingTransactions()
-        XCTAssertEqual(transacitons.count, 1)
-        XCTAssertEqual(transacitons[0].request, WCSendTransactionRequest.testRequest)
-        XCTAssertTrue(appService.pendingTransactions.isEmpty)
+        let testRequest = prepareRequestForHandling()
+        XCTAssertTrue(appService.popPendingTransactions().isEmpty)
+        appService.handleSendTransactionRequest(testRequest) { _ in }
+        let wcTransacitons = appService.popPendingTransactions()
+        XCTAssertEqual(wcTransacitons.count, 1)
+        let transaction = transactionRepository.find(id: wcTransacitons[0].transactionID)!
+        XCTAssertEqual(transaction.sender, testRequest.from)
+        XCTAssertEqual(transaction.recipient, testRequest.to)
+        XCTAssertEqual(transaction.ethValue, testRequest.value)
+        XCTAssertEqual(transaction.data, testRequest.data)
+        XCTAssertTrue(appService.popPendingTransactions().isEmpty)
     }
 
     // MARK: - WalletConnectDomainServiceDelegate
@@ -120,9 +130,9 @@ class WalletConnectApplicationServiceTests: XCTestCase {
     }
 
     func test_didConnect_savesSession() {
-        XCTAssertTrue(repo.all().isEmpty)
+        XCTAssertTrue(sessionRepository.all().isEmpty)
         appService.didConnect(session: WCSession.testSession)
-        XCTAssertEqual(repo.find(id: WCSession.testSession.id), WCSession.testSession)
+        XCTAssertEqual(sessionRepository.find(id: WCSession.testSession.id), WCSession.testSession)
     }
 
     func test_didConnect_publishesEvent() {
@@ -133,7 +143,8 @@ class WalletConnectApplicationServiceTests: XCTestCase {
 
     func test_handleSendTransactionRequest_publeshesEvent() {
         eventPublisher.expectToPublish(SendTransactionRequested.self)
-        appService.handleSendTransactionRequest(WCSendTransactionRequest.testRequest) { _ in }
+        let testRequest = prepareRequestForHandling()
+        appService.handleSendTransactionRequest(testRequest) { _ in }
         XCTAssertTrue(eventPublisher.verify())
     }
 
@@ -158,6 +169,14 @@ class WalletConnectApplicationServiceTests: XCTestCase {
             }
         }
         waitForExpectations(timeout: 1)
+    }
+
+    private func prepareRequestForHandling() -> WCSendTransactionRequest {
+        givenReadyToUseWallet()
+        sessionRepository.save(WCSession.testSession)
+        var testRequest = WCSendTransactionRequest.testRequest
+        testRequest.url = WCURL.testURL
+        return testRequest
     }
 
 }

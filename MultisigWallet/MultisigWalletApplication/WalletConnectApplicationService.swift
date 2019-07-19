@@ -9,23 +9,26 @@ import Common
 public class FailedToConnectSession: DomainEvent {}
 public class SessionUpdated: DomainEvent {}
 public class SendTransactionRequested: DomainEvent {}
+public class NonceUpdated: DomainEvent {}
 
-public typealias WCPendingTransaction = (request: WCSendTransactionRequest, completion: (Result<String, Error>) -> Void)
+extension WCSendTransactionRequest: SendTransactionRequiredData {}
 
 public class WalletConnectApplicationService {
 
+    // TODO: move to domain service
     let chainId: Int
+    let transactionsStore = WCPendingTransactionsRepository()
+
     private let onboardingKey = "io.gnosis.safe.MultisigWalletApplication.isWalletConnectOnboardingDone"
 
     private var service: WalletConnectDomainService { return DomainRegistry.walletConnectService }
     private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
+    private var walletRepository: WalletRepository { return DomainRegistry.walletRepository }
     private var eventRelay: EventRelay { return ApplicationServiceRegistry.eventRelay }
     private var eventPublisher: EventPublisher { return  DomainRegistry.eventPublisher }
     private var sessionRepo: WalletConnectSessionRepository { return DomainRegistry.walletConnectSessionRepository }
     private var ethereumNodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
     private var appSettingsRepository: AppSettingsRepository { return DomainRegistry.appSettingsRepository }
-
-    internal var pendingTransactions = [WCPendingTransaction]()
 
     private enum Strings {
         static let safeDescription = LocalizedString("ios_app_slogan", comment: "App slogan")
@@ -64,11 +67,16 @@ public class WalletConnectApplicationService {
         eventRelay.subscribe(subscriber, for: SessionUpdated.self)
     }
 
+    public func subscribeForIncomingTransactions(_ subscriber: EventSubscriber) {
+        eventRelay.subscribe(subscriber, for: SendTransactionRequested.self)
+    }
+
+    public func subcribeForNonceApdates(_ subscriber: EventSubscriber) {
+        eventRelay.subscribe(subscriber, for: NonceUpdated.self)
+    }
+
     public func popPendingTransactions() -> [WCPendingTransaction] {
-        defer {
-            pendingTransactions = []
-        }
-        return pendingTransactions
+        return transactionsStore.popAll()
     }
 
     // MARK: Getting Started
@@ -121,9 +129,15 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
         eventPublisher.publish(SessionUpdated())
     }
 
+    // TODO: move to domain service
     public func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
                                              completion: @escaping (Result<String, Error>) -> Void) {
-        pendingTransactions.append((request: request, completion: completion))
+        guard let wcSession = sessionRepo.find(url: request.url) else { return }
+        let wallet = walletRepository.selectedWallet()!
+        let txID = walletService.createDraftTransaction(in: wallet, sendTransactionData: request)
+        let sessionData = WCSessionData(wcSession: wcSession)
+        let transaction = WCPendingTransaction(transactionID: txID, sessionData: sessionData, completion: completion)
+        transactionsStore.add(transaction)
         eventPublisher.publish(SendTransactionRequested())
     }
 

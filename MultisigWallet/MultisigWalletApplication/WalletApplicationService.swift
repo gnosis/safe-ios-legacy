@@ -576,6 +576,10 @@ public class WalletApplicationService: Assertable {
                                processed: tx.processedDate)
     }
 
+    public func transactionHash(_ id: TransactionID) -> String? {
+        return DomainRegistry.transactionRepository.find(id: id)?.transactionHash?.value
+    }
+
     private func status(of tx: Transaction) -> TransactionData.Status {
         // TODO: refactor to have similar statuses of transaction in domain model and app
         let hasBrowserExtension = address(of: .browserExtension) != nil
@@ -829,27 +833,46 @@ public class WalletApplicationService: Assertable {
         return transaction.id.id
     }
 
+    public func createDraftTransaction(in wallet: Wallet,
+                                       sendTransactionData data: SendTransactionRequiredData) -> TransactionID {
+        let transactionID = DomainRegistry.transactionService
+            .newDraftTransaction(in: wallet, token: tokenAddress(toAddress: data.to, data: data.data))
+        let transaction = DomainRegistry.transactionRepository.find(id: transactionID)!
+        update(transaction: transaction, with: data)
+        DomainRegistry.transactionRepository.save(transaction)
+        return transaction.id
+    }
+
     private func tokenAddress(from message: SendTransactionMessage) -> Address {
-        if ERC20TokenContractProxy(message.to).decodedTransfer(from: message.data) != nil {
-            return message.to
+        return tokenAddress(toAddress: message.to, data: message.data)
+    }
+
+    private func tokenAddress(toAddress: Address, data: Data) -> Address {
+        if ERC20TokenContractProxy(toAddress).decodedTransfer(from: data) != nil {
+            return toAddress
         } else {
             return Token.Ether.address
         }
     }
 
     private func update(transaction: Transaction, with message: SendTransactionMessage) {
+        update(transaction: transaction, with: message as SendTransactionRequiredData)
         transaction
-            .change(recipient: message.to)
-            .change(data: message.data)
-            .change(amount: TokenAmount.ether(message.value))
             .change(operation: message.operation)
             .change(feeEstimate: self.estimation(message))
             .change(fee: self.fee(message))
             .change(nonce: String(message.nonce))
+    }
 
-        let tokenProxy = ERC20TokenContractProxy(message.to)
-        if let erc20Transfer = tokenProxy.decodedTransfer(from: message.data) {
-            let amountToken = self.token(for: message.to)
+    private func update(transaction: Transaction, with data: SendTransactionRequiredData) {
+        transaction
+            .change(sender: data.from)
+            .change(recipient: data.to)
+            .change(data: data.data)
+            .change(amount: TokenAmount.ether(data.value))
+        let tokenProxy = ERC20TokenContractProxy(data.to)
+        if let erc20Transfer = tokenProxy.decodedTransfer(from: data.data) {
+            let amountToken = self.token(for: data.to)
             transaction
                 .change(recipient: erc20Transfer.recipient)
                 .change(amount: TokenAmount(amount: erc20Transfer.amount, token: amountToken))

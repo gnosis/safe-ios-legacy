@@ -9,6 +9,18 @@ import Common
 
 class SendReviewViewController: ReviewTransactionViewController {
 
+    var backButtonItem: UIBarButtonItem!
+    var onBack: (() -> Void)?
+
+    override func willMove(toParent parent: UIViewController?) {
+        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
+        setCustomBackButton(backButtonItem)
+    }
+
+    @objc func back() {
+        onBack?()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackScreenEvent(hasBrowserExtension ? .review2FARequired : .review)

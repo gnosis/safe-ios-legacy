@@ -8,9 +8,11 @@ import Common
 
 final class WCSendReviewViewController: SendReviewViewController {
 
+    var wcSessionData: WCSessionData!
+
     override func viewDidLoad() {
-        tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
-                           forCellReuseIdentifier: "BasicTableViewCell")
+        tableView.register(UINib(nibName: "WCSessionListCell", bundle: Bundle(for: WCSessionListCell.self)),
+                           forCellReuseIdentifier: "WCSessionListCell")
         showsSubmitInNavigationBar = false
         super.viewDidLoad()
     }
@@ -25,10 +27,8 @@ final class WCSendReviewViewController: SendReviewViewController {
     }
 
     private func dappCell() -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell") as! BasicTableViewCell
-        // TODO: use real data from session repository
-        let data = WCSessionData(id: BaseID("1"), imageURL: nil, title: "title", subtitle: "subtitle")
-        cell.configure(wcSessionData: data)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WCSessionListCell") as! WCSessionListCell
+        cell.configure(wcSessionData: wcSessionData)
         return cell
     }
 

@@ -16,7 +16,7 @@ public class TransactionDomainService {
     }
 
     public func newDraftTransaction(token: Address = Token.Ether.address) -> TransactionID {
-        return newDraftTransaction(in: DomainRegistry.walletRepository.selectedWallet()!)
+        return newDraftTransaction(in: DomainRegistry.walletRepository.selectedWallet()!, token: token)
     }
 
     public func newDraftTransaction(in wallet: Wallet, token: Address = Token.Ether.address) -> TransactionID {

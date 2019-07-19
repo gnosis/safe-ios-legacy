@@ -71,7 +71,7 @@ class MultisigWalletConfigurator {
 
         configureEthereum(with: appDelegate)
         setUpMultisigDatabase(with: appDelegate)
-        configureWalletConnect(chainId: config.encryptionServiceChainId)
+        configureWalletConnect(chainId: config.nodeServiceConfig.chainId)
     }
 
     class func setUpMultisigDatabase(with appDelegate: AppDelegate) {

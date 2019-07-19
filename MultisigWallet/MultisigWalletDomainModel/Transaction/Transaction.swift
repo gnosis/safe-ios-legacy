@@ -307,8 +307,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
 // MARK: - Supporting types
 
-// NOTE: If you change enum values, then you'll need to run DB migration.
-// Adding new ones is OK as long as you don't change old values
+// NOTE: If you change old enum values, then you'll need to run DB migration.
+// Adding new ones is OK as long as you don't change old values.
 public enum TransactionType: Int {
 
     case transfer = 0

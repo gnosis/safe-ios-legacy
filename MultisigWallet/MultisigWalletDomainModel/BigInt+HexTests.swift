@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import MultisigWalletImplementations
+@testable import MultisigWalletDomainModel
 import BigInt
 
 class BigInt_HexTests: XCTestCase {
