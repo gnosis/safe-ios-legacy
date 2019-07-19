@@ -23,7 +23,7 @@ class AddressInputViewController: BaseInputViewController {
     }
 
     override var actionFailureMessageFormat: String {
-        return LocalizedString("address_invalid",
+        return LocalizedString("ios_recovery_address_validation_failure_format",
                                comment: "Recovery address validation failed alert's message")
     }
 
