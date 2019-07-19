@@ -87,7 +87,7 @@ LIMIT 1;
 SELECT \(fieldList)
 FROM tbl_transactions
 WHERE hash = ? AND transaction_status = ?
-ORDER BY rowid
+ORDER BY datetime(created_date, 'unixepoch') DESC
 LIMIT 1;
 """
         static let findByTypeAndWallet = """
