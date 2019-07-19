@@ -35,7 +35,8 @@ public class EventRelay {
         subscribers.filter {
             $0.type == type(of: event) || $0.type == DomainEvent.self
         }.forEach {
-            ($0.subscriber.ref as! EventSubscriber).notify()
+            // unwrapped optional because the subscriber's ref might nil out on a different thread.
+            ($0.subscriber.ref as? EventSubscriber)?.notify()
         }
     }
 
