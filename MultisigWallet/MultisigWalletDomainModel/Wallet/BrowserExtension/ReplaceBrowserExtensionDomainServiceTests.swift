@@ -57,7 +57,7 @@ class ReplaceBrowserExtensionDomainServiceTests: ReplaceBrowserExtensionDomainSe
         let tx = transaction(from: txID)!
         XCTAssertEqual(tx.operation, .call)
         XCTAssertEqual(tx.data, service.dummyTransactionData())
-        XCTAssertEqual(tx.recipient, wallet.address!)
+        XCTAssertEqual(tx.recipient, wallet.address)
     }
 
     func test_whenRemovesDummyData_thenRemovesFields() {

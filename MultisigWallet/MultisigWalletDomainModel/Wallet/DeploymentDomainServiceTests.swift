@@ -193,7 +193,7 @@ class DeploymentFundedTests: BaseDeploymentDomainServiceTests {
 
     func test_whenFunded_thenNotifiesRelayService() {
         givenFundedWallet()
-        relayService.expect_startSafeCreation(address: wallet.address!)
+        relayService.expect_startSafeCreation(address: wallet.address)
         start()
         relayService.verify()
     }
@@ -233,8 +233,8 @@ class CreationStartedTests: BaseDeploymentDomainServiceTests {
 
     func test_whenFunded_thenWaitsForTransaction() {
         givenDeployingWallet(withoutTransaction: true)
-        relayService.expect_safeCreationTransactionHash(address: wallet.address!, hash: nil)
-        relayService.expect_safeCreationTransactionHash(address: wallet.address!, hash: TransactionHash.test1)
+        relayService.expect_safeCreationTransactionHash(address: wallet.address, hash: nil)
+        relayService.expect_safeCreationTransactionHash(address: wallet.address, hash: TransactionHash.test1)
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
         start()
         relayService.verify()
