@@ -179,3 +179,11 @@ extension OnboardingCreationFeeViewController: LongProcessTrackerDelegate {
     }
 
 }
+
+extension OnboardingCreationFeeViewController: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
+    }
+
+}
