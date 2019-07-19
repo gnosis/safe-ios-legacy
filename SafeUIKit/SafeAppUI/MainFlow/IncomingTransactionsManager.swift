@@ -13,9 +13,7 @@ final class IncomingTransactionsManager {
     func coordinator(for transactionID: String,
                      source: IncomingTransactionFlowCoordinator.TransactionSource,
                      sourceMeta: Any? = nil) -> IncomingTransactionFlowCoordinator {
-        if let coordinator = coordinators[transactionID] {
-            return coordinator
-        }
+        if let coordinator = coordinators[transactionID] { return coordinator }
         let newCoordinator = IncomingTransactionFlowCoordinator(transactionID: transactionID,
                                                                 source: source,
                                                                 sourceMeta: sourceMeta,
