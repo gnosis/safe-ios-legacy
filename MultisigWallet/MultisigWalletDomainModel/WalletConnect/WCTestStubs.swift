@@ -13,9 +13,9 @@ extension WCURL {
                                key: "key")
 
     static let testURL2 = WCURL(topic: "topic2",
-                               version: "1",
-                               bridgeURL: URL(string: "http://test.com")!,
-                               key: "key2")
+                                version: "1",
+                                bridgeURL: URL(string: "http://test.com")!,
+                                key: "key2")
 
 }
 
@@ -49,12 +49,14 @@ extension WCSession {
     static let testSession = WCSession(url: MultisigWalletDomainModel.WCURL.testURL,
                                        dAppInfo: WCDAppInfo.testDAppInfo,
                                        walletInfo: WCWalletInfo.testWalletInfo,
-                                       status: .connected)
+                                       status: .connected,
+                                       created: Date(timeIntervalSince1970: 20_000))
 
     static let connectingTestSession = WCSession(url: MultisigWalletDomainModel.WCURL.testURL2,
                                                  dAppInfo: WCDAppInfo.testDAppInfo,
                                                  walletInfo: nil,
-                                                 status: .connecting)
+                                                 status: .connecting,
+                                                 created: Date(timeIntervalSince1970: 10_000))
 
 }
 
