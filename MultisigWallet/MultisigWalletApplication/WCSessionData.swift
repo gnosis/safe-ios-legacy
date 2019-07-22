@@ -13,6 +13,10 @@ public struct WCSessionData {
     public var title: String
     public var subtitle: String
 
+    public var isConnecting: Bool {
+        return title == Strings.pleaseWait
+    }
+
     enum Strings {
         static let pleaseWait = LocalizedString("please_wait", comment: "Please wait...")
         static let connecting = LocalizedString("connecting", comment: "Connecting...")

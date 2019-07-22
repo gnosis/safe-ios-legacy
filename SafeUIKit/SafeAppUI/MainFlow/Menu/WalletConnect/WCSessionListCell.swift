@@ -31,12 +31,7 @@ final class WCSessionListCell: UITableViewCell {
 
     func configure(wcSessionData: WCSessionData, screen: Screen) {
         let imageSize = self.imageSize(screen)
-        let placeholder = PlaceholderCreator().create(size: CGSize(width: imageSize, height: imageSize),
-                                                      cornerRadius: 8,
-                                                      text: String(wcSessionData.title.prefix(1)).uppercased(),
-                                                      font: UIFont.systemFont(ofSize: 17, weight: .medium),
-                                                      textColor: ColorName.darkSlateBlue.color,
-                                                      backgroundColor: ColorName.paleLilac.color)
+        let placeholder = self.placeholder(size: imageSize, from: wcSessionData)
         if let imageURL = wcSessionData.imageURL {
             dAppImageView.kf.setImage(with: imageURL, placeholder: placeholder)
         } else {
@@ -46,6 +41,25 @@ final class WCSessionListCell: UITableViewCell {
         subtitleLabel.text = wcSessionData.subtitle
         dAppImageViewWidthConstraint.constant = imageSize
         dAppImageViewHeightConstraint.constant = imageSize
+    }
+
+    func placeholder(size: CGFloat, from session: WCSessionData) -> UIImage {
+        if session.isConnecting { return Asset.dappPlaceholder.image }
+        let name: String
+        if !session.title.isEmpty {
+            name = session.title
+        } else if let url = URL(string: session.subtitle), let host = url.host {
+            name = host
+        } else {
+            name = session.subtitle
+        }
+        let placeholder = PlaceholderCreator().create(size: CGSize(width: size, height: size),
+                                                      cornerRadius: 8,
+                                                      text: String(name.prefix(1)).uppercased(),
+                                                      font: UIFont.systemFont(ofSize: 17, weight: .medium),
+                                                      textColor: ColorName.darkSlateBlue.color,
+                                                      backgroundColor: ColorName.paleLilac.color)
+        return placeholder ?? Asset.dappPlaceholder.image
     }
 
     func imageSize(_ screen: Screen) -> CGFloat {
