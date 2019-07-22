@@ -30,7 +30,8 @@ final class WCSessionListCell: UITableViewCell {
     }
 
     func configure(wcSessionData: WCSessionData, screen: Screen) {
-        let placeholder = PlaceholderCreator().create(size: dAppImageView.frame.size,
+        let imageSize = self.imageSize(screen)
+        let placeholder = PlaceholderCreator().create(size: CGSize(width: imageSize, height: imageSize),
                                                       cornerRadius: 8,
                                                       text: String(wcSessionData.title.prefix(1)).uppercased(),
                                                       font: UIFont.systemFont(ofSize: 17, weight: .medium),
@@ -43,13 +44,14 @@ final class WCSessionListCell: UITableViewCell {
         }
         titleLabel.text = wcSessionData.title
         subtitleLabel.text = wcSessionData.subtitle
+        dAppImageViewWidthConstraint.constant = imageSize
+        dAppImageViewHeightConstraint.constant = imageSize
+    }
+
+    func imageSize(_ screen: Screen) -> CGFloat {
         switch screen {
-        case .sessions:
-            dAppImageViewWidthConstraint.constant = 40
-            dAppImageViewHeightConstraint.constant = 40
-        case .review:
-            dAppImageViewWidthConstraint.constant = 32
-            dAppImageViewHeightConstraint.constant = 32
+        case .sessions: return 40
+        case .review: return 32
         }
     }
 
