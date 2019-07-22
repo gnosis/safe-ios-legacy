@@ -36,7 +36,7 @@ public class DBWalletConnectSessionRepository: DBEntityRepository<WCSession, WCS
             let dAppInfo = WCDAppInfo(data: dAppInfoData),
             let statusData: String = rs["status"],
             let status = WCSessionStatus(rawValue: statusData),
-            let created = Date(serializedValue: rs.string(column: "created")) else { return nil }
+            let created = Date(serializedValue: rs["created"]) else { return nil }
         var walletInfo: WCWalletInfo?
         if let walletInfoData: Data = rs["wallet_info"] {
             walletInfo = WCWalletInfo(data: walletInfoData)
