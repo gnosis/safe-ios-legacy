@@ -243,6 +243,7 @@
 		0ADE040722DF358100CA4705 /* WCOnboardingPageDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040622DF358100CA4705 /* WCOnboardingPageDataSourceTests.swift */; };
 		0ADE040922DF358E00CA4705 /* WCOnboardingToolbarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040822DF358E00CA4705 /* WCOnboardingToolbarTests.swift */; };
 		0ADE040B22DF359800CA4705 /* WCOnboardingStepViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040A22DF359800CA4705 /* WCOnboardingStepViewControllerTests.swift */; };
+		0ADE046822E5F15D00CA4705 /* PlaceholderCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */; };
 		0AE0FE42229C484000ABC552 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */; };
 		0AE0FE5A229D2CE500ABC552 /* TwoFAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */; };
 		0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE0FE5B229D2CF700ABC552 /* TwoFAView.xib */; };
@@ -848,6 +849,7 @@
 		0ADE040622DF358100CA4705 /* WCOnboardingPageDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingPageDataSourceTests.swift; sourceTree = "<group>"; };
 		0ADE040822DF358E00CA4705 /* WCOnboardingToolbarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingToolbarTests.swift; sourceTree = "<group>"; };
 		0ADE040A22DF359800CA4705 /* WCOnboardingStepViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingStepViewControllerTests.swift; sourceTree = "<group>"; };
+		0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCreator.swift; sourceTree = "<group>"; };
 		0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFAView.swift; sourceTree = "<group>"; };
 		0AE0FE5B229D2CF700ABC552 /* TwoFAView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoFAView.xib; sourceTree = "<group>"; };
@@ -2021,6 +2023,7 @@
 				5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */,
 				5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */,
 				5568A25B22D7854D007C9E0C /* WCSessionListCell.swift */,
+				0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */,
 				5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */,
 				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
 				5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */,
@@ -2964,6 +2967,7 @@
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				5549B2F4228C268200F3B5B7 /* OwnerModificationFeeCalculation.swift in Sources */,
+				0ADE046822E5F15D00CA4705 /* PlaceholderCreator.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,

@@ -13,6 +13,7 @@ final class WCSessionListCell: UITableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
 
     override func awakeFromNib() {
+        super.awakeFromNib()
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         titleLabel.textColor = ColorName.darkSlateBlue.color
         subtitleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
@@ -20,11 +21,16 @@ final class WCSessionListCell: UITableViewCell {
     }
 
     func configure(wcSessionData: WCSessionData) {
-        // TODO: what is a proper placeholder image?
+        let placeholder = PlaceholderCreator().create(size: dAppImageView.frame.size,
+                                                      cornerRadius: 8,
+                                                      text: String(wcSessionData.title.prefix(1)).uppercased(),
+                                                      font: UIFont.systemFont(ofSize: 17, weight: .medium),
+                                                      textColor: ColorName.darkSlateBlue.color,
+                                                      backgroundColor: ColorName.paleLilac.color)
         if let imageURL = wcSessionData.imageURL {
-            dAppImageView.kf.setImage(with: imageURL, placeholder: Asset.TokenIcons.defaultToken.image)
+            dAppImageView.kf.setImage(with: imageURL, placeholder: placeholder)
         } else {
-            dAppImageView.image = Asset.TokenIcons.defaultToken.image
+            dAppImageView.image = placeholder
         }
         titleLabel.text = wcSessionData.title
         subtitleLabel.text = wcSessionData.subtitle
