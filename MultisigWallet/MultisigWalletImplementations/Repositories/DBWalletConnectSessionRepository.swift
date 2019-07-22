@@ -12,17 +12,21 @@ public class DBWalletConnectSessionRepository: DBEntityRepository<WCSession, WCS
 
     public override var table: TableSchema {
         return .init("tbl_wc_sessions",
-                     "peer_id TEXT NOT NULL PRIMARY KEY",
+                     "topic TEXT NOT NULL PRIMARY KEY",
                      "url BLOB",
                      "dapp_info BLOB",
-                     "wallet_info BLOB")
+                     "wallet_info BLOB",
+                     "status TEXT",
+                     "created TEXT NOT NULL")
     }
 
     public override func insertionBindings(_ object: WCSession) -> [SQLBindable?] {
-        return bindable([object.dAppInfo.peerId,
+        return bindable([object.url.topic,
                          object.url.data,
                          object.dAppInfo.data,
-                         object.walletInfo?.data])
+                         object.walletInfo?.data,
+                         object.status.rawValue,
+                         object.created])
     }
 
     public override func objectFromResultSet(_ rs: ResultSet) throws -> WCSession? {
@@ -30,9 +34,14 @@ public class DBWalletConnectSessionRepository: DBEntityRepository<WCSession, WCS
             let url = MultisigWalletDomainModel.WCURL(data: urlData),
             let dAppInfoData: Data = rs["dapp_info"],
             let dAppInfo = WCDAppInfo(data: dAppInfoData),
-            let walletInfoData: Data = rs["wallet_info"],
-            let walletInfo = WCWalletInfo(data: walletInfoData) else { return nil }
-        return WCSession(url: url, dAppInfo: dAppInfo, walletInfo: walletInfo, status: .connected)
+            let statusData: String = rs["status"],
+            let status = WCSessionStatus(rawValue: statusData),
+            let created = Date(serializedValue: rs.string(column: "created")) else { return nil }
+        var walletInfo: WCWalletInfo?
+        if let walletInfoData: Data = rs["wallet_info"] {
+            walletInfo = WCWalletInfo(data: walletInfoData)
+        }
+        return WCSession(url: url, dAppInfo: dAppInfo, walletInfo: walletInfo, status: status, created: created)
     }
 
 }

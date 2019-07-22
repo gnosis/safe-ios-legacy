@@ -67,6 +67,7 @@ public struct WCWalletInfo: Codable {
 
 }
 
+// Be careful with updating. Used in DB.
 public enum WCSessionStatus: String, Codable {
 
     case connecting
@@ -83,13 +84,19 @@ public class WCSession: IdentifiableEntity<WCSessionID> {
     public let dAppInfo: WCDAppInfo
     public let walletInfo: WCWalletInfo?
     public let status: WCSessionStatus
+    public let created: Date
 
-    public init(url: WCURL, dAppInfo: WCDAppInfo, walletInfo: WCWalletInfo?, status: WCSessionStatus) {
+    public init(url: WCURL,
+                dAppInfo: WCDAppInfo,
+                walletInfo: WCWalletInfo?,
+                status: WCSessionStatus,
+                created: Date = Date()) {
         self.url = url
         self.dAppInfo = dAppInfo
         self.walletInfo = walletInfo
         self.status = status
-        super.init(id: WCSessionID(String(dAppInfo.peerId)))
+        self.created = created
+        super.init(id: WCSessionID(String(url.topic)))
     }
 
 }

@@ -13,6 +13,11 @@ public struct WCSessionData {
     public var title: String
     public var subtitle: String
 
+    enum Strings {
+        static let pleaseWait = LocalizedString("please_wait", comment: "Please wait...")
+        static let connecting = LocalizedString("connecting", comment: "Connecting...")
+    }
+
     public init(id: BaseID, imageURL: URL?, title: String, subtitle: String) {
         self.id = id
         self.imageURL = imageURL
@@ -22,12 +27,10 @@ public struct WCSessionData {
 
     init(wcSession: WCSession) {
         let meta = wcSession.dAppInfo.peerMeta
-        let subtitle = wcSession.status == .connecting ?
-            LocalizedString("connecting", comment: "Connecting...") : meta.url.absoluteString
         self.init(id: wcSession.id,
                   imageURL: meta.icons.isEmpty ? nil : meta.icons[0],
-                  title: meta.name,
-                  subtitle: subtitle)
+                  title: wcSession.status == .connecting ? Strings.pleaseWait : meta.name,
+                  subtitle: wcSession.status == .connecting ? Strings.connecting : meta.url.absoluteString)
     }
 
 }
