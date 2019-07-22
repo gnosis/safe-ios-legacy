@@ -161,9 +161,8 @@ public class RecoveryDomainService: Assertable {
         }
         guard let txId = RecoveryTransactionBuilder().build() else { return [] }
         let tx = DomainRegistry.transactionRepository.find(id: txId)!
-        let formattedRecipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
-        let request = MultiTokenEstimateTransactionRequest(safe: tx.sender!.value,
-                                                           to: formattedRecipient,
+        let request = MultiTokenEstimateTransactionRequest(safe: formatted(tx.sender)!.value,
+                                                           to: formatted(tx.ethTo),
                                                            value: String(tx.ethValue),
                                                            data: tx.ethData,
                                                            operation: tx.operation!)
@@ -176,6 +175,10 @@ public class RecoveryDomainService: Assertable {
         } catch {
             return []
         }
+    }
+
+    private func formatted(_ address: Address!) -> Address! {
+        return DomainRegistry.encryptionService.address(from: address.value)
     }
 
     public func createRecoveryTransaction() {
@@ -732,10 +735,13 @@ class RecoveryTransactionBuilder: Assertable {
         return true
     }
 
+    private func formatted(_ address: Address!) -> Address! {
+        return DomainRegistry.encryptionService.address(from: address.value)
+    }
+
     private func estimate() -> EstimateTransactionRequest.Response? {
-        let formattedRecipient = DomainRegistry.encryptionService.address(from: transaction.ethTo.value)!
-        let estimationRequest = EstimateTransactionRequest(safe: transaction.sender!,
-                                                           to: formattedRecipient,
+        let estimationRequest = EstimateTransactionRequest(safe: formatted(transaction.sender),
+                                                           to: formatted(transaction.ethTo),
                                                            value: String(transaction.ethValue),
                                                            data: transaction.ethData,
                                                            operation: transaction.operation!,

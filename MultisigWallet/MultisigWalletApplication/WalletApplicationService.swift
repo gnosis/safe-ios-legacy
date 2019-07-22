@@ -481,13 +481,13 @@ public class WalletApplicationService: Assertable {
                                     feeToken: String = Token.Ether.id.id) -> BigInt? {
         let placeholderAddress = Address(ownerAddress(of: .thisDevice)!)
         let formattedAddress = recipientAddress == nil || recipientAddress!.isEmpty ? placeholderAddress :
-            DomainRegistry.encryptionService.address(from: recipientAddress!)
+            formatted(recipientAddress)
         guard let recipient = formattedAddress, !recipient.isZero else { return nil }
 
         let request: EstimateTransactionRequest
 
         if token == Token.Ether.address.value {
-            request = EstimateTransactionRequest(safe: Address(selectedWalletAddress!),
+            request = EstimateTransactionRequest(safe: formatted(selectedWalletAddress),
                                                  to: recipient,
                                                  value: String(amount),
                                                  data: nil,
@@ -495,8 +495,8 @@ public class WalletApplicationService: Assertable {
                                                  gasToken: feeToken)
         } else {
             let data = ERC20TokenContractProxy(Address(token)).transfer(to: recipient, amount: amount)
-            request = EstimateTransactionRequest(safe: Address(selectedWalletAddress!),
-                                                 to: Address(token),
+            request = EstimateTransactionRequest(safe: formatted(selectedWalletAddress),
+                                                 to: formatted(token),
                                                  value: String(0),
                                                  data: "0x" + data.toHexString(),
                                                  operation: .call,
@@ -507,6 +507,14 @@ public class WalletApplicationService: Assertable {
             return nil
         }
         return response.totalDisplayedToUser
+    }
+
+    private func formatted(_ address: String!) -> Address! {
+        return formatted(Address(address))
+    }
+
+    private func formatted(_ address: Address!) -> Address! {
+        return DomainRegistry.encryptionService.address(from: address.value)
     }
 
     public func estimateTransferFee(amount: BigInt, token: String, recipient: String?) -> BigInt? {
@@ -634,9 +642,8 @@ public class WalletApplicationService: Assertable {
             (tx.type == .connectBrowserExtension || tx.type == .replaceRecoveryPhrase) && tx.status == .draft else {
                 return transactionData(id)!
         }
-        let recipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
-        let request = EstimateTransactionRequest(safe: tx.sender!,
-                                                 to: recipient,
+        let request = EstimateTransactionRequest(safe: formatted(tx.sender),
+                                                 to: formatted(tx.ethTo),
                                                  value: String(tx.ethValue),
                                                  data: tx.ethData,
                                                  operation: tx.operation ?? .call,
