@@ -71,7 +71,7 @@ class MultisigWalletConfigurator {
 
         configureEthereum(with: appDelegate)
         setUpMultisigDatabase(with: appDelegate)
-        configureWalletConnect(chainId: config.nodeServiceConfig.chainId)
+        configureWalletConnect(with: appDelegate)
     }
 
     class func setUpMultisigDatabase(with appDelegate: AppDelegate) {
@@ -172,9 +172,10 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
     }
 
-    private class func configureWalletConnect(chainId: Int) {
+    private class func configureWalletConnect(with appDelegate: AppDelegate) {
+        let appConfig = appDelegate.appConfig!
         DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
-        let service = WalletConnectApplicationService(chainId: chainId)
+        let service = WalletConnectApplicationService(chainId: appConfig.walletConnectChainId)
         service.setUp()
         ApplicationServiceRegistry.put(service: service, for: WalletConnectApplicationService.self)
     }

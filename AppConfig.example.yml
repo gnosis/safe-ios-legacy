@@ -4,6 +4,7 @@ default: &default
     build_secret: YOUR_CRASHLYTICS_BUILD_SECRET
   # chain ID to use for signing operations.
   encryption_service_chain_id: 0
+  wallet_connect_chain_id: 4
   node_service:
     url: https://rinkeby.infura.io/v3/YOUR_INFURA_API_TOKEN
     chain_id: 4 # rinkeby
@@ -63,6 +64,7 @@ Release:
   node_service:
     url: https://mainnet.infura.io/v3/YOUR_INFURA_API_KEY
     chain_id: 0 # mainnet
+  wallet_connect_chain_id: 1
   transaction_web_url_format: "https://etherscan.io/tx/%@"
   relay_service_url: https://PRODUCTION_RELAY_SERVICE_URL
   notification_service_url: https://PRODUCTION_NOTIFICATION_SERVICE_URL
