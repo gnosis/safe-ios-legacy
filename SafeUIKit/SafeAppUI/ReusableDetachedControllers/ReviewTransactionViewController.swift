@@ -41,11 +41,7 @@ public class ReviewTransactionViewController: UITableViewController {
     private var submitBarButton: UIBarButtonItem!
     /// To control how frequent a user can send confirmation requests
     private let scheduler = OneOperationWaitingScheduler(interval: 1)
-    private var isLoading: Bool = false {
-        didSet {
-            updateLoading()
-        }
-    }
+    private (set) var isLoading: Bool = false
 
     public convenience init(transactionID: String, delegate: ReviewTransactionViewControllerDelegate) {
         self.init()
@@ -149,7 +145,7 @@ public class ReviewTransactionViewController: UITableViewController {
         self.tx = tx
         DispatchQueue.main.async {
             self.reloadData()
-            self.isLoading = false
+            self.endLoadingAnimation()
         }
     }
 
@@ -175,6 +171,16 @@ public class ReviewTransactionViewController: UITableViewController {
         }
     }
 
+    func beginLoadingAnimation() {
+        isLoading = true
+        updateLoading()
+    }
+
+    func endLoadingAnimation() {
+        isLoading = false
+        updateLoading()
+    }
+
     private func updateLoading() {
         guard Thread.isMainThread else {
             DispatchQueue.main.async(execute: updateLoading)
@@ -189,14 +195,19 @@ public class ReviewTransactionViewController: UITableViewController {
             submitBarButton?.isEnabled = true
             navigationItem.titleView = nil
         }
+        loadingDidChange()
+    }
+
+    func loadingDidChange() {
+        // to override
     }
 
     private func doAfterEstimateTransaction(_ action: @escaping () throws -> TransactionData) {
         precondition(Thread.isMainThread)
-        isLoading = true
+        beginLoadingAnimation()
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
-            defer { self.isLoading = false }
+            defer { self.endLoadingAnimation() }
             do {
                 self.tx = try ApplicationServiceRegistry.walletService.estimateTransactionIfNeeded(self.tx.id)
                 self.tx = try action()

@@ -15,6 +15,20 @@ final class WCSendReviewViewController: SendReviewViewController {
                            forCellReuseIdentifier: "WCSessionListCell")
         showsSubmitInNavigationBar = false
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString("reject", comment: "Reject"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(didTapReject))
+    }
+
+    override func loadingDidChange() {
+        navigationItem.leftBarButtonItem?.isEnabled = !isLoading
+    }
+
+    @objc func didTapReject() {
+        beginLoadingAnimation()
+        onBack?()
+        endLoadingAnimation()
     }
 
     override func createCells() {
@@ -37,6 +51,14 @@ final class WCSendReviewViewController: SendReviewViewController {
         case(0, 0): return BasicTableViewCell.titleAndSubtitleHeight
         default: return super.tableView(tableView, heightForRowAt: indexPath)
         }
+    }
+
+}
+
+extension WCSendReviewViewController: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
     }
 
 }

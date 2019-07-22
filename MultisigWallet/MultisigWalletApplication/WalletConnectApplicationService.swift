@@ -17,7 +17,7 @@ public class WalletConnectApplicationService {
 
     // TODO: move to domain service
     let chainId: Int
-    let transactionsStore = WCPendingTransactionsRepository()
+    let transactionsRepository = WCPendingTransactionsRepository()
 
     private let onboardingKey = "io.gnosis.safe.MultisigWalletApplication.isWalletConnectOnboardingDone"
 
@@ -76,7 +76,7 @@ public class WalletConnectApplicationService {
     }
 
     public func popPendingTransactions() -> [WCPendingTransaction] {
-        return transactionsStore.popAll()
+        return transactionsRepository.popAll()
     }
 
     // MARK: Getting Started
@@ -137,7 +137,7 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
         let txID = walletService.createDraftTransaction(in: wallet, sendTransactionData: request)
         let sessionData = WCSessionData(wcSession: wcSession)
         let transaction = WCPendingTransaction(transactionID: txID, sessionData: sessionData, completion: completion)
-        transactionsStore.add(transaction)
+        transactionsRepository.add(transaction)
         eventPublisher.publish(SendTransactionRequested())
     }
 
