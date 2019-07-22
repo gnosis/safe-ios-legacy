@@ -56,6 +56,9 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     func appDidFinishLaunching() {
         updateUserIdentifier()
+        defer {
+            ApplicationServiceRegistry.walletConnectService.subscribeForIncomingTransactions(self)
+        }
         if !ApplicationServiceRegistry.authenticationService.isUserRegistered {
             push(OnboardingWelcomeViewController.create(delegate: self))
             applicationRootViewController = rootViewController
@@ -68,7 +71,6 @@ open class MainFlowCoordinator: FlowCoordinator {
             switchToRootController()
         }
         requestToUnlockApp()
-        ApplicationServiceRegistry.walletConnectService.subscribeForIncomingTransactions(self)
     }
 
     private func updateUserIdentifier() {
@@ -143,7 +145,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     private func handleIncomingWalletConnectTransaction(_ transaction: WCPendingTransaction) {
-        let rejectHandler: () -> Void = { [unowned self] in
+        let rejectHandler: () -> Void = {
             let rejectedError = NSError(domain: "io.gnosis.safe",
                                         code: -401,
                                         userInfo: [NSLocalizedDescriptionKey: "Rejected by user"])

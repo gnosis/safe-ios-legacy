@@ -75,6 +75,8 @@ public class ReviewTransactionViewController: UITableViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+
+        ApplicationServiceRegistry.walletService.subscribeForBalanceUpdates(subscriber: self)
     }
 
     private func configureTableView() {
@@ -141,11 +143,12 @@ public class ReviewTransactionViewController: UITableViewController {
 
     /// Supposed to be called from flow coordinator when the screen is already shown, but new transaction data
     /// comes through incoming message.
+    /// It is also called on balance updates.
     internal func update(with tx: TransactionData) {
         self.tx = tx
         DispatchQueue.main.async {
-            self.reloadData()
             self.endLoadingAnimation()
+            self.reloadData()
         }
     }
 
@@ -337,6 +340,16 @@ public class ReviewTransactionViewController: UITableViewController {
             defer { index += 1 }
             return IndexPath(row: index, section: 0)
         }
+    }
+
+}
+
+extension ReviewTransactionViewController: EventSubscriber {
+
+    // on balance updates
+    public func notify() {
+        guard let id = tx?.id else { return }
+        update(with: fetchTransaction(id))
     }
 
 }

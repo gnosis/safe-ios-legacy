@@ -6,6 +6,7 @@ import Foundation
 import SafeUIKit
 import BigInt
 import Common
+import MultisigWalletApplication
 
 class SendReviewViewController: ReviewTransactionViewController {
 
@@ -76,13 +77,22 @@ class SendReviewViewController: ReviewTransactionViewController {
             let calculation = SameTransferAndPaymentTokensFeeCalculation()
             calculation.networkFeeLine.set(value: abs(tx.feeTokenData), roundUp: true)
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(balanceAfter))
+            if let balance = balanceAfter, balance < 0 {
+                calculation.setBalanceError(FeeCalculationError.insufficientBalance)
+            }
             cell.feeCalculationView.calculation = calculation
         } else {
             let feeResultingBalance = subtract(balance(of: tx.feeTokenData) ?? 0, abs(tx.feeTokenData.balance) ?? 0)
             let calculation = DifferentTransferAndPaymentTokensFeeCalculation()
             calculation.resultingBalanceLine.set(value: tx.amountTokenData.withBalance(balanceAfter))
+            if let balance = balanceAfter, balance < 0 {
+                calculation.setBalanceError(FeeCalculationError.insufficientBalance)
+            }
             calculation.networkFeeLine.set(value: abs(tx.feeTokenData), roundUp: true)
             calculation.networkFeeResultingBalanceLine.set(value: tx.feeTokenData.withBalance(feeResultingBalance))
+            if let balance = feeResultingBalance, balance < 0 {
+                calculation.setFeeBalanceError(FeeCalculationError.insufficientBalance)
+            }
             cell.feeCalculationView.calculation = calculation
         }
         cell.feeCalculationView.update()
