@@ -13,3 +13,6 @@
 /* Browser extension is not connected. */
 "ios_error_extension_notfound" = "Browser extension is not connected.";
 
+/* Please wait... */
+"please_wait" = "Please wait...";
+

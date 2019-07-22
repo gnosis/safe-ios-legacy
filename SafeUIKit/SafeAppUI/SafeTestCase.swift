@@ -23,6 +23,7 @@ class SafeTestCase: XCTestCase {
     let logger = MockLogger()
     let eventPublisher = MockEventPublisher()
     var walletConnectService: MockWalletConnectApplicationService!
+    let walletConnectSessionRepository = InMemoryWCSessionRepository()
 
     let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
 
@@ -67,6 +68,9 @@ class SafeTestCase: XCTestCase {
                                                      for: WalletConnectDomainService.self)
         walletConnectService = MockWalletConnectApplicationService(chainId: 1)
         applicationRegistry.put(service: walletConnectService, for: WalletConnectApplicationService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: walletConnectSessionRepository,
+                                                     for: WalletConnectSessionRepository.self)
+
     }
 
     internal func reconfigureService(with config: WalletApplicationServiceConfiguration) {

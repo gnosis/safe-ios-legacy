@@ -80,9 +80,9 @@ public protocol WalletConnectDomainService {
     /// - Throws: error if the session is already disconnected
     func disconnect(session: WCSession) throws
 
-    /// Get the list of open sessions.
+    /// Get the list of sessions.
     ///
     /// - Returns: sessoins array
-    func openSessions() -> [WCSession]
+    func sessions() -> [WCSession]
 
 }

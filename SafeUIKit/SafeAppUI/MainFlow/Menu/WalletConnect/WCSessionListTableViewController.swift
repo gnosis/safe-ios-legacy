@@ -24,11 +24,6 @@ import MultisigWalletApplication
     }
 
     private var sessions = [WCSessionData]()
-    private var isRequestingNetwork = false {
-        didSet {
-            updateLoading()
-        }
-    }
 
     /// The WalletConnect url to connect to when the screen will load.
     private (set) var connectionURL: URL?
@@ -97,23 +92,8 @@ import MultisigWalletApplication
     private func update() {
         sessions = wcService.sessions()
         DispatchQueue.main.async {
-            self.isRequestingNetwork = false
             self.tableView.backgroundView = self.sessions.isEmpty ? self.noSessionsView : nil
             self.tableView.reloadData()
-        }
-    }
-
-    private func updateLoading() {
-        guard Thread.isMainThread else {
-            DispatchQueue.main.async(execute: updateLoading)
-            return
-        }
-        if isRequestingNetwork {
-            scanButtonItem.isEnabled = false
-            navigationItem.titleView = LoadingTitleView()
-        } else {
-            scanButtonItem.isEnabled = true
-            navigationItem.titleView = nil
         }
     }
 
@@ -126,7 +106,7 @@ import MultisigWalletApplication
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WCSessionListCell",
                                                  for: indexPath) as! WCSessionListCell
-        cell.configure(wcSessionData: sessions[indexPath.row])
+        cell.configure(wcSessionData: sessions[indexPath.row], screen: .sessions)
         return cell
     }
 
@@ -134,7 +114,6 @@ import MultisigWalletApplication
         return true
     }
 
-    // TODO: clarify with product one more time if we should display this alert at all.
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
@@ -145,7 +124,6 @@ import MultisigWalletApplication
         let session = sessions[indexPath.row]
         let alert = UIAlertController
             .disconnectWCSession(sessionName: session.title, withTitle: withTitle) { [unowned self] in
-                self.isRequestingNetwork = true
                 try? self.wcService.disconnect(sessionID: session.id)
         }
         present(alert, animated: true)
@@ -186,7 +164,6 @@ extension WCSessionListTableViewController: ScanBarButtonItemDelegate {
 
     func scanBarButtonItemDidScanValidCode(_ code: String) {
         do {
-            isRequestingNetwork = true
             try wcService.connect(url: code)
         } catch {
             present(UIAlertController.failedToConnectWCUrl(), animated: true)
@@ -197,7 +174,7 @@ extension WCSessionListTableViewController: ScanBarButtonItemDelegate {
 
 extension WCSessionListTableViewController: EventSubscriber {
 
-    // FailedToConnectSession, SessionUpdated (connected/disconnected/-reconnecting?-)
+    // FailedToConnectSession, SessionUpdated (connected/disconnected)
     func notify() {
         update()
     }
