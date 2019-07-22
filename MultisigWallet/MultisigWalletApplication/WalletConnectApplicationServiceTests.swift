@@ -46,6 +46,12 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertThrowsError(try appService.connect(url: "some"))
     }
 
+    func test_connect_publishesEvent() throws {
+        eventPublisher.expectToPublish(SessionUpdated.self)
+        try appService.connect(url: "some")
+        XCTAssertTrue(eventPublisher.verify())
+    }
+
     func test_reconnect_callsDomainService() throws {
         try appService.reconnect(session: WCSession.testSession)
         XCTAssertEqual(domainService.reconnectSession, WCSession.testSession)
@@ -74,8 +80,15 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertNil(domainService.disconnectSession)
     }
 
+    func test_disconnect_publishesEvent() throws {
+        sessionRepository.save(WCSession.testSession)
+        eventPublisher.expectToPublish(SessionUpdated.self)
+        try appService.disconnect(sessionID: WCSession.testSession.id)
+        XCTAssertTrue(eventPublisher.verify())
+    }
+
     func test_sessions() {
-        domainService.sessions = [WCSession.testSession]
+        domainService.sessionsArray = [WCSession.testSession]
         XCTAssertEqual(appService.sessions().count, 1)
     }
 
@@ -129,15 +142,15 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
         waitForExpectations(timeout: 1)
     }
 
-    func test_didConnect_savesSession() {
-        XCTAssertTrue(sessionRepository.all().isEmpty)
-        appService.didConnect(session: WCSession.testSession)
-        XCTAssertEqual(sessionRepository.find(id: WCSession.testSession.id), WCSession.testSession)
-    }
-
     func test_didConnect_publishesEvent() {
         eventPublisher.expectToPublish(SessionUpdated.self)
         appService.didConnect(session: WCSession.testSession)
+        XCTAssertTrue(eventPublisher.verify())
+    }
+
+    func test_didDisconnect_publishedEvent() {
+        eventPublisher.expectToPublish(SessionUpdated.self)
+        appService.didDisconnect(session: WCSession.testSession)
         XCTAssertTrue(eventPublisher.verify())
     }
 
@@ -208,9 +221,9 @@ class MockWalletConnectDomainService: WalletConnectDomainService {
         disconnectSession = session
     }
 
-    var sessions = [WCSession]()
-    func openSessions() -> [WCSession] {
-        return sessions
+    var sessionsArray = [WCSession]()
+    func sessions() -> [WCSession] {
+        return sessionsArray
     }
 
 }

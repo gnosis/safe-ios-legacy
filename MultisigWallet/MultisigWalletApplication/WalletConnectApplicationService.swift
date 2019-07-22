@@ -48,6 +48,7 @@ public class WalletConnectApplicationService {
 
     public func connect(url: String) throws {
         try service.connect(url: url)
+        eventPublisher.publish(SessionUpdated())
     }
 
     public func reconnect(session: WCSession) throws {
@@ -57,10 +58,11 @@ public class WalletConnectApplicationService {
     public func disconnect(sessionID: BaseID) throws {
         guard let session = sessionRepo.find(id: WCSessionID(sessionID.id)) else { return }
         try service.disconnect(session: session)
+        eventPublisher.publish(SessionUpdated())
     }
 
     public func sessions() -> [WCSessionData] {
-        return service.openSessions().map { WCSessionData(wcSession: $0) }
+        return service.sessions().map { WCSessionData(wcSession: $0) }
     }
 
     public func subscribeForSessionUpdates(_ subscriber: EventSubscriber) {
@@ -120,12 +122,10 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
     }
 
     public func didConnect(session: WCSession) {
-        sessionRepo.save(session)
         eventPublisher.publish(SessionUpdated())
     }
 
     public func didDisconnect(session: WCSession) {
-        sessionRepo.remove(session)
         eventPublisher.publish(SessionUpdated())
     }
 
