@@ -143,9 +143,16 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     private func handleIncomingWalletConnectTransaction(_ transaction: WCPendingTransaction) {
+        let rejectHandler: () -> Void = { [unowned self] in
+            let rejectedError = NSError(domain: "io.gnosis.safe",
+                                        code: -401,
+                                        userInfo: [NSLocalizedDescriptionKey: "Rejected by user"])
+            transaction.completion(.failure(rejectedError))
+        }
         let coordinator = incomingTransactionsManager.coordinator(for: transaction.transactionID.id,
                                                                   source: .walletConnect,
-                                                                  sourceMeta: transaction.sessionData)
+                                                                  sourceMeta: transaction.sessionData,
+                                                                  onBack: rejectHandler)
         enterTransactionFlow(coordinator) { [unowned self] in
             self.incomingTransactionsManager.releaseCoordinator(by: coordinator.transactionID)
             let hash = ApplicationServiceRegistry.walletService.transactionHash(transaction.transactionID) ?? "0x"

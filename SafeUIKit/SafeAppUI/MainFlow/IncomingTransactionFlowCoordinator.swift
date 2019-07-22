@@ -39,6 +39,7 @@ class IncomingTransactionFlowCoordinator: FlowCoordinator {
             reviewVC.wcSessionData = wcSessionData
             reviewVC.onBack = { [unowned self] in
                 self.onBackButton?()
+                self.pop()
             }
             push(reviewVC)
         }

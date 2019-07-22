@@ -12,12 +12,14 @@ final class IncomingTransactionsManager {
 
     func coordinator(for transactionID: String,
                      source: IncomingTransactionFlowCoordinator.TransactionSource,
-                     sourceMeta: Any? = nil) -> IncomingTransactionFlowCoordinator {
+                     sourceMeta: Any? = nil,
+                     onBack: (() -> Void)? = nil) -> IncomingTransactionFlowCoordinator {
         if let coordinator = coordinators[transactionID] { return coordinator }
         let newCoordinator = IncomingTransactionFlowCoordinator(transactionID: transactionID,
                                                                 source: source,
                                                                 sourceMeta: sourceMeta,
                                                                 onBackButton: { [unowned self] in
+                                                                    onBack?()
                                                                     self.releaseCoordinator(by: transactionID)})
         coordinators[transactionID] = newCoordinator
         return newCoordinator
