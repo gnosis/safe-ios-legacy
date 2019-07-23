@@ -5,6 +5,17 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`1.4.0`_ - 2019-07-23
+======================
+Changed
+--------
+- Various stability improvements
+- Updated README.md with notes on how to build the project
+
+Added
+-------
+- Added support for WalletConnect protocol v1.0.0-beta
+
 `1.3.1`_ - 2019-06-19
 ======================
 Changed
