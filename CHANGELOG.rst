@@ -5,6 +5,9 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+.. copy-paste the latest version update format and remember to add URL
+   at the end of this file.
+
 `1.4.0`_ - 2019-07-23
 ======================
 Changed
@@ -342,6 +345,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.4.0: https://github.com/gnosis/safe-ios/tree/1.4.0
 .. _1.3.1: https://github.com/gnosis/safe-ios/tree/1.3.1
 .. _1.3.0: https://github.com/gnosis/safe-ios/tree/1.3.0
 .. _1.2.0: https://github.com/gnosis/safe-ios/tree/1.2.0
