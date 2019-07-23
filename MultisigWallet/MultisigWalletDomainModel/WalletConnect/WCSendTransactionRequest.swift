@@ -51,8 +51,14 @@ public struct WCSendTransactionRequest: Decodable, Equatable {
         let value = try container.decode(String.self, forKey: .value)
         let data = try container.decode(String.self, forKey: .data)
         let nonce = try container.decode(String.self, forKey: .nonce)
-        self.init(from: Address(from),
-                  to: Address(to),
+        guard let fromAddress = DomainRegistry.encryptionService.address(from: from),
+            let toAddress = DomainRegistry.encryptionService.address(from: to) else {
+            let context = DecodingError.Context(codingPath: decoder.codingPath,
+                                                debugDescription: "Value is not a valid Ethereum address")
+            throw DecodingError.dataCorrupted(context)
+        }
+        self.init(from: fromAddress,
+                  to: toAddress,
                   gasLimit: TokenInt(hex: gasLimit)!,
                   gasPrice: TokenInt(hex: gasPrice)!,
                   value: TokenInt(hex: value)!,
