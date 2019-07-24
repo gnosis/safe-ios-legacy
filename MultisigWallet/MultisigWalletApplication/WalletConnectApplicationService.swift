@@ -132,8 +132,8 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
     // TODO: move to domain service
     public func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
                                              completion: @escaping (Result<String, Error>) -> Void) {
-        guard let wcSession = sessionRepo.find(url: request.url),
-            let wallet = walletRepository.selectedWallet() else { return }
+        guard let wcSession = sessionRepo.find(url: request.url) else { return }
+        let wallet = walletRepository.selectedWallet()!
         let txID = walletService.createDraftTransaction(in: wallet, sendTransactionData: request)
         let sessionData = WCSessionData(wcSession: wcSession)
         let transaction = WCPendingTransaction(transactionID: txID, sessionData: sessionData, completion: completion)
