@@ -6,6 +6,6 @@ xcassets:
   output: generated/Assets.swift
 colors:
   paths:
-    - Colors.txt
+    - ../Colors.txt
   templateName: swift4
   output: generated/Colors.swift
