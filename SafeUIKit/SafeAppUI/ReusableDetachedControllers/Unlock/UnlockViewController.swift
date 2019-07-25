@@ -151,10 +151,6 @@ public final class UnlockViewController: UIViewController {
         auhtenticateWithBiometry()
     }
 
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     private func auhtenticateWithBiometry() {
         guard !authenticationService.isAuthenticationBlocked else { return }
         guard authenticationService.isAuthenticationMethodPossible(.biometry) else {

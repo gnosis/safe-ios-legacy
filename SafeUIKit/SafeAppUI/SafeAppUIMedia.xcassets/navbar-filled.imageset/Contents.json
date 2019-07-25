@@ -2,21 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "navbar-filled.pdf",
-      "resizing" : {
-        "mode" : "9-part",
-        "center" : {
-          "mode" : "tile",
-          "width" : 1,
-          "height" : 1
-        },
-        "cap-insets" : {
-          "bottom" : 1,
-          "top" : 2,
-          "right" : 220,
-          "left" : 219
-        }
-      }
+      "filename" : "navbar-filled.pdf"
     }
   ],
   "info" : {

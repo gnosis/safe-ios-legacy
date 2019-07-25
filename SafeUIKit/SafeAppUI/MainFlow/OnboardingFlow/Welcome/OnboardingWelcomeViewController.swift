@@ -34,7 +34,8 @@ final class OnboardingWelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionLabel.text = Strings.description
-        descriptionLabel.font = UIFont.systemFont(ofSize: 27, weight: .light)
+        descriptionLabel.font = UIFont(descriptor: UIFontDescriptor(name: "Averta-Regular", size: 26), size: 26)
+        descriptionLabel.textColor = ColorName.darkBlue.color
         setupPasswordButton.setTitle(Strings.setupPassword, for: .normal)
     }
 
@@ -49,7 +50,7 @@ final class OnboardingWelcomeViewController: UIViewController {
         _navigationController = navigationController
         _navigationController?.navigationBar.setBackgroundImage(Asset.navbarFilled.image, for: .default)
         _navigationController?.navigationBar.shadowImage = UIImage()
-        _navigationController?.navigationBar.tintColor = ColorName.snowwhite.color
+        _navigationController?.navigationBar.tintColor = ColorName.darkBlue.color
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,10 +62,6 @@ final class OnboardingWelcomeViewController: UIViewController {
 
     @IBAction func setupPassword(_ sender: Any) {
         delegate.didStart()
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 
 }

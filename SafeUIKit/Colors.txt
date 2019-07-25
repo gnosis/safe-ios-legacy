@@ -1,7 +1,8 @@
-hold: 008C73
-holdTwo: 005546
 hold20: 008C7333
 hold50: 008C7380
+hold: 008C73
+holdLight: ABD4CD
+holdDark: 005546
 tomato: FF3B30
 darkBlue: 001428
 darkBlue50: 00142880
@@ -11,9 +12,9 @@ lightGrey: D4D5D3
 whitesmoke: E9E7E6
 whitesmokeTwo: F0EFEE
 white: F7F5F5
-cardShadow: D4D4D397
-cardShadowPassword: 607E795C
-cardShadowTooltip: 28363D2E
+cardShadow: D4D4D3
+cardShadowPassword: 607E79
+cardShadowTooltip: 28363D
 snowwhite: FFFFFF
 black: 000000
 black15: 00000026

@@ -30,9 +30,9 @@ final public class StandardButton: BaseCustomButton {
     }
 
     public override func update() {
-        setTitleColor(ColorName.snowwhite.color, for: .normal)
-        setTitleColor(ColorName.darkBlue.color, for: .highlighted)
-        setTitleColor(ColorName.mediumGrey.color, for: .disabled)
+        setTitleColor(ColorName.darkBlue.color, for: .normal)
+        setTitleColor(ColorName.darkBlue50.color, for: .highlighted)
+        setTitleColor(ColorName.darkBlue50.color, for: .disabled)
 
         titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         layer.borderWidth = 0
@@ -42,20 +42,22 @@ final public class StandardButton: BaseCustomButton {
         backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.transparent.color]
         switch style {
         case .bordered:
-            layer.borderColor = ColorName.snowwhite.color.cgColor
+            layer.borderColor = ColorName.darkBlue.color.cgColor
             layer.borderWidth = 2
         case .plain:
             setTitleColor(ColorName.hold.color, for: .normal)
+            setTitleColor(ColorName.holdDark.color, for: .highlighted)
             layer.cornerRadius = 0
         case .filled:
+            setTitleColor(ColorName.snowwhite.color, for: .normal)
+            setTitleColor(ColorName.white.color, for: .highlighted)
+            setTitleColor(ColorName.white.color, for: .disabled)
             backgroundColor = ColorName.hold.color
             backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.hold.color,
-                                       UIControl.State.highlighted.rawValue: ColorName.holdTwo.color,
+                                       UIControl.State.highlighted.rawValue: ColorName.holdDark.color,
                                        UIControl.State.disabled.rawValue: ColorName.hold50.color]
-            setTitleColor(ColorName.snowwhite.color, for: .highlighted)
-            setTitleColor(ColorName.snowwhite.color, for: .disabled)
             layer.shadowColor = ColorName.cardShadow.color.cgColor
-            layer.shadowOpacity = 0.58
+            layer.shadowOpacity = 0.59
             layer.shadowOffset = CGSize(width: 1, height: 2)
         }
     }

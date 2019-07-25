@@ -17,7 +17,7 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var verifiableInput: VerifiableInput!
     var nextButton: UIBarButtonItem!
-
+    @IBOutlet weak var cardView: CardView!
     weak var delegate: PasswordViewControllerDelegate!
     private var keyboardBehavior: KeyboardAvoidingBehavior!
 
@@ -51,6 +51,8 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        cardView.layer.shadowColor = ColorName.cardShadowPassword.color.cgColor
+        cardView.layer.shadowOpacity = 0.36
         configureKeyboardBehavior()
         nextButton = UIBarButtonItem(title: Strings.nextButtonTitle,
                                      style: .done,
@@ -77,7 +79,7 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
         _navigationController = navigationController
         _navigationController?.navigationBar.setBackgroundImage(Asset.navbarFilled.image, for: .default)
         _navigationController?.navigationBar.shadowImage = UIImage()
-        _navigationController?.navigationBar.tintColor = ColorName.snowwhite.color
+        _navigationController?.navigationBar.tintColor = ColorName.darkBlue.color
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,10 +92,6 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
 
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         // overriden
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 
 }
