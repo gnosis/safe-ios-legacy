@@ -15,7 +15,7 @@ final class QRCodeViewController: UIViewController {
         qrCodeView.padding = 5
         qrCodeView.value = "Gnosis Safe"
         qrCodeView.layer.borderWidth = 1
-        qrCodeView.layer.borderColor = ColorName.black.color.cgColor
+        qrCodeView.layer.borderColor = UIColor.black.cgColor
         qrCodeView.layer.cornerRadius = 4
         input.delegate = self
     }

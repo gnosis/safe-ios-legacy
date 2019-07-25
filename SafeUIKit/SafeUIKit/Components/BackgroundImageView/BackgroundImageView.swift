@@ -35,9 +35,7 @@ public final class BackgroundImageView: UIImageView {
 
     public var isDimmed = false {
         didSet {
-            dimmedView.backgroundColor = isDimmed ?
-                ColorName.black.color.withAlphaComponent(0.15) :
-                ColorName.transparent.color
+            dimmedView.backgroundColor = isDimmed ? ColorName.black15.color : ColorName.transparent.color
         }
     }
 

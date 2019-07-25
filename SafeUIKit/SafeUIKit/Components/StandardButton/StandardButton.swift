@@ -51,8 +51,7 @@ final public class StandardButton: BaseCustomButton {
             backgroundColor = ColorName.hold.color
             backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.hold.color,
                                        UIControl.State.highlighted.rawValue: ColorName.holdTwo.color,
-                                       UIControl.State.disabled.rawValue:
-                                        ColorName.hold.color.withAlphaComponent(0.5)]
+                                       UIControl.State.disabled.rawValue: ColorName.hold50.color]
             setTitleColor(ColorName.snowwhite.color, for: .highlighted)
             setTitleColor(ColorName.snowwhite.color, for: .disabled)
             layer.shadowColor = ColorName.cardShadow.color.cgColor
