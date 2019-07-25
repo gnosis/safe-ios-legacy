@@ -53,15 +53,19 @@ public class RBEReviewTransactionViewController: ReviewTransactionViewController
             override var horizontalMargin: CGFloat { return 0 }
         }
         let cell = ReviewFeeCell(frame: .zero)
+        cell.feeCalculationView.calculation = feeCalculation()
+        cell.feeCalculationView.update()
+        return cell
+    }
+
+    internal func feeCalculation() -> OwnerModificationFeeCalculation {
         let calculation = OwnerModificationFeeCalculation()
         let currentFeeTokenBalance = balance(of: tx.feeTokenData)
         let resultingFeeTokenBalance = subtract(currentFeeTokenBalance, abs(tx.feeTokenData.balance) ?? 0)
         calculation.currentBalanceLine.set(value: tx.feeTokenData.withBalance(currentFeeTokenBalance))
         calculation.resultingBalanceLine.set(value: tx.feeTokenData.withBalance(resultingFeeTokenBalance))
         calculation.networkFeeLine.set(value: abs(tx.feeTokenData), roundUp: true)
-        cell.feeCalculationView.calculation = calculation
-        cell.feeCalculationView.update()
-        return cell
+        return calculation
     }
 
 }

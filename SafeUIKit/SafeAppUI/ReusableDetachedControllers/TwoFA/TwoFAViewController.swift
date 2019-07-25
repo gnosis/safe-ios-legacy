@@ -26,7 +26,7 @@ public final class TwoFAViewController: CardViewController {
                                                        comment: "'Download the' Gnosis Safe Chrome browser exntension.")
         static let chromeExtension = LocalizedString("ios_open_be_link_substring",
                                                      comment: "Download the 'Gnosis Safe Chrome browser exntension.'")
-        static let scanQRCode = LocalizedString("install_browser_extension",
+        static let scanQRCode = LocalizedString("ios_install_browser_extension",
                                                 comment: "Scan its QR code.")
         static let skipSetup = LocalizedString("skip_setup_later",
                                                comment: "Skip button text")

@@ -22,6 +22,7 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
 
     let payButton = StandardButton()
     var screenTrackingEvent: Trackable?
+    var descriptionText: String = Strings.headerDescription
 
     override var paymentToken: TokenData! {
         didSet {
@@ -125,7 +126,7 @@ class OnboardingPaymentMethodViewController: BasePaymentMethodViewController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "PaymentMethodHeaderView")
             as! PaymentMethodHeaderView
-        view.updateDescriptionLabel(Strings.headerDescription, withInfo: false)
+        view.updateDescriptionLabel(descriptionText, withInfo: false)
         view.updateBalanceLabel(Strings.fee)
         return view
     }

@@ -22,6 +22,12 @@ class RecoverReviewViewController: RBEReviewTransactionViewController {
         return ApplicationServiceRegistry.recoveryService.transactionData(id)
     }
 
+    override func feeCalculation() -> OwnerModificationFeeCalculation {
+        let calculation = super.feeCalculation()
+        calculation.border = nil
+        return calculation
+    }
+
     override func requestConfirmationsOnce() {
         /* empty */
     }

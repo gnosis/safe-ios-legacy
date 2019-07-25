@@ -18,6 +18,8 @@ protocol CreationFeeIntroDelegate: class {
 class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController {
 
     var titleText: String?
+    var headerText: String?
+    var descriptionText: String?
     var screenTrackingEvent: Trackable?
     private var actionsIsEnabled: Bool = true
 
@@ -115,6 +117,12 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CreationFeeIntroHeaderView")
             as! CreationFeeIntroHeaderView
+        if let text = headerText {
+            view.headerLabel.text = text
+        }
+        if let text = descriptionText {
+            view.descriptionInfoLabel.setInfoText(text)
+        }
         view.onTextSelected = { [weak self] in
             guard let `self` = self else { return }
             let alert = self.delegate!.creationFeeNetworkFeeAlert()
