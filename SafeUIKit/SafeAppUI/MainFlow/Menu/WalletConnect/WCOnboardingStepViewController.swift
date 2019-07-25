@@ -28,11 +28,11 @@ class WCOnboardingStepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        titleLabel.textColor = ColorName.darkSlateBlue.color
+        titleLabel.textColor = ColorName.darkBlue.color
         titleLabel.textAlignment = .center
 
         descriptionLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        descriptionLabel.textColor = ColorName.battleshipGrey.color
+        descriptionLabel.textColor = ColorName.darkGrey.color
         descriptionLabel.textAlignment = .center
 
         update(content: content)

@@ -95,11 +95,11 @@ public class TransactionDetailsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = ColorName.snowwhite.color
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .medium
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
-        wrapperView.backgroundColor = .white
+        wrapperView.backgroundColor = ColorName.snowwhite.color
         transferView.setSmallerAmountLabelFontSize()
         reloadData()
     }
@@ -211,7 +211,7 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureFee() {
         transactionFeeView.infoLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        transactionFeeView.infoLabel.bodyColor = ColorName.darkSlateBlue.color
+        transactionFeeView.infoLabel.bodyColor = ColorName.darkBlue.color
         transactionFeeView.infoLabel.setInfoText(Strings.fee)
         transactionFeeView.infoLabel.delegate = self
         transactionFeeView.amountLabel.isShowingShortFormat = true

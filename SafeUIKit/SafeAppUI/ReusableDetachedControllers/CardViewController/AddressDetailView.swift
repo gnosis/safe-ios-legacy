@@ -41,9 +41,9 @@ class AddressDetailView: BaseCustomView {
         footnoteLabel.textColor = ColorName.tomato.color
 
         qrCodeView.padding = 12
-        qrCodeView.backgroundColor = .white
+        qrCodeView.backgroundColor = ColorName.snowwhite.color
         qrCodeView.layer.borderWidth = 1
-        qrCodeView.layer.borderColor = UIColor.black.cgColor
+        qrCodeView.layer.borderColor = ColorName.black.color.cgColor
         qrCodeView.layer.cornerRadius = 9
 
         addressLabel.numberOfLines = 2

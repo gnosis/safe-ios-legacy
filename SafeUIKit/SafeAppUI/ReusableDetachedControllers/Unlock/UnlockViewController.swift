@@ -53,28 +53,28 @@ public final class UnlockViewController: UIViewController {
         let isFaceID = authenticationService.isAuthenticationMethodSupported(.faceID)
         let biometryIcon = isFaceID ? Asset.UnlockScreen.faceIdIcon.image : Asset.UnlockScreen.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
-        loginWithBiometryButton.tintColor = .white
+        loginWithBiometryButton.tintColor = ColorName.snowwhite.color
 
         biometryExplanationLabel.text = isFaceID ? Strings.faceIDInfo : Strings.touchIDInfo
-        biometryExplanationLabel.textColor = ColorName.paleGrey.color
+        biometryExplanationLabel.textColor = ColorName.white.color
         biometryExplanationLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
 
         updateBiometryButtonVisibility()
 
-        tryAgainLabel.textColor = ColorName.paleGrey.color
+        tryAgainLabel.textColor = ColorName.white.color
         tryAgainLabel.text = Strings.tryAgain
         tryAgainLabel.font = UIFont.systemFont(ofSize: 15)
 
         countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
                              clock: clockService)
-        countdownLabel.textColor = ColorName.paleGrey.color
+        countdownLabel.textColor = ColorName.white.color
         countdownLabel.font = UIFont.systemFont(ofSize: 20)
         countdownLabel.accessibilityIdentifier = "countdown"
 
         cancelButton.isHidden = !showsCancelButton
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         cancelButton.setTitle(Strings.cancel, for: .normal)
-        cancelButton.setTitleColor(.white, for: .normal)
+        cancelButton.setTitleColor(ColorName.snowwhite.color, for: .normal)
         cancelButton.accessibilityIdentifier = "cancel"
 
         startCountdownIfNeeded()

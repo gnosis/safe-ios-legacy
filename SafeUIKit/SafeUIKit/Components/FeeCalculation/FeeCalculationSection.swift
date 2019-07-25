@@ -7,7 +7,7 @@ import UIKit
 
 public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
 
-    public var backgroundColor: UIColor = .white
+    public var backgroundColor: UIColor = ColorName.snowwhite.color
     public var insets = UIEdgeInsets.zero
     public var border: (width: Double, color: UIColor)?
 

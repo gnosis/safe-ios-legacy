@@ -43,7 +43,7 @@ public class TransactionHeaderView: BaseCustomView {
 
     public override func commonInit() {
         safeUIKit_loadFromNib(forClass: TransactionHeaderView.self)
-        subviews.first?.backgroundColor = .white
+        subviews.first?.backgroundColor = ColorName.snowwhite.color
         update()
     }
 

@@ -39,10 +39,10 @@ class TransactionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundView = UIView()
-        backgroundView?.backgroundColor = UIColor.white
+        backgroundView?.backgroundColor = ColorName.snowwhite.color
         identiconView.layer.cornerRadius = identiconView.bounds.width / 2
         identiconView.clipsToBounds = true
-        progressView.progressTintColor = ColorName.darkSkyBlue.color
+        progressView.progressTintColor = ColorName.hold.color
     }
 
     func configure(transaction: TransactionData) {
@@ -57,7 +57,7 @@ class TransactionTableViewCell: UITableViewCell {
         addressLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
 
         transactionDateLabel.text = dateText(transaction)
-        transactionDateLabel.textColor = ColorName.battleshipGrey.color
+        transactionDateLabel.textColor = ColorName.darkGrey.color
         transactionDateLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
 
         setDetailText(transaction: transaction)
@@ -136,20 +136,20 @@ class TransactionTableViewCell: UITableViewCell {
     private func addressColor(_ transaction: TransactionData) -> UIColor {
         switch transaction.status {
         case .rejected, .failed: return ColorName.tomato.color
-        default: return ColorName.darkSlateBlue.color
+        default: return ColorName.darkBlue.color
         }
     }
 
     private func valueColor(_ transaction: TransactionData) -> UIColor {
         if transaction.status == .pending || transaction.status == .failed {
-            return ColorName.lightGreyBlue.color
+            return ColorName.mediumGrey.color
         }
         switch transaction.type {
-        case .outgoing: return ColorName.darkSlateBlue.color
-        case .incoming: return ColorName.greenTeal.color
+        case .outgoing: return ColorName.darkBlue.color
+        case .incoming: return ColorName.hold.color
         case .walletRecovery, .replaceRecoveryPhrase,
              .replaceBrowserExtension, .connectBrowserExtension, .disconnectBrowserExtension:
-            return ColorName.darkSlateBlue.color
+            return ColorName.darkBlue.color
         }
     }
 

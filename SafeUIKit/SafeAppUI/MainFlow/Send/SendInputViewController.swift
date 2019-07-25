@@ -46,7 +46,7 @@ public class SendInputViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = ColorName.snowwhite.color
         nextBarButton.title = SendInputViewController.Strings.continue
         nextBarButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)

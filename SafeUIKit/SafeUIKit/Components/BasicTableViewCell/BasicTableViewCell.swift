@@ -18,7 +18,7 @@ open class BasicTableViewCell: UITableViewCell {
     /// Used if table view section index should be displayed
     public var withTrailingSpace: Bool = false {
         didSet {
-            backgroundColor = withTrailingSpace ? .clear : .white
+            backgroundColor = withTrailingSpace ? ColorName.transparent.color : ColorName.snowwhite.color
         }
     }
 
@@ -36,13 +36,13 @@ open class BasicTableViewCell: UITableViewCell {
     }
 
     open func commonInit() {
-        leftTextLabel.textColor = ColorName.darkSlateBlue.color
+        leftTextLabel.textColor = ColorName.darkBlue.color
         leftTextLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        rightTextLabel.textColor = ColorName.darkSlateBlue.color
+        rightTextLabel.textColor = ColorName.darkBlue.color
         rightTextLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        separatorView.backgroundColor = ColorName.paleGrey.color
+        separatorView.backgroundColor = ColorName.white.color
         let selectedView = UIView()
-        selectedView.backgroundColor = ColorName.paleGreyThree.color
+        selectedView.backgroundColor = ColorName.whitesmokeTwo.color
         selectedBackgroundView = selectedView
     }
 
@@ -62,7 +62,7 @@ fileprivate class TitleStyle: AttributedStringStyle {
 
     override var fontSize: Double { return 16 }
     override var fontWeight: UIFont.Weight { return .medium }
-    override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+    override var fontColor: UIColor { return ColorName.darkBlue.color }
     override var spacingAfterParagraph: Double { return 4 }
 
 }
@@ -71,6 +71,6 @@ fileprivate class SubtitleStyle: AttributedStringStyle {
 
     override var fontSize: Double { return 13 }
     override var fontWeight: UIFont.Weight { return .medium }
-    override var fontColor: UIColor { return ColorName.battleshipGrey.color }
+    override var fontColor: UIColor { return ColorName.darkGrey.color }
 
 }

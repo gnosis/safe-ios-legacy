@@ -46,8 +46,8 @@ enum TransactionStatusParameter: Int {
     var colorValue: UIColor {
         switch self {
         case .failed, .rejected: return ColorName.tomato.color
-        case .pending: return ColorName.lightGreyBlue.color
-        case .success: return ColorName.greenTeal.color
+        case .pending: return ColorName.mediumGrey.color
+        case .success: return ColorName.hold.color
         }
     }
 }

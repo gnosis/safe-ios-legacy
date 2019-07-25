@@ -74,7 +74,7 @@ import MultisigWalletApplication
         tableView.rowHeight = BasicTableViewCell.titleAndSubtitleHeight
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = ColorName.paleGrey.color
+        tableView.backgroundColor = ColorName.white.color
         tableView.register(UINib(nibName: "WCSessionListCell", bundle: Bundle(for: WCSessionListCell.self)),
                            forCellReuseIdentifier: "WCSessionListCell")
         tableView.register(BackgroundHeaderFooterView.self,

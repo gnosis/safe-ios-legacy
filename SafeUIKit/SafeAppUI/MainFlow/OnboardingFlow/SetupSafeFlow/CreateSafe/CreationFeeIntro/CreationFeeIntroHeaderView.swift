@@ -27,10 +27,10 @@ class CreationFeeIntroHeaderView: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundView = UIView()
-        backgroundView!.backgroundColor = .white
-        headingView.backgroundColor = ColorName.paleGrey.color
+        backgroundView!.backgroundColor = ColorName.snowwhite.color
+        headingView.backgroundColor = ColorName.white.color
         headerLabel.text = Strings.header
-        headerLabel.textColor = ColorName.darkSlateBlue.color
+        headerLabel.textColor = ColorName.darkBlue.color
         descriptionInfoLabel.setInfoText(Strings.description)
         descriptionInfoLabel.delegate = self
         let headerStyle = TableHeaderStyle()

@@ -6,7 +6,7 @@ import UIKit
 
 public final class DashedSeparatorView: BaseCustomView {
 
-    public var lineColor: UIColor = ColorName.lightGreyBlue.color {
+    public var lineColor: UIColor = ColorName.mediumGrey.color {
         didSet {
             update()
         }

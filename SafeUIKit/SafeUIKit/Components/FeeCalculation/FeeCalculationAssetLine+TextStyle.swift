@@ -40,7 +40,7 @@ extension FeeCalculationAssetLine {
         override var fontSize: Double { return 16 }
         override var minimumLineHeight: Double { return 25 }
         override var maximumLineHeight: Double { return 25 }
-        override var fontColor: UIColor { return ColorName.battleshipGrey.color }
+        override var fontColor: UIColor { return ColorName.darkGrey.color }
 
     }
 
@@ -52,13 +52,13 @@ extension FeeCalculationAssetLine {
 
     class NameButtonStyle: DefaultStyle {
 
-        override var fontColor: UIColor { return ColorName.aquaBlue.color }
+        override var fontColor: UIColor { return ColorName.hold.color }
 
     }
 
     class NameButtonPressedStyle: NameButtonStyle {
 
-        override var fontColor: UIColor { return .darkText }
+        override var fontColor: UIColor { return ColorName.black.color }
 
     }
 
@@ -70,7 +70,7 @@ extension FeeCalculationAssetLine {
 
     class NameButtonBalancePressedStyle: NameButtonBalanceStyle {
 
-        override var fontColor: UIColor { return .darkText }
+        override var fontColor: UIColor { return ColorName.black.color }
 
     }
 
@@ -95,7 +95,7 @@ extension FeeCalculationAssetLine {
 
     class ValueButtonPressedStyle: ValueButtonStyle {
 
-        override var fontColor: UIColor { return UIColor.darkText }
+        override var fontColor: UIColor { return ColorName.black.color }
 
     }
 

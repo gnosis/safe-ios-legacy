@@ -13,7 +13,7 @@ public extension NSMutableAttributedString {
         let iconAttrStr = NSMutableAttributedString(string: " ")
         iconAttrStr.append(textAttachmentStr)
         let iconRange = NSRange(location: 0, length: iconAttrStr.length)
-        iconAttrStr.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: iconRange)
+        iconAttrStr.addAttribute(.foregroundColor, value: ColorName.hold.color, range: iconRange)
         append(iconAttrStr)
     }
 

@@ -25,7 +25,7 @@ final class AssetViewViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(update), for: .valueChanged)
 
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = ColorName.transparent.color
         tableView.tableFooterView = (UINib(nibName: "AddTokenFooterView",
                                            bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView)
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)

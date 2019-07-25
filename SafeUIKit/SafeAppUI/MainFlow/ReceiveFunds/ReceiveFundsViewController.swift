@@ -28,7 +28,7 @@ class ReceiveFundsViewController: CardViewController {
 
         title = Strings.title
 
-        headerLabel.textColor = ColorName.battleshipGrey.color
+        headerLabel.textColor = ColorName.darkGrey.color
         headerLabel.text = Strings.description
         headerLabel.numberOfLines = 0
         headerLabel.font = UIFont.systemFont(ofSize: 17)

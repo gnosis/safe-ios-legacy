@@ -11,6 +11,8 @@
 		0A028ECA21AD52EA00431D25 /* SendInputDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EC921AD52EA00431D25 /* SendInputDemoViewController.swift */; };
 		0A028ECC21AD534000431D25 /* BaseDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */; };
 		0A03402F20C004C200C1C3BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DD9209C70F000ABC6AE /* Localizable.strings */; };
+		0A05951922E99E590001D7D5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05951822E99E580001D7D5 /* Colors.swift */; };
+		0A05951D22E99F050001D7D5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05951C22E99F050001D7D5 /* Colors.swift */; };
 		0A0974D220480CEB005753DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974C820480CEB005753DF /* Assets.xcassets */; };
 		0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974C920480CEB005753DF /* AppDelegate.swift */; };
 		0A0974D620480CEB005753DF /* UnlockDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */; };
@@ -179,7 +181,6 @@
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
 		0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
-		0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
 		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
 		0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF69B22265D19400F06616 /* PasswordViewController.xib */; };
 		0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */; };
@@ -227,7 +228,6 @@
 		0AD8998722803858008AE325 /* FeeCalculationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8998622803858008AE325 /* FeeCalculationCell.swift */; };
 		0AD8998A228042CD008AE325 /* BaseCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD89989228042CC008AE325 /* BaseCustomButton.swift */; };
 		0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899A92281C74B008AE325 /* SuccessViewController.swift */; };
-		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */; };
 		0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989520D3B43200E6F3CA /* BaseCustomViewTests.swift */; };
 		0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998A320D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift */; };
@@ -597,6 +597,9 @@
 		0A00292B20CFC118009A4BFE /* SegmentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBar.swift; sourceTree = "<group>"; };
 		0A028EC921AD52EA00431D25 /* SendInputDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputDemoViewController.swift; sourceTree = "<group>"; };
 		0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDemoViewController.swift; sourceTree = "<group>"; };
+		0A05950922E99D070001D7D5 /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
+		0A05951822E99E580001D7D5 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0A05951C22E99F050001D7D5 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0A0974C720480CEB005753DF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0974C820480CEB005753DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A0974C920480CEB005753DF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -754,18 +757,14 @@
 		0A9670B520480C5700445AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A9670BA20480C5700445AC2 /* SafeUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9670C320480C5700445AC2 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		0A9670CF20480C7A00445AC2 /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
 		0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
 		0A9670D220480C7B00445AC2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		0A9670D820480C7B00445AC2 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceView.swift; sourceTree = "<group>"; };
 		0A99436820A0485300E36FD7 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		0A99436A20A0489800E36FD7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButtonTests.swift; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
-		0A9D058920CEB59E007DED3B /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
-		0A9D058A20CEB5C3007DED3B /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		0AAF69B22265D19400F06616 /* PasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
 		0AB0B56B2163898E00FB2435 /* SafeUIKitDemoConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SafeUIKitDemoConfig.xcconfig; sourceTree = "<group>"; };
@@ -1184,7 +1183,7 @@
 		0A334DDC209C726100ABC6AE /* generated */ = {
 			isa = PBXGroup;
 			children = (
-				0A9D058A20CEB5C3007DED3B /* Colors.swift */,
+				0A05951C22E99F050001D7D5 /* Colors.swift */,
 				0A334E67209C8F4700ABC6AE /* Assets.swift */,
 				0A334DDD209C726100ABC6AE /* Sotryboards.swift */,
 			);
@@ -1507,7 +1506,6 @@
 				0AD899842280325D008AE325 /* DashedSeparatorView.swift */,
 				0AD1D1DF21A8430300941EA1 /* EthereumAddressFormatter.swift */,
 				0AD1D1E121A8432800941EA1 /* EthereumAddressFormatterTests.swift */,
-				0A9670CF20480C7A00445AC2 /* Colors.txt */,
 				5506395F20D17CDB000F2A82 /* Double+BigInt.swift */,
 				0A9670D220480C7B00445AC2 /* Fonts.swift */,
 				0A9670D920480C7B00445AC2 /* generated */,
@@ -1537,8 +1535,8 @@
 		0A9670D920480C7B00445AC2 /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				0A05951822E99E580001D7D5 /* Colors.swift */,
 				0A9BA3CA207F6BB6001DC22F /* Assets.swift */,
-				0A9670D820480C7B00445AC2 /* Colors.swift */,
 			);
 			path = generated;
 			sourceTree = "<group>";
@@ -1546,6 +1544,7 @@
 		0AB0B57F2163927300FB2435 /* config */ = {
 			isa = PBXGroup;
 			children = (
+				0A05950922E99D070001D7D5 /* Colors.txt */,
 				0AB0B56F21638CBF00FB2435 /* CommonConfig.xcconfig */,
 				0AB0B56E21638AEC00FB2435 /* SafeUIKit.xcconfig */,
 				0AB0B56C21638A2400FB2435 /* SafeUIKitDemo.xcfilelist */,
@@ -1664,7 +1663,6 @@
 				0A3D14F1220B1CE800E340DB /* MenuCommand.swift */,
 				0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */,
 				0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */,
-				0A9D058920CEB59E007DED3B /* Colors.txt */,
 				0A334DDC209C726100ABC6AE /* generated */,
 				0AF33D38209C6BF800527D25 /* Info.plist */,
 				0A334DD9209C70F000ABC6AE /* Localizable.strings */,
@@ -2784,6 +2782,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */,
+				0A05951922E99E590001D7D5 /* Colors.swift in Sources */,
 				5549B2CA2285C62300F3B5B7 /* InfoLabel.swift in Sources */,
 				0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */,
 				0AD1D1E021A8430300941EA1 /* EthereumAddressFormatter.swift in Sources */,
@@ -2809,7 +2808,6 @@
 				5539C13721A55AF2006BF834 /* TransactionHeaderCell.swift in Sources */,
 				0A2C0E3E2297E1A5008A30AC /* SafeLabelTitleView.swift in Sources */,
 				55BAB0E521789285007539CF /* StandardButton.swift in Sources */,
-				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */,
 				0AD8997D228031D0008AE325 /* FeeCalculationSection.swift in Sources */,
 				5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */,
@@ -2911,7 +2909,6 @@
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				0AE0FEE8229EC2AF00ABC552 /* RecoverFeePaidViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
-				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
 				0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */,
 				55980003225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
@@ -3037,6 +3034,7 @@
 				0AC3F1732183674100DAADC9 /* OnboardingIntroViewController.swift in Sources */,
 				0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */,
 				0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */,
+				0A05951D22E99F050001D7D5 /* Colors.swift in Sources */,
 				0A2C0E2A2297DCFF008A30AC /* FeePaidViewController.swift in Sources */,
 				0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */,
 				0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */,

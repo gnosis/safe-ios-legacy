@@ -16,7 +16,7 @@ public class LoadingTitleView: NibUIView {
         override var minimumLineHeight: Double { return 21 }
         override var maximumLineHeight: Double { return 21 }
         override var alignment: NSTextAlignment { return .center }
-        override var fontColor: UIColor { return ColorName.lightGreyBlue.color }
+        override var fontColor: UIColor { return ColorName.mediumGrey.color }
 
     }
 

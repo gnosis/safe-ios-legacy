@@ -49,14 +49,14 @@ final class OnboardingWelcomeViewController: UIViewController {
         _navigationController = navigationController
         _navigationController?.navigationBar.setBackgroundImage(Asset.navbarFilled.image, for: .default)
         _navigationController?.navigationBar.shadowImage = UIImage()
-        _navigationController?.navigationBar.tintColor = .white
+        _navigationController?.navigationBar.tintColor = ColorName.snowwhite.color
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         _navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         _navigationController?.navigationBar.shadowImage = Asset.shadow.image
-        _navigationController?.navigationBar.tintColor = ColorName.darkSkyBlue.color
+        _navigationController?.navigationBar.tintColor = ColorName.hold.color
     }
 
     @IBAction func setupPassword(_ sender: Any) {

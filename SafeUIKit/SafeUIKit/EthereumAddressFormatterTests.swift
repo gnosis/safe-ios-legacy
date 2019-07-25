@@ -53,9 +53,9 @@ class EthereumAddressFormatterTests: XCTestCase {
     }
 
     func test_attributedString() {
-        formatter.bodyAttributes = [.foregroundColor: UIColor.white]
-        formatter.headAttributes = [.foregroundColor: UIColor.red]
-        formatter.tailAttributes = [.foregroundColor: UIColor.black]
+        formatter.bodyAttributes = [.foregroundColor: ColorName.snowwhite.color]
+        formatter.headAttributes = [.foregroundColor: ColorName.tomato.color]
+        formatter.tailAttributes = [.foregroundColor: ColorName.black.color]
         let string = NSMutableAttributedString(string: "0x0000000000000000000000000000000000000000",
                                                attributes: formatter.bodyAttributes)
         string.addAttributes(formatter.headAttributes!,

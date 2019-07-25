@@ -18,10 +18,10 @@ final class WCSessionListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        titleLabel.textColor = ColorName.darkSlateBlue.color
+        titleLabel.textColor = ColorName.darkBlue.color
         subtitleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-        subtitleLabel.textColor = ColorName.lightGreyBlue.color
-        separatorView.backgroundColor = ColorName.paleGrey.color
+        subtitleLabel.textColor = ColorName.mediumGrey.color
+        separatorView.backgroundColor = ColorName.white.color
     }
 
     enum Screen {
@@ -57,8 +57,8 @@ final class WCSessionListCell: UITableViewCell {
                                                       cornerRadius: 8,
                                                       text: String(name.prefix(1)).uppercased(),
                                                       font: UIFont.systemFont(ofSize: 17, weight: .medium),
-                                                      textColor: ColorName.darkSlateBlue.color,
-                                                      backgroundColor: ColorName.paleLilac.color)
+                                                      textColor: ColorName.darkBlue.color,
+                                                      backgroundColor: ColorName.whitesmoke.color)
         return placeholder ?? Asset.dappPlaceholder.image
     }
 

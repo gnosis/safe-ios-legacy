@@ -58,8 +58,8 @@ public class OnboardingIntroViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         backgroundView.isWhite = true
-        bodyStyle.bulletColor = ColorName.aquaBlue.color
-        bodyStyle.textColor = ColorName.battleshipGrey.color
+        bodyStyle.bulletColor = ColorName.hold.color
+        bodyStyle.textColor = ColorName.darkGrey.color
         bodyStyle.textFontSize = 16
         update()
     }
@@ -96,7 +96,7 @@ class OnboardingHeaderStyle: AttributedStringStyle {
     override var maximumLineHeight: Double { return 22 }
     override var minimumLineHeight: Double { return 22 }
     override var alignment: NSTextAlignment { return .center }
-    override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+    override var fontColor: UIColor { return ColorName.darkBlue.color }
     override var fontWeight: UIFont.Weight { return .semibold }
 
 }

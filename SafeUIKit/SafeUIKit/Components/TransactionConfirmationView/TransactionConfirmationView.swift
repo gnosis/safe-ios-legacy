@@ -68,8 +68,8 @@ public class TransactionConfirmationView: BaseCustomView {
 
     public override func commonInit() {
         safeUIKit_loadFromNib(forClass: TransactionConfirmationView.self)
-        titleLabel.textColor = ColorName.darkSlateBlue.color
-        detailLabel.textColor = ColorName.darkSlateBlue.color
+        titleLabel.textColor = ColorName.darkBlue.color
+        detailLabel.textColor = ColorName.darkBlue.color
         update()
     }
 

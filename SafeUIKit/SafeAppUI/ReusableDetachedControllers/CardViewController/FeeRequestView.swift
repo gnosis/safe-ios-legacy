@@ -43,9 +43,9 @@ class FeeRequestView: BaseCustomView {
         amountNeededLabel,
         amountNeededAmountLabel,
         remainderTextLabel].forEach { label in
-            label?.textColor = ColorName.battleshipGrey.color
+            label?.textColor = ColorName.darkGrey.color
         }
-        remainderAmountLabel.textColor = ColorName.darkSlateBlue.color
+        remainderAmountLabel.textColor = ColorName.darkBlue.color
 
         [remainderAmountLabel, amountReceivedAmountLabel, amountNeededAmountLabel].forEach { label in
             label?.isShowingPlusSign = false

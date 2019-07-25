@@ -32,11 +32,11 @@ class TransactionParticipantView: BaseCustomView {
     override func commonInit() {
         nameLabel = UILabel()
         nameLabel.font = UIFont.systemFont(ofSize: 13)
-        nameLabel.textColor = ColorName.darkSlateBlue.color
+        nameLabel.textColor = ColorName.darkBlue.color
 
         addressLabel = UILabel()
         addressLabel.font = UIFont.systemFont(ofSize: 13)
-        addressLabel.textColor = ColorName.lightGreyBlue.color
+        addressLabel.textColor = ColorName.mediumGrey.color
         addressLabel.lineBreakMode = .byTruncatingMiddle
 
         identiconView = IdenticonView()
@@ -53,7 +53,7 @@ class TransactionParticipantView: BaseCustomView {
 
         textLabel = UILabel()
         textLabel.font = UIFont.systemFont(ofSize: 13)
-        textLabel.textColor = ColorName.battleshipGrey.color
+        textLabel.textColor = ColorName.darkGrey.color
         textLabel.numberOfLines = 0
 
         let wholeStack = UIStackView(arrangedSubviews: [textLabel, nonTextStack])

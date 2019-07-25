@@ -46,7 +46,7 @@ class ScannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UIButton.appearance(whenContainedInInstancesOf: [type(of: self)]).tintColor = .white
+        UIButton.appearance(whenContainedInInstancesOf: [type(of: self)]).tintColor = ColorName.snowwhite.color
 
         #if !DEBUG
         debugButtonsStackView.removeFromSuperview()
@@ -59,7 +59,7 @@ class ScannerViewController: UIViewController {
         var codeReaderVC: UIViewController
         if UIDevice.current.isSimulator {
             codeReaderVC = UIViewController()
-            codeReaderVC.view.backgroundColor = .green
+            codeReaderVC.view.backgroundColor = ColorName.hold.color
         } else {
             codeReaderVC = RSCodeReaderViewController()
             (codeReaderVC as! RSCodeReaderViewController).barcodesHandler = barcodesHandler
@@ -114,7 +114,7 @@ class ScannerViewController: UIViewController {
     func addDebugButton(title: String, scanValue: String) {
         let button = UIButton()
         button.tag = debugButtonReturnCodes.count
-        button.setTitleColor(.red, for: .normal)
+        button.setTitleColor(ColorName.tomato.color, for: .normal)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(scanDebugCode), for: .touchUpInside)
         debugButtonReturnCodes.append(scanValue)
@@ -140,7 +140,7 @@ fileprivate class CircleMask: BaseCustomView {
         let path = CGMutablePath()
         path.addEllipse(in: bounds)
         shapeLayer.path = path
-        shapeLayer.fillColor = UIColor.black.cgColor
+        shapeLayer.fillColor = ColorName.black.color.cgColor
     }
 
 }

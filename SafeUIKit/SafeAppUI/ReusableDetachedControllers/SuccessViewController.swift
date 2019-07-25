@@ -53,8 +53,8 @@ class SuccessViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.textColor = ColorName.darkSlateBlue.color
-        detailLabel.textColor = ColorName.battleshipGrey.color
+        titleLabel.textColor = ColorName.darkBlue.color
+        detailLabel.textColor = ColorName.darkGrey.color
         button.style = .filled
         titleLabel.text = title
         detailLabel.text = detail

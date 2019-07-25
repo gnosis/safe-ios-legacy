@@ -18,7 +18,7 @@ open class AttributedStringStyle {
     }
 
     open var fontColor: UIColor {
-        return .black
+        return ColorName.black.color
     }
 
     open var alignment: NSTextAlignment {

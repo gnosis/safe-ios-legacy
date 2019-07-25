@@ -13,7 +13,7 @@ public class SafeLabelTitleView: BaseCustomLabel {
     public static func apply(to label: UILabel) {
         label.text = "SAFE"
         label.font = UIFont(descriptor: UIFontDescriptor(name: "Montserrat-Bold", size: 17), size: 17)
-        label.textColor = ColorName.dusk.color
+        label.textColor = ColorName.darkBlue.color
         label.textAlignment = .center
     }
 

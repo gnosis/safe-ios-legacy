@@ -24,7 +24,7 @@ public final class H1Label: UILabel {
     private func configure() {
         font = UIFont.systemFont(ofSize: 36)
         numberOfLines = 0
-        textColor = .black
+        textColor = ColorName.black.color
     }
 
 }

@@ -44,12 +44,12 @@ public class ProgressView: BaseCustomView {
 
     public var trackColor: UIColor {
         switch state {
-        case .error: return ColorName.tomato15.color
-        default: return ColorName.lightGreyBlue.color
+        case .error: return ColorName.tomato.color
+        default: return ColorName.mediumGrey.color
         }
     }
 
-    public var progressIndicatorColor: UIColor = ColorName.aquaBlue.color
+    public var progressIndicatorColor: UIColor = ColorName.hold.color
 
     public var indicatorView: UIView!
     public var indicatorLeadingConstraint: NSLayoutConstraint!

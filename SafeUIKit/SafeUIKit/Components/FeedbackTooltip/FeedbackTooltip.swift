@@ -43,9 +43,9 @@ public final class FeedbackTooltip: CardView {
     }
 
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = ColorName.snowwhite.color
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = ColorName.darkSlateBlue.color
+        label.textColor = ColorName.darkBlue.color
         label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

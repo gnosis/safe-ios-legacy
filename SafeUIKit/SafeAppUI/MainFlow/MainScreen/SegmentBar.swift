@@ -48,7 +48,7 @@ public class SegmentBar: UIControl {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         addSubview(stackView)
-        selectionMarker.tintColor = ColorName.darkSkyBlue.color
+        selectionMarker.tintColor = ColorName.hold.color
         let shadowImage = UIImageView(image: Asset.shadow.image.stretchableImage(withLeftCapWidth: 0, topCapHeight: 0))
         shadowImage.translatesAutoresizingMaskIntoConstraints = false
         addSubview(shadowImage)
@@ -63,12 +63,12 @@ public class SegmentBar: UIControl {
         buttons = items.enumerated().map { index, item -> UIButton in
             let button = UIButton(type: UIButton.ButtonType.custom)
             button.setTitle(" " + item.title, for: .normal)
-            button.setTitleColor(.black, for: .normal)
-            button.setTitleColor(.black, for: .highlighted)
+            button.setTitleColor(ColorName.black.color, for: .normal)
+            button.setTitleColor(ColorName.black.color, for: .highlighted)
             button.setImage(item.image, for: .normal)
-            button.tintColor = .black
+            button.tintColor = ColorName.black.color
             button.titleLabel?.font = UIFont.systemFont(ofSize: titleFontSize, weight: UIFont.Weight.medium)
-            button.backgroundColor = .white
+            button.backgroundColor = ColorName.snowwhite.color
             button.tag = index
             button.addTarget(self, action: #selector(didTapButton(sender:)), for: .touchUpInside)
             return button
@@ -91,14 +91,14 @@ public class SegmentBar: UIControl {
 
     private func configureSelectedButton(at index: Int) {
         let button = buttons[index]
-        button.setTitleColor(ColorName.darkSkyBlue.color, for: .normal)
-        button.tintColor = ColorName.darkSkyBlue.color
+        button.setTitleColor(ColorName.hold.color, for: .normal)
+        button.tintColor = ColorName.hold.color
         addSelectionMarker(at: index)
     }
 
     private func configureDeselectedButton(_ button: UIButton) {
-        button.setTitleColor(ColorName.lightGreyBlue.color, for: .normal)
-        button.tintColor = ColorName.lightGreyBlue.color
+        button.setTitleColor(ColorName.mediumGrey.color, for: .normal)
+        button.tintColor = ColorName.mediumGrey.color
     }
 
     private func addSelectionMarker(at index: Int) {

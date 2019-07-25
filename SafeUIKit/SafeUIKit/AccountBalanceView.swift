@@ -37,14 +37,14 @@ public class AccountBalanceView: BaseCustomView {
         stackView.alignment = .center
         stackView.spacing = 14
         addressLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        addressLabel.textColor = ColorName.darkSlateBlue.color
+        addressLabel.textColor = ColorName.darkBlue.color
         addressLabel.hasFullAddressTooltip = true
         balanceLabel.font = UIFont.systemFont(ofSize: 17)
-        balanceLabel.textColor = ColorName.darkSlateBlue.color
+        balanceLabel.textColor = ColorName.darkBlue.color
         balanceLabel.textAlignment = .right
         balanceLabel.isShowingPlusSign = false
         balanceLabel.hasTooltip = true
-        backgroundColor = .white
+        backgroundColor = ColorName.snowwhite.color
         update()
     }
 

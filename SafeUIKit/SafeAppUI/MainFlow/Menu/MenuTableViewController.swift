@@ -85,7 +85,7 @@ final class MenuTableViewController: UITableViewController {
 
         title = Strings.title
 
-        tableView.backgroundColor = ColorName.paleGrey.color
+        tableView.backgroundColor = ColorName.white.color
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "BasicTableViewCell",
@@ -213,7 +213,7 @@ fileprivate extension BasicTableViewCell {
         leftImageView?.removeFromSuperview()
         leftTextLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         leftTextLabel.text = text
-        rightTextLabel.textColor = ColorName.lightGreyBlue.color
+        rightTextLabel.textColor = ColorName.mediumGrey.color
         rightTextLabel.text = details
     }
 

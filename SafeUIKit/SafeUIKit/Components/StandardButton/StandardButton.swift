@@ -30,32 +30,31 @@ final public class StandardButton: BaseCustomButton {
     }
 
     public override func update() {
-        setTitleColor(.white, for: .normal)
-        setTitleColor(ColorName.darkSlateBlue.color, for: .highlighted)
-        setTitleColor(.gray, for: .disabled)
+        setTitleColor(ColorName.transparent.color, for: .normal)
+        setTitleColor(ColorName.darkBlue.color, for: .highlighted)
+        setTitleColor(ColorName.mediumGrey.color, for: .disabled)
 
         titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         layer.borderWidth = 0
         layer.cornerRadius = 10
         layer.shadowOpacity = 0
-        backgroundColor = .clear
-        backgroundColorForState = [UIControl.State.normal.rawValue: .clear]
+        backgroundColor = ColorName.transparent.color
+        backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.transparent.color]
         switch style {
         case .bordered:
-            layer.borderColor = UIColor.white.cgColor
+            layer.borderColor = ColorName.snowwhite.color.cgColor
             layer.borderWidth = 2
         case .plain:
-            setTitleColor(ColorName.darkSkyBlue.color, for: .normal)
+            setTitleColor(ColorName.hold.color, for: .normal)
             layer.cornerRadius = 0
         case .filled:
-            backgroundColor = ColorName.darkSkyBlue.color
-            backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.darkSkyBlue.color,
-                                       UIControl.State.highlighted.rawValue: ColorName.dodgerBlue.color,
-                                       UIControl.State.disabled.rawValue:
-                                        ColorName.darkSkyBlue.color.withAlphaComponent(0.5)]
-            setTitleColor(.white, for: .highlighted)
-            setTitleColor(.white, for: .disabled)
-            layer.shadowColor = ColorName.lightBlueGrey58.color.cgColor
+            backgroundColor = ColorName.hold.color
+            backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.hold.color,
+                                       UIControl.State.highlighted.rawValue: ColorName.holdTwo.color,
+                                       UIControl.State.disabled.rawValue: ColorName.hold50.color]
+            setTitleColor(ColorName.snowwhite.color, for: .highlighted)
+            setTitleColor(ColorName.snowwhite.color, for: .disabled)
+            layer.shadowColor = ColorName.cardShadow.color.cgColor
             layer.shadowOpacity = 0.58
             layer.shadowOffset = CGSize(width: 1, height: 2)
         }

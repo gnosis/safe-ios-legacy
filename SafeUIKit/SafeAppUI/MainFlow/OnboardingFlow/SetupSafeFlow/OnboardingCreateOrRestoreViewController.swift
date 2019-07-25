@@ -86,7 +86,7 @@ class OnboardingCreateOrRestoreViewController: UIViewController {
 
         override var minimumLineHeight: Double { return 32 }
         override var maximumLineHeight: Double { return 32 }
-        override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+        override var fontColor: UIColor { return ColorName.darkBlue.color }
         override var fontSize: Double { return 20 }
         override var alignment: NSTextAlignment { return .center }
 

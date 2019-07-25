@@ -31,7 +31,7 @@ class OnboardingCreationFeeIntroViewController: BasePaymentMethodViewController 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = ColorName.snowwhite.color
         navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: titleText)
         updateData()
     }
