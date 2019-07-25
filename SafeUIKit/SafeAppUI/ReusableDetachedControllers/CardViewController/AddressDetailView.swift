@@ -48,6 +48,8 @@ class AddressDetailView: BaseCustomView {
 
         addressLabel.numberOfLines = 2
         addressLabel.lineBreakMode = .byClipping
+
+        shareButton.setImage(Asset.shareIcon.image, for: .normal)
     }
 
 }
