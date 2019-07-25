@@ -175,27 +175,27 @@ public class TextInput: UITextField {
         switch style {
         case .white:
             backgroundColor = .white
-            textColor = ColorName.battleshipGrey.color
-            tintColor = ColorName.dodgerBlue.color
-            clearButton.tintColor = ColorName.lightGreyBlue.color
+            textColor = ColorName.darkGrey.color
+            tintColor = ColorName.holdTwo.color
+            clearButton.tintColor = ColorName.mediumGrey.color
             switch inputState {
-            case .normal, .success: layer.borderColor = ColorName.paleLilac.color.cgColor
+            case .normal, .success: layer.borderColor = ColorName.whitesmoke.color.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
             }
         case .gray:
-            backgroundColor = ColorName.paleGrey.color
-            textColor = ColorName.battleshipGrey.color
-            tintColor = ColorName.dodgerBlue.color
-            clearButton.tintColor = ColorName.lightGreyBlue.color
+            backgroundColor = ColorName.white.color
+            textColor = ColorName.darkGrey.color
+            tintColor = ColorName.holdTwo.color
+            clearButton.tintColor = ColorName.mediumGrey.color
             switch inputState {
             case .normal, .success: layer.borderColor = UIColor.white.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
             }
         case .opaqueWhite:
             backgroundColor = .white
-            textColor = ColorName.battleshipGrey.color
-            tintColor = ColorName.dodgerBlue.color
-            clearButton.tintColor = ColorName.lightGreyBlue.color
+            textColor = ColorName.darkGrey.color
+            tintColor = ColorName.holdTwo.color
+            clearButton.tintColor = ColorName.mediumGrey.color
             layer.borderWidth = 0
         }
     }
@@ -207,7 +207,7 @@ public class TextInput: UITextField {
     }
 
     private func placeholderColor() -> UIColor {
-        return ColorName.lightGreyBlue.color
+        return ColorName.mediumGrey.color
     }
 
     private func updateImage() {

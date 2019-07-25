@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        containerView.backgroundColor = ColorName.paleGrey.color
+        containerView.backgroundColor = ColorName.white.color
         view.backgroundColor = containerView.backgroundColor
         headerBackgroundView.backgroundColor = .white
         headerView.backgroundColor = .white
@@ -202,7 +202,7 @@ class MainHeaderView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        addressLabel.textColor = ColorName.dusk.color
+        addressLabel.textColor = ColorName.darkBlue.color
     }
 
 }

@@ -43,7 +43,7 @@ final class ManageTokensTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
         tableView.rowHeight = BasicTableViewCell.titleOnlyHeight
-        tableView.backgroundColor = ColorName.paleGrey.color
+        tableView.backgroundColor = ColorName.white.color
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
 

@@ -33,7 +33,7 @@ class PaymentMethodFooterView: UITableViewHeaderFooterView {
         payWithButton.style = .filled
         changeFeePaymentMethodButton.style = .plain
         changeFeePaymentMethodButton.setTitle(Strings.changePaymentMethod, for: .normal)
-        changeFeePaymentMethodButton.setTitleColor(ColorName.darkSkyBlue.color, for: .normal)
+        changeFeePaymentMethodButton.setTitleColor(ColorName.hold.color, for: .normal)
     }
 
     func setPaymentMethodCode(_ code: String) {

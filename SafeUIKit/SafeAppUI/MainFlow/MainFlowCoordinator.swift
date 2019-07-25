@@ -37,12 +37,12 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     private func configureGloabalAppearance() {
-        UIButton.appearance().tintColor = ColorName.darkSkyBlue.color
+        UIButton.appearance().tintColor = ColorName.hold.color
         UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = nil
 
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.barTintColor = .white
-        navBarAppearance.tintColor = ColorName.darkSkyBlue.color
+        navBarAppearance.tintColor = ColorName.hold.color
         navBarAppearance.isTranslucent = false
         navBarAppearance.setBackgroundImage(UIImage(), for: .default)
         navBarAppearance.shadowImage = Asset.shadow.image

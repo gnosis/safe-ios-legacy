@@ -31,7 +31,7 @@ final public class StandardButton: BaseCustomButton {
 
     public override func update() {
         setTitleColor(.white, for: .normal)
-        setTitleColor(ColorName.darkSlateBlue.color, for: .highlighted)
+        setTitleColor(ColorName.darkBlue.color, for: .highlighted)
         setTitleColor(.gray, for: .disabled)
 
         titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
@@ -45,17 +45,17 @@ final public class StandardButton: BaseCustomButton {
             layer.borderColor = UIColor.white.cgColor
             layer.borderWidth = 2
         case .plain:
-            setTitleColor(ColorName.darkSkyBlue.color, for: .normal)
+            setTitleColor(ColorName.hold.color, for: .normal)
             layer.cornerRadius = 0
         case .filled:
-            backgroundColor = ColorName.darkSkyBlue.color
-            backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.darkSkyBlue.color,
-                                       UIControl.State.highlighted.rawValue: ColorName.dodgerBlue.color,
+            backgroundColor = ColorName.hold.color
+            backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.hold.color,
+                                       UIControl.State.highlighted.rawValue: ColorName.holdTwo.color,
                                        UIControl.State.disabled.rawValue:
-                                        ColorName.darkSkyBlue.color.withAlphaComponent(0.5)]
+                                        ColorName.hold.color.withAlphaComponent(0.5)]
             setTitleColor(.white, for: .highlighted)
             setTitleColor(.white, for: .disabled)
-            layer.shadowColor = ColorName.lightBlueGrey58.color.cgColor
+            layer.shadowColor = ColorName.cardShadow.color.cgColor
             layer.shadowOpacity = 0.58
             layer.shadowOffset = CGSize(width: 1, height: 2)
         }

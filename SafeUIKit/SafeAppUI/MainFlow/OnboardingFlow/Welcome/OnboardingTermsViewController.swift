@@ -80,7 +80,7 @@ public class OnboardingTermsViewController: UIViewController {
     private func link(from text: String) -> NSAttributedString {
         return NSAttributedString(string: text, attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue,
                                                              .font: UIFont.systemFont(ofSize: 15),
-                                                             .foregroundColor: ColorName.darkSkyBlue.color])
+                                                             .foregroundColor: ColorName.hold.color])
     }
 
     public override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -99,7 +99,7 @@ struct BodyStyle {
     var minimumLineHeight: CGFloat
 
     static let `default` = BodyStyle(textFontSize: 15,
-                                     textColor: ColorName.battleshipGrey.color,
+                                     textColor: ColorName.darkGrey.color,
                                      fontWeight: .regular,
                                      alignment: .left,
                                      paragraphSpacing: 21,
@@ -132,8 +132,8 @@ struct ListStyle {
                                      spaceToBullet: 18,
                                      bulletFontSize: 24,
                                      textFontSize: 14,
-                                     textColor: ColorName.battleshipGrey.color,
-                                     bulletColor: ColorName.darkSkyBlue.color,
+                                     textColor: ColorName.darkGrey.color,
+                                     bulletColor: ColorName.hold.color,
                                      paragraphSpacing: 22,
                                      minimumLineHeight: 22)
 }
@@ -146,12 +146,12 @@ struct HeaderStyle {
 
     static let `default` = HeaderStyle(leading: 40,
                                        trailing: 40,
-                                       textColor: ColorName.battleshipGrey.color,
+                                       textColor: ColorName.darkGrey.color,
                                        textFontSize: 17)
 
     static let contentHeader = HeaderStyle(leading: 40,
                                            trailing: 40,
-                                           textColor: ColorName.darkSlateBlue.color,
+                                           textColor: ColorName.darkBlue.color,
                                            textFontSize: 17)
 }
 

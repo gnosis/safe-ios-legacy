@@ -26,9 +26,9 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
     private var tooltipSource: TooltipSource!
 
     private let defaultBodyAttributes: [NSAttributedString.Key: Any] =
-        [.foregroundColor: ColorName.lightGreyBlue.color]
+        [.foregroundColor: ColorName.mediumGrey.color]
     private let selectedBodyAttributes: [NSAttributedString.Key: Any] =
-        [.foregroundColor: ColorName.lightGreyBlue.color,
+        [.foregroundColor: ColorName.mediumGrey.color,
          .backgroundColor: UIColor(red: 0, green: 0.478_431, blue: 1, alpha: 0.2)]
 
     public override func commonInit() {

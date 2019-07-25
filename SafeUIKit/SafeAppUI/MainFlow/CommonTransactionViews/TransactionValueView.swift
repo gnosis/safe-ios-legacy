@@ -32,7 +32,7 @@ class TransactionValueView: BaseCustomView {
     var fiatLabel: UILabel!
 
     struct Colors {
-        static let fiat = ColorName.lightGreyBlue.color
+        static let fiat = ColorName.mediumGrey.color
     }
 
     override func commonInit() {
@@ -82,8 +82,8 @@ enum TransactionValueStyle: Int {
     case positive
 
     struct Colors {
-        static let neutral = ColorName.darkSlateBlue.color
-        static let positive = ColorName.greenTeal.color
+        static let neutral = ColorName.darkBlue.color
+        static let positive = ColorName.hold.color
         static let negative = ColorName.tomato.color
     }
 

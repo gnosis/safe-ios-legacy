@@ -48,7 +48,7 @@ public class SegmentBar: UIControl {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         addSubview(stackView)
-        selectionMarker.tintColor = ColorName.darkSkyBlue.color
+        selectionMarker.tintColor = ColorName.hold.color
         let shadowImage = UIImageView(image: Asset.shadow.image.stretchableImage(withLeftCapWidth: 0, topCapHeight: 0))
         shadowImage.translatesAutoresizingMaskIntoConstraints = false
         addSubview(shadowImage)
@@ -91,14 +91,14 @@ public class SegmentBar: UIControl {
 
     private func configureSelectedButton(at index: Int) {
         let button = buttons[index]
-        button.setTitleColor(ColorName.darkSkyBlue.color, for: .normal)
-        button.tintColor = ColorName.darkSkyBlue.color
+        button.setTitleColor(ColorName.hold.color, for: .normal)
+        button.tintColor = ColorName.hold.color
         addSelectionMarker(at: index)
     }
 
     private func configureDeselectedButton(_ button: UIButton) {
-        button.setTitleColor(ColorName.lightGreyBlue.color, for: .normal)
-        button.tintColor = ColorName.lightGreyBlue.color
+        button.setTitleColor(ColorName.mediumGrey.color, for: .normal)
+        button.tintColor = ColorName.mediumGrey.color
     }
 
     private func addSelectionMarker(at index: Int) {

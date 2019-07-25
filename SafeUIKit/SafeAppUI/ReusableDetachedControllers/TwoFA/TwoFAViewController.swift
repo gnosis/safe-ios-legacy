@@ -155,7 +155,7 @@ public final class TwoFAViewController: CardViewController {
 
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        activityIndicator.color = ColorName.aquaBlue.color
+        activityIndicator.color = ColorName.hold.color
     }
 
     private func configureSkipButton() {
@@ -167,7 +167,7 @@ public final class TwoFAViewController: CardViewController {
     private func configureStepsLabels() {
         let body2Text = NSMutableAttributedString(string: Strings.downloadExtension)
         let range = body2Text.mutableString.range(of: Strings.chromeExtension)
-        body2Text.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: range)
+        body2Text.addAttribute(.foregroundColor, value: ColorName.hold.color, range: range)
         body2Text.addLinkIcon()
         twoFAView.body2Label.attributedText = body2Text
         twoFAView.body2Label.isUserInteractionEnabled = true

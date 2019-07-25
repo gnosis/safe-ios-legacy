@@ -30,11 +30,11 @@ class TransactionParameterView: BaseCustomView {
     override func commonInit() {
         nameLabel = newNameLabel()
         nameLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        nameLabel.textColor = ColorName.darkSlateBlue.color
+        nameLabel.textColor = ColorName.darkBlue.color
 
         valueLabel = newValueLabel()
         valueLabel.font = UIFont.systemFont(ofSize: 15)
-        valueLabel.textColor = ColorName.battleshipGrey.color
+        valueLabel.textColor = ColorName.darkGrey.color
         valueLabel.numberOfLines = 0
 
         stack = UIStackView(arrangedSubviews: [nameLabel, valueLabel])

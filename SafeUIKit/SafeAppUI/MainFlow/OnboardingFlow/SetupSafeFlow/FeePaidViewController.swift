@@ -63,7 +63,7 @@ class FeePaidViewController: UIViewController {
         override var fontSize: Double { return 17 }
         override var maximumLineHeight: Double { return 22 }
         override var minimumLineHeight: Double { return 22 }
-        override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+        override var fontColor: UIColor { return ColorName.darkBlue.color }
         override var alignment: NSTextAlignment { return .center }
         override var fontWeight: UIFont.Weight { return .semibold }
 
@@ -74,7 +74,7 @@ class FeePaidViewController: UIViewController {
         override var fontSize: Double { return 17 }
         override var maximumLineHeight: Double { return 22 }
         override var minimumLineHeight: Double { return 22 }
-        override var fontColor: UIColor { return ColorName.battleshipGrey.color }
+        override var fontColor: UIColor { return ColorName.darkGrey.color }
         override var alignment: NSTextAlignment { return .center }
 
     }

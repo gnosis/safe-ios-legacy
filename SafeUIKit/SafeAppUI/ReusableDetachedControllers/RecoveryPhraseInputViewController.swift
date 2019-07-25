@@ -61,9 +61,9 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
 
         phraseTextView.layer.cornerRadius = 10
-        phraseTextView.layer.borderColor = ColorName.paleLilac.color.cgColor
+        phraseTextView.layer.borderColor = ColorName.whitesmoke.color.cgColor
         phraseTextView.layer.borderWidth = 2
-        phraseTextView.textColor = ColorName.darkSlateBlue.color
+        phraseTextView.textColor = ColorName.darkBlue.color
         phraseTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         phraseTextView.font = UIFont.systemFont(ofSize: 16, weight: .regular)
 
@@ -71,7 +71,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         placeholderTop.constant = insets.top
         placeholderLeading.constant = insets.left
         placeholderTrailing.constant = -insets.right
-        placeholderLabel.textColor = ColorName.darkSlateBlue.color.withAlphaComponent(0.7)
+        placeholderLabel.textColor = ColorName.darkBlue.color.withAlphaComponent(0.7)
 
         view.setNeedsUpdateConstraints()
         update()

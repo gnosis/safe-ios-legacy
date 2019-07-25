@@ -28,7 +28,7 @@ class EmptyResultsView: BaseCustomView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         textLabel = UILabel()
         textLabel.font = UIFont.systemFont(ofSize: 17)
-        textLabel.textColor = ColorName.lightGreyBlue.color
+        textLabel.textColor = ColorName.mediumGrey.color
         textLabel.textAlignment = .center
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)

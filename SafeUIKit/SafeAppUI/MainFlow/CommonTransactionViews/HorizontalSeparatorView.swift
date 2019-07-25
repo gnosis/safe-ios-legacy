@@ -24,7 +24,7 @@ class HorizontalSeparatorView: BaseCustomView {
     }
 
     override func update() {
-        backgroundColor = ColorName.paleGrey.color
+        backgroundColor = ColorName.white.color
         heightConstraint.constant = size
         setNeedsDisplay()
     }

@@ -85,7 +85,7 @@ class PasswordViewController: UIViewController, VerifiableInputDelegate {
         keyboardBehavior.stop()
         _navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         _navigationController?.navigationBar.shadowImage = Asset.shadow.image
-        _navigationController?.navigationBar.tintColor = ColorName.darkSkyBlue.color
+        _navigationController?.navigationBar.tintColor = ColorName.hold.color
     }
 
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {

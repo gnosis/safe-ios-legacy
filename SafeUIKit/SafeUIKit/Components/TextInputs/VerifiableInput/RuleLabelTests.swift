@@ -31,12 +31,12 @@ class RuleLabelTests: XCTestCase {
         let label = RuleLabel.alwaysTrue()
         label.validate()
         XCTAssertEqual(label.status, .success)
-        XCTAssertEqual(label.label.textColor, ColorName.greenTeal.color)
+        XCTAssertEqual(label.label.textColor, ColorName.hold.color)
 
         let label2 = RuleLabel.alwaysTrue(displayIcon: true)
         label2.validate()
         XCTAssertEqual(label2.status, .success)
-        XCTAssertEqual(label2.label.textColor, ColorName.battleshipGrey.color)
+        XCTAssertEqual(label2.label.textColor, ColorName.darkGrey.color)
     }
 
     func test_whenRuleFails_thenStatusError() {
@@ -48,19 +48,19 @@ class RuleLabelTests: XCTestCase {
         let label2 = RuleLabel.alwaysFalse(displayIcon: true)
         label2.validate()
         XCTAssertEqual(label2.status, .error)
-        XCTAssertEqual(label2.label.textColor, ColorName.battleshipGrey.color)
+        XCTAssertEqual(label2.label.textColor, ColorName.darkGrey.color)
     }
 
     func test_whenRuleNotSpecified_thenAlwaysInactive() {
         let label = RuleLabel.withoutRule()
         label.validate()
         XCTAssertEqual(label.status, .inactive)
-        XCTAssertEqual(label.label.textColor, ColorName.battleshipGrey.color)
+        XCTAssertEqual(label.label.textColor, ColorName.darkGrey.color)
 
         let label2 = RuleLabel.withoutRule(displayIcon: true)
         label2.validate()
         XCTAssertEqual(label2.status, .inactive)
-        XCTAssertEqual(label2.label.textColor, ColorName.battleshipGrey.color)
+        XCTAssertEqual(label2.label.textColor, ColorName.darkGrey.color)
     }
 
     func test_whenActiveRuleReset_thenBecomesInactive() {

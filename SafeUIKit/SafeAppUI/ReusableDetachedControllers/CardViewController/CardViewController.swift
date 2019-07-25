@@ -34,7 +34,7 @@ public class CardViewController: UIViewController {
          scrollContentView,
          wrapperAroundContentStackView,
          cardSeparatorView].forEach { view in
-            view?.backgroundColor = ColorName.paleGrey.color
+            view?.backgroundColor = ColorName.white.color
         }
         [cardView,
          cardHeaderView,
@@ -87,7 +87,7 @@ public class CardViewController: UIViewController {
 
         override var fontSize: Double { return 17 }
         override var fontWeight: UIFont.Weight { return .regular }
-        override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+        override var fontColor: UIColor { return ColorName.darkBlue.color }
 
         override var alignment: NSTextAlignment { return .center }
 
@@ -100,7 +100,7 @@ public class CardViewController: UIViewController {
     class SubtitleStyle: CommonTextStyle {
 
         override var fontWeight: UIFont.Weight { return .semibold }
-        override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+        override var fontColor: UIColor { return ColorName.darkBlue.color }
 
     }
 
@@ -108,7 +108,7 @@ public class CardViewController: UIViewController {
 
     class SubtitleDetailRightButtonStyle: CommonTextStyle {
 
-        override var fontColor: UIColor { return ColorName.darkSkyBlue.color }
+        override var fontColor: UIColor { return ColorName.hold.color }
 
     }
 

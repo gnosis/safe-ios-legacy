@@ -61,7 +61,7 @@ final class RuleLabel: UIView {
         loadContentsFromNib()
         backgroundColor = .clear
         wrapperView.backgroundColor = .clear
-        label.textColor = ColorName.battleshipGrey.color
+        label.textColor = ColorName.darkGrey.color
     }
 
     private func loadContentsFromNib() {
@@ -112,9 +112,9 @@ final class RuleLabel: UIView {
         case .error:
             label.textColor = ColorName.tomato.color
         case .inactive:
-            label.textColor = ColorName.battleshipGrey.color
+            label.textColor = ColorName.darkGrey.color
         case .success:
-            label.textColor = ColorName.greenTeal.color
+            label.textColor = ColorName.hold.color
         }
     }
 

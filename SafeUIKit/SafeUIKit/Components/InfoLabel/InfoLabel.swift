@@ -13,8 +13,8 @@ public class InfoLabel: BaseCustomLabel {
     public weak var delegate: InfoLabelDelegate?
 
     public var infoSuffix = "[?]"
-    public var infoColor: UIColor = ColorName.darkSkyBlue.color
-    public var bodyColor: UIColor = ColorName.battleshipGrey.color
+    public var infoColor: UIColor = ColorName.hold.color
+    public var bodyColor: UIColor = ColorName.darkGrey.color
 
     public override func commonInit() {
         font = UIFont.systemFont(ofSize: 17)

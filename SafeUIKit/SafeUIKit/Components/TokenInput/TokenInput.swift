@@ -55,7 +55,7 @@ public final class TokenInput: VerifiableInput {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right
-        label.textColor = ColorName.lightGreyBlue.color
+        label.textColor = ColorName.mediumGrey.color
         label.text = tokenCode! + "   \u{200c}" // padding
         label.sizeToFit()
         return label

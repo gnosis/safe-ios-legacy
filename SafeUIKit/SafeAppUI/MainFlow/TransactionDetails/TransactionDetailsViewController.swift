@@ -211,7 +211,7 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureFee() {
         transactionFeeView.infoLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        transactionFeeView.infoLabel.bodyColor = ColorName.darkSlateBlue.color
+        transactionFeeView.infoLabel.bodyColor = ColorName.darkBlue.color
         transactionFeeView.infoLabel.setInfoText(Strings.fee)
         transactionFeeView.infoLabel.delegate = self
         transactionFeeView.amountLabel.isShowingShortFormat = true

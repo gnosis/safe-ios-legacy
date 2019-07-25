@@ -18,7 +18,7 @@ final class SafeTableViewCell: UITableViewCell {
         selectionStyle = .none
         safeIconImageView.layer.cornerRadius = safeIconImageView.frame.width / 2
         safeIconImageView.clipsToBounds = true
-        safeAddressLabel.textColor = ColorName.lightGreyBlue.color
+        safeAddressLabel.textColor = ColorName.mediumGrey.color
     }
 
     func configure(address: String) {

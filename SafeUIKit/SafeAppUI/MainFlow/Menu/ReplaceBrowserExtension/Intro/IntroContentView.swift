@@ -54,7 +54,7 @@ class ContentHeaderStyle: AttributedStringStyle {
 
     override var fontWeight: UIFont.Weight { return .semibold }
     override var fontSize: Double { return 17 }
-    override var fontColor: UIColor { return ColorName.darkSlateBlue.color }
+    override var fontColor: UIColor { return ColorName.darkBlue.color }
     override var minimumLineHeight: Double { return 22 }
     override var maximumLineHeight: Double { return 22 }
     override var alignment: NSTextAlignment { return .center }
@@ -64,7 +64,7 @@ class ContentHeaderStyle: AttributedStringStyle {
 class ContentBodyStyle: AttributedStringStyle {
 
     override var fontSize: Double { return 17 }
-    override var fontColor: UIColor { return ColorName.battleshipGrey.color }
+    override var fontColor: UIColor { return ColorName.darkGrey.color }
     override var minimumLineHeight: Double { return 22 }
     override var maximumLineHeight: Double { return 22 }
 

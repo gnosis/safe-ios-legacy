@@ -94,7 +94,7 @@ class AddTokenTableViewController: UITableViewController {
         searchController.searchBar.showsCancelButton = true
         searchController.searchBar.delegate = self
         searchController.searchBar.searchBarStyle = .prominent
-        searchController.searchBar.tintColor = ColorName.aquaBlue.color
+        searchController.searchBar.tintColor = ColorName.hold.color
     }
 
     private func configureTableView() {
@@ -107,10 +107,10 @@ class AddTokenTableViewController: UITableViewController {
         tableView.separatorStyle = .none
 
         tableView.rowHeight = BasicTableViewCell.titleAndSubtitleHeight
-        tableView.backgroundColor = ColorName.paleGrey.color
+        tableView.backgroundColor = ColorName.white.color
 
         tableView.sectionIndexMinimumDisplayRowCount = 15
-        tableView.sectionIndexColor = ColorName.battleshipGrey.color
+        tableView.sectionIndexColor = ColorName.darkGrey.color
     }
 
     @objc func didShowKeyboard(_ notification: NSNotification) {

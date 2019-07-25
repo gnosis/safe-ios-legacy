@@ -56,7 +56,7 @@ final class OnboardingWelcomeViewController: UIViewController {
         super.viewWillDisappear(animated)
         _navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         _navigationController?.navigationBar.shadowImage = Asset.shadow.image
-        _navigationController?.navigationBar.tintColor = ColorName.darkSkyBlue.color
+        _navigationController?.navigationBar.tintColor = ColorName.hold.color
     }
 
     @IBAction func setupPassword(_ sender: Any) {

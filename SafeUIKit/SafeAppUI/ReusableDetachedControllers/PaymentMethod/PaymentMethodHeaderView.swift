@@ -27,7 +27,7 @@ final class PaymentMethodHeaderView: UITableViewHeaderFooterView {
         super.awakeFromNib()
         backgroundView = UIView()
         backgroundView!.backgroundColor = .white
-        headingView.backgroundColor = ColorName.paleGrey.color
+        headingView.backgroundColor = ColorName.white.color
         descriptionInfoLabel.delegate = self
         updateDescriptionLabel(Strings.description)
         feePaymentMethodLabel.attributedText = NSAttributedString(string: Strings.feeMethod,
