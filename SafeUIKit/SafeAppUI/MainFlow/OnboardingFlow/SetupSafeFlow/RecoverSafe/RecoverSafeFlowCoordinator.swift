@@ -65,6 +65,8 @@ extension RecoverSafeFlowCoordinator {
     func showPaymentIntro() {
         let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
         controller.titleText = flowTitle
+        controller.headerText = LocalizedString("safe_recovery_fee", comment: "Header for recover fee screen.")
+        controller.descriptionText = LocalizedString("safe_recovery_fee_required", comment: "Description of a fee.")
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.feeIntro
         push(controller)
     }
@@ -135,6 +137,8 @@ extension RecoverSafeFlowCoordinator: CreationFeeIntroDelegate {
 
     func creationFeeIntroChangePaymentMethod(estimations: [TokenData]) {
         let controller = OnboardingPaymentMethodViewController.create(delegate: self, estimations: estimations)
+        controller.descriptionText = LocalizedString("choose_how_to_pay_recovery_fee",
+                                                     comment: "Recovery payment method description")
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.paymentMethod
         push(controller)
     }

@@ -55,6 +55,9 @@
 /* Choose how to pay the creation fee. */
 "choose_how_to_pay_creation_fee" = "Choose how to pay the creation fee.";
 
+/* Recovery payment method description */
+"choose_how_to_pay_recovery_fee" = "Choose how to pay the recovery fee.";
+
 /* Close */
 "close" = "Close";
 
@@ -180,9 +183,6 @@
 /* Info */
 "info" = "Info";
 
-/* Scan its QR code. */
-"install_browser_extension" = "2. Install browser extension on your desktop computer and scan its QR code.";
-
 /* Insufficient funds header. */
 "insufficient_funds" = "Insufficient funds";
 
@@ -191,7 +191,7 @@
 
 /* Connect browser extension
    Header for add browser extension screen */
-"ios_connect_browser_extension" = "Connect browser\nextension";
+"ios_connect_browser_extension" = "Connect Authenticator";
 
 /* Pending safe failed alert's message */
 "ios_creationFee_failed_error" = "Error: %@ Please try again later.";
@@ -256,14 +256,17 @@
 /* Error format for invalid recovery phrase */
 "ios_incorrect_seed_error_format" = "Incorrect recovery phrase: %@";
 
+/* Scan its QR code. */
+"ios_install_browser_extension" = "2. Install the Authenticator on your desktop computer and scan its QR code.";
+
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
 "ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
 
 /* Download the 'Gnosis Safe Chrome browser exntension.' */
-"ios_open_be_link_substring" = "link to the Chrome browser extension ";
+"ios_open_be_link_substring" = "Gnosis Safe Authenticator link";
 
 /* 'Download the' Gnosis Safe Chrome browser exntension. */
-"ios_open_be_link_text" = "1. Open the link to the Chrome browser extension on your desktop computer.";
+"ios_open_be_link_text" = "1. Open the Gnosis Safe Authenticator link on your desktop computer.";
 
 /* Recovered Safe */
 "ios_recovered_safe" = "Recovered\nSafe";
@@ -520,6 +523,12 @@
 
 /* Safe creation fee */
 "safe_creation_fee" = "Safe creation fee";
+
+/* Header for recover fee screen. */
+"safe_recovery_fee" = "Safe recovery fee";
+
+/* Description of a fee. */
+"safe_recovery_fee_required" = "A network fee will be deducted from your Safe balance to recover your Safe.";
 
 /* Save button */
 "save" = "Save";
