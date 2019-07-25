@@ -82,9 +82,6 @@ enum Asset {
   }
   static let shadow = ImageAsset(name: "shadow")
   static let shareIcon = ImageAsset(name: "share-icon")
-  enum TermsScreen {
-    static let squareButtonBorder = ImageAsset(name: "square-button-border")
-  }
   enum TokenIcons {
     static let eth = ImageAsset(name: "ETH")
     static let defaultToken = ImageAsset(name: "default-token")
@@ -150,7 +147,6 @@ enum Asset {
     SegmentBar.`right`,
     shadow,
     shareIcon,
-    TermsScreen.squareButtonBorder,
     TokenIcons.eth,
     TokenIcons.defaultToken,
     TransactionDetails.arrowTransaction,

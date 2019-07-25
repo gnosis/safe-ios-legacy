@@ -43,6 +43,8 @@ public final class FeedbackTooltip: CardView {
     }
 
     private func commonInit() {
+        layer.shadowColor = ColorName.cardShadowTooltip.color.cgColor
+        layer.shadowOpacity = 0.18
         backgroundColor = ColorName.snowwhite.color
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = ColorName.darkBlue.color

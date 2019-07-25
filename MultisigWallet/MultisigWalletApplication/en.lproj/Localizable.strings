@@ -5,7 +5,7 @@
 "exceeds_funds" = "Insufficient funds to perform this transaction";
 
 /* App slogan */
-"ios_app_slogan" = "Enter the\ndecentralized web.";
+"ios_app_slogan" = "The most secure way\nto manage your crypto\nfunds";
 
 /* Browser extension is already connected. */
 "ios_error_extension_exists" = "Browser extension is already connected.";

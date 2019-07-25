@@ -36,14 +36,14 @@ struct ColorName {
   /// Alpha: 14% <br/> (0x00000026)
   static let black15 = ColorName(rgbaValue: 0x00000026)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#d4d4d3"></span>
-  /// Alpha: 59% <br/> (0xd4d4d397)
-  static let cardShadow = ColorName(rgbaValue: 0xd4d4d397)
+  /// Alpha: 100% <br/> (0xd4d4d3ff)
+  static let cardShadow = ColorName(rgbaValue: 0xd4d4d3ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#607e79"></span>
-  /// Alpha: 36% <br/> (0x607e795c)
-  static let cardShadowPassword = ColorName(rgbaValue: 0x607e795c)
+  /// Alpha: 100% <br/> (0x607e79ff)
+  static let cardShadowPassword = ColorName(rgbaValue: 0x607e79ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#28363d"></span>
-  /// Alpha: 18% <br/> (0x28363d2e)
-  static let cardShadowTooltip = ColorName(rgbaValue: 0x28363d2e)
+  /// Alpha: 100% <br/> (0x28363dff)
+  static let cardShadowTooltip = ColorName(rgbaValue: 0x28363dff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#001428"></span>
   /// Alpha: 100% <br/> (0x001428ff)
   static let darkBlue = ColorName(rgbaValue: 0x001428ff)
@@ -64,7 +64,10 @@ struct ColorName {
   static let hold50 = ColorName(rgbaValue: 0x008c7380)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#005546"></span>
   /// Alpha: 100% <br/> (0x005546ff)
-  static let holdTwo = ColorName(rgbaValue: 0x005546ff)
+  static let holdDark = ColorName(rgbaValue: 0x005546ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#abd4cd"></span>
+  /// Alpha: 100% <br/> (0xabd4cdff)
+  static let holdLight = ColorName(rgbaValue: 0xabd4cdff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#d4d5d3"></span>
   /// Alpha: 100% <br/> (0xd4d5d3ff)
   static let lightGrey = ColorName(rgbaValue: 0xd4d5d3ff)

@@ -13,6 +13,7 @@
 		0A028F0521AEE52100431D25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A028F0721AEE52100431D25 /* Localizable.strings */; };
 		0A04A8C5225F505300305F79 /* PushLocalizationStringsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A04A8C4225F505300305F79 /* PushLocalizationStringsTests.swift */; };
 		0A0513712254B0ED000A06CD /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
+		0A05952A22E9CFF60001D7D5 /* Averta-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A05951E22E9CFEC0001D7D5 /* Averta-Regular.otf */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
 		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
@@ -280,6 +281,7 @@
 		0A028EEE21AEE3FE00431D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A028F0621AEE52100431D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A04A8C4225F505300305F79 /* PushLocalizationStringsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalizationStringsTests.swift; sourceTree = "<group>"; };
+		0A05951E22E9CFEC0001D7D5 /* Averta-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Averta-Regular.otf"; sourceTree = "<group>"; };
 		0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreenUITests.swift; sourceTree = "<group>"; };
 		0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreen.swift; sourceTree = "<group>"; };
 		0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */,
+				0A05951E22E9CFEC0001D7D5 /* Averta-Regular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */,
 				0A53AD3920595C2300D713AD /* Localizable.strings in Resources */,
 				55B5DF792278AD2F001A32F4 /* Montserrat-Bold.otf in Resources */,
+				0A05952A22E9CFF60001D7D5 /* Averta-Regular.otf in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
 				0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */,
 				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,

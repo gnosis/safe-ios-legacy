@@ -83,10 +83,6 @@ public class OnboardingTermsViewController: UIViewController {
                                                              .foregroundColor: ColorName.hold.color])
     }
 
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
 }
 
 struct BodyStyle {
