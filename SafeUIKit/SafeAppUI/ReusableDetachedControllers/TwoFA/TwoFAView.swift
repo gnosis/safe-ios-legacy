@@ -24,5 +24,6 @@ class TwoFAView: BaseCustomView {
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         wrapAroundDynamicHeightView(wrapperView)
+        imageView.image = Asset.Onboarding.browserExtensionQr.image
     }
 }

@@ -30,6 +30,9 @@ class FeePaidViewController: UIViewController {
         button.imageEdgeInsets.bottom = -1
         button.setTitle(Strings.buttonTitle, for: .normal)
 
+        progressView.progressTintColor = ColorName.hold.color
+        progressView.trackTintColor = ColorName.whitesmokeTwo.color
+
         progressAnimator = ProgressAnimator(progressView)
     }
 
