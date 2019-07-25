@@ -71,7 +71,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         placeholderTop.constant = insets.top
         placeholderLeading.constant = insets.left
         placeholderTrailing.constant = -insets.right
-        placeholderLabel.textColor = ColorName.darkBlue.color.withAlphaComponent(0.7)
+        placeholderLabel.textColor = ColorName.darkBlue50.color
 
         view.setNeedsUpdateConstraints()
         update()

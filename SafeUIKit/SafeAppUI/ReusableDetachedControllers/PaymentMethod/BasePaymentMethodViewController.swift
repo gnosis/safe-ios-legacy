@@ -106,8 +106,8 @@ class BasePaymentMethodViewController: UIViewController, UITableViewDelegate, UI
         cell.rightTrailingConstraint.constant = 14
         if tokenData.balance ?? 0 == 0 {
             cell.selectionStyle = .none
-            cell.leftTextLabel.textColor = ColorName.darkBlue.color.withAlphaComponent(0.5)
-            cell.rightTextLabel.textColor = ColorName.darkBlue.color.withAlphaComponent(0.5)
+            cell.leftTextLabel.textColor = ColorName.darkBlue50.color
+            cell.rightTextLabel.textColor = ColorName.darkBlue50.color
             cell.leftImageView.alpha = 0.5
         }
         return cell

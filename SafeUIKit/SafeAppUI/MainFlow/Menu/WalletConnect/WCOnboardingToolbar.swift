@@ -33,7 +33,7 @@ class WCOnboardingToolbar: UIToolbar {
         setShadowImage(UIImage(), forToolbarPosition: .any)
 
         pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 150, height: 44))
-        pageControl.pageIndicatorTintColor = ColorName.hold.color.withAlphaComponent(0.5)
+        pageControl.pageIndicatorTintColor = ColorName.hold50.color
         pageControl.currentPageIndicatorTintColor = ColorName.hold.color
 
         actionButtonItem = createActionItem(title: "Action")

@@ -32,6 +32,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
   /// Alpha: 100% <br/> (0x000000ff)
   static let black = ColorName(rgbaValue: 0x000000ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+  /// Alpha: 14% <br/> (0x00000026)
+  static let black15 = ColorName(rgbaValue: 0x00000026)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#d4d4d3"></span>
   /// Alpha: 59% <br/> (0xd4d4d397)
   static let cardShadow = ColorName(rgbaValue: 0xd4d4d397)
@@ -44,12 +47,21 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#001428"></span>
   /// Alpha: 100% <br/> (0x001428ff)
   static let darkBlue = ColorName(rgbaValue: 0x001428ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#001428"></span>
+  /// Alpha: 50% <br/> (0x00142880)
+  static let darkBlue50 = ColorName(rgbaValue: 0x00142880)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#5d6d74"></span>
   /// Alpha: 100% <br/> (0x5d6d74ff)
   static let darkGrey = ColorName(rgbaValue: 0x5d6d74ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#008c73"></span>
   /// Alpha: 100% <br/> (0x008c73ff)
   static let hold = ColorName(rgbaValue: 0x008c73ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#008c73"></span>
+  /// Alpha: 20% <br/> (0x008c7333)
+  static let hold20 = ColorName(rgbaValue: 0x008c7333)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#008c73"></span>
+  /// Alpha: 50% <br/> (0x008c7380)
+  static let hold50 = ColorName(rgbaValue: 0x008c7380)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#005546"></span>
   /// Alpha: 100% <br/> (0x005546ff)
   static let holdTwo = ColorName(rgbaValue: 0x005546ff)
