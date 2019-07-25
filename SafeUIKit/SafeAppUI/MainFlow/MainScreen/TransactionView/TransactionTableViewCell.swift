@@ -43,6 +43,7 @@ class TransactionTableViewCell: UITableViewCell {
         identiconView.layer.cornerRadius = identiconView.bounds.width / 2
         identiconView.clipsToBounds = true
         progressView.progressTintColor = ColorName.hold.color
+        progressView.trackTintColor = ColorName.whitesmokeTwo.color
     }
 
     func configure(transaction: TransactionData) {

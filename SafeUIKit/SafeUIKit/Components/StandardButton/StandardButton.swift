@@ -30,7 +30,7 @@ final public class StandardButton: BaseCustomButton {
     }
 
     public override func update() {
-        setTitleColor(ColorName.transparent.color, for: .normal)
+        setTitleColor(ColorName.snowwhite.color, for: .normal)
         setTitleColor(ColorName.darkBlue.color, for: .highlighted)
         setTitleColor(ColorName.mediumGrey.color, for: .disabled)
 

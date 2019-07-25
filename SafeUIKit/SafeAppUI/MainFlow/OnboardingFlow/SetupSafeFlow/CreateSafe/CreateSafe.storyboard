@@ -69,31 +69,21 @@ Save this recovery phrase.</string>
                                                 <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="water" translatesAutoresizingMaskIntoConstraints="NO" id="HDJ-Gj-dgT">
-                                                <rect key="frame" x="0.0" y="511" width="375" height="225"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="HDJ-Gj-dgT" secondAttribute="height" multiplier="5:3" id="bIf-Xa-8Ga"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="HDJ-Gj-dgT" secondAttribute="trailing" id="2XM-ot-wEx"/>
                                             <constraint firstItem="X3R-nP-mmG" firstAttribute="leading" secondItem="wQs-yC-xbp" secondAttribute="leading" id="5MZ-c1-09U"/>
                                             <constraint firstAttribute="trailing" secondItem="Htj-cX-uIl" secondAttribute="trailing" constant="20" id="8xm-tK-Snw"/>
                                             <constraint firstItem="wQs-yC-xbp" firstAttribute="top" secondItem="SJL-Wu-tSJ" secondAttribute="bottom" constant="50" id="DI4-jy-k5X"/>
                                             <constraint firstAttribute="trailing" secondItem="SJL-Wu-tSJ" secondAttribute="trailing" constant="16" id="Gpx-tO-1Z6"/>
                                             <constraint firstItem="bkP-Rj-RvE" firstAttribute="trailing" secondItem="w8c-qh-D5l" secondAttribute="trailing" id="Kc9-W4-ylp"/>
-                                            <constraint firstItem="HDJ-Gj-dgT" firstAttribute="leading" secondItem="PGY-Bp-qGQ" secondAttribute="leading" id="LpA-S8-6lQ"/>
                                             <constraint firstItem="X3R-nP-mmG" firstAttribute="trailing" secondItem="wQs-yC-xbp" secondAttribute="trailing" id="MAn-qS-sUN"/>
                                             <constraint firstItem="bkP-Rj-RvE" firstAttribute="top" secondItem="SJL-Wu-tSJ" secondAttribute="bottom" constant="8" id="NKN-Za-CJR"/>
                                             <constraint firstItem="Htj-cX-uIl" firstAttribute="leading" secondItem="PGY-Bp-qGQ" secondAttribute="leading" constant="20" id="R5W-3Q-ZK9"/>
                                             <constraint firstItem="Htj-cX-uIl" firstAttribute="top" secondItem="PGY-Bp-qGQ" secondAttribute="top" constant="40" id="YM2-Bn-0Tv"/>
-                                            <constraint firstItem="HDJ-Gj-dgT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="X3R-nP-mmG" secondAttribute="bottom" constant="30" id="gmu-uD-ewM"/>
                                             <constraint firstItem="SJL-Wu-tSJ" firstAttribute="leading" secondItem="PGY-Bp-qGQ" secondAttribute="leading" constant="16" id="lNQ-Nf-INc"/>
                                             <constraint firstItem="X3R-nP-mmG" firstAttribute="top" secondItem="wQs-yC-xbp" secondAttribute="bottom" constant="30" id="ohx-yR-5a3"/>
                                             <constraint firstItem="SJL-Wu-tSJ" firstAttribute="top" secondItem="Htj-cX-uIl" secondAttribute="bottom" constant="31" id="rkW-OR-vBY"/>
-                                            <constraint firstAttribute="bottom" secondItem="HDJ-Gj-dgT" secondAttribute="bottom" id="vMC-7h-3eq"/>
                                             <constraint firstItem="wQs-yC-xbp" firstAttribute="leading" secondItem="SJL-Wu-tSJ" secondAttribute="leading" constant="16" id="vzM-ls-VsF"/>
                                             <constraint firstItem="wQs-yC-xbp" firstAttribute="trailing" secondItem="SJL-Wu-tSJ" secondAttribute="trailing" constant="-16" id="zF7-hZ-oNV"/>
                                         </constraints>
@@ -299,7 +289,4 @@ Save this recovery phrase.</string>
             <point key="canvasLocation" x="3348" y="-176.76161919040482"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="water" width="375" height="224"/>
-    </resources>
 </document>
