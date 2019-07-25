@@ -81,7 +81,7 @@ public class ReviewTransactionViewController: UITableViewController {
 
     private func configureTableView() {
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = ColorName.snowwhite.color
         tableView.allowsSelection = false
         tableView.tableFooterView = UIView()
         view.setNeedsUpdateConstraints()

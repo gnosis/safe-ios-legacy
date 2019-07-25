@@ -51,7 +51,7 @@ public class ErrorHandler {
     private func showError(title: String, message: String, log: String, error: Error?, action: @escaping () -> Void) {
         let window = UIWindow(frame: UIScreen.main.bounds)
         let vc = UIViewController()
-        vc.view.backgroundColor = .clear
+        vc.view.backgroundColor = ColorName.transparent.color
         window.rootViewController = vc
         window.windowLevel = UIWindow.Level.alert + 1
         window.makeKeyAndVisible()

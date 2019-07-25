@@ -41,7 +41,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = nil
 
         let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.barTintColor = .white
+        navBarAppearance.barTintColor = ColorName.snowwhite.color
         navBarAppearance.tintColor = ColorName.hold.color
         navBarAppearance.isTranslucent = false
         navBarAppearance.setBackgroundImage(UIImage(), for: .default)

@@ -44,7 +44,7 @@ public class AccountBalanceView: BaseCustomView {
         balanceLabel.textAlignment = .right
         balanceLabel.isShowingPlusSign = false
         balanceLabel.hasTooltip = true
-        backgroundColor = .white
+        backgroundColor = ColorName.snowwhite.color
         update()
     }
 

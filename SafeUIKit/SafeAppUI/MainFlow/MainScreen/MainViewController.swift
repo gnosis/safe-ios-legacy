@@ -66,9 +66,9 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         containerView.backgroundColor = ColorName.white.color
         view.backgroundColor = containerView.backgroundColor
-        headerBackgroundView.backgroundColor = .white
-        headerView.backgroundColor = .white
-        segmentBar.backgroundColor = .white
+        headerBackgroundView.backgroundColor = ColorName.snowwhite.color
+        headerView.backgroundColor = ColorName.snowwhite.color
+        segmentBar.backgroundColor = ColorName.snowwhite.color
 
         navigationItem.rightBarButtonItem = .menuButton(target: self, action: #selector(openMenu))
 

@@ -18,7 +18,7 @@ open class BasicTableViewCell: UITableViewCell {
     /// Used if table view section index should be displayed
     public var withTrailingSpace: Bool = false {
         didSet {
-            backgroundColor = withTrailingSpace ? .clear : .white
+            backgroundColor = withTrailingSpace ? ColorName.transparent.color : ColorName.snowwhite.color
         }
     }
 

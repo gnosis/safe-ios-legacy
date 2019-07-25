@@ -32,7 +32,7 @@ open class BackgroundHeaderFooterView: UITableViewHeaderFooterView {
 
     open func commonInit() {
         backgroundView = UIView()
-        backgroundView!.backgroundColor = .clear
+        backgroundView!.backgroundColor = ColorName.transparent.color
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
         NSLayoutConstraint.activate([

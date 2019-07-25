@@ -133,7 +133,7 @@ public final class AddressInput: VerifiableInput {
     private func configureAddressLabel() {
         addressLabel.font = UIFont.systemFont(ofSize: textFontSize, weight: .medium)
         addressLabel.textAlignment = .left
-        addressLabel.backgroundColor = .clear
+        addressLabel.backgroundColor = ColorName.transparent.color
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.numberOfLines = 2
         addressLabel.adjustsFontSizeToFitWidth = true

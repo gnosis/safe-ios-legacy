@@ -39,7 +39,7 @@ public class CardViewController: UIViewController {
         [cardView,
          cardHeaderView,
          cardBodyView].forEach { view in
-            view?.backgroundColor = .white
+            view?.backgroundColor = ColorName.snowwhite.color
         }
 
     }

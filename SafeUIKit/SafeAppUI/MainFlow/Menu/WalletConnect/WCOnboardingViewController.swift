@@ -43,7 +43,7 @@ class WCOnboardingViewController: UIPageViewController, UIPageViewControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = ColorName.snowwhite.color
 
         pageDataSource.reloadData(steps)
 

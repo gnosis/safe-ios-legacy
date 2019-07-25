@@ -32,7 +32,7 @@ public class IdenticonView: BaseCustomView {
     private static let shadowOffset: CGFloat = 1
     private let shadowOpacity: Float = 0.7
     private let shadowOffsetSize = CGSize(width: 0, height: IdenticonView.shadowOffset)
-    private let shadowColor = UIColor.black
+    private let shadowColor = ColorName.black.color
 
     override public func commonInit() {
         configureImageView()
@@ -49,7 +49,7 @@ public class IdenticonView: BaseCustomView {
     }
 
     private func configureLayer() {
-        backgroundColor = .clear
+        backgroundColor = ColorName.transparent.color
         layer.shadowColor = shadowColor.cgColor
         layer.shadowOffset = shadowOffsetSize
         layer.shadowOpacity = shadowOpacity

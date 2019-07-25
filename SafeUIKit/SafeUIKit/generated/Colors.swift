@@ -29,6 +29,9 @@ struct ColorName {
   let rgbaValue: UInt32
   var color: Color { return Color(named: self) }
 
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+  /// Alpha: 100% <br/> (0x000000ff)
+  static let black = ColorName(rgbaValue: 0x000000ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#d4d4d3"></span>
   /// Alpha: 59% <br/> (0xd4d4d397)
   static let cardShadow = ColorName(rgbaValue: 0xd4d4d397)
@@ -56,9 +59,15 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b2b5b2"></span>
   /// Alpha: 100% <br/> (0xb2b5b2ff)
   static let mediumGrey = ColorName(rgbaValue: 0xb2b5b2ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+  /// Alpha: 100% <br/> (0xffffffff)
+  static let snowwhite = ColorName(rgbaValue: 0xffffffff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff3b30"></span>
   /// Alpha: 100% <br/> (0xff3b30ff)
   static let tomato = ColorName(rgbaValue: 0xff3b30ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+  /// Alpha: 0% <br/> (0x00000000)
+  static let transparent = ColorName(rgbaValue: 0x00000000)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f7f5f5"></span>
   /// Alpha: 100% <br/> (0xf7f5f5ff)
   static let white = ColorName(rgbaValue: 0xf7f5f5ff)

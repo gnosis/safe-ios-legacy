@@ -29,7 +29,7 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
         [.foregroundColor: ColorName.mediumGrey.color]
     private let selectedBodyAttributes: [NSAttributedString.Key: Any] =
         [.foregroundColor: ColorName.mediumGrey.color,
-         .backgroundColor: UIColor(red: 0, green: 0.478_431, blue: 1, alpha: 0.2)]
+         .backgroundColor: ColorName.hold.color.withAlphaComponent(0.2)]
 
     public override func commonInit() {
         formatter.hexMode = .mixedcased
@@ -37,7 +37,7 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
         formatter.headLength = 2
         formatter.tailLength = 4
         formatter.bodyAttributes = defaultBodyAttributes
-        formatter.headAttributes = [.foregroundColor: UIColor.black]
+        formatter.headAttributes = [.foregroundColor: ColorName.black.color]
         formatter.tailAttributes = formatter.headAttributes
         // swiftlint:disable:next multiline_arguments
         tooltipSource = TooltipSource(target: self, onTap: { [weak self] in

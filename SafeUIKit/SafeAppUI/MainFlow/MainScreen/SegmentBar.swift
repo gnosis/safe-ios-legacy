@@ -63,12 +63,12 @@ public class SegmentBar: UIControl {
         buttons = items.enumerated().map { index, item -> UIButton in
             let button = UIButton(type: UIButton.ButtonType.custom)
             button.setTitle(" " + item.title, for: .normal)
-            button.setTitleColor(.black, for: .normal)
-            button.setTitleColor(.black, for: .highlighted)
+            button.setTitleColor(ColorName.black.color, for: .normal)
+            button.setTitleColor(ColorName.black.color, for: .highlighted)
             button.setImage(item.image, for: .normal)
-            button.tintColor = .black
+            button.tintColor = ColorName.black.color
             button.titleLabel?.font = UIFont.systemFont(ofSize: titleFontSize, weight: UIFont.Weight.medium)
-            button.backgroundColor = .white
+            button.backgroundColor = ColorName.snowwhite.color
             button.tag = index
             button.addTarget(self, action: #selector(didTapButton(sender:)), for: .touchUpInside)
             return button

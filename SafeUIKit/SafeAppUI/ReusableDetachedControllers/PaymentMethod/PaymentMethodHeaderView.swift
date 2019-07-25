@@ -26,7 +26,7 @@ final class PaymentMethodHeaderView: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundView = UIView()
-        backgroundView!.backgroundColor = .white
+        backgroundView!.backgroundColor = ColorName.snowwhite.color
         headingView.backgroundColor = ColorName.white.color
         descriptionInfoLabel.delegate = self
         updateDescriptionLabel(Strings.description)

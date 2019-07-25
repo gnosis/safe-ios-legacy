@@ -11,3 +11,6 @@ white: F7F5F5
 cardShadow: D4D4D397
 cardShadowPassword: 607E795C
 cardShadowTooltip: 28363D2E
+snowwhite: FFFFFF
+black: 000000
+transparent: 00000000

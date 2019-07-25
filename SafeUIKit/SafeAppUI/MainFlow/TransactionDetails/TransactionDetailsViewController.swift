@@ -95,11 +95,11 @@ public class TransactionDetailsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = ColorName.snowwhite.color
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .medium
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
-        wrapperView.backgroundColor = .white
+        wrapperView.backgroundColor = ColorName.snowwhite.color
         transferView.setSmallerAmountLabelFontSize()
         reloadData()
     }

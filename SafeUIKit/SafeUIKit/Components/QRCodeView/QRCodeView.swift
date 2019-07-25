@@ -38,8 +38,8 @@ final public class QRCodeView: BaseCustomView {
     override public func update() {
         guard let value = value else { return }
         let generator = RSUnifiedCodeGenerator.shared
-        generator.fillColor = UIColor.white
-        generator.strokeColor = UIColor.black
+        generator.fillColor = ColorName.snowwhite.color
+        generator.strokeColor = ColorName.black.color
         if let image = generator.generateCode(
             value, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue) {
             imageView.image = RSAbstractCodeGenerator.resizeImage(

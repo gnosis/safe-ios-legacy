@@ -58,7 +58,7 @@ extension FeeCalculationAssetLine {
 
     class NameButtonPressedStyle: NameButtonStyle {
 
-        override var fontColor: UIColor { return .darkText }
+        override var fontColor: UIColor { return ColorName.black.color }
 
     }
 
@@ -70,7 +70,7 @@ extension FeeCalculationAssetLine {
 
     class NameButtonBalancePressedStyle: NameButtonBalanceStyle {
 
-        override var fontColor: UIColor { return .darkText }
+        override var fontColor: UIColor { return ColorName.black.color }
 
     }
 
@@ -95,7 +95,7 @@ extension FeeCalculationAssetLine {
 
     class ValueButtonPressedStyle: ValueButtonStyle {
 
-        override var fontColor: UIColor { return UIColor.darkText }
+        override var fontColor: UIColor { return ColorName.black.color }
 
     }
 

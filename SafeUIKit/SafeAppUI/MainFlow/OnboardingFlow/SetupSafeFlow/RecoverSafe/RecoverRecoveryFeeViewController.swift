@@ -43,7 +43,7 @@ class RecoverRecoveryFeeViewController: CardViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = ColorName.snowwhite.color
         embed(view: feeRequestView, inCardSubview: cardHeaderView)
         embed(view: addressDetailView, inCardSubview: cardBodyView)
         footerButton.isHidden = true

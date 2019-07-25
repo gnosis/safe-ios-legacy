@@ -122,8 +122,8 @@ open class VerifiableInput: UIView {
 
     private func commonInit() {
         loadContentsFromNib()
-        backgroundColor = .clear
-        wrapperView.backgroundColor = .clear
+        backgroundColor = ColorName.transparent.color
+        wrapperView.backgroundColor = ColorName.transparent.color
         textInput.delegate = self
         textInput.addTarget(self, action: #selector(textChanged), for: .editingChanged)
     }

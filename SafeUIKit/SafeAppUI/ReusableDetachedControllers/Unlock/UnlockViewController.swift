@@ -53,7 +53,7 @@ public final class UnlockViewController: UIViewController {
         let isFaceID = authenticationService.isAuthenticationMethodSupported(.faceID)
         let biometryIcon = isFaceID ? Asset.UnlockScreen.faceIdIcon.image : Asset.UnlockScreen.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
-        loginWithBiometryButton.tintColor = .white
+        loginWithBiometryButton.tintColor = ColorName.snowwhite.color
 
         biometryExplanationLabel.text = isFaceID ? Strings.faceIDInfo : Strings.touchIDInfo
         biometryExplanationLabel.textColor = ColorName.white.color
@@ -74,7 +74,7 @@ public final class UnlockViewController: UIViewController {
         cancelButton.isHidden = !showsCancelButton
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         cancelButton.setTitle(Strings.cancel, for: .normal)
-        cancelButton.setTitleColor(.white, for: .normal)
+        cancelButton.setTitleColor(ColorName.snowwhite.color, for: .normal)
         cancelButton.accessibilityIdentifier = "cancel"
 
         startCountdownIfNeeded()

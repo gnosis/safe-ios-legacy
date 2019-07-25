@@ -20,16 +20,16 @@ class BasePaymentMethodViewController: UIViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = ColorName.snowwhite.color
 
         let topView = UIView()
-        topView.backgroundColor = .white
+        topView.backgroundColor = ColorName.snowwhite.color
         topView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(topView)
 
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = ColorName.transparent.color
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")

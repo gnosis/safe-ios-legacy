@@ -27,7 +27,7 @@ class CreationFeeIntroHeaderView: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundView = UIView()
-        backgroundView!.backgroundColor = .white
+        backgroundView!.backgroundColor = ColorName.snowwhite.color
         headingView.backgroundColor = ColorName.white.color
         headerLabel.text = Strings.header
         headerLabel.textColor = ColorName.darkBlue.color

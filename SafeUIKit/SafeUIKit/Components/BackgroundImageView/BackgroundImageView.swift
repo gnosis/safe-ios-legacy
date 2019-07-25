@@ -24,10 +24,10 @@ public final class BackgroundImageView: UIImageView {
     }
 
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = ColorName.snowwhite.color
         image = Asset.backgroundDarkImage.image
         dimmedView = UIView()
-        dimmedView.backgroundColor = .clear
+        dimmedView.backgroundColor = ColorName.transparent.color
         dimmedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         dimmedView.frame = frame
         insertSubview(dimmedView, at: 0)
@@ -35,7 +35,9 @@ public final class BackgroundImageView: UIImageView {
 
     public var isDimmed = false {
         didSet {
-            dimmedView.backgroundColor = isDimmed ? UIColor.black.withAlphaComponent(0.15) : .clear
+            dimmedView.backgroundColor = isDimmed ?
+                ColorName.black.color.withAlphaComponent(0.15) :
+                ColorName.transparent.color
         }
     }
 
