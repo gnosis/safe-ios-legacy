@@ -225,6 +225,7 @@ public class TransactionDetailsViewController: UIViewController {
             transaction.status == .pending
         viewInExternalAppButton.isHidden = !isSubmitted
         viewInExternalAppButton.setTitle(Strings.externalApp, for: .normal)
+        viewInExternalAppButton.setTitleColor(ColorName.hold.color, for: .normal)
         viewInExternalAppButton.flipImageToTrailingSide(spacing: 7)
         viewInExternalAppButton.contentHorizontalAlignment = .trailing
         viewInExternalAppButton.removeTarget(self, action: nil, for: .touchUpInside)
