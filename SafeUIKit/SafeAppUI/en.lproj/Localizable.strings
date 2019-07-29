@@ -1,8 +1,7 @@
 /* Active sessions */
 "active_sessions" = "Active sessions";
 
-/* Add token button
-   Title for Add Token screen. */
+/* Title for Add Token screen. */
 "add_token" = "Add Token";
 
 /* Title for safe address section. */
@@ -191,7 +190,7 @@
 
 /* Connect browser extension
    Header for add browser extension screen */
-"ios_connect_browser_extension" = "Connect Authenticator";
+"ios_connect_browser_extension" = "Connect\nAuthenticator";
 
 /* Pending safe failed alert's message */
 "ios_creationFee_failed_error" = "Error: %@ Please try again later.";
@@ -200,7 +199,7 @@
 "ios_disconnect_browser_extension" = "Disconnect browser\nextension";
 
 /* Connect browser extension description */
-"ios_enable_2fa" = "For increased security, enable 2-factor authentication between your phone and computer.\n\nAll future transactions will need to be approved by both devices.";
+"ios_enable_2fa" = "Enable 2-factor authentication by connecting your Safe to Gnosis Safe Authenticator.\n\nAll future transactions will need to be approved by both devices.";
 
 /* Title for confirm recovery screen. */
 "ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
@@ -372,7 +371,8 @@
 /* Licenses */
 "licenses" = "Licenses";
 
-/* Manage Tokens menu item */
+/* Add token button
+   Manage Tokens menu item */
 "manage_tokens" = "Manage Tokens";
 
 /* Menu button title
