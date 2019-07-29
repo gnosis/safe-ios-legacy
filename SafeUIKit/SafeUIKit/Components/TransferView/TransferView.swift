@@ -48,7 +48,7 @@ public final class TransferView: BaseCustomView {
         fromAddressLabel.hasFullAddressTooltip = true
         toAddressLabel.textColor = ColorName.darkBlue.color
         toAddressLabel.hasFullAddressTooltip = true
-        balanceLabel.textColor = ColorName.darkGrey.color
+        balanceLabel.textColor = ColorName.darkBlue.color
         balanceLabel.isShowingPlusSign = false
         balanceLabel.hasTooltip = true
         amountLabel.textColor = ColorName.darkGrey.color

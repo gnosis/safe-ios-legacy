@@ -46,7 +46,7 @@ extension FeeCalculationAssetLine {
 
     class NameBalanceStyle: DefaultStyle {
 
-        override var fontWeight: UIFont.Weight { return .bold }
+        override var fontWeight: UIFont.Weight { return .semibold }
 
     }
 
@@ -64,7 +64,7 @@ extension FeeCalculationAssetLine {
 
     class NameButtonBalanceStyle: NameButtonStyle {
 
-        override var fontWeight: UIFont.Weight { return .bold }
+        override var fontWeight: UIFont.Weight { return .semibold }
 
     }
 
@@ -101,7 +101,7 @@ extension FeeCalculationAssetLine {
 
     class ValueBalanceStyle: ValueStyle {
 
-        override var fontWeight: UIFont.Weight { return .bold }
+        override var fontWeight: UIFont.Weight { return .semibold }
 
     }
 

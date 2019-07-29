@@ -77,6 +77,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
   /// Alpha: 100% <br/> (0xffffffff)
   static let snowwhite = ColorName(rgbaValue: 0xffffffff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#007aff"></span>
+  /// Alpha: 20% <br/> (0x007aff33)
+  static let systemBlue20 = ColorName(rgbaValue: 0x007aff33)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff3b30"></span>
   /// Alpha: 100% <br/> (0xff3b30ff)
   static let tomato = ColorName(rgbaValue: 0xff3b30ff)
@@ -86,9 +89,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f7f5f5"></span>
   /// Alpha: 100% <br/> (0xf7f5f5ff)
   static let white = ColorName(rgbaValue: 0xf7f5f5ff)
-  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e9e7e6"></span>
-  /// Alpha: 100% <br/> (0xe9e7e6ff)
-  static let whitesmoke = ColorName(rgbaValue: 0xe9e7e6ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e8e7e6"></span>
+  /// Alpha: 100% <br/> (0xe8e7e6ff)
+  static let whitesmoke = ColorName(rgbaValue: 0xe8e7e6ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f0efee"></span>
   /// Alpha: 100% <br/> (0xf0efeeff)
   static let whitesmokeTwo = ColorName(rgbaValue: 0xf0efeeff)
