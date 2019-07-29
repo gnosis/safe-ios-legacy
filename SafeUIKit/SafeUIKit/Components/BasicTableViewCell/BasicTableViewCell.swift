@@ -71,6 +71,6 @@ fileprivate class SubtitleStyle: AttributedStringStyle {
 
     override var fontSize: Double { return 13 }
     override var fontWeight: UIFont.Weight { return .medium }
-    override var fontColor: UIColor { return ColorName.darkGrey.color }
+    override var fontColor: UIColor { return ColorName.mediumGrey.color }
 
 }

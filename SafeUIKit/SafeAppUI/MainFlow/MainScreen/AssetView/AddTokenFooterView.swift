@@ -11,7 +11,7 @@ class AddTokenFooterView: UITableViewHeaderFooterView {
     static let height: CGFloat = 66
 
     private enum Strings {
-        static let addToken = LocalizedString("add_token", comment: "Add token button")
+        static let addToken = LocalizedString("manage_tokens", comment: "Add token button")
     }
 
     override func awakeFromNib() {

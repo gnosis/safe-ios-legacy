@@ -53,28 +53,28 @@ public final class UnlockViewController: UIViewController {
         let isFaceID = authenticationService.isAuthenticationMethodSupported(.faceID)
         let biometryIcon = isFaceID ? Asset.UnlockScreen.faceIdIcon.image : Asset.UnlockScreen.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
-        loginWithBiometryButton.tintColor = ColorName.snowwhite.color
+        loginWithBiometryButton.tintColor = ColorName.darkBlue.color
 
         biometryExplanationLabel.text = isFaceID ? Strings.faceIDInfo : Strings.touchIDInfo
-        biometryExplanationLabel.textColor = ColorName.white.color
+        biometryExplanationLabel.textColor = ColorName.darkBlue.color
         biometryExplanationLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
 
         updateBiometryButtonVisibility()
 
-        tryAgainLabel.textColor = ColorName.white.color
+        tryAgainLabel.textColor = ColorName.darkBlue.color
         tryAgainLabel.text = Strings.tryAgain
-        tryAgainLabel.font = UIFont.systemFont(ofSize: 15)
+        tryAgainLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
 
         countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
                              clock: clockService)
-        countdownLabel.textColor = ColorName.white.color
-        countdownLabel.font = UIFont.systemFont(ofSize: 20)
+        countdownLabel.textColor = ColorName.darkBlue.color
+        countdownLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         countdownLabel.accessibilityIdentifier = "countdown"
 
         cancelButton.isHidden = !showsCancelButton
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         cancelButton.setTitle(Strings.cancel, for: .normal)
-        cancelButton.setTitleColor(ColorName.snowwhite.color, for: .normal)
+        cancelButton.setTitleColor(ColorName.darkBlue.color, for: .normal)
         cancelButton.accessibilityIdentifier = "cancel"
 
         startCountdownIfNeeded()
