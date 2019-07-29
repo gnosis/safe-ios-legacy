@@ -179,7 +179,6 @@
 		0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D220480C7B00445AC2 /* Fonts.swift */; };
 		0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */; };
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
-		0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
 		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
 		0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF69B22265D19400F06616 /* PasswordViewController.xib */; };
@@ -375,7 +374,6 @@
 		5579C57C22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */; };
 		5579C57E22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */; };
 		5579C58022C3739400BB93CA /* WCSessionListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */; };
-		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
 		55980001225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE9225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift */; };
 		55980003225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFEB225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift */; };
@@ -763,7 +761,6 @@
 		0A99436820A0485300E36FD7 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		0A99436A20A0489800E36FD7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
-		0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButtonTests.swift; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		0AAF69B22265D19400F06616 /* PasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
@@ -973,7 +970,6 @@
 		5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectMenuCommandTests.swift; sourceTree = "<group>"; };
 		5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListTableViewControllerTests.swift; sourceTree = "<group>"; };
-		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		5598FFE5225B73B3006D5792 /* SetupNewPasswordViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewControllerTests.swift; sourceTree = "<group>"; };
 		5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewController.swift; sourceTree = "<group>"; };
@@ -1827,7 +1823,6 @@
 				0ABA591B21AC0802009D249F /* AmountLabel */,
 				55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */,
 				5524735721428F2500A77557 /* BackgroundImageView */,
-				5524735521428E9000A77557 /* BigButton */,
 				55BAB0E221789285007539CF /* StandardButton */,
 				0ABA591D21AC0813009D249F /* EthereumAddressLabel */,
 				5524735821428F5000A77557 /* H1Label */,
@@ -1854,15 +1849,6 @@
 				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
 			);
 			path = QRCodeInput;
-			sourceTree = "<group>";
-		};
-		5524735521428E9000A77557 /* BigButton */ = {
-			isa = PBXGroup;
-			children = (
-				558FD80920765C53004F070E /* CheckmarkButton.swift */,
-				0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */,
-			);
-			path = BigButton;
 			sourceTree = "<group>";
 		};
 		5524735621428EC400A77557 /* QRCodeScanner */ = {
@@ -2849,7 +2835,6 @@
 				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				550E7CDC21708E1F0032DE6C /* String+Extensions.swift in Sources */,
 				55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */,
-				558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */,
 				0ACCA8C6221C11E700D37594 /* LoadingTitleView.swift in Sources */,
 				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
 				55C3C6232174CB6E00FA5B4F /* ScanQRCodeHandler.swift in Sources */,
@@ -2872,7 +2857,6 @@
 				55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */,
 				55126B6721AC380900A9F810 /* ProgressViewTests.swift in Sources */,
 				555EB71B216DF19800E06553 /* VerifiableInputTests.swift in Sources */,
-				0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */,
 				55E8B00B219EC2B9002930A1 /* TransactionHeaderViewTests.swift in Sources */,
 				55C428FC217B428100BF8922 /* ScanBarButtonItemTests.swift in Sources */,
 				5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */,
