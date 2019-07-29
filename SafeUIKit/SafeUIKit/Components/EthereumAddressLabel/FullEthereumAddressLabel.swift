@@ -29,7 +29,7 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
         [.foregroundColor: ColorName.mediumGrey.color]
     private let selectedBodyAttributes: [NSAttributedString.Key: Any] =
         [.foregroundColor: ColorName.mediumGrey.color,
-         .backgroundColor: ColorName.systemBlue.color]
+         .backgroundColor: ColorName.systemBlue20.color]
 
     public override func commonInit() {
         formatter.hexMode = .mixedcased
