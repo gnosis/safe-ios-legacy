@@ -32,7 +32,7 @@
 "balance_after_transfer" = "Balance after transfer";
 
 /* Title for add browser extension screen */
-"browser_extension" = "Browser extension";
+"browser_extension" = "Authenticator";
 
 /* Cancel
    Cancel button. */
@@ -74,7 +74,7 @@
 "congratulations" = "Congratulations!";
 
 /* Explanation text */
-"connecting_in_progress" = "Connecting the browser extension is now in progress. The transaction has been submitted and should take a couple of minutes.";
+"connecting_in_progress" = "Connecting the Authenticator is now in progress. The transaction has been submitted and should take a couple of minutes.";
 
 /* Abort safe creation button title
    Continue */
@@ -102,16 +102,16 @@
 "disconnect" = "Disconnect";
 
 /* Disconnect browser extension description */
-"disconnect_2fa_description" = "Once this process is complete, you won't need to confirm transactions with browser extension.\n\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
+"disconnect_2fa_description" = "Once this process is complete, you won't need to confirm transactions with the Authenticator.\n\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
 
 /* Explanation text */
-"disconnecting_in_progress" = "Disconnecting the browser extension is now in progress. The transaction has been submitted and should take a couple of minutes.";
+"disconnecting_in_progress" = "Disconnecting the Authenticator is now in progress. The transaction has been submitted and should take a couple of minutes.";
 
 /* No transactions yet */
 "empty_safe_transactions_message" = "No transactions yet";
 
 /* Description for add browser extension screen */
-"enable_2fa" = "Enable 2-factor authentication by connecting your Safe to the browser extension.";
+"enable_2fa" = "Enable 2-factor authentication by connecting your Safe to the Authenticator.";
 
 /* Enter current password */
 "enter_current_password" = "Enter current password";
@@ -214,7 +214,7 @@
 "ios_error_description" = "Operation failed because of an error. Please try again.";
 
 /* Browser extension code is expired. */
-"ios_error_extension_expired" = "Browser extension code is expired. Please, try again.";
+"ios_error_extension_expired" = "The Authenticator code is expired. Please, try again.";
 
 /* Failed to sign. Try again. */
 "ios_error_failed_to_sign_transaction" = "Failed to sign the transaction.Try again.";
@@ -259,7 +259,7 @@
 "ios_install_browser_extension" = "2. Install the Authenticator on your desktop computer and scan its QR code.";
 
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
-"ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
+"ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Gnosis Safe Authenticator.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
 
 /* Download the 'Gnosis Safe Chrome browser exntension.' */
 "ios_open_be_link_substring" = "Gnosis Safe Authenticator link";
@@ -310,7 +310,7 @@
 "ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
 
 /* Replace browser extension */
-"ios_replace_browser_extension" = "Replace browser\nextension";
+"ios_replace_browser_extension" = "Replace\nAuthenticator";
 
 /* Change recovery key menu item
    Replace recovery phrase
@@ -351,16 +351,16 @@
 "just_now" = "Just now";
 
 /* Detail for the header in review screen */
-"layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the browser extension. Future transactions require a confirmation from both devices.";
+"layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the Authenticator. Future transactions require a confirmation from both devices.";
 
 /* Detail for the header in review screen */
-"layout_disconnect_browser_extension_info_description" = "This transaction disconnects this Safe from the browser extension. Future transactions will not require confirmations.";
+"layout_disconnect_browser_extension_info_description" = "This transaction disconnects this Safe from the Authenticator. Future transactions will not require confirmations.";
 
 /* Detail for the header in review screen */
 "layout_recovered_safe_info_description" = "The existing Safe was recovered.";
 
 /* Detail for the header in review screen */
-"layout_replace_browser_extension_info_description" = "The existing browser extension connection was replaced by the new browser extension.";
+"layout_replace_browser_extension_info_description" = "The existing Authenticator connection was replaced by the new Authenticator.";
 
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
@@ -421,13 +421,13 @@
 "ok" = "OK";
 
 /* Intro body text */
-"once_process_is_complete" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\n\nPlease have your Safe recovery phrase ready to confirm the recovery.";
+"once_process_is_complete" = "Once this process is complete, you can only use the new Authenticator to confirm transactions.\n\nPlease have your Safe recovery phrase ready to confirm the recovery.";
 
 /* Title for transaction confirmation alert. */
-"open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
+"open_browser_extension" = "Please open the Gnosis Safe Authenticator to confirm this transaction";
 
 /* Replace BE pairing description. */
-"pairing_info" = "All transactions need to be approved by both this device and the browser extension.";
+"pairing_info" = "All transactions need to be approved by both this device and the Authenticator.";
 
 /* Password field placeholder
    Password placeholder */
@@ -502,7 +502,7 @@
 "reject" = "Reject";
 
 /* Detail for the header in review screen */
-"replace_browser_extension_transaction_info" = "The currently connected browser extension will be replaced with the new browser extension.";
+"replace_browser_extension_transaction_info" = "The currently connected Authenticator will be replaced with the new Authenticator.";
 
 /* Explanation text */
 "replaceseed_in_progress" = "The transaction has been submitted and should take a couple of minutes. Replacing the recovery phrase is in progress. ";
@@ -591,7 +591,7 @@
 "support" = "Support";
 
 /* Sync with browser extension */
-"sync_with_extension" = "Sync with extension";
+"sync_with_extension" = "Sync with Authenticator";
 
 /* Success */
 "sync_with_extension_sent" = "Resync notification sent successfully";
@@ -646,7 +646,7 @@
 "try_again_in" = "Try again in";
 
 /* Replacing */
-"tx_submitted_replace_be" = "The transaction has been submitted and should take a couple of minutes. Replacing browser extension is in progress.";
+"tx_submitted_replace_be" = "The transaction has been submitted and should take a couple of minutes. Replacing the Authenticator is in progress.";
 
 /* 'Type' parameter name */
 "type" = "Type";
