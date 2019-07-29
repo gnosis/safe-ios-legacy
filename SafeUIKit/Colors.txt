@@ -9,7 +9,7 @@ darkBlue50: 00142880
 darkGrey: 5D6D74
 mediumGrey: B2B5B2
 lightGrey: D4D5D3
-whitesmoke: E9E7E6
+whitesmoke: E8E7E6
 whitesmokeTwo: F0EFEE
 white: F7F5F5
 cardShadow: D4D4D3
@@ -19,3 +19,4 @@ snowwhite: FFFFFF
 black: 000000
 black15: 00000026
 transparent: 00000000
+systemBlue20: 007AFF33

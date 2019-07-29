@@ -60,6 +60,7 @@ public class RBEReviewTransactionViewController: ReviewTransactionViewController
 
     internal func feeCalculation() -> OwnerModificationFeeCalculation {
         let calculation = OwnerModificationFeeCalculation()
+        calculation.border = nil
         let currentFeeTokenBalance = balance(of: tx.feeTokenData)
         let resultingFeeTokenBalance = subtract(currentFeeTokenBalance, abs(tx.feeTokenData.balance) ?? 0)
         calculation.currentBalanceLine.set(value: tx.feeTokenData.withBalance(currentFeeTokenBalance))

@@ -13,6 +13,7 @@ public final class TransferView: BaseCustomView {
     @IBOutlet weak var toAddressLabel: EthereumAddressLabel!
     @IBOutlet weak var amountLabel: AmountLabel!
     @IBOutlet weak var balanceLabel: AmountLabel!
+    @IBOutlet weak var separatorView: UIView!
 
     public var fromAddress: String! {
         didSet {
@@ -42,6 +43,7 @@ public final class TransferView: BaseCustomView {
     }
 
     private func style() {
+        separatorView.backgroundColor = ColorName.whitesmoke.color
         fromAddressLabel.textColor = ColorName.darkBlue.color
         fromAddressLabel.hasFullAddressTooltip = true
         toAddressLabel.textColor = ColorName.darkBlue.color
@@ -49,7 +51,7 @@ public final class TransferView: BaseCustomView {
         balanceLabel.textColor = ColorName.darkBlue.color
         balanceLabel.isShowingPlusSign = false
         balanceLabel.hasTooltip = true
-        amountLabel.textColor = ColorName.darkBlue.color
+        amountLabel.textColor = ColorName.darkGrey.color
         amountLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         amountLabel.hasTooltip = true
     }

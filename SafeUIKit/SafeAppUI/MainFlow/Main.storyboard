@@ -449,7 +449,7 @@
                         <viewLayoutGuide key="safeArea" id="11z-9f-63S"/>
                     </view>
                     <navigationItem key="navigationItem" title="Send" id="Hm8-Yb-Bp5">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="4Qd-5o-2ts">
+                        <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="4Qd-5o-2ts">
                             <connections>
                                 <action selector="proceedToSigning:" destination="hxX-ZR-3Eo" id="d7e-6H-Obx"/>
                             </connections>
