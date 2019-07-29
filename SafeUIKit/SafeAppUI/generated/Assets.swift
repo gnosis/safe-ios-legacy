@@ -71,6 +71,7 @@ enum Asset {
   static let qrIcon = ImageAsset(name: "qrIcon")
   enum ReplaceBrowserExtension {
     static let estimationErrorIcon = ImageAsset(name: "estimation-error-icon")
+    static let inProgressIcon = ImageAsset(name: "in-progress-icon")
     static let introIcon = ImageAsset(name: "intro-icon")
     static let scrollBottomGradient = ImageAsset(name: "scroll-bottom-gradient")
   }
@@ -139,6 +140,7 @@ enum Asset {
     Onboarding.water,
     qrIcon,
     ReplaceBrowserExtension.estimationErrorIcon,
+    ReplaceBrowserExtension.inProgressIcon,
     ReplaceBrowserExtension.introIcon,
     ReplaceBrowserExtension.scrollBottomGradient,
     replacePhrase,

@@ -115,7 +115,7 @@ extension SuccessViewController {
 
     static func replace2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
         return .congratulations(text: LocalizedString("tx_submitted_replace_be", comment: "Replacing"),
-                                image: Asset.ReplaceBrowserExtension.introIcon.image,
+                                image: Asset.ReplaceBrowserExtension.inProgressIcon.image,
                                 tracking: ReplaceBrowserExtensionTrackingEvent.success,
                                 action: action)
     }
