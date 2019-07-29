@@ -35,7 +35,7 @@ public class SettingsTransactionHeaderView: BaseCustomView {
         titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         titleLabel.textColor = ColorName.darkBlue.color
         middleLineView.backgroundColor = ColorName.whitesmoke.color
-        detailLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        detailLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         detailLabel.textColor = ColorName.darkBlue.color
         fromAddressLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         fromAddressLabel.textColor = ColorName.darkBlue.color

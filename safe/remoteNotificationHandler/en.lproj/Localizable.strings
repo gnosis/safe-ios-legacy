@@ -2,10 +2,10 @@
 "confirmed" = "Confirmed";
 
 /* Body for confirmation */
-"ios_transaction_confirmed_message" = "You received a signature from browser extension.";
+"ios_transaction_confirmed_message" = "You received a signature from the Authenticator.";
 
 /* Body for rejection */
-"ios_transaction_rejected_message" = "Browser extension declined to sign your transaction.";
+"ios_transaction_rejected_message" = "The Authenticator declined to sign your transaction.";
 
 /* Title for rejection */
 "rejected" = "Rejected";

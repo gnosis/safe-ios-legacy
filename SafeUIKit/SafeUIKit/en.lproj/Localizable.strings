@@ -14,13 +14,13 @@
 "amount_trillions" = "T";
 
 /* Explanation how to confirm. */
-"authentication_explanation" = "Open the browser extension to confirm this transaction.";
+"authentication_explanation" = "Open the Authenticator to confirm this transaction.";
 
 /* Authentication required */
 "authentication_required" = "Authentication required";
 
 /* Transaction approved by the browser extension */
-"browser_extension_approved" = "The browser extension has approved this transaction.";
+"browser_extension_approved" = "The Authenticator has approved this transaction.";
 
 /* Cancel alert item.
    Cancel button title */
@@ -75,7 +75,7 @@
 "rejected" = "Rejected";
 
 /* Transaction rejected by the browser extension. */
-"rejected_by_extension" = "The transaction was rejected in the browser extension.";
+"rejected_by_extension" = "The transaction was rejected by the Authenticator";
 
 /* Resend if needed */
 "request_confirmation" = "Resend confirmation request";

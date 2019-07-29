@@ -8,10 +8,10 @@
 "ios_app_slogan" = "The most secure way\nto manage your crypto\nfunds";
 
 /* Browser extension is already connected. */
-"ios_error_extension_exists" = "Browser extension is already connected.";
+"ios_error_extension_exists" = "Authenticator is already connected.";
 
 /* Browser extension is not connected. */
-"ios_error_extension_notfound" = "Browser extension is not connected.";
+"ios_error_extension_notfound" = "Authenticator is not connected.";
 
 /* Please wait... */
 "please_wait" = "Please wait...";
