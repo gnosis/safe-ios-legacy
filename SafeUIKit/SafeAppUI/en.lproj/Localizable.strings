@@ -196,7 +196,7 @@
 "ios_creationFee_failed_error" = "Error: %@ Please try again later.";
 
 /* Disconnect browser extension */
-"ios_disconnect_browser_extension" = "Disconnect browser\nextension";
+"ios_disconnect_browser_extension" = "Disconnect\nAuthenticator";
 
 /* Connect browser extension description */
 "ios_enable_2fa" = "Enable 2-factor authentication by connecting your Safe to Gnosis Safe Authenticator.\n\nAll future transactions will need to be approved by both devices.";
