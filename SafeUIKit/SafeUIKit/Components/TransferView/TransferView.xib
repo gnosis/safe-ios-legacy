@@ -16,6 +16,7 @@
                 <outlet property="balanceLabel" destination="V0c-TE-6U6" id="YCc-5h-ypa"/>
                 <outlet property="fromAddressLabel" destination="zs1-2D-vQj" id="fzt-wO-5Dq"/>
                 <outlet property="fromIdenticonView" destination="FGi-iH-Tep" id="waz-1x-YZu"/>
+                <outlet property="separatorView" destination="8zW-Yu-peS" id="iAJ-3y-Tav"/>
                 <outlet property="toAddressLabel" destination="zms-IU-Lc2" id="C8W-20-jSN"/>
                 <outlet property="toIdenticonView" destination="L7F-Ks-zDU" id="E7b-Nr-VD9"/>
             </connections>
@@ -107,6 +108,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow-down" width="13" height="21"/>
+        <image name="arrow-down" width="14" height="21"/>
     </resources>
 </document>
