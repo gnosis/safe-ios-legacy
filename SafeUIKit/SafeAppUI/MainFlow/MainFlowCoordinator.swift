@@ -17,6 +17,8 @@ open class MainFlowCoordinator: FlowCoordinator {
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionsManager = IncomingTransactionsManager()
     private (set) var walletConnectFlowCoordinator: WalletConnectFlowCoordinator!
+    /// Used for modal transitioning of Terms screen
+    private lazy var overlayAnimatorFactory = OverlayAnimatorFactory()
 
     public var crashlytics: CrashlyticsProtocol?
 
@@ -220,7 +222,8 @@ extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
     func didStart() {
         let controller = OnboardingTermsViewController.create()
         controller.delegate = self
-        controller.modalPresentationStyle = .overFullScreen
+        controller.modalPresentationStyle = .custom
+        controller.transitioningDelegate = overlayAnimatorFactory
         rootViewController.definesPresentationContext = true
         presentModally(controller)
     }

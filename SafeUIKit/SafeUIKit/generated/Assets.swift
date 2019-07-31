@@ -48,8 +48,6 @@ enum Asset {
     static let dots = ImageAsset(name: "dots")
   }
   static let backgroundDarkImage = ImageAsset(name: "background-dark-image")
-  static let checkmarkNormal = ImageAsset(name: "checkmark-normal")
-  static let checkmarkSelected = ImageAsset(name: "checkmark-selected")
   static let closeIcon = ImageAsset(name: "close-icon")
   enum Confirmation {
     static let confirmed = ImageAsset(name: "Confirmed")
@@ -122,8 +120,6 @@ enum Asset {
   static let allImages: [ImageAsset] = [
     AddressInput.dots,
     backgroundDarkImage,
-    checkmarkNormal,
-    checkmarkSelected,
     closeIcon,
     Confirmation.confirmed,
     Confirmation.rejected,

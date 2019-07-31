@@ -63,10 +63,8 @@ enum Asset {
     static let browserExtensionQr = ImageAsset(name: "browser-extension-qr")
     static let creatingSafe = ImageAsset(name: "creatingSafe")
     static let errorIcon = ImageAsset(name: "error-icon")
-    static let ironSafe = ImageAsset(name: "iron-safe")
     static let noSafes = ImageAsset(name: "no-safes")
     static let safeInprogress = ImageAsset(name: "safeInprogress")
-    static let water = ImageAsset(name: "water")
   }
   static let qrIcon = ImageAsset(name: "qrIcon")
   enum ReplaceBrowserExtension {
@@ -90,11 +88,6 @@ enum Asset {
   enum TransactionDetails {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
     static let externalLink = ImageAsset(name: "external_link")
-  }
-  enum TransactionEdit {
-    static let scanQrCopy = ImageAsset(name: "scan_qr_copy")
-    static let shape = ImageAsset(name: "shape")
-    static let `switch` = ImageAsset(name: "switch")
   }
   enum TransactionOverviewIcons {
     static let error = ImageAsset(name: "error")
@@ -133,10 +126,8 @@ enum Asset {
     Onboarding.browserExtensionQr,
     Onboarding.creatingSafe,
     Onboarding.errorIcon,
-    Onboarding.ironSafe,
     Onboarding.noSafes,
     Onboarding.safeInprogress,
-    Onboarding.water,
     qrIcon,
     ReplaceBrowserExtension.estimationErrorIcon,
     ReplaceBrowserExtension.inProgressIcon,
@@ -152,9 +143,6 @@ enum Asset {
     TokenIcons.defaultToken,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
-    TransactionEdit.scanQrCopy,
-    TransactionEdit.shape,
-    TransactionEdit.`switch`,
     TransactionOverviewIcons.error,
     TransactionOverviewIcons.iconIncoming,
     TransactionOverviewIcons.iconOutgoing,

@@ -77,6 +77,10 @@ public class OnboardingTermsViewController: UIViewController {
         delegate?.didAgree()
     }
 
+    @IBAction func didTapBackground(_ sender: Any) {
+        delegate?.didDisagree()
+    }
+
     private func link(from text: String) -> NSAttributedString {
         return NSAttributedString(string: text, attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue,
                                                              .font: UIFont.systemFont(ofSize: 15),
