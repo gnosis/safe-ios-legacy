@@ -35,6 +35,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
   /// Alpha: 14% <br/> (0x00000026)
   static let black15 = ColorName(rgbaValue: 0x00000026)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+  /// Alpha: 40% <br/> (0x00000066)
+  static let black40 = ColorName(rgbaValue: 0x00000066)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#d4d4d3"></span>
   /// Alpha: 100% <br/> (0xd4d4d3ff)
   static let cardShadow = ColorName(rgbaValue: 0xd4d4d3ff)

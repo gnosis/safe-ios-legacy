@@ -18,5 +18,6 @@ cardShadowTooltip: 28363D
 snowwhite: FFFFFF
 black: 000000
 black15: 00000026
+black40: 00000066
 transparent: 00000000
 systemBlue20: 007AFF33
