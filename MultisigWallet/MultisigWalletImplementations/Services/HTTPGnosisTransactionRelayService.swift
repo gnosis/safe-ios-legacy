@@ -41,6 +41,11 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
         return TransactionHash(data.toHexString().addHexPrefix())
     }
 
+    public func safeCreationTransactionBlock(address: Address) throws -> StringifiedBigInt? {
+        let response = try httpClient.execute(request: GetSafeCreationStatusRequest(safeAddress: address.value))
+        return response.blockNumber
+    }
+
     public func gasPrice() throws -> SafeGasPriceResponse {
         return try httpClient.execute(request: SafeGasPriceRequest())
     }
@@ -68,10 +73,6 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
 
     public func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {
         return try httpClient.execute(request: request)
-    }
-
-    public func safeInfo(address: Address) throws -> GetSafeInfoRequest.Response {
-        return try httpClient.execute(request: GetSafeInfoRequest(address: address.value))
     }
 
 }
@@ -144,15 +145,6 @@ extension SubmitTransactionRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/" }
-
-    public typealias ResponseType = Response
-
-}
-
-extension GetSafeInfoRequest: JSONRequest {
-
-    public var httpMethod: String { return "GET" }
-    public var urlPath: String { return "/api/v1/safes/\(address)/" }
 
     public typealias ResponseType = Response
 
