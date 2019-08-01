@@ -35,7 +35,12 @@ public protocol TransactionRelayDomainService {
     /// - Throws: network or server error
     func safeCreationTransactionHash(address: Address) throws -> TransactionHash?
 
-    func safeInfo(address: Address) throws -> GetSafeInfoRequest.Response
+    /// Checks whether Ethereum transaction block is avalible.
+    ///
+    /// - Parameter address: address of the deployed safe
+    /// - Returns: block number
+    /// - Throws: network or server error
+    func safeCreationTransactionBlock(address: Address) throws -> StringifiedBigInt?
 
     /// Fetches current gas price
     ///

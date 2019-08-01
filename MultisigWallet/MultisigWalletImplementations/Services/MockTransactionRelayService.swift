@@ -38,6 +38,10 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         return TransactionHash("0x3b9307c1473e915d04292a0f5b0f425eaf527f53852357e2c649b8c447e3246a")
     }
 
+    public func safeCreationTransactionBlock(address: Address) throws -> StringifiedBigInt? {
+        return StringifiedBigInt(123)
+    }
+
     public func gasPrice() throws -> SafeGasPriceResponse {
         try throwIfNeeded()
         Timer.wait(randomizedNetworkResponseDelay)
@@ -92,10 +96,6 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     public func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
         MultiTokenEstimateTransactionRequest.Response {
             return .init(lastUsedNonce: nil, safeTxGas: nil, operationalGas: nil, estimations: [])
-    }
-
-    public func safeInfo(address: Address) throws -> GetSafeInfoRequest.Response {
-        throw TestError.error
     }
 
 }

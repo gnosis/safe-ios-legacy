@@ -88,6 +88,10 @@ class MockTransactionRelayService1: TransactionRelayDomainService {
         return expected_safeCreationTransactionHash[actual_safeCreationTransactionHash.count - 1].hash
     }
 
+    func safeCreationTransactionBlock(address: Address) throws -> StringifiedBigInt? {
+        return nil
+    }
+
     func gasPrice() throws -> SafeGasPriceResponse {
         preconditionFailure("not implemented")
     }
@@ -103,11 +107,6 @@ class MockTransactionRelayService1: TransactionRelayDomainService {
     func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
         MultiTokenEstimateTransactionRequest.Response {
             return .init(lastUsedNonce: nil, safeTxGas: nil, operationalGas: nil, estimations: [])
-    }
-
-    func safeInfo(address: Address) throws -> GetSafeInfoRequest.Response {
-        enum TestErrror: Error { case error }
-        throw TestErrror.error
     }
 
 }

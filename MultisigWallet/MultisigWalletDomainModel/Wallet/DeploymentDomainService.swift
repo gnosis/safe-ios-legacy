@@ -163,8 +163,8 @@ public class DeploymentDomainService {
 
     private func walletAlreadyCreated(_ wallet: Wallet) -> Bool {
         do {
-            _ = try DomainRegistry.transactionRelayService.safeInfo(address: wallet.address)
-            return true
+            return try DomainRegistry.transactionRelayService
+                .safeCreationTransactionBlock(address: wallet.address) != nil
         } catch {
             return false
         }
