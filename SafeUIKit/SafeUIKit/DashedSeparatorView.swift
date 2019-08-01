@@ -17,6 +17,12 @@ public final class DashedSeparatorView: BaseCustomView {
         }
     }
 
+    public var pattern: [Int]? = [2, 2] {
+        didSet {
+            update()
+        }
+    }
+
     public override class var layerClass: AnyClass {
         return CAShapeLayer.classForCoder()
     }
@@ -30,7 +36,7 @@ public final class DashedSeparatorView: BaseCustomView {
         let line = layer as! CAShapeLayer
         line.strokeColor = lineColor.cgColor
         line.lineWidth = lineWidth
-        line.lineDashPattern = [2, 2]
+        line.lineDashPattern = pattern?.map { NSNumber(value: $0) }
         let path = CGMutablePath()
         let p0 = CGPoint(x: 0, y: 0)
         let p1 = CGPoint(x: 5_000, y: 0)

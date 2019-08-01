@@ -18,7 +18,7 @@ open class AttributedStringStyle {
     }
 
     open var fontColor: UIColor {
-        return ColorName.black.color
+        return .black
     }
 
     open var alignment: NSTextAlignment {
@@ -73,6 +73,10 @@ open class AttributedStringStyle {
         return NSUnderlineStyle(rawValue: 0)
     }
 
+    open var tabStopInterval: Double {
+        return 28
+    }
+
     open var paragraphStyle: NSParagraphStyle {
         precondition(spacingAfterParagraph >= 0)
         precondition(spacingBeforeParagraph >= 0)
@@ -80,9 +84,18 @@ open class AttributedStringStyle {
         style.alignment = alignment
         style.paragraphSpacing = CGFloat(spacingAfterParagraph)
         style.paragraphSpacingBefore = CGFloat(spacingBeforeParagraph)
+        style.tabStops = tabStops(default: style.tabStops)
         setUpIndents(in: style)
         setUpLineStyle(in: style)
         return style
+    }
+
+    private func tabStops(default: [NSTextTab]) -> [NSTextTab] {
+        return `default`.enumerated().map { (offset, stop) in
+            return NSTextTab(textAlignment: stop.alignment,
+                             location: CGFloat(offset + 1) * CGFloat(tabStopInterval),
+                             options: stop.options)
+        }
     }
 
     private func setUpLineStyle(in paragraph: NSMutableParagraphStyle) {
@@ -118,6 +131,24 @@ public extension NSAttributedString {
                                                .paragraphStyle: style.paragraphStyle,
                                                .kern: NSNumber(value: style.letterSpacing),
                                                .underlineStyle: NSNumber(value: style.underlineStyle.rawValue)])
+    }
+
+    convenience init(list: String, itemStyle: AttributedStringStyle, bulletStyle: AttributedStringStyle, nestingStyle: AttributedStringStyle) {
+        let lines = list.components(separatedBy: "\n")
+        let result = NSMutableAttributedString()
+        lines.enumerated().forEach { (index, line) in
+            var item = line
+            if line.starts(with: "* ") {
+                item.removeFirst(2)
+                result.append(NSAttributedString(string: "•\t", style: bulletStyle))
+            } else if line.starts(with: "  ") {
+                item.removeFirst(2)
+                result.append(NSAttributedString(string: "\t\t", style: nestingStyle))
+            }
+            let itemText = item + (index < lines.count - 1 ? "\n" : "")
+            result.append(NSAttributedString(string: itemText, style: itemStyle))
+        }
+        self.init(attributedString: result)
     }
 
 }

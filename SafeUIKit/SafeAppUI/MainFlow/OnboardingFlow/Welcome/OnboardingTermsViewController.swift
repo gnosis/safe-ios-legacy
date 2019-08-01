@@ -26,7 +26,7 @@ public class OnboardingTermsViewController: UIViewController {
     private enum Strings {
         static let header = LocalizedString("please_review_terms_and_privacy_policy", comment: "Header label")
         static let body = LocalizedString("ios_terms_contents",
-                                          comment: "Content (bulleted list). Separate by new line characters '\n'")
+                                          comment: "Each bullet starts with '* '. Separated by newline '\n'.")
         static let privacyLink = LocalizedString("privacy_policy", comment: "Privacy Policy")
         static let termsLink = LocalizedString("terms_of_service", comment: "Terms of Use")
         static let disagree = LocalizedString("no_thanks", comment: "No Thanks")
@@ -39,15 +39,22 @@ public class OnboardingTermsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        var bodyStyle = ListStyle.default
-        bodyStyle.minimumLineHeight = 0
-        bodyStyle.paragraphSpacing = 0
 
-        headerLabel.attributedText = .header(from: Strings.header, style: HeaderStyle.contentHeader)
-        listLabel.attributedText = .list(from: Strings.body, style: bodyStyle)
+        headerLabel.attributedText = NSAttributedString(string: Strings.header, style: HeaderStyle())
+        listLabel.attributedText = NSAttributedString(list: Strings.body,
+                                                      itemStyle: ItemAttributes(),
+                                                      bulletStyle: BulletAttributes(),
+                                                      nestingStyle: NestedTextAttributes())
 
-        privacyPolicyButton.setAttributedTitle(link(from: Strings.privacyLink), for: .normal)
-        termsOfUseButton.setAttributedTitle(link(from: Strings.termsLink), for: .normal)
+
+        let linkStyle = LinkStyle()
+        privacyPolicyButton.setAttributedTitle(NSAttributedString(string: Strings.privacyLink, style: linkStyle),
+                                               for: .normal)
+        termsOfUseButton.setAttributedTitle(NSAttributedString(string: Strings.termsLink, style: linkStyle),
+                                            for: .normal)
+        [privacyPolicyButton, termsOfUseButton].forEach { button in
+            button!.addUnderline(color: linkStyle.fontColor, width: 1.0, offset: 0, pattern: nil)
+        }
 
         agreeButton.setTitle(Strings.agree, for: .normal)
         agreeButton.style = .filled
@@ -85,6 +92,51 @@ public class OnboardingTermsViewController: UIViewController {
         return NSAttributedString(string: text, attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue,
                                                              .font: UIFont.systemFont(ofSize: 15),
                                                              .foregroundColor: ColorName.hold.color])
+    }
+
+    class LinkStyle: AttributedStringStyle {
+
+        override var fontSize: Double { return 15 }
+        override var fontColor: UIColor { return ColorName.hold.color }
+        override var minimumLineHeight: Double { return 20 }
+        override var maximumLineHeight: Double { return 20 }
+
+    }
+
+    class HeaderStyle: AttributedStringStyle {
+
+        override var fontSize: Double { return 17 }
+        override var fontColor: UIColor { return ColorName.darkBlue.color }
+        override var fontWeight: UIFont.Weight { return .medium }
+        override var minimumLineHeight: Double { return 22 }
+        override var maximumLineHeight: Double { return 22 }
+        override var alignment: NSTextAlignment { return .center }
+
+    }
+
+    class ItemAttributes: AttributedStringStyle {
+
+        override var fontSize: Double { return 15 }
+        override var minimumLineHeight: Double { return 20 }
+        override var maximumLineHeight: Double { return 20 }
+        override var tabStopInterval: Double { return 26 }
+        override var spacingBeforeParagraph: Double { return 12 }
+        override var fontColor: UIColor { return ColorName.darkGrey.color }
+
+    }
+
+    class BulletAttributes: ItemAttributes {
+
+        override var fontColor: UIColor { return ColorName.hold.color }
+        override var fontSize: Double { return 19 }
+        override var nonFirstLinesHeadIndent: Double { return tabStopInterval }
+
+    }
+
+    class NestedTextAttributes: ItemAttributes {
+
+        override var spacingBeforeParagraph: Double { return 0 }
+
     }
 
 }
@@ -131,11 +183,11 @@ struct ListStyle {
                                      trailing: 40,
                                      spaceToBullet: 18,
                                      bulletFontSize: 24,
-                                     textFontSize: 14,
+                                     textFontSize: 15,
                                      textColor: ColorName.darkGrey.color,
                                      bulletColor: ColorName.hold.color,
-                                     paragraphSpacing: 22,
-                                     minimumLineHeight: 22)
+                                     paragraphSpacing: 20,
+                                     minimumLineHeight: 20)
 }
 
 struct HeaderStyle {
