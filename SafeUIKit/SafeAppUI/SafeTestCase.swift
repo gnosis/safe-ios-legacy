@@ -24,6 +24,7 @@ class SafeTestCase: XCTestCase {
     let eventPublisher = MockEventPublisher()
     var walletConnectService: MockWalletConnectApplicationService!
     let walletConnectSessionRepository = InMemoryWCSessionRepository()
+    let appSettingsRepository = UserDefaultsAppSettingsRepository()
 
     let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
 
@@ -56,6 +57,7 @@ class SafeTestCase: XCTestCase {
 
     private func configureMultisigWalletModule() {
         applicationRegistry.put(service: walletService, for: WalletApplicationService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: appSettingsRepository, for: AppSettingsRepository.self)
         applicationRegistry.put(service: recoveryService, for: RecoveryApplicationService.self)
     }
 

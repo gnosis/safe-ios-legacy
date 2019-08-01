@@ -32,6 +32,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let deploymentService = MockDeploymentDomainService()
     let errorStream = MockErrorStream()
     let logger = MockLogger()
+    let appSettingsRepository = UserDefaultsAppSettingsRepository()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -60,6 +61,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: tokenItemsService, for: TokenListDomainService.self)
         DomainRegistry.put(service: ethereumNodeService, for: EthereumNodeDomainService.self)
         DomainRegistry.put(service: transactionService, for: TransactionDomainService.self)
+        DomainRegistry.put(service: appSettingsRepository, for: AppSettingsRepository.self)
 
         ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
         ApplicationServiceRegistry.put(service: logger, for: Logger.self)

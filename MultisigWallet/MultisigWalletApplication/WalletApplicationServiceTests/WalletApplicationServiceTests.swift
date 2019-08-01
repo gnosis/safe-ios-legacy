@@ -153,30 +153,38 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
     func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
         givenDraftWallet()
-        try auth()
+        try auth(token: UUID().uuidString)
         XCTAssertTrue(notificationService.didAuth)
+    }
+
+    func test_whenAuthWithOldPushTokenCalled_thenNotificationServiceIsNotCalled() throws {
+        let token = "token"
+        try auth(token: token)
+        notificationService.didAuth = false
+        try auth(token: token)
+        XCTAssertFalse(notificationService.didAuth)
     }
 
     func test_whenAuthFailure_thenThrowsError() throws {
         givenDraftWallet()
         notificationService.shouldThrow = true
-        XCTAssertThrowsError(try auth()) { error in
+        XCTAssertThrowsError(try auth(token: UUID().uuidString)) { error in
             XCTAssertEqual(error as! TestError, .error)
         }
         notificationService.shouldThrow = false
         notificationService.shouldThrowNetworkError = true
-        XCTAssertThrowsError(try auth()) { error in
+        XCTAssertThrowsError(try auth(token: UUID().uuidString)) { error in
             XCTAssertEqual(error as! WalletApplicationServiceError, .networkError)
         }
     }
 
-    private func auth() throws {
+    private func auth(token: String) throws {
         var error: Swift.Error?
         let exp = expectation(description: "Auth")
         DispatchQueue.global().async {
             defer { exp.fulfill() }
             do {
-                try self.service.auth(pushToken: "token")
+                try self.service.auth(pushToken: token)
             } catch let e {
                 error = e
             }
