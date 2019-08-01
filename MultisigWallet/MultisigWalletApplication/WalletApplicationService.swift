@@ -61,6 +61,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private let pushTokenKey = "io.gnosis.safe.MultisigWalletApplication.pushToken"
+    private let authRequestDataKey = "io.gnosis.safe.MultisigWalletApplication.authRequest"
 
     // MARK: - Wallet
 
@@ -755,8 +756,16 @@ public class WalletApplicationService: Assertable {
                                   client: client,
                                   bundle: bundle,
                                   deviceOwnerAddresses: [deviceOwnerAddress])
+        if let authRequestData = DomainRegistry.appSettingsRepository.setting(for: authRequestDataKey) as? Data,
+            let requestData = try? JSONEncoder().encode(request),
+            authRequestData == requestData { // we already sent this data before
+            return
+        }
         try handleNotificationServiceError {
             try notificationService.auth(request: request)
+            if let requestData = try? JSONEncoder().encode(request) {
+                DomainRegistry.appSettingsRepository.set(setting: requestData, for: authRequestDataKey)
+            }
         }
     }
 

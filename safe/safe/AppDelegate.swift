@@ -37,8 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
-        Messaging.messaging().shouldEstablishDirectChannel = true
 
         // https://firebase.google.com/docs/cloud-messaging/ios/client
         // for devices running iOS 10 and above, you must assign your delegate object to the UNUserNotificationCenter
@@ -176,15 +174,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate: MessagingDelegate {
 
+    // This is called on every app restart.
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         LogService.shared.debug("Firebase registration token: \(fcmToken)")
         coordinator.updatePushToken(fcmToken)
-    }
-
-    // This is called if APNS messaging is disabled and the app is in foreground
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        LogService.shared.debug("Received data message: \(remoteMessage.appData)")
-        coordinator.receive(message: remoteMessage.appData)
     }
 
 }
