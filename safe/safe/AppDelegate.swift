@@ -178,7 +178,7 @@ extension AppDelegate: MessagingDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         LogService.shared.debug("Firebase registration token: \(fcmToken)")
-        coordinator.updatePushToken()
+        coordinator.updatePushToken(fcmToken)
     }
 
     // This is called if APNS messaging is disabled and the app is in foreground

@@ -20,7 +20,6 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: UserDefaultsAppSettingsRepository(), for: AppSettingsRepository.self)
 
         DomainRegistry.put(service: MockNotificationService(), for: NotificationDomainService.self)
-        DomainRegistry.put(service: MockPushTokensDomainService(), for: PushTokensDomainService.self)
         DomainRegistry.put(service: MockEncryptionService(), for: EncryptionDomainService.self)
         DomainRegistry.put(service: MockTransactionRelayService(averageDelay: 0.1, maxDeviation: 0.1),
                            for: TransactionRelayDomainService.self)
@@ -45,7 +44,6 @@ class DomainRegistryTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.appSettingsRepository)
 
         XCTAssertNotNil(DomainRegistry.notificationService)
-        XCTAssertNotNil(DomainRegistry.pushTokensService)
         XCTAssertNotNil(DomainRegistry.encryptionService)
         XCTAssertNotNil(DomainRegistry.transactionRelayService)
         XCTAssertNotNil(DomainRegistry.ethereumNodeService)

@@ -352,14 +352,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         return submitTransaction_output ?? requestTransactionConfirmation_output
     }
 
-    // MARK: - Notifications
-
-    public var authCalled = false
-    public override func auth() throws {
-        try throwIfNeeded()
-        authCalled = true
-    }
-
     // MARK: - Message Handling
 
     public var receive_input: [AnyHashable: Any]?

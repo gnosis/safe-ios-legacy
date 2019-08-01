@@ -186,12 +186,16 @@ open class MainFlowCoordinator: FlowCoordinator {
         // notification registration must be on the main thread
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
         UIApplication.shared.registerForRemoteNotifications()
-        updatePushToken()
+        // We need to update push token information with all related app info (client, version, build)
+        // on every app start.
+        if let token = ApplicationServiceRegistry.walletService.pushToken() {
+            updatePushToken(token)
+        }
     }
 
-    public func updatePushToken() {
+    public func updatePushToken(_ token: String) {
         DispatchQueue.global.async {
-            try? ApplicationServiceRegistry.walletService.auth()
+            try? ApplicationServiceRegistry.walletService.auth(pushToken: token)
         }
     }
 

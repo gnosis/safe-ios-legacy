@@ -151,6 +151,40 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertFalse(whitelistedAddresses.contains(ethTokenData.address))
     }
 
+    func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
+        givenDraftWallet()
+        try auth()
+        XCTAssertTrue(notificationService.didAuth)
+    }
+
+    func test_whenAuthFailure_thenThrowsError() throws {
+        givenDraftWallet()
+        notificationService.shouldThrow = true
+        XCTAssertThrowsError(try auth()) { error in
+            XCTAssertEqual(error as! TestError, .error)
+        }
+        notificationService.shouldThrow = false
+        notificationService.shouldThrowNetworkError = true
+        XCTAssertThrowsError(try auth()) { error in
+            XCTAssertEqual(error as! WalletApplicationServiceError, .networkError)
+        }
+    }
+
+    private func auth() throws {
+        var error: Swift.Error?
+        let exp = expectation(description: "Auth")
+        DispatchQueue.global().async {
+            defer { exp.fulfill() }
+            do {
+                try self.service.auth(pushToken: "token")
+            } catch let e {
+                error = e
+            }
+        }
+        waitForExpectations(timeout: 2)
+        if let error = error { throw error }
+    }
+
     @discardableResult
     private func createWalletWithFeeTokenItem(_ token: Token,
                                               tokenItemStatus: TokenListItem.TokenListItemStatus) -> TokenListItem {

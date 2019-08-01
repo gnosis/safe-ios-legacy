@@ -52,10 +52,6 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: NotificationDomainService.self)
     }
 
-    public static var pushTokensService: PushTokensDomainService {
-        return service(for: PushTokensDomainService.self)
-    }
-
     public static var encryptionService: EncryptionDomainService {
         return service(for: EncryptionDomainService.self)
     }
