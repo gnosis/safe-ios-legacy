@@ -18,7 +18,6 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let ethereumService = MockEthereumApplicationService()
     let transactionService = TransactionDomainService()
     let notificationService = MockNotificationService()
-    let tokensService = MockPushTokensDomainService()
     let transactionRepository = InMemoryTransactionRepository()
     let relayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
     let encryptionService = MockEncryptionService()
@@ -33,6 +32,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let deploymentService = MockDeploymentDomainService()
     let errorStream = MockErrorStream()
     let logger = MockLogger()
+    let appSettingsRepository = UserDefaultsAppSettingsRepository()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -56,12 +56,12 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
-        DomainRegistry.put(service: tokensService, for: PushTokensDomainService.self)
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
         DomainRegistry.put(service: tokenItemsRepository, for: TokenListItemRepository.self)
         DomainRegistry.put(service: tokenItemsService, for: TokenListDomainService.self)
         DomainRegistry.put(service: ethereumNodeService, for: EthereumNodeDomainService.self)
         DomainRegistry.put(service: transactionService, for: TransactionDomainService.self)
+        DomainRegistry.put(service: appSettingsRepository, for: AppSettingsRepository.self)
 
         ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
         ApplicationServiceRegistry.put(service: logger, for: Logger.self)

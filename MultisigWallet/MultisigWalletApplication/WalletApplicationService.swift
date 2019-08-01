@@ -17,10 +17,6 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.notificationService
     }
 
-    private var pushTokensService: PushTokensDomainService {
-        return DomainRegistry.pushTokensService
-    }
-
     public var hasSelectedWallet: Bool { return selectedWallet != nil }
 
     public var hasReadyToUseWallet: Bool {
@@ -63,6 +59,9 @@ public class WalletApplicationService: Assertable {
     public init(configuration: WalletApplicationServiceConfiguration = .default) {
         self.configuration = configuration
     }
+
+    private let pushTokenKey = "io.gnosis.safe.MultisigWalletApplication.pushToken"
+    private let authRequestDataKey = "io.gnosis.safe.MultisigWalletApplication.authRequest"
 
     // MARK: - Wallet
 
@@ -737,10 +736,10 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Notifications
 
-    public func auth() throws {
+    public func auth(pushToken: String) throws {
         precondition(!Thread.isMainThread)
-        guard let deviceOwnerAddress = ownerAddress(of: .thisDevice),
-            let pushToken = pushTokensService.pushToken() else { return }
+        DomainRegistry.appSettingsRepository.set(setting: pushToken, for: pushTokenKey)
+        guard let deviceOwnerAddress = ownerAddress(of: .thisDevice) else { return }
         let buildNumber = SystemInfo.buildNumber ?? 0
         let versionName = SystemInfo.marketingVersion ?? "0.0.0"
         let client = "ios"
@@ -757,9 +756,21 @@ public class WalletApplicationService: Assertable {
                                   client: client,
                                   bundle: bundle,
                                   deviceOwnerAddresses: [deviceOwnerAddress])
+        if let authRequestData = DomainRegistry.appSettingsRepository.setting(for: authRequestDataKey) as? Data,
+            let requestData = try? JSONEncoder().encode(request),
+            authRequestData == requestData { // we already sent this data before
+            return
+        }
         try handleNotificationServiceError {
             try notificationService.auth(request: request)
+            if let requestData = try? JSONEncoder().encode(request) {
+                DomainRegistry.appSettingsRepository.set(setting: requestData, for: authRequestDataKey)
+            }
         }
+    }
+
+    public func pushToken() -> String? {
+        return DomainRegistry.appSettingsRepository.setting(for: pushTokenKey) as? String
     }
 
     // MARK: - Message Handling

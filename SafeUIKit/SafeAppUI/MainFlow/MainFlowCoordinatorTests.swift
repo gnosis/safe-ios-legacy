@@ -25,11 +25,6 @@ class MainFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is MainViewController)
     }
 
-    func test_whenRegistering_thenAuthWithPushTokenCalled() {
-        mainFlowCoordinator.registerForRemoteNotifciations()
-        XCTAssertNotNil(walletService.authCalled)
-    }
-
     func test_whenCreatingNewTransaction_thenOpensFundsTransferVC() {
         mainFlowCoordinator.createNewTransaction(token: ethID.id)
         delay()

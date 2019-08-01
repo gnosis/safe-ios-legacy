@@ -27,41 +27,6 @@ class PairingWithBrowserExtensionTests: BaseWalletApplicationServiceTests {
                                                  browserExtensionCode: BrowserExtensionFixture.testJSON))
     }
 
-    func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
-        givenDraftWallet()
-        try auth()
-        XCTAssertTrue(tokensService.didCallPushToken)
-        XCTAssertTrue(notificationService.didAuth)
-    }
-
-    func test_whenAuthFailure_thenThrowsError() throws {
-        givenDraftWallet()
-        notificationService.shouldThrow = true
-        XCTAssertThrowsError(try auth()) { error in
-            XCTAssertEqual(error as! TestError, .error)
-        }
-        notificationService.shouldThrow = false
-        notificationService.shouldThrowNetworkError = true
-        XCTAssertThrowsError(try auth()) { error in
-            XCTAssertEqual(error as! WalletApplicationServiceError, .networkError)
-        }
-    }
-
-    private func auth() throws {
-        var error: Swift.Error?
-        let exp = expectation(description: "Auth")
-        DispatchQueue.global().async {
-            defer { exp.fulfill() }
-            do {
-                try self.service.auth()
-            } catch let e {
-                error = e
-            }
-        }
-        waitForExpectations(timeout: 2)
-        if let error = error { throw error }
-    }
-
     func test_canEncodeAndDecodeBrowserExtensionCode() throws {
         let dateFormatter = DateFormatter.networkDateFormatter
 
