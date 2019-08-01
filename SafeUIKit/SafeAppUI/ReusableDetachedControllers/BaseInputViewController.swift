@@ -15,8 +15,6 @@ class BaseInputViewController: UIViewController, EventSubscriber {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet var backgroundView: BackgroundImageView!
 
-    let headerStyle = HeaderStyle.contentHeader
-
     override var title: String? {
         didSet {
             navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: title)

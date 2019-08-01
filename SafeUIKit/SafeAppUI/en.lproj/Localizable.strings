@@ -259,7 +259,7 @@
 "ios_install_browser_extension" = "2. Install the Authenticator on your desktop computer and scan its QR code.";
 
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
-"ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Gnosis Safe Authenticator.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
+"ios_new_safe_guidelines_content" = "* Your Safe consists of:\n  1. This mobile app.\n  2. Gnosis Safe Authenticator.\n  3. Address and recovery phrase.\n* Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\n* If you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.\n";
 
 /* Download the 'Gnosis Safe Chrome browser exntension.' */
 "ios_open_be_link_substring" = "Gnosis Safe Authenticator link";
@@ -307,7 +307,7 @@
 "ios_recovery_error_walletnotfound" = "Cannot recover because couldn't find the Safe with this address";
 
 /* Content paragraphs, separated by '\n' */
-"ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
+"ios_recovery_intro_content" = "* Please have your Safe's address and recovery phrase ready.\n* A recovery fee will be automatically deducted from the balance of the recovered Safe.\n* If the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
 
 /* Replace browser extension */
 "ios_replace_browser_extension" = "Replace\nAuthenticator";

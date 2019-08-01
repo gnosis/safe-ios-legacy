@@ -90,7 +90,7 @@ open class AttributedStringStyle {
         return style
     }
 
-    private func tabStops(default: [NSTextTab]) -> [NSTextTab] {
+    open func tabStops(default: [NSTextTab]) -> [NSTextTab] {
         return `default`.enumerated().map { (offset, stop) in
             return NSTextTab(textAlignment: stop.alignment,
                              location: CGFloat(offset + 1) * CGFloat(tabStopInterval),
@@ -143,7 +143,7 @@ public extension NSAttributedString {
                 result.append(NSAttributedString(string: "•\t", style: bulletStyle))
             } else if line.starts(with: "  ") {
                 item.removeFirst(2)
-                result.append(NSAttributedString(string: "\t\t", style: nestingStyle))
+                result.append(NSAttributedString(string: "\t\t\t", style: nestingStyle))
             }
             let itemText = item + (index < lines.count - 1 ? "\n" : "")
             result.append(NSAttributedString(string: itemText, style: itemStyle))
