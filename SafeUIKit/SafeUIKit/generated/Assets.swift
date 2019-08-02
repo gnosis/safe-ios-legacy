@@ -54,6 +54,11 @@ enum Asset {
     static let rejected = ImageAsset(name: "Rejected")
   }
   static let error = ImageAsset(name: "error")
+  enum FilledButton {
+    static let filledInactive = ImageAsset(name: "Filled_Inactive")
+    static let filledNormal = ImageAsset(name: "Filled_Normal")
+    static let filledPressed = ImageAsset(name: "Filled_Pressed")
+  }
   static let qrCode = ImageAsset(name: "qr-code")
   static let settings = ImageAsset(name: "settings")
   static let shareLink = ImageAsset(name: "share-link")
@@ -124,6 +129,9 @@ enum Asset {
     Confirmation.confirmed,
     Confirmation.rejected,
     error,
+    FilledButton.filledInactive,
+    FilledButton.filledNormal,
+    FilledButton.filledPressed,
     qrCode,
     settings,
     shareLink,
