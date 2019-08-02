@@ -36,6 +36,7 @@ extension CreateSafeFlowCoordinator: OnboardingIntroViewControllerDelegate {
                                                  comment: "Title for add browser extension screen")
         controller.screenHeader = LocalizedString("ios_connect_browser_extension",
                                                   comment: "Header for add browser extension screen")
+                                  .replacingOccurrences(of: "\n", with: " ")
         controller.descriptionText = LocalizedString("enable_2fa",
                                                      comment: "Description for add browser extension screen")
         controller.screenTrackingEvent = OnboardingTrackingEvent.twoFA

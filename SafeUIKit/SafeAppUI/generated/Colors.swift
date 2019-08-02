@@ -81,6 +81,9 @@ struct ColorName {
   /// Alpha: 100% <br/> (0xffffffff)
   static let snowwhite = ColorName(rgbaValue: 0xffffffff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#007aff"></span>
+  /// Alpha: 100% <br/> (0x007affff)
+  static let systemBlue = ColorName(rgbaValue: 0x007affff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#007aff"></span>
   /// Alpha: 20% <br/> (0x007aff33)
   static let systemBlue20 = ColorName(rgbaValue: 0x007aff33)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff3b30"></span>

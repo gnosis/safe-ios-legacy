@@ -51,6 +51,7 @@ class ReceiveFundsViewController: CardViewController {
 
     @IBAction func share(_ sender: Any) {
         let activityController = UIActivityViewController(activityItems: [address!], applicationActivities: nil)
+        activityController.view.tintColor = ColorName.systemBlue.color
         present(activityController, animated: true)
     }
 

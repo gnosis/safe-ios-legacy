@@ -40,6 +40,7 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
         tableView.rowHeight = rowHeight
         tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.separatorStyle = .none
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
         displayUpdatedData()
     }

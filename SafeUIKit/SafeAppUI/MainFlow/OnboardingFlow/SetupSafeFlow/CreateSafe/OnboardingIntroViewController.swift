@@ -44,7 +44,6 @@ public class OnboardingIntroViewController: UIViewController {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var headerLabel: UILabel!
 
-    var bodyStyle = ListStyle.default
     public weak var delegate: OnboardingIntroViewControllerDelegate?
     /// If not nil, then will be tracked, otherwise default onboarding events will be tracked.
     var screenTrackingEvent: Trackable?
@@ -58,9 +57,6 @@ public class OnboardingIntroViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         backgroundView.isWhite = true
-        bodyStyle.bulletColor = ColorName.hold.color
-        bodyStyle.textColor = ColorName.darkGrey.color
-        bodyStyle.textFontSize = 16
         update()
     }
 
@@ -78,7 +74,10 @@ public class OnboardingIntroViewController: UIViewController {
         guard isViewLoaded else { return }
         navigationItem.titleView = SafeLabelTitleView.onboardingTitleView(text: titleText)
         headerLabel.attributedText = NSAttributedString(string: headerText, style: OnboardingHeaderStyle())
-        contentLabel.attributedText = .list(from: bodyText, style: bodyStyle)
+        contentLabel.attributedText = NSAttributedString(list: bodyText ?? "",
+                                                         itemStyle: ItemAttributes(),
+                                                         bulletStyle: BulletAttributes(),
+                                                         nestingStyle: NestedTextAttributes())
         nextButtonItem.title = nextActionText
         imageView.image = headerImage
         imageView.isHidden = headerImage == nil
@@ -86,6 +85,41 @@ public class OnboardingIntroViewController: UIViewController {
 
     @IBAction func proceed(_ sender: Any) {
         delegate?.didPressNext()
+    }
+
+    class ItemAttributes: AttributedStringStyle {
+
+        override var fontSize: Double { return 17 }
+        override var minimumLineHeight: Double { return 22 }
+        override var maximumLineHeight: Double { return 22 }
+        override var tabStopInterval: Double { return 20 }
+        override var spacingBeforeParagraph: Double { return 18 }
+        override var fontColor: UIColor { return ColorName.darkGrey.color }
+
+        let bulletWidth: Double = 6
+        let edgeMargin: Double = 16
+
+        override var firstLineHeadIndent: Double { return edgeMargin }
+
+        override var nonFirstLinesHeadIndent: Double {
+            return  edgeMargin + bulletWidth + tabStopInterval
+        }
+
+        override var allLinesTailIndent: Double { return -edgeMargin }
+
+    }
+
+    class BulletAttributes: ItemAttributes {
+
+        override var fontColor: UIColor { return ColorName.hold.color }
+        override var fontSize: Double { return 19 }
+
+    }
+
+    class NestedTextAttributes: ItemAttributes {
+
+        override var spacingBeforeParagraph: Double { return bulletWidth }
+        override var nonFirstLinesHeadIndent: Double { return super.nonFirstLinesHeadIndent + tabStopInterval }
     }
 
 }

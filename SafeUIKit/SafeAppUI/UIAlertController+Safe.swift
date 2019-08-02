@@ -14,7 +14,7 @@ extension UIAlertController {
 
     static func create(title: String, message: String) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.view.tintColor = ColorName.hold.color
+        alert.view.tintColor = ColorName.systemBlue.color
         return alert
     }
 

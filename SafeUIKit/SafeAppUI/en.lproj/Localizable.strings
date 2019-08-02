@@ -93,7 +93,7 @@
 "create_safe_title" = "Create Safe";
 
 /* Creating safe */
-"creating_your_new_safe" = "Creating your new Safe…";
+"creating_your_new_safe" = "Creating your new Safe";
 
 /* Current password */
 "current_password" = "Current password";
@@ -259,7 +259,7 @@
 "ios_install_browser_extension" = "2. Install the Authenticator on your desktop computer and scan its QR code.";
 
 /* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
-"ios_new_safe_guidelines_content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Gnosis Safe Authenticator.\r\t\t3. Address and recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
+"ios_new_safe_guidelines_content" = "* Your Safe consists of:\n  1. This mobile app.\n  2. Gnosis Safe Authenticator.\n  3. Address and recovery phrase.\n* Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\n* If you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.\n";
 
 /* Download the 'Gnosis Safe Chrome browser exntension.' */
 "ios_open_be_link_substring" = "Gnosis Safe Authenticator link";
@@ -307,10 +307,10 @@
 "ios_recovery_error_walletnotfound" = "Cannot recover because couldn't find the Safe with this address";
 
 /* Content paragraphs, separated by '\n' */
-"ios_recovery_intro_content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee will be automatically deducted from the balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
+"ios_recovery_intro_content" = "* Please have your Safe's address and recovery phrase ready.\n* A recovery fee will be automatically deducted from the balance of the recovered Safe.\n* If the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
 
 /* Replace browser extension */
-"ios_replace_browser_extension" = "Replace\nAuthenticator";
+"ios_replace_browser_extension" = "New\nAuthenticator";
 
 /* Change recovery key menu item
    Replace recovery phrase
@@ -341,8 +341,8 @@
 /* Warning for setup recovery phrase screen. */
 "ios_showSeed_warning" = "Without these, you won’t be able to recover your Safe and its assets.";
 
-/* Content (bulleted list). Separate by new line characters '\n' */
-"ios_terms_contents" = "We do not collect demographic data such as age and gender.\nWe collect anonymized app usage data and crash reports to ensure the quality of our app.";
+/* Each bullet starts with '* '. Separated by newline '\n'. */
+"ios_terms_contents" = "* We do not collect demographic data such as age and gender.\n* We collect anonymized app usage data and crash reports to ensure the quality of our app.";
 
 /* 'View on Etherscan' button name */
 "ios_view_transaction_on_etherscan" = "View transaction on Etherscan.io";
@@ -559,7 +559,7 @@
 "setup_password_info" = "Your confidential password is used to unlock the Safe and confirm transactions.";
 
 /* Set up safe options screen title */
-"setup_successful" = "Device setup successful! \n Let's get started.";
+"setup_successful" = "No Safes added yet. \n Let's get started.";
 
 /* Description for Receive Funds screen. */
 "share_your_address" = "Share your address with contracts or enable senders to scan your QR code to receive Ether and tokens.";
@@ -597,7 +597,7 @@
 "sync_with_extension_sent" = "Resync notification sent successfully";
 
 /* Title for Manage Tokens Screen. */
-"tab_title_assets" = "Tokens";
+"tab_title_assets" = "Manage Tokens";
 
 /* Terms menu item
    Terms of Use */
@@ -629,6 +629,9 @@
 
 /* Explanation text */
 "transaction_has_been_submitted" = "Your transaction has been submitted.";
+
+/* Transaction Request */
+"transaction_request" = "Transaction Request";
 
 /* Transaction submitted */
 "transaction_submitted_safe_being_created" = "Your transaction was submitted. Your Safe will be created now. This might take a couple of minutes.";

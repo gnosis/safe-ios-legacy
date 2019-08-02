@@ -122,18 +122,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         button.setImage(Asset.settings.image, for: .normal)
         button.flipImageToTrailingSide(spacing: 7)
         button.contentHorizontalAlignment = .leading // instead of trailing, because the sides flipped
-
-        // separate dash-line view because the NSAttributedString's dashed underline is too close to the
-        // text vertically and there was no way found to offset it.
-        let dashLine = DashedSeparatorView()
-        dashLine.lineColor = textStyle.valueButton.fontColor
-        dashLine.translatesAutoresizingMaskIntoConstraints = false
-        button.addSubview(dashLine)
-        NSLayoutConstraint.activate([
-            dashLine.heightAnchor.constraint(equalToConstant: 1),
-            dashLine.leadingAnchor.constraint(equalTo: button.titleLabel!.leadingAnchor),
-            dashLine.trailingAnchor.constraint(equalTo: button.titleLabel!.trailingAnchor),
-            dashLine.topAnchor.constraint(equalTo: button.titleLabel!.bottomAnchor, constant: 1)])
+        button.addUnderline(color: textStyle.valueButton.fontColor, width: 1.0, offset: 1.0, pattern: [2, 2])
 
         return button
     }
@@ -204,6 +193,22 @@ public extension UIButton {
         imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         imageEdgeInsets = UIEdgeInsets(top: 0, left: -spacing, bottom: 0, right: spacing)
         contentEdgeInsets = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: 0)
+    }
+
+    // separate dash-line view because the NSAttributedString's dashed underline is too close to the
+    // text vertically and there was no way found to offset it.
+    func addUnderline(color: UIColor, width: CGFloat, offset: CGFloat, pattern: [Int]?) {
+        let dashLine = DashedSeparatorView()
+        dashLine.lineColor = color
+        dashLine.lineWidth = width
+        dashLine.pattern = pattern
+        dashLine.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(dashLine)
+        NSLayoutConstraint.activate([
+            dashLine.heightAnchor.constraint(equalToConstant: width),
+            dashLine.leadingAnchor.constraint(equalTo: titleLabel!.leadingAnchor),
+            dashLine.trailingAnchor.constraint(equalTo: titleLabel!.trailingAnchor),
+            dashLine.topAnchor.constraint(equalTo: titleLabel!.bottomAnchor, constant: offset)])
     }
 
 }
