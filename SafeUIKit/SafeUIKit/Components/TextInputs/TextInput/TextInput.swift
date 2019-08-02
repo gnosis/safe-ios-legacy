@@ -172,11 +172,12 @@ public class TextInput: UITextField {
     }
 
     private func updateColors() {
+        tintColor = ColorName.systemBlue.color
+        textColor = ColorName.darkGrey.color
+
         switch style {
         case .white:
             backgroundColor = ColorName.snowwhite.color
-            textColor = ColorName.darkGrey.color
-            tintColor = ColorName.holdDark.color
             clearButton.tintColor = ColorName.mediumGrey.color
             switch inputState {
             case .normal, .success: layer.borderColor = ColorName.whitesmoke.color.cgColor
@@ -184,8 +185,6 @@ public class TextInput: UITextField {
             }
         case .gray:
             backgroundColor = ColorName.white.color
-            textColor = ColorName.darkGrey.color
-            tintColor = ColorName.holdDark.color
             clearButton.tintColor = ColorName.mediumGrey.color
             switch inputState {
             case .normal, .success: layer.borderColor = ColorName.snowwhite.color.cgColor
@@ -193,8 +192,6 @@ public class TextInput: UITextField {
             }
         case .opaqueWhite:
             backgroundColor = ColorName.snowwhite.color
-            textColor = ColorName.darkGrey.color
-            tintColor = ColorName.holdDark.color
             clearButton.tintColor = ColorName.mediumGrey.color
             layer.borderWidth = 0
         }

@@ -19,6 +19,7 @@ final class WCSendReviewViewController: SendReviewViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(didTapReject))
+        title = LocalizedString("transaction_request", comment: "Transaction Request")
     }
 
     override func loadingDidChange() {

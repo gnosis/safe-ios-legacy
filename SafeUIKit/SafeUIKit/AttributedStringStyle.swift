@@ -133,10 +133,12 @@ public extension NSAttributedString {
                                                .underlineStyle: NSNumber(value: style.underlineStyle.rawValue)])
     }
 
-    convenience init(list: String, itemStyle: AttributedStringStyle, bulletStyle: AttributedStringStyle, nestingStyle: AttributedStringStyle) {
+    convenience init(list: String, itemStyle: AttributedStringStyle,
+                     bulletStyle: AttributedStringStyle,
+                     nestingStyle: AttributedStringStyle) {
         let lines = list.components(separatedBy: "\n")
         let result = NSMutableAttributedString()
-        lines.enumerated().forEach { (index, line) in
+        lines.enumerated().forEach { index, line in
             var item = line
             if line.starts(with: "* ") {
                 item.removeFirst(2)

@@ -15,6 +15,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var tokenAmountLabel: AmountLabel!
     @IBOutlet weak var transactionTypeImageView: UIImageView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var separatorView: UIView!
 
     private static let timeFormatter: DateFormatter = {
         let f = DateFormatter()
@@ -43,7 +44,8 @@ class TransactionTableViewCell: UITableViewCell {
         identiconView.layer.cornerRadius = identiconView.bounds.width / 2
         identiconView.clipsToBounds = true
         progressView.progressTintColor = ColorName.hold.color
-        progressView.trackTintColor = ColorName.whitesmokeTwo.color
+        progressView.trackTintColor = ColorName.transparent.color
+        separatorView.backgroundColor = ColorName.white.color
     }
 
     func configure(transaction: TransactionData) {

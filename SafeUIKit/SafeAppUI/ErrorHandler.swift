@@ -62,7 +62,7 @@ public class ErrorHandler {
     private func alertController(
         title: String, message: String, log: String, action: @escaping () -> Void) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Strings.ok, style: .destructive) { _ in action() })
+        alert.addAction(UIAlertAction(title: Strings.ok, style: .default) { _ in action() })
         return alert
     }
 

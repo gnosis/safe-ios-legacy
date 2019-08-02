@@ -28,23 +28,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="mcd-FZ-Gq3">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="330.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="327"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Browser Extension" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mr-cB-Jwd">
-                            <rect key="frame" x="98" y="0.0" width="218" height="24"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Browser Extension" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mr-cB-Jwd">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="browser-extension-qr" translatesAutoresizingMaskIntoConstraints="NO" id="EzR-Sb-hZv">
-                            <rect key="frame" x="144.5" y="64" width="125" height="95"/>
+                            <rect key="frame" x="144.5" y="60.5" width="125" height="95"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="125" id="Spt-Wm-lUb"/>
                                 <constraint firstAttribute="height" constant="95" id="iHE-El-mFT"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="oha-V6-7QD">
-                            <rect key="frame" x="1" y="199" width="412" height="131.5"/>
+                            <rect key="frame" x="1" y="195.5" width="412" height="131.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lu9-cl-rzH">
                                     <rect key="frame" x="0.0" y="0.0" width="412" height="42.5"/>
@@ -88,6 +88,10 @@
                             </subviews>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="9Mr-cB-Jwd" secondAttribute="trailing" id="BWh-B9-3hv"/>
+                        <constraint firstItem="9Mr-cB-Jwd" firstAttribute="leading" secondItem="mcd-FZ-Gq3" secondAttribute="leading" id="PrG-iZ-58P"/>
+                    </constraints>
                     <viewLayoutGuide key="safeArea" id="ZR5-iV-yPj"/>
                 </stackView>
             </subviews>

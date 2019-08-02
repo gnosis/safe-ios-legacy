@@ -93,7 +93,7 @@
 "create_safe_title" = "Create Safe";
 
 /* Creating safe */
-"creating_your_new_safe" = "Creating your new Safe…";
+"creating_your_new_safe" = "Creating your new Safe";
 
 /* Current password */
 "current_password" = "Current password";
@@ -310,7 +310,7 @@
 "ios_recovery_intro_content" = "* Please have your Safe's address and recovery phrase ready.\n* A recovery fee will be automatically deducted from the balance of the recovered Safe.\n* If the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
 
 /* Replace browser extension */
-"ios_replace_browser_extension" = "Replace\nAuthenticator";
+"ios_replace_browser_extension" = "New\nAuthenticator";
 
 /* Change recovery key menu item
    Replace recovery phrase
@@ -559,7 +559,7 @@
 "setup_password_info" = "Your confidential password is used to unlock the Safe and confirm transactions.";
 
 /* Set up safe options screen title */
-"setup_successful" = "Device setup successful! \n Let's get started.";
+"setup_successful" = "No Safes added yet. \n Let's get started.";
 
 /* Description for Receive Funds screen. */
 "share_your_address" = "Share your address with contracts or enable senders to scan your QR code to receive Ether and tokens.";
@@ -597,7 +597,7 @@
 "sync_with_extension_sent" = "Resync notification sent successfully";
 
 /* Title for Manage Tokens Screen. */
-"tab_title_assets" = "Tokens";
+"tab_title_assets" = "Manage Tokens";
 
 /* Terms menu item
    Terms of Use */
@@ -629,6 +629,9 @@
 
 /* Explanation text */
 "transaction_has_been_submitted" = "Your transaction has been submitted.";
+
+/* Transaction Request */
+"transaction_request" = "Transaction Request";
 
 /* Transaction submitted */
 "transaction_submitted_safe_being_created" = "Your transaction was submitted. Your Safe will be created now. This might take a couple of minutes.";

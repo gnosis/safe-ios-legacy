@@ -103,6 +103,7 @@ class OnboardingCreationFeeViewController: CardViewController {
     @objc func share() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         let activityController = UIActivityViewController(activityItems: [address], applicationActivities: nil)
+        activityController.view.tintColor = ColorName.systemBlue.color
         self.present(activityController, animated: true)
     }
 

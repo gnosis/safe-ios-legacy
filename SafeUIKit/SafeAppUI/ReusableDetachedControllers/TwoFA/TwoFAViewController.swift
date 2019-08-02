@@ -168,7 +168,6 @@ public final class TwoFAViewController: CardViewController {
         let body2Text = NSMutableAttributedString(string: Strings.downloadExtension)
         let range = body2Text.mutableString.range(of: Strings.chromeExtension)
         body2Text.addAttribute(.foregroundColor, value: ColorName.hold.color, range: range)
-        body2Text.addLinkIcon()
         twoFAView.body2Label.attributedText = body2Text
         twoFAView.body2Label.isUserInteractionEnabled = true
         twoFAView.body2Label.addGestureRecognizer(UITapGestureRecognizer(target: self,
