@@ -775,14 +775,14 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Message Handling
 
-    public func receive(message userInfo: [AnyHashable: Any]) -> String? {
+    public func receive(message userInfo: [AnyHashable: Any]) throws -> String? {
         guard let message = Message.create(userInfo: userInfo) else { return nil }
         if let confirmation = message as? TransactionConfirmedMessage {
             return handle(message: confirmation)
         } else if let rejection = message as? TransactionRejectedMessage {
             return handle(message: rejection)
         } else if let sending = message as? SendTransactionMessage {
-            return handle(message: sending)
+            return try handle(message: sending)
         }
         return nil
     }
@@ -816,7 +816,7 @@ public class WalletApplicationService: Assertable {
         return transaction.id.id
     }
 
-    func handle(message: SendTransactionMessage) -> String? {
+    func handle(message: SendTransactionMessage) throws -> String? {
         guard let wallet = DomainRegistry.walletRepository.find(address: message.safe) else { return nil }
         let transaction: Transaction
 
@@ -831,6 +831,9 @@ public class WalletApplicationService: Assertable {
         guard transaction.status == .draft else { return nil }
 
         update(transaction: transaction, with: message)
+        // We don't allow dangerous transactions initiated by browser extension.
+        guard !transaction.isDangerous() else { throw WalletApplicationServiceError.validationFailed }
+
         let hash = DomainRegistry.encryptionService.hash(of: transaction)
         guard hash == message.hash else {
             DomainRegistry.transactionRepository.remove(transaction)

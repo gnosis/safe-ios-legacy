@@ -126,14 +126,22 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     open func receive(message: [AnyHashable: Any]) {
         DispatchQueue.global.async { [unowned self] in
-            guard let transactionID = ApplicationServiceRegistry.walletService.receive(message: message),
-                let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID) else { return }
-            DispatchQueue.main.async {
-                if let vc = self.navigationController.topViewController as? ReviewTransactionViewController,
-                    tx.id == vc.tx.id {
-                    vc.update(with: tx)
-                } else if tx.status != .rejected {
-                    self.handleIncomingBETransaction(transactionID)
+            do {
+                guard let transactionID = try ApplicationServiceRegistry.walletService.receive(message: message),
+                    let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID) else { return }
+                DispatchQueue.main.async {
+                    // guard tx is not dangerouse, otherwise show alert
+                    if let vc = self.navigationController.topViewController as? ReviewTransactionViewController,
+                        tx.id == vc.tx.id {
+                        vc.update(with: tx)
+                    } else if tx.status != .rejected {
+                        self.handleIncomingBETransaction(transactionID)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    let vc = self.navigationController.topViewController
+                    vc?.present(UIAlertController.dangerousTransaction(), animated: true, completion: nil)
                 }
             }
         }

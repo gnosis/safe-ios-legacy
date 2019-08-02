@@ -74,6 +74,14 @@ class MainFlowCoordinatorTests: SafeTestCase {
             as? ReviewTransactionViewController)?.tx.id, data.id)
     }
 
+    func test_whenReceivingDangerousTransaction_thenShowsAlert() {
+        createWindow(mainFlowCoordinator.rootViewController)
+        walletService.shouldThrow = true
+        mainFlowCoordinator.receive(message: ["key": "value"])
+        delay()
+        XCTAssertAlertShown()
+    }
+
     func test_whenReviewTransactionFinished_thenPopsBack() {
         delay()
         let mainFC = mainFlowCoordinator!

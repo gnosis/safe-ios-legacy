@@ -303,8 +303,8 @@ class SendTransactionMessageTests: BaseWalletApplicationServiceTests {
         encryptionService.dataFromSignature_output = Data(repeating: 3, count: 32)
     }
 
-    func test_whenRecievesNewSendTransactionWithValidHash_thenSavesIt() {
-        guard let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload) else {
+    func test_whenRecievesNewSendTransactionWithValidHash_thenSavesIt() throws {
+        guard let txID = try service.receive(message: Fixtures.sendTransactionAPNSPayload) else {
             XCTFail("Expected to save the transaction")
             return
         }
@@ -315,38 +315,38 @@ class SendTransactionMessageTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(tx?.signatures.first?.address, Address(encryptionService.addressFromHashSignature_output!))
     }
 
-    func test_whenRecievesNewSendTransactionWithWrongSafe_thenIgnores() {
-        XCTAssertNil(service.receive(message: Fixtures.sendTransactionAPNSPayload_wrongSafe))
+    func test_whenRecievesNewSendTransactionWithWrongSafe_thenIgnores() throws {
+        XCTAssertNil(try service.receive(message: Fixtures.sendTransactionAPNSPayload_wrongSafe))
     }
 
-    func test_whenRecievesNewSendTransactionWithWrongHash_thenIgnores() {
+    func test_whenRecievesNewSendTransactionWithWrongHash_thenIgnores() throws {
         let differentHash = Data(repeating: 7, count: 32)
         encryptionService.hash_of_tx_output = differentHash
-        XCTAssertNil(service.receive(message: Fixtures.sendTransactionAPNSPayload))
+        XCTAssertNil(try service.receive(message: Fixtures.sendTransactionAPNSPayload))
     }
 
     func test_whenRecievesNewSendTransactionWithInvalidSignature_thenIgnores() {
         encryptionService.addressFromHashSignature_output = Address.testAccount4.value.lowercased()
-        XCTAssertNil(service.receive(message: Fixtures.sendTransactionAPNSPayload))
+        XCTAssertNil(try service.receive(message: Fixtures.sendTransactionAPNSPayload))
     }
 
-    func test_whenReceivesExistingTransaction_thenReplacesSignature() {
-        let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload)
-        let sameTxID = service.receive(message: Fixtures.sendTransactionAPNSPayload)
+    func test_whenReceivesExistingTransaction_thenReplacesSignature() throws {
+        let txID = try service.receive(message: Fixtures.sendTransactionAPNSPayload)
+        let sameTxID = try service.receive(message: Fixtures.sendTransactionAPNSPayload)
         XCTAssertEqual(txID, sameTxID)
     }
 
-    func test_whenRecievesPendingTransaction_thenIgnores() {
-        let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload)!
+    func test_whenRecievesPendingTransaction_thenIgnores() throws {
+        let txID = try service.receive(message: Fixtures.sendTransactionAPNSPayload)!
         let tx = transactionRepository.find(id: TransactionID(txID))!
         tx.set(hash: TransactionHash.test1)
         tx.proceed()
         transactionRepository.save(tx)
-        XCTAssertNil(service.receive(message: Fixtures.sendTransactionAPNSPayload))
+        XCTAssertNil(try service.receive(message: Fixtures.sendTransactionAPNSPayload))
     }
 
-    func test_whenRecievesNonEthTokenTransfer_thenHasCorrectData() {
-        let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload_nonEth)!
+    func test_whenRecievesNonEthTokenTransfer_thenHasCorrectData() throws {
+        let txID = try service.receive(message: Fixtures.sendTransactionAPNSPayload_nonEth)!
         let tx = transactionRepository.find(id: TransactionID(txID))!
         XCTAssertEqual(tx.ethTo, Address.testAccount2)
         XCTAssertEqual(tx.ethValue, 0)
@@ -355,6 +355,10 @@ class SendTransactionMessageTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(tx.amount?.token.address, Address.testAccount2)
         XCTAssertEqual(tx.fee?.token.address, Address.testAccount4)
         XCTAssertEqual(tx.feeEstimate?.gasPrice.token.address, Address.testAccount4)
+    }
+
+    func test_whenReceivesDangerousTransaction_thenThrows() {
+        XCTAssertThrowsError(try service.receive(message: Fixtures.sendTransactionAPNSPayload_Dangerous))        
     }
 
     fileprivate struct Fixtures {
@@ -374,6 +378,32 @@ class SendTransactionMessageTests: BaseWalletApplicationServiceTests {
             "value": String(BigInt(1e18)),
             "data": "0x010101",
             "operation": "0",
+            "txGas": "21500",
+            "dataGas": "24600",
+            "operationalGas": "48200",
+            "gasPrice": "10000",
+            "gasToken": Address.zero.value,
+            "nonce": "1",
+            "r": "1234567890",
+            "s": "1234567890",
+            "v": "28"
+        ]
+
+        static let sendTransactionAPNSPayload_Dangerous: [AnyHashable: Any] = [
+            "aps": [
+                "alert": [
+                    "body": "Hello, world!",
+                    "title": "Test Message"
+                ],
+                "badge": 1
+            ],
+            "type": "sendTransaction",
+            "hash": Fixtures.hash,
+            "safe": Address.safeAddress.value,
+            "to": Address.testAccount2.value,
+            "value": String(BigInt(1e18)),
+            "data": "0x010101",
+            "operation": "1",
             "txGas": "21500",
             "dataGas": "24600",
             "operationalGas": "48200",
