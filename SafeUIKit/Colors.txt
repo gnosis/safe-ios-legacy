@@ -6,6 +6,7 @@ holdDark: 005546
 tomato: FF3B30
 darkBlue: 001428
 darkBlue50: 00142880
+darkBlue70: 001428B3
 darkGrey: 5D6D74
 mediumGrey: B2B5B2
 lightGrey: D4D5D3
@@ -16,6 +17,7 @@ cardShadow: D4D4D3
 cardShadowPassword: 607E79
 cardShadowTooltip: 28363D
 snowwhite: FFFFFF
+snowwhite50: FFFFFF80
 black: 000000
 black15: 00000026
 black40: 00000066

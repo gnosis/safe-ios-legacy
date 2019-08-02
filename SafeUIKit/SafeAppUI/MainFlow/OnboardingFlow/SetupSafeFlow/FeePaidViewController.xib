@@ -101,6 +101,6 @@
     </objects>
     <resources>
         <image name="external_link" width="12" height="12"/>
-        <image name="safeInprogress" width="121" height="93"/>
+        <image name="safeInprogress" width="121" height="94"/>
     </resources>
 </document>

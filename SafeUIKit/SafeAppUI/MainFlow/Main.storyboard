@@ -645,12 +645,14 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfo-FX-Kdv" customClass="StandardButton" customModule="SafeUIKit">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfo-FX-Kdv" customClass="StandardButton" customModule="SafeUIKit">
                                         <rect key="frame" x="0.0" y="237" width="343" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="XHt-lC-qvr"/>
                                         </constraints>
-                                        <state key="normal" title="Continue"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="didTapButton" destination="2ph-wv-Tdv" eventType="touchUpInside" id="1bm-Bn-ZK7"/>
                                         </connections>

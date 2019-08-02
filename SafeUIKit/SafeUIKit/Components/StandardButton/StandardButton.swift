@@ -4,6 +4,8 @@
 
 import UIKit
 
+/// A button used throughout the app. When you use this button in Storyboard or Xib,
+/// remember to make the button type 'Custom', otherwise it will have wrong behavior.
 final public class StandardButton: BaseCustomButton {
 
     public enum Style {
@@ -22,24 +24,30 @@ final public class StandardButton: BaseCustomButton {
         // This is implemented using tuples to be able to compile-check presense of colors and images for
         // each button state, for each style. Alternative implementation would be to use dictionary with
         // colors and images as arrays and runtime-check the presence of values with `guard` and `assert()`.
+        //
+        // Each image is a same-size file of a rounded rectangle with shadow. Make sure the
+        // image's alignment margins are set in the Asset Catalog, as well as
+        // slicing of the rounded corners.
         private static let styleSheet: StyleSheet = (
 
             plain: (colors: (normal: ColorName.hold.color,
-                             highlighted: ColorName.darkBlue50.color,
-                             disabled: ColorName.darkGrey.color),
+                             highlighted: ColorName.holdDark.color,
+                             disabled: ColorName.hold50.color),
+
                     images: (normal: nil, highlighted: nil, disabled: nil)),
 
             bordered: (colors: (normal: ColorName.darkBlue.color,
-                                highlighted: ColorName.darkBlue50.color,
+                                highlighted: ColorName.darkBlue70.color,
                                 disabled: ColorName.darkBlue50.color),
-                       images: (normal: nil, highlighted: nil, disabled: nil)),
+
+                       images: (normal: Asset.BorderedButton.borderedNormal.image,
+                                highlighted: Asset.BorderedButton.borderedPressed.image,
+                                disabled: Asset.BorderedButton.borderedInactive.image)),
 
             filled: (colors: (normal: ColorName.snowwhite.color,
-                              highlighted: ColorName.white.color,
-                              disabled: ColorName.white.color),
-                     // Each image is a same-size file of a rounded rectangle with shadow. Make sure the
-                     // image's alignment margins are set in the Asset Catalog, as well as
-                     // slicing of the rounded corners.
+                              highlighted: ColorName.snowwhite.color,
+                              disabled: ColorName.snowwhite50.color),
+
                      images: (normal: Asset.FilledButton.filledNormal.image,
                               highlighted: Asset.FilledButton.filledPressed.image,
                               disabled: Asset.FilledButton.filledInactive.image)))

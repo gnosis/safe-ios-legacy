@@ -57,13 +57,14 @@
                                 </imageView>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="YAK-9M-nQh" customClass="StandardButton" customModule="SafeUIKit" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="YAK-9M-nQh" customClass="StandardButton" customModule="SafeUIKit" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="160" width="360" height="56"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="rVB-Kh-oiq"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
                         </button>
                     </subviews>
                 </stackView>

@@ -97,13 +97,14 @@
                                                         <constraint firstItem="yjN-re-hhx" firstAttribute="top" secondItem="RT3-uw-iSA" secondAttribute="bottom" id="wFc-ga-cGm"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dct-ta-uuc" customClass="StandardButton" customModule="SafeUIKit">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dct-ta-uuc" customClass="StandardButton" customModule="SafeUIKit">
                                                     <rect key="frame" x="0.0" y="467.5" width="382" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="tYQ-O6-cnn"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                    <state key="normal" title="FooterButton"/>
+                                                    <state key="normal" title="FooterButton">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </state>
                                                 </button>
                                             </subviews>
                                         </stackView>
