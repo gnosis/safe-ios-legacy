@@ -75,4 +75,16 @@ extension WCSendTransactionRequest {
                                                       value: TokenInt(hex: "0x00")!,
                                                       data: Data(hex: "0x"),
                                                       nonce: "0x00")
+
+    static func dangerousRequest() -> WCSendTransactionRequest {
+        return WCSendTransactionRequest(from: Address("0xCF4140193531B8b2d6864cA7486Ff2e18da5cA95"),
+                                        to: DomainRegistry.walletRepository.selectedWallet()!.address,
+                                        gasLimit: TokenInt(hex: "0x5208")!,
+                                        gasPrice: TokenInt(hex: "0x3b9aca00")!,
+                                        value: TokenInt(hex: "0x00")!,
+                                        data: Data(hex: "0x1"),
+                                        nonce: "0x00")
+    }
+
+
 }

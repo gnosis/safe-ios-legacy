@@ -98,6 +98,9 @@
 /* Current password */
 "current_password" = "Current password";
 
+/* Detected dangerous incoming transaction. */
+"detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
+
 /* Disconnect */
 "disconnect" = "Disconnect";
 

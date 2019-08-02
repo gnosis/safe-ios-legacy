@@ -161,6 +161,17 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertTrue(eventPublisher.verify())
     }
 
+    func test_handleSendTransactionRequest_sendsErrorThatTransactionIsDangerous() {
+        let testRequest = prepareDangerousRequestForHandling()
+        let exp = expectation(description: "handleRequestResponse")
+        appService.handleSendTransactionRequest(testRequest) { result in
+            if case Result.failure(_) = result {
+                exp.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 1)
+    }
+
     func test_handleEthereumNodeRequest_callsEthereumNodeService() {
         XCTAssertNil(ethereumNodeService.rawCall_input)
         let exp = expectation(description: "call ethereum node service")
@@ -185,11 +196,22 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
     }
 
     private func prepareRequestForHandling() -> WCSendTransactionRequest {
-        givenReadyToUseWallet()
-        sessionRepository.save(WCSession.testSession)
+        prepareSession()
         var testRequest = WCSendTransactionRequest.testRequest
         testRequest.url = WCURL.testURL
         return testRequest
+    }
+
+    private func prepareDangerousRequestForHandling() -> WCSendTransactionRequest {
+        prepareSession()
+        var dangerousRequest = WCSendTransactionRequest.dangerousRequest()
+        dangerousRequest.url = WCURL.testURL
+        return dangerousRequest
+    }
+
+    private func prepareSession() {
+        givenReadyToUseWallet()
+        sessionRepository.save(WCSession.testSession)
     }
 
 }

@@ -83,7 +83,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     // MARK: - Validating transaction
 
     public func isDangerous() -> Bool {
-        return operation != .call ||
+        return ![nil, .call].contains(operation) ||
             (recipient == DomainRegistry.walletRepository.selectedWallet()?.address && !(data?.isEmpty ?? true))
     }
 
