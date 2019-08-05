@@ -26,9 +26,13 @@ final class RuleLabel: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
 
-    var text: String? {
+    var currentText: String? {
         return label.text
     }
+
+    private var errorText: String?
+    private var successText: String?
+    private var inactiveText: String?
 
     private var rule: ((String) -> Bool)?
     private (set) var status: RuleStatus = .inactive {
@@ -37,14 +41,20 @@ final class RuleLabel: UIView {
         }
     }
 
-    convenience init(text: String, displayIcon: Bool = false, rule: ((String) -> Bool)? = nil) {
+    convenience init(text: String,
+                     successText: String? = nil,
+                     inactiveText: String? = nil,
+                     displayIcon: Bool = false,
+                     rule: ((String) -> Bool)? = nil) {
         self.init(frame: .zero)
-        self.label.text = text
         if !displayIcon {
             imageView.removeFromSuperview()
             imageView = nil
         }
         self.rule = rule
+        self.errorText = text
+        self.successText = successText
+        self.inactiveText = inactiveText
         update()
     }
 
@@ -91,6 +101,7 @@ final class RuleLabel: UIView {
     private func update() {
         updateImage()
         updateLabel()
+        updateText()
     }
 
     private func updateImage() {
@@ -115,6 +126,17 @@ final class RuleLabel: UIView {
             label.textColor = ColorName.darkGrey.color
         case .success:
             label.textColor = ColorName.hold.color
+        }
+    }
+
+    private func updateText() {
+        switch status {
+        case .error:
+            label.text = errorText
+        case .inactive:
+            label.text = inactiveText ?? errorText
+        case .success:
+            label.text = successText ?? errorText
         }
     }
 

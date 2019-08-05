@@ -13,11 +13,12 @@ extension VerifiableInput {
         static let trippleChars = LocalizedString("password_validation_identical_characters",
                                                   comment: "No triple characters.")
         static let matchPassword = LocalizedString("passwords_do_not_match", comment: "Passwords must match.")
+        static let confirmed = LocalizedString("password_confirmed", comment: "Password confirmed")
     }
 
     func configureForNewPassword() {
         configurePasswordAppearance()
-        textInput.showSuccessIndicator = false
+        textInput.showSuccessIndicator = true
         self.addRule(Strings.length) {
             PasswordValidator.validateMinLength($0)
         }
@@ -31,9 +32,7 @@ extension VerifiableInput {
 
     func configureForConfirmPassword(referencePassword: String) {
         configurePasswordAppearance()
-        showErrorsOnly = true
-        adjustsHeightForHiddenRules = true
-        addRule(Strings.matchPassword) {
+        addRule(Strings.matchPassword, successText: Strings.confirmed, inactiveText: " ") {
             PasswordValidator.validate(input: $0, equals: referencePassword)
         }
     }
