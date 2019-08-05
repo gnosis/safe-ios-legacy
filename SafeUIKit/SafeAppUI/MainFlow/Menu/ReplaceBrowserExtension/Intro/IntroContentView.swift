@@ -67,5 +67,6 @@ class ContentBodyStyle: AttributedStringStyle {
     override var fontColor: UIColor { return ColorName.darkGrey.color }
     override var minimumLineHeight: Double { return 22 }
     override var maximumLineHeight: Double { return 22 }
+    override var alignment: NSTextAlignment { return .center }
 
 }
