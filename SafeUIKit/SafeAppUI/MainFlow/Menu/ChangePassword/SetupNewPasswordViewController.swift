@@ -49,6 +49,7 @@ class SetupNewPasswordViewController: UIViewController {
             LocalizedString("confirm_password", comment: "Placeholder text for confirm password field")
         static let passwordDoesNotMatch =
             LocalizedString("passwords_do_not_match", comment: "Confrimation password does not match error")
+        static let confirmed = LocalizedString("password_confirmed", comment: "Password confirmed")
     }
 
     override func viewDidLoad() {
@@ -81,14 +82,18 @@ class SetupNewPasswordViewController: UIViewController {
         newPasswordInput.delegate = self
         newPasswordInput.textInput.placeholder = Strings.newPasswordPlaceholder
         newPasswordInput.configureForNewPassword()
+        newPasswordInput.textInput.showSuccessIndicator = false
     }
 
     private func configureConfirmPasswordInput() {
         confirmNewPasswordInput.delegate = self
         confirmNewPasswordInput.configurePasswordAppearance()
-        confirmNewPasswordInput.showErrorsOnly = true
         confirmNewPasswordInput.textInput.placeholder = Strings.confirmPasswordPlaceholder
-        confirmNewPasswordInput.addRule(Strings.passwordDoesNotMatch) { $0 == self.password.new }
+        confirmNewPasswordInput.addRule(Strings.passwordDoesNotMatch,
+                                        successText: Strings.confirmed,
+                                        inactiveText: " ") {
+                                            $0 == self.password.new
+        }
     }
 
     private func configureKeyboardBehavior() {

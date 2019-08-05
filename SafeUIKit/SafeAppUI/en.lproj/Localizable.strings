@@ -436,6 +436,9 @@
 /* Explanation text */
 "password_changed" = "Your password has been changed.";
 
+/* Password confirmed */
+"password_confirmed" = "Password confirmed";
+
 /* No triple characters. */
 "password_validation_identical_characters" = "No triple characters";
 

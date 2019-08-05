@@ -143,12 +143,18 @@ open class VerifiableInput: UIView {
             wrapperView.topAnchor.constraint(equalTo: topAnchor)])
     }
 
-    public func addRule(_ localizedDescription: String,
+    public func addRule(_ errorText: String,
+                        successText: String? = nil,
+                        inactiveText: String? = nil,
                         identifier: String? = nil,
                         displayIcon: Bool = false,
                         validation: ((String) -> Bool)? = nil) {
         addSpacingIfNeeded()
-        let ruleLabel = RuleLabel(text: localizedDescription, displayIcon: displayIcon, rule: validation)
+        let ruleLabel = RuleLabel(text: errorText,
+                                  successText: successText,
+                                  inactiveText: inactiveText,
+                                  displayIcon: displayIcon,
+                                  rule: validation)
         ruleLabel.accessibilityIdentifier = identifier
         hideRuleIfNeeded(ruleLabel)
         stackView.addArrangedSubview(ruleLabel)
@@ -248,7 +254,7 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     private func hideRuleIfNeeded(_ rule: RuleLabel) {
-        guard let text = rule.text, !text.isEmpty else {
+        guard let text = rule.currentText, !text.isEmpty else {
             rule.isHidden = true
             return
         }
