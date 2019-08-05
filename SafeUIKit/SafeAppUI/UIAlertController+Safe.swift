@@ -107,9 +107,9 @@ extension UIAlertController {
     }
 
     static func dangerousTransaction() -> UIAlertController {
-        let alert = create(title: LocalizedString("detected_dangerous_incoming_transaction",
-                                                  comment: "Detected dangerous incoming transaction."),
-                           message: LocalizedString("close", comment: "Close"))
+        let alert = create(title: LocalizedString("transaction_blocked", comment: "Transaction blocked."),
+            message: LocalizedString("detected_dangerous_incoming_transaction",
+                                     comment: "Detected dangerous incoming transaction."))
         return alert.withCloseAction()
     }
 

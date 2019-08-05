@@ -363,7 +363,7 @@
 "layout_recovered_safe_info_description" = "The existing Safe was recovered.";
 
 /* Detail for the header in review screen */
-"layout_replace_browser_extension_info_description" = "The existing Authenticator connection was replaced by the new Authenticator.";
+"layout_replace_browser_extension_info_description" = "The existing Authenticator connection will be replaced by the new Authenticator.";
 
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
@@ -505,7 +505,7 @@
 "reject" = "Reject";
 
 /* Detail for the header in review screen */
-"replace_browser_extension_transaction_info" = "The currently connected Authenticator will be replaced with the new Authenticator.";
+"replace_browser_extension_transaction_info" = "The existing Authenticator connection will be replaced by the new Authenticator. ";
 
 /* Explanation text */
 "replaceseed_in_progress" = "The transaction has been submitted and should take a couple of minutes. Replacing the recovery phrase is in progress. ";
@@ -617,6 +617,9 @@
 
 /* Onboarding 3 description */
 "to_connect_to_dapp" = "To connect your Safe to the desktop Dapp, scan its QR code.";
+
+/* Transaction blocked. */
+"transaction_blocked" = "Transaction blocked.";
 
 /* Title for the transaction details screen */
 "transaction_details" = "Transaction Details";
