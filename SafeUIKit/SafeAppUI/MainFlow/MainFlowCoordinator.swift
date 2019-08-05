@@ -130,7 +130,6 @@ open class MainFlowCoordinator: FlowCoordinator {
                 guard let transactionID = try ApplicationServiceRegistry.walletService.receive(message: message),
                     let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID) else { return }
                 DispatchQueue.main.async {
-                    // guard tx is not dangerouse, otherwise show alert
                     if let vc = self.navigationController.topViewController as? ReviewTransactionViewController,
                         tx.id == vc.tx.id {
                         vc.update(with: tx)
@@ -138,7 +137,7 @@ open class MainFlowCoordinator: FlowCoordinator {
                         self.handleIncomingBETransaction(transactionID)
                     }
                 }
-            } catch {
+            } catch { // dangerous transaction
                 DispatchQueue.main.async {
                     let vc = self.navigationController.topViewController
                     vc?.present(UIAlertController.dangerousTransaction(), animated: true, completion: nil)
