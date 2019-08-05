@@ -17,7 +17,6 @@ class TransactionDomainServiceTests: XCTestCase {
     let eventPublisher = MockEventPublisher()
     let portfolioRepo = InMemorySinglePortfolioRepository()
     var walletID: WalletID!
-    let transactionRepo = InMemoryTransactionRepository()
 
     override func setUp() {
         super.setUp()
@@ -25,7 +24,6 @@ class TransactionDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
         DomainRegistry.put(service: repo, for: TransactionRepository.self)
         DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
-        DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
         walletID = WalletID()
         let portfolio = Portfolio(id: PortfolioID(),
                                   wallets: WalletIDList([walletID]),
@@ -216,14 +214,14 @@ class TransactionDomainServiceTests: XCTestCase {
         let allStatuses = [TransactionStatus.Code.draft, .signing, .pending, .rejected, .failed, .success]
         let doNotCleanUpStatuses = [TransactionStatus.Code.pending, .rejected, .failed, .success]
         for status in allStatuses {
-            transactionRepo.save(createTransaction(status: status))
+            repo.save(createTransaction(status: status))
         }
-        let doNotCleanUpTransactions = transactionRepo.all().filter { doNotCleanUpStatuses.contains($0.status) }
+        let doNotCleanUpTransactions = repo.all().filter { doNotCleanUpStatuses.contains($0.status) }
 
         service.cleanUpStaleTransactions()
 
         for tx in doNotCleanUpTransactions {
-            XCTAssertNotNil(transactionRepo.find(id: tx.id))
+            XCTAssertNotNil(repo.find(id: tx.id))
         }
     }
 
