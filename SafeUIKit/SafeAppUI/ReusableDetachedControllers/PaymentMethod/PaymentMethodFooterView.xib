@@ -16,20 +16,23 @@
             <rect key="frame" x="0.0" y="0.0" width="590" height="252"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0j-T5-CSf" customClass="StandardButton" customModule="SafeUIKit">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0j-T5-CSf" customClass="StandardButton" customModule="SafeUIKit">
                     <rect key="frame" x="16" y="159" width="558" height="29"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
                         <action selector="changePaymentMethod:" destination="-2" eventType="touchUpInside" id="CYA-vX-gcS"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZZ-rU-4JR" customClass="StandardButton" customModule="SafeUIKit">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZZ-rU-4JR" customClass="StandardButton" customModule="SafeUIKit">
                     <rect key="frame" x="16" y="76" width="558" height="56"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="goH-oO-RRc"/>
                     </constraints>
-                    <state key="normal" title="Pay with ETH"/>
+                    <state key="normal" title="Pay with ETH">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
                         <action selector="pay:" destination="-2" eventType="touchUpInside" id="jyA-AM-iAH"/>
                     </connections>

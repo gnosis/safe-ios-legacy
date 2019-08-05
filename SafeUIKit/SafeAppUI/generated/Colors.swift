@@ -53,6 +53,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#001428"></span>
   /// Alpha: 50% <br/> (0x00142880)
   static let darkBlue50 = ColorName(rgbaValue: 0x00142880)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#001428"></span>
+  /// Alpha: 70% <br/> (0x001428b3)
+  static let darkBlue70 = ColorName(rgbaValue: 0x001428b3)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#5d6d74"></span>
   /// Alpha: 100% <br/> (0x5d6d74ff)
   static let darkGrey = ColorName(rgbaValue: 0x5d6d74ff)
@@ -80,6 +83,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
   /// Alpha: 100% <br/> (0xffffffff)
   static let snowwhite = ColorName(rgbaValue: 0xffffffff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+  /// Alpha: 50% <br/> (0xffffff80)
+  static let snowwhite50 = ColorName(rgbaValue: 0xffffff80)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#007aff"></span>
   /// Alpha: 100% <br/> (0x007affff)
   static let systemBlue = ColorName(rgbaValue: 0x007affff)

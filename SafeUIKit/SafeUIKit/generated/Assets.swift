@@ -48,12 +48,22 @@ enum Asset {
     static let dots = ImageAsset(name: "dots")
   }
   static let backgroundDarkImage = ImageAsset(name: "background-dark-image")
+  enum BorderedButton {
+    static let borderedInactive = ImageAsset(name: "Bordered_Inactive")
+    static let borderedNormal = ImageAsset(name: "Bordered_Normal")
+    static let borderedPressed = ImageAsset(name: "Bordered_Pressed")
+  }
   static let closeIcon = ImageAsset(name: "close-icon")
   enum Confirmation {
     static let confirmed = ImageAsset(name: "Confirmed")
     static let rejected = ImageAsset(name: "Rejected")
   }
   static let error = ImageAsset(name: "error")
+  enum FilledButton {
+    static let filledInactive = ImageAsset(name: "Filled_Inactive")
+    static let filledNormal = ImageAsset(name: "Filled_Normal")
+    static let filledPressed = ImageAsset(name: "Filled_Pressed")
+  }
   static let qrCode = ImageAsset(name: "qr-code")
   static let settings = ImageAsset(name: "settings")
   static let shareLink = ImageAsset(name: "share-link")
@@ -120,10 +130,16 @@ enum Asset {
   static let allImages: [ImageAsset] = [
     AddressInput.dots,
     backgroundDarkImage,
+    BorderedButton.borderedInactive,
+    BorderedButton.borderedNormal,
+    BorderedButton.borderedPressed,
     closeIcon,
     Confirmation.confirmed,
     Confirmation.rejected,
     error,
+    FilledButton.filledInactive,
+    FilledButton.filledNormal,
+    FilledButton.filledPressed,
     qrCode,
     settings,
     shareLink,

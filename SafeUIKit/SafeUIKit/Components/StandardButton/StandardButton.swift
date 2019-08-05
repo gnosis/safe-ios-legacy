@@ -4,80 +4,98 @@
 
 import UIKit
 
+/// A button used throughout the app. When you use this button in Storyboard or Xib,
+/// remember to make the button type 'Custom', otherwise it will have wrong behavior.
 final public class StandardButton: BaseCustomButton {
 
     public enum Style {
+
+        /// Similar to system plain button - only text.
         case plain
+
+        /// Button with border around the text, with transparent background.
         case bordered
+
+        /// Button with a solid color background.
         case filled
+
+        // Each style has a set of title colors and background images for every useful UIControl state.
+        //
+        // This is implemented using tuples to be able to compile-check presense of colors and images for
+        // each button state, for each style. Alternative implementation would be to use dictionary with
+        // colors and images as arrays and runtime-check the presence of values with `guard` and `assert()`.
+        //
+        // Each image is a same-size file of a rounded rectangle with shadow. Make sure the
+        // image's alignment margins are set in the Asset Catalog, as well as
+        // slicing of the rounded corners.
+        private static let styleSheet: StyleSheet = (
+
+            plain: (colors: (normal: ColorName.hold.color,
+                             highlighted: ColorName.holdDark.color,
+                             disabled: ColorName.hold50.color),
+
+                    images: (normal: nil, highlighted: nil, disabled: nil)),
+
+            bordered: (colors: (normal: ColorName.darkBlue.color,
+                                highlighted: ColorName.darkBlue70.color,
+                                disabled: ColorName.darkBlue50.color),
+
+                       images: (normal: Asset.BorderedButton.borderedNormal.image,
+                                highlighted: Asset.BorderedButton.borderedPressed.image,
+                                disabled: Asset.BorderedButton.borderedInactive.image)),
+
+            filled: (colors: (normal: ColorName.snowwhite.color,
+                              highlighted: ColorName.snowwhite.color,
+                              disabled: ColorName.snowwhite50.color),
+
+                     images: (normal: Asset.FilledButton.filledNormal.image,
+                              highlighted: Asset.FilledButton.filledPressed.image,
+                              disabled: Asset.FilledButton.filledInactive.image)))
+
+        fileprivate var assets: StandardButton.AssetSet {
+            switch self {
+            case .plain: return StandardButton.Style.styleSheet.plain
+            case .bordered: return StandardButton.Style.styleSheet.bordered
+            case .filled: return StandardButton.Style.styleSheet.filled
+            }
+        }
+
     }
 
-    public var style: Style = .bordered {
-        didSet {
-            update()
-        }
-    }
+    fileprivate typealias StyleSheet = (plain: AssetSet, bordered: AssetSet, filled: AssetSet)
+    fileprivate typealias AssetSet = (colors: ColorSet, images: ImageSet)
+    fileprivate typealias ColorSet = (normal: UIColor?, highlighted: UIColor?, disabled: UIColor?)
+    fileprivate typealias ImageSet = (normal: UIImage?, highlighted: UIImage?, disabled: UIImage?)
 
-    private var backgroundColorForState = [UIControl.State.RawValue: UIColor]() {
-        didSet {
-            updateBackground()
-        }
-    }
+    /// Button's appearance. Default is `bordered`
+    public var style: Style = .bordered { didSet { update() } }
+
+    private let titleFont = UIFont.systemFont(ofSize: 17, weight: .medium)
 
     public override func commonInit() {
-        titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        titleLabel?.font = titleFont
+        adjustsImageWhenDisabled = false
+        adjustsImageWhenHighlighted = false
         update()
     }
 
     public override func update() {
-        setTitleColor(ColorName.darkBlue.color, for: .normal)
-        setTitleColor(ColorName.darkBlue50.color, for: .highlighted)
-        setTitleColor(ColorName.darkBlue50.color, for: .disabled)
-
-        titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        layer.borderWidth = 0
-        layer.cornerRadius = 10
-        layer.shadowOpacity = 0
-        backgroundColor = ColorName.transparent.color
-        backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.transparent.color]
-        switch style {
-        case .bordered:
-            layer.borderColor = ColorName.darkBlue.color.cgColor
-            layer.borderWidth = 2
-        case .plain:
-            setTitleColor(ColorName.hold.color, for: .normal)
-            setTitleColor(ColorName.holdDark.color, for: .highlighted)
-            layer.cornerRadius = 0
-        case .filled:
-            setTitleColor(ColorName.snowwhite.color, for: .normal)
-            setTitleColor(ColorName.white.color, for: .highlighted)
-            setTitleColor(ColorName.white.color, for: .disabled)
-            backgroundColor = ColorName.hold.color
-            backgroundColorForState = [UIControl.State.normal.rawValue: ColorName.hold.color,
-                                       UIControl.State.highlighted.rawValue: ColorName.holdDark.color,
-                                       UIControl.State.disabled.rawValue: ColorName.hold50.color]
-            layer.shadowColor = ColorName.cardShadow.color.cgColor
-            layer.shadowOpacity = 0.59
-            layer.shadowOffset = CGSize(width: 1, height: 2)
-        }
+        setTitleColors(style.assets.colors)
+        setBackgroundImages(style.assets.images)
     }
 
-    public override var isHighlighted: Bool {
-        didSet {
-            updateBackground()
-        }
+    fileprivate func setTitleColors(_ colors: ColorSet) {
+        setTitleColor(colors.normal, for: .normal)
+        setTitleColor(colors.highlighted, for: .highlighted)
+        setTitleColor(colors.highlighted, for: [.highlighted, .selected])
+        setTitleColor(colors.disabled, for: .disabled)
     }
 
-    public override var isEnabled: Bool {
-        didSet {
-            updateBackground()
-        }
-    }
-
-    func updateBackground() {
-        if let color = backgroundColorForState[state.rawValue], backgroundColor != color {
-            backgroundColor = color
-        }
+    fileprivate func setBackgroundImages(_ images: ImageSet) {
+        setBackgroundImage(images.normal, for: .normal)
+        setBackgroundImage(images.highlighted, for: .highlighted)
+        setBackgroundImage(images.highlighted, for: [.highlighted, .selected])
+        setBackgroundImage(images.disabled, for: .disabled)
     }
 
 }
