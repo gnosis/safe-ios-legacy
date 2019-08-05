@@ -104,13 +104,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         DomainRegistry.syncService.stopSyncLoop()
     }
 
-    // TODO: cleanup all draft transactions on app restart.
     private func cleanUp() {
         DispatchQueue.global().async {
-            DomainRegistry.replaceExtensionService.cleanUpStaleTransactions()
-            DomainRegistry.connectExtensionService.cleanUpStaleTransactions()
-            DomainRegistry.disconnectExtensionService.cleanUpStaleTransactions()
-            DomainRegistry.replacePhraseService.cleanUpStaleTransactions()
+            DomainRegistry.transactionService.cleanUpStaleTransactions()
         }
     }
 

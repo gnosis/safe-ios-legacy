@@ -117,6 +117,15 @@ public class TransactionDomainService {
         }
     }
 
+    /// Remove temporary transactions from transaction repository.
+    public func cleanUpStaleTransactions() {
+        let cleanUpStatuses = [TransactionStatus.Code.draft, .signing]
+        let toDelete = DomainRegistry.transactionRepository.all().filter { cleanUpStatuses.contains($0.status) }
+        for tx in toDelete {
+            DomainRegistry.transactionRepository.remove(tx)
+        }
+    }
+
     private func timestamp(transaction: Transaction, from block: EthBlock) {
         transaction.timestampProcessed(at: block.timestamp).timestampUpdated(at: Date())
         DomainRegistry.transactionRepository.save(transaction)

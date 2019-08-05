@@ -298,16 +298,4 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         }
     }
 
-    private static var doNotCleanUpStatuses = [TransactionStatus.Code.rejected, .success, .failed, .pending]
-
-    open func cleanUpStaleTransactions() {
-        let toDelete = DomainRegistry.transactionRepository.all().filter {
-            $0.type == transactionType &&
-            !ReplaceBrowserExtensionDomainService.doNotCleanUpStatuses.contains($0.status)
-        }
-        for tx in toDelete {
-            DomainRegistry.transactionRepository.remove(tx)
-        }
-    }
-
 }

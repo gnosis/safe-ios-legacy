@@ -126,32 +126,6 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
         XCTAssertNil(mockMonitorRepo.find(id: tx.id))
     }
 
-    func test_whenCleansUp_thenRemovesAllNotSubmittedTransactions() {
-        // TODO: TransactionStatus.Code.allCases
-        let allStatuses = [TransactionStatus.Code.draft, .signing, .pending, .rejected, .failed, .success]
-        let doNotCleanUpStatuses = [TransactionStatus.Code.rejected, .success, .failed, .pending]
-        for status in allStatuses {
-            transactionRepo.save(createTransaction(status: status))
-        }
-        let otherTypeTx = Transaction(id: TransactionID(),
-                                      type: .replaceRecoveryPhrase,
-                                      accountID: tx.accountID)
-        transactionRepo.save(otherTypeTx)
-        let doNotCleanUpTransactions = transactionRepo.all().filter { doNotCleanUpStatuses.contains($0.status) } +
-            [otherTypeTx]
-
-        service.cleanUpStaleTransactions()
-
-        for tx in doNotCleanUpTransactions {
-            XCTAssertNotNil(transactionRepo.find(id: tx.id))
-        }
-    }
-
-    private func createTransaction(status: TransactionStatus.Code) -> Transaction {
-        let tx = transaction(from: service.createTransaction())!
-        tx.change(status: status)
-        return tx
-    }
 }
 
 class MockCommunicationDomainService: CommunicationDomainService {
