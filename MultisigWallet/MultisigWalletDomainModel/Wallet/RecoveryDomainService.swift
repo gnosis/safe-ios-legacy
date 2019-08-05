@@ -343,8 +343,8 @@ public class RecoveryDomainService: Assertable {
         // 1st transaction swapOwner(device), and 2nd transaction addOwner(authenticator) or swapOwner(authenticator).
         guard let tx = DomainRegistry.transactionRepository.find(id: transactionID),
             tx.type == .walletRecovery,
-            // check for operation instead of recipient == MultiSendContractAddress because it might change
-            // at some point (config chagne) and we won't remember all addresses that were used before.
+            // check for operation instead of recipient == MultiSendContractAddress because address might change
+            // at some point and we won't remember all addresses that were used before.
             tx.operation == .delegateCall,
             let recipient = tx.recipient,
             let data = tx.data else {
