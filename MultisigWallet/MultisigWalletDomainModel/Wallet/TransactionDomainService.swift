@@ -36,7 +36,6 @@ public class TransactionDomainService {
             .filter { tx in
                 tx.status != .draft &&
                 tx.status != .signing &&
-                tx.status != .discarded &&
                 tx.status != .rejected &&
                 tx.accountID.walletID == walletID
             }

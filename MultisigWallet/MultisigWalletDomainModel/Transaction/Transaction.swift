@@ -90,12 +90,6 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     // MARK: - Changing transaction's status
 
     @discardableResult
-    public func discard() -> Transaction {
-        state.discard(self)
-        return self
-    }
-
-    @discardableResult
     public func reset() -> Transaction {
         state.reset(self)
         return self

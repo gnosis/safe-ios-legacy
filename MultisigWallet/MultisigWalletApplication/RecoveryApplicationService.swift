@@ -93,8 +93,6 @@ public class RecoveryApplicationService {
             status = .failed
         case .success:
             status = .success
-        case .discarded:
-            status = .discarded
         }
         let type: TransactionData.TransactionType
         switch tx.type {

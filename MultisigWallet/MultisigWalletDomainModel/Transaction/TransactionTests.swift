@@ -43,14 +43,6 @@ class TransactionTests: XCTestCase {
         XCTAssertEqual(transaction.recipient, Address.testAccount3)
     }
 
-    func test_statusChangesFromDraftStatus() {
-        givenNewlyCreatedTransaction()
-        moveToSigningStatus()
-        transaction.discard()
-        transaction.reset()
-        transaction.discard()
-    }
-
     func test_whenInDraft_thenCanAddSignature() {
         givenNewlyCreatedTransaction()
         transaction.add(signature: signature)
@@ -84,7 +76,6 @@ class TransactionTests: XCTestCase {
         moveToSigningStatus()
         transaction.set(hash: .test2)
         transaction.proceed()
-        transaction.discard()
     }
 
     func test_timestampingAllowedInAnyButDiscardedState() {
@@ -99,29 +90,6 @@ class TransactionTests: XCTestCase {
         let actual = [transaction.createdDate, transaction.updatedDate, transaction.rejectedDate,
                       transaction.submittedDate, transaction.processedDate].compactMap { $0 }
         XCTAssertEqual(actual, dates)
-    }
-
-    func test_whenGoesFromDiscardedBackToDraft_thenResetsData() {
-        givenSigningTransaction()
-        transaction
-            .timestampCreated(at: Date())
-            .set(hash: .test1)
-            .timestampUpdated(at: Date())
-            .add(signature: signature)
-            .proceed()
-            .timestampSubmitted(at: Date())
-            .succeed()
-            .timestampProcessed(at: Date())
-            .timestampRejected(at: Date())
-            .discard()
-        transaction.reset()
-        XCTAssertNil(transaction.transactionHash)
-        XCTAssertNil(transaction.submittedDate)
-        XCTAssertNil(transaction.processedDate)
-        XCTAssertNil(transaction.createdDate)
-        XCTAssertNil(transaction.updatedDate)
-        XCTAssertNil(transaction.rejectedDate)
-        XCTAssertTrue(transaction.signatures.isEmpty)
     }
 
     func test_whenTokenAmountIsNonEth_thenEthToAndValueAreCorrect() {

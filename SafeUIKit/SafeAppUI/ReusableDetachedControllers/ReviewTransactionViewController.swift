@@ -251,7 +251,7 @@ public class ReviewTransactionViewController: UITableViewController {
             didConfirm()
         case .rejected:
             didReject()
-        case .success, .pending, .failed, .discarded:
+        case .success, .pending, .failed:
             didSubmit()
             delegate.reviewTransactionViewControllerDidFinishReview(self)
         default: break

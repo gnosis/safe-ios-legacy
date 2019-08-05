@@ -133,13 +133,12 @@ class DBTransactionRepositoryTests: XCTestCase {
     func test_findAll() {
         let txDraft = self.txDraft()
         let txSigning = self.txSigning()
-        let txDiscarded = testTransaction().discard()
         let txPending = self.txPending()
         let txRejected = self.txSigning().reject()
         let txSuccess = self.txSuccess()
         let txFailed = self.txPending().fail()
 
-        let txs = [txDraft, txSigning, txDiscarded, txPending, txRejected, txSuccess, txFailed]
+        let txs = [txDraft, txSigning, txPending, txRejected, txSuccess, txFailed]
         txs.forEach { repo.save($0) }
 
         let found = repo.all()

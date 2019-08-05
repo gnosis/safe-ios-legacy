@@ -42,7 +42,7 @@ class TransactionDomainServiceTests: XCTestCase {
     }
 
     func test_whenStatusIsNotDraft_thenDoesNotRemovesTransaction() {
-        tx.discard()
+        tx = Transaction.rejected()
         repo.save(tx)
         service.removeDraftTransaction(tx.id)
         XCTAssertNotNil(repo.find(id: tx.id))
@@ -74,7 +74,7 @@ class TransactionDomainServiceTests: XCTestCase {
     }
 
     func test_whenCertainStatus_thenIgnores() {
-        let stored = [Transaction.pending(), .draft(), .discarded(), .signing()]
+        let stored = [Transaction.pending(), .draft(), .signing()]
         save(stored)
         XCTAssertEqual(service.allTransactions(), [stored[0]])
     }
@@ -254,10 +254,6 @@ extension Transaction {
             .change(nonce: "1")
             .change(hash: Data())
             .change(operation: .call)
-    }
-
-    static func discarded() -> Transaction {
-        return bare().discard()
     }
 
     static func bare() -> Transaction {

@@ -23,9 +23,6 @@ public class TransactionStatus: Assertable {
         case failed = 4
         /// Transaction is successful when it is processed and added to the blockchain
         case success = 5
-        /// Discarded transaction should not be shown to the user, but it is still present in the transactions list.
-        /// Transaction may become discarded from any other status when user decides to archive the transaction.
-        case discarded = 6
     }
 
     var code: TransactionStatus.Code { return .draft }
@@ -35,19 +32,13 @@ public class TransactionStatus: Assertable {
 
     static func status(_ code: TransactionStatus.Code) -> TransactionStatus {
         switch code {
-        case .discarded: return DiscardedTransactionStatus()
         case .draft: return DraftTransactionStatus()
-        case .failed: return FailedTransactionStatus()
+        case .signing: return SigningTransactionStatus()
         case .pending: return PendingTransactionStatus()
         case .rejected: return RejectedTransactionStatus()
-        case .signing: return SigningTransactionStatus()
+        case .failed: return FailedTransactionStatus()
         case .success: return SuccessTransactionStatus()
         }
-    }
-
-    func discard(_ tx: Transaction) {
-        tx.timestampUpdated(at: Date()).change(status: .discarded)
-
     }
 
     func reset(_ tx: Transaction) {
@@ -157,18 +148,4 @@ class FailedTransactionStatus: TransactionStatus {
 
 class SuccessTransactionStatus: TransactionStatus {
     override var code: TransactionStatus.Code { return .success }
-}
-
-class DiscardedTransactionStatus: TransactionStatus {
-
-    override var code: TransactionStatus.Code { return .discarded }
-
-    override func discard(_ tx: Transaction) {
-        preconditionFailure("Illegal state transition: discard transaction from \(code)")
-    }
-
-    public override func reset(_ tx: Transaction) {
-        tx.resetParameters()
-        tx.change(status: .draft)
-    }
 }

@@ -84,6 +84,7 @@
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		551D76F2227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D76F1227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift */; };
 		551D770D227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D770C227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift */; };
+		55329FD122F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55329FD022F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift */; };
 		553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
@@ -365,6 +366,7 @@
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		551D76F1227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0002_AddFeeTokenToWallet.swift; sourceTree = "<group>"; };
 		551D770C227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0003_AddCanPayTransactionFeeToTokenListItem.swift; sourceTree = "<group>"; };
+		55329FD022F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0007_RemoveDiscardedTransactionState.swift; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F5203C3054009C9BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				0AD899F222845D33008AE325 /* M0004_AddColumnsToWallet.swift */,
 				0A3476BD22B131E100FEA7FC /* M0005_ChangeTransactionFeeColumnType.swift */,
 				0A34773322B3A22C00FEA7FC /* M0006_RemoveWalletIDFromTransactions.swift */,
+				55329FD022F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift */,
 				55B5DF97227C567D001A32F4 /* Migrations.swift */,
 			);
 			path = Migrations;
@@ -1194,6 +1197,7 @@
 				55B5DF98227C567D001A32F4 /* Migrations.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				0A364B40226886DB002E80B7 /* IdentityAccessConfigurator.swift in Sources */,
+				55329FD122F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift in Sources */,
 				0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */,
 				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,
 				551D76F2227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift in Sources */,

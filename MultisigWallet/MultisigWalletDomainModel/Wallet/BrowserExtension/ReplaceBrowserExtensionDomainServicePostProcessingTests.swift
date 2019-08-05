@@ -23,7 +23,7 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
     }
 
     func test_whenTxNotPorcessed_thenDoesNothing() throws {
-        let notProcessedStates = [TransactionStatus.Code.draft, .pending, .discarded, .rejected, .signing]
+        let notProcessedStates = [TransactionStatus.Code.draft, .signing, .pending, .rejected]
         for status in notProcessedStates {
             let oldOwner = wallet.owner(role: .browserExtension)!
             tx.change(status: status)
@@ -127,7 +127,8 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
     }
 
     func test_whenCleansUp_thenRemovesAllNotSubmittedTransactions() {
-        let allStatuses = [TransactionStatus.Code.draft, .discarded, .signing, .rejected, .pending, .success, .failed]
+        // TODO: TransactionStatus.Code.allCases
+        let allStatuses = [TransactionStatus.Code.draft, .signing, .pending, .rejected, .failed, .success]
         let doNotCleanUpStatuses = [TransactionStatus.Code.rejected, .success, .failed, .pending]
         for status in allStatuses {
             transactionRepo.save(createTransaction(status: status))

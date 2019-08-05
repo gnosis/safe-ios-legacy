@@ -58,9 +58,10 @@ class TransactionDetailsViewControllerTests: XCTestCase {
     }
 
     func test_whenStatusChanging_thenStatusParameterStatusChanges() {
-        let txStatuses = [TransactionData.Status.rejected, .failed, .success, .pending, .discarded,
+        // TODO: use allCases
+        let txStatuses = [TransactionData.Status.rejected, .failed, .success, .pending,
                           .readyToSubmit, .waitingForConfirmation]
-        let viewStatuses = [TransactionStatusParameter.rejected, .failed, .success, .pending, .pending,
+        let viewStatuses = [TransactionStatusParameter.rejected, .failed, .success, .pending,
                             .pending, .pending]
         zip(txStatuses, viewStatuses).forEach { txStatus, viewStatus in
             XCTAssertEqual(controller.statusViewStatus(from: txStatus), viewStatus)

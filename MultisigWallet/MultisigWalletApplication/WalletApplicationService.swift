@@ -601,7 +601,6 @@ public class WalletApplicationService: Assertable {
         case .pending: return .pending
         case .failed: return .failed
         case .success: return .success
-        case .discarded: return .discarded
         case .draft: return defaultStatus
         }
     }
