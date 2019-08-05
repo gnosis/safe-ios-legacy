@@ -144,6 +144,10 @@ public class RecoveryApplicationService {
         DomainRegistry.recoveryService.cancelRecovery()
     }
 
+    public func isRecoveryTransactionConnectsAuthenticator(_ id: String) -> Bool {
+        return DomainRegistry.recoveryService.isTransactionConnectsAuthenticator(TransactionID(id))
+    }
+
     public func resumeRecovery(subscriber: EventSubscriber,
                                onError errorHandler: @escaping (Error) -> Void) {
         withEnvironment(for: subscriber, errorHandler: errorHandler) {

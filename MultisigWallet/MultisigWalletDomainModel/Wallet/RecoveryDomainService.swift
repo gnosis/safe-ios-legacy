@@ -337,6 +337,30 @@ public class RecoveryDomainService: Assertable {
         DomainRegistry.walletRepository.save(wallet)
     }
 
+    public func isTransactionConnectsAuthenticator(_ transactionID: TransactionID) -> Bool {
+        // We only recognize those transactions that we have built, i.e. we assume that
+        // recovery transaction connects authenticator when it is a MultiSend (delegate call) transaction with
+        // 1st transaction swapOwner(device), and 2nd transaction addOwner(authenticator) or swapOwner(authenticator).
+        guard let tx = DomainRegistry.transactionRepository.find(id: transactionID),
+            tx.type == .walletRecovery,
+            // check for operation instead of recipient == MultiSendContractAddress because it might change
+            // at some point (config chagne) and we won't remember all addresses that were used before.
+            tx.operation == .delegateCall,
+            let recipient = tx.recipient,
+            let data = tx.data else {
+            return false
+        }
+        let multiSendProxy = MultiSendContractProxy(recipient)
+        guard let internalTransactions = multiSendProxy.decodeMultiSendArguments(from: data),
+            internalTransactions.count == 2 else {
+            return false
+        }
+        let authenticatorTransaction = internalTransactions[1]
+        let ownerProxy = SafeOwnerManagerContractProxy(authenticatorTransaction.to)
+        return ownerProxy.decodeAddOwnerArguments(from: authenticatorTransaction.data) != nil ||
+            ownerProxy.decodeSwapOwnerArguments(from: authenticatorTransaction.data) != nil
+    }
+
 }
 
 public class WalletAddressChanged: DomainEvent {}

@@ -64,6 +64,8 @@ public class TransactionDetailsViewController: UIViewController {
                 .replacingOccurrences(of: "\n", with: " ")
             static let detail = LocalizedString("layout_recovered_safe_info_description",
                                                 comment: "Detail for the header in review screen")
+            static let detailWithAuthenticator = LocalizedString("layout_recovered_authenticator_safe_info_description",
+                                                                 comment: "Recovery with authenticator")
         }
     }
     @IBOutlet weak var separatorLineView: HorizontalSeparatorView!
@@ -168,7 +170,10 @@ public class TransactionDetailsViewController: UIViewController {
             settingsHeaderView.isHidden = false
         case .walletRecovery:
             settingsHeaderView.titleText = Strings.WalletRecovery.title
-            settingsHeaderView.detailText = Strings.WalletRecovery.detail
+            settingsHeaderView.detailText =
+                ApplicationServiceRegistry.recoveryService.isRecoveryTransactionConnectsAuthenticator(transactionID) ?
+                    Strings.WalletRecovery.detailWithAuthenticator :
+                Strings.WalletRecovery.detail
             settingsHeaderView.fromAddress = transaction.sender
             transferView.isHidden = true
             settingsHeaderView.isHidden = false
