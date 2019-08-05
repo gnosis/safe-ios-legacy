@@ -7,14 +7,25 @@ import MultisigWalletApplication
 
 class RecoverReviewViewController: RBEReviewTransactionViewController {
 
+    enum RecoveryStrings {
+        static let title = LocalizedString("recover_safe_title", comment: "Title")
+        static let header = LocalizedString("recover_existing_safe", comment: "Transaction name")
+        static let detailNoAuthenticator = LocalizedString("existing_safe_recovered",
+                                                           comment: "Recovery without authenticator.")
+        static let detailWithAuthenticator = LocalizedString("existing_safe_recovered_authenticator",
+                                                             comment: "Detail text for recovery with Authenticator.")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = LocalizedString("recover_safe_title", comment: "Title")
+        title = RecoveryStrings.title
     }
 
     override func createCells() {
-        titleString = LocalizedString("recover_existing_safe", comment: "Transaction name")
-        detailString = LocalizedString("existing_safe_recovered", comment: "Transaction details")
+        titleString = RecoveryStrings.header
+        detailString = ApplicationServiceRegistry.recoveryService.isRecoveryTransactionConnectsAuthenticator(tx.id) ?
+            RecoveryStrings.detailWithAuthenticator :
+            RecoveryStrings.detailNoAuthenticator
         super.createCells()
     }
 
