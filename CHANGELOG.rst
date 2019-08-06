@@ -8,6 +8,22 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.5.0`_ - 2019-08-06
+======================
+Changed
+--------
+- Rebranding - updated colors and texts
+- Updated README.md with notes on how to build the project
+- Fixed bug with refresh of push tokens
+
+Added
+-------
+- Auto-cleanup of stale (invisible) transactions
+- Get In Touch screen from Menu
+- Incoming transactions containing data or delegateCalls are blocked now
+- "Rate app" in the Menu
+- Using new endpoint to check if the safe was already created
+
 `1.4.0`_ - 2019-07-23
 ======================
 Changed
@@ -345,6 +361,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.5.0: https://github.com/gnosis/safe-ios/tree/1.5.0
 .. _1.4.0: https://github.com/gnosis/safe-ios/tree/1.4.0
 .. _1.3.1: https://github.com/gnosis/safe-ios/tree/1.3.1
 .. _1.3.0: https://github.com/gnosis/safe-ios/tree/1.3.0
