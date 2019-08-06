@@ -77,7 +77,7 @@ public struct TransactionData: Equatable {
                                               recipient: "",
                                               amountTokenData: .empty(),
                                               feeTokenData: .empty(),
-                                              status: .discarded,
+                                              status: .rejected,
                                               type: .incoming,
                                               created: nil,
                                               updated: nil,
@@ -118,7 +118,6 @@ public struct TransactionData: Equatable {
         case pending
         case failed
         case success
-        case discarded
     }
 
 }

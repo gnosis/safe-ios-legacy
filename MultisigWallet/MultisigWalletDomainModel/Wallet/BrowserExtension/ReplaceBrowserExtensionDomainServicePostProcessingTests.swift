@@ -23,7 +23,7 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
     }
 
     func test_whenTxNotPorcessed_thenDoesNothing() throws {
-        let notProcessedStates = [TransactionStatus.Code.draft, .pending, .discarded, .rejected, .signing]
+        let notProcessedStates = [TransactionStatus.Code.draft, .signing, .pending, .rejected]
         for status in notProcessedStates {
             let oldOwner = wallet.owner(role: .browserExtension)!
             tx.change(status: status)
@@ -126,31 +126,6 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
         XCTAssertNil(mockMonitorRepo.find(id: tx.id))
     }
 
-    func test_whenCleansUp_thenRemovesAllNotSubmittedTransactions() {
-        let allStatuses = [TransactionStatus.Code.draft, .discarded, .signing, .rejected, .pending, .success, .failed]
-        let doNotCleanUpStatuses = [TransactionStatus.Code.rejected, .success, .failed, .pending]
-        for status in allStatuses {
-            transactionRepo.save(createTransaction(status: status))
-        }
-        let otherTypeTx = Transaction(id: TransactionID(),
-                                      type: .replaceRecoveryPhrase,
-                                      accountID: tx.accountID)
-        transactionRepo.save(otherTypeTx)
-        let doNotCleanUpTransactions = transactionRepo.all().filter { doNotCleanUpStatuses.contains($0.status) } +
-            [otherTypeTx]
-
-        service.cleanUpStaleTransactions()
-
-        for tx in doNotCleanUpTransactions {
-            XCTAssertNotNil(transactionRepo.find(id: tx.id))
-        }
-    }
-
-    private func createTransaction(status: TransactionStatus.Code) -> Transaction {
-        let tx = transaction(from: service.createTransaction())!
-        tx.change(status: status)
-        return tx
-    }
 }
 
 class MockCommunicationDomainService: CommunicationDomainService {

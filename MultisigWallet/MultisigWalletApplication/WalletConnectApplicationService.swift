@@ -17,7 +17,7 @@ public class WalletConnectApplicationService {
 
     // TODO: move to domain service
     let chainId: Int
-    let transactionsRepository = WCPendingTransactionsRepository()
+    let pendingTransactionsRepository = WCPendingTransactionsRepository()
 
     private let onboardingKey = "io.gnosis.safe.MultisigWalletApplication.isWalletConnectOnboardingDone"
 
@@ -29,6 +29,7 @@ public class WalletConnectApplicationService {
     private var sessionRepo: WalletConnectSessionRepository { return DomainRegistry.walletConnectSessionRepository }
     private var ethereumNodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
     private var appSettingsRepository: AppSettingsRepository { return DomainRegistry.appSettingsRepository }
+    private var transactionsRepository: TransactionRepository { return DomainRegistry.transactionRepository }
 
     private enum Strings {
         static let safeDescription = LocalizedString("ios_app_slogan", comment: "App slogan")
@@ -78,7 +79,7 @@ public class WalletConnectApplicationService {
     }
 
     public func popPendingTransactions() -> [WCPendingTransaction] {
-        return transactionsRepository.popAll()
+        return pendingTransactionsRepository.popAll()
     }
 
     // MARK: Getting Started
@@ -135,9 +136,16 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
         guard let wcSession = sessionRepo.find(url: request.url) else { return }
         let wallet = walletRepository.selectedWallet()!
         let txID = walletService.createDraftTransaction(in: wallet, sendTransactionData: request)
+        guard let tx = transactionsRepository.find(id: txID), !tx.isDangerous() else {
+            let error = NSError(domain: "io.gnosis.safe",
+                                code: -501,
+                                userInfo: [NSLocalizedDescriptionKey: "Attempt to perform a restricted transaction."])
+            completion(.failure(error))
+            return
+        }
         let sessionData = WCSessionData(wcSession: wcSession)
         let transaction = WCPendingTransaction(transactionID: txID, sessionData: sessionData, completion: completion)
-        transactionsRepository.add(transaction)
+        pendingTransactionsRepository.add(transaction)
         eventPublisher.publish(SendTransactionRequested())
     }
 

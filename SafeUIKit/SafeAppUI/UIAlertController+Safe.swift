@@ -103,7 +103,14 @@ extension UIAlertController {
     static func failedToConnectWCUrl() -> UIAlertController {
         let alert = create(title: LocalizedString("failed_to_connect", comment: "Failed to connect."),
                            message: LocalizedString("please_try_again_later", comment: "Please try again later."))
-        return alert.withCancelAction()
+        return alert.withCloseAction()
+    }
+
+    static func dangerousTransaction() -> UIAlertController {
+        let alert = create(title: LocalizedString("transaction_blocked", comment: "Transaction blocked."),
+            message: LocalizedString("detected_dangerous_incoming_transaction",
+                                     comment: "Detected dangerous incoming transaction."))
+        return alert.withCloseAction()
     }
 
 }

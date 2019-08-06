@@ -42,7 +42,7 @@ class TransactionDomainServiceTests: XCTestCase {
     }
 
     func test_whenStatusIsNotDraft_thenDoesNotRemovesTransaction() {
-        tx.discard()
+        tx = Transaction.rejected()
         repo.save(tx)
         service.removeDraftTransaction(tx.id)
         XCTAssertNotNil(repo.find(id: tx.id))
@@ -74,7 +74,7 @@ class TransactionDomainServiceTests: XCTestCase {
     }
 
     func test_whenCertainStatus_thenIgnores() {
-        let stored = [Transaction.pending(), .draft(), .discarded(), .signing()]
+        let stored = [Transaction.pending(), .draft(), .signing()]
         save(stored)
         XCTAssertEqual(service.allTransactions(), [stored[0]])
     }
@@ -209,6 +209,28 @@ class TransactionDomainServiceTests: XCTestCase {
         XCTAssertNotNil(tx.processedDate)
     }
 
+    func test_whenCleansUp_thenRemovesAllNotSubmittedTransactions() {
+        // TODO: TransactionStatus.Code.allCases
+        let allStatuses = [TransactionStatus.Code.draft, .signing, .pending, .rejected, .failed, .success]
+        let doNotCleanUpStatuses = [TransactionStatus.Code.pending, .rejected, .failed, .success]
+        for status in allStatuses {
+            repo.save(createTransaction(status: status))
+        }
+        let doNotCleanUpTransactions = repo.all().filter { doNotCleanUpStatuses.contains($0.status) }
+
+        service.cleanUpStaleTransactions()
+
+        for tx in doNotCleanUpTransactions {
+            XCTAssertNotNil(repo.find(id: tx.id))
+        }
+    }
+
+    private func createTransaction(status: TransactionStatus.Code) -> Transaction {
+        let tx = Transaction.draft()
+        tx.change(status: status)
+        return tx
+    }
+
 }
 
 extension TransactionReceipt {
@@ -254,10 +276,6 @@ extension Transaction {
             .change(nonce: "1")
             .change(hash: Data())
             .change(operation: .call)
-    }
-
-    static func discarded() -> Transaction {
-        return bare().discard()
     }
 
     static func bare() -> Transaction {

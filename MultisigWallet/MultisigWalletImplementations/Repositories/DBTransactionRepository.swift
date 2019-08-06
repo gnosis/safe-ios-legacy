@@ -226,8 +226,6 @@ LIMIT 1;
             transaction.proceed().proceed().fail()
         case .success:
             transaction.proceed().proceed().succeed()
-        case .discarded:
-            transaction.discard()
         }
 
         // because status changes will modify timestamps

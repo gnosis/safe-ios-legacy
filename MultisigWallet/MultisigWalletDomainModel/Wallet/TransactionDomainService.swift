@@ -36,7 +36,6 @@ public class TransactionDomainService {
             .filter { tx in
                 tx.status != .draft &&
                 tx.status != .signing &&
-                tx.status != .discarded &&
                 tx.status != .rejected &&
                 tx.accountID.walletID == walletID
             }
@@ -115,6 +114,15 @@ public class TransactionDomainService {
         }
         if hasUpdates {
             DomainRegistry.eventPublisher.publish(TransactionStatusUpdated())
+        }
+    }
+
+    /// Remove temporary transactions from transaction repository.
+    public func cleanUpStaleTransactions() {
+        let cleanUpStatuses = [TransactionStatus.Code.draft, .signing]
+        let toDelete = DomainRegistry.transactionRepository.all().filter { cleanUpStatuses.contains($0.status) }
+        for tx in toDelete {
+            DomainRegistry.transactionRepository.remove(tx)
         }
     }
 

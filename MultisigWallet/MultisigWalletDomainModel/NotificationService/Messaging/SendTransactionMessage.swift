@@ -14,6 +14,7 @@ public protocol SendTransactionRequiredData {
 
 }
 
+/// incoming from Authenticator
 public class SendTransactionMessage: Message {
 
     public let hash: Data

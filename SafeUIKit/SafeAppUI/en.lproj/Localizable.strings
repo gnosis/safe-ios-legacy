@@ -98,6 +98,9 @@
 /* Current password */
 "current_password" = "Current password";
 
+/* Detected dangerous incoming transaction. */
+"detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
+
 /* Disconnect */
 "disconnect" = "Disconnect";
 
@@ -623,6 +626,9 @@
 
 /* Onboarding 3 description */
 "to_connect_to_dapp" = "To connect your Safe to the desktop Dapp, scan its QR code.";
+
+/* Transaction blocked. */
+"transaction_blocked" = "Transaction blocked.";
 
 /* Title for the transaction details screen */
 "transaction_details" = "Transaction Details";

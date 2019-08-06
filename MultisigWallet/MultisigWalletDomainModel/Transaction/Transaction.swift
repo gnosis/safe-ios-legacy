@@ -80,13 +80,14 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         self.timestampUpdated(at: Date())
     }
 
-    // MARK: - Changing transaction's status
+    // MARK: - Validating transaction
 
-    @discardableResult
-    public func discard() -> Transaction {
-        state.discard(self)
-        return self
+    public func isDangerous() -> Bool {
+        return ![nil, .call].contains(operation) ||
+            (recipient == DomainRegistry.walletRepository.selectedWallet()?.address && !(data?.isEmpty ?? true))
     }
+
+    // MARK: - Changing transaction's status
 
     @discardableResult
     public func reset() -> Transaction {

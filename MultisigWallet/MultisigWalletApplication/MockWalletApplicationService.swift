@@ -356,7 +356,8 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     public var receive_input: [AnyHashable: Any]?
     public var receive_output: String?
-    public override func receive(message: [AnyHashable: Any]) -> String? {
+    public override func receive(message: [AnyHashable: Any]) throws -> String? {
+        if shouldThrow { throw TestLoggableError.error }
         receive_input = message
         return receive_output
     }
