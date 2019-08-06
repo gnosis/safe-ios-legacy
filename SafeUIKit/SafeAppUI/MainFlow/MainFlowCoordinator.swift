@@ -137,11 +137,14 @@ open class MainFlowCoordinator: FlowCoordinator {
                         self.handleIncomingBETransaction(transactionID)
                     }
                 }
-            } catch { // dangerous transaction
+            } catch WalletApplicationServiceError.validationFailed { // dangerous transaction
                 DispatchQueue.main.async {
                     let vc = self.navigationController.topViewController
                     vc?.present(UIAlertController.dangerousTransaction(), animated: true, completion: nil)
                 }
+            } catch {
+                MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Unexpected receive message error",
+                                                                                  error: error)
             }
         }
     }

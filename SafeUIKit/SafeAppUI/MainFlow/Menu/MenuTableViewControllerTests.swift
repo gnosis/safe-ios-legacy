@@ -20,6 +20,7 @@ class MenuTableViewControllerTests: XCTestCase {
     let connectExtensionService = MockConnectExtensionApplicationService()
     let disconnectExtensionService = MockDisconnectBrowserExtensionApplicationService()
     let replacePhraseService = MockReplaceRecoveryPhraseApplicationService()
+    let walletConnectService = WalletConnectApplicationService(chainId: 4)
 
     override func setUp() {
         super.setUp()
@@ -33,6 +34,7 @@ class MenuTableViewControllerTests: XCTestCase {
         ApplicationServiceRegistry.put(service: replacePhraseService,
                                        for: ReplaceRecoveryPhraseApplicationService.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
+        ApplicationServiceRegistry.put(service: walletConnectService, for: WalletConnectApplicationService.self)
         walletService.createReadyToUseWallet()
         controller.delegate = delegate
         createWindow(controller)
@@ -47,9 +49,8 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: securitySection), 6)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: portfolioSection), 1)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 4)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 6)
     }
-
 
     func test_whenCreated_thenRowHeightsAreProvided() {
         let menuCommandHeigt = MenuCommand().height
@@ -64,7 +65,7 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(cell(row: 0, section: securitySection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 0, section: portfolioSection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 0, section: supportSection) is BasicTableViewCell)
-        XCTAssertTrue(cell(row: 3, section: supportSection) is AppVersionTableViewCell)
+        XCTAssertTrue(cell(row: 5, section: supportSection) is AppVersionTableViewCell)
     }
 
     func test_whenConfiguredSelectedSafeRow_thenAllIsThere() {
@@ -113,18 +114,28 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.selectedCommand is WalletConnectMenuCommand)
     }
 
-    func test_whenSelectingTerms_thenCallsCommand() {
+    func test_whenSelectingGetInTouch_thenCallsCommand() {
         selectCell(row: 0, section: supportSection)
+        XCTAssertTrue(delegate.selectedCommand is GetInTouchCommand)
+    }
+
+    func test_whenSelectingTerms_thenCallsCommand() {
+        selectCell(row: 1, section: supportSection)
         XCTAssertTrue(delegate.selectedCommand is TermsCommand)
     }
 
     func test_whenSelectingPrivacyPolicy_thenCallsCommand() {
-        selectCell(row: 1, section: supportSection)
+        selectCell(row: 2, section: supportSection)
         XCTAssertTrue(delegate.selectedCommand is PrivacyPolicyCommand)
     }
 
+    func test_whenSelectingRateApp_thenCallsCommand() {
+        selectCell(row: 3, section: supportSection)
+        XCTAssertTrue(delegate.selectedCommand is RateAppCommand)
+    }
+
     func test_whenSelectingLicenses_thenCallsCommand() {
-        selectCell(row: 2, section: supportSection)
+        selectCell(row: 4, section: supportSection)
         XCTAssertTrue(delegate.selectedCommand is LicensesCommand)
     }
 

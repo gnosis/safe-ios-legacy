@@ -108,8 +108,14 @@ extension UIAlertController {
 
     static func dangerousTransaction() -> UIAlertController {
         let alert = create(title: LocalizedString("transaction_blocked", comment: "Transaction blocked."),
-            message: LocalizedString("detected_dangerous_incoming_transaction",
-                                     comment: "Detected dangerous incoming transaction."))
+                           message: LocalizedString("detected_dangerous_incoming_transaction",
+                                                    comment: "Detected dangerous incoming transaction."))
+        return alert.withCloseAction()
+    }
+
+    static func mailClientIsNotConfigured() -> UIAlertController {
+        let alert = create(title: "E-mail",
+                           message: ApplicationServiceRegistry.walletService.configuration.supportMail)
         return alert.withCloseAction()
     }
 

@@ -14,13 +14,7 @@ final class AppVersionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        let format = LocalizedString("app_version", comment: "App Version")
-        var appVersion = "unknown"
-        if let version = SystemInfo.marketingVersion, let build = SystemInfo.buildNumber,
-            let label = SystemInfo.bundleLabel {
-            appVersion = "\(version) (\(build)) \(label)"
-        }
-        appVersionLabel.text = String(format: format, appVersion)
+        appVersionLabel.text = SystemInfo.appVersionText
     }
 
 }

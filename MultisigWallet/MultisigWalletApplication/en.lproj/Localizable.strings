@@ -1,3 +1,6 @@
+/* App Version */
+"app_version" = "App version: %@";
+
 /* Connecting... */
 "connecting" = "Connecting...";
 

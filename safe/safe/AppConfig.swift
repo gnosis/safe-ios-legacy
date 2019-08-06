@@ -18,6 +18,9 @@ struct AppConfig: Codable {
     var termsOfUseURL: URL
     var privacyPolicyURL: URL
     var licensesURL: URL
+    var telegramURL: URL
+    var gitterURL: URL
+    var supportMail: String
     var safeContractMetadata: SafeContractMetadata
     var featureFlags: [String: Bool]?
     var walletConnectChainId: Int
@@ -32,6 +35,9 @@ struct AppConfig: Codable {
         case termsOfUseURL = "terms_of_use_url"
         case privacyPolicyURL = "privacy_policy_url"
         case licensesURL = "licenses_url"
+        case telegramURL = "telegram_url"
+        case gitterURL = "gitter_url"
+        case supportMail = "support_mail"
         case featureFlags = "feature_flags"
         case safeContractMetadata = "safe_contract_metadata"
         case walletConnectChainId = "wallet_connect_chain_id"
@@ -81,7 +87,10 @@ extension AppConfig {
                                                      chromeExtensionURL: chromeExtensionURL,
                                                      privacyPolicyURL: privacyPolicyURL,
                                                      termsOfUseURL: termsOfUseURL,
-                                                     licensesURL: licensesURL)
+                                                     licensesURL: licensesURL,
+                                                     telegramURL: telegramURL,
+                                                     gitterURL: gitterURL,
+                                                     supportMail: supportMail)
     }
 
 }

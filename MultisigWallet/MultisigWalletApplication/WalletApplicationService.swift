@@ -830,7 +830,8 @@ public class WalletApplicationService: Assertable {
         guard transaction.status == .draft else { return nil }
 
         update(transaction: transaction, with: message)
-        // We don't allow dangerous transactions initiated by browser extension.
+        // We don't allow dangerous transactions initiated by Authenticator.
+        // Malicious dapp could try to modifying safe owners or make a delegateCall.
         guard !transaction.isDangerous() else { throw WalletApplicationServiceError.validationFailed }
 
         let hash = DomainRegistry.encryptionService.hash(of: transaction)
