@@ -36,8 +36,10 @@ open class BasicTableViewCell: UITableViewCell {
     }
 
     open func commonInit() {
+        leftTextLabel.text = nil
         leftTextLabel.textColor = ColorName.darkBlue.color
         leftTextLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        rightTextLabel.text = nil
         rightTextLabel.textColor = ColorName.darkBlue.color
         rightTextLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         separatorView.backgroundColor = ColorName.white.color

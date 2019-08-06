@@ -40,4 +40,14 @@ public class SystemInfo {
         }
     }
 
+    public class var appVersionText: String {
+        let format = LocalizedString("app_version", comment: "App Version")
+        var appVersion = "unknown"
+        if let version = SystemInfo.marketingVersion, let build = SystemInfo.buildNumber,
+            let label = SystemInfo.bundleLabel {
+            appVersion = "\(version) (\(build)) \(label)"
+        }
+        return String(format: format, appVersion)
+    }
+
 }

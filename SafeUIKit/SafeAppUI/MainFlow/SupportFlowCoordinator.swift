@@ -6,10 +6,12 @@ import UIKit
 import SafariServices
 import MultisigWalletApplication
 import Common
+import MessageUI
 
 final class SupportFlowCoordinator: FlowCoordinator {
 
     private let rootCoordinator: FlowCoordinator
+    private lazy var mailComposeHandler = MailComposeHandler()
 
     init(from flowCoordinator: FlowCoordinator) {
         rootCoordinator = flowCoordinator
@@ -51,6 +53,46 @@ final class SupportFlowCoordinator: FlowCoordinator {
     func openLicenses() {
         Tracker.shared.track(event: MenuTrackingEvent.licenses)
         openInSafari(ApplicationServiceRegistry.walletService.configuration.licensesURL)
+    }
+
+    func openTelegram() {
+        Tracker.shared.track(event: MenuTrackingEvent.telegram)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.telegramURL)
+    }
+
+    func openGitter() {
+        Tracker.shared.track(event: MenuTrackingEvent.gitter)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.gitterURL)
+    }
+
+    func openMail() {
+        Tracker.shared.track(event: MenuTrackingEvent.email)
+        if MFMailComposeViewController.canSendMail() {
+            let composeVC = MFMailComposeViewController()
+            composeVC.mailComposeDelegate = mailComposeHandler
+            composeVC.setToRecipients([ApplicationServiceRegistry.walletService.configuration.supportMail])
+            // 08.08.2019: Product decision was not to localise this mail.
+            composeVC.setSubject("Feedback")
+            let message = """
+            \(SystemInfo.appVersionText)
+            Safe addresses: \(ApplicationServiceRegistry.walletService.selectedWalletAddress ?? "None")
+            Feedback:
+            """
+            composeVC.setMessageBody(message, isHTML: false)
+            rootCoordinator.presentModally(composeVC)
+        } else {
+            rootCoordinator.presentModally(UIAlertController.mailClientIsNotConfigured())
+        }
+    }
+
+}
+
+fileprivate class MailComposeHandler: NSObject, MFMailComposeViewControllerDelegate {
+
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
+        controller.dismiss(animated: true)
     }
 
 }

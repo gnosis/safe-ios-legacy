@@ -16,9 +16,6 @@
 /* Received */
 "amount_received" = "Amount received";
 
-/* App Version */
-"app_version" = "App version: %@";
-
 /* Assets tab title */
 "assets" = "Assets";
 
@@ -110,6 +107,9 @@
 /* Explanation text */
 "disconnecting_in_progress" = "Disconnecting the Authenticator is now in progress. The transaction has been submitted and should take a couple of minutes.";
 
+/* E-mail */
+"email" = "E-mail";
+
 /* No transactions yet */
 "empty_safe_transactions_message" = "No transactions yet";
 
@@ -161,11 +161,14 @@
 /* Explanation text. */
 "funds_did_not_meet_minimum" = "Funds received didn't meet the minimum amount.";
 
+/* Get In Touch */
+"get_in_touch" = "Get In Touch";
+
 /* Start button title */
 "get_started" = "Get started";
 
-/* Feedback and FAQ menu item */
-"give_feedback" = "Give Feedback";
+/* Gitter */
+"gitter" = "gitter";
 
 /* Guidelines */
 "guidelines" = "Guidelines";
@@ -480,7 +483,7 @@
    Privacy policy menu item */
 "privacy_policy" = "Privacy Policy";
 
-/* Rate App menu item */
+/* Rate App */
 "rate_app" = "Rate App";
 
 /* Receive Funds */
@@ -610,6 +613,9 @@
 
 /* Title for Manage Tokens Screen. */
 "tab_title_assets" = "Manage Tokens";
+
+/* Telegram */
+"telegram" = "Telegram";
 
 /* Terms menu item
    Terms of Use */

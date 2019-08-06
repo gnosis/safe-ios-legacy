@@ -313,6 +313,10 @@
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
+		55329FF622F9752900E40B06 /* RateAppCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55329FF522F9752900E40B06 /* RateAppCommand.swift */; };
+		55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55329FF722F9759100E40B06 /* GetInTouchCommand.swift */; };
+		55329FFA22F982E300E40B06 /* GetInTouchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55329FF922F982E300E40B06 /* GetInTouchTableViewController.swift */; };
+		5532A00E22F9B07A00E40B06 /* GetInTouchTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5532A00D22F9B07A00E40B06 /* GetInTouchTableViewControllerTests.swift */; };
 		5539C13721A55AF2006BF834 /* TransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDFE3D21A4745C00FDF2E8 /* TransactionHeaderCell.swift */; };
 		5539C13821A55AF5006BF834 /* TransactionHeaderCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */; };
 		5539C13A21A55C74006BF834 /* TransferViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13921A55C74006BF834 /* TransferViewCell.swift */; };
@@ -919,6 +923,10 @@
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
+		55329FF522F9752900E40B06 /* RateAppCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppCommand.swift; sourceTree = "<group>"; };
+		55329FF722F9759100E40B06 /* GetInTouchCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInTouchCommand.swift; sourceTree = "<group>"; };
+		55329FF922F982E300E40B06 /* GetInTouchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInTouchTableViewController.swift; sourceTree = "<group>"; };
+		5532A00D22F9B07A00E40B06 /* GetInTouchTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInTouchTableViewControllerTests.swift; sourceTree = "<group>"; };
 		5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		5539C13921A55C74006BF834 /* TransferViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCell.swift; sourceTree = "<group>"; };
 		5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCellTests.swift; sourceTree = "<group>"; };
@@ -1376,6 +1384,8 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				55329FF422F9751300E40B06 /* RateApp */,
+				55329FE522F9750800E40B06 /* GetInTouch */,
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
@@ -1898,6 +1908,24 @@
 				552DF5C9225C9976008D8AC8 /* CardView.swift */,
 			);
 			path = CardView;
+			sourceTree = "<group>";
+		};
+		55329FE522F9750800E40B06 /* GetInTouch */ = {
+			isa = PBXGroup;
+			children = (
+				55329FF722F9759100E40B06 /* GetInTouchCommand.swift */,
+				55329FF922F982E300E40B06 /* GetInTouchTableViewController.swift */,
+				5532A00D22F9B07A00E40B06 /* GetInTouchTableViewControllerTests.swift */,
+			);
+			path = GetInTouch;
+			sourceTree = "<group>";
+		};
+		55329FF422F9751300E40B06 /* RateApp */ = {
+			isa = PBXGroup;
+			children = (
+				55329FF522F9752900E40B06 /* RateAppCommand.swift */,
+			);
+			path = RateApp;
 			sourceTree = "<group>";
 		};
 		5541586621748C0200A3CEA4 /* AddressInput */ = {
@@ -2927,6 +2955,7 @@
 				0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */,
 				55CA308F2227DB0900E7AEA7 /* UIViewController+Tracking.swift in Sources */,
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
+				55329FF622F9752900E40B06 /* RateAppCommand.swift in Sources */,
 				0A2C0E182296F2E3008A30AC /* AddressDetailView.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */,
@@ -2949,6 +2978,7 @@
 				0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */,
 				55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
+				55329FFA22F982E300E40B06 /* GetInTouchTableViewController.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				5549B2F4228C268200F3B5B7 /* OwnerModificationFeeCalculation.swift in Sources */,
@@ -3003,6 +3033,7 @@
 				0A73C6F2227B3605002EEA32 /* DifferentTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
+				55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */,
 				0ACCA8C0221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift in Sources */,
 				0A334E3F209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift in Sources */,
 				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,
@@ -3079,6 +3110,7 @@
 				0A4EEA6D20D1112F005CDAC0 /* MenuTableViewControllerTests.swift in Sources */,
 				0AF8D55720D01A90001E8423 /* AssetViewViewControllerTests.swift in Sources */,
 				0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */,
+				5532A00E22F9B07A00E40B06 /* GetInTouchTableViewControllerTests.swift in Sources */,
 				0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */,
 				0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */,
 				55AA3C2F229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift in Sources */,

@@ -56,10 +56,6 @@ final class MenuTableViewController: UITableViewController {
         static let portfolio = LocalizedString("portfolio", comment: "Title for portfolio section.").uppercased()
         static let security = LocalizedString("security", comment: "Title for security section.").uppercased()
         static let support = LocalizedString("support", comment: "Title for support section.").uppercased()
-
-        // not used yet
-        static let feedback = LocalizedString("give_feedback", comment: "Feedback and FAQ menu item").capitalized
-        static let rateApp = LocalizedString("rate_app", comment: "Rate App menu item").capitalized
     }
 
     // MARK: - Commands
@@ -75,7 +71,7 @@ final class MenuTableViewController: UITableViewController {
     }
 
     var supportCommands: [MenuCommand] {
-        return [TermsCommand(), PrivacyPolicyCommand(), LicensesCommand()]
+        return [GetInTouchCommand(), TermsCommand(), PrivacyPolicyCommand(), RateAppCommand(), LicensesCommand()]
     }
 
     // MARK: - VC Lifecycle

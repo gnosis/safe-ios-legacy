@@ -53,6 +53,11 @@ enum Asset {
     static let connectIntroIcon = ImageAsset(name: "connect-intro-icon")
   }
   static let dappPlaceholder = ImageAsset(name: "dapp-placeholder")
+  enum GetInTouch {
+    static let gitter = ImageAsset(name: "gitter")
+    static let mail = ImageAsset(name: "mail")
+    static let telegram = ImageAsset(name: "telegram")
+  }
   enum MainScreenHeader {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
@@ -119,6 +124,9 @@ enum Asset {
     congratulations,
     ConnectBrowserExtension.connectIntroIcon,
     dappPlaceholder,
+    GetInTouch.gitter,
+    GetInTouch.mail,
+    GetInTouch.telegram,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
     navbarFilled,
