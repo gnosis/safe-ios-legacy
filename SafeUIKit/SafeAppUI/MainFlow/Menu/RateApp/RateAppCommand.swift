@@ -3,8 +3,6 @@
 //
 
 import Foundation
-import StoreKit
-import Common
 
 final class RateAppCommand: MenuCommand {
 
@@ -13,8 +11,7 @@ final class RateAppCommand: MenuCommand {
     }
 
     override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        Tracker.shared.track(event: MenuTrackingEvent.rateApp)
-        SKStoreReviewController.requestReview()
+        SupportFlowCoordinator(from: mainFlowCoordinator).openRateApp()
     }
 
 }

@@ -8,6 +8,7 @@ public struct WalletApplicationServiceConfiguration {
 
     public var transactionURLFormat: String
     public var chromeExtensionURL: URL
+    public var appStoreReviewUrl: URL
     public var privacyPolicyURL: URL
     public var termsOfUseURL: URL
     public var licensesURL: URL
@@ -17,6 +18,7 @@ public struct WalletApplicationServiceConfiguration {
 
     public static let `default` = WalletApplicationServiceConfiguration(transactionURLFormat: "%@",
                                                                         chromeExtensionURL: .example,
+                                                                        appStoreReviewUrl: .example,
                                                                         privacyPolicyURL: .example,
                                                                         termsOfUseURL: .example,
                                                                         licensesURL: .example,
@@ -26,6 +28,7 @@ public struct WalletApplicationServiceConfiguration {
 
     public init(transactionURLFormat: String,
                 chromeExtensionURL: URL,
+                appStoreReviewUrl: URL,
                 privacyPolicyURL: URL,
                 termsOfUseURL: URL,
                 licensesURL: URL,
@@ -34,6 +37,7 @@ public struct WalletApplicationServiceConfiguration {
                 supportMail: String) {
         self.transactionURLFormat = transactionURLFormat
         self.chromeExtensionURL = chromeExtensionURL
+        self.appStoreReviewUrl = appStoreReviewUrl
         self.privacyPolicyURL = privacyPolicyURL
         self.termsOfUseURL = termsOfUseURL
         self.licensesURL = licensesURL
