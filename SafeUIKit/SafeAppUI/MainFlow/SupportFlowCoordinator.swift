@@ -55,6 +55,11 @@ final class SupportFlowCoordinator: FlowCoordinator {
         openInSafari(ApplicationServiceRegistry.walletService.configuration.licensesURL)
     }
 
+    func openRateApp() {
+        Tracker.shared.track(event: MenuTrackingEvent.rateApp)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.appStoreReviewUrl)
+    }
+
     func openTelegram() {
         Tracker.shared.track(event: MenuTrackingEvent.telegram)
         openInSafari(ApplicationServiceRegistry.walletService.configuration.telegramURL)
