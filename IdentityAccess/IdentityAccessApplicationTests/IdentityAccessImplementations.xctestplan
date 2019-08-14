@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "E39FA111-4184-41F3-9759-E2ED81AE26E3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:IdentityAccess.xcodeproj",
+        "identifier" : "0A05948C23043B9100E71A60",
+        "name" : "IdentityAccessImplementationsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

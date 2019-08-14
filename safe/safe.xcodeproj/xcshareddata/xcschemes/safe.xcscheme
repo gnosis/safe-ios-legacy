@@ -88,22 +88,22 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A537BE0207CFADE00921FB9"
-            BuildableName = "libIdentityAccessApplication.a"
-            BlueprintName = "IdentityAccessApplication"
+            BuildableName = "libIdentityAccessApplicationLib.a"
+            BlueprintName = "IdentityAccessApplicationLib"
             ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A537A63207CE5BC00921FB9"
-            BuildableName = "libIdentityAccessDomainModel.a"
-            BlueprintName = "IdentityAccessDomainModel"
+            BuildableName = "libIdentityAccessDomainModelLib.a"
+            BlueprintName = "IdentityAccessDomainModelLib"
             ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A537ACC207CEDAE00921FB9"
-            BuildableName = "libIdentityAccessImplementations.a"
-            BlueprintName = "IdentityAccessImplementations"
+            BuildableName = "libIdentityAccessImplementationsLib.a"
+            BlueprintName = "IdentityAccessImplementationsLib"
             ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
          </BuildableReference>
          <BuildableReference
@@ -211,8 +211,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A537BFD207CFB9200921FB9"
-               BuildableName = "IdentityAccessApplicationTests.xctest"
-               BlueprintName = "IdentityAccessApplicationTests"
+               BuildableName = "IdentityAccessApplicationLibTests.xctest"
+               BlueprintName = "IdentityAccessApplicationLibTests"
                ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -221,8 +221,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A537AA6207CEA0100921FB9"
-               BuildableName = "IdentityAccessDomainModelTests.xctest"
-               BlueprintName = "IdentityAccessDomainModelTests"
+               BuildableName = "IdentityAccessDomainModelLibTests.xctest"
+               BlueprintName = "IdentityAccessDomainModelLibTests"
                ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -231,8 +231,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A537B2D207CF4B000921FB9"
-               BuildableName = "IdentityAccessImplementationsTests.xctest"
-               BlueprintName = "IdentityAccessImplementationsTests"
+               BuildableName = "IdentityAccessImplementationsLibTests.xctest"
+               BlueprintName = "IdentityAccessImplementationsLibTests"
                ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -250,7 +250,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A160BC120A0804500E064E1"
+               BlueprintIdentifier = "0A05933C230418E900E71A60"
                BuildableName = "DatabaseTests.xctest"
                BlueprintName = "DatabaseTests"
                ReferencedContainer = "container:../Common/Common.xcodeproj">
@@ -290,7 +290,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A8E3B9D20B419E000F002F6"
+               BlueprintIdentifier = "0A059362230418F200E71A60"
                BuildableName = "CommonImplementationsTests.xctest"
                BlueprintName = "CommonImplementationsTests"
                ReferencedContainer = "container:../Common/Common.xcodeproj">

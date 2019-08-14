@@ -7,12 +7,7 @@ import Foundation
 private class BundleMarker {}
 
 extension Bundle {
-    static let identityAccessImplementations: Bundle? = {
-        let thisBundle = Bundle(for: BundleMarker.self)
-        guard let resourcesURL = thisBundle.url(forResource: "IdentityAccessImplementationsResources",
-                                                withExtension: "bundle") else { return nil }
-        return Bundle(path: resourcesURL.path)
-    }()
+    static let identityAccessImplementations: Bundle? = Bundle(for: BundleMarker.self)
 }
 
 func LocalizedString(_ key: String, comment: String) -> String {

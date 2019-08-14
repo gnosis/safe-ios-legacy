@@ -3,4 +3,4 @@
 //
 
 #include "CommonConfig.xcconfig"
-OTHER_LDFLAGS = $(inherited) -lIdentityAccessDomainModel -lIdentityAccessApplication -lsqlite3 -lCommonImplementations
+OTHER_LDFLAGS = $(inherited) -framework "IdentityAccessDomainModel" -framework "IdentityAccessApplication" -lsqlite3 -framework "CommonImplementations"
