@@ -15,6 +15,7 @@ struct AppConfig: Codable {
     var notificationServiceURL: URL
     var transactionWebURLFormat: String
     var chromeExtensionURL: URL
+    var appStoreReviewUrl: URL
     var termsOfUseURL: URL
     var privacyPolicyURL: URL
     var licensesURL: URL
@@ -32,6 +33,7 @@ struct AppConfig: Codable {
         case notificationServiceURL = "notification_service_url"
         case transactionWebURLFormat = "transaction_web_url_format"
         case chromeExtensionURL = "chrome_extension_url"
+        case appStoreReviewUrl = "app_store_review_url"
         case termsOfUseURL = "terms_of_use_url"
         case privacyPolicyURL = "privacy_policy_url"
         case licensesURL = "licenses_url"
@@ -85,6 +87,7 @@ extension AppConfig {
     var walletApplicationServiceConfiguration: WalletApplicationServiceConfiguration {
         return WalletApplicationServiceConfiguration(transactionURLFormat: transactionWebURLFormat,
                                                      chromeExtensionURL: chromeExtensionURL,
+                                                     appStoreReviewUrl: appStoreReviewUrl,
                                                      privacyPolicyURL: privacyPolicyURL,
                                                      termsOfUseURL: termsOfUseURL,
                                                      licensesURL: licensesURL,
