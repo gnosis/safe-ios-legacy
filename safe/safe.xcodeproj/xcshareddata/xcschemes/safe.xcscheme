@@ -60,29 +60,29 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A3FADDA207B501F00F0D214"
-            BuildableName = "libCommon.a"
-            BlueprintName = "Common"
+            BuildableName = "libCommonLib.a"
+            BlueprintName = "CommonLib"
             ReferencedContainer = "container:../Common/Common.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A8E3B9120B419CC00F002F6"
-            BuildableName = "libCommonImplementations.a"
-            BlueprintName = "CommonImplementations"
+            BuildableName = "libCommonImplementationsLib.a"
+            BlueprintName = "CommonImplementationsLib"
             ReferencedContainer = "container:../Common/Common.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0AC1757F207B73A90016320A"
-            BuildableName = "libCommonTestSupport.a"
-            BlueprintName = "CommonTestSupport"
+            BuildableName = "libCommonTestSupportLib.a"
+            BlueprintName = "CommonTestSupportLib"
             ReferencedContainer = "container:../Common/Common.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A160B9120A07FE100E064E1"
-            BuildableName = "libDatabase.a"
-            BlueprintName = "Database"
+            BuildableName = "libDatabaseLib.a"
+            BlueprintName = "DatabaseLib"
             ReferencedContainer = "container:../Common/Common.xcodeproj">
          </BuildableReference>
          <BuildableReference
@@ -200,7 +200,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A3FADEA207B504F00F0D214"
+               BlueprintIdentifier = "0A0592EF230418D500E71A60"
                BuildableName = "CommonTests.xctest"
                BlueprintName = "CommonTests"
                ReferencedContainer = "container:../Common/Common.xcodeproj">
@@ -293,6 +293,16 @@
                BlueprintIdentifier = "0A8E3B9D20B419E000F002F6"
                BuildableName = "CommonImplementationsTests.xctest"
                BlueprintName = "CommonImplementationsTests"
+               ReferencedContainer = "container:../Common/Common.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A059316230418DF00E71A60"
+               BuildableName = "CommonTestSupportTests.xctest"
+               BlueprintName = "CommonTestSupportTests"
                ReferencedContainer = "container:../Common/Common.xcodeproj">
             </BuildableReference>
          </TestableReference>

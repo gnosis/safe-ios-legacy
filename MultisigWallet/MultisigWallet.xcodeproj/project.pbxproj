@@ -217,12 +217,12 @@
 		0AEF8AE020A08A61006A1265 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD420A08A3F006A1265 /* libCommonTestSupport.a */; };
 		0AEF8AE120A08A68006A1265 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD420A08A3F006A1265 /* libCommonTestSupport.a */; };
 		0AEF8AE220A08A6F006A1265 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD420A08A3F006A1265 /* libCommonTestSupport.a */; };
-		0AEF8AE320A08AAD006A1265 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* libCommon.a */; };
+		0AEF8AE320A08AAD006A1265 /* libCommonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* libCommonLib.a */; };
 		0AEF8AE420A08AB3006A1265 /* libMultisigWalletDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A7520A08878006A1265 /* libMultisigWalletDomainModel.a */; };
 		0AEF8AE520A08AB6006A1265 /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A9020A08899006A1265 /* libMultisigWalletApplication.a */; };
 		0AEF8AE620A08ABE006A1265 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AAA20A088B1006A1265 /* libMultisigWalletImplementations.a */; };
-		0AEF8AE720A08AC2006A1265 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* libCommon.a */; };
-		0AEF8AE820A08AC9006A1265 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* libCommon.a */; };
+		0AEF8AE720A08AC2006A1265 /* libCommonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* libCommonLib.a */; };
+		0AEF8AE820A08AC9006A1265 /* libCommonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* libCommonLib.a */; };
 		0AEF8AE920A08ACE006A1265 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AAA20A088B1006A1265 /* libMultisigWalletImplementations.a */; };
 		0AEF8AEC20A08BAE006A1265 /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A9020A08899006A1265 /* libMultisigWalletApplication.a */; };
 		551D76FE227C7BC9003B7910 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
@@ -293,6 +293,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A05941D23041AE400E71A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A0592E8230418D500E71A60;
+			remoteInfo = Common;
+		};
+		0A05941F23041AE400E71A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05930F230418DF00E71A60;
+			remoteInfo = CommonTestSupport;
+		};
+		0A05942123041AE400E71A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A059335230418E800E71A60;
+			remoteInfo = Database;
+		};
+		0A05942323041AE400E71A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05935B230418F200E71A60;
+			remoteInfo = CommonImplementations;
+		};
 		0A23C82620A1DEDB00C72483 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
@@ -766,7 +794,7 @@
 			files = (
 				0A23C82A20A1DEF400C72483 /* libDatabase.a in Frameworks */,
 				0AEF8AE920A08ACE006A1265 /* libMultisigWalletImplementations.a in Frameworks */,
-				0AEF8AE820A08AC9006A1265 /* libCommon.a in Frameworks */,
+				0AEF8AE820A08AC9006A1265 /* libCommonLib.a in Frameworks */,
 				0AEF8AE020A08A61006A1265 /* libCommonTestSupport.a in Frameworks */,
 				0AEF8A8620A08889006A1265 /* libMultisigWalletDomainModel.a in Frameworks */,
 			);
@@ -785,7 +813,7 @@
 			files = (
 				0A23C82920A1DEED00C72483 /* libDatabase.a in Frameworks */,
 				0AEF8AEC20A08BAE006A1265 /* libMultisigWalletApplication.a in Frameworks */,
-				0AEF8AE720A08AC2006A1265 /* libCommon.a in Frameworks */,
+				0AEF8AE720A08AC2006A1265 /* libCommonLib.a in Frameworks */,
 				0AEF8AE620A08ABE006A1265 /* libMultisigWalletImplementations.a in Frameworks */,
 				0AEF8AE120A08A68006A1265 /* libCommonTestSupport.a in Frameworks */,
 				0AEF8AA020A088A5006A1265 /* libMultisigWalletDomainModel.a in Frameworks */,
@@ -806,7 +834,7 @@
 				0A23C82820A1DEE200C72483 /* libDatabase.a in Frameworks */,
 				0AEF8AE520A08AB6006A1265 /* libMultisigWalletApplication.a in Frameworks */,
 				0AEF8AE420A08AB3006A1265 /* libMultisigWalletDomainModel.a in Frameworks */,
-				0AEF8AE320A08AAD006A1265 /* libCommon.a in Frameworks */,
+				0AEF8AE320A08AAD006A1265 /* libCommonLib.a in Frameworks */,
 				0AEF8AE220A08A6F006A1265 /* libCommonTestSupport.a in Frameworks */,
 				0AEF8ABA20A088C3006A1265 /* libMultisigWalletImplementations.a in Frameworks */,
 			);
@@ -1183,14 +1211,18 @@
 		0AEF8AC820A08A3F006A1265 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0AEF8AD020A08A3F006A1265 /* libCommon.a */,
-				0AEF8AD220A08A3F006A1265 /* CommonTests.xctest */,
+				0AEF8AD020A08A3F006A1265 /* libCommonLib.a */,
 				0AEF8AD420A08A3F006A1265 /* libCommonTestSupport.a */,
 				0AEF8AD620A08A3F006A1265 /* libDatabase.a */,
-				0AEF8AD820A08A3F006A1265 /* DatabaseTests.xctest */,
 				0A8E3C0120B4254F00F002F6 /* libCommonImplementations.a */,
-				0A8E3C0320B4254F00F002F6 /* CommonImplementationsTests.xctest */,
 				0AA5D49E20E113EF006F46CD /* CommonIntegration.app */,
+				0A05941E23041AE400E71A60 /* Common.framework */,
+				0AEF8AD220A08A3F006A1265 /* CommonTests.xctest */,
+				0A05942023041AE400E71A60 /* CommonTestSupport.framework */,
+				0A05942223041AE400E71A60 /* Database.framework */,
+				0AEF8AD820A08A3F006A1265 /* DatabaseTests.xctest */,
+				0A05942423041AE400E71A60 /* CommonImplementations.framework */,
+				0A8E3C0320B4254F00F002F6 /* CommonImplementationsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1563,10 +1595,38 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0A05941E23041AE400E71A60 /* Common.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Common.framework;
+			remoteRef = 0A05941D23041AE400E71A60 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A05942023041AE400E71A60 /* CommonTestSupport.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonTestSupport.framework;
+			remoteRef = 0A05941F23041AE400E71A60 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A05942223041AE400E71A60 /* Database.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Database.framework;
+			remoteRef = 0A05942123041AE400E71A60 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A05942423041AE400E71A60 /* CommonImplementations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonImplementations.framework;
+			remoteRef = 0A05942323041AE400E71A60 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0A8E3C0120B4254F00F002F6 /* libCommonImplementations.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libCommonImplementations.a;
+			path = libCommonImplementationsLib.a;
 			remoteRef = 0A8E3C0020B4254F00F002F6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1584,10 +1644,10 @@
 			remoteRef = 0AA5D49D20E113EF006F46CD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0AEF8AD020A08A3F006A1265 /* libCommon.a */ = {
+		0AEF8AD020A08A3F006A1265 /* libCommonLib.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libCommon.a;
+			path = libCommonLib.a;
 			remoteRef = 0AEF8ACF20A08A3F006A1265 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1773,7 +1833,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
