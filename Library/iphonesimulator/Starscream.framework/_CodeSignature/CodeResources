@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/Starscream-Swift.h</key>
 		<data>
-		3837mAf80jIfBt9+DK3tT3zWCfU=
+		TDHPN9mpJI2cN4Mx3KqN8WnZbYg=
 		</data>
 		<key>Headers/Starscream.h</key>
 		<data>
@@ -14,23 +14,39 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		wd05BcZCTK6lnajnrKRviwurlOY=
+		ycH/f7SVK6gHYD0y4Gh1SCJOT40=
+		</data>
+		<key>Modules/Starscream.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<data>
+		jmAgH31qk4ErN6NDd8xjTpzXM74=
+		</data>
+		<key>Modules/Starscream.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<data>
+		uuekGlBYwsadrfp5oCswlP66IVM=
 		</data>
 		<key>Modules/Starscream.swiftmodule/i386.swiftdoc</key>
 		<data>
-		rR/7lQnPcYtK8a3pXfUMFD32nqQ=
+		jmAgH31qk4ErN6NDd8xjTpzXM74=
 		</data>
 		<key>Modules/Starscream.swiftmodule/i386.swiftmodule</key>
 		<data>
-		M9+xaKr+nkvO71aWSCWAMp1xQ9M=
+		uuekGlBYwsadrfp5oCswlP66IVM=
+		</data>
+		<key>Modules/Starscream.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		AZF2IRv4S2U7sIe0xP5Ud3h9tuU=
+		</data>
+		<key>Modules/Starscream.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		vGTIqLwL03kmaBatHIJ9waylT/M=
 		</data>
 		<key>Modules/Starscream.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		kIYn00aR6zQ1KHApg3vslRVPKTM=
+		AZF2IRv4S2U7sIe0xP5Ud3h9tuU=
 		</data>
 		<key>Modules/Starscream.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		/h2ZCLyVnV+UTD8l2ELqg6qdKDw=
+		vGTIqLwL03kmaBatHIJ9waylT/M=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +59,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			3837mAf80jIfBt9+DK3tT3zWCfU=
+			TDHPN9mpJI2cN4Mx3KqN8WnZbYg=
 			</data>
 			<key>hash2</key>
 			<data>
-			k82EpS1wh9DcK3frqTFPszpln8PAtvN3gDeS4NdVEpA=
+			DWBIvgw6f7cfky0vRw7DIwNqW17OB4N9DmcE/8KX/8U=
 			</data>
 		</dict>
 		<key>Headers/Starscream.h</key>
@@ -61,48 +77,92 @@
 			uDB1F1BYBSS///5Kx3sW3b25gGjxudlItQDs2UvmKGE=
 			</data>
 		</dict>
+		<key>Modules/Starscream.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			jmAgH31qk4ErN6NDd8xjTpzXM74=
+			</data>
+			<key>hash2</key>
+			<data>
+			4WUpSD8mNn3dAnl5JxP/MAgMB5HLxMMvSGuKSkKpJE4=
+			</data>
+		</dict>
+		<key>Modules/Starscream.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			uuekGlBYwsadrfp5oCswlP66IVM=
+			</data>
+			<key>hash2</key>
+			<data>
+			FALtBDJjgHXkyQ6WR8cIftTA/kPgAjNuYRzKWEzNPJk=
+			</data>
+		</dict>
 		<key>Modules/Starscream.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rR/7lQnPcYtK8a3pXfUMFD32nqQ=
+			jmAgH31qk4ErN6NDd8xjTpzXM74=
 			</data>
 			<key>hash2</key>
 			<data>
-			9RA3KI16HAjP6s+XyD1wjjn8dPj0dvrKVWMz/AVmKCA=
+			4WUpSD8mNn3dAnl5JxP/MAgMB5HLxMMvSGuKSkKpJE4=
 			</data>
 		</dict>
 		<key>Modules/Starscream.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			M9+xaKr+nkvO71aWSCWAMp1xQ9M=
+			uuekGlBYwsadrfp5oCswlP66IVM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ba7oFTa7hnCk//tP34Y4l5x+wwqsOwmsT1QmKjGrqVI=
+			FALtBDJjgHXkyQ6WR8cIftTA/kPgAjNuYRzKWEzNPJk=
+			</data>
+		</dict>
+		<key>Modules/Starscream.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AZF2IRv4S2U7sIe0xP5Ud3h9tuU=
+			</data>
+			<key>hash2</key>
+			<data>
+			loRNM6mtkwLI6X5+YsjDFRse0o94zl+f+jvmExyxIKs=
+			</data>
+		</dict>
+		<key>Modules/Starscream.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			vGTIqLwL03kmaBatHIJ9waylT/M=
+			</data>
+			<key>hash2</key>
+			<data>
+			0JU2Q5jaBVbu9I7MzRD4eZuhreBDTcKP+1OsT8WGO6c=
 			</data>
 		</dict>
 		<key>Modules/Starscream.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kIYn00aR6zQ1KHApg3vslRVPKTM=
+			AZF2IRv4S2U7sIe0xP5Ud3h9tuU=
 			</data>
 			<key>hash2</key>
 			<data>
-			LDDgWRgW7LbgbtGoKaamDb7qtj0eOJUTCUa4K0rd8OM=
+			loRNM6mtkwLI6X5+YsjDFRse0o94zl+f+jvmExyxIKs=
 			</data>
 		</dict>
 		<key>Modules/Starscream.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			/h2ZCLyVnV+UTD8l2ELqg6qdKDw=
+			vGTIqLwL03kmaBatHIJ9waylT/M=
 			</data>
 			<key>hash2</key>
 			<data>
-			y7+XDNFYK7WuNjJ1eaxhsoMcJ5iDYYtcX4hgI2cSG6o=
+			0JU2Q5jaBVbu9I7MzRD4eZuhreBDTcKP+1OsT8WGO6c=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
