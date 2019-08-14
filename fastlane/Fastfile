@@ -55,6 +55,8 @@ platform :ios do
       ENV["MATCH_KEYCHAIN_NAME"] = KEYCHAIN_NAME
       ENV["MATCH_KEYCHAIN_PASSWORD"] = KEYCHAIN_PASSWORD
     end
+
+    xcversion(version: "~> 11.0")
   end
 
   after_all do
