@@ -28,11 +28,22 @@ final class ContractUpgradeHeaderView: UITableViewHeaderFooterView {
         titleLabel.text = Strings.title
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         titleLabel.textColor = ColorName.darkBlue.color
-        descriptionLabel.text = Strings.description
+        descriptionLabel.attributedText = NSAttributedString(string: Strings.description, style: SubtitleDetailStyle())
         descriptionLabel.font = UIFont.systemFont(ofSize: 17)
         descriptionLabel.textColor = ColorName.darkGrey.color
         updateButton.style = .plain
         updateButton.setTitle(Strings.upgradeNow, for: .normal)
+    }
+
+    class SubtitleDetailStyle: AttributedStringStyle {
+
+        override var fontSize: Double { return 17 }
+        override var fontWeight: UIFont.Weight { return .regular }
+        override var fontColor: UIColor { return ColorName.darkGrey.color }
+        override var alignment: NSTextAlignment { return .center }
+        override var minimumLineHeight: Double { return 22 }
+        override var maximumLineHeight: Double { return 22 }
+
     }
 
 }

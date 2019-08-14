@@ -100,11 +100,14 @@ public class CardViewController: UIViewController {
     class SubtitleStyle: CommonTextStyle {
 
         override var fontWeight: UIFont.Weight { return .semibold }
-        override var fontColor: UIColor { return ColorName.darkBlue.color }
 
     }
 
-    class SubtitleDetailStyle: CommonTextStyle {}
+    class SubtitleDetailStyle: CommonTextStyle {
+
+        override var fontColor: UIColor { return ColorName.darkGrey.color }
+
+    }
 
     class SubtitleDetailRightButtonStyle: CommonTextStyle {
 
