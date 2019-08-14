@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ContractUpgradeHeaderView" customModule="SafeAppUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="424"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3R5-CY-Kaw" customClass="CardView" customModule="SafeUIKit">
+                    <rect key="frame" x="16" y="60" width="468" height="314"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contractUpgrade" translatesAutoresizingMaskIntoConstraints="NO" id="urv-Bh-4xJ">
+                            <rect key="frame" x="189.5" y="25" width="89" height="89"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="89" id="MDq-Z9-vfF"/>
+                                <constraint firstAttribute="width" constant="89" id="erQ-uM-Jc9"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Security upgrade required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0G-2P-juT">
+                            <rect key="frame" x="129.5" y="131" width="209" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Cuh-6x-hAM">
+                            <rect key="frame" x="105" y="133.5" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="Kp8-Jt-CB4"/>
+                                <constraint firstAttribute="width" constant="16" id="yRa-y4-kx7"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade to the latest audited smart contract version and make your funds even more secure!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7if-X0-qAA">
+                            <rect key="frame" x="20" y="165" width="428" height="41"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAz-30-hJJ" customClass="StandardButton" customModule="SafeUIKit">
+                            <rect key="frame" x="179.5" y="241" width="109" height="38"/>
+                            <state key="normal" title="Upgrade now">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="update:" destination="-2" eventType="touchUpInside" id="PVU-I8-Ax5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="urv-Bh-4xJ" firstAttribute="top" secondItem="3R5-CY-Kaw" secondAttribute="top" constant="25" id="01q-yt-Uu6"/>
+                        <constraint firstItem="M0G-2P-juT" firstAttribute="top" secondItem="urv-Bh-4xJ" secondAttribute="bottom" constant="17" id="0k9-9A-Qu2"/>
+                        <constraint firstAttribute="trailing" secondItem="7if-X0-qAA" secondAttribute="trailing" constant="20" id="15x-3G-sxL"/>
+                        <constraint firstItem="urv-Bh-4xJ" firstAttribute="centerX" secondItem="3R5-CY-Kaw" secondAttribute="centerX" id="6qv-9m-9By"/>
+                        <constraint firstItem="7if-X0-qAA" firstAttribute="top" secondItem="M0G-2P-juT" secondAttribute="bottom" constant="13" id="8Bs-CG-kIj"/>
+                        <constraint firstItem="7if-X0-qAA" firstAttribute="leading" secondItem="3R5-CY-Kaw" secondAttribute="leading" constant="20" id="EcR-WY-eus"/>
+                        <constraint firstItem="M0G-2P-juT" firstAttribute="leading" secondItem="Cuh-6x-hAM" secondAttribute="trailing" constant="8.5" id="FOu-Wh-mcj"/>
+                        <constraint firstItem="M0G-2P-juT" firstAttribute="centerX" secondItem="urv-Bh-4xJ" secondAttribute="centerX" id="J57-ah-8SK"/>
+                        <constraint firstAttribute="bottom" secondItem="dAz-30-hJJ" secondAttribute="bottom" constant="35" id="XUJ-d4-PYK"/>
+                        <constraint firstItem="dAz-30-hJJ" firstAttribute="centerX" secondItem="7if-X0-qAA" secondAttribute="centerX" id="n9J-16-b3a"/>
+                        <constraint firstItem="Cuh-6x-hAM" firstAttribute="centerY" secondItem="M0G-2P-juT" secondAttribute="centerY" id="qN5-l0-9BD"/>
+                        <constraint firstItem="dAz-30-hJJ" firstAttribute="top" secondItem="7if-X0-qAA" secondAttribute="bottom" constant="35" id="qqi-jV-XIC"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="3R5-CY-Kaw" secondAttribute="bottom" constant="16" id="4pF-RQ-lhB"/>
+                <constraint firstItem="3R5-CY-Kaw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="OCO-x9-r1q"/>
+                <constraint firstItem="3R5-CY-Kaw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="SeQ-zO-Ctj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3R5-CY-Kaw" secondAttribute="trailing" constant="16" id="lWL-tC-s0j"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="7if-X0-qAA" id="fPu-T1-lHT"/>
+                <outlet property="titleLabel" destination="M0G-2P-juT" id="KHq-fL-lIt"/>
+                <outlet property="updateButton" destination="dAz-30-hJJ" id="56v-FU-EB9"/>
+            </connections>
+            <point key="canvasLocation" x="13.043478260869566" y="130.58035714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="contractUpgrade" width="89" height="89"/>
+        <image name="error-icon" width="16" height="16"/>
+    </resources>
+</document>

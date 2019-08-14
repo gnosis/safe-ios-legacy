@@ -52,7 +52,11 @@ enum Asset {
   enum ConnectBrowserExtension {
     static let connectIntroIcon = ImageAsset(name: "connect-intro-icon")
   }
+  enum ContractUpgrade {
+    static let contractUpgrade = ImageAsset(name: "contractUpgrade")
+  }
   static let dappPlaceholder = ImageAsset(name: "dapp-placeholder")
+  static let errorIcon = ImageAsset(name: "error-icon")
   enum GetInTouch {
     static let gitter = ImageAsset(name: "gitter")
     static let mail = ImageAsset(name: "mail")
@@ -67,13 +71,11 @@ enum Asset {
   enum Onboarding {
     static let browserExtensionQr = ImageAsset(name: "browser-extension-qr")
     static let creatingSafe = ImageAsset(name: "creatingSafe")
-    static let errorIcon = ImageAsset(name: "error-icon")
     static let noSafes = ImageAsset(name: "no-safes")
     static let safeInprogress = ImageAsset(name: "safeInprogress")
   }
   static let qrIcon = ImageAsset(name: "qrIcon")
   enum ReplaceBrowserExtension {
-    static let estimationErrorIcon = ImageAsset(name: "estimation-error-icon")
     static let inProgressIcon = ImageAsset(name: "in-progress-icon")
     static let introIcon = ImageAsset(name: "intro-icon")
     static let scrollBottomGradient = ImageAsset(name: "scroll-bottom-gradient")
@@ -123,7 +125,9 @@ enum Asset {
     checkmark,
     congratulations,
     ConnectBrowserExtension.connectIntroIcon,
+    ContractUpgrade.contractUpgrade,
     dappPlaceholder,
+    errorIcon,
     GetInTouch.gitter,
     GetInTouch.mail,
     GetInTouch.telegram,
@@ -133,11 +137,9 @@ enum Asset {
     noResults,
     Onboarding.browserExtensionQr,
     Onboarding.creatingSafe,
-    Onboarding.errorIcon,
     Onboarding.noSafes,
     Onboarding.safeInprogress,
     qrIcon,
-    ReplaceBrowserExtension.estimationErrorIcon,
     ReplaceBrowserExtension.inProgressIcon,
     ReplaceBrowserExtension.introIcon,
     ReplaceBrowserExtension.scrollBottomGradient,

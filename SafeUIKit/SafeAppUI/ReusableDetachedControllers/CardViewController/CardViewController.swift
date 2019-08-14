@@ -57,7 +57,7 @@ public class CardViewController: UIViewController {
         }
         let subtitleText = NSMutableAttributedString()
         if showError {
-            let attachment = NSTextAttachment(image: Asset.Onboarding.errorIcon.image,
+            let attachment = NSTextAttachment(image: Asset.errorIcon.image,
                                               bounds: CGRect(x: 0, y: -2, width: 16, height: 16))
             subtitleText.append(attachment)
             subtitleText.append(" ")
