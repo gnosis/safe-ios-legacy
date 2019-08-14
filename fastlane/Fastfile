@@ -161,6 +161,7 @@ platform :ios do
   lane :add_devices do
     register_devices(devices_file: "../gnosis-ios-certificates/devices.txt")
     run_match("adhoc", ADHOC_APP_ID, true) # force
+    run_match("development", DEV_APP_ID, true) # force
   end
 
   desc "Creates necessary App IDs." 
