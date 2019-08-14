@@ -482,6 +482,10 @@ class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
         return nil
     }
 
+    func latestContractVersion() -> String {
+        return ""        
+    }
+
     func EIP712SafeAppTxTypeHash(masterCopyAddress: mAddress) -> Data? {
         return nil
     }

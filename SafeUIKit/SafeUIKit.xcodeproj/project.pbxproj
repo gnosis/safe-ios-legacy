@@ -409,7 +409,6 @@
 		55CA308F2227DB0900E7AEA7 /* UIViewController+Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA308E2227DB0900E7AEA7 /* UIViewController+Tracking.swift */; };
 		55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A02229349700E7AEA7 /* OnboardingTrackingEvent.swift */; };
 		55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */; };
-		55CE9CEC230403ED00CB414D /* ContractUpgradeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CEB230403ED00CB414D /* ContractUpgradeCommand.swift */; };
 		55CE9CEE23040FB000CB414D /* ContractUpgradeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CED23040FB000CB414D /* ContractUpgradeHeaderView.swift */; };
 		55CE9CF0230410BB00CB414D /* ContractUpgradeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
@@ -1014,7 +1013,6 @@
 		55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTrackingEvents.swift; sourceTree = "<group>"; };
 		55CDFE3D21A4745C00FDF2E8 /* TransactionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderCell.swift; sourceTree = "<group>"; };
 		55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderCellTests.swift; sourceTree = "<group>"; };
-		55CE9CEB230403ED00CB414D /* ContractUpgradeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeCommand.swift; sourceTree = "<group>"; };
 		55CE9CED23040FB000CB414D /* ContractUpgradeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeHeaderView.swift; sourceTree = "<group>"; };
 		55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContractUpgradeHeaderView.xib; sourceTree = "<group>"; };
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -2166,7 +2164,6 @@
 		55CE9CDC2304039E00CB414D /* ContractUpgrade */ = {
 			isa = PBXGroup;
 			children = (
-				55CE9CEB230403ED00CB414D /* ContractUpgradeCommand.swift */,
 				55CE9CED23040FB000CB414D /* ContractUpgradeHeaderView.swift */,
 				55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */,
 			);
@@ -2943,7 +2940,6 @@
 				0AE0FEE8229EC2AF00ABC552 /* RecoverFeePaidViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */,
-				55CE9CEC230403ED00CB414D /* ContractUpgradeCommand.swift in Sources */,
 				55980003225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,

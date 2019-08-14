@@ -23,6 +23,7 @@ final class MenuTableViewController: UITableViewController {
     weak var delegate: MenuTableViewControllerDelegate?
 
     private var selectedSafeAddress: String? {
+        guard ApplicationServiceRegistry.walletService.hasReadyToUseWallet else { return nil }
         return ApplicationServiceRegistry.walletService.selectedWalletAddress
     }
 
@@ -31,7 +32,7 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private var contractUpgradeRequired: Bool {
-        return true
+        return ApplicationServiceRegistry.walletService.contractUpgradeRequired
     }
 
     enum SettingsSection: Hashable {

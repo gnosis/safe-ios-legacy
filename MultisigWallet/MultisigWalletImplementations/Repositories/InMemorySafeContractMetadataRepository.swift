@@ -37,6 +37,10 @@ public class InMemorySafeContractMetadataRepository: SafeContractMetadataReposit
         return self[masterCopyAddress]?.version
     }
 
+    public func latestContractVersion() -> String {
+        return metadata.metadata.map { $0.version }.max()!
+    }
+
     public func deploymentCode(masterCopyAddress: Address) -> Data? {
         guard let code = self[masterCopyAddress]?.proxyCode else { return nil }
         let contract = EthereumContractProxy()

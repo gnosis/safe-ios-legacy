@@ -14,6 +14,7 @@ public protocol SafeContractMetadataRepository {
     func isValidPaymentRecevier(address: Address) -> Bool
 
     func version(masterCopyAddress: Address) -> String?
+    func latestContractVersion() -> String
     func deploymentCode(masterCopyAddress: Address) -> Data?
     func EIP712SafeAppTxTypeHash(masterCopyAddress: Address) -> Data?
     func EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: Address) -> Data?

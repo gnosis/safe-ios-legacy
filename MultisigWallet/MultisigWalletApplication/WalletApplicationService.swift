@@ -38,6 +38,11 @@ public class WalletApplicationService: Assertable {
         return selectedWalletAddress != nil
     }
 
+    public var contractUpgradeRequired: Bool {
+        guard let wallet = selectedWallet, wallet.isReadyToUse else { return false }
+        return wallet.contractVersion != DomainRegistry.safeContractMetadataRepository.latestContractVersion()
+    }
+
     public var selectedWalletAddress: String? {
         return selectedWallet?.address?.value
     }
@@ -142,7 +147,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public func walletCreationURL() -> URL {
-        return configuration.transactionURL(for: selectedWallet!.creationTransactionHash!)
+        return configuration.transactionURL(for: selectedWallet!.creationTransactionHash)
     }
 
     // MARK: - Owners
