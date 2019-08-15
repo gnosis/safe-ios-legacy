@@ -115,7 +115,7 @@ extension RBEIntroViewControllerLoadingStateTests {
         let controller = vc ?? self.vc
         controller.loadViewIfNeeded()
         controller.transition(to: state)
-        waitForExpectations(timeout: 0.01, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
     }
 
 }

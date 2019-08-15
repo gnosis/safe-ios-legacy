@@ -10,5 +10,5 @@ fileprivate extension Bundle {
 }
 
 func DateToolsLocalized(_ key: String) -> String {
-    return NSLocalizedString(key, tableName: "DateTools", bundle: Bundle.DateToolsBundle, value: "", comment: "")
+    return NSLocalizedString("\(key)", tableName: "DateTools", bundle: Bundle.DateToolsBundle, value: "", comment: "")
 }

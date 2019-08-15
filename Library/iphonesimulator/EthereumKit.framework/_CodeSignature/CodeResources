@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/EthereumKit-Swift.h</key>
 		<data>
-		DYcRI8NFbuJfUYhQccQBd+i7trc=
+		FfTPezaQrTiNH9wShXw4KZeE0XU=
 		</data>
 		<key>Headers/EthereumKit.h</key>
 		<data>
@@ -14,23 +14,39 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		VAJm/2eVI33y21R7Vq0ZGjxTIhU=
+		vQrQ5kDFi/LjudgSih08QhCRlB4=
+		</data>
+		<key>Modules/EthereumKit.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<data>
+		whCC/nG7y9+sFj9uQUkKZ686Qb0=
+		</data>
+		<key>Modules/EthereumKit.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<data>
+		CdzV9QDJM1eZ7I5Py+cuW9Eu6FQ=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftdoc</key>
 		<data>
-		zAb0zjZwQt4lDbmHUniuRH91i/I=
+		whCC/nG7y9+sFj9uQUkKZ686Qb0=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftmodule</key>
 		<data>
-		uHtf4VEpoa0lQVoo4quYxjiDOeE=
+		CdzV9QDJM1eZ7I5Py+cuW9Eu6FQ=
+		</data>
+		<key>Modules/EthereumKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		Mni47GoZV4QWLQYMHFclFYesKcg=
+		</data>
+		<key>Modules/EthereumKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		1U9a7OFkrlZ0BLr5rAoC8tuAL3U=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		IomNTaDXB9zC4pC8ZZb0Z+++Z1c=
+		Mni47GoZV4QWLQYMHFclFYesKcg=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		6wKtnqNsuyYkI4m+aXZFbxWl68o=
+		1U9a7OFkrlZ0BLr5rAoC8tuAL3U=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -47,11 +63,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DYcRI8NFbuJfUYhQccQBd+i7trc=
+			FfTPezaQrTiNH9wShXw4KZeE0XU=
 			</data>
 			<key>hash2</key>
 			<data>
-			i7Ju3z8UlbQdhg62UTb9npOXQ/OE3/M7Ps3yuchNoJ8=
+			q5APC4XIDqD0F8FVg7ZBQFiYgiGDfscyhEPWSktfgB8=
 			</data>
 		</dict>
 		<key>Headers/EthereumKit.h</key>
@@ -65,48 +81,92 @@
 			8nwo0xHcOp/LpQ9cvt2qndSx1xB2riH4UYdvKyT7fw8=
 			</data>
 		</dict>
+		<key>Modules/EthereumKit.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			whCC/nG7y9+sFj9uQUkKZ686Qb0=
+			</data>
+			<key>hash2</key>
+			<data>
+			PtguJKb3QYcPTL7R+XJh7Ckb0bj/KgACSsBkeJPIZWQ=
+			</data>
+		</dict>
+		<key>Modules/EthereumKit.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			CdzV9QDJM1eZ7I5Py+cuW9Eu6FQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			iZMeVVJkvmLsG47ZGZZZ3bQLUZsmMoUBflMbQ/gu/kY=
+			</data>
+		</dict>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zAb0zjZwQt4lDbmHUniuRH91i/I=
+			whCC/nG7y9+sFj9uQUkKZ686Qb0=
 			</data>
 			<key>hash2</key>
 			<data>
-			XuK7oVWnGKATrYYMGnEEBTkReqBwsBRPYXOITv6AYaQ=
+			PtguJKb3QYcPTL7R+XJh7Ckb0bj/KgACSsBkeJPIZWQ=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			uHtf4VEpoa0lQVoo4quYxjiDOeE=
+			CdzV9QDJM1eZ7I5Py+cuW9Eu6FQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			R4BCbKH/fInscJ4FB146PuZcdTxAqZF+PA5HNlGkoWs=
+			iZMeVVJkvmLsG47ZGZZZ3bQLUZsmMoUBflMbQ/gu/kY=
+			</data>
+		</dict>
+		<key>Modules/EthereumKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Mni47GoZV4QWLQYMHFclFYesKcg=
+			</data>
+			<key>hash2</key>
+			<data>
+			D34OnfrVJKTOyH7m1bvsjxCru8UZuwQ8afufV2rN3HU=
+			</data>
+		</dict>
+		<key>Modules/EthereumKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1U9a7OFkrlZ0BLr5rAoC8tuAL3U=
+			</data>
+			<key>hash2</key>
+			<data>
+			WiP2YJQHPfDDER54EA1821F3hAMuRBUOAXpKLsxHhqY=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			IomNTaDXB9zC4pC8ZZb0Z+++Z1c=
+			Mni47GoZV4QWLQYMHFclFYesKcg=
 			</data>
 			<key>hash2</key>
 			<data>
-			BqzWL8DvSfkGoqGa+nR2mYQGFeo8ovA5iC4FE164vUI=
+			D34OnfrVJKTOyH7m1bvsjxCru8UZuwQ8afufV2rN3HU=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			6wKtnqNsuyYkI4m+aXZFbxWl68o=
+			1U9a7OFkrlZ0BLr5rAoC8tuAL3U=
 			</data>
 			<key>hash2</key>
 			<data>
-			vPJXnUi3THTpNpd5WW5D5sIHp35D5EiXUrt9L48kfPw=
+			WiP2YJQHPfDDER54EA1821F3hAMuRBUOAXpKLsxHhqY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -6,27 +6,43 @@
 	<dict>
 		<key>Headers/SipHash-Swift.h</key>
 		<data>
-		oflsfZzw3hQRqdOUzN2CNuqL5p0=
+		nxBy7t1lPsw+I4mEXjEbINPVbdY=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		X35MPeNPM/Vxysf6HKVonzKY8W8=
+		tLxmg513vPwIjaxGIenoFXDH2fA=
+		</data>
+		<key>Modules/SipHash.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<data>
+		ItHaWr91G5tDvgix4mJ68LHK+EI=
+		</data>
+		<key>Modules/SipHash.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<data>
+		vpjs4J2mcpJfeBz8e8tB8OKk9J4=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<data>
-		/qq6QnmzXu7JJsGCXDA4jqBdVPE=
+		ItHaWr91G5tDvgix4mJ68LHK+EI=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<data>
-		Qo6pTnPstdpebFMdRFJx2iRJ2lE=
+		vpjs4J2mcpJfeBz8e8tB8OKk9J4=
+		</data>
+		<key>Modules/SipHash.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		yEyy/N5hbwJJrbGbwTxKvWChTl0=
+		</data>
+		<key>Modules/SipHash.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		9gyoPKcK6mSj4Pj7NpLdP+PqOcw=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		5MrQiNT+dm8csQjLfuBuc8NWeGU=
+		yEyy/N5hbwJJrbGbwTxKvWChTl0=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		KVIJ/I+y4IvHP4SnZkO8oIlMmjA=
+		9gyoPKcK6mSj4Pj7NpLdP+PqOcw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,55 +55,99 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oflsfZzw3hQRqdOUzN2CNuqL5p0=
+			nxBy7t1lPsw+I4mEXjEbINPVbdY=
 			</data>
 			<key>hash2</key>
 			<data>
-			gSY/C207ecolpqx00zrWZctPffU1qoHGBodlhnJmtjg=
+			/rz/53/0YVzwHaBMoo01oADiPKi7+Fvd2QKAgRzAkaE=
+			</data>
+		</dict>
+		<key>Modules/SipHash.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ItHaWr91G5tDvgix4mJ68LHK+EI=
+			</data>
+			<key>hash2</key>
+			<data>
+			ETjXDCOYcCxTLQM9gVQDfFIBG5kGVLr5GJht4OzoOws=
+			</data>
+		</dict>
+		<key>Modules/SipHash.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			vpjs4J2mcpJfeBz8e8tB8OKk9J4=
+			</data>
+			<key>hash2</key>
+			<data>
+			szxSKn9OU0CztSFQPc7XLy9oSgcmEzZbzncFYoPnQVQ=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			/qq6QnmzXu7JJsGCXDA4jqBdVPE=
+			ItHaWr91G5tDvgix4mJ68LHK+EI=
 			</data>
 			<key>hash2</key>
 			<data>
-			y+HWQwSlsv3ZxU5qcHllrZT8pPVIlsV2nDMa2zWkmnE=
+			ETjXDCOYcCxTLQM9gVQDfFIBG5kGVLr5GJht4OzoOws=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Qo6pTnPstdpebFMdRFJx2iRJ2lE=
+			vpjs4J2mcpJfeBz8e8tB8OKk9J4=
 			</data>
 			<key>hash2</key>
 			<data>
-			NgsfelOOvVAj8rveICbtN7+gyod0ECvHsrw+ApZqOhw=
+			szxSKn9OU0CztSFQPc7XLy9oSgcmEzZbzncFYoPnQVQ=
+			</data>
+		</dict>
+		<key>Modules/SipHash.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			yEyy/N5hbwJJrbGbwTxKvWChTl0=
+			</data>
+			<key>hash2</key>
+			<data>
+			MU2rkpwTjEy/qJy+4aU/pqSNL4uULK6DwtI4RtUajmM=
+			</data>
+		</dict>
+		<key>Modules/SipHash.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			9gyoPKcK6mSj4Pj7NpLdP+PqOcw=
+			</data>
+			<key>hash2</key>
+			<data>
+			4uvCHHM2S9v/C/vfmeSSDuPUfKhwxwwArFJI6C58SQA=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			5MrQiNT+dm8csQjLfuBuc8NWeGU=
+			yEyy/N5hbwJJrbGbwTxKvWChTl0=
 			</data>
 			<key>hash2</key>
 			<data>
-			5y0J2sVGut6oJJ3IQAZyfu2G0qg3BWuHO644MawDd/o=
+			MU2rkpwTjEy/qJy+4aU/pqSNL4uULK6DwtI4RtUajmM=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			KVIJ/I+y4IvHP4SnZkO8oIlMmjA=
+			9gyoPKcK6mSj4Pj7NpLdP+PqOcw=
 			</data>
 			<key>hash2</key>
 			<data>
-			Gx7b3074yjIVjMVhomL+sKRn6mMbwNWvXJOeswG3aZ0=
+			4uvCHHM2S9v/C/vfmeSSDuPUfKhwxwwArFJI6C58SQA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

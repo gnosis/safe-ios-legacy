@@ -8,6 +8,7 @@ import MultisigWalletApplication
 import CommonTestSupport
 import Common
 
+// TODO: fix - crashing on asserts in ios 13
 class ManageTokensFlowCoordinatorTests: XCTestCase {
 
     var flowCoordinator: ManageTokensFlowCoordinator!

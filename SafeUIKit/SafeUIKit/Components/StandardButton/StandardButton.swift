@@ -82,6 +82,8 @@ final public class StandardButton: BaseCustomButton {
     public override func update() {
         setTitleColors(style.assets.colors)
         setBackgroundImages(style.assets.images)
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 
     fileprivate func setTitleColors(_ colors: ColorSet) {

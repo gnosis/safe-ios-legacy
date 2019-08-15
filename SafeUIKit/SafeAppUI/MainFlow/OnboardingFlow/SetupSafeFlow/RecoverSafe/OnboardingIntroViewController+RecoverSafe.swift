@@ -9,8 +9,7 @@ public extension OnboardingIntroViewController {
     private enum Strings {
         static let title = LocalizedString("recover_safe_title", comment: "Recover safe")
         static let header = LocalizedString("how_this_works", comment: "How this works")
-        static let body = LocalizedString("ios_recovery_intro_content",
-                                          comment: "Content paragraphs, separated by '\n'")
+        static let body = LocalizedString("ios_recovery_intro_content", comment: "Content paragraphs")
         static let start = LocalizedString("start", comment: "Start button title")
     }
 

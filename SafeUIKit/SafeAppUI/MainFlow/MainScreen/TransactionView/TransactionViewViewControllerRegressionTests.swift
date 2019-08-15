@@ -8,6 +8,7 @@ import MultisigWalletApplication
 import Common
 import CommonTestSupport
 
+// TODO: fix ios 13 crashes
 class TransactionViewViewControllerRegressionTests: XCTestCase {
 
     var controller: TestableTransactionsTableViewController!
