@@ -278,6 +278,48 @@
 			remoteGlobalIDString = 0A059363230418F200E71A60;
 			remoteInfo = CommonImplementationsTests;
 		};
+		0ABEFD2C2305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C39230450A600E7EB07;
+			remoteInfo = MultisigWalletDomainModel;
+		};
+		0ABEFD2E2305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C41230450A600E7EB07;
+			remoteInfo = MultisigWalletDomainModelTests;
+		};
+		0ABEFD302305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C59230450B300E7EB07;
+			remoteInfo = MultisigWalletApplication;
+		};
+		0ABEFD322305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C61230450B300E7EB07;
+			remoteInfo = MultisigWalletApplicationTests;
+		};
+		0ABEFD342305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C79230450BC00E7EB07;
+			remoteInfo = MultisigWalletImplementations;
+		};
+		0ABEFD362305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C81230450BC00E7EB07;
+			remoteInfo = MultisigWalletImplementationsTests;
+		};
 		0AC33F182119CBE1009A5CFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
@@ -669,6 +711,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		0ABEFD162305577B00168055 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0ABEFD2D2305577D00168055 /* MultisigWalletDomainModel.framework */,
+				0ABEFD2F2305577D00168055 /* MultisigWalletDomainModelTests.xctest */,
+				0ABEFD312305577D00168055 /* MultisigWalletApplication.framework */,
+				0ABEFD332305577D00168055 /* MultisigWalletApplicationTests.xctest */,
+				0ABEFD352305577D00168055 /* MultisigWalletImplementations.framework */,
+				0ABEFD372305577D00168055 /* MultisigWalletImplementationsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0ACA9C3A205FDA92005EC186 /* screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -1014,6 +1069,10 @@
 					ProjectRef = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
 				},
 				{
+					ProductGroup = 0ABEFD162305577B00168055 /* Products */;
+					ProjectRef = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+				},
+				{
 					ProductGroup = 0A160B4F20A07C2D00E064E1 /* Products */;
 					ProjectRef = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
 				},
@@ -1167,6 +1226,48 @@
 			fileType = wrapper.cfbundle;
 			path = CommonImplementationsTests.xctest;
 			remoteRef = 0A84C294230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD2D2305577D00168055 /* MultisigWalletDomainModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MultisigWalletDomainModel.framework;
+			remoteRef = 0ABEFD2C2305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD2F2305577D00168055 /* MultisigWalletDomainModelTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MultisigWalletDomainModelTests.xctest;
+			remoteRef = 0ABEFD2E2305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD312305577D00168055 /* MultisigWalletApplication.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MultisigWalletApplication.framework;
+			remoteRef = 0ABEFD302305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD332305577D00168055 /* MultisigWalletApplicationTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MultisigWalletApplicationTests.xctest;
+			remoteRef = 0ABEFD322305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD352305577D00168055 /* MultisigWalletImplementations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MultisigWalletImplementations.framework;
+			remoteRef = 0ABEFD342305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD372305577D00168055 /* MultisigWalletImplementationsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MultisigWalletImplementationsTests.xctest;
+			remoteRef = 0ABEFD362305577D00168055 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */ = {
