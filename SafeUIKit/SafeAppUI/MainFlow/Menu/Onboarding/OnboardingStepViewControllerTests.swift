@@ -6,14 +6,14 @@ import XCTest
 @testable import SafeAppUI
 import Common
 
-class WCOnboardingStepViewControllerTests: XCTestCase {
+class OnboardingStepViewControllerTests: XCTestCase {
 
-    var testContent = WCOnboardingStepInfo.testContent
-    var vc: WCOnboardingStepViewController!
+    var testContent = OnboardingStepInfo.testContent
+    var vc: OnboardingStepViewController!
 
     override func setUp() {
         super.setUp()
-        vc = WCOnboardingStepViewController.create(content: testContent)
+        vc = OnboardingStepViewController.create(content: testContent)
     }
 
     func test_whenAppears_thenTracksEvent() {
@@ -36,10 +36,10 @@ class WCOnboardingStepViewControllerTests: XCTestCase {
 
 }
 
-extension WCOnboardingStepInfo {
+extension OnboardingStepInfo {
 
     // swiftlint:disable trailing_closure
-    static let testContent = WCOnboardingStepInfo(image: UIImage(),
+    static let testContent = OnboardingStepInfo(image: UIImage(),
                                                   title: "TestTitle",
                                                   description: "Test Description",
                                                   actionTitle: "Test Action",

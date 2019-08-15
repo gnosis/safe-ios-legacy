@@ -5,21 +5,21 @@
 import XCTest
 @testable import SafeAppUI
 
-class WCOnboardingViewControllerTests: XCTestCase {
+class OnboardingViewControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
     }
 
     func test_empty() {
-        let vc = WCOnboardingViewController.create(steps: [])
+        let vc = OnboardingViewController.create(steps: [])
         vc.loadViewIfNeeded()
         XCTAssertTrue(vc.viewControllers!.isEmpty)
     }
 
     func test_one() {
-        let step = WCOnboardingStepInfo.testContent
-        let vc = WCOnboardingViewController.create(steps: [step])
+        let step = OnboardingStepInfo.testContent
+        let vc = OnboardingViewController.create(steps: [step])
         vc.loadViewIfNeeded()
         XCTAssertEqual(vc.toolbar.pageControl.numberOfPages, 1)
         XCTAssertEqual(vc.toolbar.actionButtonItem.title, step.actionTitle)
@@ -45,7 +45,7 @@ class WCOnboardingViewControllerTests: XCTestCase {
     }
 
     func test_transitionToNextPage() {
-        let vc = WCOnboardingViewController.create(steps: [.testContent, .testContent])
+        let vc = OnboardingViewController.create(steps: [.testContent, .testContent])
         vc.loadViewIfNeeded()
         vc.transitionToNextPage()
         let secondPage = vc.pageDataSource.stepController(at: 1)
@@ -54,7 +54,7 @@ class WCOnboardingViewControllerTests: XCTestCase {
     }
 
     func test_whenPageControlChanged_thenTransitionsToThePag() {
-        let vc = WCOnboardingViewController.create(steps: [.testContent, .testContent, .testContent])
+        let vc = OnboardingViewController.create(steps: [.testContent, .testContent, .testContent])
         vc.loadViewIfNeeded()
 
         // 1 page forward
@@ -82,12 +82,12 @@ class WCOnboardingViewControllerTests: XCTestCase {
     func test_whenTappingToolbarAction_thenInvokesControllerAction() {
         let exp = expectation(description: "Tap")
 
-        var step = WCOnboardingStepInfo.testContent
+        var step = OnboardingStepInfo.testContent
         step.action = {
             exp.fulfill()
         }
 
-        let vc = WCOnboardingViewController.create(steps: [step])
+        let vc = OnboardingViewController.create(steps: [step])
         vc.loadViewIfNeeded()
 
         vc.toolbar.actionButtonItem.sendAction()
@@ -96,9 +96,9 @@ class WCOnboardingViewControllerTests: XCTestCase {
     }
 
     func test_whenAnimationFinishedAfterGestureTransition_thenUpdatesToolbar() {
-        var secondStep = WCOnboardingStepInfo.testContent
+        var secondStep = OnboardingStepInfo.testContent
         secondStep.actionTitle = "SecondStep"
-        let vc = WCOnboardingViewController.create(steps: [.testContent, secondStep])
+        let vc = OnboardingViewController.create(steps: [.testContent, secondStep])
         vc.loadViewIfNeeded()
         let firstVC = vc.pageDataSource.stepController(at: 0)!
 
@@ -119,10 +119,10 @@ class WCOnboardingViewControllerTests: XCTestCase {
 
 }
 
-extension WCOnboardingViewControllerTests {
+extension OnboardingViewControllerTests {
 
-    func createEmptyControllerInNavigationStack() -> (UINavigationController, WCOnboardingViewController) {
-        let vc = WCOnboardingViewController.create(steps: [])
+    func createEmptyControllerInNavigationStack() -> (UINavigationController, OnboardingViewController) {
+        let vc = OnboardingViewController.create(steps: [])
         vc.loadViewIfNeeded()
         let nav = UINavigationController(rootViewController: UIViewController())
         nav.pushViewController(vc, animated: false)

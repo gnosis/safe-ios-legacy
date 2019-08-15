@@ -9,7 +9,7 @@ import BigInt
 final class WalletConnectFlowCoordinator: FlowCoordinator {
 
     weak var sessionListController: WCSessionListTableViewController?
-    weak var onboardingController: WCOnboardingViewController?
+    weak var onboardingController: OnboardingViewController?
 
     /// URL to connect to when the flow coordinator opens session list (even after onboarding).
     ///
@@ -32,7 +32,7 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     }
 
     func showOnboarding() {
-        let vc = WCOnboardingViewController.create(next: { [weak self] in
+        let vc = OnboardingViewController.create(next: { [weak self] in
             self?.onboardingController?.transitionToNextPage()
         }, finish: { [weak self] in
             self?.finishOnboarding()
@@ -63,9 +63,9 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
 
 }
 
-fileprivate extension WCOnboardingViewController {
+fileprivate extension OnboardingViewController {
 
-    static func create(next: @escaping () -> Void, finish: @escaping () -> Void) -> WCOnboardingViewController {
+    static func create(next: @escaping () -> Void, finish: @escaping () -> Void) -> OnboardingViewController {
         let nextActionTitle = LocalizedString("next", comment: "Next")
         return .create(steps: [
             .init(image: Asset.WalletConnect._1.image,

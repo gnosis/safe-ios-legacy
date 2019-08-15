@@ -5,9 +5,9 @@
 import XCTest
 @testable import SafeAppUI
 
-class WCOnboardingToolbarTests: XCTestCase {
+class OnboardingToolbarTests: XCTestCase {
 
-    let toolbar = WCOnboardingToolbar()
+    let toolbar = OnboardingToolbar()
 
     func test_create() {
         XCTAssertNotNil(toolbar.pageControl)

@@ -4,9 +4,9 @@
 
 import UIKit
 
-class WCOnboardingStepViewController: UIViewController {
+class OnboardingStepViewController: UIViewController {
 
-    private (set) var content: WCOnboardingStepInfo?
+    private (set) var content: OnboardingStepInfo?
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -18,9 +18,9 @@ class WCOnboardingStepViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 
-    public static func create(content: WCOnboardingStepInfo?) -> WCOnboardingStepViewController {
-        let bundle = Bundle(for: WCOnboardingStepViewController.self)
-        let controller = WCOnboardingStepViewController(nibName: "WCOnboardingStepViewController", bundle: bundle)
+    public static func create(content: OnboardingStepInfo?) -> OnboardingStepViewController {
+        let bundle = Bundle(for: OnboardingStepViewController.self)
+        let controller = OnboardingStepViewController(nibName: "OnboardingStepViewController", bundle: bundle)
         controller.content = content
         return controller
     }
@@ -45,7 +45,7 @@ class WCOnboardingStepViewController: UIViewController {
         }
     }
 
-    func update(content: WCOnboardingStepInfo?) {
+    func update(content: OnboardingStepInfo?) {
         self.content = content
         guard isViewLoaded else { return }
         imageView.image = content?.image
