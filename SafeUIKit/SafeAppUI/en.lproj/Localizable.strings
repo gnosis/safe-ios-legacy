@@ -315,6 +315,9 @@
 /* Cannot recover because couldn't find the Safe with this address */
 "ios_recovery_error_walletnotfound" = "Cannot recover because couldn't find the Safe with this address";
 
+/* Content paragraphs */
+"ios_recovery_intro_content" = "* Please have your Safe's address and recovery phrase ready.\n* A recovery fee will be automatically deducted from the balance of the recovered Safe.\n* If the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
+
 /* Replace browser extension */
 "ios_replace_browser_extension" = "New\nAuthenticator";
 
@@ -346,6 +349,9 @@
 
 /* Warning for setup recovery phrase screen. */
 "ios_showSeed_warning" = "Without these, you won’t be able to recover your Safe and its assets.";
+
+/* Bulleted list */
+"ios_terms_contents" = "* We do not collect demographic data such as age and gender.\n* We collect anonymized app usage data and crash reports to ensure the quality of our app.";
 
 /* 'View on Etherscan' button name */
 "ios_view_transaction_on_etherscan" = "View transaction on Etherscan.io";

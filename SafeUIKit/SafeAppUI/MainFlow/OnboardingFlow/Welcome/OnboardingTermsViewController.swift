@@ -25,8 +25,7 @@ public class OnboardingTermsViewController: UIViewController {
 
     private enum Strings {
         static let header = LocalizedString("please_review_terms_and_privacy_policy", comment: "Header label")
-        static let body = LocalizedString("ios_terms_contents",
-                                          comment: "Each bullet starts with '* '. Separated by newline '\n'.")
+        static let body = LocalizedString("ios_terms_contents", comment: "Bulleted list")
         static let privacyLink = LocalizedString("privacy_policy", comment: "Privacy Policy")
         static let termsLink = LocalizedString("terms_of_service", comment: "Terms of Use")
         static let disagree = LocalizedString("no_thanks", comment: "No Thanks")
