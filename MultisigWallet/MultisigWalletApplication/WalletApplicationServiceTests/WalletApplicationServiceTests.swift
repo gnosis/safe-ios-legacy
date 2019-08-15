@@ -115,6 +115,8 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(service.minimumDeploymentAmount, 100)
     }
 
+    // MARK: - Payment Token
+
     func test_whenFeePaymentTokenIsNil_thenReturnsEther() {
         givenDraftWallet()
         XCTAssertEqual(service.feePaymentTokenData.address, TokenData.Ether.address)
@@ -150,6 +152,28 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         let whitelistedAddresses = service.visibleTokens(withEth: false).map { $0.address }
         XCTAssertFalse(whitelistedAddresses.contains(ethTokenData.address))
     }
+
+    // MARK: - Contract Upgrade
+
+    func test_whenWalletIsNotReadyToUse_thenContractUpgradeIsNotRequired() {
+        try! givenReadyToDeployWallet()
+        XCTAssertFalse(service.contractUpgradeRequired)
+    }
+
+    func test_whenContractVersionIsTheSameAsLatestVersion_thenContractUpgradeIsNotRequired() {
+        givenReadyToUseWallet()
+        XCTAssertTrue(walletRepository.selectedWallet()?.isReadyToUse ?? false)
+        contractMetadataRepository.contractVersion = "1.0.0"
+        XCTAssertFalse(service.contractUpgradeRequired)
+    }
+
+    func test_whenContractVersionIsNotEqualToLatesVersion_thenContractUpgradeIsRequired() {
+        givenReadyToUseWallet()
+        contractMetadataRepository.contractVersion = "1.1.0"
+        XCTAssertTrue(service.contractUpgradeRequired)
+    }
+
+    // MARK: - Auth
 
     func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
         givenDraftWallet()
