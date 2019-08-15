@@ -5,7 +5,7 @@
 import Foundation
 import UIKit
 
-class WCOnboardingToolbar: UIToolbar {
+class OnboardingToolbar: UIToolbar {
 
     private (set) var pageControl: UIPageControl!
     private (set) var actionButtonItem: UIBarButtonItem!

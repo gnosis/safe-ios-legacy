@@ -5,37 +5,57 @@
 import UIKit
 import Common
 
-struct WCOnboardingStepInfo {
+struct OnboardingStepInfo {
     var image: UIImage
     var title: String
     var description: String
+    var infoButtonText: NSAttributedString?
+    var infoButtonAction: (() -> Void)?
     var actionTitle: String
     var trackingEvent: Trackable
     var action: () -> Void
+
+    init(image: UIImage,
+         title: String,
+         description: String,
+         infoButtonText: NSAttributedString? = nil,
+         infoButtonAction: (() -> Void)? = nil,
+         actionTitle: String,
+         trackingEvent: Trackable,
+         action: @escaping () -> Void) {
+        self.image = image
+        self.title = title
+        self.description = description
+        self.infoButtonText = infoButtonText
+        self.infoButtonAction = infoButtonAction
+        self.actionTitle = actionTitle
+        self.trackingEvent = trackingEvent
+        self.action = action
+    }
 }
 
-class WCOnboardingViewController: UIPageViewController, UIPageViewControllerDelegate {
+class OnboardingViewController: UIPageViewController, UIPageViewControllerDelegate {
 
-    private (set) var steps: [WCOnboardingStepInfo] = []
+    private (set) var steps: [OnboardingStepInfo] = []
 
-    private (set) var pageDataSource = WCOnboardingPageDataSource()
+    private (set) var pageDataSource = OnboardingPageDataSource()
 
-    var currentViewController: WCOnboardingStepViewController? {
-        return viewControllers?.first as? WCOnboardingStepViewController
+    var currentViewController: OnboardingStepViewController? {
+        return viewControllers?.first as? OnboardingStepViewController
     }
     var currentPageIndex: Int? {
         guard let vc = currentViewController, let index = pageDataSource.index(of: vc) else { return nil }
         return index
     }
 
-    let toolbar = WCOnboardingToolbar()
+    let toolbar = OnboardingToolbar()
 
     private weak var _navigationController: UINavigationController!
 
-    static func create(steps: [WCOnboardingStepInfo]) -> WCOnboardingViewController {
-        let controller = WCOnboardingViewController(transitionStyle: .scroll,
-                                                    navigationOrientation: .horizontal,
-                                                    options: nil)
+    static func create(steps: [OnboardingStepInfo]) -> OnboardingViewController {
+        let controller = OnboardingViewController(transitionStyle: .scroll,
+                                                  navigationOrientation: .horizontal,
+                                                  options: nil)
         controller.steps = steps
         return controller
     }
@@ -138,6 +158,5 @@ class WCOnboardingViewController: UIPageViewController, UIPageViewControllerDele
             toolbar.setActionTitle(controller.content?.actionTitle)
         }
     }
-
 
 }

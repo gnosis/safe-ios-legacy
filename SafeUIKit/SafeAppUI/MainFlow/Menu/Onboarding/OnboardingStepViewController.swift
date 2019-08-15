@@ -3,10 +3,11 @@
 //
 
 import UIKit
+import SafeUIKit
 
-class WCOnboardingStepViewController: UIViewController {
+class OnboardingStepViewController: UIViewController {
 
-    private (set) var content: WCOnboardingStepInfo?
+    private (set) var content: OnboardingStepInfo?
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -18,9 +19,16 @@ class WCOnboardingStepViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 
-    public static func create(content: WCOnboardingStepInfo?) -> WCOnboardingStepViewController {
-        let bundle = Bundle(for: WCOnboardingStepViewController.self)
-        let controller = WCOnboardingStepViewController(nibName: "WCOnboardingStepViewController", bundle: bundle)
+    @IBOutlet weak var moreInfoStackView: UIStackView!
+    @IBOutlet weak var infoButton: StandardButton!
+
+    @IBAction func showInfo(_ sender: Any) {
+        content?.infoButtonAction?()
+    }
+
+    public static func create(content: OnboardingStepInfo?) -> OnboardingStepViewController {
+        let bundle = Bundle(for: OnboardingStepViewController.self)
+        let controller = OnboardingStepViewController(nibName: "OnboardingStepViewController", bundle: bundle)
         controller.content = content
         return controller
     }
@@ -35,6 +43,9 @@ class WCOnboardingStepViewController: UIViewController {
         descriptionLabel.textColor = ColorName.darkGrey.color
         descriptionLabel.textAlignment = .center
 
+        infoButton.style = .text
+        infoButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+
         update(content: content)
     }
 
@@ -45,12 +56,17 @@ class WCOnboardingStepViewController: UIViewController {
         }
     }
 
-    func update(content: WCOnboardingStepInfo?) {
+    func update(content: OnboardingStepInfo?) {
         self.content = content
         guard isViewLoaded else { return }
         imageView.image = content?.image
         titleLabel.text = content?.title
         descriptionLabel.text = content?.description
+        if let attributedText = content?.infoButtonText {
+            infoButton.setAttributedTitle(attributedText, for: .normal)
+        } else {
+            moreInfoStackView.removeFromSuperview()
+        }
     }
 
 }

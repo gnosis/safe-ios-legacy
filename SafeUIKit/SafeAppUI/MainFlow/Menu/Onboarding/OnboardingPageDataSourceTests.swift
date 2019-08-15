@@ -5,23 +5,23 @@
 import XCTest
 @testable import SafeAppUI
 
-class WCOnboardingPageDataSourceTests: XCTestCase {
+class OnboardingPageDataSourceTests: XCTestCase {
 
-    var dataSource = WCOnboardingPageDataSource()
+    var dataSource = OnboardingPageDataSource()
     let pageController = UIPageViewController()
 
     func test_empty() {
-        let anyController = WCOnboardingStepViewController.create(content: nil)
+        let anyController = OnboardingStepViewController.create(content: nil)
         XCTAssertFalse(dataSource.isIndexInBounds(0))
         XCTAssertEqual(dataSource.stepCount, 0)
-        XCTAssertNil(dataSource.index(of: WCOnboardingStepViewController.create(content: nil)))
+        XCTAssertNil(dataSource.index(of: OnboardingStepViewController.create(content: nil)))
         XCTAssertNil(dataSource.stepController(at: 0))
         XCTAssertNil(dataSource.pageViewController(pageController, viewControllerAfter: anyController))
         XCTAssertNil(dataSource.pageViewController(pageController, viewControllerAfter: anyController))
     }
 
     func test_one() {
-        let step = WCOnboardingStepInfo.testContent
+        let step = OnboardingStepInfo.testContent
         dataSource.reloadData([step])
 
         XCTAssertTrue(dataSource.isIndexInBounds(0))

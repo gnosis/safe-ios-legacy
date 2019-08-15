@@ -5,13 +5,13 @@
 import Foundation
 import UIKit
 
-class WCOnboardingPageDataSource: NSObject, UIPageViewControllerDataSource {
+class OnboardingPageDataSource: NSObject, UIPageViewControllerDataSource {
 
-    private var stepControllers: [WCOnboardingStepViewController] = []
+    private var stepControllers: [OnboardingStepViewController] = []
     var stepCount: Int { return stepControllers.count }
 
-    func reloadData(_ steps: [WCOnboardingStepInfo]) {
-        stepControllers = steps.map { WCOnboardingStepViewController.create(content: $0) }
+    func reloadData(_ steps: [OnboardingStepInfo]) {
+        stepControllers = steps.map { OnboardingStepViewController.create(content: $0) }
     }
 
     func isIndexInBounds(_ index: Int) -> Bool {
@@ -19,12 +19,12 @@ class WCOnboardingPageDataSource: NSObject, UIPageViewControllerDataSource {
     }
 
     func index(of viewController: UIViewController) -> Int? {
-        assert(viewController is WCOnboardingStepViewController)
-        guard let vc = viewController as? WCOnboardingStepViewController else { return nil }
+        assert(viewController is OnboardingStepViewController)
+        guard let vc = viewController as? OnboardingStepViewController else { return nil }
         return stepControllers.firstIndex(of: vc)
     }
 
-    func stepController(at index: Int) -> WCOnboardingStepViewController? {
+    func stepController(at index: Int) -> OnboardingStepViewController? {
         return isIndexInBounds(index) ? stepControllers[index] : nil
     }
 

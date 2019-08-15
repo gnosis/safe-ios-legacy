@@ -32,7 +32,7 @@ class WalletConnectFlowCoordinatorTests: XCTestCase {
 
         service.markOnboardingNeeded()
         fc.setUp()
-        XCTAssertTrue(fc.topViewController is WCOnboardingViewController)
+        XCTAssertTrue(fc.topViewController is OnboardingViewController)
 
         // cycle through steps
         let vc = fc.onboardingController!

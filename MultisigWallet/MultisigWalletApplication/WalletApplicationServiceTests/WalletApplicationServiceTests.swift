@@ -173,6 +173,11 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertTrue(service.contractUpgradeRequired)
     }
 
+    func test_latestContractVersion() {
+        contractMetadataRepository.contractVersion = "1.1.1"
+        XCTAssertEqual(service.latestContractVersion, "1.1.1")
+    }
+
     // MARK: - Auth
 
     func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
