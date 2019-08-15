@@ -217,8 +217,8 @@ final class MenuTableViewController: UITableViewController {
         case .contractUpgrade:
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ContractUpgradeHeaderView")
                 as! ContractUpgradeHeaderView
-            view.onUpgrade = {
-                print("UPGRADE")
+            view.onUpgrade = { [unowned self] in
+                self.delegate?.didSelectCommand(ContractUpgradeCommand())
             }
             return view
         default:

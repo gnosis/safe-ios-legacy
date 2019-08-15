@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 
 class OnboardingStepViewController: UIViewController {
 
@@ -17,6 +18,13 @@ class OnboardingStepViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+
+    @IBOutlet weak var moreInfoStackView: UIStackView!
+    @IBOutlet weak var infoButton: StandardButton!
+
+    @IBAction func showInfo(_ sender: Any) {
+        content?.infoButtonAction?()
+    }
 
     public static func create(content: OnboardingStepInfo?) -> OnboardingStepViewController {
         let bundle = Bundle(for: OnboardingStepViewController.self)
@@ -35,6 +43,9 @@ class OnboardingStepViewController: UIViewController {
         descriptionLabel.textColor = ColorName.darkGrey.color
         descriptionLabel.textAlignment = .center
 
+        infoButton.style = .text
+        infoButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+
         update(content: content)
     }
 
@@ -51,6 +62,11 @@ class OnboardingStepViewController: UIViewController {
         imageView.image = content?.image
         titleLabel.text = content?.title
         descriptionLabel.text = content?.description
+        if let attributedText = content?.infoButtonText {
+            infoButton.setAttributedTitle(attributedText, for: .normal)
+        } else {
+            moreInfoStackView.removeFromSuperview()
+        }
     }
 
 }

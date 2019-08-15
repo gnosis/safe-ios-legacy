@@ -43,6 +43,10 @@ public class WalletApplicationService: Assertable {
         return wallet.contractVersion != DomainRegistry.safeContractMetadataRepository.latestContractVersion()
     }
 
+    public var latestContractVersion: String {
+        return DomainRegistry.safeContractMetadataRepository.latestContractVersion()
+    }
+
     public var selectedWalletAddress: String? {
         return selectedWallet?.address?.value
     }

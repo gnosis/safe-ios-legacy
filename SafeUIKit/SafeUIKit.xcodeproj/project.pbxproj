@@ -413,6 +413,8 @@
 		55CE9CF0230410BB00CB414D /* ContractUpgradeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */; };
 		55CE9CFA23055EE500CB414D /* ContractUpgradeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CF923055EE500CB414D /* ContractUpgradeFlowCoordinator.swift */; };
 		55CE9CFC23055F0400CB414D /* ContractUpgradeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CFB23055F0400CB414D /* ContractUpgradeFlowCoordinatorTests.swift */; };
+		55CE9CFF23058C6F00CB414D /* ContractUpgradeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CFE23058C6F00CB414D /* ContractUpgradeCommand.swift */; };
+		55CE9D0123059ED800CB414D /* ContractUpgradeTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9D0023059ED800CB414D /* ContractUpgradeTrackingEvent.swift */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5D216F6F70003D9A53 /* TokenInput.swift */; };
@@ -1019,6 +1021,8 @@
 		55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContractUpgradeHeaderView.xib; sourceTree = "<group>"; };
 		55CE9CF923055EE500CB414D /* ContractUpgradeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeFlowCoordinator.swift; sourceTree = "<group>"; };
 		55CE9CFB23055F0400CB414D /* ContractUpgradeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		55CE9CFE23058C6F00CB414D /* ContractUpgradeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeCommand.swift; sourceTree = "<group>"; };
+		55CE9D0023059ED800CB414D /* ContractUpgradeTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeTrackingEvent.swift; sourceTree = "<group>"; };
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55D0EC5D216F6F70003D9A53 /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
@@ -2164,6 +2168,8 @@
 				55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */,
 				55CE9CF923055EE500CB414D /* ContractUpgradeFlowCoordinator.swift */,
 				55CE9CFB23055F0400CB414D /* ContractUpgradeFlowCoordinatorTests.swift */,
+				55CE9CFE23058C6F00CB414D /* ContractUpgradeCommand.swift */,
+				55CE9D0023059ED800CB414D /* ContractUpgradeTrackingEvent.swift */,
 			);
 			path = ContractUpgrade;
 			sourceTree = "<group>";
@@ -2962,6 +2968,7 @@
 				553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */,
 				0A3BD95B22255C40007039B4 /* ConnectBrowserExtensionLaterCommand.swift in Sources */,
 				0ADE03FF22DF2ED600CA4705 /* OnboardingToolbar.swift in Sources */,
+				55CE9D0123059ED800CB414D /* ContractUpgradeTrackingEvent.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A2D58802257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift in Sources */,
 				551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */,
@@ -2988,6 +2995,7 @@
 				0A2C0E182296F2E3008A30AC /* AddressDetailView.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */,
+				55CE9CFF23058C6F00CB414D /* ContractUpgradeCommand.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
 				0ABD145D22943DCA00922964 /* MainViewController.swift in Sources */,
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,

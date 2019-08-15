@@ -34,16 +34,36 @@ class OnboardingStepViewControllerTests: XCTestCase {
         XCTAssertEqual(vc.content?.title, "NewTitle")
     }
 
+    func test_showInfo_callsInfoButtonAction() {
+        vc.loadViewIfNeeded()
+        var didCallAction = false
+        vc.update(content: OnboardingStepInfo.testContentWith {
+            didCallAction = true
+        })
+        vc.showInfo(self)
+        XCTAssertTrue(didCallAction)
+    }
+
 }
 
 extension OnboardingStepInfo {
 
     // swiftlint:disable trailing_closure
     static let testContent = OnboardingStepInfo(image: UIImage(),
-                                                  title: "TestTitle",
-                                                  description: "Test Description",
-                                                  actionTitle: "Test Action",
-                                                  trackingEvent: TestScreenTrackingEvent.view,
-                                                  action: {})
+                                                title: "TestTitle",
+                                                description: "Test Description",
+                                                actionTitle: "Test Action",
+                                                trackingEvent: TestScreenTrackingEvent.view,
+                                                action: {})
+
+    static func testContentWith(infoAction: @escaping () -> Void) -> OnboardingStepInfo {
+        return OnboardingStepInfo(image: UIImage(),
+                                  title: "TestTitle",
+                                  description: "Test Description",
+                                  infoButtonAction: infoAction,
+                                  actionTitle: "Test Action",
+                                  trackingEvent: TestScreenTrackingEvent.view,
+                                  action: {})
+    }
 
 }

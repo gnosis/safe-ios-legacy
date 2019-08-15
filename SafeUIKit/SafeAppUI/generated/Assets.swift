@@ -54,6 +54,9 @@ enum Asset {
   }
   enum ContractUpgrade {
     static let contractUpgrade = ImageAsset(name: "contractUpgrade")
+    static let upgrade1 = ImageAsset(name: "upgrade1")
+    static let upgrade2 = ImageAsset(name: "upgrade2")
+    static let upgrade3 = ImageAsset(name: "upgrade3")
   }
   static let dappPlaceholder = ImageAsset(name: "dapp-placeholder")
   static let errorIcon = ImageAsset(name: "error-icon")
@@ -126,6 +129,9 @@ enum Asset {
     congratulations,
     ConnectBrowserExtension.connectIntroIcon,
     ContractUpgrade.contractUpgrade,
+    ContractUpgrade.upgrade1,
+    ContractUpgrade.upgrade2,
+    ContractUpgrade.upgrade3,
     dappPlaceholder,
     errorIcon,
     GetInTouch.gitter,

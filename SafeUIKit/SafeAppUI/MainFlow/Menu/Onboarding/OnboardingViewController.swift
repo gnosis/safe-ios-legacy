@@ -9,9 +9,29 @@ struct OnboardingStepInfo {
     var image: UIImage
     var title: String
     var description: String
+    var infoButtonText: NSAttributedString?
+    var infoButtonAction: (() -> Void)?
     var actionTitle: String
     var trackingEvent: Trackable
     var action: () -> Void
+
+    init(image: UIImage,
+         title: String,
+         description: String,
+         infoButtonText: NSAttributedString? = nil,
+         infoButtonAction: (() -> Void)? = nil,
+         actionTitle: String,
+         trackingEvent: Trackable,
+         action: @escaping () -> Void) {
+        self.image = image
+        self.title = title
+        self.description = description
+        self.infoButtonText = infoButtonText
+        self.infoButtonAction = infoButtonAction
+        self.actionTitle = actionTitle
+        self.trackingEvent = trackingEvent
+        self.action = action
+    }
 }
 
 class OnboardingViewController: UIPageViewController, UIPageViewControllerDelegate {
@@ -34,8 +54,8 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
 
     static func create(steps: [OnboardingStepInfo]) -> OnboardingViewController {
         let controller = OnboardingViewController(transitionStyle: .scroll,
-                                                    navigationOrientation: .horizontal,
-                                                    options: nil)
+                                                  navigationOrientation: .horizontal,
+                                                  options: nil)
         controller.steps = steps
         return controller
     }
@@ -138,6 +158,5 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
             toolbar.setActionTitle(controller.content?.actionTitle)
         }
     }
-
 
 }

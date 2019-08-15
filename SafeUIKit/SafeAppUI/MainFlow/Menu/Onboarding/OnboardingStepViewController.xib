@@ -15,6 +15,8 @@
                 <outlet property="contentView" destination="gW5-hX-ZrI" id="4pF-BT-gwv"/>
                 <outlet property="descriptionLabel" destination="yrY-Wm-rMl" id="ArN-p5-Fae"/>
                 <outlet property="imageView" destination="8gL-wM-iUM" id="WTN-W9-yAD"/>
+                <outlet property="infoButton" destination="fCx-kk-hZm" id="Tla-NY-eOI"/>
+                <outlet property="moreInfoStackView" destination="OLc-Zp-DQV" id="d0T-NO-d5r"/>
                 <outlet property="scrollView" destination="c5O-9d-1y8" id="Ynv-xE-WT2"/>
                 <outlet property="stackView" destination="XFr-xd-fNL" id="b8m-SH-OQQ"/>
                 <outlet property="titleLabel" destination="oRt-er-Kza" id="Zl2-pt-OeJ"/>
@@ -32,13 +34,13 @@
                     <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gW5-hX-ZrI" userLabel="ContentView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="369"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWY-O8-oNr" userLabel="WrapperView">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="369"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="XFr-xd-fNL">
-                                            <rect key="frame" x="16" y="0.0" width="382" height="369"/>
+                                            <rect key="frame" x="16" y="0.0" width="382" height="409"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEJ-Gq-v86" userLabel="SpacingView">
                                                     <rect key="frame" x="188.5" y="0.0" width="5" height="0.0"/>
@@ -61,13 +63,39 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrY-Wm-rMl">
-                                                    <rect key="frame" x="1" y="287.5" width="380.5" height="81.5"/>
-                                                    <string key="text">WalletConnect is a protocol that allows you to connect the Safe to desktop Dapps. The Safe will notify you when the Dapp wants to make a transaction.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="qdW-ka-yhe">
+                                                    <rect key="frame" x="1" y="287.5" width="380.5" height="121.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrY-Wm-rMl">
+                                                            <rect key="frame" x="0.0" y="0.0" width="380.5" height="81.5"/>
+                                                            <string key="text">WalletConnect is a protocol that allows you to connect the Safe to desktop Dapps. The Safe will notify you when the Dapp wants to make a transaction.</string>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OLc-Zp-DQV">
+                                                            <rect key="frame" x="94" y="87.5" width="192" height="34"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCx-kk-hZm" customClass="StandardButton" customModule="SafeUIKit">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="172" height="34"/>
+                                                                    <state key="normal" title="More info in our blog.">
+                                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="showInfo:" destination="-1" eventType="touchUpInside" id="HxE-ql-3NT"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="external_link" translatesAutoresizingMaskIntoConstraints="NO" id="jvu-3x-kfN">
+                                                                    <rect key="frame" x="180" y="11" width="12" height="12"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="12" id="Crn-iE-inQ"/>
+                                                                        <constraint firstAttribute="height" constant="12" id="nSr-bH-5dS"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
@@ -111,4 +139,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
+    <resources>
+        <image name="external_link" width="12" height="12"/>
+    </resources>
 </document>
