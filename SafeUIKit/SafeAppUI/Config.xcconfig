@@ -5,4 +5,4 @@ LIBRARYROOT=${SRCROOT}/../Library/${PLATFORM_NAME}
 FRAMEWORK_SEARCH_PATHS=$(inherited) ${LIBRARYROOT}
 LIBRARY_SEARCH_PATHS=$(inherited) ${LIBRARYROOT}
 HEADER_SEARCH_PATHS=$(inherited) ${LIBRARYROOT}/include
-OTHER_LDFLAGS=$(inherited) -framework "IdentityAccessDomainModel" -framework "MultisigWalletDomainModel" -framework "Common" -all_load
+OTHER_LDFLAGS=$(inherited) -framework "IdentityAccessDomainModel" -framework "MultisigWalletDomainModel" -framework "Common"  -lcrypto -lsecp256k1
