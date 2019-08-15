@@ -1,2 +1,2 @@
 
-OTHER_LDFLAGS=$(inherited) -framework "CryptoSwift" -framework "BlockiesSwift" -framework "RSBarcodes" -framework "SipHash" -framework "Kingfisher" -framework "BigInt" -framework "CryptoEthereumSwift" -framework "DateTools" -framework "EthereumKit"
+OTHER_LDFLAGS=$(inherited) -framework "CryptoSwift" -framework "BlockiesSwift" -framework "RSBarcodes" -framework "SipHash" -framework "Kingfisher" -framework "BigInt" -framework "CryptoEthereumSwift" -framework "DateTools" -framework "EthereumKit" -lcrypto -lsecp256k1
