@@ -36,16 +36,11 @@ public extension BigUInt {
 fileprivate extension String {
 
     func stripHexPrefix() -> String {
-        var hex = self
-        let prefix = "0x"
-        if hex.hasPrefix(prefix) {
-            hex = String(hex.dropFirst(prefix.count))
-        }
-        return hex
+        return starts(with: "0x") ? String(self.dropFirst(2)) : self
     }
 
     func addHexPrefix() -> String {
-        return "0x".appending(self)
+        return "0x" + self
     }
 
 }

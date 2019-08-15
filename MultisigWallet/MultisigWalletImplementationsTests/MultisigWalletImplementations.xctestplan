@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "D0B6F5C7-76FA-47FB-8DB8-FB77C30A529B",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:MultisigWallet.xcodeproj",
+        "identifier" : "0AAE7C80230450BC00E7EB07",
+        "name" : "MultisigWalletImplementationsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

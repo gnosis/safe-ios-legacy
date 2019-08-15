@@ -13,11 +13,11 @@ open class InMemoryTransactionRepository: BaseInMemoryRepository<Transaction, Tr
     }
 
     public func find(hash: Data, status: TransactionStatus.Code) -> Transaction? {
-        return items.first { $0.hash == hash && $0.status == status }
+        return all().first { $0.hash == hash && $0.status == status }
     }
 
     public func find(hash: Data) -> Transaction? {
-        return items.first { $0.hash == hash }
+        return all().first { $0.hash == hash }
     }
 
     public func nextID() -> TransactionID {

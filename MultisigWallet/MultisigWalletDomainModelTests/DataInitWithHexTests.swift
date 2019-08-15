@@ -5,7 +5,7 @@
 import XCTest
 @testable import MultisigWalletDomainModel
 
-class DataInitWithHexTest: XCTestCase {
+class DataInitWithHexTests: XCTestCase {
 
     func test_ethDataConversion() {
         XCTAssertEqual(Data(ethHex: "0x"), Data())

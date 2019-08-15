@@ -4,4 +4,4 @@
 
 #include "CommonConfig.xcconfig"
 // secp256k1 and crypto libs are required for CryptoEthereumSwift, which is required for EthereumKit
-OTHER_LDFLAGS = $(inherited) -lMultisigWalletDomainModel -lMultisigWalletApplication -lsqlite3 -lsecp256k1 -lcrypto -lCommonImplementations
+OTHER_LDFLAGS = $(inherited) -framework "MultisigWalletDomainModel" -framework "MultisigWalletApplication" -lsqlite3 -lsecp256k1 -lcrypto -framework "CommonImplementations"

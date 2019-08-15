@@ -109,22 +109,22 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0AEF8A8F20A08899006A1265"
-            BuildableName = "libMultisigWalletApplication.a"
-            BlueprintName = "MultisigWalletApplication"
+            BuildableName = "libMultisigWalletApplicationLib.a"
+            BlueprintName = "MultisigWalletApplicationLib"
             ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0AEF8A7420A08878006A1265"
-            BuildableName = "libMultisigWalletDomainModel.a"
-            BlueprintName = "MultisigWalletDomainModel"
+            BuildableName = "libMultisigWalletDomainModelLib.a"
+            BlueprintName = "MultisigWalletDomainModelLib"
             ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
-            BuildableName = "libMultisigWalletImplementations.a"
-            BlueprintName = "MultisigWalletImplementations"
+            BuildableName = "libMultisigWalletImplementationsLib.a"
+            BlueprintName = "MultisigWalletImplementationsLib"
             ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
          </BuildableReference>
          <BuildableReference
@@ -210,36 +210,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A537BFD207CFB9200921FB9"
-               BuildableName = "IdentityAccessApplicationLibTests.xctest"
-               BlueprintName = "IdentityAccessApplicationLibTests"
-               ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A537AA6207CEA0100921FB9"
-               BuildableName = "IdentityAccessDomainModelLibTests.xctest"
-               BlueprintName = "IdentityAccessDomainModelLibTests"
-               ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A537B2D207CF4B000921FB9"
-               BuildableName = "IdentityAccessImplementationsLibTests.xctest"
-               BlueprintName = "IdentityAccessImplementationsLibTests"
-               ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "0AF33D3C209C6BF800527D25"
                BuildableName = "SafeAppUIUnitTests.xctest"
                BlueprintName = "SafeAppUIUnitTests"
@@ -260,36 +230,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AEF8A9A20A088A5006A1265"
-               BuildableName = "MultisigWalletApplicationTests.xctest"
-               BlueprintName = "MultisigWalletApplicationTests"
-               ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AEF8A8020A08889006A1265"
-               BuildableName = "MultisigWalletDomainModelTests.xctest"
-               BlueprintName = "MultisigWalletDomainModelTests"
-               ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AEF8AB420A088C3006A1265"
-               BuildableName = "MultisigWalletImplementationsTests.xctest"
-               BlueprintName = "MultisigWalletImplementationsTests"
-               ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A059362230418F200E71A60"
                BuildableName = "CommonImplementationsTests.xctest"
                BlueprintName = "CommonImplementationsTests"
@@ -300,10 +240,60 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A059316230418DF00E71A60"
-               BuildableName = "CommonTestSupportTests.xctest"
-               BlueprintName = "CommonTestSupportTests"
-               ReferencedContainer = "container:../Common/Common.xcodeproj">
+               BlueprintIdentifier = "0A0594AC23043B9E00E71A60"
+               BuildableName = "IdentityAccessApplicationTests.xctest"
+               BlueprintName = "IdentityAccessApplicationTests"
+               ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A05946C23043B8000E71A60"
+               BuildableName = "IdentityAccessDomainModelTests.xctest"
+               BlueprintName = "IdentityAccessDomainModelTests"
+               ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A05948C23043B9100E71A60"
+               BuildableName = "IdentityAccessImplementationsTests.xctest"
+               BlueprintName = "IdentityAccessImplementationsTests"
+               ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0AAE7C60230450B300E7EB07"
+               BuildableName = "MultisigWalletApplicationTests.xctest"
+               BlueprintName = "MultisigWalletApplicationTests"
+               ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0AAE7C40230450A600E7EB07"
+               BuildableName = "MultisigWalletDomainModelTests.xctest"
+               BlueprintName = "MultisigWalletDomainModelTests"
+               ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0AAE7C80230450BC00E7EB07"
+               BuildableName = "MultisigWalletImplementationsTests.xctest"
+               BlueprintName = "MultisigWalletImplementationsTests"
+               ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

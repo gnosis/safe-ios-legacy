@@ -519,7 +519,7 @@ class RecoveryTransactionBuilder: Assertable {
         ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address)
         multiSendContractProxy = MultiSendContractProxy(self.multiSendContractAddress)
 
-        print("Wallet \(wallet.id), address \(wallet.address)")
+        print("Wallet \(wallet.id), address \(wallet.address?.value ?? "<null>")")
 
         transaction = newTransaction()
             .change(sender: wallet.address)

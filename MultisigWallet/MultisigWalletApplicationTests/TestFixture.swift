@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import XCTest
 
 extension Address {
 

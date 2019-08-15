@@ -62,13 +62,11 @@
 		0A334DC2209C6D8D00ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB5209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift */; };
 		0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */; };
 		0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */; };
-		0A334DC9209C6DD800ABC6AE /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DC8209C6DD800ABC6AE /* libCommonTestSupport.a */; };
 		0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DD0209C700700ABC6AE /* LocalizedString.swift */; };
 		0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DD9209C70F000ABC6AE /* Localizable.strings */; };
 		0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DDD209C726100ABC6AE /* Sotryboards.swift */; };
 		0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DE2209C892700ABC6AE /* SafeTestCase.swift */; };
-		0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DEC209C894D00ABC6AE /* libIdentityAccessImplementations.a */; };
 		0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */; };
 		0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */; };
 		0A334E2F209C8E3800ABC6AE /* CreateSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E00209C8E3800ABC6AE /* CreateSafe.storyboard */; };
@@ -96,11 +94,9 @@
 		0A334E5F209C8E6800ABC6AE /* PasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E14209C8E3800ABC6AE /* PasswordViewControllerTests.swift */; };
 		0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E15209C8E3800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift */; };
 		0A334E62209C8E6800ABC6AE /* OnboardingWelcomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E19209C8E3800ABC6AE /* OnboardingWelcomeViewControllerTests.swift */; };
-		0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334E63209C8ED300ABC6AE /* libIdentityAccessApplication.a */; };
 		0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E67209C8F4700ABC6AE /* Assets.swift */; };
 		0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */; };
 		0A334E6D209C8F8800ABC6AE /* ErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E69209C8F8500ABC6AE /* ErrorHandlerTests.swift */; };
-		0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC62207B80A700636560 /* libCommonTestSupport.a */; };
 		0A38966222F1A25200CDD718 /* OverlayTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A38966122F1A25200CDD718 /* OverlayTransitionAnimator.swift */; };
 		0A395C9A21C0F80200652A59 /* SettingsTransactionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A395C9921C0F80200652A59 /* SettingsTransactionHeaderView.xib */; };
 		0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */; };
@@ -120,7 +116,6 @@
 		0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */; };
 		0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */; };
 		0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */; };
-		0A3BD95922255192007039B4 /* MultisigWalletApplicationResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A3BD95622255174007039B4 /* MultisigWalletApplicationResources.bundle */; };
 		0A3BD95B22255C40007039B4 /* ConnectBrowserExtensionLaterCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD95A22255C3E007039B4 /* ConnectBrowserExtensionLaterCommand.swift */; };
 		0A3BD95D22255C49007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD95C22255C48007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift */; };
 		0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */; };
@@ -132,7 +127,6 @@
 		0A3FB8D2228B16F100270573 /* UIBarButtonItem+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D1228B16F100270573 /* UIBarButtonItem+Items.swift */; };
 		0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D3228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift */; };
 		0A3FB8D6228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */; };
-		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
 		0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */; };
 		0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */; };
@@ -174,6 +168,16 @@
 		0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
+		0A84C21F23053B820006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
+		0A84C23B23053BAD0006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C23423053BA30006DA50 /* IdentityAccessImplementations.framework */; };
+		0A84C23C23053BB70006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
+		0A84C23D23053BBE0006DA50 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1561220B393A00E340DB /* Common.framework */; };
+		0A84C23E23053BC50006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
+		0A84C23F23053BD00006DA50 /* IdentityAccessApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C23823053BA30006DA50 /* IdentityAccessApplication.framework */; };
+		0A84C24023053BD00006DA50 /* MultisigWalletApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3BD94E22255174007039B4 /* MultisigWalletApplication.framework */; };
+		0A84C24123053BDC0006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C23423053BA30006DA50 /* IdentityAccessImplementations.framework */; };
+		0A84C24223053BDC0006DA50 /* MultisigWalletImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3BD95222255174007039B4 /* MultisigWalletImplementations.framework */; };
+		0A84C24323053BE00006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
 		0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -185,8 +189,6 @@
 		0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF69B22265D19400F06616 /* PasswordViewController.xib */; };
 		0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */; };
 		0AB20142229848520071510A /* LongProcessTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB20141229848520071510A /* LongProcessTracker.swift */; };
-		0AB3F13221F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13121F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift */; };
-		0AB3F13821F7373300D351C7 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */; };
 		0AB3F13921F73A5200D351C7 /* CollectionUIModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */; };
 		0AB3F13A21F73A5500D351C7 /* CollectionUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */; };
 		0ABA591821AC07D0009D249F /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591721AC07D0009D249F /* AmountLabel.swift */; };
@@ -272,8 +274,6 @@
 		0AF8D53920D00E56001E8423 /* TransactionViewViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53820D00E56001E8423 /* TransactionViewViewControllerTests.swift */; };
 		0AF8D55720D01A90001E8423 /* AssetViewViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82C20CE9A080095C00D /* AssetViewViewControllerTests.swift */; };
 		0AF9EBC521A6C4A700C028B3 /* ContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9EBC421A6C4A700C028B3 /* ContainerCell.swift */; };
-		0AFA76692181FB1800A96FDB /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */; };
-		0AFA766B2181FB1E00A96FDB /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */; };
 		0AFA766D2182195200A96FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA766C2182195200A96FDB /* ViewController.swift */; };
 		0AFD05E022A680AF00888956 /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
 		0AFD05F822A6906000888956 /* ChangePasswordTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD05F722A6906000888956 /* ChangePasswordTrackingEvent.swift */; };
@@ -285,7 +285,6 @@
 		550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1ED62133E66C0035109A /* ManageTokensTableViewController.swift */; };
 		550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1ED82133FD2E0035109A /* ManageTokensFlowCoordinator.swift */; };
 		550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDA213406380035109A /* ManageTokensTableViewControllerTests.swift */; };
-		550D1EDD213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */; };
 		550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */; };
 		550E7CDC21708E1F0032DE6C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550E7CDB21708E1E0032DE6C /* String+Extensions.swift */; };
 		550E7CDE21708E540032DE6C /* UITextField+TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550E7CDD21708E540032DE6C /* UITextField+TokenInput.swift */; };
@@ -307,7 +306,6 @@
 		5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */; };
 		5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A806208E357B00AF3A50 /* ScannerViewController.swift */; };
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
-		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		552C01972297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C01962297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift */; };
 		552C01992297E10F001A158D /* BasePaymentMethodViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C01982297E10F001A158D /* BasePaymentMethodViewControllerTests.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
@@ -388,7 +386,6 @@
 		5598000B225B74A4006D5792 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598000A225B74A4006D5792 /* Authenticator.swift */; };
 		5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
-		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
 		55AA3C2F229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C2E229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift */; };
 		55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C3022956E01007B3105 /* BasePaymentMethodViewController.swift */; };
 		55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */; };
@@ -410,7 +407,6 @@
 		55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A02229349700E7AEA7 /* OnboardingTrackingEvent.swift */; };
 		55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
-		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5D216F6F70003D9A53 /* TokenInput.swift */; };
 		55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5F216F6F8B003D9A53 /* TokenInputTests.swift */; };
 		55D0EC62216F7383003D9A53 /* TokenInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */; };
@@ -474,20 +470,6 @@
 			remoteGlobalIDString = 0AEF8AB520A088C3006A1265;
 			remoteInfo = MultisigWalletImplementationsTests;
 		};
-		0A3BD95522255174007039B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A3BD93F22255174007039B4 /* MultisigWallet.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3BD93222255049007039B4;
-			remoteInfo = MultisigWalletApplicationResources;
-		};
-		0A3BD9572225517D007039B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A3BD93F22255174007039B4 /* MultisigWallet.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A3BD93122255049007039B4;
-			remoteInfo = MultisigWalletApplicationResources;
-		};
 		0A3D1560220B393A00E340DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A3D1553220B393A00E340DB /* Common.xcodeproj */;
@@ -543,6 +525,48 @@
 			proxyType = 2;
 			remoteGlobalIDString = 0A934D4F20B711F400F15616;
 			remoteInfo = CommonIntegration;
+		};
+		0A84C22F23053BA30006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05946523043B7F00E71A60;
+			remoteInfo = IdentityAccessDomainModel;
+		};
+		0A84C23123053BA30006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05946D23043B8000E71A60;
+			remoteInfo = IdentityAccessDomainModelTests;
+		};
+		0A84C23323053BA30006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05948523043B9100E71A60;
+			remoteInfo = IdentityAccessImplementations;
+		};
+		0A84C23523053BA30006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05948D23043B9100E71A60;
+			remoteInfo = IdentityAccessImplementationsTests;
+		};
+		0A84C23723053BA30006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A0594A523043B9D00E71A60;
+			remoteInfo = IdentityAccessApplication;
+		};
+		0A84C23923053BA30006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A0594AD23043B9E00E71A60;
+			remoteInfo = IdentityAccessApplicationTests;
 		};
 		0A96708F20480C3F00445AC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -750,6 +774,8 @@
 		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
 		0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
+		0A84C21523053B820006DA50 /* IdentityAccessImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentityAccessImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccess.xcodeproj; path = ../IdentityAccess/IdentityAccess.xcodeproj; sourceTree = "<group>"; };
 		0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseTestCase.swift; sourceTree = "<group>"; };
 		0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerStateTransitionTests.swift; sourceTree = "<group>"; };
 		0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseState.swift; sourceTree = "<group>"; };
@@ -1038,8 +1064,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AFA766B2181FB1E00A96FDB /* libCommonTestSupport.a in Frameworks */,
-				0AFA76692181FB1800A96FDB /* libIdentityAccessImplementations.a in Frameworks */,
+				0A84C23B23053BAD0006DA50 /* IdentityAccessImplementations.framework in Frameworks */,
+				0A84C21F23053B820006DA50 /* CommonTestSupport.framework in Frameworks */,
 				0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */,
 				0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */,
 			);
@@ -1049,7 +1075,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */,
+				0A84C23C23053BB70006DA50 /* CommonTestSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,7 +1083,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */,
+				0A84C23D23053BBE0006DA50 /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,7 +1091,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */,
+				0A84C23E23053BC50006DA50 /* CommonTestSupport.framework in Frameworks */,
 				0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1074,8 +1100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
-				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
+				0A84C23F23053BD00006DA50 /* IdentityAccessApplication.framework in Frameworks */,
+				0A84C24023053BD00006DA50 /* MultisigWalletApplication.framework in Frameworks */,
 				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1084,9 +1110,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AB3F13821F7373300D351C7 /* libMultisigWalletImplementations.a in Frameworks */,
-				0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */,
-				0A334DC9209C6DD800ABC6AE /* libCommonTestSupport.a in Frameworks */,
+				0A84C24323053BE00006DA50 /* CommonTestSupport.framework in Frameworks */,
+				0A84C24123053BDC0006DA50 /* IdentityAccessImplementations.framework in Frameworks */,
+				0A84C24223053BDC0006DA50 /* MultisigWalletImplementations.framework in Frameworks */,
 				0AF33D3E209C6BF800527D25 /* SafeAppUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1259,6 +1285,7 @@
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A84C21523053B820006DA50 /* IdentityAccessImplementations.framework */,
 				0A3D1551220B38B100E340DB /* libReplaceBrowserExtensionFacade.a */,
 				0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */,
 				0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */,
@@ -1311,13 +1338,12 @@
 		0A3BD94022255174007039B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A3BD94A22255174007039B4 /* libMultisigWalletDomainModel.a */,
+				0A3BD94A22255174007039B4 /* MultisigWalletDomainModel.framework */,
 				0A3BD94C22255174007039B4 /* MultisigWalletDomainModelTests.xctest */,
-				0A3BD94E22255174007039B4 /* libMultisigWalletApplication.a */,
+				0A3BD94E22255174007039B4 /* MultisigWalletApplication.framework */,
 				0A3BD95022255174007039B4 /* MultisigWalletApplicationTests.xctest */,
-				0A3BD95222255174007039B4 /* libMultisigWalletImplementations.a */,
+				0A3BD95222255174007039B4 /* MultisigWalletImplementations.framework */,
 				0A3BD95422255174007039B4 /* MultisigWalletImplementationsTests.xctest */,
-				0A3BD95622255174007039B4 /* MultisigWalletApplicationResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1341,14 +1367,14 @@
 		0A3D1554220B393A00E340DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A3D1561220B393A00E340DB /* libCommon.a */,
-				0A3D1563220B393A00E340DB /* CommonTests.xctest */,
-				0A3D1565220B393A00E340DB /* libCommonTestSupport.a */,
-				0A3D1567220B393A00E340DB /* libDatabase.a */,
-				0A3D1569220B393A00E340DB /* DatabaseTests.xctest */,
-				0A3D156B220B393A00E340DB /* libCommonImplementations.a */,
-				0A3D156D220B393A00E340DB /* CommonImplementationsTests.xctest */,
 				0A3D156F220B393A00E340DB /* CommonIntegration.app */,
+				0A3D1561220B393A00E340DB /* Common.framework */,
+				0A3D1563220B393A00E340DB /* CommonTests.xctest */,
+				0A3D1565220B393A00E340DB /* CommonTestSupport.framework */,
+				0A3D1567220B393A00E340DB /* Database.framework */,
+				0A3D1569220B393A00E340DB /* DatabaseTests.xctest */,
+				0A3D156B220B393A00E340DB /* CommonImplementations.framework */,
+				0A3D156D220B393A00E340DB /* CommonImplementationsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1434,6 +1460,19 @@
 			path = ../TestTools;
 			sourceTree = "<group>";
 		};
+		0A84C22723053BA30006DA50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A84C23023053BA30006DA50 /* IdentityAccessDomainModel.framework */,
+				0A84C23223053BA30006DA50 /* IdentityAccessDomainModelTests.xctest */,
+				0A84C23423053BA30006DA50 /* IdentityAccessImplementations.framework */,
+				0A84C23623053BA30006DA50 /* IdentityAccessImplementationsTests.xctest */,
+				0A84C23823053BA30006DA50 /* IdentityAccessApplication.framework */,
+				0A84C23A23053BA30006DA50 /* IdentityAccessApplicationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0A8C961920D2A783007D2410 /* TransactionDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1450,6 +1489,7 @@
 		0A96706F20480C1200445AC2 = {
 			isa = PBXGroup;
 			children = (
+				0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */,
 				0A3BD93F22255174007039B4 /* MultisigWallet.xcodeproj */,
 				0A3D1553220B393A00E340DB /* Common.xcodeproj */,
 				0AB0B57F2163927300FB2435 /* config */,
@@ -2327,7 +2367,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0A3BD9582225517D007039B4 /* PBXTargetDependency */,
 			);
 			name = SafeAppUI;
 			productName = SafeAppUI;
@@ -2413,6 +2452,10 @@
 					ProjectRef = 0A3D1553220B393A00E340DB /* Common.xcodeproj */;
 				},
 				{
+					ProductGroup = 0A84C22723053BA30006DA50 /* Products */;
+					ProjectRef = 0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */;
+				},
+				{
 					ProductGroup = 0A3BD94022255174007039B4 /* Products */;
 					ProjectRef = 0A3BD93F22255174007039B4 /* MultisigWallet.xcodeproj */;
 				},
@@ -2430,10 +2473,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0A3BD94A22255174007039B4 /* libMultisigWalletDomainModel.a */ = {
+		0A3BD94A22255174007039B4 /* MultisigWalletDomainModel.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMultisigWalletDomainModel.a;
+			fileType = wrapper.framework;
+			path = MultisigWalletDomainModel.framework;
 			remoteRef = 0A3BD94922255174007039B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2444,10 +2487,10 @@
 			remoteRef = 0A3BD94B22255174007039B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A3BD94E22255174007039B4 /* libMultisigWalletApplication.a */ = {
+		0A3BD94E22255174007039B4 /* MultisigWalletApplication.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMultisigWalletApplication.a;
+			fileType = wrapper.framework;
+			path = MultisigWalletApplication.framework;
 			remoteRef = 0A3BD94D22255174007039B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2458,10 +2501,10 @@
 			remoteRef = 0A3BD94F22255174007039B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A3BD95222255174007039B4 /* libMultisigWalletImplementations.a */ = {
+		0A3BD95222255174007039B4 /* MultisigWalletImplementations.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMultisigWalletImplementations.a;
+			fileType = wrapper.framework;
+			path = MultisigWalletImplementations.framework;
 			remoteRef = 0A3BD95122255174007039B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2472,17 +2515,10 @@
 			remoteRef = 0A3BD95322255174007039B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A3BD95622255174007039B4 /* MultisigWalletApplicationResources.bundle */ = {
+		0A3D1561220B393A00E340DB /* Common.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = MultisigWalletApplicationResources.bundle;
-			remoteRef = 0A3BD95522255174007039B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A3D1561220B393A00E340DB /* libCommon.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCommon.a;
+			fileType = wrapper.framework;
+			path = Common.framework;
 			remoteRef = 0A3D1560220B393A00E340DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2493,17 +2529,17 @@
 			remoteRef = 0A3D1562220B393A00E340DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A3D1565220B393A00E340DB /* libCommonTestSupport.a */ = {
+		0A3D1565220B393A00E340DB /* CommonTestSupport.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCommonTestSupport.a;
+			fileType = wrapper.framework;
+			path = CommonTestSupport.framework;
 			remoteRef = 0A3D1564220B393A00E340DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A3D1567220B393A00E340DB /* libDatabase.a */ = {
+		0A3D1567220B393A00E340DB /* Database.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDatabase.a;
+			fileType = wrapper.framework;
+			path = Database.framework;
 			remoteRef = 0A3D1566220B393A00E340DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2514,10 +2550,10 @@
 			remoteRef = 0A3D1568220B393A00E340DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A3D156B220B393A00E340DB /* libCommonImplementations.a */ = {
+		0A3D156B220B393A00E340DB /* CommonImplementations.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCommonImplementations.a;
+			fileType = wrapper.framework;
+			path = CommonImplementations.framework;
 			remoteRef = 0A3D156A220B393A00E340DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2533,6 +2569,48 @@
 			fileType = wrapper.application;
 			path = CommonIntegration.app;
 			remoteRef = 0A3D156E220B393A00E340DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C23023053BA30006DA50 /* IdentityAccessDomainModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IdentityAccessDomainModel.framework;
+			remoteRef = 0A84C22F23053BA30006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C23223053BA30006DA50 /* IdentityAccessDomainModelTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = IdentityAccessDomainModelTests.xctest;
+			remoteRef = 0A84C23123053BA30006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C23423053BA30006DA50 /* IdentityAccessImplementations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IdentityAccessImplementations.framework;
+			remoteRef = 0A84C23323053BA30006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C23623053BA30006DA50 /* IdentityAccessImplementationsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = IdentityAccessImplementationsTests.xctest;
+			remoteRef = 0A84C23523053BA30006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C23823053BA30006DA50 /* IdentityAccessApplication.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IdentityAccessApplication.framework;
+			remoteRef = 0A84C23723053BA30006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C23A23053BA30006DA50 /* IdentityAccessApplicationTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = IdentityAccessApplicationTests.xctest;
+			remoteRef = 0A84C23923053BA30006DA50 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2585,7 +2663,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A3BD95922255192007039B4 /* MultisigWalletApplicationResources.bundle in Resources */,
 				0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */,
 				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
@@ -3094,7 +3171,6 @@
 				0A2D588C22575F33001B8BF4 /* AddressInputViewControllerTests.swift in Sources */,
 				0AF5BB3B222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				553AEB16229EA42E00EA3248 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
-				0AB3F13221F5CF5400D351C7 /* TransactionViewViewControllerRegressionTests.swift in Sources */,
 				0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */,
 				550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */,
 				0AC3F1712183402800DAADC9 /* OnboardingTermsViewControllerTests.swift in Sources */,
@@ -3119,8 +3195,6 @@
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */,
 				5579C58022C3739400BB93CA /* WCSessionListTableViewControllerTests.swift in Sources */,
-				55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */,
-				550D1EDD213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift in Sources */,
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,
 				5579C57E22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift in Sources */,
 				0A334E6D209C8F8800ABC6AE /* ErrorHandlerTests.swift in Sources */,
@@ -3162,11 +3236,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0A3BD9582225517D007039B4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MultisigWalletApplicationResources;
-			targetProxy = 0A3BD9572225517D007039B4 /* PBXContainerItemProxy */;
-		};
 		0A96709020480C3F00445AC2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A96707920480C3E00445AC2 /* SafeUIKitDemo */;
@@ -3252,7 +3321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SDKROOT = iphoneos;
 			};
 			name = PreRelease;
@@ -3637,7 +3706,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -3673,7 +3742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -4242,7 +4311,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SDKROOT = iphoneos;
 			};
 			name = AdHoc;
