@@ -23,6 +23,7 @@ final class MenuTableViewController: UITableViewController {
     weak var delegate: MenuTableViewControllerDelegate?
 
     private var selectedSafeAddress: String? {
+        guard ApplicationServiceRegistry.walletService.hasReadyToUseWallet else { return nil }
         return ApplicationServiceRegistry.walletService.selectedWalletAddress
     }
 
@@ -30,7 +31,12 @@ final class MenuTableViewController: UITableViewController {
         return ApplicationServiceRegistry.walletService.feePaymentTokenData.code
     }
 
+    private var contractUpgradeRequired: Bool {
+        return ApplicationServiceRegistry.walletService.contractUpgradeRequired
+    }
+
     enum SettingsSection: Hashable {
+        case contractUpgrade
         case safe
         case portfolio
         case security
@@ -84,12 +90,15 @@ final class MenuTableViewController: UITableViewController {
         tableView.backgroundColor = ColorName.white.color
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
-        tableView.register(UINib(nibName: "BasicTableViewCell",
-                                 bundle: Bundle(for: BasicTableViewCell.self)),
+        tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
+        tableView.register(UINib(nibName: "ContractUpgradeHeaderView",
+                                 bundle: Bundle(for: ContractUpgradeHeaderView.self)),
+                           forHeaderFooterViewReuseIdentifier: "ContractUpgradeHeaderView")
         tableView.sectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = BackgroundHeaderFooterView.height
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -104,14 +113,25 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private func generateData() {
-        menuItemSections = selectedSafeAddress == nil ? [] : [
-            (section: .safe,
-             title: Strings.address,
-             items: [MenuItem(name: "SAFE",
-                              hasDisclosure: false,
-                              height: SafeTableViewCell.height,
-                              command: VoidCommand())])
-        ]
+        menuItemSections = []
+        if contractUpgradeRequired {
+            // custom section with ContractUpgradeHeaderView
+            menuItemSections += [
+                (section: .contractUpgrade,
+                 title: "",
+                 items: [MenuItem(name: "", hasDisclosure: false, height: 0, command: VoidCommand())])
+            ]
+        }
+        if selectedSafeAddress != nil {
+            menuItemSections += [
+                (section: .safe,
+                 title: Strings.address,
+                 items: [MenuItem(name: "SAFE",
+                                  hasDisclosure: false,
+                                  height: SafeTableViewCell.height,
+                                  command: VoidCommand())])
+            ]
+        }
         menuItemSections += [
             (section: .portfolio,
              title: Strings.portfolio,
@@ -157,6 +177,8 @@ final class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch menuItemSections[indexPath.section].section {
+        case .contractUpgrade:
+            return UITableViewCell()
         case .safe:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTableViewCell",
                                                      for: indexPath) as! SafeTableViewCell
@@ -191,14 +213,29 @@ final class MenuTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BackgroundHeaderFooterView")
-            as! BackgroundHeaderFooterView
-        view.title = menuItemSections[section].title.uppercased()
-        return view
+        switch menuItemSections[section].section {
+        case .contractUpgrade:
+            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ContractUpgradeHeaderView")
+                as! ContractUpgradeHeaderView
+            view.onUpgrade = {
+                print("UPGRADE")
+            }
+            return view
+        default:
+            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BackgroundHeaderFooterView")
+                as! BackgroundHeaderFooterView
+            view.title = menuItemSections[section].title.uppercased()
+            return view
+        }
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return BackgroundHeaderFooterView.height
+        switch menuItemSections[section].section {
+        case .contractUpgrade:
+            return UITableView.automaticDimension
+        default:
+            return BackgroundHeaderFooterView.height
+        }
     }
 
 }

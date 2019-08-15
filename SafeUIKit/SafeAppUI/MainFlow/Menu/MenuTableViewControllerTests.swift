@@ -85,6 +85,14 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertNotNil(cell.leftTextLabel.text)
     }
 
+    func test_whenContractUpgradeRequired_thenUpgradeHeaderDisplayed() {
+        XCTAssertTrue(self.headerFor(section: 0) is BackgroundHeaderFooterView)
+        walletService.shouldUpgrade = true
+        controller.viewWillAppear(false)
+        XCTAssertTrue(self.headerFor(section: 0) is ContractUpgradeHeaderView)
+        XCTAssertEqual(self.cellHeight(row: 0, section: 0), 0)
+    }
+
     // MARK: - Did select row
 
     func test_whenSelectingCell_thenDeselectsIt() {
@@ -159,6 +167,10 @@ extension MenuTableViewControllerTests {
 
     private func selectCell(row: Int, section: Int) {
         controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: row, section: section))
+    }
+
+    private func headerFor(section: Int) -> UIView? {
+        return controller.tableView(controller.tableView, viewForHeaderInSection: section)
     }
 
 }

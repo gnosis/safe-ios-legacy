@@ -282,6 +282,7 @@
 		55CC279920F667FB00AC12D6 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279620F667FB00AC12D6 /* AuthRequest.swift */; };
 		55CC279A20F667FB00AC12D6 /* PairingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279720F667FB00AC12D6 /* PairingRequest.swift */; };
 		55CC279C20F6680800AC12D6 /* PairingRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC279820F667FB00AC12D6 /* PairingRequestTests.swift */; };
+		55CE9CF82305503900CB414D /* MockSafeContractMetadataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CF12305500E00CB414D /* MockSafeContractMetadataRepository.swift */; };
 		55D3C02F20F668EB0047004F /* EthSignatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949C20E2A62D00A0621D /* EthSignatureTests.swift */; };
 		55E2FED1213D539F005F8074 /* MockAccountUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E2FED0213D539F005F8074 /* MockAccountUpdateService.swift */; };
 		55FB258D2121AB3E00E81666 /* TokenList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB258C2121AB3E00E81666 /* TokenList.swift */; };
@@ -741,6 +742,7 @@
 		55CC279620F667FB00AC12D6 /* AuthRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		55CC279720F667FB00AC12D6 /* PairingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingRequest.swift; sourceTree = "<group>"; };
 		55CC279820F667FB00AC12D6 /* PairingRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingRequestTests.swift; sourceTree = "<group>"; };
+		55CE9CF12305500E00CB414D /* MockSafeContractMetadataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSafeContractMetadataRepository.swift; sourceTree = "<group>"; };
 		55E2FED0213D539F005F8074 /* MockAccountUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccountUpdateService.swift; sourceTree = "<group>"; };
 		55FB258C2121AB3E00E81666 /* TokenList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenList.swift; sourceTree = "<group>"; };
 		55FB258E2122F95700E81666 /* TokenListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListItemTests.swift; sourceTree = "<group>"; };
@@ -1298,6 +1300,7 @@
 				0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
 				55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */,
 				55FB2594212301A800E81666 /* TokenListItemRepositoryTests.swift */,
+				55CE9CF12305500E00CB414D /* MockSafeContractMetadataRepository.swift */,
 			);
 			path = MockRepositories;
 			sourceTree = "<group>";
@@ -2028,6 +2031,7 @@
 				0AD5294F21B6E567009559ED /* WalletState+DBSerializable.swift in Sources */,
 				5568A1F922D34CB3007C9E0C /* WalletConnectService.swift in Sources */,
 				0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */,
+				55CE9CF82305503900CB414D /* MockSafeContractMetadataRepository.swift in Sources */,
 				0A9E383D20F4AE510085E8D7 /* HTTPGnosisTransactionRelayService.swift in Sources */,
 				5568A1CE22CF9C3B007C9E0C /* UpdateSessionHandler.swift in Sources */,
 				0A6346F622CA4BC7003DF66A /* HandshakeHandler.swift in Sources */,

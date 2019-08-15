@@ -558,6 +558,9 @@
 /* Title for security section. */
 "security" = "Security";
 
+/* Update required description */
+"security_upgrade_required" = "Upgrade to the latest audited smart contract version and make your funds even more secure!";
+
 /* Send the remainder */
 "send_remainder" = "Send at least the remainder to your new Safe:";
 
@@ -674,6 +677,12 @@
 
 /* 'Type' parameter name */
 "type" = "Type";
+
+/* Upgrade now */
+"upgrade_now" = "Upgrade now";
+
+/* Security upgrade required */
+"upgrade_required" = "Security upgrade required";
 
 /* Face ID button explanation */
 "use_faceid_to_unlock" = "Use Face ID to unlock";
