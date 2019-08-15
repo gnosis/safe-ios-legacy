@@ -38,7 +38,7 @@ public class InMemorySafeContractMetadataRepository: SafeContractMetadataReposit
     }
 
     public func latestContractVersion() -> String {
-        return metadata.metadata.map { $0.version }.max()!
+        return metadata.metadata.last!.version
     }
 
     public func deploymentCode(masterCopyAddress: Address) -> Data? {
