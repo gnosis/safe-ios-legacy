@@ -33,6 +33,7 @@ class TransactionTableViewCell: UITableViewCell {
         static let connectBE = LocalizedString("ios_connect_browser_extension", comment: "Connect browser extension")
         static let disconnectBE = LocalizedString("ios_disconnect_browser_extension",
                                                   comment: "Disconnect browser extension")
+        static let contractUpgrade = LocalizedString("ios_contract_upgrade", comment: "Contract upgrade")
         static let statusFailed = LocalizedString("status_failed", comment: "Failed status")
         static let timeJustNow = LocalizedString("just_now", comment: "Time indication of 'Just now'")
     }
@@ -117,13 +118,16 @@ class TransactionTableViewCell: UITableViewCell {
             tokenAmountLabel.text = Strings.connectBE
         case .disconnectBrowserExtension:
             tokenAmountLabel.text = Strings.disconnectBE
+        case .contractUpgrade:
+            tokenAmountLabel.text = Strings.contractUpgrade
         }
     }
 
     private func recipient(_ transaction: TransactionData) -> String {
         switch transaction.type {
         case .incoming, .walletRecovery, .replaceRecoveryPhrase,
-             .replaceBrowserExtension, .connectBrowserExtension, .disconnectBrowserExtension:
+             .replaceBrowserExtension, .connectBrowserExtension,
+             .disconnectBrowserExtension, .contractUpgrade:
             return transaction.sender
         case .outgoing: return transaction.recipient
         }
@@ -151,7 +155,8 @@ class TransactionTableViewCell: UITableViewCell {
         case .outgoing: return ColorName.darkBlue.color
         case .incoming: return ColorName.hold.color
         case .walletRecovery, .replaceRecoveryPhrase,
-             .replaceBrowserExtension, .connectBrowserExtension, .disconnectBrowserExtension:
+             .replaceBrowserExtension, .connectBrowserExtension,
+             .disconnectBrowserExtension, .contractUpgrade:
             return ColorName.darkBlue.color
         }
     }
@@ -161,7 +166,8 @@ class TransactionTableViewCell: UITableViewCell {
         case .outgoing: return Asset.TransactionOverviewIcons.iconOutgoing.image
         case .incoming: return Asset.TransactionOverviewIcons.iconIncoming.image
         case .walletRecovery, .replaceRecoveryPhrase,
-             .replaceBrowserExtension, .connectBrowserExtension, .disconnectBrowserExtension:
+             .replaceBrowserExtension, .connectBrowserExtension,
+             .disconnectBrowserExtension, .contractUpgrade:
             return Asset.TransactionOverviewIcons.iconSettings.image
         }
     }

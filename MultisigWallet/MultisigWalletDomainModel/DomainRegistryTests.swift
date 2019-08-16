@@ -33,6 +33,7 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: MockAccountUpdateService(), for: AccountUpdateDomainService.self)
         DomainRegistry.put(service: TransactionDomainService(), for: TransactionDomainService.self)
         DomainRegistry.put(service: WalletConnectService(), for: WalletConnectDomainService.self)
+        DomainRegistry.put(service: ContractUpgradeDomainService(), for: ContractUpgradeDomainService.self)
 
         XCTAssertNotNil(DomainRegistry.walletRepository)
         XCTAssertNotNil(DomainRegistry.portfolioRepository)
@@ -56,6 +57,7 @@ class DomainRegistryTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.accountUpdateService)
         XCTAssertNotNil(DomainRegistry.transactionService)
         XCTAssertNotNil(DomainRegistry.walletConnectService)
+        XCTAssertNotNil(DomainRegistry.contractUpgradeService)
     }
 
 }

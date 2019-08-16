@@ -32,7 +32,7 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private var contractUpgradeRequired: Bool {
-        return ApplicationServiceRegistry.walletService.contractUpgradeRequired
+        return ApplicationServiceRegistry.contractUpgradeService.isAvailable
     }
 
     enum SettingsSection: Hashable {

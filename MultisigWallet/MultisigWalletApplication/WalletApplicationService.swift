@@ -38,15 +38,6 @@ public class WalletApplicationService: Assertable {
         return selectedWalletAddress != nil
     }
 
-    public var contractUpgradeRequired: Bool {
-        guard let wallet = selectedWallet, wallet.isReadyToUse else { return false }
-        return wallet.contractVersion != DomainRegistry.safeContractMetadataRepository.latestContractVersion()
-    }
-
-    public var latestContractVersion: String {
-        return DomainRegistry.safeContractMetadataRepository.latestContractVersion()
-    }
-
     public var selectedWalletAddress: String? {
         return selectedWallet?.address?.value
     }
@@ -569,6 +560,7 @@ public class WalletApplicationService: Assertable {
         case .replaceBrowserExtension: type = .replaceBrowserExtension
         case .connectBrowserExtension: type = .connectBrowserExtension
         case .disconnectBrowserExtension: type = .disconnectBrowserExtension
+        case .contractUpgrade: type = .contractUpgrade
         }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0A028ED421AEB02200431D25 /* SendTransactionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028ED321AEB02200431D25 /* SendTransactionMessage.swift */; };
+		0A05501823068C710034A82F /* ContractUpgradeDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05501723068C710034A82F /* ContractUpgradeDomainService.swift */; };
+		0A05501E23068D4B0034A82F /* ContractUpgradeApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05501D23068D4B0034A82F /* ContractUpgradeApplicationService.swift */; };
+		0A0550202306A9E20034A82F /* WalletProxyContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05501F2306A9E20034A82F /* WalletProxyContractProxyTests.swift */; };
+		0A0550222306AC410034A82F /* ContractUpgradeDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0550212306AC410034A82F /* ContractUpgradeDomainServiceTests.swift */; };
+		0A0550442306B5E90034A82F /* InMemorySafeContractMetadataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0550432306B5E90034A82F /* InMemorySafeContractMetadataRepositoryTests.swift */; };
 		0A08641422856FBD00B2D891 /* SafeContractMetadataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08641322856FBD00B2D891 /* SafeContractMetadataRepository.swift */; };
 		0A08641A228576B000B2D891 /* SafeContractMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A086419228576B000B2D891 /* SafeContractMetadata.swift */; };
 		0A08641C22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08641B22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift */; };
@@ -475,6 +480,11 @@
 
 /* Begin PBXFileReference section */
 		0A028ED321AEB02200431D25 /* SendTransactionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionMessage.swift; sourceTree = "<group>"; };
+		0A05501723068C710034A82F /* ContractUpgradeDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeDomainService.swift; sourceTree = "<group>"; };
+		0A05501D23068D4B0034A82F /* ContractUpgradeApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeApplicationService.swift; sourceTree = "<group>"; };
+		0A05501F2306A9E20034A82F /* WalletProxyContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletProxyContractProxyTests.swift; sourceTree = "<group>"; };
+		0A0550212306AC410034A82F /* ContractUpgradeDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeDomainServiceTests.swift; sourceTree = "<group>"; };
+		0A0550432306B5E90034A82F /* InMemorySafeContractMetadataRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemorySafeContractMetadataRepositoryTests.swift; sourceTree = "<group>"; };
 		0A08641322856FBD00B2D891 /* SafeContractMetadataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeContractMetadataRepository.swift; sourceTree = "<group>"; };
 		0A086419228576B000B2D891 /* SafeContractMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeContractMetadata.swift; sourceTree = "<group>"; };
 		0A08641B22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySafeContractMetadataRepository.swift; sourceTree = "<group>"; };
@@ -1106,6 +1116,7 @@
 				0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */,
 				0AEDED5C216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift */,
 				0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */,
+				0A05501F2306A9E20034A82F /* WalletProxyContractProxyTests.swift */,
 				0A9E37A520F4A4D10085E8D7 /* Worker.swift */,
 				0A9E37A820F4A4D10085E8D7 /* WorkerTests.swift */,
 				0ADE03DE22DDE7D800CA4705 /* AppSettingsRepository.swift */,
@@ -1131,6 +1142,7 @@
 				0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */,
 				0A4AD4F52225A683004244FB /* ConnectBrowserExtensionApplicationService.swift */,
 				0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */,
+				0A05501D23068D4B0034A82F /* ContractUpgradeApplicationService.swift */,
 				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
 				0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */,
 				0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */,
@@ -1234,6 +1246,8 @@
 				0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */,
 				0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */,
 				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
+				0A05501723068C710034A82F /* ContractUpgradeDomainService.swift */,
+				0A0550212306AC410034A82F /* ContractUpgradeDomainServiceTests.swift */,
 				0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
 				0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
 				0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
@@ -1282,6 +1296,7 @@
 				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
 				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
 				0A08641B22857F5800B2D891 /* InMemorySafeContractMetadataRepository.swift */,
+				0A0550432306B5E90034A82F /* InMemorySafeContractMetadataRepositoryTests.swift */,
 				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
 				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
 				551D776122803E51003B7910 /* DBSerializable */,
@@ -1838,6 +1853,7 @@
 				0A4CF10C20F63D8D001A8687 /* SendNotificationRequest.swift in Sources */,
 				0A442DBE2109D99D00F19F80 /* Message.swift in Sources */,
 				0A6EF3D621BAB86600F1074E /* WalletProxyContractProxy.swift in Sources */,
+				0A05501823068C710034A82F /* ContractUpgradeDomainService.swift in Sources */,
 				0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */,
 				0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */,
 				555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */,
@@ -1912,6 +1928,7 @@
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
 				0ABCC0FC2177291D00E60E9F /* TransactionDomainServiceTests.swift in Sources */,
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
+				0A0550222306AC410034A82F /* ContractUpgradeDomainServiceTests.swift in Sources */,
 				0A55567F218057A70023825E /* SubmitTransactionRequestTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */,
@@ -1930,6 +1947,7 @@
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
 				0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */,
 				55FB258F2122F95700E81666 /* TokenListItemTests.swift in Sources */,
+				0A0550202306A9E20034A82F /* WalletProxyContractProxyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1950,6 +1968,7 @@
 				0A3BD92A22254FF7007039B4 /* LocalizedString.swift in Sources */,
 				0A54E7CB21305273006BAD93 /* WalletApplicationServiceError.swift in Sources */,
 				554D17CA22DF2E3900B90A70 /* WCPendingTransactionsRepository.swift in Sources */,
+				0A05501E23068D4B0034A82F /* ContractUpgradeApplicationService.swift in Sources */,
 				0A5E016A22607CA3007F4F38 /* SystemInfo.swift in Sources */,
 				0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */,
 				0A3BD968222564B1007039B4 /* ReplaceBrowserExtensionApplicationService.swift in Sources */,
@@ -2077,6 +2096,7 @@
 				5524733421412A6000A77557 /* EthereumKitEthereumServiceTests.swift in Sources */,
 				55B5DFB6227C624F001A32F4 /* DBTransactionRepositoryTests.swift in Sources */,
 				55B5DFBA227C6296001A32F4 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */,
+				0A0550442306B5E90034A82F /* InMemorySafeContractMetadataRepositoryTests.swift in Sources */,
 				55B5DFB4227C6247001A32F4 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */,
 				552C6011212B0D1300BF973A /* SynchronisationServiceTests.swift in Sources */,
 				0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */,
