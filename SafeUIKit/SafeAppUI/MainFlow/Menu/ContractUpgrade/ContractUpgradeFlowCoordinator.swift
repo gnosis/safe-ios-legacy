@@ -96,7 +96,7 @@ fileprivate extension IntroContentView.Content {
     static let contractUpgrade =
         IntroContentView.Content(header: LocalizedString("contract_upgrade", comment: "Contract Upgrade"),
                                  body: String(format: LocalizedString("this_will_upgrade", comment: "Contract Upgrade"),
-                                             "Safe"),
+                                              "Safe"),
                                  icon: Asset.ContractUpgrade.contractUpgrade.image)
 }
 
