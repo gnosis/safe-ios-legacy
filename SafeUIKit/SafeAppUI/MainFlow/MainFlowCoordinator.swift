@@ -306,6 +306,16 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
         push(addressDetailsVC)
     }
 
+    func upgradeContract() {
+        saveCheckpoint()
+        enter(flow: ContractUpgradeFlowCoordinator()) { [unowned self] in
+            DispatchQueue.main.async {
+                self.popToLastCheckpoint()
+                self.showTransactionList()
+            }
+        }
+    }
+
 }
 
 extension MainFlowCoordinator: TransactionViewViewControllerDelegate {

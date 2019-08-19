@@ -50,6 +50,7 @@ final class ContractUpgradeFlowCoordinator: FlowCoordinator {
                                          "Safe")
         controller.screenTrackingEvent = ContractUpgradeTrackingEvent.review
         controller.successTrackingEvent = ContractUpgradeTrackingEvent.success
+        controller.showsSubmitInNavigationBar = false
         push(controller)
     }
 
@@ -107,22 +108,22 @@ fileprivate extension OnboardingViewController {
                        showBlogArticle: @escaping () -> Void) -> OnboardingViewController {
         let nextActionTitle = LocalizedString("next", comment: "Next")
         var steps = [OnboardingStepInfo]()
-
-        let infoText = NSMutableAttributedString(string: LocalizedString("more_info_in_our_blog",
-                                                                         comment: "More info in our blog."))
-        let blog = LocalizedString("ios_blog", comment: "blog.")
-        let textRange = infoText.mutableString.range(of: blog)
-        infoText.addAttribute(.foregroundColor, value: ColorName.hold.color, range: textRange)
-        steps.append(.init(image: Asset.ContractUpgrade.upgrade1.image,
-                           title: LocalizedString("what_is_this_about", comment: "Onboarding 1 title"),
-                           description: LocalizedString("we_performed_formal_verification",
-                                                        comment: "Onboarding 1 description"),
-                           infoButtonText: infoText,
-                           infoButtonAction: showBlogArticle,
-                           actionTitle: nextActionTitle,
-                           trackingEvent: ContractUpgradeTrackingEvent._1_0_0_onboarding1,
-                           action: next))
-
+        if ApplicationServiceRegistry.contractUpgradeService.isUpgradingTo_v1_0_0() {
+            let infoText = NSMutableAttributedString(string: LocalizedString("more_info_in_our_blog",
+                                                                             comment: "More info in our blog."))
+            let blog = LocalizedString("ios_blog", comment: "blog.")
+            let textRange = infoText.mutableString.range(of: blog)
+            infoText.addAttribute(.foregroundColor, value: ColorName.hold.color, range: textRange)
+            steps.append(.init(image: Asset.ContractUpgrade.upgrade1.image,
+                               title: LocalizedString("what_is_this_about", comment: "Onboarding 1 title"),
+                               description: LocalizedString("we_performed_formal_verification",
+                                                            comment: "Onboarding 1 description"),
+                               infoButtonText: infoText,
+                               infoButtonAction: showBlogArticle,
+                               actionTitle: nextActionTitle,
+                               trackingEvent: ContractUpgradeTrackingEvent._1_0_0_onboarding1,
+                               action: next))
+        }
         steps.append(.init(image: Asset.ContractUpgrade.upgrade2.image,
                            title: LocalizedString("why_upgrade", comment: "Onboarding 2 title"),
                            description: LocalizedString("current_version", comment: "Onboarding 2 description"),

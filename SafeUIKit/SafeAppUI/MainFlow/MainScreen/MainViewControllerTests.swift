@@ -36,6 +36,12 @@ class MainViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.didOpenAddressDetails)
     }
 
+    func test_whenPressingBanner_thenCallsDelegate() {
+        createWindow(vc)
+        vc.didTapBanner()
+        XCTAssertTrue(delegate.didUpgradeContract)
+    }
+
 }
 
 class MockMainViewControllerDelegate: MainViewControllerDelegate, TransactionViewViewControllerDelegate {
@@ -60,6 +66,11 @@ class MockMainViewControllerDelegate: MainViewControllerDelegate, TransactionVie
     var didOpenAddressDetails = false
     func openAddressDetails() {
         didOpenAddressDetails = true
+    }
+
+    var didUpgradeContract = false
+    func upgradeContract() {
+        didUpgradeContract = true
     }
 
 }
