@@ -33,14 +33,7 @@ class ContractUpgradeDomainServiceTests: BaseBrowserExtensionModificationTestCas
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
         provisionWallet(owners: [.thisDevice, .paperWallet, .paperWalletDerived], threshold: 1)
 
-        let metadata = SafeContractMetadata(multiSendContractAddress: .testAccount1,
-                                            proxyFactoryAddress: .testAccount1,
-                                            safeFunderAddress: .testAccount1,
-                                            metadata: [MasterCopyMetadata(address: .testAccount2,
-                                                                          version: "1",
-                                                                          txTypeHash: Data(),
-                                                                          domainSeparatorHash: Data(),
-                                                                          proxyCode: Data())])
+        let metadata = SafeContractMetadata.metadataWithMasterCopy(.testAccount2)
         let repo = InMemorySafeContractMetadataRepository(metadata: metadata)
         DomainRegistry.put(service: repo, for: SafeContractMetadataRepository.self)
 
@@ -61,14 +54,7 @@ class ContractUpgradeDomainServiceTests: BaseBrowserExtensionModificationTestCas
         DomainRegistry.walletRepository.save(wallet)
 
         // set up known contract configurations
-        let metadata = SafeContractMetadata(multiSendContractAddress: .testAccount1,
-                                            proxyFactoryAddress: .testAccount1,
-                                            safeFunderAddress: .testAccount1,
-                                            metadata: [MasterCopyMetadata(address: newMasterCopy,
-                                                                          version: "1",
-                                                                          txTypeHash: Data(),
-                                                                          domainSeparatorHash: Data(),
-                                                                          proxyCode: Data())])
+        let metadata = SafeContractMetadata.metadataWithMasterCopy(newMasterCopy)
         let repo = InMemorySafeContractMetadataRepository(metadata: metadata)
         DomainRegistry.put(service: repo, for: SafeContractMetadataRepository.self)
 
@@ -94,6 +80,21 @@ class ContractUpgradeDomainServiceTests: BaseBrowserExtensionModificationTestCas
 
     func test_validateOwners_doesNothing() {
         XCTAssertNoThrow(try service.validateOwners(), "Unexpected throw")
+    }
+
+}
+
+fileprivate extension SafeContractMetadata {
+
+    static func metadataWithMasterCopy(_ address: Address) -> SafeContractMetadata {
+        return SafeContractMetadata(multiSendContractAddress: .testAccount1,
+                                    proxyFactoryAddress: .testAccount1,
+                                    safeFunderAddress: .testAccount1,
+                                    metadata: [MasterCopyMetadata(address: address,
+                                                                  version: "1",
+                                                                  txTypeHash: Data(),
+                                                                  domainSeparatorHash: Data(),
+                                                                  proxyCode: Data())])
     }
 
 }

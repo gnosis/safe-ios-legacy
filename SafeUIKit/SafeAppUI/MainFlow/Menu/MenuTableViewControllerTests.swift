@@ -199,4 +199,5 @@ class MockContractUpgradeApplicationService: ContractUpgradeApplicationService {
     override var isAvailable: Bool {
         return _isAvailable
     }
+
 }

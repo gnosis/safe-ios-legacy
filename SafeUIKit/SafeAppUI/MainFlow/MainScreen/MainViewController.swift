@@ -56,6 +56,10 @@ class MainViewController: UIViewController {
     // swiftlint:disable:next weak_delegate
     let transactionViewScrollDelegate = HeaderScrollDelegate()
 
+    private var shouldShowBanner: Bool {
+        return ApplicationServiceRegistry.contractUpgradeService.isAvailable
+    }
+
     static func create(delegate: MainViewControllerDelegate & TransactionViewViewControllerDelegate)
         -> MainViewController {
             let controller = StoryboardScene.Main.mainViewController.instantiate()
@@ -85,29 +89,33 @@ class MainViewController: UIViewController {
         bannerView.onTap = didTapBanner
         bannerView.text = LocalizedString("upgrade_required", comment: "Security upgrade required")
 
+        if !shouldShowBanner {
+            bannerView.height = 0
+        }
+
         assetViewController.scrollDelegate = assetViewScrollDelegate
+        assetViewScrollDelegate.verticalContentInset = bannerView.height
         assetViewScrollDelegate.setUp(assetViewController.tableView, headerView)
 
         transactionViewController.scrollDelegate = transactionViewScrollDelegate
+        transactionViewScrollDelegate.verticalContentInset = bannerView.height
         transactionViewScrollDelegate.setUp(transactionViewController.tableView, headerView)
 
-        updateBannerView()
-
         ApplicationServiceRegistry.contractUpgradeService.subscribeForContractUpgrade { [weak self] in
-            self?.updateBannerView()
+            self?.hideBannerViewAnimated()
         }
     }
 
-    func updateBannerView() {
-        if !ApplicationServiceRegistry.contractUpgradeService.isAvailable {
-            bannerView.height = 0
-            bannerView.isHidden = true
+    private func hideBannerViewAnimated() {
+        guard !shouldShowBanner else { return }
+        UIView.animate(withDuration: 0.2) {
+            self.bannerView.height = 0
+            self.assetViewScrollDelegate.verticalContentInset = 0
+            self.transactionViewScrollDelegate.verticalContentInset = 0
+            self.assetViewScrollDelegate.resetToTop()
+            self.transactionViewScrollDelegate.resetToTop()
+            self.view.layoutIfNeeded()
         }
-        assetViewScrollDelegate.verticalContentInset = bannerView.height
-        assetViewScrollDelegate.scrollViewDidScroll(assetViewScrollDelegate.scrollView)
-
-        transactionViewScrollDelegate.verticalContentInset = bannerView.height
-        transactionViewScrollDelegate.scrollViewDidScroll(transactionViewScrollDelegate.scrollView)
     }
 
     func showTransactionList() {

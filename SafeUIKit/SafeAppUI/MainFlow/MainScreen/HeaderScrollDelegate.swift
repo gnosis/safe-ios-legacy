@@ -101,6 +101,12 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
         }
     }
 
+    func resetToTop() {
+        var offset = scrollView.contentOffset
+        offset.y = -(maxHeaderHeight + segmentBarHeight + verticalContentInset)
+        scrollView.setContentOffset(offset, animated: false)
+    }
+
     /// Updates height based on the 'y' content offset, updates scale transform based on height, and alpha based on
     /// height.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

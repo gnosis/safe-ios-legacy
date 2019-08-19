@@ -13,6 +13,8 @@ class MainBannerView: BaseCustomView {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
 
+    static let defaultHeight: CGFloat = 88
+
     var height: CGFloat {
         get {
             return heightConstraint?.constant ?? 0
@@ -36,11 +38,12 @@ class MainBannerView: BaseCustomView {
     var onTap: (() -> Void)?
 
     override func commonInit() {
+        clipsToBounds = true
         textLabel.textColor = ColorName.darkBlue.color
         textLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         banner.layer.cornerRadius = 10
         banner.layer.shadowOffset = CGSize(width: 1, height: 2)
-        banner.layer.shadowRadius = 10
+        banner.layer.shadowRadius = 5
         banner.layer.shadowColor = ColorName.cardShadow.color.cgColor
         banner.layer.shadowOpacity = 0.59
 
