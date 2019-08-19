@@ -84,18 +84,30 @@ class MainViewController: UIViewController {
 
         bannerView.onTap = didTapBanner
         bannerView.text = LocalizedString("upgrade_required", comment: "Security upgrade required")
+
+        assetViewController.scrollDelegate = assetViewScrollDelegate
+        assetViewScrollDelegate.setUp(assetViewController.tableView, headerView)
+
+        transactionViewController.scrollDelegate = transactionViewScrollDelegate
+        transactionViewScrollDelegate.setUp(transactionViewController.tableView, headerView)
+
+        updateBannerView()
+
+        ApplicationServiceRegistry.contractUpgradeService.subscribeForContractUpgrade { [weak self] in
+            self?.updateBannerView()
+        }
+    }
+
+    func updateBannerView() {
         if !ApplicationServiceRegistry.contractUpgradeService.isAvailable {
             bannerView.height = 0
             bannerView.isHidden = true
         }
-
         assetViewScrollDelegate.verticalContentInset = bannerView.height
-        assetViewController.scrollDelegate = assetViewScrollDelegate
-        assetViewScrollDelegate.setUp(assetViewController.tableView, headerView)
+        assetViewScrollDelegate.scrollViewDidScroll(assetViewScrollDelegate.scrollView)
 
         transactionViewScrollDelegate.verticalContentInset = bannerView.height
-        transactionViewController.scrollDelegate = transactionViewScrollDelegate
-        transactionViewScrollDelegate.setUp(transactionViewController.tableView, headerView)
+        transactionViewScrollDelegate.scrollViewDidScroll(transactionViewScrollDelegate.scrollView)
     }
 
     func showTransactionList() {

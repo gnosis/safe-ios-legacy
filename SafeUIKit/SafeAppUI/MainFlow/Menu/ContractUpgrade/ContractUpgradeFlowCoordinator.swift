@@ -50,6 +50,7 @@ final class ContractUpgradeFlowCoordinator: FlowCoordinator {
                                          "Safe")
         controller.screenTrackingEvent = ContractUpgradeTrackingEvent.review
         controller.successTrackingEvent = ContractUpgradeTrackingEvent.success
+        controller.showsSubmitInNavigationBar = false
         push(controller)
     }
 

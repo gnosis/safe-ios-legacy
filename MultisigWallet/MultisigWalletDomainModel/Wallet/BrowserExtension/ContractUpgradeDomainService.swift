@@ -4,6 +4,8 @@
 
 import Foundation
 
+public class ContractUpgraded: DomainEvent {}
+
 open class ContractUpgradeDomainService: ReplaceBrowserExtensionDomainService {
 
     open override var isAvailable: Bool {
@@ -61,6 +63,7 @@ open class ContractUpgradeDomainService: ReplaceBrowserExtensionDomainService {
             let version = DomainRegistry.safeContractMetadataRepository.version(masterCopyAddress: newMasterCopy)
             wallet.changeContractVersion(version)
             DomainRegistry.walletRepository.save(wallet)
+            DomainRegistry.eventPublisher.publish(ContractUpgraded())
         }
         unregisterPostProcessing(for: transactionID)
     }
