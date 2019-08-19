@@ -77,6 +77,12 @@
    Continue */
 "continue_text" = "Continue";
 
+/* Contract Upgrade */
+"contract_upgrade" = "Contract upgrade";
+
+/* Explanation text */
+"contract_upgrade_in_progress" = "The contract upgrade is now in progress. The transaction has been submitted and should take a couple of minutes.";
+
 /* Copied to clipboard */
 "copied_to_clipboard" = "Copied to clipboard";
 
@@ -206,6 +212,9 @@
 /* Connect browser extension
    Header for add browser extension screen */
 "ios_connect_browser_extension" = "Connect\nAuthenticator";
+
+/* Contract upgrade */
+"ios_contract_upgrade" = "Contract\nupgrade";
 
 /* Pending safe failed alert's message */
 "ios_creationFee_failed_error" = "Error: %@ Please try again later.";
@@ -644,6 +653,10 @@
 
 /* Text between stars (*) will be emphasized */
 "this_will_generate_new_seed" = "This will generate a new recovery phrase and invalidate your current one.";
+
+/* Contract Upgrade
+   Upgrading contract */
+"this_will_upgrade" = "This will upgrade '%@' to the latest version of the Gnosis Safe contract.";
 
 /* Onboarding 3 description */
 "to_connect_to_dapp" = "To connect your Safe to the desktop Dapp, scan its QR code.";

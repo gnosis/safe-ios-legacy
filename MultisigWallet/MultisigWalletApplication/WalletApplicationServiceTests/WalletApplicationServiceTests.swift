@@ -153,31 +153,6 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertFalse(whitelistedAddresses.contains(ethTokenData.address))
     }
 
-    // MARK: - Contract Upgrade
-
-    func test_whenWalletIsNotReadyToUse_thenContractUpgradeIsNotRequired() {
-        try! givenReadyToDeployWallet()
-        XCTAssertFalse(service.contractUpgradeRequired)
-    }
-
-    func test_whenContractVersionIsTheSameAsLatestVersion_thenContractUpgradeIsNotRequired() {
-        givenReadyToUseWallet()
-        XCTAssertTrue(walletRepository.selectedWallet()?.isReadyToUse ?? false)
-        contractMetadataRepository.contractVersion = "1.0.0"
-        XCTAssertFalse(service.contractUpgradeRequired)
-    }
-
-    func test_whenContractVersionIsNotEqualToLatesVersion_thenContractUpgradeIsRequired() {
-        givenReadyToUseWallet()
-        contractMetadataRepository.contractVersion = "1.1.0"
-        XCTAssertTrue(service.contractUpgradeRequired)
-    }
-
-    func test_latestContractVersion() {
-        contractMetadataRepository.contractVersion = "1.1.1"
-        XCTAssertEqual(service.latestContractVersion, "1.1.1")
-    }
-
     // MARK: - Auth
 
     func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {

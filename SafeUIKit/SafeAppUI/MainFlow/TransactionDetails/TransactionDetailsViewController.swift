@@ -67,6 +67,16 @@ public class TransactionDetailsViewController: UIViewController {
             static let detailWithAuthenticator = LocalizedString("layout_recovered_authenticator_safe_info_description",
                                                                  comment: "Recovery with authenticator")
         }
+        enum ContractUpgrade {
+            static let title = LocalizedString("ios_contract_upgrade", comment: "Contract upgrade")
+                .replacingOccurrences(of: "\n", with: " ")
+
+            static let detailFormat = LocalizedString("this_will_upgrade", comment: "Upgrading contract")
+
+            static func detail(safeName: String = "Safe") -> String {
+                return String(format: detailFormat, safeName)
+            }
+        }
     }
     @IBOutlet weak var separatorLineView: HorizontalSeparatorView!
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
@@ -119,6 +129,7 @@ public class TransactionDetailsViewController: UIViewController {
         case .connectBrowserExtension: return .connectBrowserExtension
         case .disconnectBrowserExtension: return .disconnectBrowserExtension
         case .walletRecovery: return .recoverSafe
+        case .contractUpgrade: return .contractUpgrade
         }
 
     }
@@ -168,6 +179,12 @@ public class TransactionDetailsViewController: UIViewController {
             settingsHeaderView.fromAddress = transaction.sender
             transferView.isHidden = true
             settingsHeaderView.isHidden = false
+        case .contractUpgrade:
+            settingsHeaderView.titleText = Strings.ContractUpgrade.title
+            settingsHeaderView.detailText = Strings.ContractUpgrade.detail()
+            settingsHeaderView.fromAddress = transaction.sender
+            transferView.isHidden = true
+            settingsHeaderView.isHidden = false
         case .walletRecovery:
             settingsHeaderView.titleText = Strings.WalletRecovery.title
             settingsHeaderView.detailText =
@@ -190,7 +207,8 @@ public class TransactionDetailsViewController: UIViewController {
         case .outgoing: transactionTypeView.value = Strings.outgoingType
         case .incoming: transactionTypeView.value = "" // we do not have incomming transactions yet
         case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension,
-             .disconnectBrowserExtension: transactionTypeView.value = Strings.settingsChangeType
+             .disconnectBrowserExtension, .contractUpgrade:
+            transactionTypeView.value = Strings.settingsChangeType
         }
     }
 

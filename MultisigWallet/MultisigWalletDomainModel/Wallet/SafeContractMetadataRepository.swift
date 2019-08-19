@@ -9,12 +9,14 @@ public protocol SafeContractMetadataRepository {
     var multiSendContractAddress: Address { get }
     var proxyFactoryAddress: Address { get }
 
+    var latestMasterCopyAddress: Address { get }
     func isValidMasterCopy(address: Address) -> Bool
+    func isOldMasterCopy(address: Address) -> Bool
+    func version(masterCopyAddress: Address) -> String?
+
     func isValidProxyFactory(address: Address) -> Bool
     func isValidPaymentRecevier(address: Address) -> Bool
 
-    func version(masterCopyAddress: Address) -> String?
-    func latestContractVersion() -> String
     func deploymentCode(masterCopyAddress: Address) -> Data?
     func EIP712SafeAppTxTypeHash(masterCopyAddress: Address) -> Data?
     func EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: Address) -> Data?

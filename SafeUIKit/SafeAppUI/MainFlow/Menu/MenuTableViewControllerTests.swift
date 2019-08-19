@@ -21,6 +21,7 @@ class MenuTableViewControllerTests: XCTestCase {
     let disconnectExtensionService = MockDisconnectBrowserExtensionApplicationService()
     let replacePhraseService = MockReplaceRecoveryPhraseApplicationService()
     let walletConnectService = WalletConnectApplicationService(chainId: 4)
+    let contractUpgradeService = MockContractUpgradeApplicationService()
 
     override func setUp() {
         super.setUp()
@@ -33,6 +34,8 @@ class MenuTableViewControllerTests: XCTestCase {
                                        for: DisconnectBrowserExtensionApplicationService.self)
         ApplicationServiceRegistry.put(service: replacePhraseService,
                                        for: ReplaceRecoveryPhraseApplicationService.self)
+        ApplicationServiceRegistry.put(service: contractUpgradeService,
+                                       for: ContractUpgradeApplicationService.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: walletConnectService, for: WalletConnectApplicationService.self)
         walletService.createReadyToUseWallet()
@@ -87,7 +90,7 @@ class MenuTableViewControllerTests: XCTestCase {
 
     func test_whenContractUpgradeRequired_thenUpgradeHeaderDisplayed() {
         XCTAssertTrue(self.headerFor(section: 0) is BackgroundHeaderFooterView)
-        walletService.shouldUpgrade = true
+        contractUpgradeService._isAvailable = true
         controller.viewWillAppear(false)
         XCTAssertTrue(self.headerFor(section: 0) is ContractUpgradeHeaderView)
         XCTAssertEqual(self.cellHeight(row: 0, section: 0), 0)
@@ -188,4 +191,12 @@ class MockReplaceRecoveryPhraseApplicationService: ReplaceRecoveryPhraseApplicat
 
     override var isAvailable: Bool { return true }
 
+}
+
+class MockContractUpgradeApplicationService: ContractUpgradeApplicationService {
+
+    var _isAvailable: Bool = false
+    override var isAvailable: Bool {
+        return _isAvailable
+    }
 }

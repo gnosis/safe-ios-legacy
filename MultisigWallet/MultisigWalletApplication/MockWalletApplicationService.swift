@@ -35,11 +35,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         return deploymentAmount
     }
 
-    public var shouldUpgrade = false
-    public override var contractUpgradeRequired: Bool {
-        return shouldUpgrade
-    }
-
     public var shouldThrow = false
 
     private var minimumFunding: [TokenID: BigInt] = [:]
