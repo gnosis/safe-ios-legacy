@@ -46,6 +46,8 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
     let minHeaderHeight: CGFloat = 0
     let maxHeaderHeight: CGFloat = 130
 
+    var verticalContentInset: CGFloat = 0
+
     // Alpha decreases when header height decreases.
 
     /// When height reaches X percent of the maximum, then alpha will become 0 and header will be transparent.
@@ -121,7 +123,7 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
     /// Needed to prevent edge case when header is not fully minimized/maximized when scrolled to bottom.
     func compensateInsetsIfContentNotTallEnough() {
         // top inset must always stay the same, otherwise scrolling start flickering
-        let top = maxHeaderHeight + segmentBarHeight
+        let top = maxHeaderHeight + segmentBarHeight + verticalContentInset
         let maxVisibleContentHeight = scrollView.frame.height - segmentBarHeight
         let compensatedBottom = max(0, maxVisibleContentHeight - scrollView.contentSize.height)
         let contentInset = UIEdgeInsets(top: top, left: 0, bottom: compensatedBottom, right: 0)

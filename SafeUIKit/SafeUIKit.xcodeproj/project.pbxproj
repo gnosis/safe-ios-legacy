@@ -136,6 +136,7 @@
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
 		0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */; };
 		0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */; };
+		0A4776ED230A8FC6006DA635 /* MainBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4776EC230A8FC6006DA635 /* MainBannerView.swift */; };
 		0A4DF82020CE6FC70095C00D /* AssetViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF81F20CE6FC70095C00D /* AssetViewViewController.swift */; };
 		0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82320CE6FE20095C00D /* Main.storyboard */; };
 		0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82E20CE9D5B0095C00D /* TransactionViewViewController.swift */; };
@@ -721,6 +722,7 @@
 		0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 		0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputViewControllerTests.swift; sourceTree = "<group>"; };
+		0A4776EC230A8FC6006DA635 /* MainBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerView.swift; sourceTree = "<group>"; };
 		0A4DF81F20CE6FC70095C00D /* AssetViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewViewController.swift; sourceTree = "<group>"; };
 		0A4DF82320CE6FE20095C00D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A4DF82C20CE9A080095C00D /* AssetViewViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1604,6 +1606,7 @@
 		0ABD142A2292BF9A00922964 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				0A4776EC230A8FC6006DA635 /* MainBannerView.swift */,
 				0ABD145C22943DCA00922964 /* MainViewController.swift */,
 				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
 				0AF8D53620CFFC52001E8423 /* MainViewControllerSegmentTests.swift */,
@@ -3010,6 +3013,7 @@
 				0ADE03EA22DDF9D300CA4705 /* OnboardingStepViewController.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
+				0A4776ED230A8FC6006DA635 /* MainBannerView.swift in Sources */,
 				0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */,
 				55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,

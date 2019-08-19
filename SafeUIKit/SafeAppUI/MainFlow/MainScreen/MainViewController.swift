@@ -11,6 +11,7 @@ protocol MainViewControllerDelegate: class {
     func openMenu()
     func manageTokens()
     func openAddressDetails()
+    func upgradeContract()
 }
 
 public protocol SegmentController {
@@ -45,6 +46,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var headerView: MainHeaderView!
     @IBOutlet weak var segmentBar: SegmentBar!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var bannerView: MainBannerView!
 
     let assetViewController = AssetViewViewController()
     // swiftlint:disable:next weak_delegate
@@ -80,9 +82,18 @@ class MainViewController: UIViewController {
         headerView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
         headerView.button.addTarget(self, action: #selector(didTapAddress), for: .touchUpInside)
 
+        bannerView.onTap = didTapBanner
+        bannerView.text = LocalizedString("upgrade_required", comment: "Security upgrade required")
+        if !ApplicationServiceRegistry.contractUpgradeService.isAvailable {
+            bannerView.height = 0
+            bannerView.isHidden = true
+        }
+
+        assetViewScrollDelegate.verticalContentInset = bannerView.height
         assetViewController.scrollDelegate = assetViewScrollDelegate
         assetViewScrollDelegate.setUp(assetViewController.tableView, headerView)
 
+        transactionViewScrollDelegate.verticalContentInset = bannerView.height
         transactionViewController.scrollDelegate = transactionViewScrollDelegate
         transactionViewScrollDelegate.setUp(transactionViewController.tableView, headerView)
     }
@@ -103,6 +114,10 @@ class MainViewController: UIViewController {
 
     @objc func openMenu(_ sender: Any) {
         assetViewController.delegate?.openMenu()
+    }
+
+    func didTapBanner() {
+        assetViewController.delegate?.upgradeContract()
     }
 
     // Called from AssetViewViewController -> AddTokenFooterView by responder chain
