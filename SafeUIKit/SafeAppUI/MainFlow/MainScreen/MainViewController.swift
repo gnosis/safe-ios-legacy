@@ -104,6 +104,8 @@ class MainViewController: UIViewController {
         ApplicationServiceRegistry.contractUpgradeService.subscribeForContractUpgrade { [weak self] in
             self?.hideBannerViewAnimated()
         }
+
+        runDiagnostics()
     }
 
     private func hideBannerViewAnimated() {
@@ -147,6 +149,19 @@ class MainViewController: UIViewController {
 
     @IBAction func didTapAddress(_ sender: Any) {
         assetViewController.delegate?.openAddressDetails()
+    }
+
+    func runDiagnostics() {
+        DispatchQueue.global().async {
+            do {
+                try ApplicationServiceRegistry.walletService.runDiagnostics()
+            } catch {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController.operationFailed(message: error.localizedDescription)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
 
     // MARK: - Segments Management

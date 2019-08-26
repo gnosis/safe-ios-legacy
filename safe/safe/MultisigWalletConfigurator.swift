@@ -51,6 +51,7 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata),
                            for: SafeContractMetadataRepository.self)
         DomainRegistry.put(service: UserDefaultsAppSettingsRepository(), for: AppSettingsRepository.self)
+        DomainRegistry.put(service: WalletDiagnosticDomainService(), for: WalletDiagnosticDomainService.self)
 
 
         let relay = EventRelay(publisher: DomainRegistry.eventPublisher)
