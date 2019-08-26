@@ -19,7 +19,7 @@ class MenuCommand {
     }
 
     var height: CGFloat {
-        return 46
+        return UITableView.automaticDimension
     }
 
     var childFlowCoordinator: FlowCoordinator!
