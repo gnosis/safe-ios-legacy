@@ -71,7 +71,7 @@ import MultisigWalletApplication
     private func configureTableView() {
         noSessionsView.text = Strings.noActiveSessions
         noSessionsView.centerPadding = view.frame.height / 4
-        tableView.rowHeight = BasicTableViewCell.titleAndSubtitleHeight
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.white.color

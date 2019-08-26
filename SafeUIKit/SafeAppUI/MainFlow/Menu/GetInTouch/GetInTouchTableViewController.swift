@@ -45,7 +45,7 @@ final class GetInTouchTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "BasicTableViewCell",
                                  bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
-        tableView.rowHeight = BasicTableViewCell.titleOnlyHeight
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionFooterHeight = 0
         generateCells()
     }
