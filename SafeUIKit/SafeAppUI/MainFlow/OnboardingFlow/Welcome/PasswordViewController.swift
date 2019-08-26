@@ -137,16 +137,19 @@ fileprivate final class ConfirmPasswordViewController: PasswordViewController {
     }
 
     override func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
+        nextButton.isEnabled = false
         let password = verifiableInput.text!
         DispatchQueue.global.async {
             do {
                 try Authenticator.instance.registerUser(password: password)
                 DispatchQueue.main.async {
                     self.delegate.didConfirmPassword()
+                    self.nextButton.isEnabled = true
                 }
             } catch {
                 DispatchQueue.main.async {
                     ErrorHandler.showFatalError(log: "Failed to set master password", error: error)
+                    self.nextButton.isEnabled = true
                 }
             }
         }
