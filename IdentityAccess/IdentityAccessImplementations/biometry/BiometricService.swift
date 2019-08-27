@@ -53,6 +53,7 @@ public final class BiometricService: BiometricAuthenticationService {
 
     public var isAuthenticationAvailable: Bool {
         context = contextProvider()
+        context.interactionNotAllowed = false
         var evaluationError: NSError?
         let result = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &evaluationError)
         if let error = evaluationError {
