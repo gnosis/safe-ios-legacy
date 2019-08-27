@@ -8,6 +8,17 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.6.0`_ - 2019-08-27
+======================
+Changed
+--------
+- WalletConnect - handle optional fields in eth_sendTransaction
+- Minor bugs fixes
+
+Added
+-------
+- Contract upgrade up to version 1.0.0 for old contract version users
+
 `1.5.0`_ - 2019-08-06
 ======================
 Changed
@@ -361,6 +372,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.6.0: https://github.com/gnosis/safe-ios/tree/1.6.0
 .. _1.5.0: https://github.com/gnosis/safe-ios/tree/1.5.0
 .. _1.4.0: https://github.com/gnosis/safe-ios/tree/1.4.0
 .. _1.3.1: https://github.com/gnosis/safe-ios/tree/1.3.1
