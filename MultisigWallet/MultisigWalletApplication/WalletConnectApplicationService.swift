@@ -11,8 +11,6 @@ public class SessionUpdated: DomainEvent {}
 public class SendTransactionRequested: DomainEvent {}
 public class NonceUpdated: DomainEvent {}
 
-extension WCSendTransactionRequest: SendTransactionRequiredData {}
-
 public class WalletConnectApplicationService {
 
     // TODO: move to domain service
