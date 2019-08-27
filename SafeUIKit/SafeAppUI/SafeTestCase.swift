@@ -61,6 +61,7 @@ class SafeTestCase: XCTestCase {
         applicationRegistry.put(service: recoveryService, for: RecoveryApplicationService.self)
         applicationRegistry.put(service: MockContractUpgradeApplicationService(),
                                 for: ContractUpgradeApplicationService.self)
+        applicationRegistry.put(service: logger, for: Logger.self)
     }
 
     private func configureEthereumModule() {
