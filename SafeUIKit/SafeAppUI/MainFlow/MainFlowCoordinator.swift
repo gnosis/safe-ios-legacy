@@ -176,6 +176,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     // Used for incoming transaction and send flow
     fileprivate func enterTransactionFlow(_ flow: FlowCoordinator, completion: (() -> Void)? = nil) {
+        dismissModal()
         saveCheckpoint()
         enter(flow: flow) {
             DispatchQueue.main.async { [unowned self] in
