@@ -156,6 +156,7 @@ class MainViewController: UIViewController {
             do {
                 try ApplicationServiceRegistry.walletService.runDiagnostics()
             } catch {
+                ApplicationServiceRegistry.logger.error("Diagnostics failed: \(error)", error: error)
                 DispatchQueue.main.async {
                     let alert = UIAlertController.operationFailed(message: error.localizedDescription)
                     self.present(alert, animated: true, completion: nil)
