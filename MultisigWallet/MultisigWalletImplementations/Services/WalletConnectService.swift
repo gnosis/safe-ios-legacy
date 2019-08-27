@@ -179,8 +179,10 @@ extension WalletConnectService: RequestHandler {
                         self.server.send(Response(payload: responsePayload, url: request.url))
                     }
                 case .failure(let error):
-                    let message = "WC: Could not send a WalletConnect request: \(request.payload)"
-                    DomainRegistry.logger.error(message, error: error)
+                    let internalMessage = """
+                    WC: Could not send a WalletConnect request: \(request.payload). Error: \(error.localizedDescription)
+                    """
+                    DomainRegistry.logger.error(internalMessage, error: error)
                     let errorMessage = "RPC request failed. Error: \(error.localizedDescription)"
                     let responsePayload = self.errorResponse(code: ErrorCode.failedToExecuteNodeRPCRequest.rawValue,
                                                              message: errorMessage,
