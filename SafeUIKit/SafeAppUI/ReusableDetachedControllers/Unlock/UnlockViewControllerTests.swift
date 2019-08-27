@@ -54,7 +54,7 @@ class UnlockViewControllerTests: SafeTestCase {
     func test_whenBiometryButtonTapped_thenAuthenticatesWithBiometry() {
         authenticationService.allowAuthentication()
         vc.loginWithBiometry(self)
-        delay()
+        delay(0.2)
         XCTAssertTrue(didLogIn)
     }
 
