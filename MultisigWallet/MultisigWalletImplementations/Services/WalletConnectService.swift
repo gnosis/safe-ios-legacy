@@ -121,6 +121,7 @@ extension WalletConnectService: RequestHandler {
         return !unsupportedWalletConnectRequests.contains(request.payload.method)
     }
 
+    // swiftlint:disable:next function_body_length
     public func handle(request: Request) {
         if request.payload.method == "eth_sendTransaction" {
             do {
@@ -128,8 +129,9 @@ extension WalletConnectService: RequestHandler {
                 let data = try JSONEncoder().encode(request.payload.params)
                 let requestWrapper = try JSONDecoder().decode([WCSendTransactionRequest].self, from: data)
                 guard requestWrapper.count == 1 else {
+                    let errorMessage = "Wrong send transaction request. Expected array with one transaction object."
                     let responsePayload = self.errorResponse(code: ErrorCode.wrongSendTransactionRequest.rawValue,
-                                                             message: "Wrong send transaction request.",
+                                                             message: errorMessage,
                                                              requestId: request.payload.id ?? .null)
                     self.server.send(Response(payload: responsePayload, url: request.url))
                     return
@@ -144,22 +146,22 @@ extension WalletConnectService: RequestHandler {
                         responsePayload = JSONRPC_2_0.Response(result: .value(.string(hash)),
                                                                id: request.payload.id ?? .null)
                     case .failure(let error):
-                        let message = "Transaction was declined. Error: \(error.localizedDescription)"
+                        let errorMessage = "Transaction was declined. Error: \(error.localizedDescription)"
                         responsePayload = self.errorResponse(code: ErrorCode.declinedSendTransactionRequest.rawValue,
-                                                             message: message,
+                                                             message: errorMessage,
                                                              requestId: request.payload.id ?? .null)
                     }
                     self.server.send(Response(payload: responsePayload, url: request.url))
                 }
             } catch {
                 DomainRegistry.logger.error("WC: failed eth_sendTransaction: \(request.payload)", error: error)
+                let errorMessage = "Wrong send transaction request. Error: \(error.localizedDescription)."
                 let responsePayload = self.errorResponse(code: ErrorCode.wrongSendTransactionRequest.rawValue,
-                                                         message: "Wrong send transaction request.",
+                                                         message: errorMessage,
                                                          requestId: request.payload.id ?? .null)
                 self.server.send(Response(payload: responsePayload, url: request.url))
             }
         } else {
-            // TODO: Discuss: should Ethereum JSON RPC request handling be part of the lib itself?
             delegate.handleEthereumNodeRequest(request.wcRequest) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
@@ -170,16 +172,20 @@ extension WalletConnectService: RequestHandler {
                     } catch {
                         let message = "WC: Could not create a WalletConnect Response from: \(wcResponse.payload)"
                         DomainRegistry.logger.error(message, error: error)
+                        let errorMessage = "Wrong RPC response. Error: \(error.localizedDescription)"
                         let responsePayload = self.errorResponse(code: ErrorCode.wrongNodeRPCResponse.rawValue,
-                                                                 message: "Wrong RPC response.",
+                                                                 message: errorMessage,
                                                                  requestId: request.payload.id ?? .null)
                         self.server.send(Response(payload: responsePayload, url: request.url))
                     }
                 case .failure(let error):
-                    let message = "WC: Could not send a WalletConnect request: \(request.payload)"
-                    DomainRegistry.logger.error(message, error: error)
+                    let internalMessage = """
+                    WC: Could not send a WalletConnect request: \(request.payload). Error: \(error.localizedDescription)
+                    """
+                    DomainRegistry.logger.error(internalMessage, error: error)
+                    let errorMessage = "RPC request failed. Error: \(error.localizedDescription)"
                     let responsePayload = self.errorResponse(code: ErrorCode.failedToExecuteNodeRPCRequest.rawValue,
-                                                             message: "RPC request failed.",
+                                                             message: errorMessage,
                                                              requestId: request.payload.id ?? .null)
                     self.server.send(Response(payload: responsePayload, url: request.url))
                 }
