@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import WalletConnectSwift
 
 // TODO: make this service very thin and move domain specific logic to special new domain object.
 public class WalletConnectService: WalletConnectDomainService {
@@ -80,7 +81,7 @@ public class WalletConnectService: WalletConnectDomainService {
 
 extension WalletConnectService: ServerDelegate {
 
-    public func server(_ server: Server, didFailToConnect url: WCURL) {
+    public func server(_ server: Server, didFailToConnect url: WalletConnectSwift.WCURL) {
         delegate.didFailToConnect(url: url.wcURL)
     }
 
@@ -99,7 +100,7 @@ extension WalletConnectService: ServerDelegate {
         delegate.didConnect(session: updatedSession)
     }
 
-    public func server(_ server: Server, didDisconnect session: Session, error: Error?) {
+    public func server(_ server: Server, didDisconnect session: Session) {
         guard let existingSession = findExistingWCSession(for: session) else { return }
         DomainRegistry.walletConnectSessionRepository.remove(existingSession)
         delegate.didDisconnect(session: session.wcSession(status: .disconnected, created: existingSession.created))
@@ -201,7 +202,7 @@ extension WalletConnectService: RequestHandler {
 
 }
 
-extension WCURL {
+extension WalletConnectSwift.WCURL {
 
     init(wcURL: MultisigWalletDomainModel.WCURL) {
         self.init(topic: wcURL.topic, version: wcURL.version, bridgeURL: wcURL.bridgeURL, key: wcURL.key)
@@ -223,7 +224,7 @@ extension Session.ClientMeta {
     }
 
     var wcClientMeta: WCClientMeta {
-        return WCClientMeta(name: name, description: description, icons: icons, url: url)
+        return WCClientMeta(name: name, description: description ?? "", icons: icons, url: url)
     }
 
 }
@@ -263,7 +264,7 @@ extension Session.WalletInfo {
 extension Session {
 
     init(wcSession: WCSession) {
-        self.init(url: WCURL(wcURL: wcSession.url),
+        self.init(url: WalletConnectSwift.WCURL(wcURL: wcSession.url),
                   dAppInfo: DAppInfo(wcDAppInfo: wcSession.dAppInfo),
                   walletInfo: Session.WalletInfo(wcWalletInfo: wcSession.walletInfo!))
     }
@@ -290,7 +291,7 @@ extension Response {
 
     convenience init(wcResponse: WCMessage) throws {
         let payload = try JSONRPC_2_0.Response.create(from: JSONRPC_2_0.JSON(wcResponse.payload))
-        let url = WCURL(wcURL: wcResponse.url)
+        let url = WalletConnectSwift.WCURL(wcURL: wcResponse.url)
         self.init(payload: payload, url: url)
     }
 
