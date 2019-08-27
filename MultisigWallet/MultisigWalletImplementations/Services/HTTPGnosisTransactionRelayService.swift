@@ -75,6 +75,11 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
         return try httpClient.execute(request: request)
     }
 
+    public func safeExists(at address: Address) throws -> Bool {
+        _ = try httpClient.execute(request: GetSafeStatusRequest(safeAddress: address.value))
+        return true
+    }
+
 }
 
 extension EstimateSafeCreationRequest: JSONRequest {
@@ -145,6 +150,15 @@ extension SubmitTransactionRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/" }
+
+    public typealias ResponseType = Response
+
+}
+
+extension GetSafeStatusRequest: JSONRequest {
+
+    public var httpMethod: String { return "GET" }
+    public var urlPath: String { return "/api/v1/safes/\(safeAddress)/" }
 
     public typealias ResponseType = Response
 

@@ -64,8 +64,7 @@ extension UIAlertController {
     }
 
     static func operationFailed(message: String, close: @escaping () -> Void = {}) -> UIAlertController {
-        return create(title: LocalizedString("error", comment: "Error"),
-                      message: message)
+        return create(title: LocalizedString("error", comment: "Error"), message: message)
             .withCloseAction(handler: close)
     }
 

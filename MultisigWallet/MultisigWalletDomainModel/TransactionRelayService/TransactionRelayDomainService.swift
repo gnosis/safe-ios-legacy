@@ -70,4 +70,6 @@ public protocol TransactionRelayDomainService {
     func multiTokenEstimateTransaction(request: MultiTokenEstimateTransactionRequest) throws ->
         MultiTokenEstimateTransactionRequest.Response
 
+    func safeExists(at address: Address) throws -> Bool
+
 }

@@ -214,6 +214,8 @@
 		0AE0FE0D229BEEB100ABC552 /* MockRecoveryApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */; };
 		0AE0FE98229E7A5F00ABC552 /* MultiTokenEstimateTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE97229E7A5E00ABC552 /* MultiTokenEstimateTransactionRequest.swift */; };
 		0AE0FE9E229E824E00ABC552 /* TokenData+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE9D229E824E00ABC552 /* TokenData+Token.swift */; };
+		0AE8DE53231435E60031FAE5 /* WalletDiagnositcDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE8DE52231435E60031FAE5 /* WalletDiagnositcDomainService.swift */; };
+		0AE8DE5923143A8F0031FAE5 /* GetSafeStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE8DE5823143A8F0031FAE5 /* GetSafeStatusRequest.swift */; };
 		0AEDED5621676156005B6DD0 /* SafeOwnerManagerContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */; };
 		0AEDED5D216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDED5C216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift */; };
 		0AEF8A8620A08889006A1265 /* libMultisigWalletDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A7520A08878006A1265 /* libMultisigWalletDomainModel.a */; };
@@ -695,6 +697,8 @@
 		0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecoveryApplicationService.swift; sourceTree = "<group>"; };
 		0AE0FE97229E7A5E00ABC552 /* MultiTokenEstimateTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTokenEstimateTransactionRequest.swift; sourceTree = "<group>"; };
 		0AE0FE9D229E824E00ABC552 /* TokenData+Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TokenData+Token.swift"; sourceTree = "<group>"; };
+		0AE8DE52231435E60031FAE5 /* WalletDiagnositcDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDiagnositcDomainService.swift; sourceTree = "<group>"; };
+		0AE8DE5823143A8F0031FAE5 /* GetSafeStatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSafeStatusRequest.swift; sourceTree = "<group>"; };
 		0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeOwnerManagerContractProxy.swift; sourceTree = "<group>"; };
 		0AEDED5C216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeOwnerManagerContractProxyTests.swift; sourceTree = "<group>"; };
 		0AEF8A7520A08878006A1265 /* libMultisigWalletDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMultisigWalletDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -939,6 +943,7 @@
 				553AEADB229E83BC00EA3248 /* BrowserExtension */,
 				0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */,
 				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
+				0AE8DE52231435E60031FAE5 /* WalletDiagnositcDomainService.swift */,
 				0AE0FE06229BEB1400ABC552 /* WalletDomainService.swift */,
 				0AE0FE9D229E824E00ABC552 /* TokenData+Token.swift */,
 				0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */,
@@ -1013,6 +1018,7 @@
 				5573536022941DDE00248F87 /* EstimateSafeCreationRequest.swift */,
 				0A43B1E922AFF2FE00D94F5F /* StringifiedBigInt.swift */,
 				0A43B1EF22AFF6F200D94F5F /* StringifiedBigIntTests.swift */,
+				0AE8DE5823143A8F0031FAE5 /* GetSafeStatusRequest.swift */,
 			);
 			path = RelayRequests;
 			sourceTree = "<group>";
@@ -1804,6 +1810,7 @@
 				0ADE03DF22DDE7D800CA4705 /* AppSettingsRepository.swift in Sources */,
 				552C6013212B106F00BF973A /* MockEventPublisher.swift in Sources */,
 				0A442DF5210B1DC200F19F80 /* SubmitTransactionRequest.swift in Sources */,
+				0AE8DE5923143A8F0031FAE5 /* GetSafeStatusRequest.swift in Sources */,
 				0A08641A228576B000B2D891 /* SafeContractMetadata.swift in Sources */,
 				0ADD1DD12135432A0046AF1F /* ERC20TokenContractProxy.swift in Sources */,
 				5573536122941DDE00248F87 /* EstimateSafeCreationRequest.swift in Sources */,
@@ -1852,6 +1859,7 @@
 				0AE0FE98229E7A5F00ABC552 /* MultiTokenEstimateTransactionRequest.swift in Sources */,
 				0A4CF10C20F63D8D001A8687 /* SendNotificationRequest.swift in Sources */,
 				0A442DBE2109D99D00F19F80 /* Message.swift in Sources */,
+				0AE8DE53231435E60031FAE5 /* WalletDiagnositcDomainService.swift in Sources */,
 				0A6EF3D621BAB86600F1074E /* WalletProxyContractProxy.swift in Sources */,
 				0A05501823068C710034A82F /* ContractUpgradeDomainService.swift in Sources */,
 				0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */,
