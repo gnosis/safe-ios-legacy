@@ -366,4 +366,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         // empty
     }
 
+    public override func runDiagnostics() throws {
+        // empty
+    }
+
 }
