@@ -132,6 +132,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: WalletConnectDomainService.self)
     }
 
+    public static var diagnosticService: WalletDiagnosticDomainService {
+        return service(for: WalletDiagnosticDomainService.self)
+    }
+
     public static var logger: Logger {
         return service(for: Logger.self)
     }
