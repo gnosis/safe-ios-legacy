@@ -180,8 +180,8 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
                 exp.fulfill()
             }
         }
-        XCTAssertNotNil(ethereumNodeService.rawCall_input)
         waitForExpectations(timeout: 1)
+        XCTAssertNotNil(ethereumNodeService.rawCall_input)
     }
 
     func test_handleEthereumNodeRequest_whenThrows_thenReturnsErrorInCompletion() {
