@@ -51,7 +51,7 @@ public protocol WalletConnectDomainServiceDelegate: class {
     /// - Parameters:
     ///   - request: WCMessage object
     ///   - completion: Result with WCMessage or error
-    func handleEthereumNodeRequest(_ request: WCMessage, completion: (Result<WCMessage, Error>) -> Void)
+    func handleEthereumNodeRequest(_ request: WCMessage, completion: @escaping (Result<WCMessage, Error>) -> Void)
 
 }
 
