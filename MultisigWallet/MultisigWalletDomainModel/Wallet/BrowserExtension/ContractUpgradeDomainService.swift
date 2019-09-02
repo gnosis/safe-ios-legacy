@@ -9,8 +9,12 @@ public class ContractUpgraded: DomainEvent {}
 open class ContractUpgradeDomainService: ReplaceBrowserExtensionDomainService {
 
     open override var isAvailable: Bool {
-        guard let wallet = self.wallet, let masterCopy = wallet.masterCopyAddress else { return false }
-        return wallet.isReadyToUse && DomainRegistry.safeContractMetadataRepository.isOldMasterCopy(address: masterCopy)
+        guard let wallet = self.wallet, wallet.isReadyToUse else { return false }
+        guard let masterCopy = wallet.masterCopyAddress else {
+            // old safes created long time ago don't have the masterCopy property set, so we want to upgrade them.
+            return true
+        }
+        return DomainRegistry.safeContractMetadataRepository.isOldMasterCopy(address: masterCopy)
     }
 
     override var transactionType: TransactionType {
