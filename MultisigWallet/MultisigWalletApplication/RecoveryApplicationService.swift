@@ -108,6 +108,8 @@ public class RecoveryApplicationService {
             type = .connectBrowserExtension
         case .disconnectBrowserExtension:
             type = .disconnectBrowserExtension
+        case .contractUpgrade:
+            type = .contractUpgrade
         }
         let amount = tx.amount ?? TokenAmount(amount: 0, token: Token.Ether)
         let amountTokenData = TokenData(token: amount.token, balance: amount.amount)

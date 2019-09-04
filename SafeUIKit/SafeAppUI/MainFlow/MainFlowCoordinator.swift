@@ -176,6 +176,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     // Used for incoming transaction and send flow
     fileprivate func enterTransactionFlow(_ flow: FlowCoordinator, completion: (() -> Void)? = nil) {
+        dismissModal()
         saveCheckpoint()
         enter(flow: flow) {
             DispatchQueue.main.async { [unowned self] in
@@ -304,6 +305,16 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     func openAddressDetails() {
         let addressDetailsVC = ReceiveFundsViewController.create()
         push(addressDetailsVC)
+    }
+
+    func upgradeContract() {
+        saveCheckpoint()
+        enter(flow: ContractUpgradeFlowCoordinator()) { [unowned self] in
+            DispatchQueue.main.async {
+                self.popToLastCheckpoint()
+                self.showTransactionList()
+            }
+        }
     }
 
 }

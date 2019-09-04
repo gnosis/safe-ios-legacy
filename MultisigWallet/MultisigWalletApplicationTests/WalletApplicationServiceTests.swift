@@ -115,6 +115,8 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(service.minimumDeploymentAmount, 100)
     }
 
+    // MARK: - Payment Token
+
     func test_whenFeePaymentTokenIsNil_thenReturnsEther() {
         givenDraftWallet()
         XCTAssertEqual(service.feePaymentTokenData.address, TokenData.Ether.address)
@@ -150,6 +152,8 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         let whitelistedAddresses = service.visibleTokens(withEth: false).map { $0.address }
         XCTAssertFalse(whitelistedAddresses.contains(ethTokenData.address))
     }
+
+    // MARK: - Auth
 
     func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
         givenDraftWallet()

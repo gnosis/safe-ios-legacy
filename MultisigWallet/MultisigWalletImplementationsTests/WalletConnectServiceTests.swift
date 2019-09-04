@@ -7,6 +7,7 @@ import XCTest
 import MultisigWalletDomainModel
 import CommonTestSupport
 import Common
+import WalletConnectSwift
 
 // swiftlint:disable weak_delegate number_separator
 class WalletConnectServiceTests: XCTestCase {
@@ -105,7 +106,7 @@ class WalletConnectServiceTests: XCTestCase {
     }
 
     func test_whenServerFailsToConnect_thenDelegateCalled() {
-        let url = MultisigWalletImplementations.WCURL(wcURL: MultisigWalletDomainModel.WCURL.testURL)
+        let url = WalletConnectSwift.WCURL(wcURL: MultisigWalletDomainModel.WCURL.testURL)
         server.delegate.server(server, didFailToConnect: url)
         XCTAssertNotNil(delegate.failedURLToConnect)
     }
@@ -147,19 +148,19 @@ class WalletConnectServiceTests: XCTestCase {
     }
 
     func test_whenServerDidDisconnectFromSessionThatIsNotInRepo_thenDelegateIsNotCalled() {
-        server.delegate.server(server, didDisconnect: Session(wcSession: WCSession.testSession), error: nil)
+        server.delegate.server(server, didDisconnect: Session(wcSession: WCSession.testSession))
         XCTAssertNil(delegate.disconnectedSession)
     }
 
     func test_whenServerDidDisconnect_thenDelegateCalled() {
         sessionRepo.save(WCSession.testSession)
-        server.delegate.server(server, didDisconnect: Session(wcSession: WCSession.testSession), error: nil)
+        server.delegate.server(server, didDisconnect: Session(wcSession: WCSession.testSession))
         XCTAssertNotNil(delegate.disconnectedSession)
     }
 
     func test_whenServerDidDisconnect_thenSessionIsRemovedFromRepo() {
         sessionRepo.save(WCSession.testSession)
-        server.delegate.server(server, didDisconnect: Session(wcSession: WCSession.testSession), error: nil)
+        server.delegate.server(server, didDisconnect: Session(wcSession: WCSession.testSession))
         XCTAssertNil(sessionRepo.find(id: WCSession.testSession.id))
     }
 
@@ -217,7 +218,7 @@ class WalletConnectServiceTests: XCTestCase {
 
     private func request(from json: String) -> Request {
         let jsonRPCRequest = try! JSONRPC_2_0.Request.create(from: JSONRPC_2_0.JSON(json))
-        let url = MultisigWalletImplementations.WCURL(wcURL: MultisigWalletDomainModel.WCURL.testURL)
+        let url = WalletConnectSwift.WCURL(wcURL: MultisigWalletDomainModel.WCURL.testURL)
         return Request(payload: jsonRPCRequest, url: url)
     }
 
@@ -227,8 +228,9 @@ fileprivate class MockServer: Server {
 
     var shouldThrow = false
 
-    var connectUrl: MultisigWalletImplementations.WCURL?
-    override func connect(to url: MultisigWalletImplementations.WCURL) throws {
+    var connectUrl: WalletConnectSwift.WCURL?
+
+    override func connect(to url: WalletConnectSwift.WCURL) throws {
         if shouldThrow { throw TestError.error }
         connectUrl = url
     }

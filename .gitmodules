@@ -29,3 +29,6 @@
 [submodule "Starscream"]
 	path = Dependencies/Starscream
 	url = git@github.com:daltoniam/Starscream.git
+[submodule "WalletConnectSwift"]
+	path = Dependencies/WalletConnectSwift
+	url = https://github.com/WalletConnect/WalletConnectSwift.git

@@ -33,13 +33,13 @@ public class Wallet: IdentifiableEntity<WalletID> {
     /// nil is treated as ETH by default
     public private(set) var feePaymentTokenAddress: Address?
 
-    public private(set) var creationTransactionHash: String?
-    public private(set) var minimumDeploymentTransactionAmount: TokenInt?
+    public private(set) var creationTransactionHash: String!
+    public private(set) var minimumDeploymentTransactionAmount: TokenInt!
     public private(set) var confirmationCount: Int = 1
-    public private(set) var deploymentFee: BigInt?
+    public private(set) var deploymentFee: BigInt!
     public private(set) var owners = OwnerList()
-    public private(set) var masterCopyAddress: Address?
-    public private(set) var contractVersion: String?
+    public private(set) var masterCopyAddress: Address!
+    public private(set) var contractVersion: String!
 
     public var isDeployable: Bool {
         return state.isDeployable

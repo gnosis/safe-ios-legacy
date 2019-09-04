@@ -33,7 +33,7 @@ class BasePaymentMethodViewController: UIViewController, UITableViewDelegate, UI
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
-        tableView.rowHeight = BasicTableViewCell.titleOnlyHeight
+        tableView.rowHeight = BasicTableViewCell.defaultHeight
         registerHeaderAndFooter()
         tableView.separatorStyle = .none
         view.addSubview(tableView)

@@ -10,11 +10,32 @@
 /* App slogan */
 "ios_app_slogan" = "The most secure way\nto manage your crypto\nfunds";
 
+/* Authenticator address is not owner */
+"ios_error_authenticator_not_owner" = "The known authenticator is no longer a safe owner. Please replace the authenticator or disconnect it.";
+
+/* Device key not owner */
+"ios_error_device_key_not_owner" = "The device key is no longer a safe owner. Please reinstall the app and recover the safe.";
+
 /* Browser extension is already connected. */
 "ios_error_extension_exists" = "Authenticator is already connected.";
 
 /* Browser extension is not connected. */
 "ios_error_extension_notfound" = "Authenticator is not connected.";
+
+/* Device key not found */
+"ios_error_no_device_key" = "Failed to locate device key in Keychain. Please restore the device from encrypted backup or reinstall the app and recover the safe.";
+
+/* Paper wallet is not owner */
+"ios_error_paper_wallet_not_owner" = "The recovery phrase is no longer valid for the safe. Please replace the recovery phrase.";
+
+/* Something wrong with the safe */
+"ios_error_safe_generic_error" = "There were some problems with this safe. Some functionality may be disabled.";
+
+/* Unexpected configuration */
+"ios_error_unexpected_configuration" = "The safe has unexpected configuration. Please reinstall the app and recover the safe.";
+
+/* This safe is unknown */
+"ios_error_unknown_safe" = "This safe is not supported. Please check your network or reinstall the app and recover the safe.";
 
 /* Please wait... */
 "please_wait" = "Please wait...";

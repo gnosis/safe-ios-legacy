@@ -168,8 +168,11 @@ public final class UnlockViewController: UIViewController {
                     }
                 }
             } catch {
-                ApplicationServiceRegistry.logger.debug("Failed to authenticate with biometry: \(error)")
-                DispatchQueue.main.async(execute: self.focusPasswordField)
+                DispatchQueue.main.async {
+                    self.focusPasswordField()
+                    ApplicationServiceRegistry.logger.error("Failed to authenticate with biometry: \(error)",
+                        error: error)
+                }
             }
         }
     }

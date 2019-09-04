@@ -5,6 +5,7 @@
 import XCTest
 @testable import safe
 import MultisigWalletImplementations
+import WalletConnectSwift
 
 // swiftlint:disable line_length
 fileprivate enum Stub {
@@ -81,7 +82,7 @@ class MockServerDelegate: ServerDelegate {
         print("WC: server didConnect url: \(session.url.bridgeURL.absoluteString)")
     }
 
-    func server(_ server: Server, didDisconnect session: Session, error: Error?) {
+    func server(_ server: Server, didDisconnect session: Session) {
         print("WC: server didDisconnect url: \(session.url.bridgeURL.absoluteString)")
     }
 

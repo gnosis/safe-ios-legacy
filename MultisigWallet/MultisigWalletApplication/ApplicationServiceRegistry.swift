@@ -27,6 +27,10 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: DisconnectBrowserExtensionApplicationService.self)
     }
 
+    public static var contractUpgradeService: ContractUpgradeApplicationService {
+        return service(for: ContractUpgradeApplicationService.self)
+    }
+
     public static var recoveryService: RecoveryApplicationService {
         return service(for: RecoveryApplicationService.self)
     }

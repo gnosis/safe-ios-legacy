@@ -14,4 +14,19 @@ public class WalletProxyContractProxy: EthereumContractProxy {
         return decodeAddress(data)
     }
 
+    private static let changeMasterCopySignature = "changeMasterCopy(address)"
+
+    public func changeMasterCopy(_ address: Address) -> Data {
+        return invocation(WalletProxyContractProxy.changeMasterCopySignature, encodeAddress(address))
+    }
+
+    public func decodeChangeMasterCopyArguments(from data: Data) -> Address? {
+        let selector = method(WalletProxyContractProxy.changeMasterCopySignature)
+        guard data.starts(with: selector) else { return nil }
+        var input = data
+        input.removeFirst(selector.count)
+        let newAddress = decodeAddress(input)
+        return newAddress
+    }
+
 }

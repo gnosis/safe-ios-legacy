@@ -57,7 +57,7 @@ public class CardViewController: UIViewController {
         }
         let subtitleText = NSMutableAttributedString()
         if showError {
-            let attachment = NSTextAttachment(image: Asset.Onboarding.errorIcon.image,
+            let attachment = NSTextAttachment(image: Asset.errorIcon.image,
                                               bounds: CGRect(x: 0, y: -2, width: 16, height: 16))
             subtitleText.append(attachment)
             subtitleText.append(" ")
@@ -100,11 +100,14 @@ public class CardViewController: UIViewController {
     class SubtitleStyle: CommonTextStyle {
 
         override var fontWeight: UIFont.Weight { return .semibold }
-        override var fontColor: UIColor { return ColorName.darkBlue.color }
 
     }
 
-    class SubtitleDetailStyle: CommonTextStyle {}
+    class SubtitleDetailStyle: CommonTextStyle {
+
+        override var fontColor: UIColor { return ColorName.darkGrey.color }
+
+    }
 
     class SubtitleDetailRightButtonStyle: CommonTextStyle {
 

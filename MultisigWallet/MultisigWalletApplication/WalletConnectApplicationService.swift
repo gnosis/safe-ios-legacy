@@ -11,8 +11,6 @@ public class SessionUpdated: DomainEvent {}
 public class SendTransactionRequested: DomainEvent {}
 public class NonceUpdated: DomainEvent {}
 
-extension WCSendTransactionRequest: SendTransactionRequiredData {}
-
 public class WalletConnectApplicationService {
 
     // TODO: move to domain service
@@ -149,12 +147,17 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
         eventPublisher.publish(SendTransactionRequested())
     }
 
-    public func handleEthereumNodeRequest(_ request: WCMessage, completion: (Result<WCMessage, Error>) -> Void) {
-        do {
-            let response = try ethereumNodeService.rawCall(payload: request.payload)
-            completion(.success(WCMessage(payload: response, url: request.url)))
-        } catch {
-            completion(.failure(error))
+    public func handleEthereumNodeRequest(_ request: WCMessage,
+                                          completion: @escaping (Result<WCMessage, Error>) -> Void) {
+        // When opening the app from a background and receiving this call causes
+        // NSPOSIXErrorDomain error with Code=53. After investigating the only solution I found was using delays.
+        DispatchQueue.global.asyncAfter(deadline: .now() + 0.1) {
+            do {
+                let response = try self.ethereumNodeService.rawCall(payload: request.payload)
+                completion(.success(WCMessage(payload: response, url: request.url)))
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
 

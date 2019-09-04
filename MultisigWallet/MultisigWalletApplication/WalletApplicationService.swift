@@ -142,7 +142,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public func walletCreationURL() -> URL {
-        return configuration.transactionURL(for: selectedWallet!.creationTransactionHash!)
+        return configuration.transactionURL(for: selectedWallet!.creationTransactionHash)
     }
 
     // MARK: - Owners
@@ -560,6 +560,7 @@ public class WalletApplicationService: Assertable {
         case .replaceBrowserExtension: type = .replaceBrowserExtension
         case .connectBrowserExtension: type = .connectBrowserExtension
         case .disconnectBrowserExtension: type = .disconnectBrowserExtension
+        case .contractUpgrade: type = .contractUpgrade
         }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
@@ -931,6 +932,37 @@ public class WalletApplicationService: Assertable {
         let estimation = self.estimation(message)
         let fee = TokenInt(estimation.gas + estimation.dataGas) * estimation.gasPrice.amount
         return TokenAmount(amount: fee, token: estimation.gasPrice.token)
+    }
+
+    public func runDiagnostics() throws {
+        guard let selectedId = selectedWallet?.id else { return }
+
+        func error(_ code: Int, _ message: String) -> NSError {
+            return NSError(domain: "io.gnosis.safe", code: code, userInfo: [NSLocalizedDescriptionKey: message])
+        }
+
+        // swiftlint:disable number_separator
+        do {
+            try DomainRegistry.diagnosticService.runDiagnostics(for: selectedId)
+        } catch WalletDiagnosticDomainService.Error.deviceKeyNotFound {
+            throw error(-3100, LocalizedString("ios_error_no_device_key", comment: "Device key not found"))
+        } catch WalletDiagnosticDomainService.Error.deviceKeyIsNotOwner {
+            throw error(-3101, LocalizedString("ios_error_device_key_not_owner", comment: "Device key not owner"))
+        } catch WalletDiagnosticDomainService.Error.authenticatorIsNotOwner {
+            throw error(-3102, LocalizedString("ios_error_authenticator_not_owner",
+                                               comment: "Authenticator address is not owner"))
+        } catch WalletDiagnosticDomainService.Error.paperWalletIsNotOwner {
+            throw error(-3103, LocalizedString("ios_error_paper_wallet_not_owner",
+                                               comment: "Paper wallet is not owner"))
+        } catch WalletDiagnosticDomainService.Error.unexpectedSafeConfiguration {
+            throw error(-3104, LocalizedString("ios_error_unexpected_configuration",
+                                               comment: "Unexpected configuration"))
+        } catch WalletDiagnosticDomainService.Error.safeDoesNotExistInRelay {
+            throw error(-3105, LocalizedString("ios_error_unknown_safe", comment: "This safe is unknown"))
+        } catch _ {
+            throw error(-3199, LocalizedString("ios_error_safe_generic_error",
+                                               comment: "Something wrong with the safe"))
+        }
     }
 
 }

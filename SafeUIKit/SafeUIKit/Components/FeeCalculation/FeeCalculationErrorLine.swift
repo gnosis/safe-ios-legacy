@@ -32,7 +32,7 @@ public class FeeCalculationErrorLine: FeeCalculationLine {
     }
 
     func makeErrorIcon() -> UIView {
-        let image = UIImageView(image: UIImage(named: "estimation-error-icon",
+        let image = UIImageView(image: UIImage(named: "error",
                                                in: Bundle(for: FeeCalculationLine.self),
                                                compatibleWith: nil))
         image.contentMode = .top

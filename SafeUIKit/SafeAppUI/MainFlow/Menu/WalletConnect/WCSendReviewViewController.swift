@@ -49,7 +49,7 @@ final class WCSendReviewViewController: SendReviewViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.section, indexPath.row) {
-        case(0, 0): return BasicTableViewCell.titleAndSubtitleHeight
+        case(0, 0): return UITableView.automaticDimension
         default: return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }

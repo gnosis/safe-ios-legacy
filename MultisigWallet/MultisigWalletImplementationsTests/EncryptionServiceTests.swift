@@ -459,11 +459,16 @@ typealias mAddress = MultisigWalletDomainModel.Address
 class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
 
     var multiSendContractAddress: mAddress { return .zero }
+    var latestMasterCopyAddress: mAddress { return .zero }
 
     var proxyFactoryAddress: mAddress { return .one }
 
     func isValidMasterCopy(address: mAddress) -> Bool {
         return true
+    }
+
+    func isOldMasterCopy(address: mAddress) -> Bool {
+        return false
     }
 
     func isValidProxyFactory(address: mAddress) -> Bool {
@@ -480,6 +485,10 @@ class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
 
     func deploymentCode(masterCopyAddress: mAddress) -> Data? {
         return nil
+    }
+
+    func latestContractVersion() -> String {
+        return ""
     }
 
     func EIP712SafeAppTxTypeHash(masterCopyAddress: mAddress) -> Data? {

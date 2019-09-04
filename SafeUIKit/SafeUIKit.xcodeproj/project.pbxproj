@@ -130,6 +130,7 @@
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
 		0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */; };
 		0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */; };
+		0A4776ED230A8FC6006DA635 /* MainBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4776EC230A8FC6006DA635 /* MainBannerView.swift */; };
 		0A4DF82020CE6FC70095C00D /* AssetViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF81F20CE6FC70095C00D /* AssetViewViewController.swift */; };
 		0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82320CE6FE20095C00D /* Main.storyboard */; };
 		0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82E20CE9D5B0095C00D /* TransactionViewViewController.swift */; };
@@ -236,15 +237,15 @@
 		0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998A520D3E6BC00E6F3CA /* TransactionValueViewTests.swift */; };
 		0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998AD20D3EDD200E6F3CA /* TransactionParameterViewTests.swift */; };
 		0AD998B020D3FEBD00E6F3CA /* SendInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998AF20D3FEBD00E6F3CA /* SendInputViewController.swift */; };
-		0ADE03EA22DDF9D300CA4705 /* WCOnboardingStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE03E822DDF9D300CA4705 /* WCOnboardingStepViewController.swift */; };
-		0ADE03EB22DDF9D300CA4705 /* WCOnboardingStepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE03E922DDF9D300CA4705 /* WCOnboardingStepViewController.xib */; };
-		0ADE03FC22DE000300CA4705 /* WCOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE03FA22DE000300CA4705 /* WCOnboardingViewController.swift */; };
-		0ADE03FF22DF2ED600CA4705 /* WCOnboardingToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE03FE22DF2ED500CA4705 /* WCOnboardingToolbar.swift */; };
-		0ADE040122DF2EF100CA4705 /* WCOnboardingPageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040022DF2EF100CA4705 /* WCOnboardingPageDataSource.swift */; };
-		0ADE040522DF357300CA4705 /* WCOnboardingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040422DF357300CA4705 /* WCOnboardingViewControllerTests.swift */; };
-		0ADE040722DF358100CA4705 /* WCOnboardingPageDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040622DF358100CA4705 /* WCOnboardingPageDataSourceTests.swift */; };
-		0ADE040922DF358E00CA4705 /* WCOnboardingToolbarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040822DF358E00CA4705 /* WCOnboardingToolbarTests.swift */; };
-		0ADE040B22DF359800CA4705 /* WCOnboardingStepViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040A22DF359800CA4705 /* WCOnboardingStepViewControllerTests.swift */; };
+		0ADE03EA22DDF9D300CA4705 /* OnboardingStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE03E822DDF9D300CA4705 /* OnboardingStepViewController.swift */; };
+		0ADE03EB22DDF9D300CA4705 /* OnboardingStepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE03E922DDF9D300CA4705 /* OnboardingStepViewController.xib */; };
+		0ADE03FC22DE000300CA4705 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE03FA22DE000300CA4705 /* OnboardingViewController.swift */; };
+		0ADE03FF22DF2ED600CA4705 /* OnboardingToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE03FE22DF2ED500CA4705 /* OnboardingToolbar.swift */; };
+		0ADE040122DF2EF100CA4705 /* OnboardingPageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040022DF2EF100CA4705 /* OnboardingPageDataSource.swift */; };
+		0ADE040522DF357300CA4705 /* OnboardingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040422DF357300CA4705 /* OnboardingViewControllerTests.swift */; };
+		0ADE040722DF358100CA4705 /* OnboardingPageDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040622DF358100CA4705 /* OnboardingPageDataSourceTests.swift */; };
+		0ADE040922DF358E00CA4705 /* OnboardingToolbarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040822DF358E00CA4705 /* OnboardingToolbarTests.swift */; };
+		0ADE040B22DF359800CA4705 /* OnboardingStepViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040A22DF359800CA4705 /* OnboardingStepViewControllerTests.swift */; };
 		0ADE046822E5F15D00CA4705 /* PlaceholderCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */; };
 		0AE0FE42229C484000ABC552 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */; };
 		0AE0FE5A229D2CE500ABC552 /* TwoFAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */; };
@@ -406,6 +407,11 @@
 		55CA308F2227DB0900E7AEA7 /* UIViewController+Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA308E2227DB0900E7AEA7 /* UIViewController+Tracking.swift */; };
 		55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A02229349700E7AEA7 /* OnboardingTrackingEvent.swift */; };
 		55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */; };
+		55CE9CEE23040FB000CB414D /* ContractUpgradeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CED23040FB000CB414D /* ContractUpgradeHeaderView.swift */; };
+		55CE9CF0230410BB00CB414D /* ContractUpgradeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */; };
+		55CE9CFA23055EE500CB414D /* ContractUpgradeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CF923055EE500CB414D /* ContractUpgradeFlowCoordinator.swift */; };
+		55CE9CFF23058C6F00CB414D /* ContractUpgradeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9CFE23058C6F00CB414D /* ContractUpgradeCommand.swift */; };
+		55CE9D0123059ED800CB414D /* ContractUpgradeTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CE9D0023059ED800CB414D /* ContractUpgradeTrackingEvent.swift */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5D216F6F70003D9A53 /* TokenInput.swift */; };
 		55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5F216F6F8B003D9A53 /* TokenInputTests.swift */; };
@@ -740,6 +746,7 @@
 		0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 		0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputViewControllerTests.swift; sourceTree = "<group>"; };
+		0A4776EC230A8FC6006DA635 /* MainBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerView.swift; sourceTree = "<group>"; };
 		0A4DF81F20CE6FC70095C00D /* AssetViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewViewController.swift; sourceTree = "<group>"; };
 		0A4DF82320CE6FE20095C00D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A4DF82C20CE9A080095C00D /* AssetViewViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewViewControllerTests.swift; sourceTree = "<group>"; };
@@ -868,15 +875,15 @@
 		0AD998A520D3E6BC00E6F3CA /* TransactionValueViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionValueViewTests.swift; sourceTree = "<group>"; };
 		0AD998AD20D3EDD200E6F3CA /* TransactionParameterViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParameterViewTests.swift; sourceTree = "<group>"; };
 		0AD998AF20D3FEBD00E6F3CA /* SendInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputViewController.swift; sourceTree = "<group>"; };
-		0ADE03E822DDF9D300CA4705 /* WCOnboardingStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingStepViewController.swift; sourceTree = "<group>"; };
-		0ADE03E922DDF9D300CA4705 /* WCOnboardingStepViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCOnboardingStepViewController.xib; sourceTree = "<group>"; };
-		0ADE03FA22DE000300CA4705 /* WCOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingViewController.swift; sourceTree = "<group>"; };
-		0ADE03FE22DF2ED500CA4705 /* WCOnboardingToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingToolbar.swift; sourceTree = "<group>"; };
-		0ADE040022DF2EF100CA4705 /* WCOnboardingPageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingPageDataSource.swift; sourceTree = "<group>"; };
-		0ADE040422DF357300CA4705 /* WCOnboardingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingViewControllerTests.swift; sourceTree = "<group>"; };
-		0ADE040622DF358100CA4705 /* WCOnboardingPageDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingPageDataSourceTests.swift; sourceTree = "<group>"; };
-		0ADE040822DF358E00CA4705 /* WCOnboardingToolbarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingToolbarTests.swift; sourceTree = "<group>"; };
-		0ADE040A22DF359800CA4705 /* WCOnboardingStepViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCOnboardingStepViewControllerTests.swift; sourceTree = "<group>"; };
+		0ADE03E822DDF9D300CA4705 /* OnboardingStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepViewController.swift; sourceTree = "<group>"; };
+		0ADE03E922DDF9D300CA4705 /* OnboardingStepViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingStepViewController.xib; sourceTree = "<group>"; };
+		0ADE03FA22DE000300CA4705 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		0ADE03FE22DF2ED500CA4705 /* OnboardingToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingToolbar.swift; sourceTree = "<group>"; };
+		0ADE040022DF2EF100CA4705 /* OnboardingPageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageDataSource.swift; sourceTree = "<group>"; };
+		0ADE040422DF357300CA4705 /* OnboardingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewControllerTests.swift; sourceTree = "<group>"; };
+		0ADE040622DF358100CA4705 /* OnboardingPageDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageDataSourceTests.swift; sourceTree = "<group>"; };
+		0ADE040822DF358E00CA4705 /* OnboardingToolbarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingToolbarTests.swift; sourceTree = "<group>"; };
+		0ADE040A22DF359800CA4705 /* OnboardingStepViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepViewControllerTests.swift; sourceTree = "<group>"; };
 		0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCreator.swift; sourceTree = "<group>"; };
 		0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFAView.swift; sourceTree = "<group>"; };
@@ -1037,6 +1044,11 @@
 		55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTrackingEvents.swift; sourceTree = "<group>"; };
 		55CDFE3D21A4745C00FDF2E8 /* TransactionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderCell.swift; sourceTree = "<group>"; };
 		55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderCellTests.swift; sourceTree = "<group>"; };
+		55CE9CED23040FB000CB414D /* ContractUpgradeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeHeaderView.swift; sourceTree = "<group>"; };
+		55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContractUpgradeHeaderView.xib; sourceTree = "<group>"; };
+		55CE9CF923055EE500CB414D /* ContractUpgradeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeFlowCoordinator.swift; sourceTree = "<group>"; };
+		55CE9CFE23058C6F00CB414D /* ContractUpgradeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeCommand.swift; sourceTree = "<group>"; };
+		55CE9D0023059ED800CB414D /* ContractUpgradeTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractUpgradeTrackingEvent.swift; sourceTree = "<group>"; };
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55D0EC5D216F6F70003D9A53 /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
@@ -1410,15 +1422,17 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				55329FF422F9751300E40B06 /* RateApp */,
-				55329FE522F9750800E40B06 /* GetInTouch */,
+				55CE9CFD2305608C00CB414D /* Onboarding */,
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
 				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
+				55CE9CDC2304039E00CB414D /* ContractUpgrade */,
 				0A1940472226CF27005B7440 /* DisconnectBrowserExtension */,
 				551D777D22819AD8003B7910 /* FeePaymentMethod */,
+				55329FE522F9750800E40B06 /* GetInTouch */,
 				55B5DF6222782BF6001A32F4 /* Portfolio */,
+				55329FF422F9751300E40B06 /* RateApp */,
 				0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */,
 				0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */,
 				0A1940642226DE1E005B7440 /* ResyncBrowserExtension */,
@@ -1632,6 +1646,7 @@
 		0ABD142A2292BF9A00922964 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				0A4776EC230A8FC6006DA635 /* MainBannerView.swift */,
 				0ABD145C22943DCA00922964 /* MainViewController.swift */,
 				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
 				0AF8D53620CFFC52001E8423 /* MainViewControllerSegmentTests.swift */,
@@ -2083,15 +2098,6 @@
 				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
 				5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */,
 				5568A25D22D78583007C9E0C /* WCSessionListCell.xib */,
-				0ADE03FA22DE000300CA4705 /* WCOnboardingViewController.swift */,
-				0ADE040422DF357300CA4705 /* WCOnboardingViewControllerTests.swift */,
-				0ADE040022DF2EF100CA4705 /* WCOnboardingPageDataSource.swift */,
-				0ADE040622DF358100CA4705 /* WCOnboardingPageDataSourceTests.swift */,
-				0ADE03FE22DF2ED500CA4705 /* WCOnboardingToolbar.swift */,
-				0ADE040822DF358E00CA4705 /* WCOnboardingToolbarTests.swift */,
-				0ADE03E822DDF9D300CA4705 /* WCOnboardingStepViewController.swift */,
-				0ADE040A22DF359800CA4705 /* WCOnboardingStepViewControllerTests.swift */,
-				0ADE03E922DDF9D300CA4705 /* WCOnboardingStepViewController.xib */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -2194,6 +2200,34 @@
 				55C428FB217B428100BF8922 /* ScanBarButtonItemTests.swift */,
 			);
 			path = ScanBarButtonItem;
+			sourceTree = "<group>";
+		};
+		55CE9CDC2304039E00CB414D /* ContractUpgrade */ = {
+			isa = PBXGroup;
+			children = (
+				55CE9CED23040FB000CB414D /* ContractUpgradeHeaderView.swift */,
+				55CE9CEF230410BB00CB414D /* ContractUpgradeHeaderView.xib */,
+				55CE9CF923055EE500CB414D /* ContractUpgradeFlowCoordinator.swift */,
+				55CE9CFE23058C6F00CB414D /* ContractUpgradeCommand.swift */,
+				55CE9D0023059ED800CB414D /* ContractUpgradeTrackingEvent.swift */,
+			);
+			path = ContractUpgrade;
+			sourceTree = "<group>";
+		};
+		55CE9CFD2305608C00CB414D /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				0ADE03FA22DE000300CA4705 /* OnboardingViewController.swift */,
+				0ADE040422DF357300CA4705 /* OnboardingViewControllerTests.swift */,
+				0ADE040022DF2EF100CA4705 /* OnboardingPageDataSource.swift */,
+				0ADE040622DF358100CA4705 /* OnboardingPageDataSourceTests.swift */,
+				0ADE03FE22DF2ED500CA4705 /* OnboardingToolbar.swift */,
+				0ADE040822DF358E00CA4705 /* OnboardingToolbarTests.swift */,
+				0ADE03E822DDF9D300CA4705 /* OnboardingStepViewController.swift */,
+				0ADE040A22DF359800CA4705 /* OnboardingStepViewControllerTests.swift */,
+				0ADE03E922DDF9D300CA4705 /* OnboardingStepViewController.xib */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */ = {
@@ -2674,10 +2708,11 @@
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* CreateSafe.storyboard in Resources */,
+				55CE9CF0230410BB00CB414D /* ContractUpgradeHeaderView.xib in Resources */,
 				0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */,
 				0A2C0E172296F2E3008A30AC /* CardViewController.xib in Resources */,
 				5549B2A722859F5F00F3B5B7 /* PaymentMethodHeaderView.xib in Resources */,
-				0ADE03EB22DDF9D300CA4705 /* WCOnboardingStepViewController.xib in Resources */,
+				0ADE03EB22DDF9D300CA4705 /* OnboardingStepViewController.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
 				0A3BD90622254833007039B4 /* RBEIntroViewController.xib in Resources */,
@@ -3009,7 +3044,8 @@
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
 				553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */,
 				0A3BD95B22255C40007039B4 /* ConnectBrowserExtensionLaterCommand.swift in Sources */,
-				0ADE03FF22DF2ED600CA4705 /* WCOnboardingToolbar.swift in Sources */,
+				0ADE03FF22DF2ED600CA4705 /* OnboardingToolbar.swift in Sources */,
+				55CE9D0123059ED800CB414D /* ContractUpgradeTrackingEvent.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A2D58802257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift in Sources */,
 				551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */,
@@ -3036,6 +3072,7 @@
 				0A2C0E182296F2E3008A30AC /* AddressDetailView.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */,
+				55CE9CFF23058C6F00CB414D /* ContractUpgradeCommand.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
 				0ABD145D22943DCA00922964 /* MainViewController.swift in Sources */,
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,
@@ -3045,13 +3082,15 @@
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
 				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */,
-				0ADE040122DF2EF100CA4705 /* WCOnboardingPageDataSource.swift in Sources */,
+				55CE9CFA23055EE500CB414D /* ContractUpgradeFlowCoordinator.swift in Sources */,
+				0ADE040122DF2EF100CA4705 /* OnboardingPageDataSource.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
 				55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */,
 				553B9E022296D15A006E93C9 /* OnboardingPaymentMethodViewController.swift in Sources */,
-				0ADE03EA22DDF9D300CA4705 /* WCOnboardingStepViewController.swift in Sources */,
+				0ADE03EA22DDF9D300CA4705 /* OnboardingStepViewController.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
+				0A4776ED230A8FC6006DA635 /* MainBannerView.swift in Sources */,
 				0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */,
 				55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
@@ -3072,7 +3111,7 @@
 				5579C57A22C3687500BB93CA /* WCSessionListTableViewController.swift in Sources */,
 				0ABD146D2294489D00922964 /* HeaderScrollDelegate.swift in Sources */,
 				5549B28322830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift in Sources */,
-				0ADE03FC22DE000300CA4705 /* WCOnboardingViewController.swift in Sources */,
+				0ADE03FC22DE000300CA4705 /* OnboardingViewController.swift in Sources */,
 				554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */,
 				0A2D587E225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift in Sources */,
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,
@@ -3094,6 +3133,7 @@
 				0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
 				5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */,
+				55CE9CEE23040FB000CB414D /* ContractUpgradeHeaderView.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
@@ -3156,7 +3196,7 @@
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
 				55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* OnboardingWelcomeViewControllerTests.swift in Sources */,
-				0ADE040722DF358100CA4705 /* WCOnboardingPageDataSourceTests.swift in Sources */,
+				0ADE040722DF358100CA4705 /* OnboardingPageDataSourceTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift in Sources */,
 				554CACD7221F19430086D303 /* SendReviewViewControllerTests.swift in Sources */,
 				0A2D589F22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift in Sources */,
@@ -3206,14 +3246,14 @@
 				0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,
 				553AEB15229EA42B00EA3248 /* RBEIntroViewControllerLoadingStateTests.swift in Sources */,
-				0ADE040522DF357300CA4705 /* WCOnboardingViewControllerTests.swift in Sources */,
+				0ADE040522DF357300CA4705 /* OnboardingViewControllerTests.swift in Sources */,
 				0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */,
 				0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */,
 				0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				0A334DC2209C6D8D00ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift in Sources */,
 				0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				0A334E5B209C8E6800ABC6AE /* CreateSafeFlowCoordinatorTests.swift in Sources */,
-				0ADE040B22DF359800CA4705 /* WCOnboardingStepViewControllerTests.swift in Sources */,
+				0ADE040B22DF359800CA4705 /* OnboardingStepViewControllerTests.swift in Sources */,
 				0A334E5A209C8E6800ABC6AE /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 				0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */,
@@ -3222,7 +3262,7 @@
 				0AFD05E022A680AF00888956 /* TestableRBEIntroViewController.swift in Sources */,
 				0A334DC1209C6D8D00ABC6AE /* MainFlowCoordinatorCreateOrRestoreTests.swift in Sources */,
 				553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */,
-				0ADE040922DF358E00CA4705 /* WCOnboardingToolbarTests.swift in Sources */,
+				0ADE040922DF358E00CA4705 /* OnboardingToolbarTests.swift in Sources */,
 				553AEB19229EA43900EA3248 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,
 				5579C57C22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift in Sources */,
 				0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */,
