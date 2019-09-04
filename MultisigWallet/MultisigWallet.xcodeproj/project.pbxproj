@@ -279,10 +279,12 @@
 		0AAE7E522304569F00E7EB07 /* RepeaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E242304569E00E7EB07 /* RepeaterTests.swift */; };
 		0AAE7E532304569F00E7EB07 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E252304569E00E7EB07 /* DomainRegistryTests.swift */; };
 		0AAE7E542304569F00E7EB07 /* BaseInMemoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E262304569E00E7EB07 /* BaseInMemoryRepositoryTests.swift */; };
+		55158EFC232004FE00CE70B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A364B2522676C7E002E80B7 /* Localizable.strings */; };
 		5542B4DE231E770800835F89 /* ContractUpgradeDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4DC231E770800835F89 /* ContractUpgradeDomainService.swift */; };
 		5542B4DF231E770E00835F89 /* ContractUpgradeDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4D7231E770800835F89 /* ContractUpgradeDomainServiceTests.swift */; };
 		5542B4E1231E772C00835F89 /* WalletDiagnositcDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4E0231E772C00835F89 /* WalletDiagnositcDomainService.swift */; };
 		5542B4E3231E775700835F89 /* ContractUpgradeApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4E2231E775700835F89 /* ContractUpgradeApplicationService.swift */; };
+		559C2EB3231FC1FA0071B14C /* GetSafeStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C2EAE231FC1F90071B14C /* GetSafeStatusRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -712,6 +714,7 @@
 		5568A21322D5E7FD007C9E0C /* WalletConnectApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectApplicationService.swift; sourceTree = "<group>"; };
 		5568A24F22D73AFC007C9E0C /* WCSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionData.swift; sourceTree = "<group>"; };
 		5568A25522D7613A007C9E0C /* MockWalletConnectApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletConnectApplicationService.swift; sourceTree = "<group>"; };
+		559C2EAE231FC1F90071B14C /* GetSafeStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSafeStatusRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1222,6 +1225,7 @@
 		0AAE7D502304544900E7EB07 /* RelayRequests */ = {
 			isa = PBXGroup;
 			children = (
+				559C2EAE231FC1F90071B14C /* GetSafeStatusRequest.swift */,
 				0AAE7D512304544900E7EB07 /* EstimateSafeCreationRequest.swift */,
 				0AAE7D522304544900E7EB07 /* GetSafeCreationStatusRequest.swift */,
 				0AAE7D532304544900E7EB07 /* EstimateTransactionRequest.swift */,
@@ -1620,6 +1624,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55158EFC232004FE00CE70B8 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1711,6 +1716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AAE7D852304544A00E7EB07 /* ErrorStream.swift in Sources */,
+				559C2EB3231FC1FA0071B14C /* GetSafeStatusRequest.swift in Sources */,
 				0AAE7DA32304544A00E7EB07 /* Worker.swift in Sources */,
 				0AAE7D892304544A00E7EB07 /* Repeater.swift in Sources */,
 				0AAE7D8E2304544A00E7EB07 /* ReplaceBrowserExtensionDomainService.swift in Sources */,

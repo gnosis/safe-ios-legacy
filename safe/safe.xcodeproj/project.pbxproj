@@ -16,8 +16,6 @@
 		0A05952A22E9CFF60001D7D5 /* Averta-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A05951E22E9CFEC0001D7D5 /* Averta-Regular.otf */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
-		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
-		0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C874920976D3A00471885 /* NewSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */; };
 		0A0E837122CA00050027A96E /* WalletConnectIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E837022CA00050027A96E /* WalletConnectIntegrationTests.swift */; };
 		0A0FD8A42254ED27008475E7 /* PendingSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */; };
@@ -401,7 +399,6 @@
 		0A06608B2099B4FF0048FBD3 /* XCUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCUIElement.h; sourceTree = "<group>"; };
 		0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCUIApplication.h; sourceTree = "<group>"; };
 		0A0C86FD2097461700471885 /* SafeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SafeUIKit.strings; sourceTree = "<group>"; };
-		0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IdentityAccessImplementationsResources.bundle; sourceTree = "<group>"; };
 		0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeScreenUITests.swift; sourceTree = "<group>"; };
 		0A0E837022CA00050027A96E /* WalletConnectIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectIntegrationTests.swift; sourceTree = "<group>"; };
 		0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SafeUIKit.xcodeproj; path = ../SafeUIKit/SafeUIKit.xcodeproj; sourceTree = "<group>"; };
@@ -799,7 +796,6 @@
 				0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */,
 				0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */,
 				0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */,
-				0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */,
 				0ABCA964207E560500E2C193 /* Library.xcodeproj */,
 				0AFEDEB62073C846002F5924 /* config */,
 				55D6C2F72045C38D0026BC72 /* TestTools */,
@@ -1298,7 +1294,6 @@
 				0A05952A22E9CFF60001D7D5 /* Averta-Regular.otf in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
 				0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */,
-				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
 				0A84BBF42106168600708DE5 /* AppConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1314,7 +1309,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
 				0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */,
 				0AA27835205FC60100EBB9D1 /* Localizable.strings in Resources */,
 				0A99436E20A04C9C00E36FD7 /* SafeAppUI.strings in Resources */,
