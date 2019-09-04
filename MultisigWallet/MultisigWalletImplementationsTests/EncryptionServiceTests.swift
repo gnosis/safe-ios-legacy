@@ -455,7 +455,7 @@ class MockEthereumService: EthereumService {
 }
 
 typealias mAddress = MultisigWalletDomainModel.Address
-
+// TODO: should we delete it as duplicate of SafeContractMetadataRepository.swift ?
 class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
 
     var multiSendContractAddress: mAddress { return .zero }
