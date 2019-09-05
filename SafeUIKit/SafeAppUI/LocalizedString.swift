@@ -6,10 +6,6 @@ import Foundation
 
 fileprivate class BundleMarker {}
 
-fileprivate extension Bundle {
-    static let SafeAppUI = Bundle(for: BundleMarker.self)
-}
-
 func LocalizedString(_ key: String, comment: String) -> String {
-    return NSLocalizedString(key, bundle: Bundle.SafeAppUI, comment: comment)
+    return NSLocalizedString(key, bundle: Bundle(for: BundleMarker.self), comment: comment)
 }

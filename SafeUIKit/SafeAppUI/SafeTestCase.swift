@@ -59,6 +59,9 @@ class SafeTestCase: XCTestCase {
         applicationRegistry.put(service: walletService, for: WalletApplicationService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: appSettingsRepository, for: AppSettingsRepository.self)
         applicationRegistry.put(service: recoveryService, for: RecoveryApplicationService.self)
+        applicationRegistry.put(service: MockContractUpgradeApplicationService(),
+                                for: ContractUpgradeApplicationService.self)
+        applicationRegistry.put(service: logger, for: Logger.self)
     }
 
     private func configureEthereumModule() {

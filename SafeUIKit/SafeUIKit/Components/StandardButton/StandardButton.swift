@@ -19,6 +19,9 @@ final public class StandardButton: BaseCustomButton {
         /// Button with a solid color background.
         case filled
 
+        /// Button that looks like text
+        case text
+
         // Each style has a set of title colors and background images for every useful UIControl state.
         //
         // This is implemented using tuples to be able to compile-check presense of colors and images for
@@ -50,19 +53,27 @@ final public class StandardButton: BaseCustomButton {
 
                      images: (normal: Asset.FilledButton.filledNormal.image,
                               highlighted: Asset.FilledButton.filledPressed.image,
-                              disabled: Asset.FilledButton.filledInactive.image)))
+                              disabled: Asset.FilledButton.filledInactive.image)),
+
+            text: (colors: (normal: ColorName.darkGrey.color,
+                            highlighted: ColorName.darkGrey.color,
+                            disabled: ColorName.darkGrey.color),
+
+                   images: (normal: nil, highlighted: nil, disabled: nil))
+        )
 
         fileprivate var assets: StandardButton.AssetSet {
             switch self {
             case .plain: return StandardButton.Style.styleSheet.plain
             case .bordered: return StandardButton.Style.styleSheet.bordered
             case .filled: return StandardButton.Style.styleSheet.filled
+            case .text: return StandardButton.Style.styleSheet.text
             }
         }
 
     }
 
-    fileprivate typealias StyleSheet = (plain: AssetSet, bordered: AssetSet, filled: AssetSet)
+    fileprivate typealias StyleSheet = (plain: AssetSet, bordered: AssetSet, filled: AssetSet, text: AssetSet)
     fileprivate typealias AssetSet = (colors: ColorSet, images: ImageSet)
     fileprivate typealias ColorSet = (normal: UIColor?, highlighted: UIColor?, disabled: UIColor?)
     fileprivate typealias ImageSet = (normal: UIImage?, highlighted: UIImage?, disabled: UIImage?)

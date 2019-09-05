@@ -12,8 +12,7 @@ open class BasicTableViewCell: UITableViewCell {
     @IBOutlet public private(set) weak var separatorView: UIView!
     @IBOutlet public private(set) weak var rightTrailingConstraint: NSLayoutConstraint!
 
-    public static let titleOnlyHeight: CGFloat = 62
-    public static let titleAndSubtitleHeight: CGFloat = 70
+    public static let defaultHeight: CGFloat = 62
 
     /// Used if table view section index should be displayed
     public var withTrailingSpace: Bool = false {

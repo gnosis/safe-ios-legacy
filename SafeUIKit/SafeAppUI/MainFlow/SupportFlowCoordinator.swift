@@ -90,6 +90,12 @@ final class SupportFlowCoordinator: FlowCoordinator {
         }
     }
 
+    func openBlogPostForContractUpgrade_1_0_0() {
+        Tracker.shared.track(event: ContractUpgradeTrackingEvent._1_0_0_openBlogArticle)
+        // swiftlint:disable:next line_length
+        openInSafari(URL(string: "https://blog.gnosis.pm/formal-verification-a-journey-deep-into-the-gnosis-safe-smart-contracts-b00daf354a9c")!)
+    }
+
 }
 
 fileprivate class MailComposeHandler: NSObject, MFMailComposeViewControllerDelegate {

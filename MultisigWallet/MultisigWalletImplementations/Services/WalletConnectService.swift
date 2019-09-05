@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import WalletConnectSwift
 
 // TODO: make this service very thin and move domain specific logic to special new domain object.
 public class WalletConnectService: WalletConnectDomainService {
@@ -80,7 +81,7 @@ public class WalletConnectService: WalletConnectDomainService {
 
 extension WalletConnectService: ServerDelegate {
 
-    public func server(_ server: Server, didFailToConnect url: WCURL) {
+    public func server(_ server: Server, didFailToConnect url: WalletConnectSwift.WCURL) {
         delegate.didFailToConnect(url: url.wcURL)
     }
 
@@ -99,7 +100,7 @@ extension WalletConnectService: ServerDelegate {
         delegate.didConnect(session: updatedSession)
     }
 
-    public func server(_ server: Server, didDisconnect session: Session, error: Error?) {
+    public func server(_ server: Server, didDisconnect session: Session) {
         guard let existingSession = findExistingWCSession(for: session) else { return }
         DomainRegistry.walletConnectSessionRepository.remove(existingSession)
         delegate.didDisconnect(session: session.wcSession(status: .disconnected, created: existingSession.created))
@@ -118,48 +119,40 @@ extension WalletConnectService: RequestHandler {
     }
 
     public func canHandle(request: Request) -> Bool {
-        return !unsupportedWalletConnectRequests.contains(request.payload.method)
+        return !unsupportedWalletConnectRequests.contains(request.method)
     }
 
+    // swiftlint:disable:next function_body_length
     public func handle(request: Request) {
-        if request.payload.method == "eth_sendTransaction" {
-            do {
-                print("Request payload: \(request.payload)")
-                let data = try JSONEncoder().encode(request.payload.params)
-                let requestWrapper = try JSONDecoder().decode([WCSendTransactionRequest].self, from: data)
-                guard requestWrapper.count == 1 else {
-                    let responsePayload = self.errorResponse(code: ErrorCode.wrongSendTransactionRequest.rawValue,
-                                                             message: "Wrong send transaction request.",
-                                                             requestId: request.payload.id ?? .null)
-                    self.server.send(Response(payload: responsePayload, url: request.url))
-                    return
-                }
-                var wcRequest = requestWrapper[0]
+        if request.method == "eth_sendTransaction" {
+            do {                
+                var wcRequest = try request.parameter(of: WCSendTransactionRequest.self, at: 0)
                 wcRequest.url = request.url.wcURL
                 delegate.handleSendTransactionRequest(wcRequest) { [weak self] result in
                     guard let self = self else { return }
-                    var responsePayload: JSONRPC_2_0.Response
+                    var response: Response
                     switch result {
                     case .success(let hash):
-                        responsePayload = JSONRPC_2_0.Response(result: .value(.string(hash)),
-                                                               id: request.payload.id ?? .null)
+                        response = try! Response(url: request.url, value: hash, id: request.id!)
                     case .failure(let error):
-                        let message = "Transaction was declined. Error: \(error.localizedDescription)"
-                        responsePayload = self.errorResponse(code: ErrorCode.declinedSendTransactionRequest.rawValue,
-                                                             message: message,
-                                                             requestId: request.payload.id ?? .null)
+                        let errorMessage = "Transaction was declined. Error: \(error.localizedDescription)"
+                        response = try! Response(url: request.url,
+                                                 errorCode: ErrorCode.declinedSendTransactionRequest.rawValue,
+                                                 message: errorMessage,
+                                                 id: request.id)
                     }
-                    self.server.send(Response(payload: responsePayload, url: request.url))
+                    self.server.send(response)
                 }
             } catch {
-                DomainRegistry.logger.error("WC: failed eth_sendTransaction: \(request.payload)", error: error)
-                let responsePayload = self.errorResponse(code: ErrorCode.wrongSendTransactionRequest.rawValue,
-                                                         message: "Wrong send transaction request.",
-                                                         requestId: request.payload.id ?? .null)
-                self.server.send(Response(payload: responsePayload, url: request.url))
+                DomainRegistry.logger.error("WC: failed eth_sendTransaction", error: error)
+                let errorMessage = "Wrong send transaction request. Error: \(error.localizedDescription)."
+                let response = try! Response(url: request.url,
+                                             errorCode: ErrorCode.wrongSendTransactionRequest.rawValue,
+                                             message: errorMessage,
+                                             id: request.id)
+                self.server.send(response)
             }
         } else {
-            // TODO: Discuss: should Ethereum JSON RPC request handling be part of the lib itself?
             delegate.handleEthereumNodeRequest(request.wcRequest) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
@@ -170,32 +163,32 @@ extension WalletConnectService: RequestHandler {
                     } catch {
                         let message = "WC: Could not create a WalletConnect Response from: \(wcResponse.payload)"
                         DomainRegistry.logger.error(message, error: error)
-                        let responsePayload = self.errorResponse(code: ErrorCode.wrongNodeRPCResponse.rawValue,
-                                                                 message: "Wrong RPC response.",
-                                                                 requestId: request.payload.id ?? .null)
-                        self.server.send(Response(payload: responsePayload, url: request.url))
+                        let errorMessage = "Wrong RPC response. Error: \(error.localizedDescription)"
+                        let response = try! Response(url: request.url,
+                                                     errorCode: ErrorCode.wrongNodeRPCResponse.rawValue,
+                                                     message: errorMessage,
+                                                     id: request.id)
+                        self.server.send(response)
                     }
                 case .failure(let error):
-                    let message = "WC: Could not send a WalletConnect request: \(request.payload)"
-                    DomainRegistry.logger.error(message, error: error)
-                    let responsePayload = self.errorResponse(code: ErrorCode.failedToExecuteNodeRPCRequest.rawValue,
-                                                             message: "RPC request failed.",
-                                                             requestId: request.payload.id ?? .null)
-                    self.server.send(Response(payload: responsePayload, url: request.url))
+                    let internalMessage = """
+                    WC: Could not send a WalletConnect request: \(request.method). Error: \(error.localizedDescription)
+                    """
+                    DomainRegistry.logger.error(internalMessage, error: error)
+                    let errorMessage = "RPC request failed. Error: \(error.localizedDescription)"
+                    let response = try! Response(url: request.url,
+                                                 errorCode: ErrorCode.failedToExecuteNodeRPCRequest.rawValue,
+                                                 message: errorMessage,
+                                                 id: request.id)
+                    self.server.send(response)
                 }
             }
         }
     }
 
-    private func errorResponse(code: Int, message: String, requestId: JSONRPC_2_0.IDType) -> JSONRPC_2_0.Response {
-        let code = try! JSONRPC_2_0.Response.Payload.ErrorPayload.Code(code)
-        let errorPayload = JSONRPC_2_0.Response.Payload.ErrorPayload(code: code, message: message, data: nil)
-        return JSONRPC_2_0.Response(result: .error(errorPayload), id: requestId)
-    }
-
 }
 
-extension WCURL {
+extension WalletConnectSwift.WCURL {
 
     init(wcURL: MultisigWalletDomainModel.WCURL) {
         self.init(topic: wcURL.topic, version: wcURL.version, bridgeURL: wcURL.bridgeURL, key: wcURL.key)
@@ -217,7 +210,7 @@ extension Session.ClientMeta {
     }
 
     var wcClientMeta: WCClientMeta {
-        return WCClientMeta(name: name, description: description, icons: icons, url: url)
+        return WCClientMeta(name: name, description: description ?? "", icons: icons, url: url)
     }
 
 }
@@ -257,7 +250,7 @@ extension Session.WalletInfo {
 extension Session {
 
     init(wcSession: WCSession) {
-        self.init(url: WCURL(wcURL: wcSession.url),
+        self.init(url: WalletConnectSwift.WCURL(wcURL: wcSession.url),
                   dAppInfo: DAppInfo(wcDAppInfo: wcSession.dAppInfo),
                   walletInfo: Session.WalletInfo(wcWalletInfo: wcSession.walletInfo!))
     }
@@ -275,7 +268,7 @@ extension Session {
 extension Request {
 
     var wcRequest: WCMessage {
-        return WCMessage(payload: try! payload.json().string, url: url.wcURL)
+        return WCMessage(payload: jsonString, url: url.wcURL)
     }
 
 }
@@ -283,9 +276,8 @@ extension Request {
 extension Response {
 
     convenience init(wcResponse: WCMessage) throws {
-        let payload = try JSONRPC_2_0.Response.create(from: JSONRPC_2_0.JSON(wcResponse.payload))
-        let url = WCURL(wcURL: wcResponse.url)
-        self.init(payload: payload, url: url)
+        let url = WalletConnectSwift.WCURL(wcURL: wcResponse.url)
+        try self.init(url: url, jsonString: wcResponse.payload)
     }
 
 }

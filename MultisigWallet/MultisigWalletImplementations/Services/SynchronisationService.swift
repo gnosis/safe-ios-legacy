@@ -95,6 +95,9 @@ public class SynchronisationService: SynchronisationDomainService {
     private func postProcessTransactions() {
         do {
             guard hasAccessToFilesystem else { return }
+            try DomainRegistry.contractUpgradeService.postProcessTransactions()
+
+            guard hasAccessToFilesystem else { return }
             try DomainRegistry.replaceExtensionService.postProcessTransactions()
 
             guard hasAccessToFilesystem else { return }

@@ -6,43 +6,43 @@
 	<dict>
 		<key>Headers/SipHash-Swift.h</key>
 		<data>
-		nxBy7t1lPsw+I4mEXjEbINPVbdY=
+		4Lx9kWQEpiurqr488Rhc3ImNjrE=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		tLxmg513vPwIjaxGIenoFXDH2fA=
+		mENscEtGRKp5JbiIAmBktXcbxbI=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
 		<data>
-		ItHaWr91G5tDvgix4mJ68LHK+EI=
+		ahbjWP3mH+cM5SEDCMwpRArpSBc=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
 		<data>
-		vpjs4J2mcpJfeBz8e8tB8OKk9J4=
+		ijFwj3+KdtHHZ5eJ+Ru34Fxff40=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<data>
-		ItHaWr91G5tDvgix4mJ68LHK+EI=
+		ahbjWP3mH+cM5SEDCMwpRArpSBc=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<data>
-		vpjs4J2mcpJfeBz8e8tB8OKk9J4=
+		ijFwj3+KdtHHZ5eJ+Ru34Fxff40=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		yEyy/N5hbwJJrbGbwTxKvWChTl0=
+		2FultN1ypY0S55AtWfK1HvfZkiw=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		9gyoPKcK6mSj4Pj7NpLdP+PqOcw=
+		E5Qjs5YhWTqhH27VCBinB/iEix8=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		yEyy/N5hbwJJrbGbwTxKvWChTl0=
+		2FultN1ypY0S55AtWfK1HvfZkiw=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		9gyoPKcK6mSj4Pj7NpLdP+PqOcw=
+		E5Qjs5YhWTqhH27VCBinB/iEix8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -55,99 +55,99 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			nxBy7t1lPsw+I4mEXjEbINPVbdY=
+			4Lx9kWQEpiurqr488Rhc3ImNjrE=
 			</data>
 			<key>hash2</key>
 			<data>
-			/rz/53/0YVzwHaBMoo01oADiPKi7+Fvd2QKAgRzAkaE=
+			EeC+gdE5Vji9qL3iGrY/XUrUx30YxrV9j+141279aCk=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ItHaWr91G5tDvgix4mJ68LHK+EI=
+			ahbjWP3mH+cM5SEDCMwpRArpSBc=
 			</data>
 			<key>hash2</key>
 			<data>
-			ETjXDCOYcCxTLQM9gVQDfFIBG5kGVLr5GJht4OzoOws=
+			mtcA7IMYtZBAMR9YIsZdM+liaxiQR5Y44daP5TzXLEY=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vpjs4J2mcpJfeBz8e8tB8OKk9J4=
+			ijFwj3+KdtHHZ5eJ+Ru34Fxff40=
 			</data>
 			<key>hash2</key>
 			<data>
-			szxSKn9OU0CztSFQPc7XLy9oSgcmEzZbzncFYoPnQVQ=
+			YbfJ+OyXkFru398H4fsuPRW49VJt29tTmr3WKl9RYdU=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ItHaWr91G5tDvgix4mJ68LHK+EI=
+			ahbjWP3mH+cM5SEDCMwpRArpSBc=
 			</data>
 			<key>hash2</key>
 			<data>
-			ETjXDCOYcCxTLQM9gVQDfFIBG5kGVLr5GJht4OzoOws=
+			mtcA7IMYtZBAMR9YIsZdM+liaxiQR5Y44daP5TzXLEY=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vpjs4J2mcpJfeBz8e8tB8OKk9J4=
+			ijFwj3+KdtHHZ5eJ+Ru34Fxff40=
 			</data>
 			<key>hash2</key>
 			<data>
-			szxSKn9OU0CztSFQPc7XLy9oSgcmEzZbzncFYoPnQVQ=
+			YbfJ+OyXkFru398H4fsuPRW49VJt29tTmr3WKl9RYdU=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			yEyy/N5hbwJJrbGbwTxKvWChTl0=
+			2FultN1ypY0S55AtWfK1HvfZkiw=
 			</data>
 			<key>hash2</key>
 			<data>
-			MU2rkpwTjEy/qJy+4aU/pqSNL4uULK6DwtI4RtUajmM=
+			dDZYNDZB7BuxmObukwcfLm741bh0wtqrzzoTaeN/9lU=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			9gyoPKcK6mSj4Pj7NpLdP+PqOcw=
+			E5Qjs5YhWTqhH27VCBinB/iEix8=
 			</data>
 			<key>hash2</key>
 			<data>
-			4uvCHHM2S9v/C/vfmeSSDuPUfKhwxwwArFJI6C58SQA=
+			PArNtzdkCkI3MRPMM+2y0VoKGqYirPvcGU8kH+sy9Cs=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			yEyy/N5hbwJJrbGbwTxKvWChTl0=
+			2FultN1ypY0S55AtWfK1HvfZkiw=
 			</data>
 			<key>hash2</key>
 			<data>
-			MU2rkpwTjEy/qJy+4aU/pqSNL4uULK6DwtI4RtUajmM=
+			dDZYNDZB7BuxmObukwcfLm741bh0wtqrzzoTaeN/9lU=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			9gyoPKcK6mSj4Pj7NpLdP+PqOcw=
+			E5Qjs5YhWTqhH27VCBinB/iEix8=
 			</data>
 			<key>hash2</key>
 			<data>
-			4uvCHHM2S9v/C/vfmeSSDuPUfKhwxwwArFJI6C58SQA=
+			PArNtzdkCkI3MRPMM+2y0VoKGqYirPvcGU8kH+sy9Cs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

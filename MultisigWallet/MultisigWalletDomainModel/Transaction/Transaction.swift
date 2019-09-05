@@ -318,6 +318,7 @@ public enum TransactionType: Int {
     case replaceBrowserExtension = 3
     case connectBrowserExtension = 4
     case disconnectBrowserExtension = 5
+    case contractUpgrade = 6
 
 }
 

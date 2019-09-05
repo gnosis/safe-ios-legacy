@@ -21,6 +21,15 @@ public class InMemorySafeContractMetadataRepository: SafeContractMetadataReposit
         return metadata.proxyFactoryAddress
     }
 
+    public var latestMasterCopyAddress: Address {
+        precondition(!metadata.metadata.isEmpty, "Metadata is empty")
+        return metadata.metadata.last!.address
+    }
+
+    public func isOldMasterCopy(address: Address) -> Bool {
+        return metadata.metadata.dropLast().contains { $0.address.value.lowercased() == address.value.lowercased() }
+    }
+
     public func isValidMasterCopy(address: Address) -> Bool {
         return metadata.metadata.contains { $0.address.value.lowercased() == address.value.lowercased() }
     }

@@ -33,6 +33,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let errorStream = MockErrorStream()
     let logger = MockLogger()
     let appSettingsRepository = UserDefaultsAppSettingsRepository()
+    let contractMetadataRepository = MockSafeContractMetadataRepository()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -62,6 +63,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: ethereumNodeService, for: EthereumNodeDomainService.self)
         DomainRegistry.put(service: transactionService, for: TransactionDomainService.self)
         DomainRegistry.put(service: appSettingsRepository, for: AppSettingsRepository.self)
+        DomainRegistry.put(service: contractMetadataRepository, for: SafeContractMetadataRepository.self)
 
         ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
         ApplicationServiceRegistry.put(service: logger, for: Logger.self)
@@ -83,6 +85,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         wallet.updateMinimumTransactionAmount(100)
         wallet.changeConfirmationCount(2)
         wallet.state = wallet.readyToUseState
+        wallet.changeContractVersion("1.0.0")
         walletRepository.save(wallet)
         service.update(account: Token.Ether.id, newBalance: 1)
         service.update(account: Token.Ether.id, newBalance: 100)

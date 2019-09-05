@@ -116,6 +116,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: DisconnectBrowserExtensionDomainService.self)
     }
 
+    public static var contractUpgradeService: ContractUpgradeDomainService {
+        return service(for: ContractUpgradeDomainService.self)
+    }
+
     public static var communicationService: CommunicationDomainService {
         return service(for: CommunicationDomainService.self)
     }
@@ -126,6 +130,10 @@ public class DomainRegistry: AbstractRegistry {
 
     public static var walletConnectService: WalletConnectDomainService {
         return service(for: WalletConnectDomainService.self)
+    }
+
+    public static var diagnosticService: WalletDiagnosticDomainService {
+        return service(for: WalletDiagnosticDomainService.self)
     }
 
     public static var logger: Logger {

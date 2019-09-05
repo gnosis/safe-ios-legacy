@@ -98,4 +98,8 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
             return .init(lastUsedNonce: nil, safeTxGas: nil, operationalGas: nil, estimations: [])
     }
 
+    public func safeExists(at address: Address) throws -> Bool {
+        return true
+    }
+
 }

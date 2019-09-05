@@ -41,5 +41,6 @@ enum TransactionDetailType: String {
     case recoverSafe                = "recover_safe"
     case disconnectBrowserExtension = "disconnect_browser_extension"
     case send                       = "send"
+    case contractUpgrade            = "contract_upgrade"
 
 }

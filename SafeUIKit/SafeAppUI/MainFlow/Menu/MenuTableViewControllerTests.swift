@@ -21,6 +21,7 @@ class MenuTableViewControllerTests: XCTestCase {
     let disconnectExtensionService = MockDisconnectBrowserExtensionApplicationService()
     let replacePhraseService = MockReplaceRecoveryPhraseApplicationService()
     let walletConnectService = WalletConnectApplicationService(chainId: 4)
+    let contractUpgradeService = MockContractUpgradeApplicationService()
 
     override func setUp() {
         super.setUp()
@@ -33,6 +34,8 @@ class MenuTableViewControllerTests: XCTestCase {
                                        for: DisconnectBrowserExtensionApplicationService.self)
         ApplicationServiceRegistry.put(service: replacePhraseService,
                                        for: ReplaceRecoveryPhraseApplicationService.self)
+        ApplicationServiceRegistry.put(service: contractUpgradeService,
+                                       for: ContractUpgradeApplicationService.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: walletConnectService, for: WalletConnectApplicationService.self)
         walletService.createReadyToUseWallet()
@@ -83,6 +86,14 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenConfiguredMenuItemRow_thenAllSet() {
         let cell = self.cell(row: 0, section: portfolioSection) as! BasicTableViewCell
         XCTAssertNotNil(cell.leftTextLabel.text)
+    }
+
+    func test_whenContractUpgradeRequired_thenUpgradeHeaderDisplayed() {
+        XCTAssertTrue(self.headerFor(section: 0) is BackgroundHeaderFooterView)
+        contractUpgradeService._isAvailable = true
+        controller.viewWillAppear(false)
+        XCTAssertTrue(self.headerFor(section: 0) is ContractUpgradeHeaderView)
+        XCTAssertEqual(self.cellHeight(row: 0, section: 0), 0)
     }
 
     // MARK: - Did select row
@@ -161,6 +172,10 @@ extension MenuTableViewControllerTests {
         controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: row, section: section))
     }
 
+    private func headerFor(section: Int) -> UIView? {
+        return controller.tableView(controller.tableView, viewForHeaderInSection: section)
+    }
+
 }
 
 final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate {
@@ -175,5 +190,14 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
 class MockReplaceRecoveryPhraseApplicationService: ReplaceRecoveryPhraseApplicationService {
 
     override var isAvailable: Bool { return true }
+
+}
+
+class MockContractUpgradeApplicationService: ContractUpgradeApplicationService {
+
+    var _isAvailable: Bool = false
+    override var isAvailable: Bool {
+        return _isAvailable
+    }
 
 }

@@ -11,6 +11,7 @@ protocol MainViewControllerDelegate: class {
     func openMenu()
     func manageTokens()
     func openAddressDetails()
+    func upgradeContract()
 }
 
 public protocol SegmentController {
@@ -45,6 +46,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var headerView: MainHeaderView!
     @IBOutlet weak var segmentBar: SegmentBar!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var bannerView: MainBannerView!
 
     let assetViewController = AssetViewViewController()
     // swiftlint:disable:next weak_delegate
@@ -53,6 +55,10 @@ class MainViewController: UIViewController {
     let transactionViewController = TransactionViewViewController.create()
     // swiftlint:disable:next weak_delegate
     let transactionViewScrollDelegate = HeaderScrollDelegate()
+
+    private var shouldShowBanner: Bool {
+        return ApplicationServiceRegistry.contractUpgradeService.isAvailable
+    }
 
     static func create(delegate: MainViewControllerDelegate & TransactionViewViewControllerDelegate)
         -> MainViewController {
@@ -80,11 +86,38 @@ class MainViewController: UIViewController {
         headerView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
         headerView.button.addTarget(self, action: #selector(didTapAddress), for: .touchUpInside)
 
+        bannerView.onTap = didTapBanner
+        bannerView.text = LocalizedString("upgrade_required", comment: "Security upgrade required")
+
+        if !shouldShowBanner {
+            bannerView.height = 0
+        }
+
         assetViewController.scrollDelegate = assetViewScrollDelegate
+        assetViewScrollDelegate.verticalContentInset = bannerView.height
         assetViewScrollDelegate.setUp(assetViewController.tableView, headerView)
 
         transactionViewController.scrollDelegate = transactionViewScrollDelegate
+        transactionViewScrollDelegate.verticalContentInset = bannerView.height
         transactionViewScrollDelegate.setUp(transactionViewController.tableView, headerView)
+
+        ApplicationServiceRegistry.contractUpgradeService.subscribeForContractUpgrade { [weak self] in
+            self?.hideBannerViewAnimated()
+        }
+
+        runDiagnostics()
+    }
+
+    private func hideBannerViewAnimated() {
+        guard !shouldShowBanner else { return }
+        UIView.animate(withDuration: 0.2) {
+            self.bannerView.height = 0
+            self.assetViewScrollDelegate.verticalContentInset = 0
+            self.transactionViewScrollDelegate.verticalContentInset = 0
+            self.assetViewScrollDelegate.resetToTop()
+            self.transactionViewScrollDelegate.resetToTop()
+            self.view.layoutIfNeeded()
+        }
     }
 
     func showTransactionList() {
@@ -105,6 +138,10 @@ class MainViewController: UIViewController {
         assetViewController.delegate?.openMenu()
     }
 
+    func didTapBanner() {
+        assetViewController.delegate?.upgradeContract()
+    }
+
     // Called from AssetViewViewController -> AddTokenFooterView by responder chain
     @IBAction func manageTokens(_ sender: Any) {
         assetViewController.delegate?.manageTokens()
@@ -112,6 +149,20 @@ class MainViewController: UIViewController {
 
     @IBAction func didTapAddress(_ sender: Any) {
         assetViewController.delegate?.openAddressDetails()
+    }
+
+    func runDiagnostics() {
+        DispatchQueue.global().async {
+            do {
+                try ApplicationServiceRegistry.walletService.runDiagnostics()
+            } catch {
+                ApplicationServiceRegistry.logger.error("Diagnostics failed: \(error)", error: error)
+                DispatchQueue.main.async {
+                    let alert = UIAlertController.operationFailed(message: error.localizedDescription)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
 
     // MARK: - Segments Management
