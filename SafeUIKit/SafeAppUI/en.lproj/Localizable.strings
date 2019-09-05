@@ -98,6 +98,9 @@
 /* Creating safe */
 "creating_your_new_safe" = "Creating your new Safe";
 
+/* New Safe onboarding 3 title */
+"crypto_without_the_hassle" = "Crypto without the hassle";
+
 /* Current password */
 "current_password" = "Current password";
 
@@ -576,6 +579,9 @@
 /* Scan QR code */
 "scan_qr_code" = "Scan QR Code";
 
+/* New Safe onboarding 2 title */
+"secure_by_design" = "Secure by design";
+
 /* Title for security section. */
 "security" = "Security";
 
@@ -733,15 +739,36 @@
 /* Safe Creation Fee */
 "what_is_safe_recovery_fee" = "What is the Safe recovery fee?";
 
+/* New Safe onboarding 1 title */
+"what_is_the_gnosis_safe" = "What is the Gnosis Safe?";
+
 /* Onboarding 1 title */
 "what_is_this_about" = "What is this about?";
+
+/* New Safe onboarding 2 description */
+"while_our_code_is_always_audited" = "While our code is always audited, we've also formally verified the Gnosis Safe smart contracts.\
+Use two-factor authentication to further increase the security of your wallet.";
 
 /* Onboarding 2 title */
 "why_upgrade" = "Why upgrade?";
 
+/* New Safe onboarding 3 description */
+"with_walletconnect_you_can_connect" = "With WalletConnect you can connect to Dapps securely within seconds.\
+Gnosis Safe allows you to safe your ETH and pay network fees with ERC-20 tokens.";
+
 /* You are disconnecting from... */
 "you_are_disconnecting_from" = "You are disconnecting from %@";
 
+/* New Safe onboarding 4 title */
+"you_are_in_control" = "You're in control";
+
 /* Onboarding 2 description */
 "you_can_manage_connections" = "You can manage connections using the list of active sessions. Transaction requests from Dapps can be confirmed using your Safe.";
+
+/* New Safe onboarding 4 description */
+"your_funds_are_held_securely" = "Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis.\
+Lost or changed your phone? Regain access anytime using the Safe's recovery methods.";
+
+/* New Safe onboarding 1 description */
+"your_safe_is_a_smart_contract" = "Your Safe is a smart contract wallet that allows you to safely manage your crypto funds and connect to Dapps.";
 

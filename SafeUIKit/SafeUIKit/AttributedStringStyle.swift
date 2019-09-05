@@ -91,10 +91,10 @@ open class AttributedStringStyle {
     }
 
     open func tabStops(default: [NSTextTab]) -> [NSTextTab] {
-        return `default`.enumerated().map { (offset, stop) in
-            return NSTextTab(textAlignment: stop.alignment,
-                             location: CGFloat(offset + 1) * CGFloat(tabStopInterval),
-                             options: stop.options)
+        return `default`.enumerated().map { offset, stop in
+            NSTextTab(textAlignment: stop.alignment,
+                      location: CGFloat(offset + 1) * CGFloat(tabStopInterval),
+                      options: stop.options)
         }
     }
 
@@ -133,7 +133,8 @@ public extension NSAttributedString {
                                                .underlineStyle: NSNumber(value: style.underlineStyle.rawValue)])
     }
 
-    convenience init(list: String, itemStyle: AttributedStringStyle,
+    convenience init(list: String,
+                     itemStyle: AttributedStringStyle,
                      bulletStyle: AttributedStringStyle,
                      nestingStyle: AttributedStringStyle) {
         let lines = list.components(separatedBy: "\n")
