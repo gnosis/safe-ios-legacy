@@ -395,6 +395,9 @@
 		55B5DF6622782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */; };
 		55B5DF6822788426001A32F4 /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
 		55BAB0E521789285007539CF /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* StandardButton.swift */; };
+		55BDA80F23225EB0005C9E6A /* ThreeStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDA80E23225EB0005C9E6A /* ThreeStepsViewController.swift */; };
+		55BDA81123225FA2005C9E6A /* ThreeStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDA81023225FA2005C9E6A /* ThreeStepsView.swift */; };
+		55BDA81323226099005C9E6A /* ThreeStepsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BDA81223226099005C9E6A /* ThreeStepsView.xib */; };
 		55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */; };
 		55BF5747226F46C80032B195 /* FeedbackTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */; };
 		55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */; };
@@ -1030,6 +1033,9 @@
 		55B5DF6322782C09001A32F4 /* ManageTokensCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensCommand.swift; sourceTree = "<group>"; };
 		55B5DF6522782FA8001A32F4 /* ReplaceRecoveryPhraseCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseCommand.swift; sourceTree = "<group>"; };
 		55BAB0E321789285007539CF /* StandardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
+		55BDA80E23225EB0005C9E6A /* ThreeStepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeStepsViewController.swift; sourceTree = "<group>"; };
+		55BDA81023225FA2005C9E6A /* ThreeStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeStepsView.swift; sourceTree = "<group>"; };
+		55BDA81223226099005C9E6A /* ThreeStepsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeStepsView.xib; sourceTree = "<group>"; };
 		55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltip.swift; sourceTree = "<group>"; };
 		55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltipViewController.swift; sourceTree = "<group>"; };
 		55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
@@ -1809,6 +1815,7 @@
 				555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */,
 				552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */,
 				55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */,
+				55BDA80E23225EB0005C9E6A /* ThreeStepsViewController.swift */,
 			);
 			path = DetailControllers;
 			sourceTree = "<group>";
@@ -1881,6 +1888,7 @@
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				55BDA7F923225DDE005C9E6A /* ThreeStepsView */,
 				0A2C0E3C2297E194008A30AC /* SafeLabelTitleView */,
 				5549B2BA2285C60200F3B5B7 /* InfoLabel */,
 				0AD8996C228031D0008AE325 /* FeeCalculation */,
@@ -2182,6 +2190,15 @@
 				55BAB0E321789285007539CF /* StandardButton.swift */,
 			);
 			path = StandardButton;
+			sourceTree = "<group>";
+		};
+		55BDA7F923225DDE005C9E6A /* ThreeStepsView */ = {
+			isa = PBXGroup;
+			children = (
+				55BDA81023225FA2005C9E6A /* ThreeStepsView.swift */,
+				55BDA81223226099005C9E6A /* ThreeStepsView.xib */,
+			);
+			path = ThreeStepsView;
 			sourceTree = "<group>";
 		};
 		55BF5735226F3C910032B195 /* FeedbackTooltip */ = {
@@ -2677,6 +2694,7 @@
 				55E8AFE7219B37F8002930A1 /* TransferView.xib in Resources */,
 				55126B5E21AC372D00A9F810 /* TransactionConfirmationView.xib in Resources */,
 				555EB71F216DF48900E06553 /* VerifiableInput.xib in Resources */,
+				55BDA81323226099005C9E6A /* ThreeStepsView.xib in Resources */,
 				55E8B00D219ED3CF002930A1 /* TransactionHeaderView.xib in Resources */,
 				0A53AD5320598B5000D713AD /* Localizable.strings in Resources */,
 				5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */,
@@ -2889,6 +2907,7 @@
 				552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */,
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
 				0AFA766D2182195200A96FDB /* ViewController.swift in Sources */,
+				55BDA80F23225EB0005C9E6A /* ThreeStepsViewController.swift in Sources */,
 				55BF5747226F46C80032B195 /* FeedbackTooltipViewController.swift in Sources */,
 				556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
@@ -2927,6 +2946,7 @@
 				0AD89976228031D0008AE325 /* FeeCalculationView.swift in Sources */,
 				0AD89978228031D0008AE325 /* FeeCalculationErrorLine.swift in Sources */,
 				0AD8997B228031D0008AE325 /* FeeCalculationAssetLine.swift in Sources */,
+				55BDA81123225FA2005C9E6A /* ThreeStepsView.swift in Sources */,
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
 				0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */,
 				556251F9214912AA00F569EE /* QRCodeView.swift in Sources */,
