@@ -39,10 +39,6 @@ class OnboardingStepViewController: UIViewController {
         titleLabel.textColor = ColorName.darkBlue.color
         titleLabel.textAlignment = .center
 
-        descriptionLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        descriptionLabel.textColor = ColorName.darkGrey.color
-        descriptionLabel.textAlignment = .center
-
         infoButton.style = .text
         infoButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
 
@@ -62,11 +58,22 @@ class OnboardingStepViewController: UIViewController {
         imageView.image = content?.image
         titleLabel.text = content?.title
         descriptionLabel.text = content?.description
+        descriptionLabel.attributedText = NSAttributedString(string: content?.description, style: DescriptionStyle())
         if let attributedText = content?.infoButtonText {
             infoButton.setAttributedTitle(attributedText, for: .normal)
         } else {
             moreInfoStackView.removeFromSuperview()
         }
     }
+
+}
+
+fileprivate class DescriptionStyle: AttributedStringStyle {
+
+    override var fontSize: Double { return 17 }
+    override var fontWeight: UIFont.Weight { return .regular }
+    override var fontColor: UIColor { return ColorName.darkGrey.color }
+    override var alignment: NSTextAlignment { return .center }
+    override var spacingAfterParagraph: Double { return 12 }
 
 }

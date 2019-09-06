@@ -40,6 +40,7 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     private func configureGloabalAppearance() {
         UIButton.appearance().tintColor = ColorName.hold.color
+        UIBarButtonItem.appearance().tintColor = ColorName.hold.color
         UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = nil
 
         let navBarAppearance = UINavigationBar.appearance()
