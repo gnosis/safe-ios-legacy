@@ -39,7 +39,10 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
     }
 
     private func showCreateSafeIntro() {
-        push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+        let controller = ThreeStepsToSecurityController.create { [unowned self] in
+            self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+        }
+        push(controller)
     }
 
 }

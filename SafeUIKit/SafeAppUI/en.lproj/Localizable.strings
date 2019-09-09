@@ -582,6 +582,9 @@
 /* New Safe onboarding 2 title */
 "secure_by_design" = "Secure by design";
 
+/* Step 3 description */
+"securely_store_your_recovery" = "Securely store your recovery phrase to restore your Safe in case you lose access to this device";
+
 /* Title for security section. */
 "security" = "Security";
 
@@ -593,6 +596,12 @@
 
 /* Send */
 "send_title" = "Send %@";
+
+/* Step 1 description */
+"set_up_password_to_protect" = "Set up a password to protect this app";
+
+/* Step 2 description */
+"set_up_two_fa_method" = "(Optional) Set up two-factor-authentication method";
 
 /* Settings change */
 "settings_change" = "Settings change";
@@ -663,6 +672,9 @@
 /* Contract Upgrade
    Upgrading contract */
 "this_will_upgrade" = "This will upgrade '%@' to the latest version of the Gnosis Safe contract.";
+
+/* The three steps to security */
+"three_steps_to_security" = "The three steps to security";
 
 /* Onboarding 3 description */
 "to_connect_to_dapp" = "To connect your Safe to the desktop Dapp, scan its QR code.";
