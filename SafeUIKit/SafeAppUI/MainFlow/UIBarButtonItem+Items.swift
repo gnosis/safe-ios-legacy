@@ -34,4 +34,11 @@ extension UIBarButtonItem {
                                action: action)
     }
 
+    static func nextButton(target: Any? = nil, action: Selector? = nil) -> UIBarButtonItem {
+        return UIBarButtonItem(title: LocalizedString("next", comment: "Next"),
+                               style: .done,
+                               target: target,
+                               action: action)
+    }
+
 }
