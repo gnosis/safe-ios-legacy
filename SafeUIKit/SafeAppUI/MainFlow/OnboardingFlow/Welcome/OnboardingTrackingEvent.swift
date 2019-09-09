@@ -34,6 +34,7 @@ enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
     case newSafeOnboarding4         = "Onboarding_NewSafeOnboarding4"
     case newSafeGetStarted          = "Onboarding_NewSafeGetStarted"
     case newSafeThreeSteps          = "Onboarding_NewSafeThreeStepsToSecurity"
+    case newSafePairWithTwoFA       = "Onboarding_NewSafePairWithTwoFA"
 
     case recoveryIntro              = "Onboarding_RecoveryIntro"
     case showSeed                   = "Onboarding_ShowSeed"

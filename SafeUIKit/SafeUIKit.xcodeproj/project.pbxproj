@@ -402,6 +402,10 @@
 		55BDA818232651A2005C9E6A /* ThreeStepsToSecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDA817232651A2005C9E6A /* ThreeStepsToSecurityController.swift */; };
 		55BDA81A232652AF005C9E6A /* ThreeStepsToSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDA819232652AF005C9E6A /* ThreeStepsToSecurityView.swift */; };
 		55BDA81C23265367005C9E6A /* ThreeStepsToSecurityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BDA81B23265367005C9E6A /* ThreeStepsToSecurityView.xib */; };
+		55BDA8292326796E005C9E6A /* HeaderImageTextStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDA8282326796E005C9E6A /* HeaderImageTextStepController.swift */; };
+		55BDA83F23267A7C005C9E6A /* HeaderImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDA83E23267A7C005C9E6A /* HeaderImageTextView.swift */; };
+		55BDA84123267B32005C9E6A /* HeaderImageTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BDA84023267B32005C9E6A /* HeaderImageTextView.xib */; };
+		55BDA84323268E3C005C9E6A /* PairWith2FAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDA84223268E3C005C9E6A /* PairWith2FAController.swift */; };
 		55BF5745226F3CBB0032B195 /* FeedbackTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */; };
 		55BF5747226F46C80032B195 /* FeedbackTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */; };
 		55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */; };
@@ -1044,6 +1048,10 @@
 		55BDA817232651A2005C9E6A /* ThreeStepsToSecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeStepsToSecurityController.swift; sourceTree = "<group>"; };
 		55BDA819232652AF005C9E6A /* ThreeStepsToSecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeStepsToSecurityView.swift; sourceTree = "<group>"; };
 		55BDA81B23265367005C9E6A /* ThreeStepsToSecurityView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeStepsToSecurityView.xib; sourceTree = "<group>"; };
+		55BDA8282326796E005C9E6A /* HeaderImageTextStepController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderImageTextStepController.swift; sourceTree = "<group>"; };
+		55BDA83E23267A7C005C9E6A /* HeaderImageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderImageTextView.swift; sourceTree = "<group>"; };
+		55BDA84023267B32005C9E6A /* HeaderImageTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderImageTextView.xib; sourceTree = "<group>"; };
+		55BDA84223268E3C005C9E6A /* PairWith2FAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWith2FAController.swift; sourceTree = "<group>"; };
 		55BF5744226F3CBB0032B195 /* FeedbackTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltip.swift; sourceTree = "<group>"; };
 		55BF5746226F46C80032B195 /* FeedbackTooltipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTooltipViewController.swift; sourceTree = "<group>"; };
 		55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
@@ -2217,6 +2225,10 @@
 				55BDA817232651A2005C9E6A /* ThreeStepsToSecurityController.swift */,
 				55BDA819232652AF005C9E6A /* ThreeStepsToSecurityView.swift */,
 				55BDA81B23265367005C9E6A /* ThreeStepsToSecurityView.xib */,
+				55BDA8282326796E005C9E6A /* HeaderImageTextStepController.swift */,
+				55BDA83E23267A7C005C9E6A /* HeaderImageTextView.swift */,
+				55BDA84023267B32005C9E6A /* HeaderImageTextView.xib */,
+				55BDA84223268E3C005C9E6A /* PairWith2FAController.swift */,
 			);
 			path = ThreeSteps;
 			sourceTree = "<group>";
@@ -2751,6 +2763,7 @@
 				0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */,
 				0A2C0E172296F2E3008A30AC /* CardViewController.xib in Resources */,
 				5549B2A722859F5F00F3B5B7 /* PaymentMethodHeaderView.xib in Resources */,
+				55BDA84123267B32005C9E6A /* HeaderImageTextView.xib in Resources */,
 				0ADE03EB22DDF9D300CA4705 /* OnboardingStepViewController.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
@@ -3071,6 +3084,7 @@
 				0A3FB8D2228B16F100270573 /* UIBarButtonItem+Items.swift in Sources */,
 				5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */,
 				5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */,
+				55BDA83F23267A7C005C9E6A /* HeaderImageTextView.swift in Sources */,
 				0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0AE0FE68229D674400ABC552 /* UIViewController+Back.swift in Sources */,
@@ -3103,6 +3117,7 @@
 				55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */,
 				0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
+				55BDA8292326796E005C9E6A /* HeaderImageTextStepController.swift in Sources */,
 				0A2C0E192296F2E3008A30AC /* FeeRequestView.swift in Sources */,
 				5598000B225B74A4006D5792 /* Authenticator.swift in Sources */,
 				0A3FB8D6228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift in Sources */,
@@ -3147,6 +3162,7 @@
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
 				55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */,
+				55BDA84323268E3C005C9E6A /* PairWith2FAController.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* OnboardingCreateOrRestoreViewController.swift in Sources */,
 				0A3BD90922254833007039B4 /* RBEIntroViewControllerErrorState.swift in Sources */,
 				5579C57822C367C400BB93CA /* WalletConnectFlowCoordinator.swift in Sources */,

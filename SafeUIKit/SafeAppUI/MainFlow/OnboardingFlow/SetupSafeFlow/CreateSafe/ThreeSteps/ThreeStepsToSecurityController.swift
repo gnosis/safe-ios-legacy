@@ -25,8 +25,7 @@ class ThreeStepsToSecurityController: NewSafeThreeStepsBaseController {
         title = Strings.title
 
         threeStepsView.state = .initial
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        embed(view: threeStepsToSecurityView, inCardSubview: cardHeaderView, insets: insets)
+        embed(view: threeStepsToSecurityView, inCardSubview: cardHeaderView)
     }
 
     override func viewDidAppear(_ animated: Bool) {

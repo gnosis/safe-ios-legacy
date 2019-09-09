@@ -9,6 +9,7 @@ class NewSafeThreeStepsBaseController: CardViewController {
 
     let threeStepsView = ThreeStepsView()
     var onNext: (() -> Void)?
+    var onFooterButtonPressed: (() -> Void)?
 
     enum Strings {
         static let next = LocalizedString("next", comment: "Next")
@@ -26,8 +27,12 @@ class NewSafeThreeStepsBaseController: CardViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem.nextButton(target: self, action: #selector(navigateNext))
     }
 
-    @objc private func navigateNext() {
+    @objc func navigateNext() {
         onNext?()
+    }
+
+    @objc func footerButtonPressed() {
+        onFooterButtonPressed?()
     }
 
 }

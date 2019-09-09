@@ -40,8 +40,17 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
 
     private func showCreateSafeIntro() {
         let controller = ThreeStepsToSecurityController.create { [unowned self] in
-            self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+            self.showPairWithTwoFA()
         }
+        push(controller)
+    }
+
+    private func showPairWithTwoFA() {
+        let controller = PairWith2FAController.create(onNext: { [unowned self] in
+            self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+        }, onSkip: { [unowned self] in
+            self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+        })
         push(controller)
     }
 

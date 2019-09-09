@@ -462,6 +462,12 @@
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Gnosis Safe Authenticator to confirm this transaction";
 
+/* Pair the Safe with a 2FA device */
+"pair_safe_with_two_fa" = "Pair the Safe with a 2FA device";
+
+/* Pair with 2FA description */
+"pair_safe_with_two_fa_description" = "Two-factro authentication (2FA) is an extra layer of security that prevents unauthorized access to your account. You can set it up by pairing a 2FA device with this Safe. After a successful setup, all transactions will need to be approved both by this phone and by your 2FA device.";
+
 /* Replace BE pairing description. */
 "pairing_info" = "All transactions need to be approved by both this device and the Authenticator.";
 
@@ -606,6 +612,9 @@
 /* Settings change */
 "settings_change" = "Settings change";
 
+/* Setup 2FA */
+"setup_2fa" = "Setup 2FA";
+
 /* Set up password button title */
 "setup_password" = "Setup Password";
 
@@ -618,7 +627,8 @@
 /* Description for Receive Funds screen. */
 "share_your_address" = "Share your address with contracts or enable senders to scan your QR code to receive Ether and tokens.";
 
-/* Skip button text */
+/* Skip and setup later
+   Skip button text */
 "skip_setup_later" = "Skip and setup later";
 
 /* Start
