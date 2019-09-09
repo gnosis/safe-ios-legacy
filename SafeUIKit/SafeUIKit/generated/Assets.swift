@@ -73,6 +73,9 @@ enum Asset {
     static let errorIcon = ImageAsset(name: "error-icon")
     static let successIcon = ImageAsset(name: "success-icon")
   }
+  enum ThreeSteps {
+    static let initial = ImageAsset(name: "initial")
+  }
   enum TokenIcons {
     static let eth = ImageAsset(name: "ETH")
     static let defaultToken = ImageAsset(name: "default-token")
@@ -147,6 +150,7 @@ enum Asset {
     TextInputs.defaultIcon,
     TextInputs.errorIcon,
     TextInputs.successIcon,
+    ThreeSteps.initial,
     TokenIcons.eth,
     TokenIcons.defaultToken,
     TransferView.arrowDown,
