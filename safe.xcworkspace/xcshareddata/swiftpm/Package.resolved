@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CryptoSwift",
+        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "3a2acbb32ab68215ee1596ee6004da8e90c3721b",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "secp256k1",
+        "repositoryURL": "https://github.com/gnosis/secp256k1.swift.git",
+        "state": {
+          "branch": "master",
+          "revision": "fb1fd52082d51e4ac0dceca04df401e27b6fadb5",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

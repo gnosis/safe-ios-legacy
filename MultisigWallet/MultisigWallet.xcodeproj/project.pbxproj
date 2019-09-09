@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -74,6 +74,10 @@
 		0A16187B2304594600F6E501 /* DBWalletConnectSessionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1618692304594500F6E501 /* DBWalletConnectSessionRepositoryTests.swift */; };
 		0A16187D2304594600F6E501 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16186B2304594600F6E501 /* SecureExternallyOwnedAccountRepositoryTests.swift */; };
 		0A16187E2304594600F6E501 /* DBWalletRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16186C2304594600F6E501 /* DBWalletRepositoryIntegrationTests.swift */; };
+		0A53C6D523265EF7004A7BC3 /* Hardware2FAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53C6D423265EF7004A7BC3 /* Hardware2FAService.swift */; };
+		0A53C6ED2326612C004A7BC3 /* Keycard.swift in Resources */ = {isa = PBXBuildFile; fileRef = 0A53C6EB2326612C004A7BC3 /* Keycard.swift */; };
+		0A53C6EE2326612C004A7BC3 /* secp256k1.swift in Resources */ = {isa = PBXBuildFile; fileRef = 0A53C6EC2326612C004A7BC3 /* secp256k1.swift */; };
+		0A53C6FB2326618E004A7BC3 /* Keycard in Frameworks */ = {isa = PBXBuildFile; productRef = 0A53C6FA2326618E004A7BC3 /* Keycard */; };
 		0A84C2B9230546320006DA50 /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D372304544800E7EB07 /* MockNotificationService.swift */; };
 		0A84C2DC230549D30006DA50 /* InMemorySinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D5E2304544900E7EB07 /* InMemorySinglePortfolioRepository.swift */; };
 		0A84C2DD230549D30006DA50 /* InMemoryTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D682304544900E7EB07 /* InMemoryTransactionRepository.swift */; };
@@ -437,6 +441,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0A53C6E423265F06004A7BC3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0A1617DB2304593B00F6E501 /* SynchronisationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronisationService.swift; sourceTree = "<group>"; };
 		0A1617DC2304593B00F6E501 /* WalletConnectService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletConnectService.swift; sourceTree = "<group>"; };
@@ -518,6 +535,9 @@
 		0A4AD4F32225A649004244FB /* OwnerModificationApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerModificationApplicationService.swift; sourceTree = "<group>"; };
 		0A4AD4F52225A683004244FB /* ConnectBrowserExtensionApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionApplicationService.swift; sourceTree = "<group>"; };
 		0A4C3897212D9411005594DA /* WalletStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStateEnum.swift; sourceTree = "<group>"; };
+		0A53C6D423265EF7004A7BC3 /* Hardware2FAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hardware2FAService.swift; sourceTree = "<group>"; };
+		0A53C6EB2326612C004A7BC3 /* Keycard.swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Keycard.swift; path = Keycard/Keycard.swift; sourceTree = "<group>"; };
+		0A53C6EC2326612C004A7BC3 /* secp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = secp256k1.swift; path = Keycard/secp256k1.swift; sourceTree = "<group>"; };
 		0A54E7CA21305273006BAD93 /* WalletApplicationServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceError.swift; sourceTree = "<group>"; };
 		0A54E7D721305282006BAD93 /* OwnerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerType.swift; sourceTree = "<group>"; };
 		0A54E7D92130531E006BAD93 /* BaseWalletApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWalletApplicationServiceTests.swift; sourceTree = "<group>"; };
@@ -761,6 +781,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A53C6FB2326618E004A7BC3 /* Keycard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +818,9 @@
 				0A1617F22304593B00F6E501 /* HTTPNotificatonService.swift */,
 				0A1617F32304593B00F6E501 /* MockEthereumNodeService.swift */,
 				0A1617F42304593B00F6E501 /* EncryptionService.swift */,
+				0A53C6D423265EF7004A7BC3 /* Hardware2FAService.swift */,
+				0A53C6EB2326612C004A7BC3 /* Keycard.swift */,
+				0A53C6EC2326612C004A7BC3 /* secp256k1.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1451,10 +1475,12 @@
 				0AAE7C75230450BC00E7EB07 /* Sources */,
 				0AAE7C76230450BC00E7EB07 /* Frameworks */,
 				0AAE7C77230450BC00E7EB07 /* Resources */,
+				0A53C6E423265F06004A7BC3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0AFC7BA423264FEA00AC5912 /* PBXTargetDependency */,
 				0AAE7CAA2304521200E7EB07 /* PBXTargetDependency */,
 				0AAE7CAC2304521200E7EB07 /* PBXTargetDependency */,
 				0AAE7CAE2304521200E7EB07 /* PBXTargetDependency */,
@@ -1462,6 +1488,9 @@
 				0AAE7CB22304521200E7EB07 /* PBXTargetDependency */,
 			);
 			name = MultisigWalletImplementations;
+			packageProductDependencies = (
+				0A53C6FA2326618E004A7BC3 /* Keycard */,
+			);
 			productName = MultisigWalletImplementations;
 			productReference = 0AAE7C79230450BC00E7EB07 /* MultisigWalletImplementations.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1639,6 +1668,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A53C6EE2326612C004A7BC3 /* secp256k1.swift in Resources */,
+				0A53C6ED2326612C004A7BC3 /* Keycard.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1970,6 +2001,7 @@
 				0A1618532304593B00F6E501 /* GetTransactionCountRequest.swift in Sources */,
 				0A16184E2304593B00F6E501 /* GetTransactionReceiptRequest.swift in Sources */,
 				0A84C2DE230549D30006DA50 /* InMemoryAccountRepository.swift in Sources */,
+				0A53C6D523265EF7004A7BC3 /* Hardware2FAService.swift in Sources */,
 				0A16183A2304593B00F6E501 /* SecureExternallyOwnedAccountRepository.swift in Sources */,
 				0A1618462304593B00F6E501 /* UserDefaultsAppSettingsRepository.swift in Sources */,
 				0A84C2DF230549D30006DA50 /* InMemoryWalletRepository.swift in Sources */,
@@ -2077,6 +2109,10 @@
 			target = 0AAE7C78230450BC00E7EB07 /* MultisigWalletImplementations */;
 			targetProxy = 0AAE7DE42304559000E7EB07 /* PBXContainerItemProxy */;
 		};
+		0AFC7BA423264FEA00AC5912 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 0AFC7BA323264FEA00AC5912 /* Keycard */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -2136,9 +2172,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2170,6 +2205,11 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CryptoSwift\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletDomainModel;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2200,6 +2240,11 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CryptoSwift\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletDomainModel;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2230,6 +2275,11 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CryptoSwift\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletDomainModel;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2259,6 +2309,11 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CryptoSwift\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletDomainModel;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2377,6 +2432,11 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CryptoSwift\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletApplication;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2405,6 +2465,11 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CryptoSwift\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletApplication;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2433,6 +2498,11 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CryptoSwift\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletApplication;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2461,6 +2531,11 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CryptoSwift\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletApplication;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2817,10 +2892,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2876,9 +2950,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2941,9 +3014,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3035,6 +3107,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0A53C6FA2326618E004A7BC3 /* Keycard */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Keycard;
+		};
+		0AFC7BA323264FEA00AC5912 /* Keycard */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Keycard;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0AEF8A6B20A08868006A1265 /* Project object */;
 }

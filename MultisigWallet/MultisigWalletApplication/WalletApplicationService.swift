@@ -6,6 +6,7 @@ import Foundation
 import MultisigWalletDomainModel
 import Common
 import BigInt
+import CryptoSwift
 
 public class WalletApplicationService: Assertable {
 
