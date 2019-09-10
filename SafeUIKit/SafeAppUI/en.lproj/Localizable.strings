@@ -182,6 +182,12 @@
 /* Gitter */
 "gitter" = "Gitter";
 
+/* Gnosis Safe Authenticator */
+"gnosis_safe_authenticator" = "Gnosis Safe Authenticator";
+
+/* Gnosis Safe Authenticator description */
+"gnosis_safe_authenticator_description" = "The Authenticator is an extension for Google Chrome connected to the Safe.";
+
 /* Guidelines */
 "guidelines" = "Guidelines";
 
@@ -395,6 +401,9 @@
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
 
+/* Learn more */
+"learn_more" = "Learn more";
+
 /* Onboarding 3 title */
 "lets_get_started" = "Let's get started";
 
@@ -497,6 +506,9 @@
 /* Pending transactions group header */
 "pending" = "Pending";
 
+/* Pick 2FA device */
+"pick_2fa_device" = "Pick 2FA device";
+
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
 
@@ -551,6 +563,9 @@
 
 /* Explanation text */
 "replaceseed_in_progress" = "The transaction has been submitted and should take a couple of minutes. Replacing the recovery phrase is in progress. ";
+
+/* Requires NFC support */
+"requires_nfc_support" = "Requires NFC support";
 
 /* Resend button. */
 "resend" = "Resend";
@@ -641,6 +656,12 @@
 /* 'Failed' status
    Failed status */
 "status_failed" = "Failed";
+
+/* Status Keycard */
+"status_keycard" = "Status Keycard";
+
+/* Status Keycard description */
+"status_keycard_description" = "The Keycard is a smartcard you can use to safely receive, store and send cryptocurrencies.";
 
 /* 'Pending' status */
 "status_pending" = "Pending";
@@ -739,6 +760,9 @@
 
 /* Face ID button explanation */
 "use_faceid_to_unlock" = "Use Face ID to unlock";
+
+/* Use selected device */
+"use_selected_device" = "Use selected device";
 
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";

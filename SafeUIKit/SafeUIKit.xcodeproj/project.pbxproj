@@ -311,6 +311,7 @@
 		552C01992297E10F001A158D /* BasePaymentMethodViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C01982297E10F001A158D /* BasePaymentMethodViewControllerTests.swift */; };
 		552D0FC923279C2000127223 /* TwoFATableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D0FC723279C2000127223 /* TwoFATableViewCell.swift */; };
 		552D0FCA23279C2000127223 /* TwoFATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552D0FC823279C2000127223 /* TwoFATableViewCell.xib */; };
+		552D0FE02327CD8F00127223 /* TwoFATableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -968,6 +969,7 @@
 		552C01982297E10F001A158D /* BasePaymentMethodViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaymentMethodViewControllerTests.swift; sourceTree = "<group>"; };
 		552D0FC723279C2000127223 /* TwoFATableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFATableViewCell.swift; sourceTree = "<group>"; };
 		552D0FC823279C2000127223 /* TwoFATableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoFATableViewCell.xib; sourceTree = "<group>"; };
+		552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFATableViewController.swift; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -2235,6 +2237,7 @@
 				55BDA84223268E3C005C9E6A /* PairWith2FAController.swift */,
 				552D0FC723279C2000127223 /* TwoFATableViewCell.swift */,
 				552D0FC823279C2000127223 /* TwoFATableViewCell.xib */,
+				552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */,
 			);
 			path = ThreeSteps;
 			sourceTree = "<group>";
@@ -3177,6 +3180,7 @@
 				0ABD146D2294489D00922964 /* HeaderScrollDelegate.swift in Sources */,
 				5549B28322830C6200F3B5B7 /* BasicTableViewCell+TokenData.swift in Sources */,
 				0ADE03FC22DE000300CA4705 /* OnboardingViewController.swift in Sources */,
+				552D0FE02327CD8F00127223 /* TwoFATableViewController.swift in Sources */,
 				554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */,
 				0A2D587E225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift in Sources */,
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,

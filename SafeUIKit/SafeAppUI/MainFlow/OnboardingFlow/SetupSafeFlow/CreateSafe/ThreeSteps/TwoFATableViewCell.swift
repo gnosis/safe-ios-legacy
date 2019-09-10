@@ -13,11 +13,13 @@ class TwoFATableViewCell: UITableViewCell {
     @IBOutlet weak var disabledReasonLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var learnMoreButton: UIButton!
+    @IBOutlet weak var separatorView: UIView!
 
     var onLearnMore: (() -> Void)?
 
     @IBAction func learnMore(_ sender: Any) {
         onLearnMore?()
+        print("Learn more")
     }
 
     enum State {
@@ -62,6 +64,7 @@ class TwoFATableViewCell: UITableViewCell {
         disabledReasonLabel.text = nil
         descriptionLabel.text = nil
         checkmarkImageView.isHidden = true
+        selectionStyle = .default
     }
 
     override func awakeFromNib() {
@@ -72,17 +75,18 @@ class TwoFATableViewCell: UITableViewCell {
         learnMoreButton.setTitle(Strings.learnMore, for: .normal)
         learnMoreButton.setTitleColor(ColorName.hold.color, for: .normal)
         learnMoreButton.flipImageToTrailingSide(spacing: 7)
+        separatorView.backgroundColor = ColorName.white.color
     }
 
     private func update() {
         switch option {
         case .gnosisAuthenticator:
-            twoFAImageView.image = Asset.ConnectBrowserExtension.connectIntroIcon.image
+            twoFAImageView.image = Asset.Select2fa.authenticatorSmall.image
             titleLabel.text = Strings.gnosisAuthenticator
             descriptionLabel.text = Strings.gnosisAuthenticatorDescription
             disabledReasonLabel.text = nil
         case .statusKeycard:
-            twoFAImageView.image = Asset.ConnectBrowserExtension.connectIntroIcon.image
+            twoFAImageView.image = Asset.Select2fa.statusKeycard.image
             titleLabel.text = Strings.statusKeycard
             descriptionLabel.text = Strings.statusKeycardDescription
             disabledReasonLabel.text = Strings.requiresNFCSupport
@@ -103,6 +107,7 @@ class TwoFATableViewCell: UITableViewCell {
             learnMoreButton.setTitleColor(learnMoreButton.titleColor(for: .normal)?.withAlphaComponent(0.5),
                                           for: .normal)
             disabledReasonLabel.isHidden = false
+            selectionStyle = .none
         case .selected:
             checkmarkImageView.isHidden = false
             twoFAImageView.alpha = 1

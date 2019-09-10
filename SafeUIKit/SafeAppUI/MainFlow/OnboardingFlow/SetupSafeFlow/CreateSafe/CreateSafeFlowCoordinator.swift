@@ -47,7 +47,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
 
     private func showPairWithTwoFA() {
         let controller = PairWith2FAController.create(onNext: { [unowned self] in
-            self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+            self.push(TwoFATableViewController())
         }, onSkip: { [unowned self] in
             self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
         })

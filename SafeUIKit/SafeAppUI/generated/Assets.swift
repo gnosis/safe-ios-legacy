@@ -89,6 +89,10 @@ enum Asset {
     static let middle = ImageAsset(name: "middle")
     static let `right` = ImageAsset(name: "right")
   }
+  enum Select2fa {
+    static let authenticatorSmall = ImageAsset(name: "authenticatorSmall")
+    static let statusKeycard = ImageAsset(name: "statusKeycard")
+  }
   static let shadow = ImageAsset(name: "shadow")
   static let shareIcon = ImageAsset(name: "share-icon")
   enum TokenIcons {
@@ -153,6 +157,8 @@ enum Asset {
     SegmentBar.`left`,
     SegmentBar.middle,
     SegmentBar.`right`,
+    Select2fa.authenticatorSmall,
+    Select2fa.statusKeycard,
     shadow,
     shareIcon,
     TokenIcons.eth,
