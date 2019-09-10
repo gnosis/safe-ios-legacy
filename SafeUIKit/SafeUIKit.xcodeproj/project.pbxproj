@@ -309,6 +309,8 @@
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
 		552C01972297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C01962297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift */; };
 		552C01992297E10F001A158D /* BasePaymentMethodViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C01982297E10F001A158D /* BasePaymentMethodViewControllerTests.swift */; };
+		552D0FC923279C2000127223 /* TwoFATableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D0FC723279C2000127223 /* TwoFATableViewCell.swift */; };
+		552D0FCA23279C2000127223 /* TwoFATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552D0FC823279C2000127223 /* TwoFATableViewCell.xib */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -964,6 +966,8 @@
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		552C01962297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPaymentMethodViewControllerTests.swift; sourceTree = "<group>"; };
 		552C01982297E10F001A158D /* BasePaymentMethodViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaymentMethodViewControllerTests.swift; sourceTree = "<group>"; };
+		552D0FC723279C2000127223 /* TwoFATableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFATableViewCell.swift; sourceTree = "<group>"; };
+		552D0FC823279C2000127223 /* TwoFATableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoFATableViewCell.xib; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -2229,6 +2233,8 @@
 				55BDA83E23267A7C005C9E6A /* HeaderImageTextView.swift */,
 				55BDA84023267B32005C9E6A /* HeaderImageTextView.xib */,
 				55BDA84223268E3C005C9E6A /* PairWith2FAController.swift */,
+				552D0FC723279C2000127223 /* TwoFATableViewCell.swift */,
+				552D0FC823279C2000127223 /* TwoFATableViewCell.xib */,
 			);
 			path = ThreeSteps;
 			sourceTree = "<group>";
@@ -2746,6 +2752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */,
+				552D0FCA23279C2000127223 /* TwoFATableViewCell.xib in Resources */,
 				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
@@ -3229,6 +3236,7 @@
 				0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */,
 				0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */,
 				0A05951D22E99F050001D7D5 /* Colors.swift in Sources */,
+				552D0FC923279C2000127223 /* TwoFATableViewCell.swift in Sources */,
 				0A2C0E2A2297DCFF008A30AC /* FeePaidViewController.swift in Sources */,
 				0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */,
 				0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */,
