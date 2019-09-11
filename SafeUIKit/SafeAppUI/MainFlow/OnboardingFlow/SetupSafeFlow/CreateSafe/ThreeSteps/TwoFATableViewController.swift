@@ -3,15 +3,27 @@
 //
 
 import UIKit
+import SafeUIKit
 import CoreNFC
 
-class TwoFATableViewController: UITableViewController {
+protocol TwoFATableViewControllerDelegate: class {
+    func didSelectTwoFAOption(_ option: TwoFAOption)
+}
 
-    var selectedOption = 0
+enum TwoFAOption {
+    case gnosisAuthenticator
+    case statusKeycard
+}
 
-    let twoFAOptionsMap: [Int: TwoFATableViewCell.Option] = [
-        0: .gnosisAuthenticator,
-        1: .statusKeycard
+class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    var selectedOption: Int!
+    let tableView = UITableView()
+    weak var delegate: TwoFATableViewControllerDelegate?
+
+    let twoFAOptionsMap: [Int: TwoFAOption] = [
+        0: .statusKeycard,
+        1: .gnosisAuthenticator
     ]
 
     enum Strings {
@@ -21,20 +33,50 @@ class TwoFATableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         title = Strings.pick2FA
+        selectedOption = NFCNDEFReaderSession.readingAvailable ? 0 : 1
+
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UINib(nibName: "TwoFATableViewCell", bundle: Bundle(for: TwoFATableViewCell.self)),
                            forCellReuseIdentifier: "TwoFATableViewCell")
         tableView.separatorStyle = .none
         tableView.backgroundColor = ColorName.white.color
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+                   tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+                   tableView.topAnchor.constraint(equalTo: view.topAnchor),
+                   tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+                   tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+
+        let button = StandardButton()
+        button.style = .filled
+        button.setTitle(Strings.useSelectedDevice, for: .normal)
+        button.addTarget(self, action: #selector(selecteTwoFAOption), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(button)
+        let height: CGFloat = 56
+        let padding: CGFloat = 16
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalToConstant: height),
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding)])
+    }
+
+    @objc private func selecteTwoFAOption() {
+        delegate?.didSelectTwoFAOption(twoFAOptionsMap[selectedOption]!)
     }
 
     // MARK: - Table view data source
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return twoFAOptionsMap.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TwoFATableViewCell",
                                                  for: indexPath) as! TwoFATableViewCell
         cell.option = twoFAOptionsMap[indexPath.row]!
@@ -56,7 +98,8 @@ class TwoFATableViewController: UITableViewController {
 
     // MARK: - Table view delegate
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! TwoFATableViewCell
         guard cell.state != .inactive  else { return }
         selectedOption = indexPath.row

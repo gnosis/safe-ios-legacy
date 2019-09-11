@@ -28,18 +28,13 @@ class TwoFATableViewCell: UITableViewCell {
         case selected
     }
 
-    enum Option {
-        case gnosisAuthenticator
-        case statusKeycard
-    }
-
     var state: State = .active {
         didSet {
             update()
         }
     }
 
-    var option: Option = .gnosisAuthenticator {
+    var option: TwoFAOption = .gnosisAuthenticator {
         didSet {
             update()
         }

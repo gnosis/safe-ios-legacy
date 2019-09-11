@@ -47,11 +47,22 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
 
     private func showPairWithTwoFA() {
         let controller = PairWith2FAController.create(onNext: { [unowned self] in
-            self.push(TwoFATableViewController())
+            let controller = TwoFATableViewController()
+            controller.delegate = self
+            self.push(controller)
         }, onSkip: { [unowned self] in
             self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
         })
         push(controller)
+    }
+
+}
+
+extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
+
+    func didSelectTwoFAOption(_ option: TwoFAOption) {
+        print("Selected option: \(option)")
+        self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
     }
 
 }
