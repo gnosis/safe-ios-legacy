@@ -20,6 +20,18 @@ enum OnboardingEvent: String, Trackable {
 
 }
 
+enum CreateSafeTrackingEvent: String, ScreenTrackingEvent {
+
+    case onboarding1            = "CreateSafe_Onboarding1"
+    case onboarding2            = "CreateSafe_Onboarding2"
+    case onboarding3            = "CreateSafe_Onboarding3"
+    case onboarding4            = "CreateSafe_Onboarding4"
+    case threeSteps             = "CreateSafe_ThreeSteps"
+    case setup2FA               = "CreateSafe_Setup2FA"
+    case setup2FADevicesList    = "CreateSafe_Setup2FADevicesList"
+
+}
+
 /// Tracking events occuring during onboarding flows.
 enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
 
@@ -28,14 +40,7 @@ enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
     case setPassword                = "Onboarding_SetPassword"
     case confirmPassword            = "Onboarding_ConfirmPassword"
     case createOrRestore            = "Onboarding_CreateOrRestore"
-    case newSafeOnboarding1         = "Onboarding_NewSafeOnboarding1"
-    case newSafeOnboarding2         = "Onboarding_NewSafeOnboarding2"
-    case newSafeOnboarding3         = "Onboarding_NewSafeOnboarding3"
-    case newSafeOnboarding4         = "Onboarding_NewSafeOnboarding4"
     case newSafeGetStarted          = "Onboarding_NewSafeGetStarted"
-    case newSafeThreeSteps          = "Onboarding_NewSafeThreeStepsToSecurity"
-    case newSafePairWithTwoFA       = "Onboarding_NewSafePairWithTwoFA"
-
     case recoveryIntro              = "Onboarding_RecoveryIntro"
     case showSeed                   = "Onboarding_ShowSeed"
     case enterSeed                  = "Onboarding_EnterSeed"

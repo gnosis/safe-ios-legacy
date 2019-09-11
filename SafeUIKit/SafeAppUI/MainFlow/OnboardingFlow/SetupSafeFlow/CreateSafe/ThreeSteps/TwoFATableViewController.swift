@@ -70,6 +70,11 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
         delegate?.didSelectTwoFAOption(twoFAOptionsMap[selectedOption]!)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(CreateSafeTrackingEvent.setup2FADevicesList)
+    }
+
     // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

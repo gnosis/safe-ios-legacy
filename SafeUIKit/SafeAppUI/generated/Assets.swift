@@ -58,6 +58,12 @@ enum Asset {
     static let upgrade2 = ImageAsset(name: "upgrade2")
     static let upgrade3 = ImageAsset(name: "upgrade3")
   }
+  enum CreateSafe {
+    static let cryptoWithoutHassle = ImageAsset(name: "cryptoWithoutHassle")
+    static let setup2FA = ImageAsset(name: "setup2FA")
+    static let whatIsSafe = ImageAsset(name: "whatIsSafe")
+    static let youAreInControl = ImageAsset(name: "youAreInControl")
+  }
   static let dappPlaceholder = ImageAsset(name: "dapp-placeholder")
   static let errorIcon = ImageAsset(name: "error-icon")
   enum GetInTouch {
@@ -136,6 +142,10 @@ enum Asset {
     ContractUpgrade.upgrade1,
     ContractUpgrade.upgrade2,
     ContractUpgrade.upgrade3,
+    CreateSafe.cryptoWithoutHassle,
+    CreateSafe.setup2FA,
+    CreateSafe.whatIsSafe,
+    CreateSafe.youAreInControl,
     dappPlaceholder,
     errorIcon,
     GetInTouch.gitter,
