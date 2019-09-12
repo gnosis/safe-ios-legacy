@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 import MultisigWalletApplication
 import Common
 
@@ -11,6 +12,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
     weak var mainFlowCoordinator: MainFlowCoordinator!
     weak var onboardingController: OnboardingViewController?
+    var twoFAPaired = false
 
     override func setUp() {
         super.setUp()
@@ -51,12 +53,27 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
             controller.delegate = self
             self.push(controller)
         }, onSkip: { [unowned self] in
+            self.twoFAPaired = false
             let controller = SeedIntroViewController.create(state: .backup_notPaired, onNext: self.showSeed)
             self.push(controller)
         })
         push(controller)
     }
 
+    func showSeed() {
+        enter(flow: paperWalletFlowCoordinator) { [unowned self] in
+            let pairingState = self.twoFAPaired ? ThreeStepsView.State.backupDone_paired : .backupDone_notPaired
+            let controller = SeedSuccessViewController.create(state: pairingState, onNext: self.showPayment)
+            self.push(controller)
+        }
+    }
+
+    private func showPayment() {
+        let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
+        controller.titleText = LocalizedString("create_safe_title", comment: "Create Safe")
+        controller.screenTrackingEvent = OnboardingTrackingEvent.createSafeFeeIntro
+        push(controller)
+    }
 
 }
 
@@ -100,19 +117,6 @@ extension CreateSafeFlowCoordinator: TwoFAViewControllerDelegate {
     func twoFAViewControllerDidSkipPairing() {
         ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
         showSeed()
-    }
-
-    func showSeed() {
-        enter(flow: paperWalletFlowCoordinator) {
-            self.showPayment()
-        }
-    }
-
-    func showPayment() {
-        let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
-        controller.titleText = LocalizedString("create_safe_title", comment: "Create Safe")
-        controller.screenTrackingEvent = OnboardingTrackingEvent.createSafeFeeIntro
-        push(controller)
     }
 
 }

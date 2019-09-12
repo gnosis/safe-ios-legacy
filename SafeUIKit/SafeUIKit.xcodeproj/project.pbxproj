@@ -314,6 +314,7 @@
 		552D0FE02327CD8F00127223 /* TwoFATableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */; };
 		552D1010232A644D00127223 /* SeedIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D100F232A644D00127223 /* SeedIntroViewController.swift */; };
 		552D1012232A6AD900127223 /* AttributedStringStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D1011232A6AD900127223 /* AttributedStringStyles.swift */; };
+		552D1014232A7D0D00127223 /* SeedSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D1013232A7D0D00127223 /* SeedSuccessViewController.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -974,6 +975,7 @@
 		552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFATableViewController.swift; sourceTree = "<group>"; };
 		552D100F232A644D00127223 /* SeedIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedIntroViewController.swift; sourceTree = "<group>"; };
 		552D1011232A6AD900127223 /* AttributedStringStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringStyles.swift; sourceTree = "<group>"; };
+		552D1013232A7D0D00127223 /* SeedSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedSuccessViewController.swift; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -2244,6 +2246,7 @@
 				552D0FC723279C2000127223 /* TwoFATableViewCell.swift */,
 				552D0FC823279C2000127223 /* TwoFATableViewCell.xib */,
 				552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */,
+				552D1013232A7D0D00127223 /* SeedSuccessViewController.swift */,
 			);
 			path = ThreeSteps;
 			sourceTree = "<group>";
@@ -3097,6 +3100,7 @@
 				0AD998B020D3FEBD00E6F3CA /* SendInputViewController.swift in Sources */,
 				0A3FB8D2228B16F100270573 /* UIBarButtonItem+Items.swift in Sources */,
 				5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */,
+				552D1014232A7D0D00127223 /* SeedSuccessViewController.swift in Sources */,
 				5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */,
 				55BDA83F23267A7C005C9E6A /* HeaderImageTextView.swift in Sources */,
 				0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */,

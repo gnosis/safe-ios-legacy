@@ -556,6 +556,9 @@
    Title for setup recovery phrase screen. */
 "recovery_phrase" = "Recovery phrase";
 
+/* Recovery phrase backed up */
+"recovery_phrase_backed_up" = "Recovery phrase successfully backed up ";
+
 /* Refresh */
 "refresh" = "Refresh";
 
@@ -818,6 +821,9 @@ Gnosis Safe allows you to safe your ETH and pay network fees with ERC-20 tokens.
 
 /* Onboarding 2 description */
 "you_can_manage_connections" = "You can manage connections using the list of active sessions. Transaction requests from Dapps can be confirmed using your Safe.";
+
+/* You can replace your phrase */
+"you_can_replace_phrase_anytime" = "You can replace your recovery phrase in the Safe menu at any time.";
 
 /* New Safe onboarding 4 description */
 "your_funds_are_held_securely" = "Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis.\
