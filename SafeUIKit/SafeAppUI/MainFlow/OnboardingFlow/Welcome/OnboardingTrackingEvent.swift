@@ -22,14 +22,22 @@ enum OnboardingEvent: String, Trackable {
 
 enum CreateSafeTrackingEvent: String, ScreenTrackingEvent {
 
-    case onboarding1            = "CreateSafe_Onboarding1"
-    case onboarding2            = "CreateSafe_Onboarding2"
-    case onboarding3            = "CreateSafe_Onboarding3"
-    case onboarding4            = "CreateSafe_Onboarding4"
-    case threeSteps             = "CreateSafe_ThreeSteps"
-    case setup2FA               = "CreateSafe_Setup2FA"
-    case setup2FADevicesList    = "Setup2FADevicesList"
-    case seedIntro              = "CreateSafe_SeedIntro"
+    case onboarding1                    = "CreateSafe_Onboarding1"
+    case onboarding2                    = "CreateSafe_Onboarding2"
+    case onboarding3                    = "CreateSafe_Onboarding3"
+    case onboarding4                    = "CreateSafe_Onboarding4"
+    case threeSteps                     = "CreateSafe_ThreeSteps"
+    case setup2FA                       = "CreateSafe_Setup2FA"
+    case seedIntro                      = "CreateSafe_SeedIntro"
+    case connectAuthenticatorSuccess    = "CreateSafe_ConnectAuthenticatorSuccess"
+
+}
+
+enum TwoFATrackingEvent: String, ScreenTrackingEvent {
+
+    case setup2FADevicesList            = "Setup2FADevicesList"
+    case connectAuthenticator           = "ConnectAuthenticator"
+    case connectAuthenticatorScan       = "ConnectAuthenticatorScan"
 
 }
 
@@ -45,8 +53,8 @@ enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
     case recoveryIntro              = "Onboarding_RecoveryIntro"
     case showSeed                   = "Onboarding_ShowSeed"
     case enterSeed                  = "Onboarding_EnterSeed"
-    case twoFA                      = "Onboarding_2FA"
-    case twoFAScan                  = "Onboarding_2FAScan"
+
+
     case twoFAScanSuccess           = "Onboarding_2FAScanSuccess"
     case twoFAScanError             = "Onboarding_2FAScanError"
     case createSafeFeeIntro         = "Onboarding_CreationFeeIntro"

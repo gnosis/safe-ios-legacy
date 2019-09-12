@@ -22,6 +22,11 @@ public protocol TwoFAViewControllerDelegate: class {
 public final class TwoFAViewController: CardViewController {
 
     enum Strings {
+        static let title = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
+        static let header = LocalizedString("ios_connect_browser_extension",
+                                            comment: "Header for add browser extension screen")
+            .replacingOccurrences(of: "\n", with: " ")
+        static let description = LocalizedString("enable_2fa", comment: "Description for add browser extension screen")
         static let downloadExtension = LocalizedString("ios_open_be_link_text",
                                                        comment: "'Download the' Gnosis Safe Chrome browser exntension.")
         static let chromeExtension = LocalizedString("ios_open_be_link_substring",
@@ -53,19 +58,19 @@ public final class TwoFAViewController: CardViewController {
     var backButtonItem: UIBarButtonItem!
     private var didCancel = false
 
-    public var screenTitle: String? {
+    public var screenTitle: String? = Strings.title {
         didSet {
             updateTexts()
         }
     }
 
-    public var screenHeader: String? {
+    public var screenHeader: String = Strings.header {
         didSet {
             updateTexts()
         }
     }
 
-    public var descriptionText: String? {
+    public var descriptionText: String = Strings.description {
         didSet {
             updateTexts()
         }
@@ -77,8 +82,8 @@ public final class TwoFAViewController: CardViewController {
         }
     }
 
-    public var screenTrackingEvent: Trackable?
-    public var scanTrackingEvent: Trackable?
+    public var screenTrackingEvent: Trackable = TwoFATrackingEvent.connectAuthenticator
+    public var scanTrackingEvent: Trackable = TwoFATrackingEvent.connectAuthenticatorScan
 
     public static func create(delegate: TwoFAViewControllerDelegate?) -> TwoFAViewController {
         let controller = TwoFAViewController(nibName: String(describing: CardViewController.self),
@@ -106,9 +111,7 @@ public final class TwoFAViewController: CardViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let event = screenTrackingEvent {
-            trackEvent(event)
-        }
+        trackEvent(screenTrackingEvent)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -266,9 +269,7 @@ extension TwoFAViewController: ScanBarButtonItemDelegate {
 
     public func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)
-        if let scannerTrackingView = scanTrackingEvent {
-            trackEvent(scannerTrackingView)
-        }
+        trackEvent(scanTrackingEvent)
     }
 
     public func scanBarButtonItemDidScanValidCode(_ code: String) {
