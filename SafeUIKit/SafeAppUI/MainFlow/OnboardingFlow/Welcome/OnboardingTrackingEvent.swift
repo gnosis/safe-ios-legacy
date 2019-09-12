@@ -28,7 +28,7 @@ enum CreateSafeTrackingEvent: String, ScreenTrackingEvent {
     case onboarding4            = "CreateSafe_Onboarding4"
     case threeSteps             = "CreateSafe_ThreeSteps"
     case setup2FA               = "CreateSafe_Setup2FA"
-    case setup2FADevicesList    = "CreateSafe_Setup2FADevicesList"
+    case setup2FADevicesList    = "Setup2FADevicesList"
 
 }
 
