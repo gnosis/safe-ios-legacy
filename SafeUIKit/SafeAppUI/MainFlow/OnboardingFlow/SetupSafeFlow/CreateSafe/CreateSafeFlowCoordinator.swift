@@ -51,10 +51,12 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
             controller.delegate = self
             self.push(controller)
         }, onSkip: { [unowned self] in
-            self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+            let controller = SeedIntroViewController.create(state: .backup_notPaired, onNext: self.showSeed)
+            self.push(controller)
         })
         push(controller)
     }
+
 
 }
 

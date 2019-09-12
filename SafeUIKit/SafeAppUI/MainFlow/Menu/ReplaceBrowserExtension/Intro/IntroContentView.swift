@@ -20,8 +20,8 @@ public class IntroContentView: NibUIView {
     struct Style {
         var elementSpacing: CGFloat = 25
         var edgeMargin: CGFloat = 16
-        var headerStyle = ContentHeaderStyle()
-        var bodyStyle = ContentBodyStyle()
+        var headerStyle = HeaderStyle()
+        var bodyStyle = DescriptionStyle()
     }
 
     struct Content {
@@ -47,26 +47,5 @@ public class IntroContentView: NibUIView {
         headerLabel.attributedText = NSAttributedString(string: content.header, style: style.headerStyle)
         bodyLabel.attributedText = NSAttributedString(string: content.body, style: style.bodyStyle)
     }
-
-}
-
-class ContentHeaderStyle: AttributedStringStyle {
-
-    override var fontWeight: UIFont.Weight { return .semibold }
-    override var fontSize: Double { return 17 }
-    override var fontColor: UIColor { return ColorName.darkBlue.color }
-    override var minimumLineHeight: Double { return 22 }
-    override var maximumLineHeight: Double { return 22 }
-    override var alignment: NSTextAlignment { return .center }
-
-}
-
-class ContentBodyStyle: AttributedStringStyle {
-
-    override var fontSize: Double { return 17 }
-    override var fontColor: UIColor { return ColorName.darkGrey.color }
-    override var minimumLineHeight: Double { return 22 }
-    override var maximumLineHeight: Double { return 22 }
-    override var alignment: NSTextAlignment { return .center }
 
 }

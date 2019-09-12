@@ -29,6 +29,7 @@ enum CreateSafeTrackingEvent: String, ScreenTrackingEvent {
     case threeSteps             = "CreateSafe_ThreeSteps"
     case setup2FA               = "CreateSafe_Setup2FA"
     case setup2FADevicesList    = "Setup2FADevicesList"
+    case seedIntro              = "CreateSafe_SeedIntro"
 
 }
 

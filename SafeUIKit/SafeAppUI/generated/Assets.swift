@@ -59,6 +59,7 @@ enum Asset {
     static let upgrade3 = ImageAsset(name: "upgrade3")
   }
   enum CreateSafe {
+    static let backupPhrase = ImageAsset(name: "backupPhrase")
     static let cryptoWithoutHassle = ImageAsset(name: "cryptoWithoutHassle")
     static let setup2FA = ImageAsset(name: "setup2FA")
     static let whatIsSafe = ImageAsset(name: "whatIsSafe")
@@ -142,6 +143,7 @@ enum Asset {
     ContractUpgrade.upgrade1,
     ContractUpgrade.upgrade2,
     ContractUpgrade.upgrade3,
+    CreateSafe.backupPhrase,
     CreateSafe.cryptoWithoutHassle,
     CreateSafe.setup2FA,
     CreateSafe.whatIsSafe,

@@ -7,7 +7,6 @@ import SafeUIKit
 import Common
 import IdentityAccessApplication
 import MultisigWalletApplication
-import MultisigWalletApplication
 
 protocol SaveMnemonicDelegate: class {
     func saveMnemonicViewControllerDidPressContinue(_ vc: SaveMnemonicViewController)

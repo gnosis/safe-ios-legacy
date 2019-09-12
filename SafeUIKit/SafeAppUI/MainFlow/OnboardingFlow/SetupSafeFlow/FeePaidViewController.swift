@@ -54,32 +54,11 @@ class FeePaidViewController: UIViewController {
     }
 
     func setBody(_ text: String?) {
-        bodyLabel.set(text: text, style: BodyStyle())
+        bodyLabel.set(text: text, style: DescriptionStyle())
     }
 
     func setImage(_ image: UIImage?) {
         imageView.image = image
-    }
-
-    class HeaderStyle: AttributedStringStyle {
-
-        override var fontSize: Double { return 17 }
-        override var maximumLineHeight: Double { return 22 }
-        override var minimumLineHeight: Double { return 22 }
-        override var fontColor: UIColor { return ColorName.darkBlue.color }
-        override var alignment: NSTextAlignment { return .center }
-        override var fontWeight: UIFont.Weight { return .semibold }
-
-    }
-
-    class BodyStyle: AttributedStringStyle {
-
-        override var fontSize: Double { return 17 }
-        override var maximumLineHeight: Double { return 22 }
-        override var minimumLineHeight: Double { return 22 }
-        override var fontColor: UIColor { return ColorName.darkGrey.color }
-        override var alignment: NSTextAlignment { return .center }
-
     }
 
     class ProgressAnimator {

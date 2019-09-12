@@ -6,7 +6,6 @@ import UIKit
 import Common
 import SafeUIKit
 import MultisigWalletApplication
-import MultisigWalletApplication
 
 protocol ConfirmMnemonicDelegate: class {
     func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController)

@@ -24,7 +24,8 @@ class HeaderImageTextStepController: NewSafeThreeStepsBaseController {
         controller.threeStepsView.state = threeStepsState
         controller.headerImageTextView.titleLabel.text = header
         controller.headerImageTextView.imageView.image = image
-        controller.headerImageTextView.textLabel.text = text
+        controller.headerImageTextView.textLabel.attributedText = NSAttributedString(string: text,
+                                                                                     style: DescriptionStyle())
         controller.trackingEvent = trackingEvent
         controller.onNext = onNext
         return controller

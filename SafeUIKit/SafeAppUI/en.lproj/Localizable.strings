@@ -22,6 +22,9 @@
 /* Back */
 "back" = "Back";
 
+/* Backup your recovery phrase */
+"backup_recovery" = "Backup your recovery phrase";
+
 /* Balance */
 "balance" = "Balance";
 
@@ -549,7 +552,8 @@
 /* Recovering safe */
 "recovering_safe" = "Recovering your Safe…";
 
-/* Title for setup recovery phrase screen. */
+/* Recovery phrase
+   Title for setup recovery phrase screen. */
 "recovery_phrase" = "Recovery phrase";
 
 /* Refresh */
@@ -763,6 +767,10 @@
 
 /* Use selected device */
 "use_selected_device" = "Use selected device";
+
+/* Recovery phrase description */
+"use_the_phrase_on_the_next_screen" = "Use the phrase on the next screen, together with your Safe address, to recover your wallet in case you lose access to it.\
+We recommend using a password manager or writing the phrase down and storing the paper copy in a safe place that only you have access to.";
 
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";

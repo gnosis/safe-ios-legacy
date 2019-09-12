@@ -68,12 +68,4 @@ class OnboardingStepViewController: UIViewController {
 
 }
 
-fileprivate class DescriptionStyle: AttributedStringStyle {
 
-    override var fontSize: Double { return 17 }
-    override var fontWeight: UIFont.Weight { return .regular }
-    override var fontColor: UIColor { return ColorName.darkGrey.color }
-    override var alignment: NSTextAlignment { return .center }
-    override var spacingAfterParagraph: Double { return 12 }
-
-}
