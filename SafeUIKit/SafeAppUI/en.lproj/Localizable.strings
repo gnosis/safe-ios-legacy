@@ -7,8 +7,14 @@
 /* Title for safe address section. */
 "address" = "Address";
 
+/* Description */
+"after_finishing_setup" = "After finishing the Safe setup, you will need to enter the PIN and hold the Keycard to your phone to confirm each transaction. You can replace or remove your 2FA device in the Safe menu at any time.";
+
 /* Agree */
 "agree" = "Agree";
+
+/* Description of no more slots */
+"all_slots_in_use" = "Your card currently uses all pairing slots. Please free up a slot with the Keycard's management app or tool and try again.";
 
 /* Needed */
 "amount_needed" = "Amount needed";
@@ -21,6 +27,9 @@
 
 /* Back */
 "back" = "Back";
+
+/* Backup  your credentials */
+"backup_credentials" = "Backup your card credentials before activating the card";
 
 /* Balance */
 "balance" = "Balance";
@@ -134,6 +143,9 @@
 /* Header for new password screen */
 "enter_new_password" = "Enter new password";
 
+/* Enter password and PIN */
+"enter_pass_pin" = "Enter your pairing password and PIN";
+
 /* Placeholder for the recovery phrase */
 "enter_recovery" = "Enter recovery phrase";
 
@@ -150,6 +162,9 @@
    Error alert's title
    Error title */
 "error" = "Error";
+
+/* Exactly x digits */
+"exactly_x_digits" = "Please enter exactly %li digits.";
 
 /* Recovery without authenticator. */
 "existing_safe_recovered" = "The existing Safe will be recovered and associated with this device.";
@@ -191,6 +206,9 @@
 /* Guidelines */
 "guidelines" = "Guidelines";
 
+/* I have no password */
+"have_no_password" = "I don't have password";
+
 /* 'Submitted' parameter name */
 "header_submitted" = "Submitted";
 
@@ -203,11 +221,17 @@
 /* How this works */
 "how_this_works" = "How this works";
 
+/* I have a copy */
+"i_have_a_copy" = "I have a copy";
+
 /* Incorrect password */
 "incorrect_password" = "Incorrect password";
 
 /* Info */
 "info" = "Info";
+
+/* Initialize */
+"initialize" = "Initialize";
 
 /* Insufficient funds header. */
 "insufficient_funds" = "Insufficient funds";
@@ -243,7 +267,8 @@
 /* Word #%@ */
 "ios_enterSeed_word" = "Word #%@";
 
-/* Generic error message alert */
+/* Generic error message alert
+   Generic error message. Try again. */
 "ios_error_description" = "Operation failed because of an error. Please try again.";
 
 /* Browser extension code is expired. */
@@ -383,6 +408,21 @@
 /* Time indication of 'Just now' */
 "just_now" = "Just now";
 
+/* Already activated */
+"keycard_already_activated" = "This Keycard is already activated.";
+
+/* Blocked */
+"keycard_blocked" = "Keycard blocked";
+
+/* Paired */
+"keycard_paired" = "Status Keycard successfully paired";
+
+/* Get in touch */
+"keycard_unblock_get_in_touch" = "To restore the Keycard please get in touch with us.";
+
+/* Not initialized */
+"keycard_uninitialized" = "Keycard not initialized";
+
 /* Detail for the header in review screen */
 "layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the Authenticator. Future transactions require a confirmation from both devices.";
 
@@ -457,8 +497,14 @@
 /* No results found */
 "no_results_found" = "No results found";
 
+/* No more slots */
+"no_slots_available" = "No free slots available on Keycard";
+
 /* No Thanks */
 "no_thanks" = "No Thanks";
+
+/* Not empty */
+"not_empty" = "This field must not be empty";
 
 /* Fatal error alert's Ok button title
    OK
@@ -468,8 +514,17 @@
 /* Intro body text */
 "once_process_is_complete" = "Once this process is complete, you can only use the new Authenticator to confirm transactions.\n\nPlease have your Safe recovery phrase ready to confirm the recovery.";
 
+/* Use digits only */
+"only_digits" = "Please use only digits";
+
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Gnosis Safe Authenticator to confirm this transaction";
+
+/* Pair 2FA device */
+"pair_2fa_device" = "Pair 2FA device";
+
+/* Pair Keycard */
+"pair_keycard" = "Pair Keycard";
 
 /* Pair the Safe with a 2FA device */
 "pair_safe_with_two_fa" = "Pair the Safe with a 2FA device";
@@ -477,8 +532,20 @@
 /* Pair with 2FA description */
 "pair_safe_with_two_fa_description" = "Two-factro authentication (2FA) is an extra layer of security that prevents unauthorized access to your account. You can set it up by pairing a 2FA device with this Safe. After a successful setup, all transactions will need to be approved both by this phone and by your 2FA device.";
 
+/* You'll remove */
+"paired_will_be_lost" = "By going back, your paired 2FA device will be lost. You will be able to pair a new 2FA device.";
+
+/* Wrong password */
+"pairing_failed_password" = "Pairing failed: Incorrect pairing password.";
+
+/* Wrong pin */
+"pairing_failed_pin_x_attempts" = "Pairing failed: Incorrect PIN code. %li more tries left before your Keycard gets blocked.";
+
 /* Replace BE pairing description. */
 "pairing_info" = "All transactions need to be approved by both this device and the Authenticator.";
+
+/* Password */
+"pairing_password" = "Pairing password";
 
 /* Password field placeholder
    Password placeholder */
@@ -508,6 +575,14 @@
 
 /* Pick 2FA device */
 "pick_2fa_device" = "Pick 2FA device";
+
+/* PIN */
+"pin" = "PIN";
+
+/* PIN: x, PUK: y, Password: z */
+"pin_puk_password" = "PIN: %@\
+PUK: %@\
+Pairing password: %@";
 
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
@@ -557,6 +632,12 @@
 
 /* Reject */
 "reject" = "Reject";
+
+/* Remove */
+"remove" = "Remove";
+
+/* Remove? */
+"remove_paired" = "Remove paired 2FA device?";
 
 /* Detail for the header in review screen */
 "replace_browser_extension_transaction_info" = "The existing Authenticator connection will be replaced by the new Authenticator. ";
@@ -773,6 +854,9 @@
 /* Onboarding 1 description */
 "walletconnect_is" = "WalletConnect is a protocol that allows you to connect the Safe to desktop Dapps. The Safe will notify you when the Dapp wants to make a transaction. ";
 
+/* Do you want to do it? */
+"want_to_initialize" = "Would you like to initialize it now?";
+
 /* Onboarding 1 description */
 "we_performed_formal_verification" = "We performed formal verification of our smart contract. Upgrade now to take advantage of the highest security standards available.";
 
@@ -810,6 +894,11 @@ Gnosis Safe allows you to safe your ETH and pay network fees with ERC-20 tokens.
 
 /* Onboarding 2 description */
 "you_can_manage_connections" = "You can manage connections using the list of active sessions. Transaction requests from Dapps can be confirmed using your Safe.";
+
+/* You'll need them */
+"you_need_credentials" = "You’ll need these credentials together with your Keycard to confirm each transaction.\
+\
+We recommend using a password manager or writing the credentials down and storing the paper-copy in a safe place that only you have access to.";
 
 /* New Safe onboarding 4 description */
 "your_funds_are_held_securely" = "Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis.\

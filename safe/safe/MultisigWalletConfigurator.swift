@@ -22,6 +22,7 @@ class MultisigWalletConfigurator {
         ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
                                        for: WalletSettingsApplicationService.self)
         ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
+        ApplicationServiceRegistry.put(service: KeycardApplicationService(), for: KeycardApplicationService.self)
 
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: config.notificationServiceURL,
@@ -52,7 +53,7 @@ class MultisigWalletConfigurator {
                            for: SafeContractMetadataRepository.self)
         DomainRegistry.put(service: UserDefaultsAppSettingsRepository(), for: AppSettingsRepository.self)
         DomainRegistry.put(service: WalletDiagnosticDomainService(), for: WalletDiagnosticDomainService.self)
-
+        DomainRegistry.put(service: KeycardHardwareService(), for: KeycardDomainService.self)
 
         let relay = EventRelay(publisher: DomainRegistry.eventPublisher)
         ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
@@ -94,6 +95,7 @@ class MultisigWalletConfigurator {
             let tokenListItemRepo = DBTokenListItemRepository(db: db)
             let monitorRepo = DBRBETransactionMonitorRepository(db: db)
             let walletConnectRepo = DBWalletConnectSessionRepository(db: db)
+            let keycardRepo = DBKeycardRepository(db: db)
             let migrationRepo = DBMigrationRepository(db: db)
             let migrationService = DBMigrationService(repository: migrationRepo)
             DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
@@ -103,6 +105,7 @@ class MultisigWalletConfigurator {
             DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
             DomainRegistry.put(service: monitorRepo, for: RBETransactionMonitorRepository.self)
             DomainRegistry.put(service: walletConnectRepo, for: WalletConnectSessionRepository.self)
+            DomainRegistry.put(service: keycardRepo, for: KeycardRepository.self)
 
             let noDatabase = !db.exists
             if noDatabase {
@@ -116,6 +119,7 @@ class MultisigWalletConfigurator {
             tokenListItemRepo.setUp()
             monitorRepo.setUp()
             walletConnectRepo.setUp()
+            keycardRepo.setUp()
             migrationRepo.setUp()
 
             if noDatabase {

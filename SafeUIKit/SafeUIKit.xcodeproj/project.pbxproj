@@ -25,6 +25,12 @@
 		0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */; };
 		0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
+		0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */; };
+		0A2ACBE1232934590054D1D1 /* SKActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */; };
+		0A2ACBF7232943300054D1D1 /* SKPairingSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBF6232943300054D1D1 /* SKPairingSuccessViewController.swift */; };
+		0A2ACBF9232943E90054D1D1 /* SKPairSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2ACBF8232943E90054D1D1 /* SKPairSuccessView.xib */; };
+		0A2ACBFB232944860054D1D1 /* SKPairSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBFA232944860054D1D1 /* SKPairSuccessView.swift */; };
+		0A2ACBFD2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBFC2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift */; };
 		0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E022296F2E3008A30AC /* CardViewController.swift */; };
 		0A2C0E172296F2E3008A30AC /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C0E032296F2E3008A30AC /* CardViewController.xib */; };
 		0A2C0E182296F2E3008A30AC /* AddressDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E042296F2E3008A30AC /* AddressDetailView.swift */; };
@@ -659,6 +665,12 @@
 		0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionCommand.swift; sourceTree = "<group>"; };
 		0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResyncWithBrowserExtensionCommand.swift; sourceTree = "<group>"; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPairViewController.swift; sourceTree = "<group>"; };
+		0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKActivateViewController.swift; sourceTree = "<group>"; };
+		0A2ACBF6232943300054D1D1 /* SKPairingSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPairingSuccessViewController.swift; sourceTree = "<group>"; };
+		0A2ACBF8232943E90054D1D1 /* SKPairSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SKPairSuccessView.xib; sourceTree = "<group>"; };
+		0A2ACBFA232944860054D1D1 /* SKPairSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPairSuccessView.swift; sourceTree = "<group>"; };
+		0A2ACBFC2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKKeycardFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A2C0E022296F2E3008A30AC /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		0A2C0E032296F2E3008A30AC /* CardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
 		0A2C0E042296F2E3008A30AC /* AddressDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressDetailView.swift; sourceTree = "<group>"; };
@@ -1177,6 +1189,19 @@
 				0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */,
 			);
 			path = ResyncBrowserExtension;
+			sourceTree = "<group>";
+		};
+		0A2ACBFE23294A360054D1D1 /* StatusKeycard */ = {
+			isa = PBXGroup;
+			children = (
+				0A2ACBFC2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift */,
+				0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */,
+				0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */,
+				0A2ACBF6232943300054D1D1 /* SKPairingSuccessViewController.swift */,
+				0A2ACBFA232944860054D1D1 /* SKPairSuccessView.swift */,
+				0A2ACBF8232943E90054D1D1 /* SKPairSuccessView.xib */,
+			);
+			path = StatusKeycard;
 			sourceTree = "<group>";
 		};
 		0A2C0E012296F2E3008A30AC /* CardViewController */ = {
@@ -2238,6 +2263,7 @@
 				552D0FC723279C2000127223 /* TwoFATableViewCell.swift */,
 				552D0FC823279C2000127223 /* TwoFATableViewCell.xib */,
 				552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */,
+				0A2ACBFE23294A360054D1D1 /* StatusKeycard */,
 			);
 			path = ThreeSteps;
 			sourceTree = "<group>";
@@ -2757,6 +2783,7 @@
 				0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */,
 				552D0FCA23279C2000127223 /* TwoFATableViewCell.xib in Resources */,
 				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
+				0A2ACBF9232943E90054D1D1 /* SKPairSuccessView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
 				5568A25E22D78583007C9E0C /* WCSessionListCell.xib in Resources */,
@@ -3094,6 +3121,7 @@
 				5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */,
 				55BDA83F23267A7C005C9E6A /* HeaderImageTextView.swift in Sources */,
 				0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */,
+				0A2ACBFD2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0AE0FE68229D674400ABC552 /* UIViewController+Back.swift in Sources */,
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
@@ -3148,6 +3176,7 @@
 				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */,
 				55CE9CFA23055EE500CB414D /* ContractUpgradeFlowCoordinator.swift in Sources */,
+				0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */,
 				0ADE040122DF2EF100CA4705 /* OnboardingPageDataSource.swift in Sources */,
 				55BDA818232651A2005C9E6A /* ThreeStepsToSecurityController.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
@@ -3193,7 +3222,9 @@
 				0A4DF82020CE6FC70095C00D /* AssetViewViewController.swift in Sources */,
 				0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */,
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
+				0A2ACBF7232943300054D1D1 /* SKPairingSuccessViewController.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
+				0A2ACBE1232934590054D1D1 /* SKActivateViewController.swift in Sources */,
 				0AE0FEA0229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift in Sources */,
 				554D17F022E0B13100B90A70 /* IncomingTransactionsManager.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
@@ -3237,6 +3268,7 @@
 				0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */,
 				0A6EF3C621BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift in Sources */,
 				0AC3F1732183674100DAADC9 /* OnboardingIntroViewController.swift in Sources */,
+				0A2ACBFB232944860054D1D1 /* SKPairSuccessView.swift in Sources */,
 				0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */,
 				0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */,
 				0A05951D22E99F050001D7D5 /* Colors.swift in Sources */,

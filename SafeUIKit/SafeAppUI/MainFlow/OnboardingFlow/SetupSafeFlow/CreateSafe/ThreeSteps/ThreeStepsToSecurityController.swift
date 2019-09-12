@@ -22,7 +22,7 @@ class ThreeStepsToSecurityController: NewSafeThreeStepsBaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = Strings.title
+        navigationItem.title = Strings.title
 
         threeStepsView.state = .initial
         embed(view: threeStepsToSecurityView, inCardSubview: cardHeaderView)

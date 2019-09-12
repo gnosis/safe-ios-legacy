@@ -58,6 +58,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NFCReaderUsageDescription</key>
+	<string>Enable Status Keycard usage</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Use your camera to scan QR codes</string>
 	<key>NSFaceIDUsageDescription</key>
@@ -89,6 +91,10 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+	<array>
+		<string>A00000080400010101</string>
 	</array>
 </dict>
 </plist>

@@ -19,7 +19,11 @@ extension UIAlertController {
     }
 
     func withCloseAction(handler: @escaping () -> Void = {}) -> UIAlertController {
-        addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"),
+        return withDefaultAction(title: LocalizedString("close", comment: "Close"), handler: handler)
+    }
+
+    func withDefaultAction(title: String, handler: @escaping () -> Void = {}) -> UIAlertController {
+        addAction(UIAlertAction(title: title,
                                 style: .default,
                                 handler: wrapNoArguments(closure: handler)))
         return self

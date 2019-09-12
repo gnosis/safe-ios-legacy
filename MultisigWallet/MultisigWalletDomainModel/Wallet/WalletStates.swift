@@ -99,7 +99,9 @@ public class DraftState: WalletState {
         guard hasAllRoles, ownerCount <= 4 else {
             preconditionFailure("Wallet is misconfigured. Must have all roles set up.")
         }
-        let confirmations = wallet.owner(role: .browserExtension) == nil ? 1 : 2
+
+        let confirmations = ownerCount - (requiredRoles.count - 1) // .thisDevice + all other factors
+        precondition(confirmations == 1 || confirmations == 2, "Invalid confirmation count during creation")
         wallet.changeConfirmationCount(confirmations)
         proceed()
     }
