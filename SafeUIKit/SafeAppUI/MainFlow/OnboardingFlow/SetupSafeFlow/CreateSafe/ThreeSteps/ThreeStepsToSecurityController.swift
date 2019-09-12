@@ -30,7 +30,7 @@ class ThreeStepsToSecurityController: NewSafeThreeStepsBaseController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingTrackingEvent.newSafeThreeSteps)
+        trackEvent(CreateSafeTrackingEvent.threeSteps)
     }
 
 }
