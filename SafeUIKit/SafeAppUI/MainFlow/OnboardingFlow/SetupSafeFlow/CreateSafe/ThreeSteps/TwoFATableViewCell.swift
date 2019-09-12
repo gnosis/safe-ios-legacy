@@ -19,7 +19,6 @@ class TwoFATableViewCell: UITableViewCell {
 
     @IBAction func learnMore(_ sender: Any) {
         onLearnMore?()
-        print("Learn more")
     }
 
     enum State {

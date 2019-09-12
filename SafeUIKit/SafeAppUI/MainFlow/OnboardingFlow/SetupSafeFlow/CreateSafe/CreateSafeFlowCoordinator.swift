@@ -61,7 +61,6 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
 extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
 
     func didSelectTwoFAOption(_ option: TwoFAOption) {
-        print("Selected option: \(option)")
         self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
     }
 
