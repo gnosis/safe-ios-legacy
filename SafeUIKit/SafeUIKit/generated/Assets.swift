@@ -74,7 +74,16 @@ enum Asset {
     static let successIcon = ImageAsset(name: "success-icon")
   }
   enum ThreeSteps {
-    static let initial = ImageAsset(name: "initial")
+    static let _2InCircleActive = ImageAsset(name: "2_in_circle_active")
+    static let _2InCircleInactive = ImageAsset(name: "2_in_circle_inactive")
+    static let _2Skipped = ImageAsset(name: "2_skipped")
+    static let _3InCircleActive = ImageAsset(name: "3_in_circle_active")
+    static let _3InCircleInactive = ImageAsset(name: "3_in_circle_inactive")
+    static let checkmarkInCircle = ImageAsset(name: "checkmark_in_circle")
+    static let filledLineGreen = ImageAsset(name: "filled_line_green")
+    static let filledLineGrey = ImageAsset(name: "filled_line_grey")
+    static let gradientLine = ImageAsset(name: "gradient_line")
+    static let gradientLineSkipped = ImageAsset(name: "gradient_line_skipped")
   }
   enum TokenIcons {
     static let eth = ImageAsset(name: "ETH")
@@ -150,7 +159,16 @@ enum Asset {
     TextInputs.defaultIcon,
     TextInputs.errorIcon,
     TextInputs.successIcon,
-    ThreeSteps.initial,
+    ThreeSteps._2InCircleActive,
+    ThreeSteps._2InCircleInactive,
+    ThreeSteps._2Skipped,
+    ThreeSteps._3InCircleActive,
+    ThreeSteps._3InCircleInactive,
+    ThreeSteps.checkmarkInCircle,
+    ThreeSteps.filledLineGreen,
+    ThreeSteps.filledLineGrey,
+    ThreeSteps.gradientLine,
+    ThreeSteps.gradientLineSkipped,
     TokenIcons.eth,
     TokenIcons.defaultToken,
     TransferView.arrowDown,

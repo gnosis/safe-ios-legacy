@@ -80,4 +80,7 @@ class TestTwoFAViewControllerDelegate: TwoFAViewControllerDelegate {
     func twoFAViewControllerDidFinish() {
     }
 
+    func didSelectOpenAuthenticatorInfo() {        
+    }
+
 }

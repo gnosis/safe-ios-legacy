@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 import MultisigWalletApplication
 import Common
 
@@ -52,8 +53,36 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
             controller.delegate = self
             self.push(controller)
         }, onSkip: { [unowned self] in
-            self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+            self.skipPairing()
         })
+        push(controller)
+    }
+
+    private func skipPairing() {
+        ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
+        showSeedIntro(paired: false)
+    }
+
+    func showSeedIntro(paired: Bool) {
+        let pairingState = paired ? ThreeStepsView.State.backup_paired : .backup_notPaired
+        let controller = SeedIntroViewController.create(state: pairingState) { [unowned self] in
+            self.showSeed(paired: paired)
+        }
+        self.push(controller)
+    }
+
+    func showSeed(paired: Bool) {
+        enter(flow: paperWalletFlowCoordinator) { [unowned self] in
+            let pairingState = paired ? ThreeStepsView.State.backupDone_paired : .backupDone_notPaired
+            let controller = SeedSuccessViewController.create(state: pairingState, onNext: self.showPayment)
+            self.push(controller)
+        }
+    }
+
+    func showPayment() {
+        let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
+        controller.titleText = LocalizedString("create_safe_title", comment: "Create Safe")
+        controller.screenTrackingEvent = OnboardingTrackingEvent.createSafeFeeIntro
         push(controller)
     }
 
@@ -62,32 +91,21 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
 extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
 
     func didSelectTwoFAOption(_ option: TwoFAOption) {
+        showConnectAuthenticator()
+    }
+
+    func didSelectLearnMore(for option: TwoFAOption) {
+        let supportCoordinator = SupportFlowCoordinator(from: self)
         switch option {
-        case .statusKeycard:
-            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
-            enter(flow: keycardFlowCoordinator) {
-                self.showSeed()
-            }
         case .gnosisAuthenticator:
-            self.push(OnboardingIntroViewController.createCreateSafeIntro(delegate: self))
+            supportCoordinator.openAuthenticatorInfo()
+        case .statusKeycard:
+            supportCoordinator.openStausKeycardInfo()
         }
     }
 
-}
-
-extension CreateSafeFlowCoordinator: OnboardingIntroViewControllerDelegate {
-
-    func didPressNext() {
+    private func showConnectAuthenticator() {
         let controller = TwoFAViewController.create(delegate: self)
-        controller.screenTitle = LocalizedString("browser_extension",
-                                                 comment: "Title for add browser extension screen")
-        controller.screenHeader = LocalizedString("ios_connect_browser_extension",
-                                                  comment: "Header for add browser extension screen")
-                                  .replacingOccurrences(of: "\n", with: " ")
-        controller.descriptionText = LocalizedString("enable_2fa",
-                                                     comment: "Description for add browser extension screen")
-        controller.screenTrackingEvent = OnboardingTrackingEvent.twoFA
-        controller.scanTrackingEvent = OnboardingTrackingEvent.twoFAScan
         push(controller)
     }
 
@@ -101,25 +119,18 @@ extension CreateSafeFlowCoordinator: TwoFAViewControllerDelegate {
     }
 
     func twoFAViewControllerDidFinish() {
-        showSeed()
+        let controller = ConnectAuthenticatorSuccessViewController.create { [unowned self] in
+            self.showSeedIntro(paired: true)
+        }
+        push(controller)
+    }
+
+    func didSelectOpenAuthenticatorInfo() {
+        SupportFlowCoordinator(from: self).openAuthenticatorInfo()
     }
 
     func twoFAViewControllerDidSkipPairing() {
-        ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
-        showSeed()
-    }
-
-    func showSeed() {
-        enter(flow: paperWalletFlowCoordinator) {
-            self.showPayment()
-        }
-    }
-
-    func showPayment() {
-        let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
-        controller.titleText = LocalizedString("create_safe_title", comment: "Create Safe")
-        controller.screenTrackingEvent = OnboardingTrackingEvent.createSafeFeeIntro
-        push(controller)
+        skipPairing()
     }
 
 }

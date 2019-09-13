@@ -40,14 +40,6 @@ extension RecoverSafeFlowCoordinator {
 
     func newPairController() -> TwoFAViewController {
         let controller = TwoFAViewController.create(delegate: self)
-        controller.screenTitle = flowTitle
-        controller.screenHeader = LocalizedString("ios_connect_browser_extension",
-                                                  comment: "Header for add browser extension screen")
-                                  .replacingOccurrences(of: "\n", with: " ")
-        controller.descriptionText = LocalizedString("enable_2fa",
-                                                     comment: "Description for add browser extension screen")
-        controller.screenTrackingEvent = RecoverSafeTrackingEvent.twoFA
-        controller.scanTrackingEvent = RecoverSafeTrackingEvent.twoFAScan
         controller.navigationItem.backBarButtonItem = .backButton()
         return controller
     }
@@ -117,6 +109,10 @@ extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
 
     func twoFAViewControllerDidFinish() {
         showPaymentIntro()
+    }
+
+    func didSelectOpenAuthenticatorInfo() {
+        SupportFlowCoordinator(from: self).openAuthenticatorInfo()
     }
 
     func twoFAViewControllerDidSkipPairing() {

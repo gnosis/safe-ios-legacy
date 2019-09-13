@@ -22,19 +22,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="756"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htj-cX-uIl">
-                                                <rect key="frame" x="20" y="40" width="335" height="48"/>
+                                                <rect key="frame" x="20" y="40" width="335" height="41"/>
                                                 <string key="text">Stay secure.
 Save this recovery phrase.</string>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJL-Wu-tSJ">
-                                                <rect key="frame" x="16" y="119" width="343" height="127.5"/>
+                                                <rect key="frame" x="16" y="112" width="343" height="113.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8c-qh-D5l">
-                                                        <rect key="frame" x="16" y="16" width="311" height="95.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <rect key="frame" x="16" y="16" width="311" height="81.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -48,21 +48,21 @@ Save this recovery phrase.</string>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkP-Rj-RvE">
-                                                <rect key="frame" x="256" y="254.5" width="87" height="30"/>
+                                                <rect key="frame" x="256" y="233.5" width="87" height="30"/>
                                                 <state key="normal" title="Make a copy"/>
                                                 <connections>
                                                     <action selector="copyToClipboard:" destination="FDt-8A-d9p" eventType="touchUpInside" id="qdv-8h-O8e"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQs-yC-xbp">
-                                                <rect key="frame" x="32" y="296.5" width="311" height="57.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="32" y="275.5" width="311" height="61"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Without these, you won’t be able to recover your Safe and its assets." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3R-nP-mmG">
-                                                <rect key="frame" x="32" y="384" width="311" height="38.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                <rect key="frame" x="32" y="366.5" width="311" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -135,13 +135,13 @@ Save this recovery phrase.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the following words from your recovery phrase." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxD-ES-jJ0">
-                                                <rect key="frame" x="20" y="40" width="335" height="48"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <rect key="frame" x="20" y="40" width="335" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jQ9-6b-oHW">
-                                                <rect key="frame" x="16" y="148" width="343" height="130"/>
+                                                <rect key="frame" x="16" y="141" width="343" height="130"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-TH-gJW" customClass="VerifiableInput" customModule="SafeUIKit">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
