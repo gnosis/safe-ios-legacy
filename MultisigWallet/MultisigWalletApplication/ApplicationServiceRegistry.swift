@@ -55,8 +55,6 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: EventRelay.self)
     }
 
-    // TODO: set it up in all places where needed
-    // TODO: add mock service for tests running correctly
     public static var keycardService: KeycardApplicationService {
         return service(for: KeycardApplicationService.self)
     }
