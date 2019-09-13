@@ -37,16 +37,18 @@ public class KeycardHardwareService: KeycardDomainService {
         return try pairViaNFC(password: password,
                               pin: pin,
                               keyPathComponent: keyPathComponent,
-                              prepare: { [unowned self] cmdSet in
-                                self.keycardController?.setAlert(Strings.pairingInProgress)
+                              prepare: prepareForPairing)
+    }
 
-                                let info = try ApplicationInfo(cmdSet.select().checkOK().data)
+    private func prepareForPairing(_ cmdSet: KeycardCommandSet) throws -> ApplicationInfo {
+        self.keycardController?.setAlert(Strings.pairingInProgress)
 
-                                if !info.initializedCard {
-                                    throw KeycardDomainServiceError.keycardNotInitialized
-                                }
-                                return info
-        })
+        let info = try ApplicationInfo(cmdSet.select().checkOK().data)
+
+        if !info.initializedCard {
+            throw KeycardDomainServiceError.keycardNotInitialized
+        }
+        return info
     }
 
     //  Initializes the card, pairs it, generates master key, and derives a signing key by key_component
@@ -58,25 +60,35 @@ public class KeycardHardwareService: KeycardDomainService {
                               pin: pin,
                               keyPathComponent: keyPathComponent,
                               prepare: { [unowned self] cmdSet in
-                                self.keycardController?.setAlert(Strings.activationInProgress)
-
-                                let info = try ApplicationInfo(cmdSet.select().checkOK().data)
-
-                                if info.initializedCard {
-                                    throw KeycardDomainServiceError.keycardAlreadyInitialized
-                                }
-
-                                // Possible errors:
-                                //   - 0x6D00 if the applet is already initialized. Might happen.
-                                //   - 0x6A80 if the data is invalid. SDK should format the data properly.
-                                do {
-                                    try cmdSet.initialize(pin: pin, puk: puk, pairingPassword: password).checkOK()
-                                } catch StatusWord.alreadyInitialized {
-                                    throw KeycardDomainServiceError.keycardAlreadyInitialized
-                                }
-
-                                return try ApplicationInfo(cmdSet.select().checkOK().data)
+                                try self.initializeBeforePairing(pin: pin,
+                                                                 puk: puk,
+                                                                 password: password,
+                                                                 cmdSet: cmdSet)
         })
+    }
+
+    private func initializeBeforePairing(pin: String,
+                                         puk: String,
+                                         password: String,
+                                         cmdSet: KeycardCommandSet) throws -> ApplicationInfo {
+        self.keycardController?.setAlert(Strings.activationInProgress)
+
+        let info = try ApplicationInfo(cmdSet.select().checkOK().data)
+
+        if info.initializedCard {
+            throw KeycardDomainServiceError.keycardAlreadyInitialized
+        }
+
+        // Possible errors:
+        //   - 0x6D00 if the applet is already initialized. Might happen.
+        //   - 0x6A80 if the data is invalid. SDK should format the data properly.
+        do {
+            try cmdSet.initialize(pin: pin, puk: puk, pairingPassword: password).checkOK()
+        } catch StatusWord.alreadyInitialized {
+            throw KeycardDomainServiceError.keycardAlreadyInitialized
+        }
+
+        return try ApplicationInfo(cmdSet.select().checkOK().data)
     }
 
     /// This is a general wrapper handling interaction with the NFC via KeycardController. It handles
@@ -98,10 +110,10 @@ public class KeycardHardwareService: KeycardDomainService {
                 let cmdSet = KeycardCommandSet(cardChannel: channel)
                 let info = try prepare(cmdSet)
                 let address = try self.deriveKeyInKeycard(cmdSet: cmdSet,
-                                                   info: info,
-                                                   password: password,
-                                                   pin: pin,
-                                                   keyPathComponent: keyPathComponent)
+                                                          info: info,
+                                                          password: password,
+                                                          pin: pin,
+                                                          keyPathComponent: keyPathComponent)
                 result = .success(address)
                 self.keycardController?.stop(alertMessage: Strings.success)
             } catch let error as NFCReaderError {
@@ -147,9 +159,6 @@ public class KeycardHardwareService: KeycardDomainService {
 
     }
 
-    private static let ethereumMainnetHDWalletPath = "m/44'/60'/0'/0"
-    private static let hdPathSeparator = "/"
-
     /// This method will derive a key for the `keyPathComponent` in the keycard.
     ///
     /// This method will:
@@ -166,103 +175,127 @@ public class KeycardHardwareService: KeycardDomainService {
                                     pin: String,
                                     keyPathComponent: KeyPathComponent) throws -> Address {
         assert(!info.instanceUID.isEmpty, "Instance UID is not known in initialized card")
+        let didConnect = try connectUsingExistingPairing(cmdSet: cmdSet, instanceUID: info.instanceUID)
+        if !didConnect {
+            try establishNewPairing(cmdSet: cmdSet, info: info, password: password)
+        }
+        try authenticate(cmdSet: cmdSet, pin: pin)
+        let masterKeyUID = try generateMasterKeyIfNeeded(cmdSet: cmdSet, info: info)
+        let (keypath, publicKey, address) = try deriveKey(cmdSet: cmdSet, lastPathComponent: keyPathComponent)
 
-        var existingPairing = DomainRegistry.keycardRepository.findPairing(instanceUID: Data(info.instanceUID))
+        // If we don't save the data, then the access to the key is lost - we must know the keypath in the future
+        // and we must know the address associated with the keypath.
+        DomainRegistry.keycardRepository.save(KeycardKey(address: address,
+                                                         instanceUID: Data(info.instanceUID),
+                                                         masterKeyUID: masterKeyUID,
+                                                         keyPath: keypath,
+                                                         publicKey: publicKey))
+        return address
+    }
 
-        if let pairing = existingPairing {
-            cmdSet.pairing = Pairing(pairingKey: Array(existingPairing!.key),
-                                     pairingIndex: UInt8(existingPairing!.index))
-
-            // Even though we store the pairing in the app, it may become invalid if the user unpaired the slot
-            // that we use. Thus, we must check the validity of the pairing here by establishing the secure channel.
-
-            // Tries to open secure channel and detect specific errors showing that the pairing is invalid.
-            do {
-                // possible errors:
-                //   - CardError.notPaired: if the cmdSet.pairing is not set
-                //     (developer error, should not happen)
-                //   - CardError.invalidAuthData: if the SDK did not authenticate the card, might happen.
-                // from OPEN SECURE CHANNEL command:
-                //   - 0x6A86 if P1 is invalid: means that StatusWord.pairingIndexInvalid
-                //   - 0x6A80 if the data is not a public key: means that StatusWord.dataInvalid
-                //   - 0x6982 if a MAC cannot be verified: means that StatusWord.securityConditionNotSatisfied
-                // from MUTUALLY AUTHENTICATE command:
-                //   - 0x6985 if the previous successfully executed APDU was not OPEN SECURE CHANNEL.
-                //     This error should not happen unless there is error in Keycard SDK
-                //   - 0x6982 if authentication failed or the data is not 256-bit long
-                //     (StatusWord.securityConditionNotSatisfied). This indicates that the card
-                //     did not authenticate the app.
-                //
-                try cmdSet.autoOpenSecureChannel()
-            } catch let error where
-                error as? CardError == CardError.invalidAuthData ||
-                error as? StatusWord == StatusWord.pairingIndexInvalid ||
-                error as? StatusWord == StatusWord.dataInvalid ||
-                error as? StatusWord == StatusWord.securityConditionNotSatisfied {
-                        // pairing is no longer valid, we'll try re-pair afterwards.
-                        cmdSet.pairing = nil
-                        DomainRegistry.keycardRepository.remove(pairing)
-                        existingPairing = nil
-            }
+    private func connectUsingExistingPairing(cmdSet: KeycardCommandSet, instanceUID: [UInt8]) throws -> Bool {
+        guard let pairing = DomainRegistry.keycardRepository.findPairing(instanceUID: Data(instanceUID)) else {
+            return false
         }
 
-        if existingPairing == nil {
-            if info.freePairingSlots < 1 {
-                throw KeycardDomainServiceError.noPairingSlotsRemaining
-            }
-            do {
-                // Trying to pair and save the resulting pairing information.
-                //
-                // Here are possible errors according to the SDK API docs:
-                // from PAIR first step (P1=0x00) command:
-                //   - 0x6A80 if the data is in the wrong format.
-                //     Not expected at this point because SDK handles it
-                //   - 0x6982 if client cryptogram verification fails.
-                //     Not expected at this point because SDK sends random challenge.
-                //   - 0x6A84 if all available pairing slot are taken.
-                //     This can happen - StatusWord.allPairingSlotsTaken
-                //   - 0x6A86 if P1 is invalid or is 0x01 but the first phase was not completed
-                //     This should not happen as SDK should do it properly.
-                //   - 0x6985 if a secure channel is open
-                //     This should not happen because if existingPairing == nil then we
-                //     did not open secure channel yet.
-                //
-                // from PAIR second step (P1=0x01) command:
-                //   - 0x6A80 if the data is in the wrong format.
-                //     Not expected at this point because SDK handles it
-                //   - 0x6982 if client cryptogram verification fails.
-                //     This may happen because the pairing password is invalid.
-                //     (StatusWord.securityConditionNotSatisfied)
-                //   - 0x6A84 if all available pairing slot are taken.
-                //     This can happen - StatusWord.allPairingSlotsTaken
-                //   - 0x6A86 if P1 is invalid or is 0x01 but the first phase was not completed
-                //     This should not happen as SDK should do it properly.
-                //   - 0x6985 if a secure channel is open
-                //     This should not happen because if existingPairing == nil then we
-                //     did not open secure channel yet.
-                //
-                // CardError.invalidAuthData - if our pairing password does not match card's cryptogram
-                //
-                try cmdSet.autoPair(password: password)
-            } catch let error where
-                    error as? CardError == CardError.invalidAuthData ||
-                    error as? StatusWord == StatusWord.securityConditionNotSatisfied {
-                        throw KeycardDomainServiceError.invalidPairingPassword
-            } catch StatusWord.allPairingSlotsTaken {
-                throw KeycardDomainServiceError.noPairingSlotsRemaining
-            }
-            assert(cmdSet.pairing != nil, "Pairing information not found after successful pairing")
+        cmdSet.pairing = Pairing(pairingKey: Array(pairing.key), pairingIndex: UInt8(pairing.index))
 
-            let newPairing = KeycardPairing(instanceUID: Data(info.instanceUID),
-                                            index: Int(cmdSet.pairing!.pairingIndex),
-                                            key: Data(cmdSet.pairing!.pairingKey))
-            DomainRegistry.keycardRepository.save(newPairing)
+        // Even though we store the pairing in the app, it may become invalid if the user unpaired the slot
+        // that we use. Thus, we must check the validity of the pairing here by establishing the secure channel.
 
-            // expected to succeed, no specific error handling here.
+        // Tries to open secure channel and detect specific errors showing that the pairing is invalid.
+        do {
+            // possible errors:
+            //   - CardError.notPaired: if the cmdSet.pairing is not set
+            //     (developer error, should not happen)
+            //   - CardError.invalidAuthData: if the SDK did not authenticate the card, might happen.
+            // from OPEN SECURE CHANNEL command:
+            //   - 0x6A86 if P1 is invalid: means that StatusWord.pairingIndexInvalid
+            //   - 0x6A80 if the data is not a public key: means that StatusWord.dataInvalid
+            //   - 0x6982 if a MAC cannot be verified: means that StatusWord.securityConditionNotSatisfied
+            // from MUTUALLY AUTHENTICATE command:
+            //   - 0x6985 if the previous successfully executed APDU was not OPEN SECURE CHANNEL.
+            //     This error should not happen unless there is error in Keycard SDK
+            //   - 0x6982 if authentication failed or the data is not 256-bit long
+            //     (StatusWord.securityConditionNotSatisfied). This indicates that the card
+            //     did not authenticate the app.
+            //
             try cmdSet.autoOpenSecureChannel()
+            return true
+        } catch let error where isPairingWithExistingDataFailed(error) {
+            cmdSet.pairing = nil
+            DomainRegistry.keycardRepository.remove(pairing)
+            return false
+        }
+    }
 
-        } // did pair successfully at this point, secure channel is opened.
+    private func isPairingWithExistingDataFailed(_ error: Error) -> Bool {
+        return error as? CardError == CardError.invalidAuthData ||
+            error as? StatusWord == StatusWord.pairingIndexInvalid ||
+            error as? StatusWord == StatusWord.dataInvalid ||
+            error as? StatusWord == StatusWord.securityConditionNotSatisfied
+    }
 
+    private func establishNewPairing(cmdSet: KeycardCommandSet, info: ApplicationInfo, password: String) throws {
+        guard info.freePairingSlots > 0 else {
+            throw KeycardDomainServiceError.noPairingSlotsRemaining
+        }
+        do {
+            // Trying to pair and save the resulting pairing information.
+            //
+            // Here are possible errors according to the SDK API docs:
+            // from PAIR first step (P1=0x00) command:
+            //   - 0x6A80 if the data is in the wrong format.
+            //     Not expected at this point because SDK handles it
+            //   - 0x6982 if client cryptogram verification fails.
+            //     Not expected at this point because SDK sends random challenge.
+            //   - 0x6A84 if all available pairing slot are taken.
+            //     This can happen - StatusWord.allPairingSlotsTaken
+            //   - 0x6A86 if P1 is invalid or is 0x01 but the first phase was not completed
+            //     This should not happen as SDK should do it properly.
+            //   - 0x6985 if a secure channel is open
+            //     This should not happen because if existingPairing == nil then we
+            //     did not open secure channel yet.
+            //
+            // from PAIR second step (P1=0x01) command:
+            //   - 0x6A80 if the data is in the wrong format.
+            //     Not expected at this point because SDK handles it
+            //   - 0x6982 if client cryptogram verification fails.
+            //     This may happen because the pairing password is invalid.
+            //     (StatusWord.securityConditionNotSatisfied)
+            //   - 0x6A84 if all available pairing slot are taken.
+            //     This can happen - StatusWord.allPairingSlotsTaken
+            //   - 0x6A86 if P1 is invalid or is 0x01 but the first phase was not completed
+            //     This should not happen as SDK should do it properly.
+            //   - 0x6985 if a secure channel is open
+            //     This should not happen because if existingPairing == nil then we
+            //     did not open secure channel yet.
+            //
+            // CardError.invalidAuthData - if our pairing password does not match card's cryptogram
+            //
+            try cmdSet.autoPair(password: password)
+        } catch let error where isPairingPasswordWrong(error) {
+            throw KeycardDomainServiceError.invalidPairingPassword
+        } catch StatusWord.allPairingSlotsTaken {
+            throw KeycardDomainServiceError.noPairingSlotsRemaining
+        }
+        assert(cmdSet.pairing != nil, "Pairing information not found after successful pairing")
+
+        let newPairing = KeycardPairing(instanceUID: Data(info.instanceUID),
+                                        index: Int(cmdSet.pairing!.pairingIndex),
+                                        key: Data(cmdSet.pairing!.pairingKey))
+        DomainRegistry.keycardRepository.save(newPairing)
+
+        // expected to succeed, no specific error handling here.
+        try cmdSet.autoOpenSecureChannel()
+    }
+
+    private func isPairingPasswordWrong(_ error: Error) -> Bool {
+        return error as? CardError == CardError.invalidAuthData ||
+            error as? StatusWord == StatusWord.securityConditionNotSatisfied
+    }
+
+    private func authenticate(cmdSet: KeycardCommandSet, pin: String) throws {
         // Trying to authenticate with PIN for further key generation and derivation.
         //
         // Possible errors:
@@ -275,39 +308,33 @@ public class KeycardHardwareService: KeycardDomainService {
         } catch CardError.wrongPIN(retryCounter: let attempts) {
             throw KeycardDomainServiceError.invalidPin(attempts)
         }
+    }
 
-        // Generate master key if it's not present. We want to use a derived key from the master key
-        // so that the owner address (generated from the key) of the wallet is different for different
-        // wallets.
+    // Generate master key if it's not present. We want to use a derived key from the master key
+    // so that the owner address (generated from the key) of the wallet is different for different
+    // wallets.
+    private func generateMasterKeyIfNeeded(cmdSet: KeycardCommandSet, info: ApplicationInfo) throws -> Data {
+        return try Data(info.keyUID.isEmpty ? cmdSet.generateKey().checkOK().data : info.keyUID)
+    }
 
-        var masterKeyUID = info.keyUID
+    private static let ethereumMainnetHDWalletPath = "m/44'/60'/0'/0"
+    private static let hdPathSeparator = "/"
 
-        if masterKeyUID.isEmpty {
-            masterKeyUID = try cmdSet.generateKey().checkOK().data
-        }
+    private func keypath(lastComponent: KeyPathComponent) -> String {
+        return KeycardHardwareService.ethereumMainnetHDWalletPath +
+            KeycardHardwareService.hdPathSeparator +
+            String(lastComponent)
+    }
 
-        // Derive the key to be the wallet owner, and then get the key's Ethereum address
-
-        let keypath = KeycardHardwareService.ethereumMainnetHDWalletPath +
-                      KeycardHardwareService.hdPathSeparator +
-                      String(keyPathComponent)
-        let exportKeyData = try cmdSet.exportKey(path: keypath, makeCurrent: true, publicOnly: true).checkOK().data
-
-        let bip32KeyPair = try BIP32KeyPair(fromTLV: exportKeyData)
-        let derivedPublicKey = Data(bip32KeyPair.publicKey)
-
-        let address = Address(EthereumKitEthereumService().createAddress(publicKey: derivedPublicKey))
-
-        // If we don't save the data, then the access to the key is lost - we must know the keypath in the future
-        // and we must know the address associated with the keypath.
-
-        let key = KeycardKey(address: address,
-                             instanceUID: Data(info.instanceUID),
-                             masterKeyUID: Data(masterKeyUID),
-                             keyPath: keypath,
-                             publicKey: derivedPublicKey)
-        DomainRegistry.keycardRepository.save(key)
-        return address
+    private func deriveKey(cmdSet: KeycardCommandSet, lastPathComponent: KeyPathComponent) throws ->
+        (keypath: String, publicKey: Data, address: Address) {
+            // Derive the key to be the wallet owner, and then get the key's Ethereum address
+            let keypath = self.keypath(lastComponent: lastPathComponent)
+            let keyData = try cmdSet.exportKey(path: keypath, makeCurrent: true, publicOnly: true).checkOK().data
+            let bip32KeyPair = try BIP32KeyPair(fromTLV: keyData)
+            let derivedPublicKey = Data(bip32KeyPair.publicKey)
+            let address = Address(EthereumKitEthereumService().createAddress(publicKey: derivedPublicKey))
+            return (keypath, derivedPublicKey, address)
     }
 
     private enum CredentialsParams {
@@ -320,16 +347,16 @@ public class KeycardHardwareService: KeycardDomainService {
 
     /// This method will generate valid credentials for initializing the Keycard.
     public func generateCredentials() -> (pin: String, puk: String, pairingPassword: String) {
-        // simple N out of M random algorithm. Did not use more advanced idea in lieu of simplicity.
-        func randomString(of length: Int, alphabet: String) -> String {
-            guard length > 0 && !alphabet.isEmpty else { return "" }
-            return (0..<length).map { _ in String(alphabet.randomElement()!) }.joined()
-        }
-
         return (pin: randomString(of: CredentialsParams.pinLength, alphabet: CredentialsParams.pinPukAlphabet),
                 puk: randomString(of: CredentialsParams.pukLength, alphabet: CredentialsParams.pinPukAlphabet),
                 pairingPassword: randomString(of: CredentialsParams.pairingPasswordLength,
                                               alphabet: CredentialsParams.passwordAlphabet))
+    }
+
+    // simple N out of M random algorithm. Did not use more advanced idea in lieu of simplicity.
+    private func randomString(of length: Int, alphabet: String) -> String {
+        guard length > 0 && !alphabet.isEmpty else { return "" }
+        return (0..<length).map { _ in String(alphabet.randomElement()!) }.joined()
     }
 
     /// This will remove the Keycard key information associated with the address

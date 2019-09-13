@@ -30,7 +30,6 @@ class SKPairViewController: UIViewController {
     weak var delegate: SKPairViewControllerDelegate?
 
     private static let pinLength = 6
-    private static let inputHeight: CGFloat = 56
 
     enum Strings {
 
