@@ -62,7 +62,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
         showSeedIntro(paired: false)
     }
 
-    private func showSeedIntro(paired: Bool) {
+    func showSeedIntro(paired: Bool) {
         let pairingState = paired ? ThreeStepsView.State.backup_paired : .backup_notPaired
         let controller = SeedIntroViewController.create(state: pairingState) { [unowned self] in
             self.showSeed(paired: paired)
@@ -70,7 +70,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
         self.push(controller)
     }
 
-    private func showSeed(paired: Bool) {
+    func showSeed(paired: Bool) {
         enter(flow: paperWalletFlowCoordinator) { [unowned self] in
             let pairingState = paired ? ThreeStepsView.State.backupDone_paired : .backupDone_notPaired
             let controller = SeedSuccessViewController.create(state: pairingState, onNext: self.showPayment)
@@ -78,7 +78,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
         }
     }
 
-    private func showPayment() {
+    func showPayment() {
         let controller = OnboardingCreationFeeIntroViewController.create(delegate: self)
         controller.titleText = LocalizedString("create_safe_title", comment: "Create Safe")
         controller.screenTrackingEvent = OnboardingTrackingEvent.createSafeFeeIntro

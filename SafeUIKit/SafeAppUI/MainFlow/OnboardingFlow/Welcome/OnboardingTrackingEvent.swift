@@ -55,8 +55,6 @@ enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
     case recoveryIntro              = "Onboarding_RecoveryIntro"
     case showSeed                   = "Onboarding_ShowSeed"
     case enterSeed                  = "Onboarding_EnterSeed"
-
-
     case twoFAScanSuccess           = "Onboarding_2FAScanSuccess"
     case twoFAScanError             = "Onboarding_2FAScanError"
     case createSafeFeeIntro         = "Onboarding_CreationFeeIntro"
