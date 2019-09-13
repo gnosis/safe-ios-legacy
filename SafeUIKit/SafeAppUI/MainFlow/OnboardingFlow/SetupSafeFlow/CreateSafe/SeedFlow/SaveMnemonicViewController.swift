@@ -70,6 +70,7 @@ final class SaveMnemonicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = screenTitle
+        headerLabel.textColor = ColorName.darkBlue.color
         headerLabel.text = headerText
         configureMnemonic()
         copyButton.setTitle(Strings.copy, for: .normal)
@@ -86,6 +87,7 @@ final class SaveMnemonicViewController: UIViewController {
         }
         mnemonicWrapperView.layer.cornerRadius = 6
         mnemonicLabel.text = account.mnemonicWords.joined(separator: " ")
+        mnemonicLabel.textColor = ColorName.darkGrey.color
         mnemonicLabel.accessibilityIdentifier = "mnemonic"
     }
 
@@ -125,8 +127,10 @@ final class SaveMnemonicViewController: UIViewController {
 
     private func configureDescriptionAndWarning() {
         descriptionLabel.text = Strings.description
+        descriptionLabel.textColor = ColorName.darkGrey.color
         descriptionLabel.accessibilityIdentifier = "description"
         warningLabel.text = Strings.warning
+        warningLabel.textColor = ColorName.darkGrey.color
         warningLabel.accessibilityIdentifier = "warning"
     }
 

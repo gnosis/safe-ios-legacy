@@ -103,6 +103,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     private func configureTexts() {
         title = screenTitle
         headerLabel.text = Strings.header
+        headerLabel.textColor = ColorName.darkBlue.color
         let nextButton = UIBarButtonItem(title: Strings.next, style: .plain, target: self, action: #selector(confirm))
         navigationItem.rightBarButtonItem = nextButton
     }
