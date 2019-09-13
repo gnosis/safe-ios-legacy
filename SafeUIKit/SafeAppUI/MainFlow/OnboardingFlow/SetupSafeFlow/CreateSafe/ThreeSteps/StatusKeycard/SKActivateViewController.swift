@@ -91,9 +91,9 @@ class SKActivateViewController: UIViewController {
         confirmButton.isEnabled = false
         DispatchQueue.global().async { [unowned self] in
             do {
-                try ApplicationServiceRegistry.keycardService.pair(password: self.credentials.pairingPassword,
-                                                                   pin: self.credentials.pin,
-                                                                   initializeWithPUK: self.credentials.puk)
+                try ApplicationServiceRegistry.keycardService.connectKeycard(password: self.credentials.pairingPassword,
+                                                                             pin: self.credentials.pin,
+                                                                             initializeWithPUK: self.credentials.puk)
                 self.isActivationInProgress = false
                 DispatchQueue.main.async {
                     self.delegate?.activateViewControllerDidActivate(self)

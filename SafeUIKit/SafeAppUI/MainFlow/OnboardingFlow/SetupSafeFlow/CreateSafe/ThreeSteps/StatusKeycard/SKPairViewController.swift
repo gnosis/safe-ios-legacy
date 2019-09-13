@@ -148,7 +148,7 @@ class SKPairViewController: UIViewController {
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             do {
-                try ApplicationServiceRegistry.keycardService.pair(password: password, pin: pin)
+                try ApplicationServiceRegistry.keycardService.connectKeycard(password: password, pin: pin)
                 self.isPairingInProgress = false
 
                 DispatchQueue.main.async {
