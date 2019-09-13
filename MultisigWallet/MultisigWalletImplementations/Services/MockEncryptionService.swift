@@ -71,6 +71,10 @@ public class MockEncryptionService: EncryptionDomainService {
         return addressFromStringResult ?? Address(string)
     }
 
+    public func address(publicKey: Data) -> Address {
+        preconditionFailure()
+    }
+
     public var hash_output = Data(repeating: 3, count: 32)
     public var hash_input: Data?
 

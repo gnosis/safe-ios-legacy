@@ -9,13 +9,13 @@ import MultisigWalletApplication
 
 class KeycardInitializer {
 
-    weak var keycard: KeycardFacade!
+    private weak var keycard: KeycardFacade!
 
-    var pin: String!
-    var password: String!
-    var puk: String!
-    var pathComponent: KeyPathComponent!
-    var info: ApplicationInfo!
+    private var pin: String!
+    private var password: String!
+    private var puk: String!
+    private var pathComponent: KeyPathComponent!
+    private var info: ApplicationInfo!
 
     private let ethereumMainnetHDWalletPath = "m/44'/60'/0'/0"
     private let hdPathSeparator = "/"
@@ -185,6 +185,7 @@ class KeycardInitializer {
     //   - KeycardDomainServiceError.keycardBlocked: if the PIN is blocked
     //   - KeycardDomainServiceError.invalidPin: if PIN is invalid and can be re-tried
     func authenticate() throws {
+        assert(pin != nil)
         // Trying to authenticate with PIN for further key generation and derivation.
         do {
             try keycard.authenticate(pin: pin)
@@ -217,11 +218,11 @@ class KeycardInitializer {
     //   - keycard derives the key m/44'/60'/0'/0/<lastPathComponent>
     //   - the derived key is selected as current keycard key
     func deriveKey() throws -> (keypath: String, publicKey: Data, address: Address) {
+        assert(pathComponent != nil)
         let keypath = ethereumMainnetHDWalletPath + hdPathSeparator + String(pathComponent)
         let publicKey = try keycard.exportPublicKey(path: keypath, makeCurrent: true)
-        let address = Address(EthereumKitEthereumService().createAddress(publicKey: publicKey))
-        let formattedAddress = DomainRegistry.encryptionService.address(from: address.value)!
-        return (keypath, publicKey, formattedAddress)
+        let address = DomainRegistry.encryptionService.address(publicKey: publicKey)
+        return (keypath, publicKey, address)
     }
 
 }

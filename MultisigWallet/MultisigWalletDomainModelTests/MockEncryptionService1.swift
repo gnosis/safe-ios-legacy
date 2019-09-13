@@ -114,4 +114,8 @@ class MockEncryptionService1: EncryptionDomainService {
         preconditionFailure("not implemented")
     }
 
+    func address(publicKey: Data) -> Address {
+        preconditionFailure()
+    }
+
 }
