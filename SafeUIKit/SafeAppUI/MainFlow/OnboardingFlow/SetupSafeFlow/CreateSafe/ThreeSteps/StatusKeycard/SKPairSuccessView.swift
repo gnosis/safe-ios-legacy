@@ -28,6 +28,11 @@ class SKPairSuccessView: BaseCustomView {
 
     }
 
+    enum Strings {
+        static let title = LocalizedString("keycard_paired", comment: "Paired")
+        static let text = LocalizedString("after_finishing_setup", comment: "Description")
+    }
+
     override func commonInit() {
         safeUIKit_loadFromNib(forClass: SKPairSuccessView.self)
 
@@ -35,11 +40,8 @@ class SKPairSuccessView: BaseCustomView {
         wrapperView.heightAnchor.constraint(equalTo: contentStackView.heightAnchor).isActive = true
         wrapAroundDynamicHeightView(wrapperView, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
 
-        titleLabel.attributedText = NSAttributedString(string: LocalizedString("keycard_paired", comment: "Paired"),
-                                                       style: TitleStyle())
-        textLabel.attributedText = NSAttributedString(string: LocalizedString("after_finishing_setup",
-                                                                              comment: "Description"),
-                                                      style: TextStyle())
+        titleLabel.attributedText = NSAttributedString(string: Strings.title, style: TitleStyle())
+        textLabel.attributedText = NSAttributedString(string: Strings.text, style: TextStyle())
     }
 
 }

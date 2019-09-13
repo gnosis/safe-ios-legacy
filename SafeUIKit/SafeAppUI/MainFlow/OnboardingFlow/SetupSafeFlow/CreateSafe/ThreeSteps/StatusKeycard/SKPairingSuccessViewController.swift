@@ -13,20 +13,22 @@ class SKPairingSuccessViewController: NewSafeThreeStepsBaseController {
 
     private var onRemove: (() -> Void)!
 
+    enum Strings {
+        static let title = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
+    }
+
     static func create(onNext: @escaping () -> Void, onRemove: @escaping () -> Void) -> SKPairingSuccessViewController {
         let controller = SKPairingSuccessViewController(nibName: String(describing: CardViewController.self),
                                                         bundle: Bundle(for: CardViewController.self))
         controller.onNext = onNext
         controller.onRemove = onRemove
-        controller.backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
+        controller.backButtonItem = UIBarButtonItem.backButton(target: controller, action: #selector(back))
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.title = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
-
+        navigationItem.title = Strings.title
         embed(view: pairSuccessView, inCardSubview: cardHeaderView)
     }
 
@@ -40,10 +42,13 @@ class SKPairingSuccessViewController: NewSafeThreeStepsBaseController {
     }
 
     @objc func back() {
-        let alert = UIAlertController.create(title: LocalizedString("remove_paired", comment: "Remove?"),
-                                             message: LocalizedString("paired_will_be_lost", comment: "You'll remove"))
+        let title = LocalizedString("remove_paired", comment: "Remove?")
+        let message = LocalizedString("paired_will_be_lost", comment: "You'll remove")
+        let remove = LocalizedString("remove", comment: "Remove")
+
+        let alert = UIAlertController.create(title: title, message: message)
             .withCloseAction()
-            .withDestructiveAction(title: LocalizedString("remove", comment: "Remove")) { [unowned self] in
+            .withDestructiveAction(title: remove) { [unowned self] in
                 ApplicationServiceRegistry.keycardService.removeKeycard()
                 self.onRemove()
         }

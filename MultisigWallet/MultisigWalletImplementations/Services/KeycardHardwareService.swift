@@ -19,6 +19,15 @@ public class KeycardHardwareService: KeycardDomainService {
             LocalizedString("unsupported_tag", comment: "Tag not supported"),
             LocalizedString("tag_connection_error", comment: "Tag error"))
 
+    enum Strings {
+        static let pairingInProgress = LocalizedString("pairing_wait", comment: "Initializing")
+        static let success = LocalizedString("success", comment: "Success")
+        static let lostConnection = LocalizedString("tag_connection_lost", comment: "Lost connection")
+        static let genericError = LocalizedString("operation_failed", comment: "Operation failed")
+        static let startScanInstruction = LocalizedString("hold_near_card", comment: "Hold device near the card")
+        static let activationInProgress = LocalizedString("initializing_wait", comment: "Initializing")
+    }
+
     public init() {}
 
     public var isAvailable: Bool { return KeycardController.isAvailable }
@@ -29,7 +38,7 @@ public class KeycardHardwareService: KeycardDomainService {
         return try doPair(password: password,
                           pin: pin,
                           keyPathComponent: keyPathComponent) { [unowned self] cmdSet in
-                            self.keycardController?.setAlert(LocalizedString("pairing_wait", comment: "Initializing"))
+                            self.keycardController?.setAlert(Strings.pairingInProgress)
 
                             let info = try ApplicationInfo(cmdSet.select().checkOK().data)
 
@@ -154,7 +163,8 @@ public class KeycardHardwareService: KeycardDomainService {
 
                     // expected to succeed, no specific error handling here.
                     try cmdSet.autoOpenSecureChannel()
-                }
+
+                } // did pair successfully at this point, secure channel is opened.
 
                 // Trying to authenticate with PIN for further key generation and derivation.
                 //
@@ -169,19 +179,24 @@ public class KeycardHardwareService: KeycardDomainService {
                     throw KeycardDomainServiceError.invalidPin(attempts)
                 }
 
+                // Generate master key if it's not present
+
                 var masterKeyUID = info.keyUID
 
                 if masterKeyUID.isEmpty {
                     masterKeyUID = try cmdSet.generateKey().checkOK().data
                 }
 
+                // Derive the key to be wallet owner, and then get the key's Ethereum address
                 let keypath = KeycardHardwareService.ethereumMainnetHDWalletPath +
                               KeycardHardwareService.hdPathSeparator +
                               String(keyPathComponent)
                 let exportKeyData = try cmdSet.exportKey(path: keypath, makeCurrent: true, publicOnly: true).checkOK().data
+
                 let bip32KeyPair = try BIP32KeyPair(fromTLV: exportKeyData)
                 let derivedPublicKey = Data(bip32KeyPair.publicKey)
                 let address = Address(EthereumKitEthereumService().createAddress(publicKey: derivedPublicKey))
+
                 let key = KeycardKey(address: address,
                                      instanceUID: Data(info.instanceUID),
                                      masterKeyUID: Data(masterKeyUID),
@@ -190,46 +205,46 @@ public class KeycardHardwareService: KeycardDomainService {
                 DomainRegistry.keycardRepository.save(key)
 
                 result = .success(address)
-                self.keycardController?.stop(alertMessage: LocalizedString("success", comment: "Success"))
+                self.keycardController?.stop(alertMessage: Strings.success)
             } catch let error as NFCReaderError {
                 result = .failure(error)
                 if error.code == NFCReaderError.readerTransceiveErrorTagConnectionLost {
-                    self.keycardController?.stop(errorMessage: LocalizedString("tag_connection_lost",
-                                                                               comment: "Lost connection"))
+                    self.keycardController?.stop(errorMessage: Strings.lostConnection)
                 }
             } catch {
                 result = .failure(error)
-                self.keycardController?.stop(errorMessage: LocalizedString("operation_failed",
-                                                                           comment: "Operation failed"))
+                self.keycardController?.stop(errorMessage: Strings.genericError)
             }
             semaphore.signal()
         }, onFailure: { error in
+
             result = .failure(error)
+
             if let readerError = error as? NFCReaderError {
                 switch readerError.code {
-                    case NFCReaderError.readerSessionInvalidationErrorSessionTimeout,
-                         NFCReaderError.readerSessionInvalidationErrorSessionTerminatedUnexpectedly:
-                        result = .failure(KeycardApplicationService.Error.timeout)
-                    case NFCReaderError.readerSessionInvalidationErrorUserCanceled,
-                         NFCReaderError.readerSessionInvalidationErrorSystemIsBusy:
-                        result = .failure(KeycardApplicationService.Error.userCancelled)
-                    default:
-                        break
+
+                case NFCReaderError.readerSessionInvalidationErrorSessionTimeout,
+                     NFCReaderError.readerSessionInvalidationErrorSessionTerminatedUnexpectedly:
+                    result = .failure(KeycardApplicationService.Error.timeout)
+
+                case NFCReaderError.readerSessionInvalidationErrorUserCanceled,
+                     NFCReaderError.readerSessionInvalidationErrorSystemIsBusy:
+                    result = .failure(KeycardApplicationService.Error.userCancelled)
+
+                default: break
                 }
             }
             semaphore.signal()
         })
 
-        keycardController?.start(alertMessage: LocalizedString("hold_near_card", comment: "Hold device near the card"))
+        keycardController?.start(alertMessage: Strings.startScanInstruction)
         semaphore.wait()
         keycardController = nil
 
         assert(result != nil, "Result must be set after pairing")
         switch result! {
-        case .success(let address):
-            return address
-        case .failure(let error):
-            throw error
+        case .success(let address): return address
+        case .failure(let error): throw error
         }
 
     }
@@ -255,12 +270,15 @@ public class KeycardHardwareService: KeycardDomainService {
     }
 
     //  Initializes the card, pairs it, generates master key, and derives a signing key by key_component
-    public func initialize(pin: String, puk: String, pairingPassword: String, keyPathComponent: KeyPathComponent) throws -> Address  {
+    public func initialize(pin: String,
+                           puk: String,
+                           pairingPassword: String,
+                           keyPathComponent: KeyPathComponent) throws -> Address {
         return try doPair(password: pairingPassword,
                           pin: pin,
                           keyPathComponent: keyPathComponent) { [unowned self] cmdSet in
 
-                            self.keycardController?.setAlert(LocalizedString("initializing_wait", comment: "Initializing"))
+                            self.keycardController?.setAlert(Strings.activationInProgress)
 
                             let info = try ApplicationInfo(cmdSet.select().checkOK().data)
 

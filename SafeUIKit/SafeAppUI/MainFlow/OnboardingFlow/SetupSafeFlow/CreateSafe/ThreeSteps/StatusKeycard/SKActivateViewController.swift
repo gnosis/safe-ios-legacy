@@ -25,11 +25,22 @@ class SKActivateViewController: UIViewController {
 
     private let credentials = ApplicationServiceRegistry.keycardService.generateCredentials()
     private var tooltipSource: TooltipSource!
-    private var credentialsText: String {
-        return String(format: LocalizedString("pin_puk_password", comment: "PIN: x, PUK: y, Password: z"),
-                      credentials.pin,
-                      credentials.puk,
-                      credentials.pairingPassword)
+
+    enum Strings {
+
+        static let screenTitle = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
+        static let title = LocalizedString("backup_credentials", comment: "Backup  your credentials")
+        static let description = LocalizedString("you_need_credentials", comment: "You'll need them")
+        static let confirmButtonTitle = LocalizedString("i_have_a_copy", comment: "I have a copy")
+        static let copyConfirmation = LocalizedString("copied_to_clipboard", comment: "Copied to clipboard")
+
+        static func credentials(_ credentials: (pin: String, puk: String, pairingPassword: String)) -> String {
+            String(format: LocalizedString("pin_puk_password", comment: "PIN: x, PUK: y, Password: z"),
+                   credentials.pin,
+                   credentials.puk,
+                   credentials.pairingPassword)
+        }
+
     }
 
     static func create(delegate: SKActivateViewControllerDelegate) -> SKActivateViewController {
@@ -40,20 +51,15 @@ class SKActivateViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
+        navigationItem.title = Strings.screenTitle
 
-        titleLabel.attributedText = NSAttributedString(string: LocalizedString("backup_credentials",
-                                                                               comment: "Backup  your credentials"),
-                                                       style: TitleStyle())
-
-        descriptionLabel.attributedText = NSAttributedString(string: LocalizedString("you_need_credentials",
-                                                                                     comment: "You'll need them"),
-                                                             style: TextStyle())
+        titleLabel.attributedText = NSAttributedString(string: Strings.title, style: TitleStyle())
+        descriptionLabel.attributedText = NSAttributedString(string: Strings.description, style: TextStyle())
 
         confirmButton.style = .filled
-        confirmButton.setTitle(LocalizedString("i_have_a_copy", comment: "I have a copy"), for: .normal)
+        confirmButton.setTitle(Strings.confirmButtonTitle, for: .normal)
 
-        credentialsLabel.attributedText = NSAttributedString(string: credentialsText,
+        credentialsLabel.attributedText = NSAttributedString(string: Strings.credentials(credentials),
                                                              style: NormalCredentialsLabelStyle())
 
         // swiftlint:disable:next multiline_arguments
@@ -64,7 +70,7 @@ class SKActivateViewController: UIViewController {
         }, onDisappear: { [unowned self] in
             self.setCredentialsLabelSelected(false)
         })
-        tooltipSource.message = LocalizedString("copied_to_clipboard", comment: "Copied to clipboard")
+        tooltipSource.message = Strings.copyConfirmation
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -74,7 +80,7 @@ class SKActivateViewController: UIViewController {
 
     func setCredentialsLabelSelected(_ selected: Bool) {
         let style = selected ? SelectedCredentialsLabelStyle() : NormalCredentialsLabelStyle()
-        credentialsLabel.attributedText = NSAttributedString(string: credentialsText, style: style)
+        credentialsLabel.attributedText = NSAttributedString(string: Strings.credentials(credentials), style: style)
     }
 
     private var isActivationInProgress = false
@@ -96,24 +102,27 @@ class SKActivateViewController: UIViewController {
                 self.isActivationInProgress = false
                 DispatchQueue.main.async {
                     self.confirmButton.isEnabled = true
-
-                    switch error {
-                    case KeycardApplicationService.Error.keycardAlreadyInitialized:
-                        let message = LocalizedString("keycard_already_activated", comment: "Already activated")
-                        self.present(UIAlertController.operationFailed(message: message), animated: true)
-
-                    case KeycardApplicationService.Error.userCancelled,
-                         KeycardApplicationService.Error.timeout:
-                        // do nothing
-                        break
-
-                    default:
-                        let errorText = LocalizedString("ios_error_description",
-                                                        comment: "Generic error message. Try again.")
-                        self.present(UIAlertController.operationFailed(message: errorText), animated: true)
-                    }
+                    self.showError(error)
                 }
             }
+        }
+    }
+
+    private func showError(_ error: Error) {
+        switch error {
+        case KeycardApplicationService.Error.keycardAlreadyInitialized:
+            let message = LocalizedString("keycard_already_activated", comment: "Already activated")
+            self.present(UIAlertController.operationFailed(message: message), animated: true)
+
+        case KeycardApplicationService.Error.userCancelled,
+             KeycardApplicationService.Error.timeout:
+            // do nothing
+            break
+
+        default:
+            let errorText = LocalizedString("ios_error_description",
+                                            comment: "Generic error message. Try again.")
+            self.present(UIAlertController.operationFailed(message: errorText), animated: true)
         }
     }
 
