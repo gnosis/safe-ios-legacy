@@ -210,6 +210,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Gnosis Safe Authenticator description */
 "gnosis_safe_authenticator_description" = "The Authenticator is an extension for Google Chrome connected to the Safe.";
 
+/* I have no password */
+"have_no_password" = "I don't have password";
+
 /* 'Submitted' parameter name */
 "header_submitted" = "Submitted";
 
@@ -520,6 +523,12 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 
 /* Pair 2FA device */
 "pair_2FA_device" = "Pair 2FA device";
+
+/* Pair 2FA device */
+"pair_2fa_device" = "Pair 2FA device";
+
+/* Pair Keycard */
+"pair_keycard" = "Pair Keycard";
 
 /* Pair the Safe with a 2FA device */
 "pair_safe_with_two_fa" = "Pair the Safe with a 2FA device";
@@ -903,6 +912,11 @@ Gnosis Safe allows you to safe your ETH and pay network fees with ERC-20 tokens.
 
 /* You can replace your phrase */
 "you_can_replace_phrase_anytime" = "You can replace your recovery phrase in the Safe menu at any time.";
+
+/* You'll need them */
+"you_need_credentials" = "You’ll need these credentials together with your Keycard to confirm each transaction.\
+\
+We recommend using a password manager or writing the credentials down and storing the paper-copy in a safe place that only you have access to.";
 
 /* New Safe onboarding 4 description */
 "your_funds_are_held_securely" = "Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis.\
