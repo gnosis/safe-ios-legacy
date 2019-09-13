@@ -10,6 +10,15 @@ import CoreNFC
 
 typealias KeycardDomainServiceError = KeycardApplicationService.Error
 
+// General
+//
+//  - Keycard Transieving errors:
+//      - CoreNFCCardChannel.Error.invalidAPDU if the KeycardSDK creates invalid APDU data struct (should not happen)
+//      - NFCReaderError.* if any NFC error encountered during sending the command, including
+//      user cancelling NFC reading, timeout, connection loss and others. This is likely to happen.
+
+/// This class implements methods for interaction with the NFC hardware and executing various commands on the Keycard
+/// for its activating, pairing, and signing data.
 public class KeycardHardwareService: KeycardDomainService {
 
     private var keycardController: KeycardController?
@@ -40,6 +49,18 @@ public class KeycardHardwareService: KeycardDomainService {
                               prepare: prepareForPairing)
     }
 
+    // requires:
+    //   - keycard is initialized
+    // guarantees:
+    //   - 'in progress' message is displayed in NFC pop-up view
+    //   - default applet is selected
+    // throws:
+    //   -  if failed to send the SELECT command to the card:
+    //      - Keycard SDK caused by invalid response received from the card (unlikely to happen):
+    //          - TLVError.endOfTLV if failed to parse response data
+    //          - TLVError.unexpectedTag if failed to parse the response data
+    //          - TLVError.unexpectedLength if failed to parse response data
+    //   - KeycardDomainServiceError.keycardNotInitialized - if card is not initialized
     private func prepareForPairing(_ cmdSet: KeycardCommandSet) throws -> ApplicationInfo {
         self.keycardController?.setAlert(Strings.pairingInProgress)
 
@@ -67,6 +88,22 @@ public class KeycardHardwareService: KeycardDomainService {
         })
     }
 
+    // CardError.invalidMac if transmit fails during intiailziation (encryption is wrong)
+    // reader errors
+
+    // requires:
+    //   - pin: 6 digits
+    //   - puk: 12 digits
+    //   - password: non-empty string
+    //   - not initialized keycard
+    // guarantees:
+    //   - "in-progress" message displayed in the NFC pop-up
+    //   - keycard is initialized with pin, puk, and password
+    // throws:
+    //   - KeycardDomainServiceError.keycardAlreadyInitialized: if the keycard was already initialized
+    //   - Keycard Transieving errors
+    //   - StatusWord.dataInvalid: if the SDK created invalid data for the keycard.
+    //   - SELECT command errors (TLVError). Not likely to happen.
     private func initializeBeforePairing(pin: String,
                                          puk: String,
                                          password: String,
@@ -91,9 +128,30 @@ public class KeycardHardwareService: KeycardDomainService {
         return try ApplicationInfo(cmdSet.select().checkOK().data)
     }
 
-    /// This is a general wrapper handling interaction with the NFC via KeycardController. It handles
-    /// starting and stopping of the NFC session, setting alert messages and providing environment for
+    /// This is a general wrapper handling interaction with the NFC via KeycardController.
+    ///
+    /// It handles starting and stopping of the NFC session, setting alert messages and providing environment for
     /// the `prepare()` closure and `pairKeycard()` method
+    ///
+    /// requires:
+    ///   - keycardController be nil (no other NFC reading session is active)
+    ///   - method must be called on background thread
+    ///   - password: valid pairing password for the keycard
+    ///   - pin: valid pairing pin for the keycard
+    ///   - prepare: must select the applet and return the application info.
+    ///     The keycard must be initialized at this point.
+    /// guarantees:
+    ///   - keycardController will be nil
+    ///   - NFC reading will start with an instructive message shown in NFC UI
+    ///   - if key derivation succeeds, the "success" message is shown in NFC UI
+    ///   - if error happens, then "error" messages are shown in NFC UI
+    ///   - see `deriveKeyInKeycard` for underlying logic
+    /// throws:
+    ///   - whatever the `prepare` will throw
+    ///   - whatever `deriveKeyInKeycard` will throw
+    ///   - some NFCReaderErrors will be re-thrown as:
+    ///     - KeycardApplicationService.Error.timeout
+    ///     - KeycardApplicationService.Error.userCancelled
     private func pairViaNFC(password: String,
                             pin: String,
                             keyPathComponent: KeyPathComponent,
@@ -168,7 +226,17 @@ public class KeycardHardwareService: KeycardDomainService {
     ///   - save the derived keypath, address, and public key in the database,
     ///   - and return the Ethereum address based on the derived public key.
     ///
-    /// NOTE: this method specifically kept long to make one whole flow of commands sent to the Keycard visible.
+    /// requires:
+    ///   - keycard in initialized state with set intstanceUID
+    ///   - valid pairing password and pin for the keycard
+    ///   - last path component for the HD wallet derivation path
+    /// guarantees:
+    ///   - keycard is paired
+    ///   - pairing is saved in the KeycardRepository
+    ///   - master key is present
+    ///   - keycard derived the key under m/44'/60'/0'/0/<keypathComponent> path from master key.
+    ///   - the derived key is saved in the KeycardRepository
+    ///   - the derived key is set as current signing key on the keycard
     private func deriveKeyInKeycard(cmdSet: KeycardCommandSet,
                                     info: ApplicationInfo,
                                     password: String,
@@ -185,14 +253,21 @@ public class KeycardHardwareService: KeycardDomainService {
 
         // If we don't save the data, then the access to the key is lost - we must know the keypath in the future
         // and we must know the address associated with the keypath.
-        DomainRegistry.keycardRepository.save(KeycardKey(address: address,
+        let formattedAddress = DomainRegistry.encryptionService.address(from: address.value)!
+        DomainRegistry.keycardRepository.save(KeycardKey(address: formattedAddress,
                                                          instanceUID: Data(info.instanceUID),
                                                          masterKeyUID: masterKeyUID,
                                                          keyPath: keypath,
                                                          publicKey: publicKey))
-        return address
+        return formattedAddress
     }
 
+    // requires:
+    //   - pairing exists for the `instanceUID` in the KeycardRepository
+    //   - keycard was paired with the pairing before and it is still valid (present in the keycard)
+    // guarantees:
+    //   - upon success (returned true): the secure channel is open using the existing pairing
+    //   - if pairing is not valid anymore, it is removed from the KeycardRepository
     private func connectUsingExistingPairing(cmdSet: KeycardCommandSet, instanceUID: [UInt8]) throws -> Bool {
         guard let pairing = DomainRegistry.keycardRepository.findPairing(instanceUID: Data(instanceUID)) else {
             return false
@@ -236,6 +311,17 @@ public class KeycardHardwareService: KeycardDomainService {
             error as? StatusWord == StatusWord.securityConditionNotSatisfied
     }
 
+    // requires:
+    //   - initialized keycard with applet selected
+    //   - valid pairing password
+    //   - pairing slots remaining in the keycard
+    // guarantees:
+    //   - keycard is paired
+    //   - the pairing is stored in the KeycardRepository under `info.instanceUID`
+    //   - the secure channel is opened
+    // throws:
+    //   - KeycardDomainServiceError.invalidPairingPassword: if pairing failed because of password is wrong
+    //   - KeycardDomainServiceError.noPairingSlotsRemaining: if no more slots remaining to pair in the keycard
     private func establishNewPairing(cmdSet: KeycardCommandSet, info: ApplicationInfo, password: String) throws {
         guard info.freePairingSlots > 0 else {
             throw KeycardDomainServiceError.noPairingSlotsRemaining
@@ -295,6 +381,15 @@ public class KeycardHardwareService: KeycardDomainService {
             error as? StatusWord == StatusWord.securityConditionNotSatisfied
     }
 
+    // requires:
+    //   - keycard is paired
+    //   - secure channel is open
+    //   - valid pin for the keycard
+    // guarantees:
+    //   - keycard authenticated and ready for sensitive commands
+    // throws:
+    //   - KeycardDomainServiceError.keycardBlocked: if the PIN is blocked
+    //   - KeycardDomainServiceError.invalidPin: if PIN is invalid and can be re-tried
     private func authenticate(cmdSet: KeycardCommandSet, pin: String) throws {
         // Trying to authenticate with PIN for further key generation and derivation.
         //
@@ -313,6 +408,13 @@ public class KeycardHardwareService: KeycardDomainService {
     // Generate master key if it's not present. We want to use a derived key from the master key
     // so that the owner address (generated from the key) of the wallet is different for different
     // wallets.
+    //
+    // requires:
+    //   - keycard is paired
+    //   - secure channel is opened
+    //   - keycard authenticated with PIN
+    // guarantees:
+    //   - master key exists on the keycard
     private func generateMasterKeyIfNeeded(cmdSet: KeycardCommandSet, info: ApplicationInfo) throws -> Data {
         return try Data(info.keyUID.isEmpty ? cmdSet.generateKey().checkOK().data : info.keyUID)
     }
@@ -326,6 +428,14 @@ public class KeycardHardwareService: KeycardDomainService {
             String(lastComponent)
     }
 
+    // requires:
+    //   - keycard is paired
+    //   - secure channel is opened
+    //   - keycard authenticated with PIN
+    //   - master key exists in the keycard
+    // guarantees:
+    //   - keycard derives the key m/44'/60'/0'/0/<lastPathComponent>
+    //   - the derived key is selected as current keycard key
     private func deriveKey(cmdSet: KeycardCommandSet, lastPathComponent: KeyPathComponent) throws ->
         (keypath: String, publicKey: Data, address: Address) {
             // Derive the key to be the wallet owner, and then get the key's Ethereum address
@@ -346,6 +456,13 @@ public class KeycardHardwareService: KeycardDomainService {
     }
 
     /// This method will generate valid credentials for initializing the Keycard.
+    ///
+    /// requires:
+    ///   - nothing
+    /// guarantees:
+    ///   - pin generated as a 6-digit random string
+    ///   - puk generated as a 12-digit random string
+    ///   - pairingPassword generated asa 12-character alpha-numeric-symbol string
     public func generateCredentials() -> (pin: String, puk: String, pairingPassword: String) {
         return (pin: randomString(of: CredentialsParams.pinLength, alphabet: CredentialsParams.pinPukAlphabet),
                 puk: randomString(of: CredentialsParams.pukLength, alphabet: CredentialsParams.pinPukAlphabet),
@@ -354,12 +471,22 @@ public class KeycardHardwareService: KeycardDomainService {
     }
 
     // simple N out of M random algorithm. Did not use more advanced idea in lieu of simplicity.
+    // requires:
+    //    - nothing
+    // guarantees:
+    //   - for positive length and non-empty alphabet,
+    //   string of `length` random characters from the alphabet is returned
     private func randomString(of length: Int, alphabet: String) -> String {
         guard length > 0 && !alphabet.isEmpty else { return "" }
         return (0..<length).map { _ in String(alphabet.randomElement()!) }.joined()
     }
 
     /// This will remove the Keycard key information associated with the address
+    ///
+    /// requires:
+    ///   - nothing
+    /// guarantees:
+    ///   - if there is a key for the address in the KeycardRepository, it will be removed.
     public func forgetKey(for address: Address) {
         // We do not remove stored pairing on purpose in order not to spoil too many pairing slots.
         // every time the same card goes through the pairing process, we will reuse existing pairing.

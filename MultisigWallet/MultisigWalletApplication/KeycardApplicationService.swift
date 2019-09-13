@@ -28,6 +28,10 @@ open class KeycardApplicationService {
 
     /// This method will pair with the card, deriving the key and adding it as an owner to the selected safe.
     /// If the `initializeWithPUK` parameter passed, the card will be initialized before pairing.
+    // requires:
+    //   - selected wallet with existing device owner (.thisDevice)
+    // guarantees:
+    //   - keycard is paired or initialized, and the new 'keycard' owner is added to the selected wallet.
     open func connectKeycard(password: String, pin: String, initializeWithPUK: String? = nil) throws {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let deviceOwner = wallet.owner(role: .thisDevice)!
@@ -44,8 +48,7 @@ open class KeycardApplicationService {
                                                                          pin: pin,
                                                                          keyPathComponent: keyPathComponent)
         }
-        let formattedKeycardAddress = DomainRegistry.encryptionService.address(from: keycardOwnerAddress.value)!
-        wallet.addOwner(Owner(address: formattedKeycardAddress, role: .keycard))
+        wallet.addOwner(Owner(address: keycardOwnerAddress, role: .keycard))
         DomainRegistry.walletRepository.save(wallet)
     }
 
