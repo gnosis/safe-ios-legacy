@@ -151,7 +151,6 @@
 		0A60B516211333620066821A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B515211333620066821A /* ProgressViewController.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
 		0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEC205A8D63003619EF /* LocalizedString.swift */; };
-		0A6EF3C221BA7DD700F1074E /* OnboardingIntroViewController+CreateSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C121BA7DD700F1074E /* OnboardingIntroViewController+CreateSafe.swift */; };
 		0A6EF3C421BA802D00F1074E /* OnboardingIntroViewController+RecoverSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C321BA802D00F1074E /* OnboardingIntroViewController+RecoverSafe.swift */; };
 		0A6EF3C621BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C521BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift */; };
 		0A6EF3C821BA8CC100F1074E /* AddressInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C721BA8CC100F1074E /* AddressInputViewController.swift */; };
@@ -312,6 +311,10 @@
 		552D0FC923279C2000127223 /* TwoFATableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D0FC723279C2000127223 /* TwoFATableViewCell.swift */; };
 		552D0FCA23279C2000127223 /* TwoFATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552D0FC823279C2000127223 /* TwoFATableViewCell.xib */; };
 		552D0FE02327CD8F00127223 /* TwoFATableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */; };
+		552D1010232A644D00127223 /* SeedIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D100F232A644D00127223 /* SeedIntroViewController.swift */; };
+		552D1012232A6AD900127223 /* AttributedStringStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D1011232A6AD900127223 /* AttributedStringStyles.swift */; };
+		552D1014232A7D0D00127223 /* SeedSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D1013232A7D0D00127223 /* SeedSuccessViewController.swift */; };
+		552D1016232A8A2C00127223 /* ConnectAuthenticatorSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D1015232A8A2C00127223 /* ConnectAuthenticatorSuccessViewController.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -781,7 +784,6 @@
 		0A60B515211333620066821A /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
 		0A638BEC205A8D63003619EF /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
-		0A6EF3C121BA7DD700F1074E /* OnboardingIntroViewController+CreateSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingIntroViewController+CreateSafe.swift"; sourceTree = "<group>"; };
 		0A6EF3C321BA802D00F1074E /* OnboardingIntroViewController+RecoverSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingIntroViewController+RecoverSafe.swift"; sourceTree = "<group>"; };
 		0A6EF3C521BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A6EF3C721BA8CC100F1074E /* AddressInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewController.swift; sourceTree = "<group>"; };
@@ -970,6 +972,10 @@
 		552D0FC723279C2000127223 /* TwoFATableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFATableViewCell.swift; sourceTree = "<group>"; };
 		552D0FC823279C2000127223 /* TwoFATableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoFATableViewCell.xib; sourceTree = "<group>"; };
 		552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFATableViewController.swift; sourceTree = "<group>"; };
+		552D100F232A644D00127223 /* SeedIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedIntroViewController.swift; sourceTree = "<group>"; };
+		552D1011232A6AD900127223 /* AttributedStringStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringStyles.swift; sourceTree = "<group>"; };
+		552D1013232A7D0D00127223 /* SeedSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedSuccessViewController.swift; sourceTree = "<group>"; };
+		552D1015232A8A2C00127223 /* ConnectAuthenticatorSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectAuthenticatorSuccessViewController.swift; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -1277,7 +1283,6 @@
 				55BDA81623265189005C9E6A /* ThreeSteps */,
 				0A334E00209C8E3800ABC6AE /* CreateSafe.storyboard */,
 				0AC3F1722183674100DAADC9 /* OnboardingIntroViewController.swift */,
-				0A6EF3C121BA7DD700F1074E /* OnboardingIntroViewController+CreateSafe.swift */,
 				0A2D58932257674C001B8BF4 /* OnboardingIntroViewControllerTests.swift */,
 				0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */,
 				0A334E0A209C8E3800ABC6AE /* CreateSafeFlowCoordinatorTests.swift */,
@@ -1451,7 +1456,6 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				55CE9CFD2305608C00CB414D /* Onboarding */,
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
@@ -1773,6 +1777,7 @@
 				0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */,
 				0A3BD92022254C9E007039B4 /* SafeAppUIUnitTests-Info.plist */,
 				55CA308E2227DB0900E7AEA7 /* UIViewController+Tracking.swift */,
+				552D1011232A6AD900127223 /* AttributedStringStyles.swift */,
 			);
 			path = SafeAppUI;
 			sourceTree = "<group>";
@@ -2146,6 +2151,7 @@
 				558682CA2192F9840060F1DE /* TwoFA */,
 				5549B2A322859EFB00F3B5B7 /* PaymentMethod */,
 				55DFBCF52135901D004B2AC4 /* Unlock */,
+				55CE9CFD2305608C00CB414D /* Onboarding */,
 				0AE0FE67229D674400ABC552 /* UIViewController+Back.swift */,
 			);
 			path = ReusableDetachedControllers;
@@ -2227,14 +2233,17 @@
 		55BDA81623265189005C9E6A /* ThreeSteps */ = {
 			isa = PBXGroup;
 			children = (
-				55BDA8142326426A005C9E6A /* NewSafeThreeStepsBaseController.swift */,
-				55BDA817232651A2005C9E6A /* ThreeStepsToSecurityController.swift */,
-				55BDA819232652AF005C9E6A /* ThreeStepsToSecurityView.swift */,
-				55BDA81B23265367005C9E6A /* ThreeStepsToSecurityView.xib */,
+				552D1015232A8A2C00127223 /* ConnectAuthenticatorSuccessViewController.swift */,
 				55BDA8282326796E005C9E6A /* HeaderImageTextStepController.swift */,
 				55BDA83E23267A7C005C9E6A /* HeaderImageTextView.swift */,
 				55BDA84023267B32005C9E6A /* HeaderImageTextView.xib */,
+				55BDA8142326426A005C9E6A /* NewSafeThreeStepsBaseController.swift */,
 				55BDA84223268E3C005C9E6A /* PairWith2FAController.swift */,
+				552D100F232A644D00127223 /* SeedIntroViewController.swift */,
+				552D1013232A7D0D00127223 /* SeedSuccessViewController.swift */,
+				55BDA817232651A2005C9E6A /* ThreeStepsToSecurityController.swift */,
+				55BDA819232652AF005C9E6A /* ThreeStepsToSecurityView.swift */,
+				55BDA81B23265367005C9E6A /* ThreeStepsToSecurityView.xib */,
 				552D0FC723279C2000127223 /* TwoFATableViewCell.swift */,
 				552D0FC823279C2000127223 /* TwoFATableViewCell.xib */,
 				552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */,
@@ -3091,6 +3100,7 @@
 				0AD998B020D3FEBD00E6F3CA /* SendInputViewController.swift in Sources */,
 				0A3FB8D2228B16F100270573 /* UIBarButtonItem+Items.swift in Sources */,
 				5573535A2293F0AB00248F87 /* ReceiveFundsViewController.swift in Sources */,
+				552D1014232A7D0D00127223 /* SeedSuccessViewController.swift in Sources */,
 				5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */,
 				55BDA83F23267A7C005C9E6A /* HeaderImageTextView.swift in Sources */,
 				0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */,
@@ -3123,6 +3133,7 @@
 				0AC3F16E21830BD500DAADC9 /* OnboardingTermsViewController.swift in Sources */,
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
 				55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */,
+				552D1012232A6AD900127223 /* AttributedStringStyles.swift in Sources */,
 				0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				55BDA8292326796E005C9E6A /* HeaderImageTextStepController.swift in Sources */,
@@ -3143,7 +3154,6 @@
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
-				0A6EF3C221BA7DD700F1074E /* OnboardingIntroViewController+CreateSafe.swift in Sources */,
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
 				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */,
@@ -3203,6 +3213,7 @@
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
 				5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */,
 				55CE9CEE23040FB000CB414D /* ContractUpgradeHeaderView.swift in Sources */,
+				552D1010232A644D00127223 /* SeedIntroViewController.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
@@ -3242,6 +3253,7 @@
 				0A05951D22E99F050001D7D5 /* Colors.swift in Sources */,
 				552D0FC923279C2000127223 /* TwoFATableViewCell.swift in Sources */,
 				0A2C0E2A2297DCFF008A30AC /* FeePaidViewController.swift in Sources */,
+				552D1016232A8A2C00127223 /* ConnectAuthenticatorSuccessViewController.swift in Sources */,
 				0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */,
 				0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */,
 				0AE0FECE229EA7DD00ABC552 /* EmptyResultsView.swift in Sources */,

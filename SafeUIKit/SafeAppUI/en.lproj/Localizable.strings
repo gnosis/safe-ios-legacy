@@ -19,8 +19,15 @@
 /* Assets tab title */
 "assets" = "Assets";
 
+/* Authenticator paired description */
+"authenticator_paired_description" = "After finishing the Safe setup, you will need to open the Authenticator on your desktop computer to confirm each transaction.\
+You can replace or remove your 2FA device in the Safe menu at any time.";
+
 /* Back */
 "back" = "Back";
+
+/* Backup your recovery phrase */
+"backup_recovery" = "Backup your recovery phrase";
 
 /* Balance */
 "balance" = "Balance";
@@ -188,9 +195,6 @@
 /* Gnosis Safe Authenticator description */
 "gnosis_safe_authenticator_description" = "The Authenticator is an extension for Google Chrome connected to the Safe.";
 
-/* Guidelines */
-"guidelines" = "Guidelines";
-
 /* 'Submitted' parameter name */
 "header_submitted" = "Submitted";
 
@@ -290,9 +294,6 @@
 
 /* Scan its QR code. */
 "ios_install_browser_extension" = "2. Install the Authenticator on your desktop computer and scan its QR code.";
-
-/* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
-"ios_new_safe_guidelines_content" = "* Your Safe consists of:\n  1. This mobile app.\n  2. Gnosis Safe Authenticator.\n  3. Address and recovery phrase.\n* Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\n* If you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.\n";
 
 /* Download the 'Gnosis Safe Chrome browser exntension.' */
 "ios_open_be_link_substring" = "Gnosis Safe Authenticator link";
@@ -471,6 +472,9 @@
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Gnosis Safe Authenticator to confirm this transaction";
 
+/* Pair 2FA device */
+"pair_2FA_device" = "Pair 2FA device";
+
 /* Pair the Safe with a 2FA device */
 "pair_safe_with_two_fa" = "Pair the Safe with a 2FA device";
 
@@ -549,8 +553,12 @@
 /* Recovering safe */
 "recovering_safe" = "Recovering your Safe…";
 
-/* Title for setup recovery phrase screen. */
+/* Recovery phrase
+   Title for setup recovery phrase screen. */
 "recovery_phrase" = "Recovery phrase";
+
+/* Recovery phrase backed up */
+"recovery_phrase_backed_up" = "Recovery phrase successfully backed up ";
 
 /* Refresh */
 "refresh" = "Refresh";
@@ -576,6 +584,9 @@
 /* Review button for Send screen
    Review transaction title */
 "review" = "Review";
+
+/* Authenticator successfully paired */
+"safe_authenticator_paired" = "Gnosis Safe Authenticator successfully paired";
 
 /* Current balance
    Safe balance */
@@ -764,6 +775,10 @@
 /* Use selected device */
 "use_selected_device" = "Use selected device";
 
+/* Recovery phrase description */
+"use_the_phrase_on_the_next_screen" = "Use the phrase on the next screen, together with your Safe address, to recover your wallet in case you lose access to it.\
+We recommend using a password manager or writing the phrase down and storing the paper copy in a safe place that only you have access to.";
+
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
@@ -810,6 +825,9 @@ Gnosis Safe allows you to safe your ETH and pay network fees with ERC-20 tokens.
 
 /* Onboarding 2 description */
 "you_can_manage_connections" = "You can manage connections using the list of active sessions. Transaction requests from Dapps can be confirmed using your Safe.";
+
+/* You can replace your phrase */
+"you_can_replace_phrase_anytime" = "You can replace your recovery phrase in the Safe menu at any time.";
 
 /* New Safe onboarding 4 description */
 "your_funds_are_held_securely" = "Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis.\

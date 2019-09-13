@@ -85,6 +85,10 @@ extension ConnectBrowserExtensionFlowCoordinator: TwoFAViewControllerDelegate {
         push(reviewViewController())
     }
 
+    func didSelectOpenAuthenticatorInfo() {
+        SupportFlowCoordinator(from: self).openAuthenticatorInfo()
+    }
+
 }
 
 extension ConnectBrowserExtensionFlowCoordinator: ReviewTransactionViewControllerDelegate {

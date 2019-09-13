@@ -71,7 +71,7 @@ public class CardViewController: UIViewController {
             subtitleDetailLabel.isHidden = true
             return
         }
-        let detailText = NSMutableAttributedString(string: detail, style: SubtitleDetailStyle())
+        let detailText = NSMutableAttributedString(string: detail, style: DescriptionStyle())
         // non-breaking space before [?]
         detailText.append(NSAttributedString(string: "\u{00A0}[?]", style: SubtitleDetailRightButtonStyle()))
 
@@ -83,33 +83,19 @@ public class CardViewController: UIViewController {
         // override
     }
 
-    class CommonTextStyle: AttributedStringStyle {
+    class CommonTextStyle: DescriptionStyle {
 
-        override var fontSize: Double { return 17 }
-        override var fontWeight: UIFont.Weight { return .regular }
         override var fontColor: UIColor { return ColorName.darkBlue.color }
-
-        override var alignment: NSTextAlignment { return .center }
-
-        override var minimumLineHeight: Double { return 22 }
-        override var maximumLineHeight: Double { return 22 }
-
 
     }
 
-    class SubtitleStyle: CommonTextStyle {
+    class SubtitleStyle: DescriptionStyle {
 
         override var fontWeight: UIFont.Weight { return .semibold }
 
     }
 
-    class SubtitleDetailStyle: CommonTextStyle {
-
-        override var fontColor: UIColor { return ColorName.darkGrey.color }
-
-    }
-
-    class SubtitleDetailRightButtonStyle: CommonTextStyle {
+    class SubtitleDetailRightButtonStyle: DescriptionStyle {
 
         override var fontColor: UIColor { return ColorName.hold.color }
 
