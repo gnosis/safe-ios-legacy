@@ -24,7 +24,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_startViewController_returnsSetupSafeStartVC() {
-        assert(topViewController, is: OnboardingIntroViewController.self)
+        assert(topViewController, is: OnboardingViewController.self)
     }
 
     func test_didSelectBrowserExtensionSetup_showsController() {
@@ -134,7 +134,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_startStates() {
-        assert(when: .draft, then: OnboardingIntroViewController.self)
+        assert(when: .draft, then: OnboardingViewController.self)
         assert(when: .deploying, then: OnboardingCreationFeeViewController.self)
         assert(when: .waitingForFirstDeposit, then: OnboardingCreationFeeViewController.self)
         assert(when: .notEnoughFunds, then: OnboardingCreationFeeViewController.self)
@@ -167,7 +167,7 @@ private extension CreateSafeFlowCoordinatorTests {
     }
 
     func assert<T>(_ object: Any?, is aType: T.Type, file: StaticString = #file, line: UInt = #line) {
-        let message = "Expected \(T.self) but got \(String(describing: type(of: object)))"
+        let message = "Expected \(T.self) but got \(object == nil ? "nil" : String(reflecting: type(of: object!)))"
         XCTAssertTrue(object is T, message, file: file, line: line)
     }
 
