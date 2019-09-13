@@ -5,6 +5,7 @@
 import XCTest
 @testable import MultisigWalletImplementations
 import MultisigWalletDomainModel
+import Database
 
 class DBKeycardRepositoryTests: XCTestCase {
 
@@ -36,7 +37,7 @@ class DBKeycardRepositoryTests: XCTestCase {
 
         // key
 
-        let address = Adddress.testAddress1
+        let address = Address.testAccount1
         XCTAssertNil(repo.findKey(with: address))
 
         let key = KeycardKey(address: address,
@@ -47,7 +48,7 @@ class DBKeycardRepositoryTests: XCTestCase {
 
         repo.save(key)
         XCTAssertEqual(repo.findKey(with: address), key)
-        XCTAssertNil(repo.findKey(with: .testAddress2))
+        XCTAssertNil(repo.findKey(with: .testAccount2))
 
         repo.remove(key)
         XCTAssertNil(repo.findKey(with: address))

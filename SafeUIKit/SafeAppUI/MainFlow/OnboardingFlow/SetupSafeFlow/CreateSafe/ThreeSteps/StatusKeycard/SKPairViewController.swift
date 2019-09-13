@@ -101,28 +101,19 @@ class SKPairViewController: UIViewController {
         keyboardBehavior.stop()
     }
 
-    func didEnterValidTextInPairingPasswordField() {
-        updateButtonsEnabled()
-        _ = pinField.becomeFirstResponder()
-    }
-
-    func updateButtonsEnabled() {
-        setButtons(enabled: pairingPasswordField.isValid && pinField.isValid)
-    }
-
     func setButtons(enabled: Bool) {
         pairButton.isEnabled = enabled
         initializeButton.isEnabled = enabled
     }
 
-    func didEnterValidTextInPinField() {
-        updateButtonsEnabled()
-        pairKeycard()
-    }
-
     var isPairingInProgress = false
 
     @IBAction @objc func pairKeycard() {
+        guard pairingPasswordField.isValid && pinField.isValid else {
+            if !pairingPasswordField.isValid { pairingPasswordField.shake() }
+            if !pinField.isValid { pinField.shake() }
+            return
+        }
         guard !isPairingInProgress else { return }
         isPairingInProgress = true
 
@@ -218,9 +209,9 @@ extension SKPairViewController: VerifiableInputDelegate {
 
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         if verifiableInput === pairingPasswordField {
-            didEnterValidTextInPairingPasswordField()
+            _ = pinField.becomeFirstResponder()
         } else if verifiableInput === pinField {
-            didEnterValidTextInPinField()
+            pairKeycard()
         }
     }
 
