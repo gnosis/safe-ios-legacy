@@ -32,6 +32,26 @@ class SKPairViewController: UIViewController {
     private static let pinLength = 6
     private static let inputHeight: CGFloat = 56
 
+    enum Strings {
+
+        static let screenTitle = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
+        static let title = LocalizedString("enter_pass_pin", comment: "Enter password and PIN")
+
+        static let passwordPlaceholder = LocalizedString("pairing_password", comment: "Password")
+        static let pinPlaceholder = LocalizedString("pin", comment: "PIN")
+
+        static let notEmptyRule = LocalizedString("not_empty", comment: "Not empty")
+        static let onlyDigitsRule = LocalizedString("only_digits", comment: "Use digits only")
+
+        static let pairButtonTitle = LocalizedString("pair_keycard", comment: "Pair Keycard")
+        static let initializeButtonTitle = LocalizedString("have_no_password", comment: "I have no password")
+
+        static func exactlyNDigits(n: Int) -> String {
+            String(format: LocalizedString("exactly_x_digits", comment: "Exactly x digits"), n)
+        }
+
+    }
+
     static func create(delegate: SKPairViewControllerDelegate) -> SKPairViewController {
         let controller = StoryboardScene.CreateSafe.skPairViewController.instantiate()
         controller.delegate = delegate
@@ -40,9 +60,10 @@ class SKPairViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
 
-        titleLabel.text = LocalizedString("enter_pass_pin", comment: "Enter password and PIN")
+        navigationItem.title = Strings.screenTitle
+
+        titleLabel.text = Strings.title
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         titleLabel.textAlignment = .center
         titleLabel.textColor = ColorName.darkGrey.color
@@ -51,39 +72,35 @@ class SKPairViewController: UIViewController {
 
         pairingPasswordField.isSecure = true
         pairingPasswordField.style = .white
-        pairingPasswordField.textInput.placeholder = LocalizedString("pairing_password", comment: "Password")
+        pairingPasswordField.textInput.placeholder = Strings.passwordPlaceholder
         pairingPasswordField.showErrorsOnly = true
 
         pinField.isSecure = true
         pinField.style = .white
-        pinField.textInput.placeholder = LocalizedString("pin", comment: "PIN")
+        pinField.textInput.placeholder = Strings.pinPlaceholder
         pinField.textInput.keyboardType = .numberPad
         pinField.showErrorsOnly = true
 
         pairingPasswordField.delegate = self
         pinField.delegate = self
 
-        pairingPasswordField.addRule(LocalizedString("not_empty", comment: "Not empty")) { text in
-            return !text.isEmpty
-        }
+        pairingPasswordField.addRule(Strings.notEmptyRule) { !$0.isEmpty }
 
-        pinField.addRule(LocalizedString("not_empty", comment: "Not empty")) { text in
-            return !text.isEmpty
-        }
-        pinField.addRule(LocalizedString("only_digits", comment: "Use digits only")) { text in
+        pinField.addRule(Strings.notEmptyRule) { !$0.isEmpty }
+
+        pinField.addRule(Strings.onlyDigitsRule) { text in
             return text.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
         }
-        let pinLengthText = String(format: LocalizedString("exactly_x_digits", comment: "Exactly x digits"),
-                                   SKPairViewController.pinLength)
-        pinField.addRule(pinLengthText) { text in
+
+        pinField.addRule(Strings.exactlyNDigits(n: SKPairViewController.pinLength)) { text in
             return text.count == SKPairViewController.pinLength
         }
 
         pairButton.style = .filled
-        pairButton.setTitle(LocalizedString("pair_keycard", comment: "Pair Keycard"), for: .normal)
+        pairButton.setTitle(Strings.pairButtonTitle, for: .normal)
 
         initializeButton.style = .plain
-        initializeButton.setTitle(LocalizedString("have_no_password", comment: "I have no password"), for: .normal)
+        initializeButton.setTitle(Strings.initializeButtonTitle, for: .normal)
     }
 
     override func viewWillAppear(_ animated: Bool) {
