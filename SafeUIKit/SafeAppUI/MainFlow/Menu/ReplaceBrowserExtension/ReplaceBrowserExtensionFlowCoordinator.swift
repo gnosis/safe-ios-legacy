@@ -74,6 +74,10 @@ extension ReplaceBrowserExtensionFlowCoordinator: TwoFAViewControllerDelegate {
         push(phraseInputViewController())
     }
 
+    func didSelectOpenAuthenticatorInfo() {
+        SupportFlowCoordinator(from: self).openAuthenticatorInfo()
+    }
+
 }
 
 extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {

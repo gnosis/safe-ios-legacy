@@ -13,7 +13,7 @@ public protocol TwoFAViewControllerDelegate: class {
 
     func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws
     func twoFAViewControllerDidFinish()
-
+    func didSelectOpenAuthenticatorInfo()
     @objc
     optional func twoFAViewControllerDidSkipPairing()
 
@@ -180,9 +180,7 @@ public final class TwoFAViewController: CardViewController {
 
     @objc private func downloadBrowserExtension() {
         guard downloadExtensionEnabled else { return }
-        let safariVC = SFSafariViewController(url: walletService.configuration.chromeExtensionURL)
-        safariVC.modalPresentationStyle = .popover
-        present(safariVC, animated: true)
+        delegate?.didSelectOpenAuthenticatorInfo()
     }
 
     private func disableButtons() {

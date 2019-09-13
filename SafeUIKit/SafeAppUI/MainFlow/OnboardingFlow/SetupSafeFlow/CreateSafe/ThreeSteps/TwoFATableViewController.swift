@@ -8,6 +8,7 @@ import CoreNFC
 
 protocol TwoFATableViewControllerDelegate: class {
     func didSelectTwoFAOption(_ option: TwoFAOption)
+    func didSelectLearnMore(for option: TwoFAOption)
 }
 
 enum TwoFAOption {
@@ -86,6 +87,9 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
                                                  for: indexPath) as! TwoFATableViewCell
         cell.option = twoFAOptionsMap[indexPath.row]!
         cell.state = state(for: indexPath)
+        cell.onLearnMore = { [unowned self] in
+            self.delegate?.didSelectLearnMore(for: cell.option)
+        }
         return cell
     }
 

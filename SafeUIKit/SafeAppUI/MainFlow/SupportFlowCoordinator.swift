@@ -96,6 +96,16 @@ final class SupportFlowCoordinator: FlowCoordinator {
         openInSafari(URL(string: "https://blog.gnosis.pm/formal-verification-a-journey-deep-into-the-gnosis-safe-smart-contracts-b00daf354a9c")!)
     }
 
+    func openAuthenticatorInfo() {
+        Tracker.shared.track(event: TwoFATrackingEvent.openAuthenticatorInfo)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.chromeExtensionURL)
+    }
+
+    func openStausKeycardInfo() {
+        Tracker.shared.track(event: TwoFATrackingEvent.openStatusKeycardInfo)
+        openInSafari(URL(string: "https://keycard.status.im")!)
+    }
+
 }
 
 fileprivate class MailComposeHandler: NSObject, MFMailComposeViewControllerDelegate {

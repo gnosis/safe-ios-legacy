@@ -93,6 +93,16 @@ extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
         showConnectAuthenticator()
     }
 
+    func didSelectLearnMore(for option: TwoFAOption) {
+        let supportCoordinator = SupportFlowCoordinator(from: self)
+        switch option {
+        case .gnosisAuthenticator:
+            supportCoordinator.openAuthenticatorInfo()
+        case .statusKeycard:
+            supportCoordinator.openStausKeycardInfo()
+        }
+    }
+
     private func showConnectAuthenticator() {
         let controller = TwoFAViewController.create(delegate: self)
         push(controller)
@@ -112,6 +122,10 @@ extension CreateSafeFlowCoordinator: TwoFAViewControllerDelegate {
             self.showSeedIntro(paired: true)
         }
         push(controller)
+    }
+
+    func didSelectOpenAuthenticatorInfo() {
+        SupportFlowCoordinator(from: self).openAuthenticatorInfo()
     }
 
     func twoFAViewControllerDidSkipPairing() {

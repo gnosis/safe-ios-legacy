@@ -36,6 +36,8 @@ enum CreateSafeTrackingEvent: String, ScreenTrackingEvent {
 enum TwoFATrackingEvent: String, ScreenTrackingEvent {
 
     case setup2FADevicesList            = "Setup2FADevicesList"
+    case openStatusKeycardInfo          = "OpenStatusKeycardInfo"
+    case openAuthenticatorInfo          = "OpenAuthenticatorInfo"
     case connectAuthenticator           = "ConnectAuthenticator"
     case connectAuthenticatorScan       = "ConnectAuthenticatorScan"
 

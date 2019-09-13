@@ -111,6 +111,10 @@ extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
         showPaymentIntro()
     }
 
+    func didSelectOpenAuthenticatorInfo() {
+        SupportFlowCoordinator(from: self).openAuthenticatorInfo()
+    }
+
     func twoFAViewControllerDidSkipPairing() {
         ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
         showPaymentIntro()
