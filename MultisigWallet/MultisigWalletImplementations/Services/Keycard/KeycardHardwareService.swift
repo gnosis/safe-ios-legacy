@@ -34,9 +34,9 @@ public class KeycardHardwareService: KeycardDomainService {
 
     // Pair with the card, generate master key, derive the key for keyPathComponent
     public func pair(password: String, pin: String, keyPathComponent: KeyPathComponent) throws -> Address {
-        try runOnKeycard { [unowned self] keycard -> Address in
+        try runOnKeycard { [unowned self] keycardFacade -> Address in
             self.keycardController?.setAlert(Strings.pairingInProgress)
-            let initializer = KeycardInitializer(keycard: keycard)
+            let initializer = KeycardInitializer(keycard: keycardFacade)
             initializer.set(pin: pin, password: password, pathComponent: keyPathComponent)
             try initializer.prepareForPairing()
             return try initializer.deriveKeyInKeycard()
@@ -80,9 +80,9 @@ public class KeycardHardwareService: KeycardDomainService {
         semaphore.wait()
 
         switch result! {
-        case .success(let address):
+        case .success(let value):
             controller.stop(alertMessage: Strings.success)
-            return address
+            return value
         case .failure(let error):
             controller.stop(errorMessage: KeycardErrorConverter.errorMessageFromOperationFailure(error))
             throw error

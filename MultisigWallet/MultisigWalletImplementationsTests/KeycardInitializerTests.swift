@@ -20,14 +20,16 @@ class KeycardInitializerTests: XCTestCase {
     func test_generateMasterKeyIfNeeded() throws {
         // when empty, generates master key
         let emptyKeyUIDInfo = ApplicationInfo.with(keyUID: [])
-        keycard.masterKey = Data([1, 2, 3])
-        keycard.info = emptyKeyUIDInfo
+        let masterKey = Data([1, 2, 3])
+        keycard.expect(call: .selectApplet, return: emptyKeyUIDInfo)
+        keycard.expect(call: .generateMasterKey, return: masterKey)
         try initializer.prepareForPairing()
-        XCTAssertEqual(try initializer.generateMasterKeyIfNeeded(), keycard.masterKey)
+        XCTAssertEqual(try initializer.generateMasterKeyIfNeeded(), masterKey)
 
+        keycard.resetExpectations()
         // when not empty, returns it from the info
         let nonEmptyKeyUIDInfo = ApplicationInfo.with(keyUID: [5, 6, 7])
-        keycard.info = nonEmptyKeyUIDInfo
+        keycard.expect(call: .selectApplet, return: nonEmptyKeyUIDInfo)
         try initializer.prepareForPairing()
         XCTAssertEqual(try initializer.generateMasterKeyIfNeeded(), Data(nonEmptyKeyUIDInfo.keyUID))
     }
@@ -150,12 +152,11 @@ fileprivate extension ApplicationInfo {
 
 class MockKeycardFacade: KeycardFacade {
 
-    var info: ApplicationInfo!
-
     enum API: Equatable {
         case authenticate(pin: String)
         case selectApplet
         case exportPublicKey(path: String, makeCurrent: Bool)
+        case generateMasterKey
     }
 
     var log: [API] = []
@@ -252,7 +253,7 @@ class MockKeycardFacade: KeycardFacade {
     var masterKey: Data!
 
     func generateMasterKey() throws -> Data {
-        return masterKey
+        return try returnValue(for: .generateMasterKey)
     }
 
 

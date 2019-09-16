@@ -289,7 +289,6 @@
 		0AAE7E522304569F00E7EB07 /* RepeaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E242304569E00E7EB07 /* RepeaterTests.swift */; };
 		0AAE7E532304569F00E7EB07 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E252304569E00E7EB07 /* DomainRegistryTests.swift */; };
 		0AAE7E542304569F00E7EB07 /* BaseInMemoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E262304569E00E7EB07 /* BaseInMemoryRepositoryTests.swift */; };
-		0ACD3EFA232BD03A000E9274 /* KeycardHardwareServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3EF9232BD03A000E9274 /* KeycardHardwareServiceTests.swift */; };
 		0ACD3EFC232BE833000E9274 /* KeycardCredentialsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3EFB232BE833000E9274 /* KeycardCredentialsGenerator.swift */; };
 		0ACD3EFE232BE85D000E9274 /* KeycardErrorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3EFD232BE85D000E9274 /* KeycardErrorConverter.swift */; };
 		0ACD3F00232BE890000E9274 /* KeycardFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3EFF232BE890000E9274 /* KeycardFacade.swift */; };
@@ -744,7 +743,6 @@
 		0AB08751212D9851002F969C /* MockEventRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventRelay.swift; sourceTree = "<group>"; };
 		0AB0B5692163881300FB2435 /* TestDependencies.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = TestDependencies.xcfilelist; sourceTree = "<group>"; };
 		0ACA9D45212C469100E39BB6 /* EventRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRelay.swift; sourceTree = "<group>"; };
-		0ACD3EF9232BD03A000E9274 /* KeycardHardwareServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardHardwareServiceTests.swift; sourceTree = "<group>"; };
 		0ACD3EFB232BE833000E9274 /* KeycardCredentialsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardCredentialsGenerator.swift; sourceTree = "<group>"; };
 		0ACD3EFD232BE85D000E9274 /* KeycardErrorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardErrorConverter.swift; sourceTree = "<group>"; };
 		0ACD3EFF232BE890000E9274 /* KeycardFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardFacade.swift; sourceTree = "<group>"; };
@@ -1138,7 +1136,6 @@
 				0A1618632304594500F6E501 /* UserDefaultsAppSettingsRepositoryTests.swift */,
 				0A16185D2304594400F6E501 /* WalletConnectServiceTests.swift */,
 				0AAE7C86230450BC00E7EB07 /* MultisigWalletImplementationsTests.swift */,
-				0ACD3EF9232BD03A000E9274 /* KeycardHardwareServiceTests.swift */,
 				0ACD3F04232BEB8C000E9274 /* KeycardInitializerTests.swift */,
 				0AAE7C88230450BC00E7EB07 /* Info.plist */,
 				0A16187F2304595200F6E501 /* MultisigWalletImplementations.xctestplan */,
@@ -2120,7 +2117,6 @@
 				0ACD3F05232BEB8C000E9274 /* KeycardInitializerTests.swift in Sources */,
 				0A1618782304594600F6E501 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */,
 				0A16187D2304594600F6E501 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */,
-				0ACD3EFA232BD03A000E9274 /* KeycardHardwareServiceTests.swift in Sources */,
 				0A16186E2304594600F6E501 /* SynchronisationServiceTests.swift in Sources */,
 				0A84C2E7230549E40006DA50 /* Fixtures.swift in Sources */,
 				0A16187E2304594600F6E501 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
