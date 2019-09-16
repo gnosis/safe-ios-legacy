@@ -13,7 +13,7 @@ class ConnectBrowserExtensionLaterCommandTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        ApplicationServiceRegistry.put(service: connectService, for: ConnectBrowserExtensionApplicationService.self)
+        ApplicationServiceRegistry.put(service: connectService, for: ConnectTwoFAApplicationService.self)
     }
 
     func test_whenNoBrowserExtension_thenCanConnect() {

@@ -40,8 +40,8 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: RecoveryDomainService(), for: RecoveryDomainService.self)
         DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
                            for: ReplaceBrowserExtensionDomainService.self)
-        DomainRegistry.put(service: ConnectBrowserExtensionDomainService(),
-                           for: ConnectBrowserExtensionDomainService.self)
+        DomainRegistry.put(service: ConnectTwoFADomainService(),
+                           for: ConnectTwoFADomainService.self)
         DomainRegistry.put(service: DisconnectBrowserExtensionDomainService(),
                            for: DisconnectBrowserExtensionDomainService.self)
         DomainRegistry.put(service: ReplaceRecoveryPhraseDomainService(),
@@ -63,8 +63,8 @@ class MultisigWalletConfigurator {
             .put(service: ReplaceBrowserExtensionApplicationService.create(),
                  for: ReplaceBrowserExtensionApplicationService.self)
         ApplicationServiceRegistry
-            .put(service: ConnectBrowserExtensionApplicationService.create(),
-                 for: ConnectBrowserExtensionApplicationService.self)
+            .put(service: ConnectTwoFAApplicationService.create(),
+                 for: ConnectTwoFAApplicationService.self)
         ApplicationServiceRegistry
             .put(service: DisconnectBrowserExtensionApplicationService.createDisconnectService(),
                  for: DisconnectBrowserExtensionApplicationService.self)

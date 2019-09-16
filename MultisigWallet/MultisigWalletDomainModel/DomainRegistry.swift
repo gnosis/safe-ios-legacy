@@ -112,8 +112,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: ReplaceBrowserExtensionDomainService.self)
     }
 
-    public static var connectExtensionService: ConnectBrowserExtensionDomainService {
-        return service(for: ConnectBrowserExtensionDomainService.self)
+    public static var connectTwoFAService: ConnectTwoFADomainService {
+        return service(for: ConnectTwoFADomainService.self)
     }
 
     public static var disconnectExtensionService: DisconnectBrowserExtensionDomainService {

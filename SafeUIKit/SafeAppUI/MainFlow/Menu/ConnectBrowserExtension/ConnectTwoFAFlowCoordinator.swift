@@ -47,7 +47,7 @@ extension ConnectTwoFAFlowCoordinator {
 
     func introViewController() -> RBEIntroViewController {
         let vc = RBEIntroViewController.create()
-        vc.starter = ApplicationServiceRegistry.connectExtensionService
+        vc.starter = ApplicationServiceRegistry.connectTwoFAService
         vc.delegate = self
         vc.setTitle(Strings.pairTwoFA)
         vc.setContent(.pairTwoFAContent)
@@ -122,7 +122,7 @@ extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
 extension ConnectTwoFAFlowCoordinator: TwoFAViewControllerDelegate {
 
     func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
-        try ApplicationServiceRegistry.connectExtensionService.connect(transaction: transactionID, code: code)
+        try ApplicationServiceRegistry.connectTwoFAService.connect(transaction: transactionID, code: code)
     }
 
     func twoFAViewControllerDidFinish() {
@@ -144,7 +144,7 @@ extension ConnectTwoFAFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
         DispatchQueue.global.async {
-            ApplicationServiceRegistry.connectExtensionService.startMonitoring(transaction: self.transactionID)
+            ApplicationServiceRegistry.connectTwoFAService.startMonitoring(transaction: self.transactionID)
         }
         push(SuccessViewController.connect2FASuccess(action: exitFlow))
     }

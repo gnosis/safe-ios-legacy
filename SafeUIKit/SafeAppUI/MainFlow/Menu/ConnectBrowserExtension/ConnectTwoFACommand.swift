@@ -12,7 +12,7 @@ final class ConnectTwoFACommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return !ApplicationServiceRegistry.connectExtensionService.isAvailable
+        return !ApplicationServiceRegistry.connectTwoFAService.isAvailable
     }
 
     override func run(mainFlowCoordinator: MainFlowCoordinator) {

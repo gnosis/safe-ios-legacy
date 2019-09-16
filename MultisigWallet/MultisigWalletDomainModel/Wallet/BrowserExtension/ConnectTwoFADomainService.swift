@@ -4,11 +4,13 @@
 
 import Foundation
 
-open class ConnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomainService {
+open class ConnectTwoFADomainService: ReplaceBrowserExtensionDomainService {
 
     open override var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
-        return wallet.isReadyToUse && wallet.owner(role: .browserExtension) == nil
+        let twoFAIsNotConnected = wallet.owner(role: .browserExtension) == nil &&
+            wallet.owner(role: .keycard) == nil
+        return wallet.isReadyToUse && twoFAIsNotConnected
     }
 
     override var transactionType: TransactionType { return .connectBrowserExtension }

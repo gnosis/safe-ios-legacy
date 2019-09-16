@@ -8,7 +8,7 @@ import MultisigWalletImplementations
 
 class ConnectBrowserExtensionDomainServiceTests: BaseBrowserExtensionModificationTestCase {
 
-    let service = ConnectBrowserExtensionDomainService()
+    let service = ConnectTwoFADomainService()
 
     override func setUp() {
         super.setUp()

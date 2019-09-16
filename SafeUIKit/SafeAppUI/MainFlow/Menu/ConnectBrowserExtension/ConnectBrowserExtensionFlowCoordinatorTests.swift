@@ -16,7 +16,7 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: mockApplicationService,
-                                       for: ConnectBrowserExtensionApplicationService.self)
+                                       for: ConnectTwoFAApplicationService.self)
         ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
         fc = TestableConnectBrowserExtensionFlowCoordinator(rootViewController: nav)
         fc.setUp()
@@ -79,7 +79,7 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
 }
 
-class MockConnectExtensionApplicationService: ConnectBrowserExtensionApplicationService {
+class MockConnectExtensionApplicationService: ConnectTwoFAApplicationService {
 
     var didStartMonitoring = false
     override func startMonitoring(transaction: RBETransactionID) {

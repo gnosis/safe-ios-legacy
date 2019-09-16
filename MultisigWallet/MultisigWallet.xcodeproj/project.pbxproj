@@ -134,7 +134,7 @@
 		0AAE7CC62304537500E7EB07 /* FeeCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */; };
 		0AAE7CC72304537500E7EB07 /* MockEthereumApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */; };
 		0AAE7CC82304537500E7EB07 /* MockWalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */; };
-		0AAE7CC92304537500E7EB07 /* ConnectBrowserExtensionApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AD4F52225A683004244FB /* ConnectBrowserExtensionApplicationService.swift */; };
+		0AAE7CC92304537500E7EB07 /* ConnectTwoFAApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AD4F52225A683004244FB /* ConnectTwoFAApplicationService.swift */; };
 		0AAE7CCA2304537500E7EB07 /* OwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54E7D721305282006BAD93 /* OwnerType.swift */; };
 		0AAE7CCB2304537500E7EB07 /* WalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */; };
 		0AAE7CCC2304537500E7EB07 /* WalletConnectApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A21322D5E7FD007C9E0C /* WalletConnectApplicationService.swift */; };
@@ -176,7 +176,7 @@
 		0AAE7D902304544A00E7EB07 /* RBETransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */; };
 		0AAE7D912304544A00E7EB07 /* RBETransactionMonitorEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */; };
 		0AAE7D922304544A00E7EB07 /* DisconnectBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1E2304544800E7EB07 /* DisconnectBrowserExtensionDomainService.swift */; };
-		0AAE7D932304544A00E7EB07 /* ConnectBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1F2304544800E7EB07 /* ConnectBrowserExtensionDomainService.swift */; };
+		0AAE7D932304544A00E7EB07 /* ConnectTwoFADomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1F2304544800E7EB07 /* ConnectTwoFADomainService.swift */; };
 		0AAE7D942304544A00E7EB07 /* MockEventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D202304544800E7EB07 /* MockEventPublisher.swift */; };
 		0AAE7D962304544A00E7EB07 /* TokenList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D242304544800E7EB07 /* TokenList.swift */; };
 		0AAE7D972304544A00E7EB07 /* TokenListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D252304544800E7EB07 /* TokenListItemRepository.swift */; };
@@ -552,7 +552,7 @@
 		0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
 		0A4AD4F32225A649004244FB /* OwnerModificationApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerModificationApplicationService.swift; sourceTree = "<group>"; };
-		0A4AD4F52225A683004244FB /* ConnectBrowserExtensionApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionApplicationService.swift; sourceTree = "<group>"; };
+		0A4AD4F52225A683004244FB /* ConnectTwoFAApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectTwoFAApplicationService.swift; sourceTree = "<group>"; };
 		0A4C3897212D9411005594DA /* WalletStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStateEnum.swift; sourceTree = "<group>"; };
 		0A53C6D423265EF7004A7BC3 /* KeycardHardwareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardHardwareService.swift; sourceTree = "<group>"; };
 		0A54E7CA21305273006BAD93 /* WalletApplicationServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceError.swift; sourceTree = "<group>"; };
@@ -625,7 +625,7 @@
 		0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBETransactionMonitorRepository.swift; sourceTree = "<group>"; };
 		0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBETransactionMonitorEntry.swift; sourceTree = "<group>"; };
 		0AAE7D1E2304544800E7EB07 /* DisconnectBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
-		0AAE7D1F2304544800E7EB07 /* ConnectBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
+		0AAE7D1F2304544800E7EB07 /* ConnectTwoFADomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectTwoFADomainService.swift; sourceTree = "<group>"; };
 		0AAE7D202304544800E7EB07 /* MockEventPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEventPublisher.swift; sourceTree = "<group>"; };
 		0AAE7D212304544800E7EB07 /* InMemoryWalletRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryWalletRepository.swift; sourceTree = "<group>"; };
 		0AAE7D242304544800E7EB07 /* TokenList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenList.swift; sourceTree = "<group>"; };
@@ -1052,7 +1052,7 @@
 				5542B4E2231E775700835F89 /* ContractUpgradeApplicationService.swift */,
 				0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */,
 				0A2ACBD22327EA450054D1D1 /* KeycardApplicationService.swift */,
-				0A4AD4F52225A683004244FB /* ConnectBrowserExtensionApplicationService.swift */,
+				0A4AD4F52225A683004244FB /* ConnectTwoFAApplicationService.swift */,
 				0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */,
 				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
 				0ACA9D45212C469100E39BB6 /* EventRelay.swift */,
@@ -1183,7 +1183,7 @@
 				0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */,
 				0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */,
 				0AAE7D1E2304544800E7EB07 /* DisconnectBrowserExtensionDomainService.swift */,
-				0AAE7D1F2304544800E7EB07 /* ConnectBrowserExtensionDomainService.swift */,
+				0AAE7D1F2304544800E7EB07 /* ConnectTwoFADomainService.swift */,
 			);
 			path = BrowserExtension;
 			sourceTree = "<group>";
@@ -1875,7 +1875,7 @@
 				0AAE7DC52304544A00E7EB07 /* StringifiedBigInt.swift in Sources */,
 				0AAE7DAC2304544A00E7EB07 /* SendNotificationRequest.swift in Sources */,
 				0A2ACBD92327FD1B0054D1D1 /* KeycardDomainService.swift in Sources */,
-				0AAE7D932304544A00E7EB07 /* ConnectBrowserExtensionDomainService.swift in Sources */,
+				0AAE7D932304544A00E7EB07 /* ConnectTwoFADomainService.swift in Sources */,
 				0AAE7D9C2304544A00E7EB07 /* ExternallyOwnedAccountRepository.swift in Sources */,
 				0AAE7DD62304544A00E7EB07 /* MultiSendContractProxy.swift in Sources */,
 				0AAE7DAA2304544A00E7EB07 /* PairingRequest.swift in Sources */,
@@ -2003,7 +2003,7 @@
 				0A2ACBD32327EA450054D1D1 /* KeycardApplicationService.swift in Sources */,
 				0AAE7CBE2304537500E7EB07 /* WCPendingTransactionsRepository.swift in Sources */,
 				0AAE7CCD2304537500E7EB07 /* WalletStateEnum.swift in Sources */,
-				0AAE7CC92304537500E7EB07 /* ConnectBrowserExtensionApplicationService.swift in Sources */,
+				0AAE7CC92304537500E7EB07 /* ConnectTwoFAApplicationService.swift in Sources */,
 				0AAE7CD82304537500E7EB07 /* DisconnectBrowserExtensionApplicationService.swift in Sources */,
 				0AAE7CBB2304537500E7EB07 /* ReplaceBrowserExtensionApplicationService.swift in Sources */,
 				0AAE7CD42304537500E7EB07 /* RecoveryApplicationService.swift in Sources */,
