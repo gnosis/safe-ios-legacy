@@ -12,6 +12,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
     weak var mainFlowCoordinator: MainFlowCoordinator!
     weak var onboardingController: OnboardingViewController?
+    var keycardFlowCoordinator = SKKeycardFlowCoordinator()
 
     override func setUp() {
         super.setUp()
@@ -90,7 +91,15 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
 extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
 
     func didSelectTwoFAOption(_ option: TwoFAOption) {
-        showConnectAuthenticator()
+        switch option {
+        case .statusKeycard:
+            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
+            enter(flow: keycardFlowCoordinator) {
+                self.showSeed(paired: true)
+            }
+        case .gnosisAuthenticator:
+            showConnectAuthenticator()
+        }
     }
 
     func didSelectLearnMore(for option: TwoFAOption) {

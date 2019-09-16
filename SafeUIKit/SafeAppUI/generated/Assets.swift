@@ -103,6 +103,9 @@ enum Asset {
   }
   static let shadow = ImageAsset(name: "shadow")
   static let shareIcon = ImageAsset(name: "share-icon")
+  static let statusKeycardActivated = ImageAsset(name: "statusKeycardActivated")
+  static let statusKeycardIntro = ImageAsset(name: "statusKeycardIntro")
+  static let statusKeycardPaired = ImageAsset(name: "statusKeycardPaired")
   enum TokenIcons {
     static let eth = ImageAsset(name: "ETH")
     static let defaultToken = ImageAsset(name: "default-token")
@@ -175,6 +178,9 @@ enum Asset {
     Select2fa.statusKeycard,
     shadow,
     shareIcon,
+    statusKeycardActivated,
+    statusKeycardIntro,
+    statusKeycardPaired,
     TokenIcons.eth,
     TokenIcons.defaultToken,
     TransactionDetails.arrowTransaction,

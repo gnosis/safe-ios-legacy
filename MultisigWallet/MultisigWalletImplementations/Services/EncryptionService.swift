@@ -213,6 +213,10 @@ open class EncryptionService: EncryptionDomainService {
         return Address(EIP55.encode(data).addHexPrefix())
     }
 
+    public func address(publicKey: Data) -> MultisigWalletDomainModel.Address {
+        return MultisigWalletDomainModel.Address(ethereumService.createAddress(publicKey: publicKey))
+    }
+
     // MARK: - EOA generation
 
     public func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {

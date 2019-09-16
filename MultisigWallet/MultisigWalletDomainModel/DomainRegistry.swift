@@ -46,6 +46,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: AppSettingsRepository.self)
     }
 
+    public static var keycardRepository: KeycardRepository {
+        return service(for: KeycardRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {
@@ -134,6 +138,10 @@ public class DomainRegistry: AbstractRegistry {
 
     public static var diagnosticService: WalletDiagnosticDomainService {
         return service(for: WalletDiagnosticDomainService.self)
+    }
+
+    public static var keycardService: KeycardDomainService {
+        return service(for: KeycardDomainService.self)
     }
 
     public static var logger: Logger {

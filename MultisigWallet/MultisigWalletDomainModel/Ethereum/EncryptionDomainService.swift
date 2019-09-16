@@ -103,4 +103,7 @@ public protocol EncryptionDomainService {
     /// - Returns: address data structure or nil if the address string is invalid.
     func address(from string: String) -> Address?
 
+    /// Returns checksummed address from a public key data
+    func address(publicKey: Data) -> Address
+
 }

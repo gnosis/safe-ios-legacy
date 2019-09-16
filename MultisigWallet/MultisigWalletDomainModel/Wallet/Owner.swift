@@ -22,9 +22,8 @@ public enum OwnerRole: String, Codable {
     case browserExtension
     case paperWallet
     case paperWalletDerived
+    case keycard
     case unknown
-
-    static let all = [OwnerRole.thisDevice, .browserExtension, .paperWallet, .paperWalletDerived]
 }
 
 public struct OwnerList: Equatable {

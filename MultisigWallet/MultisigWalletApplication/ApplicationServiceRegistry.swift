@@ -55,4 +55,8 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: EventRelay.self)
     }
 
+    public static var keycardService: KeycardApplicationService {
+        return service(for: KeycardApplicationService.self)
+    }
+
 }

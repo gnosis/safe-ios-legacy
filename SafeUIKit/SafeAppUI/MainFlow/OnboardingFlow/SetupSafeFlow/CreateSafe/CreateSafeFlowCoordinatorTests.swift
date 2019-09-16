@@ -169,7 +169,7 @@ private extension CreateSafeFlowCoordinatorTests {
     }
 
     func assert<T>(_ object: Any?, is aType: T.Type, file: StaticString = #file, line: UInt = #line) {
-        let message = "Expected \(T.self) but got \(String(describing: type(of: object)))"
+        let message = "Expected \(T.self) but got \(object == nil ? "nil" : String(reflecting: type(of: object!)))"
         XCTAssertTrue(object is T, message, file: file, line: line)
     }
 
