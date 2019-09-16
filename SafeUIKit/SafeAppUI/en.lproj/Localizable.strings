@@ -415,6 +415,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Blocked */
 "keycard_blocked" = "Keycard blocked";
 
+/* Steps for pairing */
+"keycard_intro_description" = "* Provide the PIN and pairing password of your Keycard.\n* Hold the Keycard to the phone for 3 seconds  to pair the keycard.\n* If you don’t yet have the PIN and pairing password, you can get them on the next screen.";
+
 /* Paired */
 "keycard_paired" = "Status Keycard successfully paired";
 
@@ -535,6 +538,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 
 /* Pair with 2FA description */
 "pair_safe_with_two_fa_description" = "Two-factro authentication (2FA) is an extra layer of security that prevents unauthorized access to your account. You can set it up by pairing a 2FA device with this Safe. After a successful setup, all transactions will need to be approved both by this phone and by your 2FA device.";
+
+/* Pair your card */
+"pair_your_keycard" = "Pair your Status Keycard";
 
 /* You'll remove */
 "paired_will_be_lost" = "By going back, your paired 2FA device will be lost. You will be able to pair a new 2FA device.";

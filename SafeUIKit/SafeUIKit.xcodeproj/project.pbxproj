@@ -171,6 +171,7 @@
 		0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
+		0A80D192232F6D8300E45BD3 /* SKIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80D191232F6D8300E45BD3 /* SKIntroViewController.swift */; };
 		0A84C21F23053B820006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
 		0A84C23B23053BAD0006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C23423053BA30006DA50 /* IdentityAccessImplementations.framework */; };
 		0A84C23C23053BB70006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
@@ -805,6 +806,7 @@
 		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
 		0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
+		0A80D191232F6D8300E45BD3 /* SKIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKIntroViewController.swift; sourceTree = "<group>"; };
 		0A84C21523053B820006DA50 /* IdentityAccessImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentityAccessImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccess.xcodeproj; path = ../IdentityAccess/IdentityAccess.xcodeproj; sourceTree = "<group>"; };
 		0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseTestCase.swift; sourceTree = "<group>"; };
@@ -1197,6 +1199,7 @@
 			isa = PBXGroup;
 			children = (
 				0A2ACBFC2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift */,
+				0A80D191232F6D8300E45BD3 /* SKIntroViewController.swift */,
 				0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */,
 				0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */,
 				0A2ACBF6232943300054D1D1 /* SKPairingSuccessViewController.swift */,
@@ -3223,6 +3226,7 @@
 				0AB20142229848520071510A /* LongProcessTracker.swift in Sources */,
 				55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */,
 				0A4DF82020CE6FC70095C00D /* AssetViewViewController.swift in Sources */,
+				0A80D192232F6D8300E45BD3 /* SKIntroViewController.swift in Sources */,
 				0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */,
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
 				0A2ACBF7232943300054D1D1 /* SKPairingSuccessViewController.swift in Sources */,

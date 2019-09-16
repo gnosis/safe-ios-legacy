@@ -104,6 +104,7 @@ enum Asset {
   static let shadow = ImageAsset(name: "shadow")
   static let shareIcon = ImageAsset(name: "share-icon")
   static let statusKeycardActivated = ImageAsset(name: "statusKeycardActivated")
+  static let statusKeycardIntro = ImageAsset(name: "statusKeycardIntro")
   static let statusKeycardPaired = ImageAsset(name: "statusKeycardPaired")
   enum TokenIcons {
     static let eth = ImageAsset(name: "ETH")
@@ -178,6 +179,7 @@ enum Asset {
     shadow,
     shareIcon,
     statusKeycardActivated,
+    statusKeycardIntro,
     statusKeycardPaired,
     TokenIcons.eth,
     TokenIcons.defaultToken,

@@ -40,6 +40,7 @@ enum TwoFATrackingEvent: String, ScreenTrackingEvent {
     case openAuthenticatorInfo          = "Pair2FA_AuthenticatorInfo"
     case connectAuthenticator           = "Pair2FA_ConnectAuthenticator"
     case connectAuthenticatorScan       = "Pair2FA_ConnectAuthenticatorScan"
+    case keycardIntro                   = "Pair2FA_KeycardIntro"
     case pairKeycard                    = "Pair2FA_PairKeycard"
     case activateKeycard                = "Pair2FA_ActivateKeycard"
     case pairSuccess                    = "Pair2FA_KeycardSuccess"

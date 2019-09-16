@@ -15,7 +15,13 @@ class SKKeycardFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         saveCheckpoint()
-        push(SKPairViewController.create(delegate: self))
+        showIntro()
+    }
+
+    func showIntro() {
+        push(SKIntroViewController.create { [unowned self] in
+            self.push(SKPairViewController.create(delegate: self))
+        })
     }
 
     func showSuccess() {
