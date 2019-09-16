@@ -16,13 +16,18 @@
 /* T */
 "amount_trillions" = "T";
 
-/* Explanation how to confirm. */
+/* Authentication required */
+"authentication_2fa" = "authentication_2fa";
+
+/* Description.
+   Explanation how to confirm. */
 "authentication_explanation" = "Open the Authenticator to confirm this transaction.";
 
 /* Authentication required */
 "authentication_required" = "Authentication required";
 
-/* Transaction approved by the browser extension */
+/* Approved by extension
+   Transaction approved by the browser extension */
 "browser_extension_approved" = "The Authenticator has approved this transaction.";
 
 /* Cancel alert item.
@@ -34,6 +39,9 @@
 
 /* Confirmed by browser extension. */
 "confirmed" = "Confirmed";
+
+/* Confirmed with Keycard */
+"confirmed_keycard" = "confirmed_keycard";
 
 /* Copied to clipboard */
 "copied_to_clipboard" = "Copied to clipboard";
@@ -83,8 +91,12 @@
 /* Rejected by browser extension. */
 "rejected" = "Rejected";
 
-/* Transaction rejected by the browser extension. */
+/* Rejected by extension
+   Transaction rejected by the browser extension. */
 "rejected_by_extension" = "The transaction was rejected by the Authenticator";
+
+/* Rejected by Keycard */
+"rejected_keycard" = "rejected_keycard";
 
 /* Resend if needed */
 "request_confirmation" = "Resend confirmation request";
@@ -92,9 +104,18 @@
 /* Resend */
 "resend" = "Resend";
 
+/* Retry */
+"retry" = "retry";
+
 /* Scan QR code alert item. */
 "scan_qr_code" = "Scan QR Code";
 
+/* Start */
+"start" = "start";
+
 /* Submit transaction */
 "submit" = "Submit";
+
+/* Submit Transaction */
+"submit_transaction" = "submit_transaction";
 
