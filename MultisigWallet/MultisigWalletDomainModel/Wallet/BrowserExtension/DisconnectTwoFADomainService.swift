@@ -4,7 +4,7 @@
 
 import Foundation
 
-open class DisconnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomainService {
+open class DisconnectTwoFADomainService: ReplaceBrowserExtensionDomainService {
 
     override var transactionType: TransactionType { return .disconnectBrowserExtension }
 

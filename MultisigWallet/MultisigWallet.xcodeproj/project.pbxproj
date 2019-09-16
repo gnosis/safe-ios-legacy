@@ -147,7 +147,7 @@
 		0AAE7CD42304537500E7EB07 /* RecoveryApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */; };
 		0AAE7CD62304537500E7EB07 /* WCSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A24F22D73AFC007C9E0C /* WCSessionData.swift */; };
 		0AAE7CD72304537500E7EB07 /* WalletApplicationServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAE3E6219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift */; };
-		0AAE7CD82304537500E7EB07 /* DisconnectBrowserExtensionApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */; };
+		0AAE7CD82304537500E7EB07 /* DisconnectTwoFAApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940412226CB29005B7440 /* DisconnectTwoFAApplicationService.swift */; };
 		0AAE7CD92304537500E7EB07 /* WalletSettingsApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB084CA21C01EAC00DC3E81 /* WalletSettingsApplicationService.swift */; };
 		0AAE7D702304544A00E7EB07 /* GnosisSafeContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7CFA2304544800E7EB07 /* GnosisSafeContractProxy.swift */; };
 		0AAE7D712304544A00E7EB07 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7CFB2304544800E7EB07 /* DomainRegistry.swift */; };
@@ -175,7 +175,7 @@
 		0AAE7D8E2304544A00E7EB07 /* ReplaceBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1A2304544800E7EB07 /* ReplaceBrowserExtensionDomainService.swift */; };
 		0AAE7D902304544A00E7EB07 /* RBETransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */; };
 		0AAE7D912304544A00E7EB07 /* RBETransactionMonitorEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */; };
-		0AAE7D922304544A00E7EB07 /* DisconnectBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1E2304544800E7EB07 /* DisconnectBrowserExtensionDomainService.swift */; };
+		0AAE7D922304544A00E7EB07 /* DisconnectTwoFADomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1E2304544800E7EB07 /* DisconnectTwoFADomainService.swift */; };
 		0AAE7D932304544A00E7EB07 /* ConnectTwoFADomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1F2304544800E7EB07 /* ConnectTwoFADomainService.swift */; };
 		0AAE7D942304544A00E7EB07 /* MockEventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D202304544800E7EB07 /* MockEventPublisher.swift */; };
 		0AAE7D962304544A00E7EB07 /* TokenList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D242304544800E7EB07 /* TokenList.swift */; };
@@ -534,7 +534,7 @@
 		0A16186B2304594600F6E501 /* SecureExternallyOwnedAccountRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureExternallyOwnedAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A16186C2304594600F6E501 /* DBWalletRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBWalletRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
 		0A16187F2304595200F6E501 /* MultisigWalletImplementations.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MultisigWalletImplementations.xctestplan; sourceTree = "<group>"; };
-		0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionApplicationService.swift; sourceTree = "<group>"; };
+		0A1940412226CB29005B7440 /* DisconnectTwoFAApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFAApplicationService.swift; sourceTree = "<group>"; };
 		0A2ACBD22327EA450054D1D1 /* KeycardApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardApplicationService.swift; sourceTree = "<group>"; };
 		0A2ACBD82327FD1B0054D1D1 /* KeycardDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardDomainService.swift; sourceTree = "<group>"; };
 		0A2ACBDA2328FFE50054D1D1 /* KeycardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardRepository.swift; sourceTree = "<group>"; };
@@ -624,7 +624,7 @@
 		0AAE7D1A2304544800E7EB07 /* ReplaceBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
 		0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBETransactionMonitorRepository.swift; sourceTree = "<group>"; };
 		0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBETransactionMonitorEntry.swift; sourceTree = "<group>"; };
-		0AAE7D1E2304544800E7EB07 /* DisconnectBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
+		0AAE7D1E2304544800E7EB07 /* DisconnectTwoFADomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFADomainService.swift; sourceTree = "<group>"; };
 		0AAE7D1F2304544800E7EB07 /* ConnectTwoFADomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectTwoFADomainService.swift; sourceTree = "<group>"; };
 		0AAE7D202304544800E7EB07 /* MockEventPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEventPublisher.swift; sourceTree = "<group>"; };
 		0AAE7D212304544800E7EB07 /* InMemoryWalletRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryWalletRepository.swift; sourceTree = "<group>"; };
@@ -1053,7 +1053,7 @@
 				0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */,
 				0A2ACBD22327EA450054D1D1 /* KeycardApplicationService.swift */,
 				0A4AD4F52225A683004244FB /* ConnectTwoFAApplicationService.swift */,
-				0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */,
+				0A1940412226CB29005B7440 /* DisconnectTwoFAApplicationService.swift */,
 				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
 				0ACA9D45212C469100E39BB6 /* EventRelay.swift */,
 				0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */,
@@ -1182,7 +1182,7 @@
 				0AAE7D1A2304544800E7EB07 /* ReplaceBrowserExtensionDomainService.swift */,
 				0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */,
 				0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */,
-				0AAE7D1E2304544800E7EB07 /* DisconnectBrowserExtensionDomainService.swift */,
+				0AAE7D1E2304544800E7EB07 /* DisconnectTwoFADomainService.swift */,
 				0AAE7D1F2304544800E7EB07 /* ConnectTwoFADomainService.swift */,
 			);
 			path = BrowserExtension;
@@ -1887,7 +1887,7 @@
 				0AAE7DA12304544A00E7EB07 /* EthSignature.swift in Sources */,
 				0AAE7DA52304544A00E7EB07 /* ERC20TokenContractProxy.swift in Sources */,
 				0AAE7DD32304544A00E7EB07 /* AppSettingsRepository.swift in Sources */,
-				0AAE7D922304544A00E7EB07 /* DisconnectBrowserExtensionDomainService.swift in Sources */,
+				0AAE7D922304544A00E7EB07 /* DisconnectTwoFADomainService.swift in Sources */,
 				0AAE7DB52304544A00E7EB07 /* OutgoingMessage.swift in Sources */,
 				0AAE7DCD2304544A00E7EB07 /* WalletConnectDomainService.swift in Sources */,
 				0AAE7DBD2304544A00E7EB07 /* GetSafeCreationStatusRequest.swift in Sources */,
@@ -2004,7 +2004,7 @@
 				0AAE7CBE2304537500E7EB07 /* WCPendingTransactionsRepository.swift in Sources */,
 				0AAE7CCD2304537500E7EB07 /* WalletStateEnum.swift in Sources */,
 				0AAE7CC92304537500E7EB07 /* ConnectTwoFAApplicationService.swift in Sources */,
-				0AAE7CD82304537500E7EB07 /* DisconnectBrowserExtensionApplicationService.swift in Sources */,
+				0AAE7CD82304537500E7EB07 /* DisconnectTwoFAApplicationService.swift in Sources */,
 				0AAE7CBB2304537500E7EB07 /* ReplaceBrowserExtensionApplicationService.swift in Sources */,
 				0AAE7CD42304537500E7EB07 /* RecoveryApplicationService.swift in Sources */,
 				0AAE7CCA2304537500E7EB07 /* OwnerType.swift in Sources */,

@@ -23,8 +23,8 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: ConnectTwoFAApplicationService.self)
     }
 
-    public static var disconnectExtensionService: DisconnectBrowserExtensionApplicationService {
-        return service(for: DisconnectBrowserExtensionApplicationService.self)
+    public static var disconnectTwoFAService: DisconnectTwoFAApplicationService {
+        return service(for: DisconnectTwoFAApplicationService.self)
     }
 
     public static var contractUpgradeService: ContractUpgradeApplicationService {

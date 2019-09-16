@@ -104,7 +104,7 @@ public class SynchronisationService: SynchronisationDomainService {
             try DomainRegistry.connectTwoFAService.postProcessTransactions()
 
             guard hasAccessToFilesystem else { return }
-            try DomainRegistry.disconnectExtensionService.postProcessTransactions()
+            try DomainRegistry.disconnectTwoFAService.postProcessTransactions()
 
             guard hasAccessToFilesystem else { return }
             try DomainRegistry.replacePhraseService.postProcessTransactions()

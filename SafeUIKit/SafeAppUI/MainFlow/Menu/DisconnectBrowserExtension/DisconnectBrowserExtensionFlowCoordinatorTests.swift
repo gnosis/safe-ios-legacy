@@ -14,9 +14,9 @@ class DisconnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit)
         ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: mockDisconnectService,
-                                       for: DisconnectBrowserExtensionApplicationService.self)
+                                       for: DisconnectTwoFAApplicationService.self)
 
-        let coordinator = DisconnectBrowserExtensionFlowCoordinator()
+        let coordinator = DisconnectTwoFAFlowCoordinator()
         coordinator.transactionID = "Some"
 
         let introEvent = coordinator.introViewController().screenTrackingEvent
@@ -38,7 +38,7 @@ class DisconnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
 }
 
-class MockDisconnectBrowserExtensionApplicationService: DisconnectBrowserExtensionApplicationService {
+class MockDisconnectBrowserExtensionApplicationService: DisconnectTwoFAApplicationService {
 
     override var isAvailable: Bool { return false }
 

@@ -31,7 +31,7 @@ class MenuTableViewControllerTests: XCTestCase {
         ApplicationServiceRegistry.put(service: connectExtensionService,
                                        for: ConnectTwoFAApplicationService.self)
         ApplicationServiceRegistry.put(service: disconnectExtensionService,
-                                       for: DisconnectBrowserExtensionApplicationService.self)
+                                       for: DisconnectTwoFAApplicationService.self)
         ApplicationServiceRegistry.put(service: replacePhraseService,
                                        for: ReplaceRecoveryPhraseApplicationService.self)
         ApplicationServiceRegistry.put(service: contractUpgradeService,

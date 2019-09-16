@@ -21,8 +21,8 @@
 		0A179C7D2256274A00C60138 /* MainTrackingEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */; };
 		0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */; };
 		0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */; };
-		0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */; };
-		0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */; };
+		0A1940572226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940562226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift */; };
+		0A19405B2226D030005B7440 /* DisconnectTwoFACommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19405A2226D030005B7440 /* DisconnectTwoFACommand.swift */; };
 		0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */; };
@@ -663,8 +663,8 @@
 		0A0974EB20480E45005753DF /* SafeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUIKit.h; sourceTree = "<group>"; };
 		0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTrackingEvent.swift; sourceTree = "<group>"; };
 		0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTrackingEvent.swift; sourceTree = "<group>"; };
-		0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionCommand.swift; sourceTree = "<group>"; };
+		0A1940562226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFAFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A19405A2226D030005B7440 /* DisconnectTwoFACommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFACommand.swift; sourceTree = "<group>"; };
 		0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResyncWithBrowserExtensionCommand.swift; sourceTree = "<group>"; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPairViewController.swift; sourceTree = "<group>"; };
@@ -1179,9 +1179,9 @@
 		0A1940472226CF27005B7440 /* DisconnectBrowserExtension */ = {
 			isa = PBXGroup;
 			children = (
-				0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */,
+				0A1940562226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift */,
 				0A2D58AE22578A31001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift */,
-				0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */,
+				0A19405A2226D030005B7440 /* DisconnectTwoFACommand.swift */,
 				0A2D587F2257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift */,
 			);
 			path = DisconnectBrowserExtension;
@@ -3267,7 +3267,7 @@
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
 				55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */,
 				557353722294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift in Sources */,
-				0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */,
+				0A1940572226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift in Sources */,
 				0AE0FE42229C484000ABC552 /* CustomNavigationController.swift in Sources */,
 				0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */,
 				5568A24E22D7284C007C9E0C /* WCSendReviewViewController.swift in Sources */,
@@ -3290,7 +3290,7 @@
 				0AD5091F2110AABD008507CB /* SendInputViewModel.swift in Sources */,
 				554597082268AB22009B4A0B /* TermsCommand.swift in Sources */,
 				0AE0FE5A229D2CE500ABC552 /* TwoFAView.swift in Sources */,
-				0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */,
+				0A19405B2226D030005B7440 /* DisconnectTwoFACommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

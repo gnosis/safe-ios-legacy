@@ -8,7 +8,7 @@ import MultisigWalletImplementations
 
 class DisconnectBrowserExtensionDomainServiceTests: BaseBrowserExtensionModificationTestCase {
 
-    let service = DisconnectBrowserExtensionDomainService()
+    let service = DisconnectTwoFADomainService()
     let communicationService = MockCommunicationDomainService()
 
     override func setUp() {

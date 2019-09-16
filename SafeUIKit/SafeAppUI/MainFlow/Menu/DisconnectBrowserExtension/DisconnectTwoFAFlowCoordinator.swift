@@ -5,12 +5,12 @@
 import Foundation
 import MultisigWalletApplication
 
-class DisconnectBrowserExtensionFlowCoordinator: FlowCoordinator {
+class DisconnectTwoFAFlowCoordinator: FlowCoordinator {
 
     weak var introVC: RBEIntroViewController!
     var transactionID: RBETransactionID!
-    fileprivate var applicationService: DisconnectBrowserExtensionApplicationService {
-        return ApplicationServiceRegistry.disconnectExtensionService
+    fileprivate var applicationService: DisconnectTwoFAApplicationService {
+        return ApplicationServiceRegistry.disconnectTwoFAService
     }
 
     enum Strings {
@@ -36,19 +36,19 @@ extension IntroContentView.Content {
 
     static let disconnectExtension =
         IntroContentView
-            .Content(body: DisconnectBrowserExtensionFlowCoordinator.Strings.disconnectDescription,
+            .Content(body: DisconnectTwoFAFlowCoordinator.Strings.disconnectDescription,
                      icon: Asset.Manage2fa._2FaDisable.image)
 
 }
 
 /// Screen constructors in the flow
-extension DisconnectBrowserExtensionFlowCoordinator {
+extension DisconnectTwoFAFlowCoordinator {
 
     func introViewController() -> RBEIntroViewController {
         let vc = RBEIntroViewController.create()
-        vc.starter = ApplicationServiceRegistry.disconnectExtensionService
+        vc.starter = ApplicationServiceRegistry.disconnectTwoFAService
         vc.delegate = self
-        vc.setTitle(DisconnectBrowserExtensionFlowCoordinator.Strings.introTitle)
+        vc.setTitle(DisconnectTwoFAFlowCoordinator.Strings.introTitle)
         vc.setContent(.disconnectExtension)
         vc.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.intro
         return vc
@@ -71,7 +71,7 @@ extension DisconnectBrowserExtensionFlowCoordinator {
 
 }
 
-extension DisconnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate {
+extension DisconnectTwoFAFlowCoordinator: RBEIntroViewControllerDelegate {
 
     func rbeIntroViewControllerDidStart() {
         self.transactionID = introVC!.transactionID
@@ -80,7 +80,7 @@ extension DisconnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDeleg
 
 }
 
-extension DisconnectBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
+extension DisconnectTwoFAFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
 
     func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
                                            didEnterPhrase phrase: String) {
@@ -98,7 +98,7 @@ extension DisconnectBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewCont
 
 }
 
-extension DisconnectBrowserExtensionFlowCoordinator: ReviewTransactionViewControllerDelegate {
+extension DisconnectTwoFAFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
     func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
                                                                  completion: @escaping (Bool) -> Void) {
