@@ -13,7 +13,7 @@ class SKPairingSuccessViewController: HeaderImageTextStepController {
     private var onRemove: (() -> Void)!
 
     enum Strings {
-        static let title = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
+        static let title = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
         static let header = LocalizedString("keycard_paired", comment: "Paired")
         static let text = LocalizedString("after_finishing_setup", comment: "Description")
     }

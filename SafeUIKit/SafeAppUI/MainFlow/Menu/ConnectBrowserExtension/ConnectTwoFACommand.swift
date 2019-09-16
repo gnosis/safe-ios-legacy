@@ -5,11 +5,10 @@
 import Foundation
 import MultisigWalletApplication
 
-final class ConnectBrowserExtensionLaterCommand: MenuCommand {
+final class ConnectTwoFACommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("ios_connect_browser_extension", comment: "Connect browser extension")
-            .replacingOccurrences(of: "\n", with: " ").capitalized
+        return LocalizedString("connect_2fa", comment: "Connect 2FA")
     }
 
     override var isHidden: Bool {
@@ -18,7 +17,7 @@ final class ConnectBrowserExtensionLaterCommand: MenuCommand {
 
     override init() {
         super.init()
-        childFlowCoordinator = ConnectBrowserExtensionFlowCoordinator()
+        childFlowCoordinator = ConnectTwoFAFlowCoordinator()
     }
 
 }

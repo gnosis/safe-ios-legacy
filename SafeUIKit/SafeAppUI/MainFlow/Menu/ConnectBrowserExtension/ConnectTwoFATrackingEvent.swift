@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-enum ConnectBrowserExtensionTrackingEvent: String, ScreenTrackingEvent {
+enum ConnectTwoFATrackingEvent: String, ScreenTrackingEvent {
 
     case intro      = "Connect2FA"
     case review     = "Connect2FA_Review"

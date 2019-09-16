@@ -9,7 +9,7 @@ import MultisigWalletApplication
 class ConnectBrowserExtensionLaterCommandTests: XCTestCase {
 
     let connectService = MockConnectExtensionApplicationService()
-    let command = ConnectBrowserExtensionLaterCommand()
+    let command = ConnectTwoFACommand()
 
     override func setUp() {
         super.setUp()

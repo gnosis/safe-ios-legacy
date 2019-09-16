@@ -67,13 +67,13 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
     func test_tracking() {
         mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit)
 
-        let introEvent = fc.introViewController().screenTrackingEvent as? ConnectBrowserExtensionTrackingEvent
+        let introEvent = fc.introViewController().screenTrackingEvent as? ConnectTwoFATrackingEvent
         XCTAssertEqual(introEvent, .intro)
 
-        let reviewScreenEvent = fc.reviewViewController().screenTrackingEvent as? ConnectBrowserExtensionTrackingEvent
+        let reviewScreenEvent = fc.reviewViewController().screenTrackingEvent as? ConnectTwoFATrackingEvent
         XCTAssertEqual(reviewScreenEvent, .review)
 
-        let successEvent = fc.reviewViewController().successTrackingEvent as? ConnectBrowserExtensionTrackingEvent
+        let successEvent = fc.reviewViewController().successTrackingEvent as? ConnectTwoFATrackingEvent
         XCTAssertEqual(successEvent, .success)
     }
 
@@ -116,7 +116,7 @@ class TestableTransactionSubmissionHandler: TransactionSubmissionHandler {
 
 }
 
-class TestableConnectBrowserExtensionFlowCoordinator: ConnectBrowserExtensionFlowCoordinator {
+class TestableConnectBrowserExtensionFlowCoordinator: ConnectTwoFAFlowCoordinator {
 
     override func push(_ controller: UIViewController, onPop action: (() -> Void)?) {
         navigationController.pushViewController(controller, animated: false)

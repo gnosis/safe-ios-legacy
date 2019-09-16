@@ -34,6 +34,7 @@ public class RBEIntroViewController: UIViewController {
     public var screenTrackingEvent: Trackable?
 
     private var needsEstimation = false
+    private var _title: String?
 
     @IBOutlet weak var contentView: IntroContentView!
     internal var feeCalculationView: FeeCalculationView {
@@ -109,6 +110,11 @@ public class RBEIntroViewController: UIViewController {
         feeCalculation.setBalanceError(nil)
     }
 
+    func setTitle(_ title: String) {
+        self._title = title
+        self.title = _title
+    }
+
     func setContent(_ content: IntroContentView.Content) {
         if !isViewLoaded {
             loadViewIfNeeded()
@@ -118,11 +124,13 @@ public class RBEIntroViewController: UIViewController {
     }
 
     func startIndicateLoading() {
+        title = nil
         navigationItem.titleView = LoadingTitleView()
     }
 
     func stopIndicateLoading() {
         navigationItem.titleView = nil
+        title = _title
     }
 
     func showRetry() {

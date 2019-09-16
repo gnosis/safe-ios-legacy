@@ -7,7 +7,6 @@ import SafeUIKit
 
 public class IntroContentView: NibUIView {
 
-    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
@@ -25,8 +24,6 @@ public class IntroContentView: NibUIView {
     }
 
     struct Content {
-        var header = LocalizedString("ios_replace_browser_extension", comment: "Replace browser extension")
-            .replacingOccurrences(of: "\n", with: " ")
         var body = LocalizedString("once_process_is_complete", comment: "Intro body text")
         var icon = Asset.ReplaceBrowserExtension.introIcon.image
     }
@@ -44,7 +41,6 @@ public class IntroContentView: NibUIView {
         leadingConstraint.constant = style.edgeMargin
         trailingConstraint.constant = style.edgeMargin
         iconImageView.image = content.icon
-        headerLabel.attributedText = NSAttributedString(string: content.header, style: style.headerStyle)
         bodyLabel.attributedText = NSAttributedString(string: content.body, style: style.bodyStyle)
     }
 

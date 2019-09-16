@@ -40,7 +40,7 @@
 		0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E3A2297E11C008A30AC /* OnboardingFeePaidViewController.swift */; };
 		0A2C0E3E2297E1A5008A30AC /* SafeLabelTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E3D2297E1A5008A30AC /* SafeLabelTitleView.swift */; };
 		0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */; };
-		0A2D587E225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587D225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift */; };
+		0A2D587E225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587D225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift */; };
 		0A2D58802257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587F2257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift */; };
 		0A2D588222575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588122575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift */; };
 		0A2D58862257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58852257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift */; };
@@ -119,7 +119,7 @@
 		0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */; };
 		0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */; };
 		0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */; };
-		0A3BD95B22255C40007039B4 /* ConnectBrowserExtensionLaterCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD95A22255C3E007039B4 /* ConnectBrowserExtensionLaterCommand.swift */; };
+		0A3BD95B22255C40007039B4 /* ConnectTwoFACommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD95A22255C3E007039B4 /* ConnectTwoFACommand.swift */; };
 		0A3BD95D22255C49007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD95C22255C48007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift */; };
 		0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */; };
 		0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */; };
@@ -271,7 +271,7 @@
 		0AF33D4B209C6BF800527D25 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AF4F50F225CEDD30051F68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4F50E225CEDD30051F68B /* LaunchScreen.storyboard */; };
 		0AF4F511225CEDDA0051F68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4F510225CEDDA0051F68B /* Main.storyboard */; };
-		0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5BB38222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift */; };
+		0AF5BB39222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5BB38222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift */; };
 		0AF5BB3B222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5BB3A222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift */; };
 		0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */; };
 		0AF8D53520CFF85B001E8423 /* TestSegmentBarNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */; };
@@ -682,7 +682,7 @@
 		0A2C0E3A2297E11C008A30AC /* OnboardingFeePaidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeePaidViewController.swift; sourceTree = "<group>"; };
 		0A2C0E3D2297E1A5008A30AC /* SafeLabelTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLabelTitleView.swift; sourceTree = "<group>"; };
 		0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A2D587D225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionTrackingEvent.swift; sourceTree = "<group>"; };
+		0A2D587D225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectTwoFATrackingEvent.swift; sourceTree = "<group>"; };
 		0A2D587F2257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionTrackingEvent.swift; sourceTree = "<group>"; };
 		0A2D588122575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionTrackingEvent.swift; sourceTree = "<group>"; };
 		0A2D58852257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseTrackingEvent.swift; sourceTree = "<group>"; };
@@ -755,7 +755,7 @@
 		0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSubmissionHandler.swift; sourceTree = "<group>"; };
 		0A3BD92022254C9E007039B4 /* SafeAppUIUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SafeAppUIUnitTests-Info.plist"; sourceTree = "<group>"; };
 		0A3BD93F22255174007039B4 /* MultisigWallet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MultisigWallet.xcodeproj; path = ../MultisigWallet/MultisigWallet.xcodeproj; sourceTree = "<group>"; };
-		0A3BD95A22255C3E007039B4 /* ConnectBrowserExtensionLaterCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionLaterCommand.swift; sourceTree = "<group>"; };
+		0A3BD95A22255C3E007039B4 /* ConnectTwoFACommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectTwoFACommand.swift; sourceTree = "<group>"; };
 		0A3BD95C22255C48007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionLaterCommandTests.swift; sourceTree = "<group>"; };
 		0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -932,7 +932,7 @@
 		0AF33D3D209C6BF800527D25 /* SafeAppUIUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeAppUIUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF4F50E225CEDD30051F68B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AF4F510225CEDDA0051F68B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		0AF5BB38222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
+		0AF5BB38222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectTwoFAFlowCoordinator.swift; sourceTree = "<group>"; };
 		0AF5BB3A222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewController.swift; sourceTree = "<group>"; };
 		0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RBEIntroViewController.xib; sourceTree = "<group>"; };
@@ -1807,10 +1807,10 @@
 		0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */ = {
 			isa = PBXGroup;
 			children = (
-				0A2D587D225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift */,
-				0AF5BB38222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift */,
+				0A2D587D225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift */,
+				0AF5BB38222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift */,
 				0AF5BB3A222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift */,
-				0A3BD95A22255C3E007039B4 /* ConnectBrowserExtensionLaterCommand.swift */,
+				0A3BD95A22255C3E007039B4 /* ConnectTwoFACommand.swift */,
 				0A3BD95C22255C48007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift */,
 			);
 			path = ConnectBrowserExtension;
@@ -3140,7 +3140,7 @@
 				0A2D588222575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift in Sources */,
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
 				553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */,
-				0A3BD95B22255C40007039B4 /* ConnectBrowserExtensionLaterCommand.swift in Sources */,
+				0A3BD95B22255C40007039B4 /* ConnectTwoFACommand.swift in Sources */,
 				0ADE03FF22DF2ED600CA4705 /* OnboardingToolbar.swift in Sources */,
 				55BDA81A232652AF005C9E6A /* ThreeStepsToSecurityView.swift in Sources */,
 				55CE9D0123059ED800CB414D /* ContractUpgradeTrackingEvent.swift in Sources */,
@@ -3217,7 +3217,7 @@
 				0ADE03FC22DE000300CA4705 /* OnboardingViewController.swift in Sources */,
 				552D0FE02327CD8F00127223 /* TwoFATableViewController.swift in Sources */,
 				554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */,
-				0A2D587E225752D6001B8BF4 /* ConnectBrowserExtensionTrackingEvent.swift in Sources */,
+				0A2D587E225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift in Sources */,
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,
 				5568A25C22D7854D007C9E0C /* WCSessionListCell.swift in Sources */,
 				0AFD05F822A6906000888956 /* ChangePasswordTrackingEvent.swift in Sources */,
@@ -3244,7 +3244,7 @@
 				552D1010232A644D00127223 /* SeedIntroViewController.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
-				0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
+				0AF5BB39222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift in Sources */,
 				5579C57622C3664300BB93CA /* WalletConnectMenuCommand.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */,
 				55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */,

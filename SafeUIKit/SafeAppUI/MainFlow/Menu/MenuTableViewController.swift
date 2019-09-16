@@ -73,7 +73,7 @@ final class MenuTableViewController: UITableViewController {
     var securityCommands: [MenuCommand] {
         return [FeePaymentMethodCommand(), ChangePasswordCommand(), ResyncWithBrowserExtensionCommand(),
                 ReplaceRecoveryPhraseCommand(), ReplaceBrowserExtensionCommand(),
-                ConnectBrowserExtensionLaterCommand(), DisconnectBrowserExtensionCommand(), WalletConnectMenuCommand()]
+                ConnectTwoFACommand(), DisconnectBrowserExtensionCommand(), WalletConnectMenuCommand()]
     }
 
     var supportCommands: [MenuCommand] {
@@ -158,7 +158,7 @@ final class MenuTableViewController: UITableViewController {
     }
 
     func index(of section: SettingsSection) -> Int? {
-        return menuItemSections.enumerated().first { offset, item in item.section == section }?.offset
+        return menuItemSections.enumerated().first { _, item in item.section == section }?.offset
     }
 
     private func menuItem(at indexPath: IndexPath) -> MenuItem {

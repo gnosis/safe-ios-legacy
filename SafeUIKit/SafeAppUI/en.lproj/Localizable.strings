@@ -86,6 +86,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Congratulations! */
 "congratulations" = "Congratulations!";
 
+/* Connect 2FA */
+"connect_2fa" = "Connect 2FA";
+
 /* Explanation text */
 "connecting_in_progress" = "Connecting the Authenticator is now in progress. The transaction has been submitted and should take a couple of minutes.";
 
@@ -125,6 +128,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 
 /* Detected dangerous incoming transaction. */
 "detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
+
+/* Disable 2FA */
+"disable_2fa" = "disable_2fa";
 
 /* Disconnect */
 "disconnect" = "Disconnect";
@@ -258,9 +264,6 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 
 /* Disconnect browser extension */
 "ios_disconnect_browser_extension" = "Disconnect\nAuthenticator";
-
-/* Connect browser extension description */
-"ios_enable_2fa" = "Enable 2-factor authentication by connecting your Safe to Gnosis Safe Authenticator.\n\nAll future transactions will need to be approved by both devices.";
 
 /* Title for confirm recovery screen. */
 "ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
@@ -527,8 +530,8 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Pair 2FA device */
 "pair_2FA_device" = "Pair 2FA device";
 
-/* Pair 2FA device */
-"pair_2fa_device" = "Pair 2FA device";
+/* Pair 2FA device description */
+"pair_2FA_device_description" = "Once this process is complete, you can use your 2FA device to confirm transactions.";
 
 /* Pair Keycard */
 "pair_keycard" = "Pair Keycard";

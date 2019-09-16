@@ -8,7 +8,7 @@ import SafeUIKit
 class SKIntroViewController: CardViewController {
 
     enum Strings {
-        static let screenTitle = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
+        static let screenTitle = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
         static let header = LocalizedString("pair_your_keycard", comment: "Pair your card")
         static let body = LocalizedString("keycard_intro_description", comment: "Steps for pairing")
         static let start = LocalizedString("start", comment: "Start")

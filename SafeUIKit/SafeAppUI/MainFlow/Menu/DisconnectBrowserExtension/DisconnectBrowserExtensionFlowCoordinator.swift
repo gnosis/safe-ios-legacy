@@ -14,6 +14,7 @@ class DisconnectBrowserExtensionFlowCoordinator: FlowCoordinator {
     }
 
     enum Strings {
+        static let introTitle = LocalizedString("disable_2fa", comment: "Disable 2FA")
         static let disconnectBE = LocalizedString("ios_disconnect_browser_extension",
                                                   comment: "Disconnect browser extension")
             .replacingOccurrences(of: "\n", with: " ")
@@ -35,9 +36,8 @@ extension IntroContentView.Content {
 
     static let disconnectExtension =
         IntroContentView
-            .Content(header: DisconnectBrowserExtensionFlowCoordinator.Strings.disconnectBE,
-                     body: DisconnectBrowserExtensionFlowCoordinator.Strings.disconnectDescription,
-                     icon: Asset.ConnectBrowserExtension.connectIntroIcon.image)
+            .Content(body: DisconnectBrowserExtensionFlowCoordinator.Strings.disconnectDescription,
+                     icon: Asset.Manage2fa._2FaDisable.image)
 
 }
 
@@ -48,6 +48,7 @@ extension DisconnectBrowserExtensionFlowCoordinator {
         let vc = RBEIntroViewController.create()
         vc.starter = ApplicationServiceRegistry.disconnectExtensionService
         vc.delegate = self
+        vc.setTitle(DisconnectBrowserExtensionFlowCoordinator.Strings.introTitle)
         vc.setContent(.disconnectExtension)
         vc.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.intro
         return vc
@@ -117,7 +118,7 @@ extension SuccessViewController {
 
     static func disconnect2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
         return .congratulations(text: LocalizedString("disconnecting_in_progress", comment: "Explanation text"),
-                                image: Asset.ConnectBrowserExtension.connectIntroIcon.image,
+                                image: Asset.Manage2fa._2FaDisable.image,
                                 tracking: DisconnectBrowserExtensionTrackingEvent.success,
                                 action: action)
     }
