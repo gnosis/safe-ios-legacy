@@ -15,9 +15,11 @@ final class ConnectTwoFACommand: MenuCommand {
         return !ApplicationServiceRegistry.connectExtensionService.isAvailable
     }
 
-    override init() {
-        super.init()
-        childFlowCoordinator = ConnectTwoFAFlowCoordinator()
+    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+        let fc = ConnectTwoFAFlowCoordinator()
+        fc.mainFlowCoordinator = mainFlowCoordinator
+        childFlowCoordinator = fc
+        super.run(mainFlowCoordinator: mainFlowCoordinator)
     }
 
 }

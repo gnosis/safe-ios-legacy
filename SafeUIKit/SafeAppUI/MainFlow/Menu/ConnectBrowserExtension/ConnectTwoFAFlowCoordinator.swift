@@ -10,15 +10,18 @@ class ConnectTwoFAFlowCoordinator: FlowCoordinator {
     weak var intro: RBEIntroViewController!
     var transactionID: RBETransactionID!
     var transactionSubmissionHandler = TransactionSubmissionHandler()
+    var keycardFlowCoordinator = SKKeycardFlowCoordinator()
+    var mainFlowCoordinator: MainFlowCoordinator!
 
     enum Strings {
         static let pairTwoFA = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
-        static let connectBE = LocalizedString("ios_connect_browser_extension", comment: "Connect browser extension")
-            .replacingOccurrences(of: "\n", with: " ")
         static let pairDescription = LocalizedString("pair_2FA_device_description",
                                                      comment: "Pair 2FA device description")
-        static let connectAuthenticatorDetail = LocalizedString("layout_connect_browser_extension_info_description",
-                                                                comment: "Detail for the header in review screen")
+        static let pairReviewDescription = LocalizedString("pair_2fa_review_description",
+                                                           comment: "Pair 2FA review description")
+        static let statusKeyacard = LocalizedString("status_keycard", comment: "Status Keycard")
+        static let gnosisSafeAuthenticator = LocalizedString("gnosis_safe_authenticator",
+                                                             comment: "Gnosis Safe Authenticator")
     }
 
     override func setUp() {
@@ -52,14 +55,28 @@ extension ConnectTwoFAFlowCoordinator {
         return vc
     }
 
-    func pairViewController() -> TwoFAViewController {
+    func pairWithTwoFA() -> TwoFATableViewController {
+        let controller = TwoFATableViewController()
+        controller.delegate = self
+        return controller
+    }
+
+    func connectAuthenticatorViewController() -> TwoFAViewController {
         return TwoFAViewController.createRBEConnectController(delegate: self)
     }
 
-    func reviewViewController() -> RBEReviewTransactionViewController {
+    func reviewConnectAuthenticatorViewController() -> RBEReviewTransactionViewController {
+        return reviewTransactionVC(placeholderValue: Strings.gnosisSafeAuthenticator)
+    }
+
+    func reviewConnectKeycardViewController() -> RBEReviewTransactionViewController {
+        return reviewTransactionVC(placeholderValue: Strings.statusKeyacard)
+    }
+
+    private func reviewTransactionVC(placeholderValue: String) -> RBEReviewTransactionViewController {
         let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = Strings.connectBE
-        vc.detailString = Strings.connectAuthenticatorDetail
+        vc.titleString = Strings.pairTwoFA
+        vc.detailString = String(format: Strings.pairReviewDescription, placeholderValue)
         vc.screenTrackingEvent = ConnectTwoFATrackingEvent.review
         vc.successTrackingEvent = ConnectTwoFATrackingEvent.success
         return vc
@@ -71,7 +88,33 @@ extension ConnectTwoFAFlowCoordinator: RBEIntroViewControllerDelegate {
 
     func rbeIntroViewControllerDidStart() {
         transactionID = intro.transactionID
-        push(pairViewController())
+        push(pairWithTwoFA())
+    }
+
+}
+
+extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
+
+    func didSelectTwoFAOption(_ option: TwoFAOption) {
+        switch option {
+        case .statusKeycard:
+            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
+            enter(flow: keycardFlowCoordinator) { [unowned self] in
+                self.push(self.reviewConnectKeycardViewController())
+            }
+        case .gnosisAuthenticator:
+            push(connectAuthenticatorViewController())
+        }
+    }
+
+    func didSelectLearnMore(for option: TwoFAOption) {
+        let supportCoordinator = SupportFlowCoordinator(from: self)
+        switch option {
+        case .gnosisAuthenticator:
+            supportCoordinator.openAuthenticatorInfo()
+        case .statusKeycard:
+            supportCoordinator.openStausKeycardInfo()
+        }
     }
 
 }
@@ -83,7 +126,7 @@ extension ConnectTwoFAFlowCoordinator: TwoFAViewControllerDelegate {
     }
 
     func twoFAViewControllerDidFinish() {
-        push(reviewViewController())
+        push(reviewConnectAuthenticatorViewController())
     }
 
     func didSelectOpenAuthenticatorInfo() {

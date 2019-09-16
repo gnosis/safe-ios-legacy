@@ -130,7 +130,7 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 "detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
 
 /* Disable 2FA */
-"disable_2fa" = "disable_2fa";
+"disable_2fa" = "Disable 2FA";
 
 /* Disconnect */
 "disconnect" = "Disconnect";
@@ -532,6 +532,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 
 /* Pair 2FA device description */
 "pair_2FA_device_description" = "Once this process is complete, you can use your 2FA device to confirm transactions.";
+
+/* Pair 2FA review description */
+"pair_2fa_review_description" = "This transaction pairs this Safe with your 2FA device: %@. Future transactions require confirmation from both devices.";
 
 /* Pair Keycard */
 "pair_keycard" = "Pair Keycard";
