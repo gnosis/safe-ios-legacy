@@ -109,7 +109,7 @@ class SKPairViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingTrackingEvent.pair2FADevice)
+        trackEvent(TwoFATrackingEvent.pairKeycard)
     }
 
     override func viewWillDisappear(_ animated: Bool) {

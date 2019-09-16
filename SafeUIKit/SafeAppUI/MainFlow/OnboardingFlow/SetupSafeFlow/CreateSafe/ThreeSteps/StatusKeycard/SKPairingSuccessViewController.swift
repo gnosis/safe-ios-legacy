@@ -6,20 +6,21 @@ import Foundation
 import UIKit
 import MultisigWalletApplication
 
-class SKPairingSuccessViewController: NewSafeThreeStepsBaseController {
+class SKPairingSuccessViewController: HeaderImageTextStepController {
 
-    let pairSuccessView = SKPairSuccessView()
     var backButtonItem: UIBarButtonItem!
 
     private var onRemove: (() -> Void)!
 
     enum Strings {
         static let title = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
+        static let header = LocalizedString("keycard_paired", comment: "Paired")
+        static let text = LocalizedString("after_finishing_setup", comment: "Description")
     }
 
     static func create(onNext: @escaping () -> Void, onRemove: @escaping () -> Void) -> SKPairingSuccessViewController {
         let controller = SKPairingSuccessViewController(nibName: String(describing: CardViewController.self),
-                                                        bundle: Bundle(for: CardViewController.self))
+                                                       bundle: Bundle(for: CardViewController.self))
         controller.onNext = onNext
         controller.onRemove = onRemove
         controller.backButtonItem = UIBarButtonItem.backButton(target: controller, action: #selector(back))
@@ -28,13 +29,12 @@ class SKPairingSuccessViewController: NewSafeThreeStepsBaseController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = Strings.title
-        embed(view: pairSuccessView, inCardSubview: cardHeaderView)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        trackEvent(OnboardingTrackingEvent.pairSuccess)
+        title = Strings.title
+        trackingEvent = TwoFATrackingEvent.pairSuccess
+        threeStepsView.state = .pair2FA_paired
+        headerImageTextView.titleLabel.text = Strings.header
+        headerImageTextView.imageView.image = Asset.statusKeycardPaired.image
+        headerImageTextView.textLabel.attributedText = NSAttributedString(string: Strings.text, style: DescriptionStyle())
     }
 
     override func willMove(toParent parent: UIViewController?) {

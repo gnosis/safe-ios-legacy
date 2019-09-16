@@ -18,7 +18,7 @@ class PairWith2FAController: HeaderImageTextStepController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LocalizedString("create_safe_title", comment: "Create Safe")
+        title = LocalizedString("create_safe_title", comment: "Create Safe")
         threeStepsView.state = .pair2FA_initial
         headerImageTextView.titleLabel.text = LocalizedString("pair_safe_with_two_fa",
                                                               comment: "Pair the Safe with a 2FA device")

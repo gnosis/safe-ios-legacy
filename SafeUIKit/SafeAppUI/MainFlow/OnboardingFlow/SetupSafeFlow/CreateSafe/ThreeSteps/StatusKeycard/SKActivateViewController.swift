@@ -75,7 +75,7 @@ class SKActivateViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingTrackingEvent.pairActivation)
+        trackEvent(TwoFATrackingEvent.activateKeycard)
     }
 
     func setCredentialsLabelSelected(_ selected: Bool) {

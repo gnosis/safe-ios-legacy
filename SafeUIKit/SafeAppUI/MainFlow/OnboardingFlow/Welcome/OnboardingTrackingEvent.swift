@@ -35,11 +35,14 @@ enum CreateSafeTrackingEvent: String, ScreenTrackingEvent {
 
 enum TwoFATrackingEvent: String, ScreenTrackingEvent {
 
-    case setup2FADevicesList            = "Setup2FADevicesList"
-    case openStatusKeycardInfo          = "OpenStatusKeycardInfo"
-    case openAuthenticatorInfo          = "OpenAuthenticatorInfo"
-    case connectAuthenticator           = "ConnectAuthenticator"
-    case connectAuthenticatorScan       = "ConnectAuthenticatorScan"
+    case setup2FADevicesList            = "Pair2FA_Setup2FADevicesList"
+    case openStatusKeycardInfo          = "Pair2FA_KeycardInfo"
+    case openAuthenticatorInfo          = "Pair2FA_AuthenticatorInfo"
+    case connectAuthenticator           = "Pair2FA_ConnectAuthenticator"
+    case connectAuthenticatorScan       = "Pair2FA_ConnectAuthenticatorScan"
+    case pairKeycard                    = "Pair2FA_PairKeycard"
+    case activateKeycard                = "Pair2FA_ActivateKeycard"
+    case pairSuccess                    = "Pair2FA_KeycardSuccess"
 
 }
 
@@ -57,9 +60,6 @@ enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
     case enterSeed                  = "Onboarding_EnterSeed"
     case twoFAScanSuccess           = "Onboarding_2FAScanSuccess"
     case twoFAScanError             = "Onboarding_2FAScanError"
-    case pair2FADevice              = "Onboarding_Pair2FADevice"
-    case pairActivation             = "Onboarding_PairActivation"
-    case pairSuccess                = "Onboarding_PairSuccess"
     case createSafeFeeIntro         = "Onboarding_CreationFeeIntro"
     case createSafePaymentMethod    = "Onboarding_PaymentMethod"
     case creationFee                = "Onboarding_CreationFee"
