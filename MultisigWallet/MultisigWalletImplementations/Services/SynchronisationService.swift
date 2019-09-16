@@ -98,7 +98,7 @@ public class SynchronisationService: SynchronisationDomainService {
             try DomainRegistry.contractUpgradeService.postProcessTransactions()
 
             guard hasAccessToFilesystem else { return }
-            try DomainRegistry.replaceExtensionService.postProcessTransactions()
+            try DomainRegistry.replace2FAService.postProcessTransactions()
 
             guard hasAccessToFilesystem else { return }
             try DomainRegistry.connectTwoFAService.postProcessTransactions()

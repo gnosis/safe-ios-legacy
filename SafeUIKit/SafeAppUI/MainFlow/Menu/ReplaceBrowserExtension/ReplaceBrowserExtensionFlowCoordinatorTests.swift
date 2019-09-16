@@ -17,7 +17,7 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: mockApplicationService,
-                                       for: ReplaceBrowserExtensionApplicationService.self)
+                                       for: ReplaceTwoFAApplicationService.self)
         fc = TestableReplaceBrowserExtensionFlowCoordinator(rootViewController: nav)
         fc.setUp()
     }
@@ -99,7 +99,7 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
 }
 
-class MockReplaceExtensionApplicationService: ReplaceBrowserExtensionApplicationService {
+class MockReplaceExtensionApplicationService: ReplaceTwoFAApplicationService {
 
     var shouldThrow = false
     func throwIfNeeded() throws {

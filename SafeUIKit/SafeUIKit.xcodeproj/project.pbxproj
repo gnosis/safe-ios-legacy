@@ -125,7 +125,7 @@
 		0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */; };
 		0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */; };
 		0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F1220B1CE800E340DB /* MenuCommand.swift */; };
-		0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */; };
+		0A3D14F4220B1D2800E340DB /* ReplaceTwoFACommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F3220B1D2800E340DB /* ReplaceTwoFACommand.swift */; };
 		0A3FB8C2228B163D00270573 /* SendFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8C1228B163D00270573 /* SendFlowCoordinator.swift */; };
 		0A3FB8D2228B16F100270573 /* UIBarButtonItem+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D1228B16F100270573 /* UIBarButtonItem+Items.swift */; };
 		0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FB8D3228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift */; };
@@ -761,7 +761,7 @@
 		0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagSettings.swift; sourceTree = "<group>"; };
 		0A3D14F1220B1CE800E340DB /* MenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCommand.swift; sourceTree = "<group>"; };
-		0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionCommand.swift; sourceTree = "<group>"; };
+		0A3D14F3220B1D2800E340DB /* ReplaceTwoFACommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFACommand.swift; sourceTree = "<group>"; };
 		0A3D1551220B38B100E340DB /* libReplaceBrowserExtensionFacade.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReplaceBrowserExtensionFacade.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3D1553220B393A00E340DB /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0A3FB8C1228B163D00270573 /* SendFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -1426,7 +1426,7 @@
 				0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */,
 				0A2D588122575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift */,
 				0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */,
-				0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */,
+				0A3D14F3220B1D2800E340DB /* ReplaceTwoFACommand.swift */,
 				0ACCA8BF221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift */,
 			);
 			path = ReplaceBrowserExtension;
@@ -3263,7 +3263,7 @@
 				0A334E3F209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift in Sources */,
 				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,
 				0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */,
-				0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */,
+				0A3D14F4220B1D2800E340DB /* ReplaceTwoFACommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
 				55B5DF6422782C09001A32F4 /* ManageTokensCommand.swift in Sources */,
 				557353722294290A00248F87 /* OnboardingCreationFeeIntroViewController.swift in Sources */,

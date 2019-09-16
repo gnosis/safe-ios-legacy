@@ -8,7 +8,7 @@ import Common
 
 open class OwnerModificationApplicationService: RBEStarter {
 
-    internal var domainService: ReplaceBrowserExtensionDomainService!
+    internal var domainService: ReplaceTwoFADomainService!
 
     public init() {}
 

@@ -15,8 +15,8 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: ReplaceRecoveryPhraseApplicationService.self)
     }
 
-    public static var replaceExtensionService: ReplaceBrowserExtensionApplicationService {
-        return service(for: ReplaceBrowserExtensionApplicationService.self)
+    public static var replaceTwoFAService: ReplaceTwoFAApplicationService {
+        return service(for: ReplaceTwoFAApplicationService.self)
     }
 
     public static var connectTwoFAService: ConnectTwoFAApplicationService {

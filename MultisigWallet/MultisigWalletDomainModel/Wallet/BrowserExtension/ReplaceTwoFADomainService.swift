@@ -13,7 +13,7 @@ public enum ReplaceBrowserExtensionDomainServiceError: Error {
     case recoveryPhraseHasNoOwnership
 }
 
-open class ReplaceBrowserExtensionDomainService: Assertable {
+open class ReplaceTwoFADomainService: Assertable {
 
     open var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }

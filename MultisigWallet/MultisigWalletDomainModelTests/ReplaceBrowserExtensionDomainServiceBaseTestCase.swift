@@ -9,7 +9,7 @@ import CommonTestSupport
 
 class ReplaceBrowserExtensionDomainServiceBaseTestCase: XCTestCase {
 
-    let service = ReplaceBrowserExtensionDomainService()
+    let service = ReplaceTwoFADomainService()
     let walletRepo = InMemoryWalletRepository()
     let portfolioRepo = InMemorySinglePortfolioRepository()
     let transactionRepo = InMemoryTransactionRepository()

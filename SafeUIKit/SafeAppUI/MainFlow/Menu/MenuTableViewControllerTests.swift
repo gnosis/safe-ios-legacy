@@ -27,7 +27,7 @@ class MenuTableViewControllerTests: XCTestCase {
         super.setUp()
         walletService.assignAddress("test_address")
         ApplicationServiceRegistry.put(service: replaceExtensionService,
-                                       for: ReplaceBrowserExtensionApplicationService.self)
+                                       for: ReplaceTwoFAApplicationService.self)
         ApplicationServiceRegistry.put(service: connectExtensionService,
                                        for: ConnectTwoFAApplicationService.self)
         ApplicationServiceRegistry.put(service: disconnectExtensionService,

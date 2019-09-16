@@ -5,7 +5,7 @@
 import Foundation
 import MultisigWalletApplication
 
-class ReplaceBrowserExtensionCommand: MenuCommand {
+class ReplaceTwoFACommand: MenuCommand {
 
     override var title: String {
         return LocalizedString("ios_replace_browser_extension", comment: "Replace browser extension")
@@ -13,7 +13,7 @@ class ReplaceBrowserExtensionCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return !ApplicationServiceRegistry.replaceExtensionService.isAvailable
+        return !ApplicationServiceRegistry.replaceTwoFAService.isAvailable
     }
 
     override init() {

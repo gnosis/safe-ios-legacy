@@ -10,8 +10,8 @@ class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
     weak var introVC: RBEIntroViewController?
     var transactionID: RBETransactionID!
 
-    private var applicationService: ReplaceBrowserExtensionApplicationService {
-        return ApplicationServiceRegistry.replaceExtensionService
+    private var applicationService: ReplaceTwoFAApplicationService {
+        return ApplicationServiceRegistry.replaceTwoFAService
     }
 
     override func setUp() {

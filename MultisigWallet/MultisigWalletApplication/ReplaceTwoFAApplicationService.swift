@@ -5,11 +5,11 @@
 import Foundation
 import MultisigWalletDomainModel
 
-open class ReplaceBrowserExtensionApplicationService: OwnerModificationApplicationService {
+open class ReplaceTwoFAApplicationService: OwnerModificationApplicationService {
 
-    public static func create() -> ReplaceBrowserExtensionApplicationService {
-        let service = ReplaceBrowserExtensionApplicationService()
-        service.domainService = DomainRegistry.replaceExtensionService
+    public static func create() -> ReplaceTwoFAApplicationService {
+        let service = ReplaceTwoFAApplicationService()
+        service.domainService = DomainRegistry.replace2FAService
         return service
     }
 

@@ -4,7 +4,7 @@
 
 import Foundation
 
-open class ConnectTwoFADomainService: ReplaceBrowserExtensionDomainService {
+open class ConnectTwoFADomainService: ReplaceTwoFADomainService {
 
     open override var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }

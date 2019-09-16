@@ -38,8 +38,8 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: DeploymentDomainService(), for: DeploymentDomainService.self)
         DomainRegistry.put(service: TransactionDomainService(), for: TransactionDomainService.self)
         DomainRegistry.put(service: RecoveryDomainService(), for: RecoveryDomainService.self)
-        DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
-                           for: ReplaceBrowserExtensionDomainService.self)
+        DomainRegistry.put(service: ReplaceTwoFADomainService(),
+                           for: ReplaceTwoFADomainService.self)
         DomainRegistry.put(service: ConnectTwoFADomainService(),
                            for: ConnectTwoFADomainService.self)
         DomainRegistry.put(service: DisconnectTwoFADomainService(),
@@ -60,8 +60,8 @@ class MultisigWalletConfigurator {
 
         // temporal coupling with domain model's services
         ApplicationServiceRegistry
-            .put(service: ReplaceBrowserExtensionApplicationService.create(),
-                 for: ReplaceBrowserExtensionApplicationService.self)
+            .put(service: ReplaceTwoFAApplicationService.create(),
+                 for: ReplaceTwoFAApplicationService.self)
         ApplicationServiceRegistry
             .put(service: ConnectTwoFAApplicationService.create(),
                  for: ConnectTwoFAApplicationService.self)

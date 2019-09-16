@@ -5,7 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 
-open class DisconnectTwoFAApplicationService: ReplaceBrowserExtensionApplicationService {
+open class DisconnectTwoFAApplicationService: ReplaceTwoFAApplicationService {
 
     public static func createDisconnectService() -> DisconnectTwoFAApplicationService {
         let service = DisconnectTwoFAApplicationService()

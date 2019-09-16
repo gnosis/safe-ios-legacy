@@ -121,7 +121,7 @@
 		0AAE7CB52304527300E7EB07 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD620A08A3F006A1265 /* Database.framework */; };
 		0AAE7CB62304527F00E7EB07 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD020A08A3F006A1265 /* Common.framework */; };
 		0AAE7CB72304527F00E7EB07 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD420A08A3F006A1265 /* CommonTestSupport.framework */; };
-		0AAE7CBB2304537500E7EB07 /* ReplaceBrowserExtensionApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD967222564B1007039B4 /* ReplaceBrowserExtensionApplicationService.swift */; };
+		0AAE7CBB2304537500E7EB07 /* ReplaceTwoFAApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD967222564B1007039B4 /* ReplaceTwoFAApplicationService.swift */; };
 		0AAE7CBD2304537500E7EB07 /* OwnerModificationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AD4F32225A649004244FB /* OwnerModificationApplicationService.swift */; };
 		0AAE7CBE2304537500E7EB07 /* WCPendingTransactionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554D17C922DF2E3900B90A70 /* WCPendingTransactionsRepository.swift */; };
 		0AAE7CBF2304537500E7EB07 /* MockRecoveryApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */; };
@@ -172,7 +172,7 @@
 		0AAE7D8B2304544A00E7EB07 /* RetryWithIncreasingDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D162304544800E7EB07 /* RetryWithIncreasingDelay.swift */; };
 		0AAE7D8C2304544A00E7EB07 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D172304544800E7EB07 /* Wallet.swift */; };
 		0AAE7D8D2304544A00E7EB07 /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D182304544800E7EB07 /* EventPublisher.swift */; };
-		0AAE7D8E2304544A00E7EB07 /* ReplaceBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1A2304544800E7EB07 /* ReplaceBrowserExtensionDomainService.swift */; };
+		0AAE7D8E2304544A00E7EB07 /* ReplaceTwoFADomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1A2304544800E7EB07 /* ReplaceTwoFADomainService.swift */; };
 		0AAE7D902304544A00E7EB07 /* RBETransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */; };
 		0AAE7D912304544A00E7EB07 /* RBETransactionMonitorEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */; };
 		0AAE7D922304544A00E7EB07 /* DisconnectTwoFADomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D1E2304544800E7EB07 /* DisconnectTwoFADomainService.swift */; };
@@ -547,7 +547,7 @@
 		0A3BD92722254FF6007039B4 /* RBEStarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBEStarter.swift; sourceTree = "<group>"; };
 		0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeeCalculationError.swift; sourceTree = "<group>"; };
 		0A3BD92922254FF7007039B4 /* RBEFeeCalculationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBEFeeCalculationData.swift; sourceTree = "<group>"; };
-		0A3BD967222564B1007039B4 /* ReplaceBrowserExtensionApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionApplicationService.swift; sourceTree = "<group>"; };
+		0A3BD967222564B1007039B4 /* ReplaceTwoFAApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFAApplicationService.swift; sourceTree = "<group>"; };
 		0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
@@ -621,7 +621,7 @@
 		0AAE7D162304544800E7EB07 /* RetryWithIncreasingDelay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetryWithIncreasingDelay.swift; sourceTree = "<group>"; };
 		0AAE7D172304544800E7EB07 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		0AAE7D182304544800E7EB07 /* EventPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPublisher.swift; sourceTree = "<group>"; };
-		0AAE7D1A2304544800E7EB07 /* ReplaceBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
+		0AAE7D1A2304544800E7EB07 /* ReplaceTwoFADomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFADomainService.swift; sourceTree = "<group>"; };
 		0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBETransactionMonitorRepository.swift; sourceTree = "<group>"; };
 		0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBETransactionMonitorEntry.swift; sourceTree = "<group>"; };
 		0AAE7D1E2304544800E7EB07 /* DisconnectTwoFADomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFADomainService.swift; sourceTree = "<group>"; };
@@ -1067,7 +1067,7 @@
 				0A3BD92922254FF7007039B4 /* RBEFeeCalculationData.swift */,
 				0A3BD92722254FF6007039B4 /* RBEStarter.swift */,
 				0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */,
-				0A3BD967222564B1007039B4 /* ReplaceBrowserExtensionApplicationService.swift */,
+				0A3BD967222564B1007039B4 /* ReplaceTwoFAApplicationService.swift */,
 				0A8586D622A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift */,
 				0A5E016922607CA3007F4F38 /* SystemInfo.swift */,
 				0A60B521211343F70066821A /* TransactionData.swift */,
@@ -1179,7 +1179,7 @@
 			children = (
 				5542B4DC231E770800835F89 /* ContractUpgradeDomainService.swift */,
 				5542B4D7231E770800835F89 /* ContractUpgradeDomainServiceTests.swift */,
-				0AAE7D1A2304544800E7EB07 /* ReplaceBrowserExtensionDomainService.swift */,
+				0AAE7D1A2304544800E7EB07 /* ReplaceTwoFADomainService.swift */,
 				0AAE7D1C2304544800E7EB07 /* RBETransactionMonitorRepository.swift */,
 				0AAE7D1D2304544800E7EB07 /* RBETransactionMonitorEntry.swift */,
 				0AAE7D1E2304544800E7EB07 /* DisconnectTwoFADomainService.swift */,
@@ -1836,7 +1836,7 @@
 				559C2EB3231FC1FA0071B14C /* GetSafeStatusRequest.swift in Sources */,
 				0AAE7DA32304544A00E7EB07 /* Worker.swift in Sources */,
 				0AAE7D892304544A00E7EB07 /* Repeater.swift in Sources */,
-				0AAE7D8E2304544A00E7EB07 /* ReplaceBrowserExtensionDomainService.swift in Sources */,
+				0AAE7D8E2304544A00E7EB07 /* ReplaceTwoFADomainService.swift in Sources */,
 				0AAE7DC92304544A00E7EB07 /* SinglePortfolioRepository.swift in Sources */,
 				0AAE7D792304544A00E7EB07 /* WalletDomainService.swift in Sources */,
 				0AAE7DB02304544A00E7EB07 /* MessageRepository.swift in Sources */,
@@ -2005,7 +2005,7 @@
 				0AAE7CCD2304537500E7EB07 /* WalletStateEnum.swift in Sources */,
 				0AAE7CC92304537500E7EB07 /* ConnectTwoFAApplicationService.swift in Sources */,
 				0AAE7CD82304537500E7EB07 /* DisconnectTwoFAApplicationService.swift in Sources */,
-				0AAE7CBB2304537500E7EB07 /* ReplaceBrowserExtensionApplicationService.swift in Sources */,
+				0AAE7CBB2304537500E7EB07 /* ReplaceTwoFAApplicationService.swift in Sources */,
 				0AAE7CD42304537500E7EB07 /* RecoveryApplicationService.swift in Sources */,
 				0AAE7CCA2304537500E7EB07 /* OwnerType.swift in Sources */,
 				5542B4E3231E775700835F89 /* ContractUpgradeApplicationService.swift in Sources */,
