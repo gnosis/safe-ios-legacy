@@ -102,14 +102,20 @@ public class RecoveryApplicationService {
             type = .walletRecovery
         case .replaceRecoveryPhrase:
             type = .replaceRecoveryPhrase
-        case .replaceBrowserExtension:
+        case .replaceTwoFAWithAuthenticator:
             type = .replaceBrowserExtension
-        case .connectBrowserExtension:
+        case .connectAuthenticator:
             type = .connectBrowserExtension
-        case .disconnectBrowserExtension:
+        case .disconnectAuthenticator:
             type = .disconnectBrowserExtension
         case .contractUpgrade:
             type = .contractUpgrade
+        case .replaceTwoFAWithStatusKeycard:
+            type = .replaceTwoFAWithStatusKeycard
+        case .connectStatusKeycard:
+            type = .connectStatusKeycard
+        case .disconnectStatusKeycard:
+            type = .disconnectStatusKeycard
         }
         let amount = tx.amount ?? TokenAmount(amount: 0, token: Token.Ether)
         let amountTokenData = TokenData(token: amount.token, balance: amount.amount)

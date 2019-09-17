@@ -315,10 +315,13 @@ public enum TransactionType: Int {
     case transfer = 0
     case walletRecovery = 1
     case replaceRecoveryPhrase = 2
-    case replaceBrowserExtension = 3
-    case connectBrowserExtension = 4
-    case disconnectBrowserExtension = 5
+    case replaceTwoFAWithAuthenticator = 3
+    case connectAuthenticator = 4
+    case disconnectAuthenticator = 5
     case contractUpgrade = 6
+    case replaceTwoFAWithStatusKeycard = 7
+    case connectStatusKeycard = 8
+    case disconnectStatusKeycard = 9
 
 }
 

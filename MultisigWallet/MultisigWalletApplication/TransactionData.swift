@@ -54,6 +54,9 @@ public struct TransactionData: Equatable {
         case connectBrowserExtension
         case disconnectBrowserExtension
         case contractUpgrade
+        case replaceTwoFAWithStatusKeycard
+        case connectStatusKeycard
+        case disconnectStatusKeycard
     }
 
     public let id: String

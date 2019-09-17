@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-enum DisconnectBrowserExtensionTrackingEvent: String, ScreenTrackingEvent {
+enum DisconnectTwoFATrackingEvent: String, ScreenTrackingEvent {
 
     case intro      = "Disconnect2FA"
     case enterSeed  = "Disconnect2FA_EnterSeed"

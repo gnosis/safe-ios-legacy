@@ -130,6 +130,9 @@ public class TransactionDetailsViewController: UIViewController {
         case .disconnectBrowserExtension: return .disconnectBrowserExtension
         case .walletRecovery: return .recoverSafe
         case .contractUpgrade: return .contractUpgrade
+        case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
+        case .connectStatusKeycard: return .connectStatusKeycard
+        case .disconnectStatusKeycard: return .disconnectStatusKeycard
         }
 
     }
@@ -144,6 +147,7 @@ public class TransactionDetailsViewController: UIViewController {
         configureViewInOtherApp()
     }
 
+    // swiftlint:disable:next function_body_length)
     private func configureTransferDetails() {
         switch transaction.type {
         case .incoming:
@@ -194,6 +198,13 @@ public class TransactionDetailsViewController: UIViewController {
             settingsHeaderView.fromAddress = transaction.sender
             transferView.isHidden = true
             settingsHeaderView.isHidden = false
+        case .replaceTwoFAWithStatusKeycard:
+            // TODO
+            break
+        case .connectStatusKeycard:
+            break
+        case .disconnectStatusKeycard:
+            break
         }
         if transaction.status == .failed {
             settingsHeaderView.setFailed()
@@ -207,7 +218,8 @@ public class TransactionDetailsViewController: UIViewController {
         case .outgoing: transactionTypeView.value = Strings.outgoingType
         case .incoming: transactionTypeView.value = "" // we do not have incomming transactions yet
         case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension,
-             .disconnectBrowserExtension, .contractUpgrade:
+             .disconnectBrowserExtension, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
+             .disconnectStatusKeycard:
             transactionTypeView.value = Strings.settingsChangeType
         }
     }

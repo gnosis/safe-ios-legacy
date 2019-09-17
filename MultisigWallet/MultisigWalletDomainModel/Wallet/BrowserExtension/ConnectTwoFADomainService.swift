@@ -13,7 +13,7 @@ open class ConnectTwoFADomainService: ReplaceTwoFADomainService {
         return wallet.isReadyToUse && twoFAIsNotConnected
     }
 
-    override var transactionType: TransactionType { return .connectBrowserExtension }
+    override var transactionType: TransactionType { return .connectAuthenticator }
 
     override func dummyTransactionData() -> Data {
         let dummyAddress: Address = wallet?.address ?? .two

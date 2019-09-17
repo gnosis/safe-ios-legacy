@@ -49,7 +49,7 @@ class DisconnectBrowserExtensionDomainServiceTests: BaseBrowserExtensionModifica
         let txRepo = InMemoryTransactionRepository()
         DomainRegistry.put(service: txRepo, for: TransactionRepository.self)
         let tx = Transaction(id: TransactionID(),
-                             type: .disconnectBrowserExtension,
+                             type: .disconnectAuthenticator,
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
         tx.change(status: .success)
         txRepo.save(tx)

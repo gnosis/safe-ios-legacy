@@ -23,7 +23,7 @@ class ConnectBrowserExtensionDomainServiceTests: BaseBrowserExtensionModificatio
     }
 
     func test_txType() {
-        XCTAssertEqual(service.transactionType, .connectBrowserExtension)
+        XCTAssertEqual(service.transactionType, .connectAuthenticator)
     }
 
     func test_whenDummyData_thenAddsOwner() {

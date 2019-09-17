@@ -8,8 +8,7 @@ import MultisigWalletApplication
 class DisconnectTwoFACommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("ios_disconnect_browser_extension", comment: "Disconnect browser extension")
-            .replacingOccurrences(of: "\n", with: " ").capitalized
+        return LocalizedString("disconnect_2fa", comment: "Disconnect 2FA")
     }
 
     override var isHidden: Bool {

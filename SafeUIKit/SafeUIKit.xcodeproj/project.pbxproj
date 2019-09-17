@@ -41,7 +41,7 @@
 		0A2C0E3E2297E1A5008A30AC /* SafeLabelTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C0E3D2297E1A5008A30AC /* SafeLabelTitleView.swift */; };
 		0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */; };
 		0A2D587E225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587D225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift */; };
-		0A2D58802257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587F2257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift */; };
+		0A2D58802257536B001B8BF4 /* DisconnectTwoFATrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D587F2257536B001B8BF4 /* DisconnectTwoFATrackingEvent.swift */; };
 		0A2D588222575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588122575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift */; };
 		0A2D58862257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58852257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift */; };
 		0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D588722575765001B8BF4 /* RecoverSafeTrackingEvent.swift */; };
@@ -683,7 +683,7 @@
 		0A2C0E3D2297E1A5008A30AC /* SafeLabelTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLabelTitleView.swift; sourceTree = "<group>"; };
 		0A2D587B22574F7A001B8BF4 /* SupportFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A2D587D225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectTwoFATrackingEvent.swift; sourceTree = "<group>"; };
-		0A2D587F2257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionTrackingEvent.swift; sourceTree = "<group>"; };
+		0A2D587F2257536B001B8BF4 /* DisconnectTwoFATrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFATrackingEvent.swift; sourceTree = "<group>"; };
 		0A2D588122575435001B8BF4 /* ReplaceBrowserExtensionTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionTrackingEvent.swift; sourceTree = "<group>"; };
 		0A2D58852257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseTrackingEvent.swift; sourceTree = "<group>"; };
 		0A2D588722575765001B8BF4 /* RecoverSafeTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeTrackingEvent.swift; sourceTree = "<group>"; };
@@ -1182,7 +1182,7 @@
 				0A1940562226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift */,
 				0A2D58AE22578A31001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift */,
 				0A19405A2226D030005B7440 /* DisconnectTwoFACommand.swift */,
-				0A2D587F2257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift */,
+				0A2D587F2257536B001B8BF4 /* DisconnectTwoFATrackingEvent.swift */,
 			);
 			path = DisconnectBrowserExtension;
 			sourceTree = "<group>";
@@ -3145,7 +3145,7 @@
 				55BDA81A232652AF005C9E6A /* ThreeStepsToSecurityView.swift in Sources */,
 				55CE9D0123059ED800CB414D /* ContractUpgradeTrackingEvent.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
-				0A2D58802257536B001B8BF4 /* DisconnectBrowserExtensionTrackingEvent.swift in Sources */,
+				0A2D58802257536B001B8BF4 /* DisconnectTwoFATrackingEvent.swift in Sources */,
 				551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */,
 				0A6EF3C821BA8CC100F1074E /* AddressInputViewController.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,

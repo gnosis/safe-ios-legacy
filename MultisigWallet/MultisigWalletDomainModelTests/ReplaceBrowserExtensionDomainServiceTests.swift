@@ -40,7 +40,7 @@ class ReplaceBrowserExtensionDomainServiceTests: ReplaceBrowserExtensionDomainSe
         XCTAssertEqual(tx.accountID.tokenID, Token.Ether.id)
         XCTAssertEqual(tx.accountID.walletID, wallet.id)
         XCTAssertEqual(tx.amount, TokenAmount.ether(0))
-        XCTAssertEqual(tx.type, .replaceBrowserExtension)
+        XCTAssertEqual(tx.type, .replaceTwoFAWithBrowserExtension)
     }
 
     func test_whenDeletingTransaction_thenRemovedFromRepository() {

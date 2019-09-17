@@ -550,7 +550,7 @@ public class WalletApplicationService: Assertable {
     }
 
     internal func transactionData(_ tx: Transaction) -> TransactionData {
-        if tx.type == .replaceBrowserExtension || tx.type == .disconnectBrowserExtension {
+        if tx.type == .replaceTwoFAWithAuthenticator || tx.type == .disconnectAuthenticator {
             return ApplicationServiceRegistry.recoveryService.transactionData(tx)
         }
         let type: TransactionData.TransactionType
@@ -558,10 +558,13 @@ public class WalletApplicationService: Assertable {
         case .transfer: type = .outgoing
         case .walletRecovery: type = .walletRecovery
         case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
-        case .replaceBrowserExtension: type = .replaceBrowserExtension
-        case .connectBrowserExtension: type = .connectBrowserExtension
-        case .disconnectBrowserExtension: type = .disconnectBrowserExtension
+        case .replaceTwoFAWithAuthenticator: type = .replaceBrowserExtension
+        case .connectAuthenticator: type = .connectBrowserExtension
+        case .disconnectAuthenticator: type = .disconnectBrowserExtension
         case .contractUpgrade: type = .contractUpgrade
+        case .replaceTwoFAWithStatusKeycard: type = .replaceTwoFAWithStatusKeycard
+        case .connectStatusKeycard: type = .connectStatusKeycard
+        case .disconnectStatusKeycard: type = .disconnectStatusKeycard
         }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
@@ -639,7 +642,7 @@ public class WalletApplicationService: Assertable {
     public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         guard tx.feeEstimate == nil ||
-            (tx.type == .connectBrowserExtension || tx.type == .replaceRecoveryPhrase) && tx.status == .draft else {
+            (tx.type == .connectAuthenticator || tx.type == .replaceRecoveryPhrase) && tx.status == .draft else {
                 return transactionData(id)!
         }
         let request = EstimateTransactionRequest(safe: formatted(tx.sender),
@@ -682,7 +685,7 @@ public class WalletApplicationService: Assertable {
             _ = try requestTransactionConfirmationIfNeeded(id)
             tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         }
-        if tx.type == .replaceBrowserExtension || tx.type == .disconnectBrowserExtension {
+        if tx.type == .replaceTwoFAWithAuthenticator || tx.type == .disconnectAuthenticator {
             try proceedTransaction(tx)
         } else {
             try signTransaction(tx)
