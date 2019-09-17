@@ -103,11 +103,11 @@ public class RecoveryApplicationService {
         case .replaceRecoveryPhrase:
             type = .replaceRecoveryPhrase
         case .replaceTwoFAWithAuthenticator:
-            type = .replaceBrowserExtension
+            type = .replaceTwoFAWithAuthenticator
         case .connectAuthenticator:
-            type = .connectBrowserExtension
+            type = .connectAuthenticator
         case .disconnectAuthenticator:
-            type = .disconnectBrowserExtension
+            type = .disconnectAuthenticator
         case .contractUpgrade:
             type = .contractUpgrade
         case .replaceTwoFAWithStatusKeycard:

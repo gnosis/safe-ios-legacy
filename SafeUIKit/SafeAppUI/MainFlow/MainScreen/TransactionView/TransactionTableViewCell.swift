@@ -111,11 +111,11 @@ class TransactionTableViewCell: UITableViewCell {
             tokenAmountLabel.text = Strings.recoveredSafe
         case .replaceRecoveryPhrase:
             tokenAmountLabel.text = Strings.replaceRecoveryPhrase
-        case .replaceBrowserExtension, .replaceTwoFAWithStatusKeycard:
+        case .replaceTwoFAWithAuthenticator, .replaceTwoFAWithStatusKeycard:
             tokenAmountLabel.text = Strings.replaceTwoFA
-        case .connectBrowserExtension, .connectStatusKeycard:
+        case .connectAuthenticator, .connectStatusKeycard:
             tokenAmountLabel.text = Strings.connectTwoFA
-        case .disconnectBrowserExtension, .disconnectStatusKeycard:
+        case .disconnectAuthenticator, .disconnectStatusKeycard:
             tokenAmountLabel.text = Strings.disconnectTwoFA
         case .contractUpgrade:
             tokenAmountLabel.text = Strings.contractUpgrade
@@ -124,8 +124,8 @@ class TransactionTableViewCell: UITableViewCell {
 
     private func recipient(_ transaction: TransactionData) -> String {
         switch transaction.type {
-        case .incoming, .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension,
-             .disconnectBrowserExtension, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
+        case .incoming, .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
+             .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
              .disconnectStatusKeycard:
             return transaction.sender
         case .outgoing: return transaction.recipient
@@ -153,8 +153,8 @@ class TransactionTableViewCell: UITableViewCell {
         switch transaction.type {
         case .outgoing: return ColorName.darkBlue.color
         case .incoming: return ColorName.hold.color
-        case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension,
-             .disconnectBrowserExtension, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
+        case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
+             .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
              .disconnectStatusKeycard:
             return ColorName.darkBlue.color
         }
@@ -164,8 +164,8 @@ class TransactionTableViewCell: UITableViewCell {
         switch transaction.type {
         case .outgoing: return Asset.TransactionOverviewIcons.iconOutgoing.image
         case .incoming: return Asset.TransactionOverviewIcons.iconIncoming.image
-        case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension,
-             .disconnectBrowserExtension, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
+        case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
+             .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
              .disconnectStatusKeycard:
             return Asset.TransactionOverviewIcons.iconSettings.image
         }

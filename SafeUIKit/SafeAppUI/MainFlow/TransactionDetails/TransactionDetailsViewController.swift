@@ -125,9 +125,9 @@ public class TransactionDetailsViewController: UIViewController {
         switch type {
         case .incoming, .outgoing: return .send
         case .replaceRecoveryPhrase: return .replaceRecoveryPhrase
-        case .replaceBrowserExtension: return .replaceBrowserExtension
-        case .connectBrowserExtension: return .connectBrowserExtension
-        case .disconnectBrowserExtension: return .disconnectBrowserExtension
+        case .replaceTwoFAWithAuthenticator: return .replaceTwoFAWithAuthenticator
+        case .connectAuthenticator: return .connectAuthenticator
+        case .disconnectAuthenticator: return .disconnectAuthenticator
         case .walletRecovery: return .recoverSafe
         case .contractUpgrade: return .contractUpgrade
         case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
@@ -147,7 +147,7 @@ public class TransactionDetailsViewController: UIViewController {
         configureViewInOtherApp()
     }
 
-    // swiftlint:disable:next function_body_length)
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     private func configureTransferDetails() {
         switch transaction.type {
         case .incoming:
@@ -165,19 +165,19 @@ public class TransactionDetailsViewController: UIViewController {
             settingsHeaderView.fromAddress = transaction.sender
             transferView.isHidden = true
             settingsHeaderView.isHidden = false
-        case .replaceBrowserExtension:
+        case .replaceTwoFAWithAuthenticator:
             settingsHeaderView.titleText = Strings.ReplaceBrowserExtension.title
             settingsHeaderView.detailText = Strings.ReplaceBrowserExtension.detail
             settingsHeaderView.fromAddress = transaction.sender
             transferView.isHidden = true
             settingsHeaderView.isHidden = false
-        case .connectBrowserExtension:
+        case .connectAuthenticator:
             settingsHeaderView.titleText = Strings.ConnectBrowserExtension.title
             settingsHeaderView.detailText = Strings.ConnectBrowserExtension.detail
             settingsHeaderView.fromAddress = transaction.sender
             transferView.isHidden = true
             settingsHeaderView.isHidden = false
-        case .disconnectBrowserExtension:
+        case .disconnectAuthenticator:
             settingsHeaderView.titleText = Strings.DisconnectBrowserExtension.title
             settingsHeaderView.detailText = Strings.DisconnectBrowserExtension.detail
             settingsHeaderView.fromAddress = transaction.sender
@@ -217,8 +217,8 @@ public class TransactionDetailsViewController: UIViewController {
         switch transaction.type {
         case .outgoing: transactionTypeView.value = Strings.outgoingType
         case .incoming: transactionTypeView.value = "" // we do not have incomming transactions yet
-        case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension,
-             .disconnectBrowserExtension, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
+        case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
+             .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
              .disconnectStatusKeycard:
             transactionTypeView.value = Strings.settingsChangeType
         }

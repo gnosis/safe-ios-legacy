@@ -558,9 +558,9 @@ public class WalletApplicationService: Assertable {
         case .transfer: type = .outgoing
         case .walletRecovery: type = .walletRecovery
         case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
-        case .replaceTwoFAWithAuthenticator: type = .replaceBrowserExtension
-        case .connectAuthenticator: type = .connectBrowserExtension
-        case .disconnectAuthenticator: type = .disconnectBrowserExtension
+        case .replaceTwoFAWithAuthenticator: type = .replaceTwoFAWithAuthenticator
+        case .connectAuthenticator: type = .connectAuthenticator
+        case .disconnectAuthenticator: type = .disconnectAuthenticator
         case .contractUpgrade: type = .contractUpgrade
         case .replaceTwoFAWithStatusKeycard: type = .replaceTwoFAWithStatusKeycard
         case .connectStatusKeycard: type = .connectStatusKeycard
