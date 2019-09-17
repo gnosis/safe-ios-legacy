@@ -593,7 +593,8 @@ class RecoveryTransactionBuilder: Assertable {
     }
 
     fileprivate func newWalletScheme() -> WalletScheme {
-        return WalletScheme(confirmations: wallet.owner(role: .browserExtension) == nil ? 1 : 2,
+        let hasAuthenticator = wallet.owner(role: .browserExtension) != nil || wallet.owner(role: .keycard) != nil
+        return WalletScheme(confirmations: hasAuthenticator ? 2 : 1,
                             owners: wallet.owners.filter { $0.role != .unknown }.count)
     }
 

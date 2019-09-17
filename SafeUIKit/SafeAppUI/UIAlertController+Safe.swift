@@ -122,4 +122,19 @@ extension UIAlertController {
         return alert.withCloseAction()
     }
 
+    static func genericError() -> UIAlertController {
+        let errorText = LocalizedString("ios_error_description",
+                                        comment: "Generic error message. Try again.")
+        return UIAlertController.operationFailed(message: errorText)
+    }
+
+    static func keycardBlocked(getInTouch: @escaping () -> Void) -> UIAlertController {
+        let title = LocalizedString("keycard_blocked", comment: "Blocked")
+        let message = LocalizedString("keycard_unblock_get_in_touch", comment: "Get in touch")
+        let button = LocalizedString("get_in_touch", comment: "Get In Touch")
+        return UIAlertController.create(title: title, message: message)
+            .withCancelAction()
+            .withDefaultAction(title: button, handler: getInTouch)
+    }
+
 }

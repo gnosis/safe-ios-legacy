@@ -106,4 +106,7 @@ public protocol EncryptionDomainService {
     /// Returns checksummed address from a public key data
     func address(publicKey: Data) -> Address
 
+    /// Recovers address from the ECDSA signature and hash
+    func recoveredAddress(from signature: Data, hash: Data) -> Address?
+
 }

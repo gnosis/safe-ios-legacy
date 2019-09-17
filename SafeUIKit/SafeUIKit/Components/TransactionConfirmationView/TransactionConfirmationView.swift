@@ -17,6 +17,8 @@ public class TransactionConfirmationView: BaseCustomView {
     @IBOutlet weak var contentStackTrailing: NSLayoutConstraint!
     private let defatulContentHorizontalPadding: CGFloat = 20
 
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+
     public enum Status {
         case undefined
         case pending
@@ -32,6 +34,8 @@ public class TransactionConfirmationView: BaseCustomView {
     enum Info {
 
         enum Authenticator {
+
+            static let imageHeight: CGFloat = 60
 
             enum Pending {
                 static let title = LocalizedString("authentication_required", comment: "Authentication required")
@@ -65,6 +69,8 @@ public class TransactionConfirmationView: BaseCustomView {
         }
 
         enum Keycard {
+
+            static let imageHeight: CGFloat = 100
 
             enum Pending {
                 static let title = LocalizedString("authentication_2fa", comment: "Authentication required")
@@ -137,6 +143,11 @@ public class TransactionConfirmationView: BaseCustomView {
         imageView.stopAnimating()
         imageView.animationImages = nil
         imageView.image = nil
+
+        imageHeightConstraint.constant = twoFAType == .authenticator ?
+            Info.Authenticator.imageHeight :
+            Info.Keycard.imageHeight
+        setNeedsUpdateConstraints()
 
         // used for 'showsOnlyButton' mode - when no additional confirmation needed, just submitting transaction.
         button.setTitle(Info.Authenticator.Confirmed.submit, for: .normal)

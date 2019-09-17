@@ -272,10 +272,11 @@ open class VerifiableInput: UIView {
         }
         self.explicitErrorRuleWasReset = false
         addRule(error) { [unowned self] text in
+            let oldValue = self.explicitErrorRuleWasReset
             if !self.explicitErrorRuleWasReset {
                 self.explicitErrorRuleWasReset = true
             }
-            return self.explicitErrorRuleWasReset
+            return oldValue
         }
         explicitErrorRule = lastAddedRule
         revalidateText()

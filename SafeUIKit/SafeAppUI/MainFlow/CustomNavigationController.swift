@@ -88,3 +88,12 @@ extension CustomNavigationController: UINavigationControllerDelegate {
     }
 
 }
+
+public extension UINavigationController {
+
+    func viewController(before vc: UIViewController) -> UIViewController? {
+        guard let index = viewControllers.firstIndex(of: vc), index > 0 else { return nil }
+        return viewControllers[index - 1]
+    }
+
+}

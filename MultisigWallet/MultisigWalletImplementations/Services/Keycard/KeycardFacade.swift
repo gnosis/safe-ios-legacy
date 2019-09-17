@@ -24,6 +24,9 @@ protocol KeycardFacade: class {
     func generateMasterKey() throws -> Data
     func exportPublicKey(path: String, makeCurrent: Bool) throws -> Data
 
+    func sign(hash: Data, keypath: String) throws -> Data
+
+    func unblock(puk: String, newPIN: String) throws
 }
 
 extension KeycardCommandSet: KeycardFacade {
@@ -64,6 +67,26 @@ extension KeycardCommandSet: KeycardFacade {
         let tlv = try exportKey(path: path, makeCurrent: makeCurrent, publicOnly: true).checkOK().data
         let keypair = try BIP32KeyPair(fromTLV: tlv)
         return Data(keypair.publicKey)
+    }
+
+    func sign(hash: Data, keypath: String) throws -> Data {
+        // here we do deriveKey() and then sign() because one-shot sign(hash:path:makeCurrent) is not working
+        // for unknown reason (returns 0x6A80 data invalid)
+
+        // We check the need to actually do derivation because the deriveKey() is time-consuming.
+        let currentKeyPath = try KeyPath(data: getStatus(info: GetStatusP1.keyPath.rawValue).checkOK().data)
+        let derivedKeyPath = try KeyPath(keypath)
+        if currentKeyPath.description != derivedKeyPath.description {
+            try deriveKey(path: keypath).checkOK()
+        }
+
+        let result = try sign(hash: Array(hash)).checkOK().data
+        let signature = try RecoverableSignature(hash: Array(hash), data: result)
+        return Data(signature.r + signature.s + [signature.recId])
+    }
+
+    func unblock(puk: String, newPIN: String) throws {
+        try unblockPIN(puk: puk, newPIN: newPIN).checkOK()
     }
 
 }

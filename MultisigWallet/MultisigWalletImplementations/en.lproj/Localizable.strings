@@ -13,6 +13,9 @@
 /* Initializing */
 "pairing_wait" = "Pairing... Please wait.";
 
+/* Signing */
+"signing_wait" = "Signing... Please wait.";
+
 /* Success */
 "success" = "Success";
 
@@ -21,6 +24,9 @@
 
 /* Lost connection */
 "tag_connection_lost" = "Lost connection to Keycard. Try again.";
+
+/* Unblocking */
+"unblocking_wait" = "Unblocking... Please wait.";
 
 /* Tag not supported */
 "unsupported_tag" = "Unsupported Smart Card.";

@@ -136,4 +136,16 @@ class KeycardErrorConverter {
         }
     }
 
+    static func convertFromUnblockError(_ error: Error) -> Error {
+        switch error {
+        case CardError.wrongPIN(retryCounter: let attempts):
+            return attempts == 0 ?
+                KeycardDomainServiceError.keycardLost :
+                KeycardDomainServiceError.invalidPUK(attempts)
+
+        default:
+            return error
+        }
+    }
+
 }
