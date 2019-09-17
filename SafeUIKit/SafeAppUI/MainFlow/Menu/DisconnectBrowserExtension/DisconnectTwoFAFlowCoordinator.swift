@@ -12,16 +12,17 @@ class DisconnectTwoFAFlowCoordinator: FlowCoordinator {
     fileprivate var applicationService: DisconnectTwoFAApplicationService {
         return ApplicationServiceRegistry.disconnectTwoFAService
     }
+    private var transactionType: TransactionData.TransactionType = .disconnectAuthenticator
 
     enum Strings {
         static let introTitle = LocalizedString("disable_2fa", comment: "Disable 2FA")
-        static let disconnectBE = LocalizedString("ios_disconnect_browser_extension",
-                                                  comment: "Disconnect browser extension")
-            .replacingOccurrences(of: "\n", with: " ")
-        static let disconnectDescription = LocalizedString("disconnect_2fa_description",
-                                                           comment: "Disconnect browser extension description")
-        static let disconnectDetail = LocalizedString("layout_disconnect_browser_extension_info_description",
-                                                      comment: "Detail for the header in review screen")
+        static let disconnectDescription = LocalizedString("disable_2fa_description",
+                                                           comment: "Disable 2FA description")
+        static let disconnectReviewDescription = LocalizedString("disable_2fa_review_description",
+                                                                 comment: "Disable 2FA review description")
+        static let statusKeyacard = LocalizedString("status_keycard", comment: "Status Keycard")
+        static let gnosisSafeAuthenticator = LocalizedString("gnosis_safe_authenticator",
+                                                             comment: "Gnosis Safe Authenticator")
     }
 
     override func setUp() {
@@ -45,27 +46,34 @@ extension IntroContentView.Content {
 extension DisconnectTwoFAFlowCoordinator {
 
     func introViewController() -> RBEIntroViewController {
+        transactionType = applicationService.updateTwoFATransactionType()
         let vc = RBEIntroViewController.create()
-        vc.starter = ApplicationServiceRegistry.disconnectTwoFAService
+        vc.starter = applicationService
         vc.delegate = self
-        vc.setTitle(DisconnectTwoFAFlowCoordinator.Strings.introTitle)
+        vc.setTitle(Strings.introTitle)
         vc.setContent(.disconnectExtension)
-        vc.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.intro
+        vc.screenTrackingEvent = DisconnectTwoFATrackingEvent.intro
         return vc
     }
 
     func phraseInputViewController() -> RecoveryPhraseInputViewController {
         let controller = RecoveryPhraseInputViewController.create(delegate: self)
-        controller.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.enterSeed
+        controller.screenTrackingEvent = DisconnectTwoFATrackingEvent.enterSeed
         return controller
     }
 
     func reviewViewController() -> RBEReviewTransactionViewController {
         let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = Strings.disconnectBE
-        vc.detailString = Strings.disconnectDetail
-        vc.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.review
-        vc.successTrackingEvent = DisconnectBrowserExtensionTrackingEvent.success
+        vc.titleString = Strings.introTitle
+        var twoFAMethod: String!
+        switch transactionType {
+        case .disconnectAuthenticator: twoFAMethod = Strings.gnosisSafeAuthenticator
+        case .disconnectStatusKeycard: twoFAMethod = Strings.statusKeyacard
+        default: break
+        }
+        vc.detailString = String(format: Strings.disconnectReviewDescription, twoFAMethod)
+        vc.screenTrackingEvent = DisconnectTwoFATrackingEvent.review
+        vc.successTrackingEvent = DisconnectTwoFATrackingEvent.success
         return vc
     }
 
@@ -119,7 +127,7 @@ extension SuccessViewController {
     static func disconnect2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
         return .congratulations(text: LocalizedString("disconnecting_in_progress", comment: "Explanation text"),
                                 image: Asset.Manage2fa._2FaDisable.image,
-                                tracking: DisconnectBrowserExtensionTrackingEvent.success,
+                                tracking: DisconnectTwoFATrackingEvent.success,
                                 action: action)
     }
 

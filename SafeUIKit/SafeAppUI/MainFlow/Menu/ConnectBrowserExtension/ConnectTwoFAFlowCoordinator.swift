@@ -98,11 +98,13 @@ extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
     func didSelectTwoFAOption(_ option: TwoFAOption) {
         switch option {
         case .statusKeycard:
+            ApplicationServiceRegistry.connectTwoFAService.updateTransaction(transactionID, with: .connectStatusKeycard)
             keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             enter(flow: keycardFlowCoordinator) { [unowned self] in
                 self.push(self.reviewConnectKeycardViewController())
             }
         case .gnosisAuthenticator:
+            ApplicationServiceRegistry.connectTwoFAService.updateTransaction(transactionID, with: .connectAuthenticator)
             push(connectAuthenticatorViewController())
         }
     }

@@ -952,7 +952,7 @@ public class WalletApplicationService: Assertable {
             throw error(-3100, LocalizedString("ios_error_no_device_key", comment: "Device key not found"))
         } catch WalletDiagnosticDomainService.Error.deviceKeyIsNotOwner {
             throw error(-3101, LocalizedString("ios_error_device_key_not_owner", comment: "Device key not owner"))
-        } catch WalletDiagnosticDomainService.Error.authenticatorIsNotOwner {
+        } catch WalletDiagnosticDomainService.Error.twoFAIsNotOwner {
             throw error(-3102, LocalizedString("ios_error_authenticator_not_owner",
                                                comment: "Authenticator address is not owner"))
         } catch WalletDiagnosticDomainService.Error.paperWalletIsNotOwner {

@@ -5,10 +5,10 @@
 import Foundation
 import Common
 
-public enum ReplaceBrowserExtensionDomainServiceError: Error {
+public enum ReplaceTwoFADomainServiceError: Error {
     case insufficientBalance
-    case browserExtensionNotConnected
-    case browserExtensionAlreadyExists
+    case twoFANotConnected
+    case twoFAAlreadyExists
     case recoveryPhraseInvalid
     case recoveryPhraseHasNoOwnership
 }
@@ -17,7 +17,8 @@ open class ReplaceTwoFADomainService: Assertable {
 
     open var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
-        return wallet.isReadyToUse && wallet.owner(role: .browserExtension) != nil
+        let isTwoFAConnected = wallet.owner(role: .browserExtension) != nil || wallet.owner(role: .keycard) != nil
+        return wallet.isReadyToUse && isTwoFAConnected
     }
 
     public var ownerContractProxy: SafeOwnerManagerContractProxy?
@@ -42,9 +43,9 @@ open class ReplaceTwoFADomainService: Assertable {
 
     // MARK: - Transaction Creation and Validation
 
-    var transactionType: TransactionType {
-        return .replaceBrowserExtension
-    }
+    private var _transactionType: TransactionType = .replaceTwoFAWithAuthenticator
+
+    var transactionType: TransactionType { return _transactionType }
 
     public func createTransaction() -> TransactionID {
         let token = requiredWallet.feePaymentTokenAddress ?? Token.Ether.address
@@ -54,6 +55,22 @@ open class ReplaceTwoFADomainService: Assertable {
         tx.change(amount: .ether(0)).change(sender: requiredWallet.address)
         repository.save(tx)
         return tx.id
+    }
+
+    /// Call this method before working with ReplaceTwoFADomainService singleton to get the info about current 2FA owner
+    public func updateTransactionType() -> TransactionType {
+        if wallet?.owner(role: .browserExtension) != nil {
+            _transactionType = .replaceTwoFAWithAuthenticator
+        } else if wallet?.owner(role: .keycard) != nil {
+            _transactionType = .replaceTwoFAWithStatusKeycard
+        }
+        return _transactionType
+    }
+
+    public func updateTransaction(_ transactionID: TransactionID, with type: TransactionType) {
+        let tx = transaction(transactionID)
+        tx.change(type: type)
+        repository.save(tx)
     }
 
     public func deleteTransaction(id: TransactionID) {
@@ -141,13 +158,13 @@ open class ReplaceTwoFADomainService: Assertable {
             tx.feeEstimate!.gasPrice.amount
         let totalFee = TokenAmount(amount: totalFeeAmount, token: tx.feeEstimate!.gasPrice.token)
         try assertTrue(resultingBalance(for: transactionID, change: totalFee).amount >= 0,
-                       ReplaceBrowserExtensionDomainServiceError.insufficientBalance)
+                       ReplaceTwoFADomainServiceError.insufficientBalance)
         try validateOwners()
     }
 
     func validateOwners() throws {
-        try assertNotNil(requiredWallet.owner(role: .browserExtension),
-                         ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected)
+        try assertNotNil(requiredWallet.owner(role: .browserExtension) ?? requiredWallet.owner(role: .keycard),
+                         ReplaceTwoFADomainServiceError.twoFANotConnected)
     }
 
     public func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {
@@ -161,7 +178,7 @@ open class ReplaceTwoFADomainService: Assertable {
 
     open func validateNewOwnerAddress(_ address: String) throws {
         guard let list = remoteOwnersList(), !list.contains(Address(address)) else {
-            throw ReplaceBrowserExtensionDomainServiceError.browserExtensionAlreadyExists
+            throw ReplaceTwoFADomainServiceError.twoFAAlreadyExists
         }
     }
 
@@ -179,10 +196,11 @@ open class ReplaceTwoFADomainService: Assertable {
     }
 
     func realTransactionData(with newAddress: String) -> Data? {
-        let extensionAddress = requiredWallet.owner(role: .browserExtension)!.address
-        guard let linkedList = remoteOwnersList(), linkedList.contains(extensionAddress) else { return nil }
-        return contractProxy.swapOwner(prevOwner: linkedList.addressBefore(extensionAddress),
-                                       old: extensionAddress,
+        let twoFAOwner = requiredWallet.owner(role: .browserExtension) ?? requiredWallet.owner(role: .keycard)
+        let ownerAddress = twoFAOwner!.address
+        guard let linkedList = remoteOwnersList(), linkedList.contains(ownerAddress) else { return nil }
+        return contractProxy.swapOwner(prevOwner: linkedList.addressBefore(ownerAddress),
+                                       old: ownerAddress,
                                        new: Address(newAddress))
     }
 
@@ -203,10 +221,10 @@ open class ReplaceTwoFADomainService: Assertable {
 
     open func sign(transactionID: TransactionID, with phrase: String) throws {
         guard let eoa = signingEOA(from: phrase) else {
-            throw ReplaceBrowserExtensionDomainServiceError.recoveryPhraseInvalid
+            throw ReplaceTwoFADomainServiceError.recoveryPhraseInvalid
         }
         guard try isContractOwners(eoa: eoa) else {
-            throw ReplaceBrowserExtensionDomainServiceError.recoveryPhraseHasNoOwnership
+            throw ReplaceTwoFADomainServiceError.recoveryPhraseHasNoOwnership
         }
         updateHash(transactionID: transactionID)
         let tx = self.transaction(transactionID)
@@ -239,9 +257,13 @@ open class ReplaceTwoFADomainService: Assertable {
 
     // MARK: - Post-processing
 
+    var postProcessTypes: [TransactionType] {
+        return [.replaceTwoFAWithAuthenticator, .replaceTwoFAWithStatusKeycard]
+    }
+
     open func postProcess(transactionID: TransactionID) throws {
         guard let tx = repository.find(id: transactionID),
-            tx.type == transactionType,
+            postProcessTypes.contains(tx.type),
             tx.status == .success || tx.status == .failed,
             let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
         guard let newOwner = newOwnerAddress(from: transactionID) else {
@@ -250,31 +272,48 @@ open class ReplaceTwoFADomainService: Assertable {
         }
         if tx.status == .success {
             try processSuccess(with: newOwner, in: wallet)
-            try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
         } else {
-            try DomainRegistry.communicationService.deletePair(walletID: tx.accountID.walletID, other: newOwner)
+            try processFailure(walletID: tx.accountID.walletID, newOwnerAddress: newOwner)
         }
         unregisterPostProcessing(for: transactionID)
     }
 
     func processSuccess(with newOwner: String, in wallet: Wallet) throws {
-        try replaceOldOwner(with: newOwner, in: wallet)
+        try replaceOldTwoFAOwner(with: newOwner, in: wallet)
+        if transactionType == .replaceTwoFAWithAuthenticator {
+            try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
+        }
     }
 
-    private func replaceOldOwner(with newOwner: String, in wallet: Wallet) throws {
-        try removeOldOwner(from: wallet)
-        add(newOwner: newOwner, to: wallet)
+    func processFailure(walletID: WalletID, newOwnerAddress: String) throws {
+        if transactionType == .replaceTwoFAWithAuthenticator {
+            try DomainRegistry.communicationService.deletePair(walletID: walletID, other: newOwnerAddress)
+        }
     }
 
-    func removeOldOwner(from wallet: Wallet) throws {
-        guard let oldOwner = wallet.owner(role: .browserExtension) else { return }
-        try DomainRegistry.communicationService.deletePair(walletID: wallet.id, other: oldOwner.address.value)
+    private func replaceOldTwoFAOwner(with newOwner: String, in wallet: Wallet) throws {
+        try removeOldTwoFAOwner(from: wallet)
+        var role: OwnerRole!
+        switch transactionType {
+        case .replaceTwoFAWithAuthenticator: role = .browserExtension
+        case .replaceTwoFAWithStatusKeycard: role = .keycard
+        default: preconditionFailure("Wrong usage of ReplaceTwoFADomainService")
+        }
+        add(newOwner: newOwner, role: role, to: wallet)
+    }
+
+    func removeOldTwoFAOwner(from wallet: Wallet) throws {
+        let owner = wallet.owner(role: .browserExtension) ?? wallet.owner(role: .keycard)
+        guard let oldOwner = owner else { return }
+        if oldOwner.role == .browserExtension {
+            try DomainRegistry.communicationService.deletePair(walletID: wallet.id, other: oldOwner.address.value)
+        }
         wallet.removeOwner(role: oldOwner.role)
     }
 
-    func add(newOwner: String, to wallet: Wallet) {
+    func add(newOwner: String, role: OwnerRole, to wallet: Wallet) {
         let formattedAddress = DomainRegistry.encryptionService.address(from: newOwner) ?? Address(newOwner)
-        wallet.addOwner(Owner(address: formattedAddress, role: .browserExtension))
+        wallet.addOwner(Owner(address: formattedAddress, role: role))
         DomainRegistry.walletRepository.save(wallet)
     }
 

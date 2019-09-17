@@ -8,8 +8,7 @@ import MultisigWalletApplication
 class ReplaceTwoFACommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("ios_replace_browser_extension", comment: "Replace browser extension")
-            .replacingOccurrences(of: "\n", with: " ").capitalized
+        return LocalizedString("replace_2fa", comment: "Replace 2FA")
     }
 
     override var isHidden: Bool {

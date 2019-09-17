@@ -38,7 +38,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Querying transaction data
 
-    public let type: TransactionType
+    public private(set) var type: TransactionType
     public private(set) var sender: Address?
     public private(set) var recipient: Address?
     public private(set) var amount: TokenAmount?
@@ -211,6 +211,14 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public func change(hash: Data?) -> Transaction {
         assertCanChangeParameters()
         self.hash = hash
+        timestampUpdated(at: Date())
+        return self
+    }
+
+    @discardableResult
+    public func change(type: TransactionType) -> Transaction {
+        assertCanChangeParameters()
+        self.type = type
         timestampUpdated(at: Date())
         return self
     }

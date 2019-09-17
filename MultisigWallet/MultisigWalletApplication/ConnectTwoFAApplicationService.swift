@@ -13,4 +13,14 @@ open class ConnectTwoFAApplicationService: OwnerModificationApplicationService {
         return service
     }
 
+    public func updateTransaction(_ transactionID: RBETransactionID, with type: TransactionData.TransactionType) {
+        var transactionType: TransactionType!
+        switch type {
+        case .connectAuthenticator: transactionType = .connectAuthenticator
+        case .connectStatusKeycard: transactionType = .connectStatusKeycard
+        default: preconditionFailure("inproper usage of ConnectTwoFAApplicationService")
+        }
+        domainService.updateTransaction(TransactionID(transactionID), with: transactionType)
+    }
+
 }

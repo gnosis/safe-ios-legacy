@@ -60,11 +60,11 @@ open class OwnerModificationApplicationService: RBEStarter {
         let txID = TransactionID(transaction)
         do {
             try domainService.validate(transactionID: txID)
-        } catch ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected {
+        } catch ReplaceTwoFADomainServiceError.twoFANotConnected {
             throw FeeCalculationError.extensionNotFound
-        } catch ReplaceBrowserExtensionDomainServiceError.insufficientBalance {
+        } catch ReplaceTwoFADomainServiceError.insufficientBalance {
             throw FeeCalculationError.insufficientBalance
-        } catch ReplaceBrowserExtensionDomainServiceError.browserExtensionAlreadyExists {
+        } catch ReplaceTwoFADomainServiceError.twoFAAlreadyExists {
             throw FeeCalculationError.extensionExists
         }
     }
