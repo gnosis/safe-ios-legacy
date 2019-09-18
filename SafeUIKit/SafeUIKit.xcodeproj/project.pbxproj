@@ -55,7 +55,7 @@
 		0A2D589922576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D589822576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift */; };
 		0A2D589F22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D589E22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift */; };
 		0A2D58A52257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58A42257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift */; };
-		0A2D58BE22578A68001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58AE22578A31001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift */; };
+		0A2D58BE22578A68001B8BF4 /* DisconnectTwoFAFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D58AE22578A31001B8BF4 /* DisconnectTwoFAFlowCoordinatorTests.swift */; };
 		0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FAA512201A64000793B7B /* DateToolsLocalized.swift */; };
 		0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */; };
 		0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */; };
@@ -695,7 +695,7 @@
 		0A2D589822576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		0A2D589E22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewControllerBaseTestCase.swift; sourceTree = "<group>"; };
 		0A2D58A42257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		0A2D58AE22578A31001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A2D58AE22578A31001B8BF4 /* DisconnectTwoFAFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFAFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A2FAA512201A64000793B7B /* DateToolsLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToolsLocalized.swift; sourceTree = "<group>"; };
 		0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsGroupHeaderView.swift; sourceTree = "<group>"; };
 		0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenFooterView.swift; sourceTree = "<group>"; };
@@ -1178,15 +1178,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A1940472226CF27005B7440 /* DisconnectBrowserExtension */ = {
+		0A1940472226CF27005B7440 /* DisconnectTwoFA */ = {
 			isa = PBXGroup;
 			children = (
 				0A1940562226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift */,
-				0A2D58AE22578A31001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift */,
+				0A2D58AE22578A31001B8BF4 /* DisconnectTwoFAFlowCoordinatorTests.swift */,
 				0A19405A2226D030005B7440 /* DisconnectTwoFACommand.swift */,
 				0A2D587F2257536B001B8BF4 /* DisconnectTwoFATrackingEvent.swift */,
 			);
-			path = DisconnectBrowserExtension;
+			path = DisconnectTwoFA;
 			sourceTree = "<group>";
 		};
 		0A1940642226DE1E005B7440 /* ResyncBrowserExtension */ = {
@@ -1419,7 +1419,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */ = {
+		0A3D14E4220B158800E340DB /* ReplaceTwoFA */ = {
 			isa = PBXGroup;
 			children = (
 				0A3BD8DF22254786007039B4 /* Intro */,
@@ -1432,7 +1432,7 @@
 				0A3D14F3220B1D2800E340DB /* ReplaceTwoFACommand.swift */,
 				0ACCA8BF221C0D0100D37594 /* AuthenticatorViewController+RBE.swift */,
 			);
-			path = ReplaceBrowserExtension;
+			path = ReplaceTwoFA;
 			sourceTree = "<group>";
 		};
 		0A3D1554220B393A00E340DB /* Products */ = {
@@ -1484,14 +1484,14 @@
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
-				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
+				0AF5BB35222420A6006856E0 /* ConnectTwoFA */,
 				55CE9CDC2304039E00CB414D /* ContractUpgrade */,
-				0A1940472226CF27005B7440 /* DisconnectBrowserExtension */,
+				0A1940472226CF27005B7440 /* DisconnectTwoFA */,
 				551D777D22819AD8003B7910 /* FeePaymentMethod */,
 				55329FE522F9750800E40B06 /* GetInTouch */,
 				55B5DF6222782BF6001A32F4 /* Portfolio */,
 				55329FF422F9751300E40B06 /* RateApp */,
-				0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */,
+				0A3D14E4220B158800E340DB /* ReplaceTwoFA */,
 				0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */,
 				0A1940642226DE1E005B7440 /* ResyncBrowserExtension */,
 				55B5DF5122782B28001A32F4 /* SelectSafe */,
@@ -1807,7 +1807,7 @@
 			path = SafeAppUI;
 			sourceTree = "<group>";
 		};
-		0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */ = {
+		0AF5BB35222420A6006856E0 /* ConnectTwoFA */ = {
 			isa = PBXGroup;
 			children = (
 				0A2D587D225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift */,
@@ -1816,7 +1816,7 @@
 				0A3BD95A22255C3E007039B4 /* ConnectTwoFACommand.swift */,
 				0A3BD95C22255C48007039B4 /* ConnectTwoFALaterCommandTests.swift */,
 			);
-			path = ConnectBrowserExtension;
+			path = ConnectTwoFA;
 			sourceTree = "<group>";
 		};
 		0AF8D53A20D00FDB001E8423 /* Tokens */ = {
@@ -3336,7 +3336,7 @@
 				0A2D58922257628B001B8BF4 /* TestTrackingHandler.swift in Sources */,
 				0A2D588E225761DC001B8BF4 /* XCTest+Tracking.swift in Sources */,
 				0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */,
-				0A2D58BE22578A68001B8BF4 /* DisconnectBrowserExtensionFlowCoordinatorTests.swift in Sources */,
+				0A2D58BE22578A68001B8BF4 /* DisconnectTwoFAFlowCoordinatorTests.swift in Sources */,
 				552C01992297E10F001A158D /* BasePaymentMethodViewControllerTests.swift in Sources */,
 				0A4EEA6D20D1112F005CDAC0 /* MenuTableViewControllerTests.swift in Sources */,
 				0AF8D55720D01A90001E8423 /* AssetViewViewControllerTests.swift in Sources */,

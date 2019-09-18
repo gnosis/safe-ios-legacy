@@ -28,11 +28,11 @@ class ConnectTwoFAFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(fc.intro.delegate === fc, "Delegate is not set")
     }
 
-    func test_whenDidStart_thenOpensPairController() {
+    func test_whenDidStart_thenOpensTwoFAController() {
         fc.transactionID = nil
         fc.intro.transactionID = "tx"
         fc.rbeIntroViewControllerDidStart()
-        XCTAssertTrue(nav.topViewController is AuthenticatorViewController)
+        XCTAssertTrue(nav.topViewController is TwoFATableViewController)
         XCTAssertEqual(fc.transactionID, "tx")
     }
 

@@ -18,6 +18,7 @@ class ReplaceTwoFADomainServiceBaseTestCase: XCTestCase {
     let accountRepo = InMemoryAccountRepository()
     let mockRelayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
     let mockProxy = TestableOwnerProxy(Address.testAccount1)
+    let tokenListItemRepo = InMemoryTokenListItemRepository()
 
     var ownersWithoutExtension = OwnerList([
         Owner(address: Address.testAccount1, role: .thisDevice),
@@ -40,6 +41,7 @@ class ReplaceTwoFADomainServiceBaseTestCase: XCTestCase {
         DomainRegistry.put(service: mockEncryptionService, for: EncryptionDomainService.self)
         DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
         DomainRegistry.put(service: mockRelayService, for: TransactionRelayDomainService.self)
+        DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
         mockProxy.getOwners_result = ownersWithExtension.sortedOwners().map { $0.address }
         service.ownerContractProxy = mockProxy
     }

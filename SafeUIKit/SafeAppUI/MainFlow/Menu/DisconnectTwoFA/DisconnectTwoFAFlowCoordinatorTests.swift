@@ -5,16 +5,19 @@
 import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
+import MultisigWalletDomainModel
 
-class DisconnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
+class DisconnectTwoFAFlowCoordinatorTests: XCTestCase {
 
     func test_tracking() {
         let mockDisconnectService = MockDisconnectBrowserExtensionApplicationService()
         let mockWalletService = MockWalletApplicationService()
+        let disconnectTwoFADomainService = MockDisconnectTwoFADomainService()
         mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit)
         ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: mockDisconnectService,
                                        for: DisconnectTwoFAApplicationService.self)
+        DomainRegistry.put(service: disconnectTwoFADomainService, for: DisconnectTwoFADomainService.self)
 
         let coordinator = DisconnectTwoFAFlowCoordinator()
         coordinator.transactionID = "Some"
@@ -65,4 +68,12 @@ class MockDisconnectBrowserExtensionApplicationService: DisconnectTwoFAApplicati
     override func startMonitoring(transaction: RBETransactionID) {
         // no-op
     }
+}
+
+class MockDisconnectTwoFADomainService: DisconnectTwoFADomainService {
+
+    override func updateTransactionType() -> TransactionType {
+        return .disconnectAuthenticator
+    }
+
 }

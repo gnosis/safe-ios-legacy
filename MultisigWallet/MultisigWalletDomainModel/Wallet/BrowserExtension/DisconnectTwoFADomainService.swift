@@ -14,7 +14,7 @@ open class DisconnectTwoFADomainService: ReplaceTwoFADomainService {
         return [.disconnectAuthenticator, .disconnectStatusKeycard]
     }
 
-    public func updateTransactionType() -> TransactionType {
+    open func updateTransactionType() -> TransactionType {
         if wallet?.owner(role: .browserExtension) != nil {
             _transactionType = .disconnectAuthenticator
         } else if wallet?.owner(role: .keycard) != nil {
