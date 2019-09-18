@@ -98,6 +98,7 @@ open class KeycardApplicationService {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         guard let owner = wallet.owner(role: .keycard) else { return }
         wallet.removeOwner(role: .keycard)
+        DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.keycardService.forgetKey(for: owner.address)
     }
 

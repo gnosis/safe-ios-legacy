@@ -670,11 +670,11 @@ class RecoveryTransactionBuilder: Assertable {
     }
 
     fileprivate func buildNoExtensionToExtensionData() {
-        buildTransactionData([swapOwnerData(role: .thisDevice), addOwnerData(role: .browserExtension)])
+        buildTransactionData([swapOwnerData(role: .thisDevice), withFirstExistingOwner(of: [.browserExtension, .keycard], execute: addOwnerData(role:))])
     }
 
     private func buildExtensionToExtensionData() {
-        buildTransactionData([swapOwnerData(role: .thisDevice), swapOwnerData(role: .browserExtension)])
+        buildTransactionData([swapOwnerData(role: .thisDevice), withFirstExistingOwner(of: [.browserExtension, .keycard], execute: swapOwnerData(role:))])
     }
 
     private func buildExtensionToNoExtensionData() {
@@ -698,6 +698,13 @@ class RecoveryTransactionBuilder: Assertable {
                 .change(data: multiSendData(input))
                 .change(operation: .delegateCall)
         }
+    }
+
+    private func withFirstExistingOwner(of roles: [OwnerRole], execute: (OwnerRole) -> Data) -> Data {
+        if let role = roles.first(where: { wallet.owner(role: $0) != nil }) {
+            return execute(role)
+        }
+        return Data()
     }
 
     private func swapOwnerData(role: OwnerRole) -> Data {

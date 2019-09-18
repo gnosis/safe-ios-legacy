@@ -95,7 +95,7 @@ extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
         case .statusKeycard:
             keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             enter(flow: keycardFlowCoordinator) {
-                self.showSeed(paired: true)
+                self.showSeedIntro(paired: true)
             }
         case .gnosisAuthenticator:
             showConnectAuthenticator()

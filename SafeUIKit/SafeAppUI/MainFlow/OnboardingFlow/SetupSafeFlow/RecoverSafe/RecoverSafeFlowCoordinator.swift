@@ -11,6 +11,7 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
 
     let flowTitle: String = LocalizedString("recover_safe_title", comment: "Recover Safe")
     weak var mainFlowCoordinator: MainFlowCoordinator!
+    var keycardFlowCoordinator = SKKeycardFlowCoordinator()
 
     override func setUp() {
         super.setUp()
@@ -38,8 +39,15 @@ extension RecoverSafeFlowCoordinator {
         return RecoverFeePaidViewController.create(delegate: self)
     }
 
-    func newPairController() -> TwoFAViewController {
-        let controller = TwoFAViewController.create(delegate: self)
+    func newPairController() -> UIViewController {
+        let controller = PairWith2FAController.create(onNext: { [unowned self] in
+            let controller = TwoFATableViewController()
+            controller.delegate = self
+            self.push(controller)
+        }, onSkip: { [unowned self] in
+            self.showPaymentIntro()
+        })
+        controller.hidesStepView = true
         controller.navigationItem.backBarButtonItem = .backButton()
         return controller
     }
@@ -96,6 +104,38 @@ extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate 
 
     func recoveryPhraseInputViewControllerDidFinish() {
         push(newPairController())
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: TwoFATableViewControllerDelegate {
+
+    func didSelectTwoFAOption(_ option: TwoFAOption) {
+        switch option {
+        case .statusKeycard:
+            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
+            keycardFlowCoordinator.hidesSteps = true
+            enter(flow: keycardFlowCoordinator) {
+                self.showPaymentIntro()
+            }
+        case .gnosisAuthenticator:
+            showConnectAuthenticator()
+        }
+    }
+
+    func didSelectLearnMore(for option: TwoFAOption) {
+        let supportCoordinator = SupportFlowCoordinator(from: self)
+        switch option {
+        case .gnosisAuthenticator:
+            supportCoordinator.openAuthenticatorInfo()
+        case .statusKeycard:
+            supportCoordinator.openStausKeycardInfo()
+        }
+    }
+
+    private func showConnectAuthenticator() {
+        let controller = TwoFAViewController.create(delegate: self)
+        push(controller)
     }
 
 }

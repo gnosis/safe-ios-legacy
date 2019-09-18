@@ -11,6 +11,8 @@ class NewSafeThreeStepsBaseController: CardViewController {
     var onNext: (() -> Void)?
     var onFooterButtonPressed: (() -> Void)?
 
+    var hidesStepView: Bool = false
+
     enum Strings {
         static let next = LocalizedString("next", comment: "Next")
     }
@@ -23,16 +25,18 @@ class NewSafeThreeStepsBaseController: CardViewController {
         cardSeparatorView.isHidden = true
         footerButton.isHidden = true
 
-        let spacingView1 = UIView()
-        spacingView1.translatesAutoresizingMaskIntoConstraints = false
-        let spacingView2 = UIView()
-        spacingView2.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            spacingView1.widthAnchor.constraint(equalToConstant: 20),
-            spacingView2.widthAnchor.constraint(equalToConstant: 20)
-        ])
-        let threeStepsStackView = UIStackView(arrangedSubviews: [spacingView1, threeStepsView, spacingView2])
-        contentStackView.insertArrangedSubview(threeStepsStackView, at: 0)
+        if !hidesStepView {
+            let spacingView1 = UIView()
+            spacingView1.translatesAutoresizingMaskIntoConstraints = false
+            let spacingView2 = UIView()
+            spacingView2.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                spacingView1.widthAnchor.constraint(equalToConstant: 20),
+                spacingView2.widthAnchor.constraint(equalToConstant: 20)
+            ])
+            let threeStepsStackView = UIStackView(arrangedSubviews: [spacingView1, threeStepsView, spacingView2])
+            contentStackView.insertArrangedSubview(threeStepsStackView, at: 0)
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem.nextButton(target: self, action: #selector(navigateNext))
     }
 
