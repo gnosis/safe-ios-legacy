@@ -13,10 +13,11 @@ class RecoverSafeFlowCoordinatorTests: XCTestCase {
         let introEvent = coordinator.introViewController().screenTrackingEvent as? RecoverSafeTrackingEvent
         XCTAssertEqual(introEvent, .intro)
 
-        let twoFAScreenEvent = coordinator.newPairController().screenTrackingEvent as? TwoFATrackingEvent
+        let pairVC = TwoFAViewController.create(delegate: TestTwoFAViewControllerDelegate())
+        let twoFAScreenEvent = pairVC.screenTrackingEvent as? TwoFATrackingEvent
         XCTAssertEqual(twoFAScreenEvent, .connectAuthenticator)
 
-        let twoFAScanEvent = coordinator.newPairController().scanTrackingEvent as? TwoFATrackingEvent
+        let twoFAScanEvent = pairVC.scanTrackingEvent as? TwoFATrackingEvent
         XCTAssertEqual(twoFAScanEvent, .connectAuthenticatorScan)
 
         let phraseEvent = coordinator.recoveryPhraseViewController().screenTrackingEvent as? RecoverSafeTrackingEvent
