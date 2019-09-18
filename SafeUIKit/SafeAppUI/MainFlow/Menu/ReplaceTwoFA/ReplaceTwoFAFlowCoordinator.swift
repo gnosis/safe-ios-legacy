@@ -80,7 +80,7 @@ extension ReplaceTwoFAFlowCoordinator {
     func reviewViewController() -> RBEReviewTransactionViewController {
         let controller = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
         controller.titleString = Strings.replaceTwoFA
-        controller.detailString = String(format: Strings.replaceTwoFAReviewDescription, twoFAMethod!)
+        controller.detailString = String(format: Strings.replaceTwoFAReviewDescription, twoFAMethod ?? "")
         controller.screenTrackingEvent = ReplaceTwoFATrackingEvent.review
         controller.successTrackingEvent = ReplaceTwoFATrackingEvent.success
         return controller

@@ -74,6 +74,7 @@ class UnlockViewControllerTests: SafeTestCase {
         authenticationService.makeBiometricAuthenticationImpossible()
         vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
+        vc.viewDidAppear(false)
         XCTAssertTrue(vc.biometryStackView.isHidden)
     }
 
@@ -152,6 +153,7 @@ extension UnlockViewControllerTests {
             self.didLogIn = success
         }
         UIApplication.shared.keyWindow?.rootViewController = vc
+        vc.viewDidAppear(false)
     }
 
     private func authenticateWithBiometryResult(_ result: Bool) {
