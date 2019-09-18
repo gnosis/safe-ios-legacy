@@ -97,13 +97,26 @@ public final class BiometricService: BiometricAuthenticationService {
         }
         semaphore.wait()
         if let error = evaluationError {
-            switch error {
-            case LAError.authenticationFailed:
+            guard let laError = error as? LAError else { throw error }
+
+            switch laError.code {
+            case .authenticationFailed:
                 return false
+            case .userCancel,
+                 .appCancel,
+                 .systemCancel,
+                 .userFallback,
+                 .passcodeNotSet,
+                 .biometryNotEnrolled,
+                 .biometryNotAvailable,
+                 .biometryLockout:
+                throw BiometryAuthenticationError.cancelled
+
+            case .invalidContext,
+                 .notInteractive:
+                fallthrough
+
             default:
-                // other error cases include cancelling biometry alert by user, by system,
-                // biometry unenrolled, or failure. In this case we can't say user authentication failed - it just
-                // didn't happen, so we throw that error.
                 throw error
             }
         }

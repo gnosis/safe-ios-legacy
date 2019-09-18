@@ -244,4 +244,6 @@ class MockKeycardFacade: KeycardFacade {
         return try returnValue(for: .generateMasterKey)
     }
 
+    func unblock(puk: String, newPIN: String) throws {}
+
 }

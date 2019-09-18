@@ -155,7 +155,17 @@ public class IdentityService: Assertable {
         guard gatekeeper.isAccessPossible(at: time) else {
             return nil
         }
-        guard let user = try authenticate() else {
+
+        // in case the authentication cancelled (i.e. in biometry), we just abort the process without blocking
+        // or denying access.
+        let userOrNil: User?
+        do {
+            userOrNil = try authenticate()
+        } catch BiometryAuthenticationError.cancelled {
+            return nil
+        }
+
+        guard let user = userOrNil else {
             gatekeeper.denyAccess(at: time)
             gatekeeperRepository.save(gatekeeper)
             return nil

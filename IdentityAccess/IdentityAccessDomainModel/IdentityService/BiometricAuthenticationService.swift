@@ -13,6 +13,10 @@ public enum BiometryType {
     case none, touchID, faceID
 }
 
+public enum BiometryAuthenticationError: Error {
+    case cancelled
+}
+
 /// Represents biometric authentication service provided by the operating system
 public protocol BiometricAuthenticationService {
 
