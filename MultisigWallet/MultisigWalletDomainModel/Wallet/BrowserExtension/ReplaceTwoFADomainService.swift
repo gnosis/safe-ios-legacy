@@ -13,6 +13,7 @@ public enum ReplaceTwoFADomainServiceError: Error {
     case recoveryPhraseHasNoOwnership
 }
 
+// TODO: create a common base class
 open class ReplaceTwoFADomainService: Assertable {
 
     open var isAvailable: Bool {
@@ -55,16 +56,6 @@ open class ReplaceTwoFADomainService: Assertable {
         tx.change(amount: .ether(0)).change(sender: requiredWallet.address)
         repository.save(tx)
         return tx.id
-    }
-
-    /// Call this method before working with ReplaceTwoFADomainService singleton to get the info about current 2FA owner
-    public func updateTransactionType() -> TransactionType {
-        if wallet?.owner(role: .browserExtension) != nil {
-            _transactionType = .replaceTwoFAWithAuthenticator
-        } else if wallet?.owner(role: .keycard) != nil {
-            _transactionType = .replaceTwoFAWithStatusKeycard
-        }
-        return _transactionType
     }
 
     public func updateTransaction(_ transactionID: TransactionID, with type: TransactionType) {

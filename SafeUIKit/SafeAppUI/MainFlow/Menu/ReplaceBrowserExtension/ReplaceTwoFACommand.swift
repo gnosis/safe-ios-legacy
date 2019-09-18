@@ -20,4 +20,11 @@ class ReplaceTwoFACommand: MenuCommand {
         childFlowCoordinator = ReplaceBrowserExtensionFlowCoordinator()
     }
 
+    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+        let fc = ReplaceBrowserExtensionFlowCoordinator()
+        fc.mainFlowCoordinator = mainFlowCoordinator
+        childFlowCoordinator = fc
+        super.run(mainFlowCoordinator: mainFlowCoordinator)
+    }
+
 }

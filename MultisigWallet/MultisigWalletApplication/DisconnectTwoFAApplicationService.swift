@@ -19,7 +19,7 @@ open class DisconnectTwoFAApplicationService: ReplaceTwoFAApplicationService {
     }
 
     public func updateTwoFATransactionType() -> TransactionData.TransactionType {
-        let transactionType = domainService.updateTransactionType()
+        let transactionType = (domainService as! DisconnectTwoFADomainService).updateTransactionType()
         switch transactionType {
         case .disconnectAuthenticator:
             return .disconnectAuthenticator

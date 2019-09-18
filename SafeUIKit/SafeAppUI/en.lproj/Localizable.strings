@@ -657,6 +657,9 @@ Pairing password: %@";
 /* Replace 2FA */
 "replace_2fa" = "Replace 2FA";
 
+/* Replace 2FA description */
+"replace_2fa_description" = "Once this process is complete, you can only use the new 2FA device to confirm transactions. Please have your Safe recovery phrase ready to confirm the replacement.";
+
 /* Replace 2FA review description */
 "replace_2fa_review_description" = "The existing 2FA device connection will be replaced by the new 2FA device: %@. ";
 

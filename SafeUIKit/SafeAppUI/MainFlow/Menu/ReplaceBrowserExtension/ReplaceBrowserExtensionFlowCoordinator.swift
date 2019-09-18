@@ -9,9 +9,23 @@ class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     weak var introVC: RBEIntroViewController?
     var transactionID: RBETransactionID!
+    var keycardFlowCoordinator = SKKeycardFlowCoordinator()
+    var mainFlowCoordinator: MainFlowCoordinator!
+    var twoFAMethod: String?
 
     private var applicationService: ReplaceTwoFAApplicationService {
         return ApplicationServiceRegistry.replaceTwoFAService
+    }
+
+    enum Strings {
+        static let replaceTwoFA = LocalizedString("replace_2fa", comment: "Replace 2FA")
+        static let replaceTwoFADescription = LocalizedString("replace_2fa_description",
+                                                             comment: "Replace 2FA description")
+        static let replaceTwoFAReviewDescription = LocalizedString("replace_2fa_review_description",
+                                                                   comment: "Replace 2FA review description")
+        static let statusKeyacard = LocalizedString("status_keycard", comment: "Status Keycard")
+        static let gnosisSafeAuthenticator = LocalizedString("gnosis_safe_authenticator",
+                                                             comment: "Gnosis Safe Authenticator")
     }
 
     override func setUp() {
@@ -23,6 +37,15 @@ class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
 
 }
 
+extension IntroContentView.Content {
+
+    static let replaceTwoFAContent =
+        IntroContentView
+            .Content(body: ReplaceBrowserExtensionFlowCoordinator.Strings.replaceTwoFADescription,
+                     icon: Asset.Manage2fa._2FaReplace.image)
+
+}
+
 /// Screens factory methods
 extension ReplaceBrowserExtensionFlowCoordinator {
 
@@ -31,10 +54,18 @@ extension ReplaceBrowserExtensionFlowCoordinator {
         intro.starter = applicationService
         intro.delegate = self
         intro.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.intro
+        intro.setTitle(Strings.replaceTwoFA)
+        intro.setContent(.replaceTwoFAContent)
         return intro
     }
 
-    func pairViewController() -> TwoFAViewController {
+    func pairWithTwoFA() -> TwoFATableViewController {
+        let controller = TwoFATableViewController()
+        controller.delegate = self
+        return controller
+    }
+
+    func connectAuthenticatorViewController() -> TwoFAViewController {
         let controller = TwoFAViewController.createRBEConnectController(delegate: self)
         controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.scan
         return controller
@@ -48,6 +79,8 @@ extension ReplaceBrowserExtensionFlowCoordinator {
 
     func reviewViewController() -> RBEReviewTransactionViewController {
         let controller = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        controller.titleString = Strings.replaceTwoFA
+        controller.detailString = String(format: Strings.replaceTwoFAReviewDescription, twoFAMethod!)
         controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.review
         controller.successTrackingEvent = ReplaceBrowserExtensionTrackingEvent.success
         return controller
@@ -59,7 +92,37 @@ extension ReplaceBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate
 
     func rbeIntroViewControllerDidStart() {
         self.transactionID = introVC!.transactionID
-        push(pairViewController())
+        push(pairWithTwoFA())
+    }
+
+}
+
+extension ReplaceBrowserExtensionFlowCoordinator: TwoFATableViewControllerDelegate {
+
+    func didSelectTwoFAOption(_ option: TwoFAOption) {
+        switch option {
+        case .statusKeycard:
+            twoFAMethod = Strings.statusKeyacard
+            applicationService.updateTransaction(transactionID, with: .replaceTwoFAWithStatusKeycard)
+            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
+            enter(flow: keycardFlowCoordinator) { [unowned self] in
+                self.push(self.phraseInputViewController())
+            }
+        case .gnosisAuthenticator:
+            twoFAMethod = Strings.gnosisSafeAuthenticator
+            applicationService.updateTransaction(transactionID, with: .replaceTwoFAWithAuthenticator)
+            push(connectAuthenticatorViewController())
+        }
+    }
+
+    func didSelectLearnMore(for option: TwoFAOption) {
+        let supportCoordinator = SupportFlowCoordinator(from: self)
+        switch option {
+        case .gnosisAuthenticator:
+            supportCoordinator.openAuthenticatorInfo()
+        case .statusKeycard:
+            supportCoordinator.openStausKeycardInfo()
+        }
     }
 
 }

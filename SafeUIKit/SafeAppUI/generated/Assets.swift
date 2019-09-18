@@ -76,6 +76,7 @@ enum Asset {
   }
   enum Manage2fa {
     static let _2FaDisable = ImageAsset(name: "2FaDisable")
+    static let _2FaReplace = ImageAsset(name: "2FaReplace")
   }
   static let navbarFilled = ImageAsset(name: "navbar-filled")
   static let noResults = ImageAsset(name: "no-results")
@@ -160,6 +161,7 @@ enum Asset {
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
     Manage2fa._2FaDisable,
+    Manage2fa._2FaReplace,
     navbarFilled,
     noResults,
     Onboarding.browserExtensionQr,
