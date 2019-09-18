@@ -6,10 +6,10 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 
-class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
+class ConnectTwoFAFlowCoordinatorTests: XCTestCase {
 
     let nav = UINavigationController()
-    var fc: TestableConnectBrowserExtensionFlowCoordinator!
+    var fc: TestableConnectTwoFAFlowCoordinator!
     let mockApplicationService = MockConnectExtensionApplicationService()
     let mockWalletService = MockWalletApplicationService()
 
@@ -18,7 +18,7 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         ApplicationServiceRegistry.put(service: mockApplicationService,
                                        for: ConnectTwoFAApplicationService.self)
         ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
-        fc = TestableConnectBrowserExtensionFlowCoordinator(rootViewController: nav)
+        fc = TestableConnectTwoFAFlowCoordinator(rootViewController: nav)
         fc.setUp()
         fc.transactionID = "tx"
     }
@@ -32,12 +32,12 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         fc.transactionID = nil
         fc.intro.transactionID = "tx"
         fc.rbeIntroViewControllerDidStart()
-        XCTAssertTrue(nav.topViewController is TwoFAViewController)
+        XCTAssertTrue(nav.topViewController is AuthenticatorViewController)
         XCTAssertEqual(fc.transactionID, "tx")
     }
 
     func test_whenDidScan_thenConnectsExtension() throws {
-        try fc.twoFAViewController(TwoFAViewController(), didScanAddress: "address", code: "code")
+        try fc.authenticatorViewController(AuthenticatorViewController(), didScanAddress: "address", code: "code")
         XCTAssertTrue(mockApplicationService.didCallConnect)
     }
 
@@ -70,10 +70,12 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         let introEvent = fc.introViewController().screenTrackingEvent as? ConnectTwoFATrackingEvent
         XCTAssertEqual(introEvent, .intro)
 
-        let reviewScreenEvent = fc.reviewViewController().screenTrackingEvent as? ConnectTwoFATrackingEvent
+        let reviewScreenEvent = fc.reviewConnectAuthenticatorViewController()
+            .screenTrackingEvent as? ConnectTwoFATrackingEvent
         XCTAssertEqual(reviewScreenEvent, .review)
 
-        let successEvent = fc.reviewViewController().successTrackingEvent as? ConnectTwoFATrackingEvent
+        let successEvent = fc.reviewConnectAuthenticatorViewController()
+            .successTrackingEvent as? ConnectTwoFATrackingEvent
         XCTAssertEqual(successEvent, .success)
     }
 
@@ -116,7 +118,7 @@ class TestableTransactionSubmissionHandler: TransactionSubmissionHandler {
 
 }
 
-class TestableConnectBrowserExtensionFlowCoordinator: ConnectTwoFAFlowCoordinator {
+class TestableConnectTwoFAFlowCoordinator: ConnectTwoFAFlowCoordinator {
 
     override func push(_ controller: UIViewController, onPop action: (() -> Void)?) {
         navigationController.pushViewController(controller, animated: false)

@@ -8,7 +8,7 @@ import SafeAppUI
 import MultisigWalletApplication
 import MultisigWalletDomainModel
 
-class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
+class ReplaceTwoFAFlowCoordinatorTests: XCTestCase {
 
     let nav = UINavigationController()
     var fc: ReplaceTwoFAFlowCoordinator!
@@ -18,7 +18,7 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
         super.setUp()
         ApplicationServiceRegistry.put(service: mockApplicationService,
                                        for: ReplaceTwoFAApplicationService.self)
-        fc = TestableReplaceBrowserExtensionFlowCoordinator(rootViewController: nav)
+        fc = TestableReplaceTwoFAFlowCoordinator(rootViewController: nav)
         fc.setUp()
     }
 
@@ -35,8 +35,8 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
     func test_whenScannedCode_thenConnects() throws {
         fc.introVC!.transactionID = "Some"
         fc.rbeIntroViewControllerDidStart()
-        let vc = TwoFAViewController.create(delegate: nil)
-        try fc.twoFAViewController(vc, didScanAddress: "Address", code: "Code")
+        let vc = AuthenticatorViewController.create(delegate: nil)
+        try fc.authenticatorViewController(vc, didScanAddress: "Address", code: "Code")
         XCTAssertTrue(mockApplicationService.didCallConnect)
     }
 
@@ -80,20 +80,20 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
         fc.transactionID = "tx"
 
-        let introEvent = fc.introViewController().screenTrackingEvent as? ReplaceBrowserExtensionTrackingEvent
+        let introEvent = fc.introViewController().screenTrackingEvent as? ReplaceTwoFATrackingEvent
         XCTAssertEqual(introEvent, .intro)
 
-        let scanEvent = fc.pairViewController().screenTrackingEvent as? ReplaceBrowserExtensionTrackingEvent
+        let scanEvent = fc.connectAuthenticatorViewController().screenTrackingEvent as? ReplaceTwoFATrackingEvent
         XCTAssertEqual(scanEvent, .scan)
 
         let phraseInputEvent = fc.phraseInputViewController().screenTrackingEvent
-            as? ReplaceBrowserExtensionTrackingEvent
+            as? ReplaceTwoFATrackingEvent
         XCTAssertEqual(phraseInputEvent, .enterSeed)
 
-        let reviewEvent = fc.reviewViewController().screenTrackingEvent as? ReplaceBrowserExtensionTrackingEvent
+        let reviewEvent = fc.reviewViewController().screenTrackingEvent as? ReplaceTwoFATrackingEvent
         XCTAssertEqual(reviewEvent, .review)
 
-        let successEvent = fc.reviewViewController().successTrackingEvent as? ReplaceBrowserExtensionTrackingEvent
+        let successEvent = fc.reviewViewController().successTrackingEvent as? ReplaceTwoFATrackingEvent
         XCTAssertEqual(successEvent, .success)
     }
 
@@ -131,7 +131,7 @@ class MockReplaceExtensionApplicationService: ReplaceTwoFAApplicationService {
 
 }
 
-class TestableReplaceBrowserExtensionFlowCoordinator: ReplaceBrowserExtensionFlowCoordinator {
+class TestableReplaceTwoFAFlowCoordinator: ReplaceTwoFAFlowCoordinator {
 
     override func push(_ controller: UIViewController, onPop action: (() -> Void)?) {
         navigationController.pushViewController(controller, animated: false)

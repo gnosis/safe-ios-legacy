@@ -6,7 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 
-class ConnectBrowserExtensionLaterCommandTests: XCTestCase {
+class ConnectTwoFALaterCommandTests: XCTestCase {
 
     let connectService = MockConnectExtensionApplicationService()
     let command = ConnectTwoFACommand()

@@ -7,15 +7,15 @@ import XCTest
 import IdentityAccessApplication
 import CommonTestSupport
 
-class TwoFAViewControllerTests: SafeTestCase {
+class AuthenticatorViewControllerTests: SafeTestCase {
 
-    var controller: TwoFAViewController!
+    var controller: AuthenticatorViewController!
     //swiftlint:disable:next weak_delegate
-    var testDelegate = TestTwoFAViewControllerDelegate()
+    var testDelegate = TestAuthenticatorViewControllerDelegate()
 
     override func setUp() {
         super.setUp()
-        controller = TwoFAViewController.create(delegate: testDelegate)
+        controller = AuthenticatorViewController.create(delegate: testDelegate)
         controller.loadViewIfNeeded()
         ethereumService.browserExtensionAddress = "address"
     }
@@ -64,23 +64,20 @@ class TwoFAViewControllerTests: SafeTestCase {
 
 }
 
-class TestTwoFAViewControllerDelegate: AuthenticatorViewControllerDelegate {
+class TestAuthenticatorViewControllerDelegate: AuthenticatorViewControllerDelegate {
 
     var pairedAddress: String?
     var pairedCode: String?
 
-    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
+    func authenticatorViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
         pairedAddress = address
         pairedCode = code
     }
 
-    func twoFAViewControllerDidSkipPairing() {
-    }
+    func authenticatorViewControllerDidSkipPairing() {}
 
-    func twoFAViewControllerDidFinish() {
-    }
+    func authenticatorViewControllerDidFinish() {}
 
-    func didSelectOpenAuthenticatorInfo() {        
-    }
+    func didSelectOpenAuthenticatorInfo() {}
 
 }

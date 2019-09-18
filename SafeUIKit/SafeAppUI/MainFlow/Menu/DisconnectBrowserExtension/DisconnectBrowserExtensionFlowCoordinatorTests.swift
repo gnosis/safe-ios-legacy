@@ -20,19 +20,19 @@ class DisconnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         coordinator.transactionID = "Some"
 
         let introEvent = coordinator.introViewController().screenTrackingEvent
-            as? DisconnectBrowserExtensionTrackingEvent
+            as? DisconnectTwoFATrackingEvent
         XCTAssertEqual(introEvent, .intro)
 
         let phraseEvent = coordinator.phraseInputViewController().screenTrackingEvent
-            as? DisconnectBrowserExtensionTrackingEvent
+            as? DisconnectTwoFATrackingEvent
         XCTAssertEqual(phraseEvent, .enterSeed)
 
         let reviewScreenEvent = coordinator.reviewViewController().screenTrackingEvent
-            as? DisconnectBrowserExtensionTrackingEvent
+            as? DisconnectTwoFATrackingEvent
         XCTAssertEqual(reviewScreenEvent, .review)
 
         let successEvent = coordinator.reviewViewController().successTrackingEvent
-            as? DisconnectBrowserExtensionTrackingEvent
+            as? DisconnectTwoFATrackingEvent
         XCTAssertEqual(successEvent, .success)
     }
 

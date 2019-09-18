@@ -92,7 +92,7 @@
 		0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */; };
 		0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */; };
 		0A334E5B209C8E6800ABC6AE /* CreateSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E0A209C8E3800ABC6AE /* CreateSafeFlowCoordinatorTests.swift */; };
-		0A334E5D209C8E6800ABC6AE /* TwoFAViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E0F209C8E3800ABC6AE /* TwoFAViewControllerTests.swift */; };
+		0A334E5D209C8E6800ABC6AE /* AuthenticatorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E0F209C8E3800ABC6AE /* AuthenticatorViewControllerTests.swift */; };
 		0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E11209C8E3800ABC6AE /* PasswordValidatorTests.swift */; };
 		0A334E5F209C8E6800ABC6AE /* PasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E14209C8E3800ABC6AE /* PasswordViewControllerTests.swift */; };
 		0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E15209C8E3800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift */; };
@@ -120,9 +120,9 @@
 		0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */; };
 		0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */; };
 		0A3BD95B22255C40007039B4 /* ConnectTwoFACommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD95A22255C3E007039B4 /* ConnectTwoFACommand.swift */; };
-		0A3BD95D22255C49007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD95C22255C48007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift */; };
+		0A3BD95D22255C49007039B4 /* ConnectTwoFALaterCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD95C22255C48007039B4 /* ConnectTwoFALaterCommandTests.swift */; };
 		0A3D14E6220B15B700E340DB /* ReplaceTwoFAFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E5220B15B700E340DB /* ReplaceTwoFAFlowCoordinator.swift */; };
-		0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */; };
+		0A3D14E8220B163500E340DB /* ReplaceTwoFAFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E7220B163500E340DB /* ReplaceTwoFAFlowCoordinatorTests.swift */; };
 		0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */; };
 		0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F1220B1CE800E340DB /* MenuCommand.swift */; };
 		0A3D14F4220B1D2800E340DB /* ReplaceTwoFACommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F3220B1D2800E340DB /* ReplaceTwoFACommand.swift */; };
@@ -209,7 +209,7 @@
 		0AC3F1732183674100DAADC9 /* OnboardingIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F1722183674100DAADC9 /* OnboardingIntroViewController.swift */; };
 		0AC950A4228D86A700D77DE9 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC950A3228D86A700D77DE9 /* TokenFormatter.swift */; };
 		0AC950B5228D8B8E00D77DE9 /* TokenFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC950B3228D8B8B00D77DE9 /* TokenFormatterTests.swift */; };
-		0ACCA8C0221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8BF221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift */; };
+		0ACCA8C0221C0D0100D37594 /* AuthenticatorViewController+RBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8BF221C0D0100D37594 /* AuthenticatorViewController+RBE.swift */; };
 		0ACCA8C2221C116F00D37594 /* NibUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8C1221C116F00D37594 /* NibUIView.swift */; };
 		0ACCA8C6221C11E700D37594 /* LoadingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8C4221C11E700D37594 /* LoadingTitleView.swift */; };
 		0ACCA8C7221C11E700D37594 /* LoadingTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACCA8C5221C11E700D37594 /* LoadingTitleView.xib */; };
@@ -273,7 +273,7 @@
 		0AF4F50F225CEDD30051F68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4F50E225CEDD30051F68B /* LaunchScreen.storyboard */; };
 		0AF4F511225CEDDA0051F68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4F510225CEDDA0051F68B /* Main.storyboard */; };
 		0AF5BB39222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5BB38222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift */; };
-		0AF5BB3B222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5BB3A222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift */; };
+		0AF5BB3B222424C2006856E0 /* ConnectTwoFAFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5BB3A222424C2006856E0 /* ConnectTwoFAFlowCoordinatorTests.swift */; };
 		0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */; };
 		0AF8D53520CFF85B001E8423 /* TestSegmentBarNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */; };
 		0AF8D53720CFFC52001E8423 /* MainViewControllerSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53620CFFC52001E8423 /* MainViewControllerSegmentTests.swift */; };
@@ -727,7 +727,7 @@
 		0A334E08209C8E3800ABC6AE /* SaveMnemonicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewController.swift; sourceTree = "<group>"; };
 		0A334E0A209C8E3800ABC6AE /* CreateSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334E0E209C8E3800ABC6AE /* AuthenticatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatorViewController.swift; sourceTree = "<group>"; };
-		0A334E0F209C8E3800ABC6AE /* TwoFAViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoFAViewControllerTests.swift; sourceTree = "<group>"; };
+		0A334E0F209C8E3800ABC6AE /* AuthenticatorViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatorViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E11209C8E3800ABC6AE /* PasswordValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordValidatorTests.swift; sourceTree = "<group>"; };
 		0A334E12209C8E3800ABC6AE /* MasterPassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MasterPassword.storyboard; sourceTree = "<group>"; };
 		0A334E13209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeViewController.swift; sourceTree = "<group>"; };
@@ -757,9 +757,9 @@
 		0A3BD92022254C9E007039B4 /* SafeAppUIUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SafeAppUIUnitTests-Info.plist"; sourceTree = "<group>"; };
 		0A3BD93F22255174007039B4 /* MultisigWallet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MultisigWallet.xcodeproj; path = ../MultisigWallet/MultisigWallet.xcodeproj; sourceTree = "<group>"; };
 		0A3BD95A22255C3E007039B4 /* ConnectTwoFACommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectTwoFACommand.swift; sourceTree = "<group>"; };
-		0A3BD95C22255C48007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionLaterCommandTests.swift; sourceTree = "<group>"; };
+		0A3BD95C22255C48007039B4 /* ConnectTwoFALaterCommandTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectTwoFALaterCommandTests.swift; sourceTree = "<group>"; };
 		0A3D14E5220B15B700E340DB /* ReplaceTwoFAFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFAFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A3D14E7220B163500E340DB /* ReplaceTwoFAFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFAFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagSettings.swift; sourceTree = "<group>"; };
 		0A3D14F1220B1CE800E340DB /* MenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCommand.swift; sourceTree = "<group>"; };
 		0A3D14F3220B1D2800E340DB /* ReplaceTwoFACommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFACommand.swift; sourceTree = "<group>"; };
@@ -870,7 +870,7 @@
 		0AC3F1722183674100DAADC9 /* OnboardingIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIntroViewController.swift; sourceTree = "<group>"; };
 		0AC950A3228D86A700D77DE9 /* TokenFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFormatter.swift; sourceTree = "<group>"; };
 		0AC950B3228D8B8B00D77DE9 /* TokenFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFormatterTests.swift; sourceTree = "<group>"; };
-		0ACCA8BF221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PairWithBrowserExtensionViewController+RBE.swift"; sourceTree = "<group>"; };
+		0ACCA8BF221C0D0100D37594 /* AuthenticatorViewController+RBE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticatorViewController+RBE.swift"; sourceTree = "<group>"; };
 		0ACCA8C1221C116F00D37594 /* NibUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NibUIView.swift; path = SafeUIKit/NibUIView.swift; sourceTree = SOURCE_ROOT; };
 		0ACCA8C4221C11E700D37594 /* LoadingTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingTitleView.swift; sourceTree = "<group>"; };
 		0ACCA8C5221C11E700D37594 /* LoadingTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingTitleView.xib; sourceTree = "<group>"; };
@@ -935,7 +935,7 @@
 		0AF4F50E225CEDD30051F68B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AF4F510225CEDDA0051F68B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0AF5BB38222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectTwoFAFlowCoordinator.swift; sourceTree = "<group>"; };
-		0AF5BB3A222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0AF5BB3A222424C2006856E0 /* ConnectTwoFAFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectTwoFAFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewController.swift; sourceTree = "<group>"; };
 		0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RBEIntroViewController.xib; sourceTree = "<group>"; };
 		0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerLoadingStateTests.swift; sourceTree = "<group>"; };
@@ -1428,9 +1428,9 @@
 				0A2D589E22576FD7001B8BF4 /* ReviewTransactionViewControllerBaseTestCase.swift */,
 				0A3D14E5220B15B700E340DB /* ReplaceTwoFAFlowCoordinator.swift */,
 				0A2D588122575435001B8BF4 /* ReplaceTwoFATrackingEvent.swift */,
-				0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */,
+				0A3D14E7220B163500E340DB /* ReplaceTwoFAFlowCoordinatorTests.swift */,
 				0A3D14F3220B1D2800E340DB /* ReplaceTwoFACommand.swift */,
-				0ACCA8BF221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift */,
+				0ACCA8BF221C0D0100D37594 /* AuthenticatorViewController+RBE.swift */,
 			);
 			path = ReplaceBrowserExtension;
 			sourceTree = "<group>";
@@ -1812,9 +1812,9 @@
 			children = (
 				0A2D587D225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift */,
 				0AF5BB38222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift */,
-				0AF5BB3A222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift */,
+				0AF5BB3A222424C2006856E0 /* ConnectTwoFAFlowCoordinatorTests.swift */,
 				0A3BD95A22255C3E007039B4 /* ConnectTwoFACommand.swift */,
-				0A3BD95C22255C48007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift */,
+				0A3BD95C22255C48007039B4 /* ConnectTwoFALaterCommandTests.swift */,
 			);
 			path = ConnectBrowserExtension;
 			sourceTree = "<group>";
@@ -2188,7 +2188,7 @@
 				0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */,
 				0AE0FE5B229D2CF700ABC552 /* TwoFAView.xib */,
 				0A334E0E209C8E3800ABC6AE /* AuthenticatorViewController.swift */,
-				0A334E0F209C8E3800ABC6AE /* TwoFAViewControllerTests.swift */,
+				0A334E0F209C8E3800ABC6AE /* AuthenticatorViewControllerTests.swift */,
 			);
 			path = TwoFA;
 			sourceTree = "<group>";
@@ -3263,7 +3263,7 @@
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
 				55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */,
-				0ACCA8C0221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift in Sources */,
+				0ACCA8C0221C0D0100D37594 /* AuthenticatorViewController+RBE.swift in Sources */,
 				0A334E3F209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift in Sources */,
 				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,
 				0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */,
@@ -3324,7 +3324,7 @@
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0A2D588C22575F33001B8BF4 /* AddressInputViewControllerTests.swift in Sources */,
-				0AF5BB3B222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */,
+				0AF5BB3B222424C2006856E0 /* ConnectTwoFAFlowCoordinatorTests.swift in Sources */,
 				553AEB16229EA42E00EA3248 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
 				0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */,
 				550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */,
@@ -3356,7 +3356,7 @@
 				0A334E5F209C8E6800ABC6AE /* PasswordViewControllerTests.swift in Sources */,
 				0A2D58942257674C001B8BF4 /* OnboardingIntroViewControllerTests.swift in Sources */,
 				0AF8D53720CFFC52001E8423 /* MainViewControllerSegmentTests.swift in Sources */,
-				0A334E5D209C8E6800ABC6AE /* TwoFAViewControllerTests.swift in Sources */,
+				0A334E5D209C8E6800ABC6AE /* AuthenticatorViewControllerTests.swift in Sources */,
 				550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */,
 				0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,
@@ -3366,7 +3366,7 @@
 				0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */,
 				0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				0A334DC2209C6D8D00ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift in Sources */,
-				0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */,
+				0A3D14E8220B163500E340DB /* ReplaceTwoFAFlowCoordinatorTests.swift in Sources */,
 				0A334E5B209C8E6800ABC6AE /* CreateSafeFlowCoordinatorTests.swift in Sources */,
 				0ADE040B22DF359800CA4705 /* OnboardingStepViewControllerTests.swift in Sources */,
 				0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
@@ -3382,7 +3382,7 @@
 				0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */,
 				553AEB13229EA42400EA3248 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				5549B2A222857F7500F3B5B7 /* PaymentMethodViewControllerTests.swift in Sources */,
-				0A3BD95D22255C49007039B4 /* ConnectBrowserExtensionLaterCommandTests.swift in Sources */,
+				0A3BD95D22255C49007039B4 /* ConnectTwoFALaterCommandTests.swift in Sources */,
 				552C01972297D04E001A158D /* OnboardingPaymentMethodViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
