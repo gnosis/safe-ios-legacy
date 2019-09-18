@@ -26,6 +26,8 @@ public class KeycardHardwareService: KeycardDomainService {
         static let success = LocalizedString("success", comment: "Success")
         static let startScanInstruction = LocalizedString("hold_near_card", comment: "Hold device near the card")
         static let activationInProgress = LocalizedString("initializing_wait", comment: "Initializing")
+        static let signingInProgress = LocalizedString("signing_wait", comment: "Signing")
+        static let unblockInProgress = LocalizedString("unblocking_wait", comment: "Unblocking")
     }
 
     public init() {}
@@ -54,6 +56,23 @@ public class KeycardHardwareService: KeycardDomainService {
             initializer.set(pin: pin, puk: puk, password: password, pathComponent: keyPathComponent)
             try initializer.activate()
             return try initializer.deriveKeyInKeycard()
+        }
+    }
+
+    public func sign(hash: Data, by address: Address, pin: String) throws -> Data {
+        try runOnKeycard { [unowned self] keycard -> Data in
+            self.keycardController?.setAlert(Strings.signingInProgress)
+            let initializer = KeycardInitializer(keycard: keycard)
+            return try initializer.sign(hash: hash, by: address, pin: pin)
+        }
+    }
+
+    public func unblock(puk: String, pin: String, address: Address) throws {
+        try runOnKeycard { [unowned self] keycard in
+            self.keycardController?.setAlert(Strings.unblockInProgress)
+            let initializer = KeycardInitializer(keycard: keycard)
+            initializer.set(pin: pin, puk: puk)
+            try initializer.unblock(address: address)
         }
     }
 

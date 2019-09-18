@@ -24,15 +24,29 @@ class SendReviewViewController: ReviewTransactionViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackScreenEvent(hasBrowserExtension ? .review2FARequired : .review)
+        if hasBrowserExtension {
+            trackScreenEvent(.review2FARequired)
+        } else if hasKeycard {
+            trackScreenEvent(.keycard2FARequired)
+        } else {
+            trackScreenEvent(.review)
+        }
     }
 
     override func didConfirm() {
-        trackScreenEvent(.review2FAConfirmed)
+        if hasKeycard {
+            trackScreenEvent(.keycard2FAConfirmed)
+        } else {
+            trackScreenEvent(.review2FAConfirmed)
+        }
     }
 
     override func didReject() {
-        trackScreenEvent(.review2FARejected)
+        if hasKeycard {
+            trackScreenEvent(.keycard2FARejected)
+        } else {
+            trackScreenEvent(.review2FARejected)
+        }
     }
 
     override func didSubmit() {

@@ -36,6 +36,10 @@ public class ReviewTransactionViewController: UITableViewController {
         return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
     }
 
+    var hasKeycard: Bool {
+        return ApplicationServiceRegistry.walletService.ownerAddress(of: .keycard) != nil
+    }
+
     private(set) var tx: TransactionData!
     private(set) weak var delegate: ReviewTransactionViewControllerDelegate!
     private var submitBarButton: UIBarButtonItem!
@@ -60,8 +64,11 @@ public class ReviewTransactionViewController: UITableViewController {
         configureTableView()
         createCells()
 
-        if !hasBrowserExtension {
+        if !hasBrowserExtension && !hasKeycard {
             confirmationCell.confirmationView.showsOnlyButton = true
+        }
+        if hasKeycard {
+            confirmationCell.confirmationView.twoFAType = .keycard
         }
         if showsSubmitInNavigationBar {
             if let key = cells.first(where: { $0.value === confirmationCell })?.key {
@@ -127,18 +134,41 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     @objc internal func submit() {
-        if tx.status == .rejected {
+        if hasKeycard {
+            submitWithKeycard()
+        } else {
+            submitWithAuthenticator()
+        }
+    }
+
+    func submitWithAuthenticator() {
+        switch tx.status {
+        case .readyToSubmit:
+            submitWithUserPermission()
+        case .rejected:
             ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
             doRequest()
-        } else if tx.status == .readyToSubmit {
-            delegate.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [weak self] allowed in
-                if allowed {
-                    self?.doSubmit()
-                }
-            }
-        } else {
+        default:
             showResendAlert(action: scheduleConfirmationRequest)
         }
+    }
+
+    func submitWithKeycard() {
+        switch tx.status {
+        case .waitingForConfirmation:
+            openSignWithKeycard()
+        case .readyToSubmit:
+            submitWithUserPermission()
+        case .rejected:
+            ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
+            openSignWithKeycard()
+        default: break
+        }
+    }
+
+    func openSignWithKeycard() {
+        let signController = SKSignWithPinViewController.create(transactionID: tx.id, onCompletion: postProcessing)
+        show(signController, sender: self)
     }
 
     /// Supposed to be called from flow coordinator when the screen is already shown, but new transaction data
@@ -166,6 +196,14 @@ public class ReviewTransactionViewController: UITableViewController {
         doAfterEstimateTransaction { [weak self] in
             guard let `self` = self else { return TransactionData.empty }
             return try ApplicationServiceRegistry.walletService.requestTransactionConfirmationIfNeeded(self.tx.id)
+        }
+    }
+
+    func submitWithUserPermission() {
+        delegate.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [weak self] allowed in
+            if allowed {
+                self?.doSubmit()
+            }
         }
     }
 

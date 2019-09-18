@@ -118,4 +118,8 @@ class MockEncryptionService1: EncryptionDomainService {
         preconditionFailure()
     }
 
+    func recoveredAddress(from signature: Data, hash: Data) -> Address? {
+        preconditionFailure()
+    }
+
 }

@@ -217,6 +217,11 @@ open class EncryptionService: EncryptionDomainService {
         return MultisigWalletDomainModel.Address(ethereumService.createAddress(publicKey: publicKey))
     }
 
+    public func recoveredAddress(from signature: Data, hash: Data) -> MultisigWalletDomainModel.Address? {
+        guard let result = address(hash: hash, signature: ethSignature(from: signature)) else { return nil }
+        return Address(result)
+    }
+
     // MARK: - EOA generation
 
     public func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {

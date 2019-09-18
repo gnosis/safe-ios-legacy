@@ -15,5 +15,6 @@ public protocol KeycardDomainService {
     func generateCredentials() -> (pin: String, puk: String, pairingPassword: String)
     func initialize(pin: String, puk: String, pairingPassword: String, keyPathComponent: KeyPathComponent) throws -> Address
     func forgetKey(for address: Address)
-
+    func sign(hash: Data, by address: Address, pin: String) throws -> Data
+    func unblock(puk: String, pin: String, address: Address) throws
 }

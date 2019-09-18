@@ -313,7 +313,7 @@ Save this recovery phrase.</string>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSa-hc-p3A" customClass="VerifiableInput" customModule="SafeUIKit">
                                                         <rect key="frame" x="0.0" y="62" width="343" height="56"/>
-                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="56" placeholder="YES" id="4Of-MF-lVa"/>
                                                         </constraints>
@@ -502,6 +502,85 @@ In several paragraphs.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TJB-FI-mv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4805.6000000000004" y="-181.25937031484258"/>
+        </scene>
+        <!--Sign With Pin View Controller-->
+        <scene sceneID="lax-nT-I8S">
+            <objects>
+                <viewController storyboardIdentifier="SKSignWithPinViewController" id="C3X-V4-3xe" customClass="SKSignWithPinViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I6s-ix-44u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEz-T9-Fbg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDM-Ta-f57" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="171"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="cSx-Iy-d8P">
+                                                <rect key="frame" x="16" y="24" width="343" height="123"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keycard authentication" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wx-7D-2pa">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the PIN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndd-Bq-a9E">
+                                                        <rect key="frame" x="0.0" y="33.5" width="343" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABl-5t-FcF" customClass="VerifiableInput" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="67" width="343" height="56"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" placeholder="YES" id="oWU-qY-SSL"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="cSx-Iy-d8P" secondAttribute="bottom" constant="24" id="OpV-xp-It6"/>
+                                            <constraint firstItem="cSx-Iy-d8P" firstAttribute="leading" secondItem="lDM-Ta-f57" secondAttribute="leading" constant="16" id="aNJ-FO-eEy"/>
+                                            <constraint firstItem="cSx-Iy-d8P" firstAttribute="top" secondItem="lDM-Ta-f57" secondAttribute="top" constant="24" id="dHX-o3-fqB"/>
+                                            <constraint firstAttribute="trailing" secondItem="cSx-Iy-d8P" secondAttribute="trailing" constant="16" id="yjB-vS-qlt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="top" secondItem="UUN-ly-BN3" secondAttribute="top" id="0Tg-Ck-k39"/>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="width" secondItem="j8l-Lp-rbu" secondAttribute="width" id="I6O-Lc-gU1"/>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="trailing" secondItem="UUN-ly-BN3" secondAttribute="trailing" id="PlO-uX-jjU"/>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="leading" secondItem="UUN-ly-BN3" secondAttribute="leading" id="gBO-0y-BuG"/>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="bottom" secondItem="UUN-ly-BN3" secondAttribute="bottom" id="geD-eJ-zx7"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="UUN-ly-BN3"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="j8l-Lp-rbu"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xEz-T9-Fbg" firstAttribute="top" secondItem="vKU-d5-aHW" secondAttribute="top" id="9OC-ZB-JV3"/>
+                            <constraint firstItem="vKU-d5-aHW" firstAttribute="trailing" secondItem="xEz-T9-Fbg" secondAttribute="trailing" id="MeO-JC-1x5"/>
+                            <constraint firstItem="vKU-d5-aHW" firstAttribute="bottom" secondItem="xEz-T9-Fbg" secondAttribute="bottom" id="wAI-1v-2Jk"/>
+                            <constraint firstItem="xEz-T9-Fbg" firstAttribute="leading" secondItem="vKU-d5-aHW" secondAttribute="leading" id="wxU-Kf-l51"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vKU-d5-aHW"/>
+                    </view>
+                    <connections>
+                        <outlet property="pinField" destination="ABl-5t-FcF" id="ptB-QU-uHi"/>
+                        <outlet property="scrollView" destination="xEz-T9-Fbg" id="3pt-xQ-rL5"/>
+                        <outlet property="textLabel" destination="ndd-Bq-a9E" id="FVE-0s-72j"/>
+                        <outlet property="titleLabel" destination="7Wx-7D-2pa" id="Kr9-zz-kpq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZy-ah-1lJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5505" y="-187"/>
         </scene>
     </scenes>
     <resources>

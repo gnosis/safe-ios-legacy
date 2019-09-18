@@ -10,7 +10,6 @@ import MultisigWalletApplication
 protocol SKPairViewControllerDelegate: class {
     func pairViewControllerDidPairSuccessfully(_ controller: SKPairViewController)
     func pairViewControllerNeedsInitialization(_ controller: SKPairViewController)
-    func pairViewControllerNeedsToGetInTouch(_ controller: SKPairViewController)
 }
 
 class SKPairViewController: UIViewController {
@@ -184,14 +183,10 @@ class SKPairViewController: UIViewController {
                          animated: true)
 
         case KeycardApplicationService.Error.keycardBlocked:
-            let title = LocalizedString("keycard_blocked", comment: "Blocked")
-            let message = LocalizedString("keycard_unblock_get_in_touch", comment: "Get in touch")
-            let getInTouch = LocalizedString("get_in_touch", comment: "Get In Touch")
-            self.present(UIAlertController.create(title: title, message: message)
-                .withCancelAction()
-                .withDefaultAction(title: getInTouch, handler: {
-                    self.delegate?.pairViewControllerNeedsToGetInTouch(self)
-                }), animated: true)
+            let alert = UIAlertController.keycardBlocked {
+                self.show(GetInTouchTableViewController(), sender: self)
+            }
+            self.present(alert, animated: true)
 
         case KeycardApplicationService.Error.keycardNotInitialized:
             let title = LocalizedString("keycard_uninitialized", comment: "Not initialized")
@@ -209,9 +204,7 @@ class SKPairViewController: UIViewController {
             break
 
         default:
-            let errorText = LocalizedString("ios_error_description",
-                                            comment: "Generic error message. Try again.")
-            self.present(UIAlertController.operationFailed(message: errorText), animated: true)
+            self.present(UIAlertController.genericError(), animated: true)
         }
     }
 

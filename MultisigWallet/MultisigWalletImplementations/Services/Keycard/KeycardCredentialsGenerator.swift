@@ -14,10 +14,10 @@ struct KeycardCredentialsGenerator {
         var pairingPasswordLength: Int
 
         static var `default` = Params(pinPukAlphabet: "0123456789",
-                                      passwordAlphabet: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890+-=!@$#*&?",
+                                      passwordAlphabet: "abcdefghijklmnopqrstuvwxyz1234567890",
                                       pinLength: 6,
                                       pukLength: 12,
-                                      pairingPasswordLength: 12)
+                                      pairingPasswordLength: 14)
     }
 
     /// This method will generate valid credentials for initializing the Keycard.

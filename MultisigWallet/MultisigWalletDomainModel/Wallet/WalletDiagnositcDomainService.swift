@@ -51,16 +51,19 @@ open class WalletDiagnosticDomainService {
             throw Error.authenticatorIsNotOwner
         }
 
+        if remoteIsMissing(role: .keycard) {
+            throw Error.authenticatorIsNotOwner
+        }
+
         if remoteIsMissing(role: .paperWallet) || remoteIsMissing(role: .paperWalletDerived) {
             throw Error.paperWalletIsNotOwner
         }
 
-        guard let remoteConfirmationCount = try? proxy.getThreshold() else { return }
-        guard wallet.confirmationCount == remoteConfirmationCount else {
+        if let remoteConfirmationCount = try? proxy.getThreshold(), wallet.confirmationCount != remoteConfirmationCount {
             throw Error.unexpectedSafeConfiguration
         }
 
-        guard (try? DomainRegistry.transactionRelayService.safeExists(at: wallet.address)) == true else {
+        if let safeExists = try? DomainRegistry.transactionRelayService.safeExists(at: wallet.address), !safeExists {
             throw Error.safeDoesNotExistInRelay
         }
     }

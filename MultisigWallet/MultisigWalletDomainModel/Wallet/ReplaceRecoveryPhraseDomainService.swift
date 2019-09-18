@@ -88,7 +88,8 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceBrowserExtensionDomainSe
         guard let list = remoteOwnersList() else { return nil }
 
         let readOnlyOwners = [requiredWallet.owner(role: .thisDevice),
-                              requiredWallet.owner(role: .browserExtension)]
+                              requiredWallet.owner(role: .browserExtension),
+                              requiredWallet.owner(role: .keycard)]
             .compactMap { $0 }
             .map { Address($0.address.value.lowercased()) }
 
