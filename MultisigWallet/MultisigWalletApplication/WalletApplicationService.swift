@@ -121,7 +121,10 @@ public class WalletApplicationService: Assertable {
     private func notifyBrowserExtension(message: String) throws {
         guard let recipient = ownerAddress(of: .browserExtension) else { return }
         let sender = ownerAddress(of: .thisDevice)!
-        let signedAddress = ethereumService.sign(message: "GNO" + message, by: sender)!
+        // the signing might be not available if the app is in background already, so we should bail out
+        guard let signedAddress = ethereumService.sign(message: "GNO" + message, by: sender) else {
+            throw WalletApplicationServiceError.validationFailed
+        }
         let request = SendNotificationRequest(message: message, to: recipient, from: signedAddress)
         try handleNotificationServiceError {
             try notificationService.send(notificationRequest: request)
@@ -171,7 +174,10 @@ public class WalletApplicationService: Assertable {
             throw WalletApplicationServiceError.validationFailed
         }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
+        // the signing might be not available if the app is in background already, so we should bail out
+        guard let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress) else {
+            throw WalletApplicationServiceError.validationFailed
+        }
         try pair(code, signature, deviceOwnerAddress)
     }
 

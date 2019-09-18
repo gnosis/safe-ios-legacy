@@ -617,15 +617,15 @@ class RecoveryTransactionBuilder: Assertable {
         }
     }
 
-    fileprivate func sign() {
-        let paperWalletEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
-            wallet.owner(role: .paperWallet)!.address)!
+    fileprivate func sign() throws {
+        let paperWalletAddress = wallet.owner(role: .paperWallet)!.address
+        let paperWalletEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: paperWalletAddress)!
         let firstSignature = DomainRegistry.encryptionService.sign(transaction: transaction,
                                                                    privateKey: paperWalletEOA.privateKey)
         transaction.add(signature: Signature(data: firstSignature, address: paperWalletEOA.address))
         if oldScheme.confirmations == 2 {
-            let derivedEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
-                wallet.owner(role: .paperWalletDerived)!.address)!
+            let derivedAddress = wallet.owner(role: .paperWalletDerived)!.address
+            let derivedEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: derivedAddress)!
             let secondSignature = DomainRegistry.encryptionService.sign(transaction: transaction,
                                                                         privateKey: derivedEOA.privateKey)
             transaction.add(signature: Signature(data: secondSignature, address: derivedEOA.address))
