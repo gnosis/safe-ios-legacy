@@ -3,55 +3,55 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Rinkeby_staging_20x20_@2x.png",
+      "filename" : "Staging_Rinkeby_20ptx20pt_@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Rinkeby_staging_20x20_@3x.png",
+      "filename" : "Staging_Rinkeby_20ptx20pt_@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Rinkeby_staging_29x29_@2x.png",
+      "filename" : "Staging_Rinkeby_29ptx29pt_@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Rinkeby_staging_29x29_@3x.png",
+      "filename" : "Staging_Rinkeby_29ptx29pt_@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Rinkeby_staging_40x40_@2x.png",
+      "filename" : "Staging_Rinkeby_40ptx40pt_@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Rinkeby_staging_40x40_@3x.png",
+      "filename" : "Staging_Rinkeby_40ptx40pt_@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Rinkeby_staging_60x60_@2x.png",
+      "filename" : "Staging_Rinkeby_60ptx60pt_@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Rinkeby_staging_60x60_@3x.png",
+      "filename" : "Staging_Rinkeby_60ptx60pt_@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "Rinkeby_staging_1024x1024.png",
+      "filename" : "Staging_Rinkeby_1024ptx1024pt.png",
       "scale" : "1x"
     }
   ],
