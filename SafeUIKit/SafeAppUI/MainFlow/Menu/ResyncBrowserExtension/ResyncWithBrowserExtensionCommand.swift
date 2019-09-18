@@ -12,7 +12,7 @@ class ResyncWithBrowserExtensionCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return !ApplicationServiceRegistry.disconnectTwoFAService.isAvailable
+        return !ApplicationServiceRegistry.walletService.isOwnerExists(.browserExtension)
     }
 
     override var hasDisclosure: Bool {

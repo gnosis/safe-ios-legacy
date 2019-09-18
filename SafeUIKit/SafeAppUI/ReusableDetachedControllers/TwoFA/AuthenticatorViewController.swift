@@ -11,7 +11,7 @@ import SafariServices
 @objc
 public protocol TwoFAViewControllerDelegate: class {
 
-    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws
+    func twoFAViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws
     func twoFAViewControllerDidFinish()
     func didSelectOpenAuthenticatorInfo()
     @objc
@@ -19,7 +19,7 @@ public protocol TwoFAViewControllerDelegate: class {
 
 }
 
-public final class TwoFAViewController: CardViewController {
+public final class AuthenticatorViewController: CardViewController {
 
     enum Strings {
         static let title = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
@@ -85,8 +85,8 @@ public final class TwoFAViewController: CardViewController {
     public var screenTrackingEvent: Trackable = TwoFATrackingEvent.connectAuthenticator
     public var scanTrackingEvent: Trackable = TwoFATrackingEvent.connectAuthenticatorScan
 
-    public static func create(delegate: TwoFAViewControllerDelegate?) -> TwoFAViewController {
-        let controller = TwoFAViewController(nibName: String(describing: CardViewController.self),
+    public static func create(delegate: TwoFAViewControllerDelegate?) -> AuthenticatorViewController {
+        let controller = AuthenticatorViewController(nibName: String(describing: CardViewController.self),
                                              bundle: Bundle(for: CardViewController.self))
         controller.delegate = delegate
         return controller
@@ -263,7 +263,7 @@ public final class TwoFAViewController: CardViewController {
 
 }
 
-extension TwoFAViewController: ScanBarButtonItemDelegate {
+extension AuthenticatorViewController: ScanBarButtonItemDelegate {
 
     public func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)

@@ -61,8 +61,8 @@ extension ConnectTwoFAFlowCoordinator {
         return controller
     }
 
-    func connectAuthenticatorViewController() -> TwoFAViewController {
-        return TwoFAViewController.createRBEConnectController(delegate: self)
+    func connectAuthenticatorViewController() -> AuthenticatorViewController {
+        return AuthenticatorViewController.createRBEConnectController(delegate: self)
     }
 
     func reviewConnectAuthenticatorViewController() -> RBEReviewTransactionViewController {
@@ -123,7 +123,7 @@ extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
 
 extension ConnectTwoFAFlowCoordinator: TwoFAViewControllerDelegate {
 
-    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
+    func twoFAViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.connectTwoFAService.connect(transaction: transactionID, code: code)
     }
 

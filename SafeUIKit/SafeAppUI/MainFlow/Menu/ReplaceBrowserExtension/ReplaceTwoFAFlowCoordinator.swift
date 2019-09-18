@@ -5,7 +5,7 @@
 import UIKit
 import MultisigWalletApplication
 
-class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
+class ReplaceTwoFAFlowCoordinator: FlowCoordinator {
 
     weak var introVC: RBEIntroViewController?
     var transactionID: RBETransactionID!
@@ -41,19 +41,19 @@ extension IntroContentView.Content {
 
     static let replaceTwoFAContent =
         IntroContentView
-            .Content(body: ReplaceBrowserExtensionFlowCoordinator.Strings.replaceTwoFADescription,
+            .Content(body: ReplaceTwoFAFlowCoordinator.Strings.replaceTwoFADescription,
                      icon: Asset.Manage2fa._2FaReplace.image)
 
 }
 
 /// Screens factory methods
-extension ReplaceBrowserExtensionFlowCoordinator {
+extension ReplaceTwoFAFlowCoordinator {
 
     func introViewController() -> RBEIntroViewController {
         let intro = RBEIntroViewController.create()
         intro.starter = applicationService
         intro.delegate = self
-        intro.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.intro
+        intro.screenTrackingEvent = ReplaceTwoFATrackingEvent.intro
         intro.setTitle(Strings.replaceTwoFA)
         intro.setContent(.replaceTwoFAContent)
         return intro
@@ -65,15 +65,15 @@ extension ReplaceBrowserExtensionFlowCoordinator {
         return controller
     }
 
-    func connectAuthenticatorViewController() -> TwoFAViewController {
-        let controller = TwoFAViewController.createRBEConnectController(delegate: self)
-        controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.scan
+    func connectAuthenticatorViewController() -> AuthenticatorViewController {
+        let controller = AuthenticatorViewController.createRBEConnectController(delegate: self)
+        controller.screenTrackingEvent = ReplaceTwoFATrackingEvent.scan
         return controller
     }
 
     func phraseInputViewController() -> RecoveryPhraseInputViewController {
         let controller = RecoveryPhraseInputViewController.create(delegate: self)
-        controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.enterSeed
+        controller.screenTrackingEvent = ReplaceTwoFATrackingEvent.enterSeed
         return controller
     }
 
@@ -81,14 +81,14 @@ extension ReplaceBrowserExtensionFlowCoordinator {
         let controller = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
         controller.titleString = Strings.replaceTwoFA
         controller.detailString = String(format: Strings.replaceTwoFAReviewDescription, twoFAMethod!)
-        controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.review
-        controller.successTrackingEvent = ReplaceBrowserExtensionTrackingEvent.success
+        controller.screenTrackingEvent = ReplaceTwoFATrackingEvent.review
+        controller.successTrackingEvent = ReplaceTwoFATrackingEvent.success
         return controller
     }
 
 }
 
-extension ReplaceBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate {
+extension ReplaceTwoFAFlowCoordinator: RBEIntroViewControllerDelegate {
 
     func rbeIntroViewControllerDidStart() {
         self.transactionID = introVC!.transactionID
@@ -97,7 +97,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate
 
 }
 
-extension ReplaceBrowserExtensionFlowCoordinator: TwoFATableViewControllerDelegate {
+extension ReplaceTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
 
     func didSelectTwoFAOption(_ option: TwoFAOption) {
         switch option {
@@ -127,9 +127,9 @@ extension ReplaceBrowserExtensionFlowCoordinator: TwoFATableViewControllerDelega
 
 }
 
-extension ReplaceBrowserExtensionFlowCoordinator: TwoFAViewControllerDelegate {
+extension ReplaceTwoFAFlowCoordinator: TwoFAViewControllerDelegate {
 
-    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
+    func twoFAViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
         try applicationService.connect(transaction: transactionID, code: code)
     }
 
@@ -143,7 +143,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: TwoFAViewControllerDelegate {
 
 }
 
-extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
+extension ReplaceTwoFAFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
 
     func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
                                            didEnterPhrase phrase: String) {
@@ -162,7 +162,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControl
 
 }
 
-extension ReplaceBrowserExtensionFlowCoordinator: ReviewTransactionViewControllerDelegate {
+extension ReplaceTwoFAFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
     func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
                                                                  completion: @escaping (Bool) -> Void) {
@@ -183,7 +183,7 @@ extension SuccessViewController {
     static func replace2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
         return .congratulations(text: LocalizedString("tx_submitted_replace_be", comment: "Replacing"),
                                 image: Asset.ReplaceBrowserExtension.inProgressIcon.image,
-                                tracking: ReplaceBrowserExtensionTrackingEvent.success,
+                                tracking: ReplaceTwoFATrackingEvent.success,
                                 action: action)
     }
 

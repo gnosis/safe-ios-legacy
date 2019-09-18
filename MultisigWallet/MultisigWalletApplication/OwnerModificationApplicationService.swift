@@ -61,11 +61,11 @@ open class OwnerModificationApplicationService: RBEStarter {
         do {
             try domainService.validate(transactionID: txID)
         } catch ReplaceTwoFADomainServiceError.twoFANotConnected {
-            throw FeeCalculationError.extensionNotFound
+            throw FeeCalculationError.TwoFANotFound
         } catch ReplaceTwoFADomainServiceError.insufficientBalance {
             throw FeeCalculationError.insufficientBalance
         } catch ReplaceTwoFADomainServiceError.twoFAAlreadyExists {
-            throw FeeCalculationError.extensionExists
+            throw FeeCalculationError.twoFAAlreadyExists
         }
     }
 

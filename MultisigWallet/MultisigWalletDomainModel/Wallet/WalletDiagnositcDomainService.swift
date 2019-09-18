@@ -52,7 +52,7 @@ open class WalletDiagnosticDomainService {
         }
 
         if remoteIsMissing(role: .keycard) {
-            throw Error.authenticatorIsNotOwner
+            throw Error.twoFAIsNotOwner
         }
 
         if remoteIsMissing(role: .paperWallet) || remoteIsMissing(role: .paperWalletDerived) {

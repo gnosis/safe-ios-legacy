@@ -17,11 +17,11 @@ class ReplaceTwoFACommand: MenuCommand {
 
     override init() {
         super.init()
-        childFlowCoordinator = ReplaceBrowserExtensionFlowCoordinator()
+        childFlowCoordinator = ReplaceTwoFAFlowCoordinator()
     }
 
     override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        let fc = ReplaceBrowserExtensionFlowCoordinator()
+        let fc = ReplaceTwoFAFlowCoordinator()
         fc.mainFlowCoordinator = mainFlowCoordinator
         childFlowCoordinator = fc
         super.run(mainFlowCoordinator: mainFlowCoordinator)

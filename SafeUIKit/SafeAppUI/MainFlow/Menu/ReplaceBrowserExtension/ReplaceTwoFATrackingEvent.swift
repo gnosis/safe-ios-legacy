@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-enum ReplaceBrowserExtensionTrackingEvent: String, ScreenTrackingEvent {
+enum ReplaceTwoFATrackingEvent: String, ScreenTrackingEvent {
 
     case intro      = "Replace2FA"
     case scan       = "Replace2FA_Scan"
