@@ -11,7 +11,7 @@ import MultisigWalletDomainModel
 class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     let nav = UINavigationController()
-    var fc: ReplaceBrowserExtensionFlowCoordinator!
+    var fc: ReplaceTwoFAFlowCoordinator!
     let mockApplicationService = MockReplaceExtensionApplicationService()
 
     override func setUp() {
@@ -41,7 +41,7 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
     }
 
     func test_whenPairingFinishes_thenPresentsRecoveryPhraseInput() {
-        fc.twoFAViewControllerDidFinish()
+        fc.authenticatorViewControllerDidFinish()
         XCTAssertTrue(nav.topViewController is RecoveryPhraseInputViewController)
     }
 

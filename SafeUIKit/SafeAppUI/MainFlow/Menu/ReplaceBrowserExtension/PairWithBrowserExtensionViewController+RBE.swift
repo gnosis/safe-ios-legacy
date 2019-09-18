@@ -6,7 +6,7 @@ import Foundation
 
 public extension AuthenticatorViewController {
 
-    static func createRBEConnectController(delegate: TwoFAViewControllerDelegate)
+    static func createRBEConnectController(delegate: AuthenticatorViewControllerDelegate)
         -> AuthenticatorViewController {
             let controller = AuthenticatorViewController.create(delegate: delegate)
             controller.screenTitle = nil

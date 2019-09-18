@@ -9,13 +9,15 @@ import Common
 import SafariServices
 
 @objc
-public protocol TwoFAViewControllerDelegate: class {
+public protocol AuthenticatorViewControllerDelegate: class {
 
-    func twoFAViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws
-    func twoFAViewControllerDidFinish()
+    func authenticatorViewController(_ controller: AuthenticatorViewController,
+                                     didScanAddress address: String,
+                                     code: String) throws
+    func authenticatorViewControllerDidFinish()
     func didSelectOpenAuthenticatorInfo()
     @objc
-    optional func twoFAViewControllerDidSkipPairing()
+    optional func authenticatorViewControllerDidSkipPairing()
 
 }
 
@@ -39,7 +41,7 @@ public final class AuthenticatorViewController: CardViewController {
                                           comment: "Scan button title in extension setup screen")
     }
 
-    weak var delegate: TwoFAViewControllerDelegate?
+    weak var delegate: AuthenticatorViewControllerDelegate?
 
     private var logger: Logger {
         return MultisigWalletApplication.ApplicationServiceRegistry.logger
@@ -85,9 +87,9 @@ public final class AuthenticatorViewController: CardViewController {
     public var screenTrackingEvent: Trackable = TwoFATrackingEvent.connectAuthenticator
     public var scanTrackingEvent: Trackable = TwoFATrackingEvent.connectAuthenticatorScan
 
-    public static func create(delegate: TwoFAViewControllerDelegate?) -> AuthenticatorViewController {
+    public static func create(delegate: AuthenticatorViewControllerDelegate?) -> AuthenticatorViewController {
         let controller = AuthenticatorViewController(nibName: String(describing: CardViewController.self),
-                                             bundle: Bundle(for: CardViewController.self))
+                                                     bundle: Bundle(for: CardViewController.self))
         controller.delegate = delegate
         return controller
     }
@@ -198,11 +200,11 @@ public final class AuthenticatorViewController: CardViewController {
     private func processValidCode(_ code: String) {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
         do {
-            try self.delegate?.twoFAViewController(self, didScanAddress: address, code: code)
+            try self.delegate?.authenticatorViewController(self, didScanAddress: address, code: code)
             if self.didCancel { return }
             trackEvent(OnboardingTrackingEvent.twoFAScanSuccess)
             DispatchQueue.main.async {
-                self.delegate?.twoFAViewControllerDidFinish()
+                self.delegate?.authenticatorViewControllerDidFinish()
             }
         } catch let e {
             if self.didCancel { return }
@@ -231,7 +233,7 @@ public final class AuthenticatorViewController: CardViewController {
     }
 
     @IBAction func skipPairing(_ sender: Any) {
-        delegate?.twoFAViewControllerDidSkipPairing?()
+        delegate?.authenticatorViewControllerDidSkipPairing?()
     }
 
     // MARK: - Debug Buttons

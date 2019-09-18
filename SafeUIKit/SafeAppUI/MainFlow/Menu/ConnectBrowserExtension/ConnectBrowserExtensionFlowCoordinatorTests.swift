@@ -43,7 +43,7 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     func test_whenFinishesPairing_thenReviewOpens() {
         mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit)
-        fc.twoFAViewControllerDidFinish()
+        fc.authenticatorViewControllerDidFinish()
         XCTAssertTrue(nav.topViewController is ReviewTransactionViewController)
     }
 

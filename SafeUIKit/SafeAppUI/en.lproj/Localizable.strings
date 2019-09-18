@@ -73,7 +73,8 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Close */
 "close" = "Close";
 
-/* Confirm button title */
+/* Confirm
+   Confirm button title */
 "confirm" = "Confirm";
 
 /* Header for set password screen.
@@ -166,6 +167,9 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Enter password and PIN */
 "enter_pass_pin" = "Enter your pairing password and PIN";
 
+/* Enter the PIN. */
+"enter_pin" = "enter_pin";
+
 /* Placeholder for the recovery phrase */
 "enter_recovery" = "Enter recovery phrase";
 
@@ -182,6 +186,33 @@ Please have your recovery phrase ready to disable 2FA.";
    Error alert's title
    Error title */
 "error" = "Error";
+
+/* Signature invalid */
+"error_keycard_invalid_signature" = "error_keycard_invalid_signature";
+
+/* Signer invalid */
+"error_keycard_invalid_signer" = "error_keycard_invalid_signer";
+
+/* Key not found */
+"error_keycard_key_not_found" = "error_keycard_key_not_found";
+
+/* Keycard is lost */
+"error_keycard_lost" = "error_keycard_lost";
+
+/* Unknown master key */
+"error_keycard_master_key_unknown" = "error_keycard_master_key_unknown";
+
+/* Pairing invalid */
+"error_keycard_pairing_invalid" = "error_keycard_pairing_invalid";
+
+/* Pairing not found */
+"error_keycard_pairing_not_found" = "error_keycard_pairing_not_found";
+
+/* Signing failed */
+"error_keycard_signing_failed" = "error_keycard_signing_failed";
+
+/* Keycard unknown */
+"error_keycard_unknown" = "error_keycard_unknown";
 
 /* Exactly x digits */
 "exactly_x_digits" = "Please enter exactly %li digits.";
@@ -243,6 +274,12 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Incorrect password */
 "incorrect_password" = "Incorrect password";
+
+/* Wrong pin */
+"incorrect_pin_x_attempts" = "incorrect_pin_x_attempts";
+
+/* Wrong PUK */
+"incorrect_puk_attempts" = "incorrect_puk_attempts";
 
 /* Info */
 "info" = "Info";
@@ -417,6 +454,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Already activated */
 "keycard_already_activated" = "This Keycard is already activated.";
+
+/* Keycard authentication */
+"keycard_authentication" = "keycard_authentication";
 
 /* Blocked */
 "keycard_blocked" = "Keycard blocked";

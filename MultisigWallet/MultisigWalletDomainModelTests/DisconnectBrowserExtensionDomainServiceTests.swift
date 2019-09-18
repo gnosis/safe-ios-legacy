@@ -25,7 +25,7 @@ class DisconnectBrowserExtensionDomainServiceTests: BaseBrowserExtensionModifica
     }
 
     func test_txType() {
-        XCTAssertEqual(service.transactionType, .disconnectBrowserExtension)
+        XCTAssertEqual(service.transactionType, .disconnectAuthenticator)
     }
 
     func test_whenDummyData_thenRemovesOwner() {

@@ -121,13 +121,13 @@ extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
 
 }
 
-extension ConnectTwoFAFlowCoordinator: TwoFAViewControllerDelegate {
+extension ConnectTwoFAFlowCoordinator: AuthenticatorViewControllerDelegate {
 
-    func twoFAViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
+    func authenticatorViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.connectTwoFAService.connect(transaction: transactionID, code: code)
     }
 
-    func twoFAViewControllerDidFinish() {
+    func authenticatorViewControllerDidFinish() {
         push(reviewConnectAuthenticatorViewController())
     }
 

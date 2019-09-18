@@ -127,13 +127,13 @@ extension ReplaceTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
 
 }
 
-extension ReplaceTwoFAFlowCoordinator: TwoFAViewControllerDelegate {
+extension ReplaceTwoFAFlowCoordinator: AuthenticatorViewControllerDelegate {
 
-    func twoFAViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
+    func authenticatorViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
         try applicationService.connect(transaction: transactionID, code: code)
     }
 
-    func twoFAViewControllerDidFinish() {
+    func authenticatorViewControllerDidFinish() {
         push(phraseInputViewController())
     }
 

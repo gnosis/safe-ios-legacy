@@ -64,7 +64,7 @@ class TwoFAViewControllerTests: SafeTestCase {
 
 }
 
-class TestTwoFAViewControllerDelegate: TwoFAViewControllerDelegate {
+class TestTwoFAViewControllerDelegate: AuthenticatorViewControllerDelegate {
 
     var pairedAddress: String?
     var pairedCode: String?

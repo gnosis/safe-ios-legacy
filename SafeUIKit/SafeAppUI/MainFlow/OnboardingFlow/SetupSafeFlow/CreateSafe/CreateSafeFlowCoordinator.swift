@@ -120,14 +120,14 @@ extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
 
 }
 
-extension CreateSafeFlowCoordinator: TwoFAViewControllerDelegate {
+extension CreateSafeFlowCoordinator: AuthenticatorViewControllerDelegate {
 
-    func twoFAViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
+    func authenticatorViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.walletService
             .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
     }
 
-    func twoFAViewControllerDidFinish() {
+    func authenticatorViewControllerDidFinish() {
         let controller = ConnectAuthenticatorSuccessViewController.create { [unowned self] in
             self.showSeedIntro(paired: true)
         }
@@ -138,7 +138,7 @@ extension CreateSafeFlowCoordinator: TwoFAViewControllerDelegate {
         SupportFlowCoordinator(from: self).openAuthenticatorInfo()
     }
 
-    func twoFAViewControllerDidSkipPairing() {
+    func authenticatorViewControllerDidSkipPairing() {
         skipPairing()
     }
 
