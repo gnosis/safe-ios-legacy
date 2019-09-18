@@ -12,6 +12,8 @@ class SKKeycardFlowCoordinator: FlowCoordinator {
     weak var mainFlowCoordinator: MainFlowCoordinator!
     var getInTouchCommand = GetInTouchCommand()
 
+    var hidesSteps = false
+
     override func setUp() {
         super.setUp()
         saveCheckpoint()
@@ -25,11 +27,13 @@ class SKKeycardFlowCoordinator: FlowCoordinator {
     }
 
     func showSuccess() {
-        push(SKPairingSuccessViewController.create(onNext: { [unowned self] in
+        let controller = SKPairingSuccessViewController.create(onNext: { [unowned self] in
             self.exitFlow()
         }, onRemove: { [unowned self] in
             self.popToLastCheckpoint()
-        }))
+        })
+        controller.hidesStepView = hidesSteps
+        push(controller)
     }
 }
 

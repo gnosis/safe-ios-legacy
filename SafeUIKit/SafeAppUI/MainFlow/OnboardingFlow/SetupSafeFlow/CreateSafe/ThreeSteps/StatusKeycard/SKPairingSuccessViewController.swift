@@ -20,7 +20,7 @@ class SKPairingSuccessViewController: HeaderImageTextStepController {
 
     static func create(onNext: @escaping () -> Void, onRemove: @escaping () -> Void) -> SKPairingSuccessViewController {
         let controller = SKPairingSuccessViewController(nibName: String(describing: CardViewController.self),
-                                                       bundle: Bundle(for: CardViewController.self))
+                                                        bundle: Bundle(for: CardViewController.self))
         controller.onNext = onNext
         controller.onRemove = onRemove
         controller.backButtonItem = UIBarButtonItem.backButton(target: controller, action: #selector(back))
@@ -34,7 +34,8 @@ class SKPairingSuccessViewController: HeaderImageTextStepController {
         threeStepsView.state = .pair2FA_paired
         headerImageTextView.titleLabel.text = Strings.header
         headerImageTextView.imageView.image = Asset.statusKeycardPaired.image
-        headerImageTextView.textLabel.attributedText = NSAttributedString(string: Strings.text, style: DescriptionStyle())
+        headerImageTextView.textLabel.attributedText = NSAttributedString(string: Strings.text,
+                                                                          style: DescriptionStyle())
     }
 
     override func willMove(toParent parent: UIViewController?) {

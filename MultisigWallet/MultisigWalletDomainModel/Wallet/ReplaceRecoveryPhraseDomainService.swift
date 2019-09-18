@@ -88,14 +88,17 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
         guard let list = remoteOwnersList() else { return nil }
 
         let readOnlyOwners = [requiredWallet.owner(role: .thisDevice),
-                              requiredWallet.owner(role: .browserExtension)]
+                              requiredWallet.owner(role: .browserExtension),
+                              requiredWallet.owner(role: .keycard)]
             .compactMap { $0 }
             .map { Address($0.address.value.lowercased()) }
 
         let modifiableOwners = Array(Set(list.contents).subtracting(Set(readOnlyOwners)))
         guard modifiableOwners.count >= 2 else { return nil }
 
-        let newOwner1 = DomainRegistry.externallyOwnedAccountRepository.find(by: Address(newAddress))!
+        guard let newOwner1 = DomainRegistry.externallyOwnedAccountRepository.find(by: Address(newAddress)) else {
+            return nil
+        }
         let newOwner2 = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: newOwner1, at: 1)
 
         return transactionData(list: list,

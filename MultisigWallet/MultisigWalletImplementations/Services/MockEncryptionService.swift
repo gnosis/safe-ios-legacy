@@ -109,4 +109,8 @@ public class MockEncryptionService: EncryptionDomainService {
         return deriveExternallyOwnedAccountFromMnemonicResult
     }
 
+    public func recoveredAddress(from signature: Data, hash: Data) -> Address? {
+        preconditionFailure()
+    }
+
 }

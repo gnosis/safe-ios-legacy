@@ -121,7 +121,10 @@ public class WalletApplicationService: Assertable {
     private func notifyBrowserExtension(message: String) throws {
         guard let recipient = ownerAddress(of: .browserExtension) else { return }
         let sender = ownerAddress(of: .thisDevice)!
-        let signedAddress = ethereumService.sign(message: "GNO" + message, by: sender)!
+        // the signing might be not available if the app is in background already, so we should bail out
+        guard let signedAddress = ethereumService.sign(message: "GNO" + message, by: sender) else {
+            throw WalletApplicationServiceError.validationFailed
+        }
         let request = SendNotificationRequest(message: message, to: recipient, from: signedAddress)
         try handleNotificationServiceError {
             try notificationService.send(notificationRequest: request)
@@ -171,7 +174,10 @@ public class WalletApplicationService: Assertable {
             throw WalletApplicationServiceError.validationFailed
         }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
+        // the signing might be not available if the app is in background already, so we should bail out
+        guard let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress) else {
+            throw WalletApplicationServiceError.validationFailed
+        }
         try pair(code, signature, deviceOwnerAddress)
     }
 
@@ -595,13 +601,18 @@ public class WalletApplicationService: Assertable {
     private func status(of tx: Transaction) -> TransactionData.Status {
         // TODO: refactor to have similar statuses of transaction in domain model and app
         let hasBrowserExtension = address(of: .browserExtension) != nil
-        let defaultStatus = hasBrowserExtension ? TransactionData.Status.waitingForConfirmation : .readyToSubmit
+        let hasKeycard = address(of: .keycard) != nil
+        let defaultStatus: TransactionData.Status =
+            (hasBrowserExtension || hasKeycard) ? .waitingForConfirmation : .readyToSubmit
         switch tx.status {
         case .signing:
             let isSignedByExtension = hasBrowserExtension &&
                 tx.signatures.count == 1
                 && tx.isSignedBy(address(of: .browserExtension)!)
-            return isSignedByExtension ? .readyToSubmit : defaultStatus
+            let isSignedByKeycard = hasKeycard &&
+                tx.signatures.count == 1
+                && tx.isSignedBy(address(of: .keycard)!)
+            return (isSignedByExtension || isSignedByKeycard) ? .readyToSubmit : defaultStatus
         case .rejected: return .rejected
         case .pending: return .pending
         case .failed: return .failed
@@ -705,6 +716,9 @@ public class WalletApplicationService: Assertable {
     private func signTransaction(_ tx: Transaction) throws {
         if let extensionAddress = address(of: .browserExtension) {
             try! assertTrue(tx.isSignedBy(extensionAddress), TransactionError.unsignedTransaction)
+        }
+        if let keycardAddress = address(of: .keycard) {
+            try! assertTrue(tx.isSignedBy(keycardAddress), TransactionError.unsignedTransaction)
         }
         let myAddress = address(of: .thisDevice)!
         if !tx.isSignedBy(myAddress) {

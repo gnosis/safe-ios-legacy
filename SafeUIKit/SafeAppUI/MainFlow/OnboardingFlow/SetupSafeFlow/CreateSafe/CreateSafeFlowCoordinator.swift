@@ -95,8 +95,8 @@ extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
         case .statusKeycard:
             // TODO: remove coupling - keycardFlowCoordinator should not depend on mainFlowCoordinator
             keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
-            enter(flow: keycardFlowCoordinator) { [unowned self] in
-                self.showSeed(paired: true)
+            enter(flow: keycardFlowCoordinator) {
+                self.showSeedIntro(paired: true)
             }
         case .gnosisAuthenticator:
             showConnectAuthenticator()

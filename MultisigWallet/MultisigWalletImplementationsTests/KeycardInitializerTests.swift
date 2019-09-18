@@ -217,44 +217,33 @@ class MockKeycardFacade: KeycardFacade {
         try returnValue(for: .selectApplet)
     }
 
-    func activate(pin: String, puk: String, password: String) throws {
-
-    }
+    func activate(pin: String, puk: String, password: String) throws {}
 
     var pairing: Pairing?
 
-    func setPairing(key: Data, index: Int) {
+    func setPairing(key: Data, index: Int) {}
 
-    }
+    func resetPairing() {}
 
-    func resetPairing() {
+    func pair(password: String) throws {}
 
-    }
+    func openSecureChannel() throws {}
 
-    func pair(password: String) throws {
-
-    }
-
-    func openSecureChannel() throws {
-
-    }
+    func sign(hash: Data, keypath: String) throws -> Data { return Data() }
 
     func authenticate(pin: String) throws {
         record(call: .authenticate(pin: pin))
         try throwIfNeeded(call: .authenticate(pin: pin))
     }
 
-    var publicKey: Data!
-
     func exportPublicKey(path: String, makeCurrent: Bool) throws -> Data {
         try returnValue(for: .exportPublicKey(path: path, makeCurrent: makeCurrent))
     }
-
-    var masterKey: Data!
 
     func generateMasterKey() throws -> Data {
         return try returnValue(for: .generateMasterKey)
     }
 
+    func unblock(puk: String, newPIN: String) throws {}
 
 }

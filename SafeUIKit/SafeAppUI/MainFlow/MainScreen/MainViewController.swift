@@ -151,8 +151,23 @@ class MainViewController: UIViewController {
         assetViewController.delegate?.openAddressDetails()
     }
 
-    func runDiagnostics() {
-        DispatchQueue.global().async {
+    private var isRunningDiagnostics = false
+
+    // don't run diagnostics if the app is not in foreground or diagnostics is already running
+    @objc func runDiagnostics() {
+        guard UIApplication.shared.applicationState == .active else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(runDiagnostics),
+                                                   name: UIApplication.willEnterForegroundNotification,
+                                                   object: nil)
+            return
+        }
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.willEnterForegroundNotification,
+                                                  object: nil)
+        guard !isRunningDiagnostics else { return }
+        isRunningDiagnostics = true
+        DispatchQueue.global().async { [unowned self] in
             do {
                 try ApplicationServiceRegistry.walletService.runDiagnostics()
             } catch {
@@ -162,6 +177,7 @@ class MainViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             }
+            self.isRunningDiagnostics = false
         }
     }
 

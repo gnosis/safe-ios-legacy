@@ -593,7 +593,8 @@ class RecoveryTransactionBuilder: Assertable {
     }
 
     fileprivate func newWalletScheme() -> WalletScheme {
-        return WalletScheme(confirmations: wallet.owner(role: .browserExtension) == nil ? 1 : 2,
+        let hasAuthenticator = wallet.owner(role: .browserExtension) != nil || wallet.owner(role: .keycard) != nil
+        return WalletScheme(confirmations: hasAuthenticator ? 2 : 1,
                             owners: wallet.owners.filter { $0.role != .unknown }.count)
     }
 
@@ -616,15 +617,15 @@ class RecoveryTransactionBuilder: Assertable {
         }
     }
 
-    fileprivate func sign() {
-        let paperWalletEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
-            wallet.owner(role: .paperWallet)!.address)!
+    fileprivate func sign() throws {
+        let paperWalletAddress = wallet.owner(role: .paperWallet)!.address
+        let paperWalletEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: paperWalletAddress)!
         let firstSignature = DomainRegistry.encryptionService.sign(transaction: transaction,
                                                                    privateKey: paperWalletEOA.privateKey)
         transaction.add(signature: Signature(data: firstSignature, address: paperWalletEOA.address))
         if oldScheme.confirmations == 2 {
-            let derivedEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
-                wallet.owner(role: .paperWalletDerived)!.address)!
+            let derivedAddress = wallet.owner(role: .paperWalletDerived)!.address
+            let derivedEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: derivedAddress)!
             let secondSignature = DomainRegistry.encryptionService.sign(transaction: transaction,
                                                                         privateKey: derivedEOA.privateKey)
             transaction.add(signature: Signature(data: secondSignature, address: derivedEOA.address))
@@ -669,11 +670,11 @@ class RecoveryTransactionBuilder: Assertable {
     }
 
     fileprivate func buildNoExtensionToExtensionData() {
-        buildTransactionData([swapOwnerData(role: .thisDevice), addOwnerData(role: .browserExtension)])
+        buildTransactionData([swapOwnerData(role: .thisDevice), withFirstExistingOwner(of: [.browserExtension, .keycard], execute: addOwnerData(role:))])
     }
 
     private func buildExtensionToExtensionData() {
-        buildTransactionData([swapOwnerData(role: .thisDevice), swapOwnerData(role: .browserExtension)])
+        buildTransactionData([swapOwnerData(role: .thisDevice), withFirstExistingOwner(of: [.browserExtension, .keycard], execute: swapOwnerData(role:))])
     }
 
     private func buildExtensionToNoExtensionData() {
@@ -697,6 +698,13 @@ class RecoveryTransactionBuilder: Assertable {
                 .change(data: multiSendData(input))
                 .change(operation: .delegateCall)
         }
+    }
+
+    private func withFirstExistingOwner(of roles: [OwnerRole], execute: (OwnerRole) -> Data) -> Data {
+        if let role = roles.first(where: { wallet.owner(role: $0) != nil }) {
+            return execute(role)
+        }
+        return Data()
     }
 
     private func swapOwnerData(role: OwnerRole) -> Data {

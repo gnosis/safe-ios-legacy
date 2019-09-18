@@ -32,6 +32,11 @@ class KeycardInitializer {
         self.pathComponent = pathComponent
     }
 
+    func set(pin: String, puk: String) {
+        self.pin = pin
+        self.puk = puk
+    }
+
     // requires:
     //   - keycard is initialized
     // guarantees:
@@ -223,6 +228,103 @@ class KeycardInitializer {
         let publicKey = try keycard.exportPublicKey(path: keypath, makeCurrent: true)
         let address = DomainRegistry.encryptionService.address(publicKey: publicKey)
         return (keypath, publicKey, address)
+    }
+
+    // requires:
+    //   - keycard is initialized and was paired with the safe
+    //   - master key did not change after pairing
+    //   - pairing did not change (safe was not unpaired outside of the app)
+    //   - valid pin
+    // guarantees:
+    //   - valid ECDSA signature (65 bytes long = r (32 bytes), s (32 bytes), v (1 byte)) by the key of address
+    // throws:
+    //   - KeycardDomainServiceError.keycardKeyNotFound - key not found in the database for the address, provide correct address
+    //   - KeycardDomainServiceError.unknownKeycard - this keycard is not recognized, try the correct card
+    //   - KeycardDomainServiceError.unknownMasterKey - keycard recognized but wrong master key is loaded
+    //   - KeycardDomainServiceError.keycardNotPaired - no pairing found for this keycard, pair first
+    //   - KeycardDomainServiceError.keycardPairingBecameInvalid - failed to communicate with card; pairing is invalid. re-pair keycard.
+    //   - KeycardDomainServiceError.signingFailed - error during the signing. Something is wrong with sdk or the keycard applet.
+    //   - KeycardDomainServiceError.keycardBlocked: if the PIN is blocked
+    //   - KeycardDomainServiceError.invalidPin: if PIN is invalid and can be re-tried
+    //   - KeycardDomainServiceError.invalidSignature - the signature can't be recovered to a valid ethereum address
+    //   - KeycardDomainServiceError.invalidSigner - the signature recovers to a different address than expected `address`
+    func sign(hash: Data, by address: Address, pin: String) throws -> Data {
+        assert(hash.count == 32, "Hash size is required to be 32 bytes long, but it is \(hash.count)")
+        self.pin = pin
+
+        let key = try connectUsingAddress(address)
+        try authenticate()
+
+        // sign and check the signature
+
+        // errors:
+        //      - KeyPathError.tooManyComponents (if > 10) - not expected (we pass less than 10 components)
+        //      - KeyPathError.invalidCharacters - not expected
+        //      - CardError.invalidMac - if keycard auth fails and so on - not expected
+        //      - TLVError.unexpectedTag and other - if keycard data serialization fails - not expected
+        //      - CardError.unrecoverableSignature - signing failed
+        //  in all cases, we rethrow with the signingFailed
+        let signature: Data
+        do {
+            signature = try keycard.sign(hash: hash, keypath: key.keyPath)
+        } catch {
+            DomainRegistry.logger.error("Keycard signing failed", error: error)
+            throw KeycardDomainServiceError.signingFailed
+        }
+
+        let signer = DomainRegistry.encryptionService.recoveredAddress(from: signature, hash: hash)
+
+        guard let recoveredAddress = signer else {
+            throw KeycardDomainServiceError.invalidSignature
+        }
+        guard recoveredAddress == address else {
+            throw KeycardDomainServiceError.invalidSigner
+        }
+        return signature
+    }
+
+    // Preparation: we'll find the key by address, find pairing by keycard's instance UID,
+    // open secure channel and authenticate.
+    func connectUsingAddress(_ address: Address) throws -> KeycardKey {
+        guard let key = DomainRegistry.keycardRepository.findKey(with: address) else {
+            throw KeycardDomainServiceError.keycardKeyNotFound
+        }
+
+        let info = try keycard.selectApplet()
+
+        guard Data(info.instanceUID) == key.instanceUID else {
+            throw KeycardDomainServiceError.unknownKeycard
+        }
+        guard Data(info.keyUID) == key.masterKeyUID else {
+            throw KeycardDomainServiceError.unknownMasterKey
+        }
+
+        guard let pairing = DomainRegistry.keycardRepository.findPairing(instanceUID: key.instanceUID) else {
+            throw KeycardDomainServiceError.keycardNotPaired
+        }
+
+        keycard.setPairing(key: pairing.key, index: pairing.index)
+
+        do {
+            try keycard.openSecureChannel()
+        } catch let error where KeycardErrorConverter.isPairingWithExistingDataFailed(error) {
+            throw KeycardDomainServiceError.keycardPairingBecameInvalid
+        }
+
+        return key
+    }
+
+    func unblock(address: Address) throws {
+        assert(pin != nil)
+        assert(puk != nil)
+
+        _ = try connectUsingAddress(address)
+
+        do {
+            try keycard.unblock(puk: puk, newPIN: pin)
+        } catch {
+            throw KeycardErrorConverter.convertFromUnblockError(error)
+        }
     }
 
 }

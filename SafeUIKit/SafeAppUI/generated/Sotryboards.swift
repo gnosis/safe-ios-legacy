@@ -71,6 +71,8 @@ enum StoryboardScene {
 
     static let skPairViewController = SceneType<SafeAppUI.SKPairViewController>(storyboard: CreateSafe.self, identifier: "SKPairViewController")
 
+    static let skSignWithPinViewController = SceneType<SafeAppUI.SKSignWithPinViewController>(storyboard: CreateSafe.self, identifier: "SKSignWithPinViewController")
+
     static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: CreateSafe.self, identifier: "SaveMnemonicViewController")
   }
   enum Main: StoryboardType {

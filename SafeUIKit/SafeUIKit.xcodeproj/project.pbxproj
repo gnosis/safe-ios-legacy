@@ -172,6 +172,7 @@
 		0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A80D192232F6D8300E45BD3 /* SKIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80D191232F6D8300E45BD3 /* SKIntroViewController.swift */; };
+		0A80D1B7232F9DA000E45BD3 /* SKSignWithPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80D1B6232F9DA000E45BD3 /* SKSignWithPinViewController.swift */; };
 		0A84C21F23053B820006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
 		0A84C23B23053BAD0006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C23423053BA30006DA50 /* IdentityAccessImplementations.framework */; };
 		0A84C23C23053BB70006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
@@ -807,6 +808,7 @@
 		0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		0A80D191232F6D8300E45BD3 /* SKIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKIntroViewController.swift; sourceTree = "<group>"; };
+		0A80D1B6232F9DA000E45BD3 /* SKSignWithPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSignWithPinViewController.swift; sourceTree = "<group>"; };
 		0A84C21523053B820006DA50 /* IdentityAccessImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentityAccessImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccess.xcodeproj; path = ../IdentityAccess/IdentityAccess.xcodeproj; sourceTree = "<group>"; };
 		0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseTestCase.swift; sourceTree = "<group>"; };
@@ -1201,6 +1203,7 @@
 				0A2ACBFC2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift */,
 				0A80D191232F6D8300E45BD3 /* SKIntroViewController.swift */,
 				0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */,
+				0A80D1B6232F9DA000E45BD3 /* SKSignWithPinViewController.swift */,
 				0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */,
 				0A2ACBF6232943300054D1D1 /* SKPairingSuccessViewController.swift */,
 			);
@@ -1938,30 +1941,30 @@
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				55BDA7F923225DDE005C9E6A /* ThreeStepsView */,
-				0A2C0E3C2297E194008A30AC /* SafeLabelTitleView */,
-				5549B2BA2285C60200F3B5B7 /* InfoLabel */,
-				0AD8996C228031D0008AE325 /* FeeCalculation */,
-				55BF5735226F3C910032B195 /* FeedbackTooltip */,
-				552DF5C8225C9943008D8AC8 /* CardView */,
-				0ACCA8C3221C11E700D37594 /* LoadingTitleView */,
 				5541586621748C0200A3CEA4 /* AddressInput */,
 				0ABA591B21AC0802009D249F /* AmountLabel */,
 				55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */,
 				5524735721428F2500A77557 /* BackgroundImageView */,
-				55BAB0E221789285007539CF /* StandardButton */,
+				556251CF2146710800F569EE /* BasicTableViewCell */,
+				552DF5C8225C9943008D8AC8 /* CardView */,
 				0ABA591D21AC0813009D249F /* EthereumAddressLabel */,
+				0AD8996C228031D0008AE325 /* FeeCalculation */,
+				55E8AFFE219C4A62002930A1 /* FeeCalculationCell */,
+				55BF5735226F3C910032B195 /* FeedbackTooltip */,
 				5524735821428F5000A77557 /* H1Label */,
 				5524735921428FA300A77557 /* IdenticonView */,
+				5549B2BA2285C60200F3B5B7 /* InfoLabel */,
+				0ACCA8C3221C11E700D37594 /* LoadingTitleView */,
 				55126B6221AC37FC00A9F810 /* ProgressView */,
 				5524735421428E7600A77557 /* QRCodeInput */,
 				556251F72149119200F569EE /* QRCodeView */,
+				0A2C0E3C2297E194008A30AC /* SafeLabelTitleView */,
 				55C428F8217B424C00BF8922 /* ScanBarButtonItem */,
+				55BAB0E221789285007539CF /* StandardButton */,
 				555EB6ED216CA55000E06553 /* TextInputs */,
-				556251CF2146710800F569EE /* BasicTableViewCell */,
+				55BDA7F923225DDE005C9E6A /* ThreeStepsView */,
 				550E7CDF21708F800032DE6C /* TokenInput */,
 				55126B5521AC372D00A9F810 /* TransactionConfirmationView */,
-				55E8AFFE219C4A62002930A1 /* FeeCalculationCell */,
 				55E8B007219EC254002930A1 /* TransactionHeaderView */,
 				55E8AFE1219B34D9002930A1 /* TransferView */,
 			);
@@ -3235,6 +3238,7 @@
 				0AE0FEA0229E8E7200ABC552 /* RecoverRecoveryFeeViewController.swift in Sources */,
 				554D17F022E0B13100B90A70 /* IncomingTransactionsManager.swift in Sources */,
 				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
+				0A80D1B7232F9DA000E45BD3 /* SKSignWithPinViewController.swift in Sources */,
 				0A2C0E162296F2E3008A30AC /* CardViewController.swift in Sources */,
 				0A2C0E3B2297E11C008A30AC /* OnboardingFeePaidViewController.swift in Sources */,
 				0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */,

@@ -10,14 +10,41 @@ import CryptoSwift
 open class KeycardApplicationService {
 
     public enum Error: Swift.Error {
-        case invalidPairingPassword
+        // common
         case invalidPin(Int)
-        case noPairingSlotsRemaining
         case keycardBlocked
-        case keycardNotInitialized
         case userCancelled
         case timeout
+        case invalidPUK(Int)
+        case keycardLost
+
+        // init and pairing
+        case invalidPairingPassword
+        case noPairingSlotsRemaining
+        case keycardNotInitialized
         case keycardAlreadyInitialized
+
+        // signing
+
+        /// no key found for address
+        case keycardKeyNotFound
+
+        /// no pairing found for this keycard, use the correct keycard
+        case keycardNotPaired
+
+        /// wrong keycard, use the correct keycard
+        case unknownKeycard
+
+        /// the master key changed, please load the key used during pairing
+        case unknownMasterKey
+        /// re-pairing is needed
+        case keycardPairingBecameInvalid
+        /// when the signing process fails for internal reason
+        case signingFailed
+        /// when can't recover address from the signature by the keycard
+        case invalidSignature
+        /// when recovered address does not match the one we expect as owner
+        case invalidSigner
     }
 
     open var isAvailable: Bool {
@@ -71,7 +98,26 @@ open class KeycardApplicationService {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         guard let owner = wallet.owner(role: .keycard) else { return }
         wallet.removeOwner(role: .keycard)
+        DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.keycardService.forgetKey(for: owner.address)
+    }
+
+    open func signTransaction(id: String, pin: String) throws {
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
+        let address = wallet.owner(role: .keycard)!.address
+        guard !tx.isSignedBy(address) else { return }
+        let hash = DomainRegistry.encryptionService.hash(of: tx)
+        let rawSignature = try DomainRegistry.keycardService.sign(hash: hash, by: address, pin: pin)
+        let signature = Signature(data: rawSignature, address: address)
+        tx.add(signature: signature)
+        DomainRegistry.transactionRepository.save(tx)
+    }
+
+    open func unblock(puk: String, pin: String) throws {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        let owner = wallet.owner(role: .keycard)!
+        try DomainRegistry.keycardService.unblock(puk: puk, pin: pin, address: owner.address)
     }
 
 }
