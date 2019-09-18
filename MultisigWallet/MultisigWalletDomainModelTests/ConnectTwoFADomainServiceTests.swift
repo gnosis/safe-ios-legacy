@@ -6,7 +6,7 @@ import XCTest
 @testable import MultisigWalletDomainModel
 import MultisigWalletImplementations
 
-class ConnectBrowserExtensionDomainServiceTests: BaseBrowserExtensionModificationTestCase {
+class ConnectTwoFADomainServiceTests: BaseBrowserExtensionModificationTestCase {
 
     let service = ConnectTwoFADomainService()
 
@@ -54,6 +54,7 @@ class BaseBrowserExtensionModificationTestCase: XCTestCase {
     let walletRepo = InMemoryWalletRepository()
     let portfolioRepo = InMemorySinglePortfolioRepository()
     let encryptionService = MockEncryptionService()
+    let communicationService = MockCommunicationDomainService()
     lazy var proxy = TestableOwnerProxy(wallet.address)
     var wallet: Wallet {
         return walletRepo.selectedWallet()!
@@ -64,6 +65,7 @@ class BaseBrowserExtensionModificationTestCase: XCTestCase {
         DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
         DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+        DomainRegistry.put(service: communicationService, for: CommunicationDomainService.self)
         encryptionService.addressFromStringResult = nil
         provisionPortfolio()
     }

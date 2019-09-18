@@ -7,7 +7,7 @@ import XCTest
 import MultisigWalletImplementations
 import CommonTestSupport
 
-class ReplaceBrowserExtensionDomainServiceTests: ReplaceBrowserExtensionDomainServiceBaseTestCase {
+class ReplaceTwoFADomainServiceTests: ReplaceTwoFADomainServiceBaseTestCase {
 
     func test_whenSafeExistsAndExtensionSetUp_thenAvailable() {
         setUpPortfolio(wallet: wallet(owners: ownersWithExtension))

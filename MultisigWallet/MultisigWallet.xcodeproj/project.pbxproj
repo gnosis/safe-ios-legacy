@@ -248,7 +248,7 @@
 		0AAE7E292304569F00E7EB07 /* MultisigWalletDomainModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7DFB2304569900E7EB07 /* MultisigWalletDomainModelTests.swift */; };
 		0AAE7E2A2304569F00E7EB07 /* EthereumContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7DFC2304569900E7EB07 /* EthereumContractProxyTests.swift */; };
 		0AAE7E2B2304569F00E7EB07 /* MultisigWalletDomainModel.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 0AAE7DFD2304569900E7EB07 /* MultisigWalletDomainModel.xctestplan */; };
-		0AAE7E2C2304569F00E7EB07 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7DFE2304569900E7EB07 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */; };
+		0AAE7E2C2304569F00E7EB07 /* ReplaceTwoFADomainServicePostProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7DFE2304569900E7EB07 /* ReplaceTwoFADomainServicePostProcessingTests.swift */; };
 		0AAE7E2D2304569F00E7EB07 /* AllDeploymentStatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7DFF2304569900E7EB07 /* AllDeploymentStatesTests.swift */; };
 		0AAE7E2E2304569F00E7EB07 /* InMemoryAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E002304569900E7EB07 /* InMemoryAccountRepositoryTests.swift */; };
 		0AAE7E2F2304569F00E7EB07 /* BaseDeploymentDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E012304569900E7EB07 /* BaseDeploymentDomainServiceTests.swift */; };
@@ -266,18 +266,18 @@
 		0AAE7E3B2304569F00E7EB07 /* GnosisSafeContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E0D2304569B00E7EB07 /* GnosisSafeContractProxyTests.swift */; };
 		0AAE7E3C2304569F00E7EB07 /* TokenListMergerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E0E2304569B00E7EB07 /* TokenListMergerTests.swift */; };
 		0AAE7E3D2304569F00E7EB07 /* WorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E0F2304569B00E7EB07 /* WorkerTests.swift */; };
-		0AAE7E3E2304569F00E7EB07 /* ConnectBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E102304569B00E7EB07 /* ConnectBrowserExtensionDomainServiceTests.swift */; };
+		0AAE7E3E2304569F00E7EB07 /* ConnectTwoFADomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E102304569B00E7EB07 /* ConnectTwoFADomainServiceTests.swift */; };
 		0AAE7E3F2304569F00E7EB07 /* MultiSendContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E112304569B00E7EB07 /* MultiSendContractProxyTests.swift */; };
-		0AAE7E402304569F00E7EB07 /* ReplaceBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E122304569B00E7EB07 /* ReplaceBrowserExtensionDomainServiceTests.swift */; };
+		0AAE7E402304569F00E7EB07 /* ReplaceTwoFADomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E122304569B00E7EB07 /* ReplaceTwoFADomainServiceTests.swift */; };
 		0AAE7E412304569F00E7EB07 /* TransactionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E132304569B00E7EB07 /* TransactionDomainServiceTests.swift */; };
 		0AAE7E422304569F00E7EB07 /* ERC20TokenContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E142304569C00E7EB07 /* ERC20TokenContractProxyTests.swift */; };
-		0AAE7E432304569F00E7EB07 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E152304569C00E7EB07 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */; };
+		0AAE7E432304569F00E7EB07 /* ReplaceTwoFADomainServiceBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E152304569C00E7EB07 /* ReplaceTwoFADomainServiceBaseTestCase.swift */; };
 		0AAE7E442304569F00E7EB07 /* SubmitTransactionRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E162304569C00E7EB07 /* SubmitTransactionRequestTests.swift */; };
 		0AAE7E452304569F00E7EB07 /* MockEthereumNodeService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E172304569C00E7EB07 /* MockEthereumNodeService1.swift */; };
-		0AAE7E462304569F00E7EB07 /* DisconnectBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E182304569C00E7EB07 /* DisconnectBrowserExtensionDomainServiceTests.swift */; };
+		0AAE7E462304569F00E7EB07 /* DisconnectTwoFADomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E182304569C00E7EB07 /* DisconnectTwoFADomainServiceTests.swift */; };
 		0AAE7E472304569F00E7EB07 /* EventPublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E192304569C00E7EB07 /* EventPublisherTests.swift */; };
 		0AAE7E482304569F00E7EB07 /* PairingRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E1A2304569C00E7EB07 /* PairingRequestTests.swift */; };
-		0AAE7E492304569F00E7EB07 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E1B2304569C00E7EB07 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */; };
+		0AAE7E492304569F00E7EB07 /* ReplaceTwoFADomainServiceSigningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E1B2304569C00E7EB07 /* ReplaceTwoFADomainServiceSigningTests.swift */; };
 		0AAE7E4A2304569F00E7EB07 /* SafeCreationResponseValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E1C2304569D00E7EB07 /* SafeCreationResponseValidatorTests.swift */; };
 		0AAE7E4B2304569F00E7EB07 /* BigInt+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E1D2304569D00E7EB07 /* BigInt+HexTests.swift */; };
 		0AAE7E4C2304569F00E7EB07 /* StringifiedBigIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E1E2304569D00E7EB07 /* StringifiedBigIntTests.swift */; };
@@ -698,7 +698,7 @@
 		0AAE7DFB2304569900E7EB07 /* MultisigWalletDomainModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultisigWalletDomainModelTests.swift; sourceTree = "<group>"; };
 		0AAE7DFC2304569900E7EB07 /* EthereumContractProxyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumContractProxyTests.swift; sourceTree = "<group>"; };
 		0AAE7DFD2304569900E7EB07 /* MultisigWalletDomainModel.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MultisigWalletDomainModel.xctestplan; sourceTree = "<group>"; };
-		0AAE7DFE2304569900E7EB07 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServicePostProcessingTests.swift; sourceTree = "<group>"; };
+		0AAE7DFE2304569900E7EB07 /* ReplaceTwoFADomainServicePostProcessingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFADomainServicePostProcessingTests.swift; sourceTree = "<group>"; };
 		0AAE7DFF2304569900E7EB07 /* AllDeploymentStatesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllDeploymentStatesTests.swift; sourceTree = "<group>"; };
 		0AAE7E002304569900E7EB07 /* InMemoryAccountRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0AAE7E012304569900E7EB07 /* BaseDeploymentDomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDeploymentDomainServiceTests.swift; sourceTree = "<group>"; };
@@ -716,18 +716,18 @@
 		0AAE7E0D2304569B00E7EB07 /* GnosisSafeContractProxyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GnosisSafeContractProxyTests.swift; sourceTree = "<group>"; };
 		0AAE7E0E2304569B00E7EB07 /* TokenListMergerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenListMergerTests.swift; sourceTree = "<group>"; };
 		0AAE7E0F2304569B00E7EB07 /* WorkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
-		0AAE7E102304569B00E7EB07 /* ConnectBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
+		0AAE7E102304569B00E7EB07 /* ConnectTwoFADomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectTwoFADomainServiceTests.swift; sourceTree = "<group>"; };
 		0AAE7E112304569B00E7EB07 /* MultiSendContractProxyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSendContractProxyTests.swift; sourceTree = "<group>"; };
-		0AAE7E122304569B00E7EB07 /* ReplaceBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
+		0AAE7E122304569B00E7EB07 /* ReplaceTwoFADomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFADomainServiceTests.swift; sourceTree = "<group>"; };
 		0AAE7E132304569B00E7EB07 /* TransactionDomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDomainServiceTests.swift; sourceTree = "<group>"; };
 		0AAE7E142304569C00E7EB07 /* ERC20TokenContractProxyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ERC20TokenContractProxyTests.swift; sourceTree = "<group>"; };
-		0AAE7E152304569C00E7EB07 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceBaseTestCase.swift; sourceTree = "<group>"; };
+		0AAE7E152304569C00E7EB07 /* ReplaceTwoFADomainServiceBaseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFADomainServiceBaseTestCase.swift; sourceTree = "<group>"; };
 		0AAE7E162304569C00E7EB07 /* SubmitTransactionRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitTransactionRequestTests.swift; sourceTree = "<group>"; };
 		0AAE7E172304569C00E7EB07 /* MockEthereumNodeService1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService1.swift; sourceTree = "<group>"; };
-		0AAE7E182304569C00E7EB07 /* DisconnectBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
+		0AAE7E182304569C00E7EB07 /* DisconnectTwoFADomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFADomainServiceTests.swift; sourceTree = "<group>"; };
 		0AAE7E192304569C00E7EB07 /* EventPublisherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPublisherTests.swift; sourceTree = "<group>"; };
 		0AAE7E1A2304569C00E7EB07 /* PairingRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingRequestTests.swift; sourceTree = "<group>"; };
-		0AAE7E1B2304569C00E7EB07 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceSigningTests.swift; sourceTree = "<group>"; };
+		0AAE7E1B2304569C00E7EB07 /* ReplaceTwoFADomainServiceSigningTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceTwoFADomainServiceSigningTests.swift; sourceTree = "<group>"; };
 		0AAE7E1C2304569D00E7EB07 /* SafeCreationResponseValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeCreationResponseValidatorTests.swift; sourceTree = "<group>"; };
 		0AAE7E1D2304569D00E7EB07 /* BigInt+HexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BigInt+HexTests.swift"; sourceTree = "<group>"; };
 		0AAE7E1E2304569D00E7EB07 /* StringifiedBigIntTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringifiedBigIntTests.swift; sourceTree = "<group>"; };
@@ -1000,10 +1000,10 @@
 				0AAE7E012304569900E7EB07 /* BaseDeploymentDomainServiceTests.swift */,
 				0AAE7E262304569E00E7EB07 /* BaseInMemoryRepositoryTests.swift */,
 				0AAE7E1D2304569D00E7EB07 /* BigInt+HexTests.swift */,
-				0AAE7E102304569B00E7EB07 /* ConnectBrowserExtensionDomainServiceTests.swift */,
+				0AAE7E102304569B00E7EB07 /* ConnectTwoFADomainServiceTests.swift */,
 				0AAE7DF92304569900E7EB07 /* DataInitWithHexTests.swift */,
 				0AAE7E082304569A00E7EB07 /* DeploymentDomainServiceTests.swift */,
-				0AAE7E182304569C00E7EB07 /* DisconnectBrowserExtensionDomainServiceTests.swift */,
+				0AAE7E182304569C00E7EB07 /* DisconnectTwoFADomainServiceTests.swift */,
 				0AAE7E252304569E00E7EB07 /* DomainRegistryTests.swift */,
 				0AAE7E142304569C00E7EB07 /* ERC20TokenContractProxyTests.swift */,
 				0AAE7E0B2304569A00E7EB07 /* ErrorStreamTests.swift */,
@@ -1025,10 +1025,10 @@
 				0AAE7E1A2304569C00E7EB07 /* PairingRequestTests.swift */,
 				0AAE7E232304569E00E7EB07 /* PortfolioTests.swift */,
 				0AAE7E242304569E00E7EB07 /* RepeaterTests.swift */,
-				0AAE7E152304569C00E7EB07 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
-				0AAE7DFE2304569900E7EB07 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
-				0AAE7E1B2304569C00E7EB07 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
-				0AAE7E122304569B00E7EB07 /* ReplaceBrowserExtensionDomainServiceTests.swift */,
+				0AAE7E152304569C00E7EB07 /* ReplaceTwoFADomainServiceBaseTestCase.swift */,
+				0AAE7DFE2304569900E7EB07 /* ReplaceTwoFADomainServicePostProcessingTests.swift */,
+				0AAE7E1B2304569C00E7EB07 /* ReplaceTwoFADomainServiceSigningTests.swift */,
+				0AAE7E122304569B00E7EB07 /* ReplaceTwoFADomainServiceTests.swift */,
 				0AAE7E022304569A00E7EB07 /* RetryWithIncreasingDelayTests.swift */,
 				0AAE7E1C2304569D00E7EB07 /* SafeCreationResponseValidatorTests.swift */,
 				0AAE7E0A2304569A00E7EB07 /* SafeOwnerManagerContractProxyTests.swift */,
@@ -1957,20 +1957,20 @@
 				0AAE7E352304569F00E7EB07 /* WalletTests.swift in Sources */,
 				0AAE7E452304569F00E7EB07 /* MockEthereumNodeService1.swift in Sources */,
 				0AAE7E442304569F00E7EB07 /* SubmitTransactionRequestTests.swift in Sources */,
-				0AAE7E402304569F00E7EB07 /* ReplaceBrowserExtensionDomainServiceTests.swift in Sources */,
-				0AAE7E3E2304569F00E7EB07 /* ConnectBrowserExtensionDomainServiceTests.swift in Sources */,
+				0AAE7E402304569F00E7EB07 /* ReplaceTwoFADomainServiceTests.swift in Sources */,
+				0AAE7E3E2304569F00E7EB07 /* ConnectTwoFADomainServiceTests.swift in Sources */,
 				0AAE7E312304569F00E7EB07 /* EthSignatureTests.swift in Sources */,
-				0AAE7E432304569F00E7EB07 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift in Sources */,
+				0AAE7E432304569F00E7EB07 /* ReplaceTwoFADomainServiceBaseTestCase.swift in Sources */,
 				0AAE7E532304569F00E7EB07 /* DomainRegistryTests.swift in Sources */,
-				0AAE7E2C2304569F00E7EB07 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift in Sources */,
+				0AAE7E2C2304569F00E7EB07 /* ReplaceTwoFADomainServicePostProcessingTests.swift in Sources */,
 				0AAE7E392304569F00E7EB07 /* ErrorStreamTests.swift in Sources */,
 				0AAE7E2A2304569F00E7EB07 /* EthereumContractProxyTests.swift in Sources */,
 				0AAE7E4F2304569F00E7EB07 /* MockEncryptionService1.swift in Sources */,
 				0AAE7E2D2304569F00E7EB07 /* AllDeploymentStatesTests.swift in Sources */,
 				5542B4DF231E770E00835F89 /* ContractUpgradeDomainServiceTests.swift in Sources */,
-				0AAE7E462304569F00E7EB07 /* DisconnectBrowserExtensionDomainServiceTests.swift in Sources */,
+				0AAE7E462304569F00E7EB07 /* DisconnectTwoFADomainServiceTests.swift in Sources */,
 				0AAE7E292304569F00E7EB07 /* MultisigWalletDomainModelTests.swift in Sources */,
-				0AAE7E492304569F00E7EB07 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift in Sources */,
+				0AAE7E492304569F00E7EB07 /* ReplaceTwoFADomainServiceSigningTests.swift in Sources */,
 				0AAE7E4A2304569F00E7EB07 /* SafeCreationResponseValidatorTests.swift in Sources */,
 				0AAE7E3A2304569F00E7EB07 /* TransactionTests.swift in Sources */,
 				0A84C2EF230549E60006DA50 /* WCTestStubs.swift in Sources */,

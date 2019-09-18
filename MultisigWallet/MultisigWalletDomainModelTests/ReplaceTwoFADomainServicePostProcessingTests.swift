@@ -5,7 +5,7 @@
 import XCTest
 @testable import MultisigWalletDomainModel
 
-class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExtensionDomainServiceBaseTestCase {
+class ReplaceTwoFADomainServicePostProcessingTests: ReplaceTwoFADomainServiceBaseTestCase {
 
     let mockCommunicationService = MockCommunicationDomainService()
     let mockMonitorRepo = MockRBETransactionMonitorRepository()

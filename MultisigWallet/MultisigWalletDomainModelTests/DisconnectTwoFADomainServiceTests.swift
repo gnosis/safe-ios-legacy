@@ -6,14 +6,12 @@ import XCTest
 @testable import MultisigWalletDomainModel
 import MultisigWalletImplementations
 
-class DisconnectBrowserExtensionDomainServiceTests: BaseBrowserExtensionModificationTestCase {
+class DisconnectTwoFADomainServiceTests: BaseBrowserExtensionModificationTestCase {
 
     let service = DisconnectTwoFADomainService()
-    let communicationService = MockCommunicationDomainService()
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: communicationService, for: CommunicationDomainService.self)
         provisionWallet(owners: [.thisDevice, .browserExtension, .paperWallet, .paperWalletDerived], threshold: 2)
         service.ownerContractProxy = proxy
     }

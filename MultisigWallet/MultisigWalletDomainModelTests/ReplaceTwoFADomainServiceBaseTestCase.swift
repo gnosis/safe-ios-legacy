@@ -7,7 +7,7 @@ import XCTest
 import MultisigWalletImplementations
 import CommonTestSupport
 
-class ReplaceBrowserExtensionDomainServiceBaseTestCase: XCTestCase {
+class ReplaceTwoFADomainServiceBaseTestCase: XCTestCase {
 
     let service = ReplaceTwoFADomainService()
     let walletRepo = InMemoryWalletRepository()
@@ -48,7 +48,7 @@ class ReplaceBrowserExtensionDomainServiceBaseTestCase: XCTestCase {
 
 
 
-extension ReplaceBrowserExtensionDomainServiceBaseTestCase {
+extension ReplaceTwoFADomainServiceBaseTestCase {
 
     func loadEOAToMock() {
         mockEncryptionService.deriveExternallyOwnedAccountFromMnemonicResult = .testAccount

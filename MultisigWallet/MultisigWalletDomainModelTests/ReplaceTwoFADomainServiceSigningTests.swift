@@ -5,7 +5,7 @@
 import XCTest
 @testable import MultisigWalletDomainModel
 
-class ReplaceBrowserExtensionDomainServiceSigningTests: ReplaceBrowserExtensionDomainServiceBaseTestCase {
+class ReplaceTwoFADomainServiceSigningTests: ReplaceTwoFADomainServiceBaseTestCase {
 
     func test_whenNewOnwerAddressIsOwner_thenThrows() {
         setUpWallet()
