@@ -93,8 +93,8 @@ class SKActivateViewController: UIViewController {
             do {
                 let address = try ApplicationServiceRegistry.keycardService
                     .connectKeycard(password: self.credentials.pairingPassword,
-                                                                             pin: self.credentials.pin,
-                                                                             initializeWithPUK: self.credentials.puk)
+                                    pin: self.credentials.pin,
+                                    initializeWithPUK: self.credentials.puk)
                 self.isActivationInProgress = false
                 DispatchQueue.main.async {
                     self.delegate?.activateViewControllerDidActivate(self, address: address)
