@@ -697,7 +697,8 @@ public class WalletApplicationService: Assertable {
             _ = try requestTransactionConfirmationIfNeeded(id)
             tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         }
-        if tx.type == .replaceTwoFAWithAuthenticator || tx.type == .disconnectAuthenticator {
+        if [TransactionType.replaceTwoFAWithAuthenticator, .replaceTwoFAWithStatusKeycard,
+            .disconnectAuthenticator, .disconnectStatusKeycard].contains(tx.type) {
             try proceedTransaction(tx)
         } else {
             try signTransaction(tx)
