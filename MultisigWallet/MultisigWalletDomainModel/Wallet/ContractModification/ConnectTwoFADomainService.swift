@@ -11,10 +11,6 @@ open class ConnectTwoFADomainService: ReplaceTwoFADomainService {
         return wallet.isReadyToUse && !wallet.hasAuthenticator
     }
 
-    private var _transactionType: TransactionType = .connectAuthenticator
-
-    override var transactionType: TransactionType { return _transactionType }
-
     override var postProcessTypes: [TransactionType] {
         return [.connectAuthenticator, .connectStatusKeycard]
     }
@@ -38,19 +34,18 @@ open class ConnectTwoFADomainService: ReplaceTwoFADomainService {
         return contractProxy.addOwner(Address(newAddress), newThreshold: 2)
     }
 
-    override func processSuccess(with newOwner: String, in wallet: Wallet) throws {
-        precondition(transactionType.isConnectTwoFA, "Wrong usage of ConnectTwoFADomainService")
-        let role = transactionType.correspondingOwnerRole!
+    override func processSuccess(tx: Transaction, with newOwner: String, in wallet: Wallet) throws {
+        let role = tx.type.correspondingOwnerRole!
         add(newOwner: newOwner, role: role, to: wallet)
         wallet.changeConfirmationCount(2)
         DomainRegistry.walletRepository.save(wallet)
-        if transactionType == .connectAuthenticator {
+        if tx.type == .connectAuthenticator {
             try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
         }
     }
 
-    override func processFailure(walletID: WalletID, newOwnerAddress: String) throws {
-        if transactionType == .connectAuthenticator {
+    override func processFailure(tx: Transaction, walletID: WalletID, newOwnerAddress: String) throws {
+        if tx.type == .connectAuthenticator {
             try DomainRegistry.communicationService.deletePair(walletID: walletID, other: newOwnerAddress)
         }
     }

@@ -43,14 +43,10 @@ open class ReplaceTwoFADomainService: Assertable {
 
     // MARK: - Transaction Creation and Validation
 
-    private var _transactionType: TransactionType = .replaceTwoFAWithAuthenticator
-
-    var transactionType: TransactionType { return _transactionType }
-
     public func createTransaction() -> TransactionID {
         let token = requiredWallet.feePaymentTokenAddress ?? Token.Ether.address
         let tx = Transaction(id: repository.nextID(),
-                             type: transactionType,
+                             type: .replaceTwoFAWithAuthenticator,
                              accountID: AccountID(tokenID: TokenID(token.value), walletID: requiredWallet.id))
         tx.change(amount: .ether(0)).change(sender: requiredWallet.address)
         repository.save(tx)
@@ -259,30 +255,26 @@ open class ReplaceTwoFADomainService: Assertable {
             return
         }
         if tx.status == .success {
-            try processSuccess(with: newOwner, in: wallet)
+            try processSuccess(tx: tx, with: newOwner, in: wallet)
         } else {
-            try processFailure(walletID: tx.accountID.walletID, newOwnerAddress: newOwner)
+            try processFailure(tx: tx, walletID: tx.accountID.walletID, newOwnerAddress: newOwner)
         }
         unregisterPostProcessing(for: transactionID)
     }
 
-    func processSuccess(with newOwner: String, in wallet: Wallet) throws {
-        try replaceOldTwoFAOwner(with: newOwner, in: wallet)
-        if transactionType == .replaceTwoFAWithAuthenticator {
+    func processSuccess(tx: Transaction, with newOwner: String, in wallet: Wallet) throws {
+        try removeOldTwoFAOwner(from: wallet)
+        let role = tx.type.correspondingOwnerRole!
+        add(newOwner: newOwner, role: role, to: wallet)
+        if tx.type == .replaceTwoFAWithAuthenticator {
             try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
         }
     }
 
-    func processFailure(walletID: WalletID, newOwnerAddress: String) throws {
-        if transactionType == .replaceTwoFAWithAuthenticator {
+    func processFailure(tx: Transaction, walletID: WalletID, newOwnerAddress: String) throws {
+        if tx.type == .replaceTwoFAWithAuthenticator {
             try DomainRegistry.communicationService.deletePair(walletID: walletID, other: newOwnerAddress)
         }
-    }
-
-    private func replaceOldTwoFAOwner(with newOwner: String, in wallet: Wallet) throws {
-        try removeOldTwoFAOwner(from: wallet)
-        let role = transactionType.correspondingOwnerRole!
-        add(newOwner: newOwner, role: role, to: wallet)
     }
 
     func removeOldTwoFAOwner(from wallet: Wallet) throws {

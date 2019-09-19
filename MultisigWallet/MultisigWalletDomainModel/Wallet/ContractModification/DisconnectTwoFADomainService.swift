@@ -6,21 +6,23 @@ import Foundation
 
 open class DisconnectTwoFADomainService: ReplaceTwoFADomainService {
 
-    private var _transactionType: TransactionType = .disconnectAuthenticator
-
-    override var transactionType: TransactionType { return _transactionType }
-
     override var postProcessTypes: [TransactionType] {
         return [.disconnectAuthenticator, .disconnectStatusKeycard]
     }
 
-    open func updateTransactionType() -> TransactionType {
+    public override func createTransaction() -> TransactionID {
+        let txID = super.createTransaction()
+        updateTransaction(txID, with: transactionTypeFromWalletOwner())
+        return txID
+    }
+
+    private func transactionTypeFromWalletOwner() -> TransactionType {
         if wallet?.owner(role: .browserExtension) != nil {
-            _transactionType = .disconnectAuthenticator
+            return .disconnectAuthenticator
         } else if wallet?.owner(role: .keycard) != nil {
-            _transactionType = .disconnectStatusKeycard
+            return .disconnectStatusKeycard
         }
-        return _transactionType
+        return .disconnectAuthenticator
     }
 
     override func dummyTransactionData() -> Data {

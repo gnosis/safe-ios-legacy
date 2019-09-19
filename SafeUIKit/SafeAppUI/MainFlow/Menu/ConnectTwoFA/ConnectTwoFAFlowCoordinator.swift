@@ -100,6 +100,12 @@ extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
         case .statusKeycard:
             ApplicationServiceRegistry.connectTwoFAService.updateTransaction(transactionID, with: .connectStatusKeycard)
             keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
+            keycardFlowCoordinator.hidesSteps = true
+            keycardFlowCoordinator.removesKeycardOnGoingBack = false
+            let transactionID = self.transactionID!
+            keycardFlowCoordinator.onSucces = { address in
+                try ApplicationServiceRegistry.connectTwoFAService.connectKeycard(transactionID, address: address)
+            }
             enter(flow: keycardFlowCoordinator) { [unowned self] in
                 self.push(self.reviewConnectKeycardViewController())
             }
@@ -123,7 +129,9 @@ extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
 
 extension ConnectTwoFAFlowCoordinator: AuthenticatorViewControllerDelegate {
 
-    func authenticatorViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
+    func authenticatorViewController(_ controller: AuthenticatorViewController,
+                                     didScanAddress address: String,
+                                     code: String) throws {
         try ApplicationServiceRegistry.connectTwoFAService.connect(transaction: transactionID, code: code)
     }
 

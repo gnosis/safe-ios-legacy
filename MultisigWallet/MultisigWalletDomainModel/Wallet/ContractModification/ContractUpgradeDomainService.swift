@@ -17,8 +17,10 @@ open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
         return DomainRegistry.safeContractMetadataRepository.isOldMasterCopy(address: masterCopy)
     }
 
-    override var transactionType: TransactionType {
-         return .contractUpgrade
+    public override func createTransaction() -> TransactionID {
+        let txID = super.createTransaction()
+        updateTransaction(txID, with: .contractUpgrade)
+        return txID
     }
 
     override func dummyTransactionData() -> Data {
@@ -51,7 +53,7 @@ open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
 
     open override func postProcess(transactionID: TransactionID) throws {
         guard let tx = repository.find(id: transactionID),
-            tx.type == transactionType,
+            tx.type == .contractUpgrade,
             tx.status == .success || tx.status == .failed,
             let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
         guard let data = tx.data, let walletAddress = wallet.address else { return }

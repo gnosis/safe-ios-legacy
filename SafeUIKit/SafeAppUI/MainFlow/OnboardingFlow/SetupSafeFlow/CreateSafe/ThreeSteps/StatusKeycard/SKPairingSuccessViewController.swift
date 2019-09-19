@@ -9,6 +9,7 @@ import MultisigWalletApplication
 class SKPairingSuccessViewController: HeaderImageTextStepController {
 
     var backButtonItem: UIBarButtonItem!
+    var shouldRemoveOnBack: Bool = true
 
     private var onRemove: (() -> Void)!
 
@@ -43,6 +44,9 @@ class SKPairingSuccessViewController: HeaderImageTextStepController {
     }
 
     @objc func back() {
+        guard shouldRemoveOnBack else {
+            return
+        }
         let title = LocalizedString("remove_paired", comment: "Remove?")
         let message = LocalizedString("paired_will_be_lost", comment: "You'll remove")
         let remove = LocalizedString("remove", comment: "Remove")

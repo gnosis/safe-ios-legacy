@@ -18,10 +18,4 @@ open class DisconnectTwoFAApplicationService: ReplaceTwoFAApplicationService {
         try super.sign(transaction: transaction, withPhrase: phrase)
     }
 
-    public func updateTwoFATransactionType() -> TransactionData.TransactionType {
-        let type = DomainRegistry.disconnectTwoFAService.updateTransactionType()
-        precondition(type.isDisconnectTwoFA, "Inproper use of updateTwoFATransactionType() method")
-        return type.transactionDataType
-    }
-
 }

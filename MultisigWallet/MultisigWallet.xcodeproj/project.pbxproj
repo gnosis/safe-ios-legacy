@@ -1049,26 +1049,18 @@
 		0AAE7C5A230450B300E7EB07 /* MultisigWalletApplication */ = {
 			isa = PBXGroup;
 			children = (
-				5542B4E2231E775700835F89 /* ContractUpgradeApplicationService.swift */,
+				0AEF1B9723339FE90098738E /* ContractModification */,
 				0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */,
 				0A2ACBD22327EA450054D1D1 /* KeycardApplicationService.swift */,
-				0A4AD4F52225A683004244FB /* ConnectTwoFAApplicationService.swift */,
-				0A1940412226CB29005B7440 /* DisconnectTwoFAApplicationService.swift */,
 				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
 				0ACA9D45212C469100E39BB6 /* EventRelay.swift */,
 				0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */,
 				0A3BD92122254FF6007039B4 /* LocalizedString.swift */,
-				0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */,
-				0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */,
-				0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */,
-				5568A25522D7613A007C9E0C /* MockWalletConnectApplicationService.swift */,
-				0A4AD4F32225A649004244FB /* OwnerModificationApplicationService.swift */,
+				0AEF1B9223339FD90098738E /* mocks */,
 				0A54E7D721305282006BAD93 /* OwnerType.swift */,
 				0A3BD92922254FF7007039B4 /* RBEFeeCalculationData.swift */,
 				0A3BD92722254FF6007039B4 /* RBEStarter.swift */,
 				0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */,
-				0A3BD967222564B1007039B4 /* ReplaceTwoFAApplicationService.swift */,
-				0A8586D622A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift */,
 				0A5E016922607CA3007F4F38 /* SystemInfo.swift */,
 				0A60B521211343F70066821A /* TransactionData.swift */,
 				0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */,
@@ -1147,7 +1139,6 @@
 			isa = PBXGroup;
 			children = (
 				5542B4E0231E772C00835F89 /* WalletDiagnositcDomainService.swift */,
-				0AAE7CFE2304544800E7EB07 /* ReplaceRecoveryPhraseDomainService.swift */,
 				0AAE7CFF2304544800E7EB07 /* WalletRepository.swift */,
 				0AAE7D002304544800E7EB07 /* TokenData+Token.swift */,
 				0AAE7D012304544800E7EB07 /* RecoveryDomainService.swift */,
@@ -1168,15 +1159,16 @@
 				0AAE7D162304544800E7EB07 /* RetryWithIncreasingDelay.swift */,
 				0AAE7D172304544800E7EB07 /* Wallet.swift */,
 				0AAE7D182304544800E7EB07 /* EventPublisher.swift */,
-				0AAE7D192304544800E7EB07 /* BrowserExtension */,
+				0AAE7D192304544800E7EB07 /* ContractModification */,
 				0AAE7D202304544800E7EB07 /* MockEventPublisher.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
 		};
-		0AAE7D192304544800E7EB07 /* BrowserExtension */ = {
+		0AAE7D192304544800E7EB07 /* ContractModification */ = {
 			isa = PBXGroup;
 			children = (
+				0AAE7CFE2304544800E7EB07 /* ReplaceRecoveryPhraseDomainService.swift */,
 				5542B4DC231E770800835F89 /* ContractUpgradeDomainService.swift */,
 				5542B4D7231E770800835F89 /* ContractUpgradeDomainServiceTests.swift */,
 				0AAE7D1A2304544800E7EB07 /* ReplaceTwoFADomainService.swift */,
@@ -1185,7 +1177,7 @@
 				0AAE7D1E2304544800E7EB07 /* DisconnectTwoFADomainService.swift */,
 				0AAE7D1F2304544800E7EB07 /* ConnectTwoFADomainService.swift */,
 			);
-			path = BrowserExtension;
+			path = ContractModification;
 			sourceTree = "<group>";
 		};
 		0AAE7D222304544800E7EB07 /* Ethereum */ = {
@@ -1350,6 +1342,30 @@
 				0ACD3EFB232BE833000E9274 /* KeycardCredentialsGenerator.swift */,
 			);
 			path = Keycard;
+			sourceTree = "<group>";
+		};
+		0AEF1B9223339FD90098738E /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */,
+				0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */,
+				0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */,
+				5568A25522D7613A007C9E0C /* MockWalletConnectApplicationService.swift */,
+			);
+			path = mocks;
+			sourceTree = "<group>";
+		};
+		0AEF1B9723339FE90098738E /* ContractModification */ = {
+			isa = PBXGroup;
+			children = (
+				5542B4E2231E775700835F89 /* ContractUpgradeApplicationService.swift */,
+				0A4AD4F52225A683004244FB /* ConnectTwoFAApplicationService.swift */,
+				0A1940412226CB29005B7440 /* DisconnectTwoFAApplicationService.swift */,
+				0A4AD4F32225A649004244FB /* OwnerModificationApplicationService.swift */,
+				0A3BD967222564B1007039B4 /* ReplaceTwoFAApplicationService.swift */,
+				0A8586D622A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift */,
+			);
+			path = ContractModification;
 			sourceTree = "<group>";
 		};
 		0AEF8A6A20A08868006A1265 = {

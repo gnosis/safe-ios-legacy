@@ -95,6 +95,9 @@ extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
         case .statusKeycard:
             // TODO: remove coupling - keycardFlowCoordinator should not depend on mainFlowCoordinator
             keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
+            keycardFlowCoordinator.onSucces = { address in
+                ApplicationServiceRegistry.walletService.addOwner(address: address, type: .keycard)
+            }
             enter(flow: keycardFlowCoordinator) {
                 self.showSeedIntro(paired: true)
             }
@@ -122,7 +125,9 @@ extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
 
 extension CreateSafeFlowCoordinator: AuthenticatorViewControllerDelegate {
 
-    func authenticatorViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
+    func authenticatorViewController(_ controller: AuthenticatorViewController,
+                                     didScanAddress address: String,
+                                     code: String) throws {
         try ApplicationServiceRegistry.walletService
             .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
     }

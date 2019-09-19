@@ -115,6 +115,9 @@ extension RecoverSafeFlowCoordinator: TwoFATableViewControllerDelegate {
         case .statusKeycard:
             keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             keycardFlowCoordinator.hidesSteps = true
+            keycardFlowCoordinator.onSucces = { address in
+                ApplicationServiceRegistry.walletService.addOwner(address: address, type: .keycard)
+            }
             enter(flow: keycardFlowCoordinator) {
                 self.showPaymentIntro()
             }

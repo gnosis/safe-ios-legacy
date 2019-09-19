@@ -22,8 +22,10 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
         return wallet.isReadyToUse && wallet.owner(role: .paperWallet) != nil
     }
 
-    override var transactionType: TransactionType {
-        return .replaceRecoveryPhrase
+    public override func createTransaction() -> TransactionID {
+        let txID = super.createTransaction()
+        updateTransaction(txID, with: .replaceRecoveryPhrase)
+        return txID
     }
 
     public override func addDummyData(to transactionID: TransactionID) {
@@ -115,7 +117,7 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
 
     public override func postProcess(transactionID: TransactionID) throws {
         guard let tx = repository.find(id: transactionID),
-            tx.type == transactionType,
+            tx.type == .replaceRecoveryPhrase,
             tx.status == .success || tx.status == .failed,
             let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
         guard let data = tx.data,

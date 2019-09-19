@@ -8,7 +8,7 @@ import SafeUIKit
 import MultisigWalletApplication
 
 protocol SKPairViewControllerDelegate: class {
-    func pairViewControllerDidPairSuccessfully(_ controller: SKPairViewController)
+    func pairViewControllerDidPairSuccessfully(_ controller: SKPairViewController, address: String)
     func pairViewControllerNeedsInitialization(_ controller: SKPairViewController)
 }
 
@@ -146,11 +146,11 @@ class SKPairViewController: UIViewController {
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             do {
-                try ApplicationServiceRegistry.keycardService.connectKeycard(password: password, pin: pin)
+                let address = try ApplicationServiceRegistry.keycardService.connectKeycard(password: password, pin: pin)
                 self.isPairingInProgress = false
 
                 DispatchQueue.main.async {
-                    self.delegate?.pairViewControllerDidPairSuccessfully(self)
+                    self.delegate?.pairViewControllerDidPairSuccessfully(self, address: address)
                 }
             } catch {
                 self.isPairingInProgress = false

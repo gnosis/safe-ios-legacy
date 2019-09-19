@@ -61,7 +61,6 @@ extension ContractUpgradeFlowCoordinator: RBEIntroViewControllerDelegate {
 
     func rbeIntroViewControllerDidStart() {
         transactionID = introVC.transactionID
-        ApplicationServiceRegistry.contractUpgradeService.update(transaction: transactionID)
         showReview()
     }
 }
