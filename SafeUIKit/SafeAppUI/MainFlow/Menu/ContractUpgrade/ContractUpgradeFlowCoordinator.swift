@@ -34,6 +34,7 @@ final class ContractUpgradeFlowCoordinator: FlowCoordinator {
         controller.starter = ApplicationServiceRegistry.contractUpgradeService
         controller.delegate = self
         controller.screenTrackingEvent = ContractUpgradeTrackingEvent.intro
+        controller.setTitle(LocalizedString("contract_upgrade", comment: "Contract Upgrade"))
         controller.setContent(.contractUpgrade)
         push(controller)
         introVC = controller
@@ -95,8 +96,7 @@ fileprivate extension SuccessViewController {
 fileprivate extension IntroContentView.Content {
 
     static let contractUpgrade =
-        IntroContentView.Content(header: LocalizedString("contract_upgrade", comment: "Contract Upgrade"),
-                                 body: String(format: LocalizedString("this_will_upgrade", comment: "Contract Upgrade"),
+        IntroContentView.Content(body: String(format: LocalizedString("this_will_upgrade", comment: "Contract Upgrade"),
                                               "Safe"),
                                  icon: Asset.ContractUpgrade.contractUpgrade.image)
 }

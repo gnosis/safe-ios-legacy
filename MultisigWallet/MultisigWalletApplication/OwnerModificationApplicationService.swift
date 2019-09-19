@@ -8,7 +8,7 @@ import Common
 
 open class OwnerModificationApplicationService: RBEStarter {
 
-    internal var domainService: ReplaceBrowserExtensionDomainService!
+    internal var domainService: ReplaceTwoFADomainService!
 
     public init() {}
 
@@ -60,12 +60,12 @@ open class OwnerModificationApplicationService: RBEStarter {
         let txID = TransactionID(transaction)
         do {
             try domainService.validate(transactionID: txID)
-        } catch ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected {
-            throw FeeCalculationError.extensionNotFound
-        } catch ReplaceBrowserExtensionDomainServiceError.insufficientBalance {
+        } catch ReplaceTwoFADomainServiceError.twoFANotConnected {
+            throw FeeCalculationError.TwoFANotFound
+        } catch ReplaceTwoFADomainServiceError.insufficientBalance {
             throw FeeCalculationError.insufficientBalance
-        } catch ReplaceBrowserExtensionDomainServiceError.browserExtensionAlreadyExists {
-            throw FeeCalculationError.extensionExists
+        } catch ReplaceTwoFADomainServiceError.twoFAAlreadyExists {
+            throw FeeCalculationError.twoFAAlreadyExists
         }
     }
 

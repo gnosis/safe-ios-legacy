@@ -30,7 +30,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectBrowserExtensionSetup_showsController() {
         newSafeFlowCoordinator.didSelectTwoFAOption(.gnosisAuthenticator)
         delay()
-        XCTAssertTrue(topViewController is TwoFAViewController)
+        XCTAssertTrue(topViewController is AuthenticatorViewController)
     }
 
     func test_pairWithBrowserExtensionCompletion_thenAddsBowserExtensionNavigatesToConnectSuccessViewController() {
@@ -44,7 +44,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
         walletService.shouldThrow = true
         pairWithBrowserExtension()
         XCTAssertAlertShown(message: WalletApplicationServiceError.networkError.localizedDescription)
-        assert(topViewController, is: TwoFAViewController.self)
+        assert(topViewController, is: AuthenticatorViewController.self)
     }
 
     func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
@@ -149,7 +149,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
         newSafeFlowCoordinator.didSelectTwoFAOption(.gnosisAuthenticator)
         delay(0.5)
         let controller = newSafeFlowCoordinator.navigationController.topViewController as!
-            TwoFAViewController
+            AuthenticatorViewController
         let screenEvent = controller.screenTrackingEvent as? TwoFATrackingEvent
         XCTAssertEqual(screenEvent, .connectAuthenticator)
 
@@ -178,7 +178,7 @@ private extension CreateSafeFlowCoordinatorTests {
         walletService.expect_isSafeCreationInProgress(true)
         newSafeFlowCoordinator.didSelectTwoFAOption(.gnosisAuthenticator)
         delay()
-        let pairVC = topViewController as? TwoFAViewController
+        let pairVC = topViewController as? AuthenticatorViewController
         pairVC!.loadViewIfNeeded()
         pairVC!.scanBarButtonItemDidScanValidCode("code")
         delay()

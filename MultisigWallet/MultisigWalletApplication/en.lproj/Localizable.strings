@@ -16,12 +16,6 @@
 /* Device key not owner */
 "ios_error_device_key_not_owner" = "The device key is no longer a safe owner. Please reinstall the app and recover the safe.";
 
-/* Browser extension is already connected. */
-"ios_error_extension_exists" = "Authenticator is already connected.";
-
-/* Browser extension is not connected. */
-"ios_error_extension_notfound" = "Authenticator is not connected.";
-
 /* Device key not found */
 "ios_error_no_device_key" = "Failed to locate device key in Keychain. Please restore the device from encrypted backup or reinstall the app and recover the safe.";
 
@@ -39,4 +33,10 @@
 
 /* Please wait... */
 "please_wait" = "Please wait...";
+
+/* 2FA is already connected. */
+"two_fa_already_connected" = "2FA is already connected.";
+
+/* 2FA is not connected. */
+"two_fa_not_connected" = "2FA is not connected.";
 

@@ -11,10 +11,9 @@ public class FeeCalculationError: NSError {
     enum Strings {
         static let insufficientBalance = LocalizedString("exceeds_funds",
                                                          comment: "Insufficient funds to perform this transaction.")
-        static let extensionNotFound = LocalizedString("ios_error_extension_notfound",
-                                                       comment: "Browser extension is not connected.")
-        static let extensionExists = LocalizedString("ios_error_extension_exists",
-                                                     comment: "Browser extension is already connected.")
+        static let twoFANotFound = LocalizedString("two_fa_not_connected", comment: "2FA is not connected.")
+        static let twoFAAlreadyExists = LocalizedString("two_fa_already_connected",
+                                                        comment: "2FA is already connected.")
     }
 
     public enum Code: Int {
@@ -28,14 +27,14 @@ public class FeeCalculationError: NSError {
                             code: Code.insufficientBalance.rawValue,
                             userInfo: [NSLocalizedDescriptionKey: Strings.insufficientBalance])
 
-    public static let extensionNotFound =
+    public static let TwoFANotFound =
         FeeCalculationError(domain: FeeCalculationError.domain,
                             code: Code.extensionNotFound.rawValue,
-                            userInfo: [NSLocalizedDescriptionKey: Strings.extensionNotFound])
+                            userInfo: [NSLocalizedDescriptionKey: Strings.twoFANotFound])
 
-    public static let extensionExists =
+    public static let twoFAAlreadyExists =
         FeeCalculationError(domain: FeeCalculationError.domain,
                             code: Code.extensionNotFound.rawValue,
-                            userInfo: [NSLocalizedDescriptionKey: Strings.extensionExists])
+                            userInfo: [NSLocalizedDescriptionKey: Strings.twoFAAlreadyExists])
 
 }

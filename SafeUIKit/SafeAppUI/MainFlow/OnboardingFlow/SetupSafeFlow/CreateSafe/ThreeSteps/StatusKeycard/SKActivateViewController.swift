@@ -28,7 +28,7 @@ class SKActivateViewController: UIViewController {
 
     enum Strings {
 
-        static let screenTitle = LocalizedString("pair_2fa_device", comment: "Pair 2FA device")
+        static let screenTitle = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
         static let title = LocalizedString("backup_credentials", comment: "Backup  your credentials")
         static let description = LocalizedString("you_need_credentials", comment: "You'll need them")
         static let confirmButtonTitle = LocalizedString("i_have_a_copy", comment: "I have a copy")

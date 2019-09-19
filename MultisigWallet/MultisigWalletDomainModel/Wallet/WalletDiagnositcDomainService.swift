@@ -9,7 +9,7 @@ open class WalletDiagnosticDomainService {
     public enum Error: String, Swift.Error {
         case deviceKeyNotFound
         case deviceKeyIsNotOwner
-        case authenticatorIsNotOwner
+        case twoFAIsNotOwner
         case paperWalletIsNotOwner
         case unexpectedSafeConfiguration
         case safeDoesNotExistInRelay
@@ -47,12 +47,12 @@ open class WalletDiagnosticDomainService {
             throw Error.deviceKeyIsNotOwner
         }
 
-        if remoteIsMissing(role: .browserExtension) {
-            throw Error.authenticatorIsNotOwner
+        if remoteIsMissing(role: .browserExtension) || remoteIsMissing(role: .keycard) {
+            throw Error.twoFAIsNotOwner
         }
 
         if remoteIsMissing(role: .keycard) {
-            throw Error.authenticatorIsNotOwner
+            throw Error.twoFAIsNotOwner
         }
 
         if remoteIsMissing(role: .paperWallet) || remoteIsMissing(role: .paperWalletDerived) {

@@ -134,20 +134,20 @@ extension RecoverSafeFlowCoordinator: TwoFATableViewControllerDelegate {
     }
 
     private func showConnectAuthenticator() {
-        let controller = TwoFAViewController.create(delegate: self)
+        let controller = AuthenticatorViewController.create(delegate: self)
         push(controller)
     }
 
 }
 
-extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
+extension RecoverSafeFlowCoordinator: AuthenticatorViewControllerDelegate {
 
-    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
+    func authenticatorViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.walletService
             .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
     }
 
-    func twoFAViewControllerDidFinish() {
+    func authenticatorViewControllerDidFinish() {
         showPaymentIntro()
     }
 
@@ -155,7 +155,7 @@ extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
         SupportFlowCoordinator(from: self).openAuthenticatorInfo()
     }
 
-    func twoFAViewControllerDidSkipPairing() {
+    func authenticatorViewControllerDidSkipPairing() {
         ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
         showPaymentIntro()
     }

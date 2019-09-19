@@ -35,12 +35,15 @@ struct TransactionDetailTrackingEvent: Trackable {
 
 enum TransactionDetailType: String {
 
-    case replaceBrowserExtension    = "replace_browser_extension"
-    case connectBrowserExtension    = "connect_browser_extension"
-    case replaceRecoveryPhrase      = "replace_recovery_phrase"
-    case recoverSafe                = "recover_safe"
-    case disconnectBrowserExtension = "disconnect_browser_extension"
-    case send                       = "send"
-    case contractUpgrade            = "contract_upgrade"
+    case replaceTwoFAWithAuthenticator              = "replace_2fa_with_authenticator"
+    case connectAuthenticator                       = "connect_authenticator"
+    case replaceRecoveryPhrase                      = "replace_recovery_phrase"
+    case recoverSafe                                = "recover_safe"
+    case disconnectAuthenticator                    = "disconnect_authenticator"
+    case send                                       = "send"
+    case contractUpgrade                            = "contract_upgrade"
+    case replaceTwoFAWithStatusKeycard              = "replace_2fa_with_status_keycard"
+    case connectStatusKeycard                       = "connect_status_keycard"
+    case disconnectStatusKeycard                    = "disconnect_status_keycard"
 
 }

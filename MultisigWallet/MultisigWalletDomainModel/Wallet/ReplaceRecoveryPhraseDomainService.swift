@@ -10,7 +10,7 @@ public enum ReplaceRecoveryPhraseDomainServiceError: String, Error {
     case missingDerivedRecoveryAddress
 }
 
-public class ReplaceRecoveryPhraseDomainService: ReplaceBrowserExtensionDomainService {
+public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
 
     var multiSendProxy: MultiSendContractProxy {
         let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress

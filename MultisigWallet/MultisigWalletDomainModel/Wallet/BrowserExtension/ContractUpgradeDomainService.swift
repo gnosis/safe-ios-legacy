@@ -6,7 +6,7 @@ import Foundation
 
 public class ContractUpgraded: DomainEvent {}
 
-open class ContractUpgradeDomainService: ReplaceBrowserExtensionDomainService {
+open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
 
     open override var isAvailable: Bool {
         guard let wallet = self.wallet, wallet.isReadyToUse else { return false }

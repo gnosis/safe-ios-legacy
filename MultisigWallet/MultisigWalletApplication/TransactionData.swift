@@ -50,10 +50,13 @@ public struct TransactionData: Equatable {
         case incoming
         case walletRecovery
         case replaceRecoveryPhrase
-        case replaceBrowserExtension
-        case connectBrowserExtension
-        case disconnectBrowserExtension
+        case replaceTwoFAWithAuthenticator
+        case connectAuthenticator
+        case disconnectAuthenticator
         case contractUpgrade
+        case replaceTwoFAWithStatusKeycard
+        case connectStatusKeycard
+        case disconnectStatusKeycard
     }
 
     public let id: String

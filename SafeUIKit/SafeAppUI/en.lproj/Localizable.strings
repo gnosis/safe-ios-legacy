@@ -87,6 +87,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Congratulations! */
 "congratulations" = "Congratulations!";
 
+/* Connect 2FA */
+"connect_2fa" = "Connect 2FA";
+
 /* Explanation text */
 "connecting_in_progress" = "Connecting the Authenticator is now in progress. The transaction has been submitted and should take a couple of minutes.";
 
@@ -127,12 +130,21 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Detected dangerous incoming transaction. */
 "detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
 
+/* Disable 2FA */
+"disable_2fa" = "Disable 2FA";
+
+/* Disable 2FA description */
+"disable_2fa_description" = "Once this process is complete, your existing 2FA device will be removed from this Safe and thus 2FA will be disabled. You will be able to set up 2FA again in the Safe menu.\
+Please have your recovery phrase ready to disable 2FA.";
+
+/* Disable 2FA review description */
+"disable_2fa_review_description" = "This transaction removes the existing 2FA device from your Safe: %@. No 2FA device will be paired with your Safe afterward.";
+
 /* Disconnect */
 "disconnect" = "Disconnect";
 
-/* Disconnect browser extension description */
-"disconnect_2fa_description" = "Once this process is complete, your existing 2FA device will be removed from this Safe and thus 2FA will be disabled. You will be able to set up 2FA again in the Safe menu.\
-Please have your recovery phrase ready to disable 2FA.";
+/* Disconnect 2FA */
+"disconnect_2fa" = "Disconnect 2FA";
 
 /* Explanation text */
 "disconnecting_in_progress" = "Disabling 2FA is in progress. The transaction has been submitted and should take a couple of minutes.";
@@ -284,8 +296,7 @@ Please have your recovery phrase ready to disable 2FA.";
 /* blog. */
 "ios_blog" = "blog.";
 
-/* Connect browser extension
-   Header for add browser extension screen */
+/* Header for add browser extension screen */
 "ios_connect_browser_extension" = "Connect\nAuthenticator";
 
 /* Contract upgrade */
@@ -293,12 +304,6 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Pending safe failed alert's message */
 "ios_creationFee_failed_error" = "Error: %@ Please try again later.";
-
-/* Disconnect browser extension */
-"ios_disconnect_browser_extension" = "Disconnect\nAuthenticator";
-
-/* Connect browser extension description */
-"ios_enable_2fa" = "Enable 2-factor authentication by connecting your Safe to Gnosis Safe Authenticator.\n\nAll future transactions will need to be approved by both devices.";
 
 /* Title for confirm recovery screen. */
 "ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
@@ -468,20 +473,11 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Not initialized */
 "keycard_uninitialized" = "Keycard not initialized";
 
-/* Detail for the header in review screen */
-"layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the Authenticator. Future transactions require a confirmation from both devices.";
-
-/* Detail for the header in review screen */
-"layout_disconnect_browser_extension_info_description" = "This transaction disconnects this Safe from the Authenticator. Future transactions will not require confirmations.";
-
 /* Recovery with authenticator */
 "layout_recovered_authenticator_safe_info_description" = "The existing Safe was recovered and associated with this device and connected Authenticator.";
 
 /* Detail for the header in review screen */
 "layout_recovered_safe_info_description" = "The existing Safe was recovered and associated with this device.";
-
-/* Detail for the header in review screen */
-"layout_replace_browser_extension_info_description" = "The existing Authenticator connection will be replaced by the new Authenticator.";
 
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
@@ -568,8 +564,12 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Pair 2FA device */
 "pair_2FA_device" = "Pair 2FA device";
 
-/* Pair 2FA device */
-"pair_2fa_device" = "Pair 2FA device";
+/* Pair 2FA device description */
+"pair_2FA_device_description" = "Once this process is complete, you can use your 2FA device to confirm transactions.";
+
+/* Pair 2FA device review description
+   Pair 2FA review description */
+"pair_2fa_review_description" = "This transaction pairs this Safe with your 2FA device: %@. Future transactions require confirmation from both devices.";
 
 /* Pair Keycard */
 "pair_keycard" = "Pair Keycard";
@@ -693,6 +693,15 @@ Pairing password: %@";
 
 /* Remove? */
 "remove_paired" = "Remove paired 2FA device?";
+
+/* Replace 2FA */
+"replace_2fa" = "Replace 2FA";
+
+/* Replace 2FA description */
+"replace_2fa_description" = "Once this process is complete, you can only use the new 2FA device to confirm transactions. Please have your Safe recovery phrase ready to confirm the replacement.";
+
+/* Replace 2FA review description */
+"replace_2fa_review_description" = "The existing 2FA device connection will be replaced by the new 2FA device: %@. ";
 
 /* Detail for the header in review screen */
 "replace_browser_extension_transaction_info" = "The existing Authenticator connection will be replaced by the new Authenticator. ";

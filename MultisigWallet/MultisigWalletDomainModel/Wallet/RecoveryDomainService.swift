@@ -617,7 +617,7 @@ class RecoveryTransactionBuilder: Assertable {
         }
     }
 
-    fileprivate func sign() throws {
+    fileprivate func sign() {
         let paperWalletAddress = wallet.owner(role: .paperWallet)!.address
         let paperWalletEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: paperWalletAddress)!
         let firstSignature = DomainRegistry.encryptionService.sign(transaction: transaction,

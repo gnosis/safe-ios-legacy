@@ -108,16 +108,16 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: ReplaceRecoveryPhraseDomainService.self)
     }
 
-    public static var replaceExtensionService: ReplaceBrowserExtensionDomainService {
-        return service(for: ReplaceBrowserExtensionDomainService.self)
+    public static var replace2FAService: ReplaceTwoFADomainService {
+        return service(for: ReplaceTwoFADomainService.self)
     }
 
-    public static var connectExtensionService: ConnectBrowserExtensionDomainService {
-        return service(for: ConnectBrowserExtensionDomainService.self)
+    public static var connectTwoFAService: ConnectTwoFADomainService {
+        return service(for: ConnectTwoFADomainService.self)
     }
 
-    public static var disconnectExtensionService: DisconnectBrowserExtensionDomainService {
-        return service(for: DisconnectBrowserExtensionDomainService.self)
+    public static var disconnectTwoFAService: DisconnectTwoFADomainService {
+        return service(for: DisconnectTwoFADomainService.self)
     }
 
     public static var contractUpgradeService: ContractUpgradeDomainService {

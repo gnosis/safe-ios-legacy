@@ -49,9 +49,6 @@ enum Asset {
   static let add = ImageAsset(name: "add")
   static let checkmark = ImageAsset(name: "checkmark")
   static let congratulations = ImageAsset(name: "congratulations")
-  enum ConnectBrowserExtension {
-    static let connectIntroIcon = ImageAsset(name: "connect-intro-icon")
-  }
   enum ContractUpgrade {
     static let contractUpgrade = ImageAsset(name: "contractUpgrade")
     static let upgrade1 = ImageAsset(name: "upgrade1")
@@ -76,6 +73,10 @@ enum Asset {
   enum MainScreenHeader {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
+  }
+  enum Manage2fa {
+    static let _2FaDisable = ImageAsset(name: "2FaDisable")
+    static let _2FaReplace = ImageAsset(name: "2FaReplace")
   }
   static let navbarFilled = ImageAsset(name: "navbar-filled")
   static let noResults = ImageAsset(name: "no-results")
@@ -142,7 +143,6 @@ enum Asset {
     add,
     checkmark,
     congratulations,
-    ConnectBrowserExtension.connectIntroIcon,
     ContractUpgrade.contractUpgrade,
     ContractUpgrade.upgrade1,
     ContractUpgrade.upgrade2,
@@ -160,6 +160,8 @@ enum Asset {
     GetInTouch.telegram,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
+    Manage2fa._2FaDisable,
+    Manage2fa._2FaReplace,
     navbarFilled,
     noResults,
     Onboarding.browserExtensionQr,
