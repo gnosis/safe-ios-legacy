@@ -80,6 +80,13 @@ open class OwnerModificationApplicationService: RBEStarter {
         domainService.update(transaction: txID, newOwnerAddress: newAddress)
     }
 
+    open func connectKeycard(_ transactionID: RBETransactionID, address: String) throws {
+        // keycard was added as an owner, so we are going to move it to the transaction data instead.
+        let txID = TransactionID(transactionID)
+        try domainService.validateNewOwnerAddress(address)
+        domainService.update(transaction: txID, newOwnerAddress: address)
+    }
+
     open func startMonitoring(transaction: RBETransactionID) {
         let txID = TransactionID(transaction)
         domainService.registerPostProcessing(for: txID)

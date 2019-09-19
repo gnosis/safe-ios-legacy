@@ -167,7 +167,10 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     func openSignWithKeycard() {
-        let signController = SKSignWithPinViewController.create(transactionID: tx.id, onCompletion: postProcessing)
+        let signController = SKSignWithPinViewController.create(transactionID: tx.id) {
+            self.tx = self.fetchTransaction(self.tx.id)
+            self.postProcessing()
+        }
         show(signController, sender: self)
     }
 

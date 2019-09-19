@@ -6,27 +6,28 @@ import Foundation
 
 open class DisconnectTwoFADomainService: ReplaceTwoFADomainService {
 
-    private var _transactionType: TransactionType = .disconnectAuthenticator
-
-    override var transactionType: TransactionType { return _transactionType }
-
     override var postProcessTypes: [TransactionType] {
         return [.disconnectAuthenticator, .disconnectStatusKeycard]
     }
 
-    open func updateTransactionType() -> TransactionType {
+    public override func createTransaction() -> TransactionID {
+        let txID = super.createTransaction()
+        updateTransaction(txID, with: transactionTypeFromWalletOwner())
+        return txID
+    }
+
+    private func transactionTypeFromWalletOwner() -> TransactionType {
         if wallet?.owner(role: .browserExtension) != nil {
-            _transactionType = .disconnectAuthenticator
+            return .disconnectAuthenticator
         } else if wallet?.owner(role: .keycard) != nil {
-            _transactionType = .disconnectStatusKeycard
+            return .disconnectStatusKeycard
         }
-        return _transactionType
+        return .disconnectAuthenticator
     }
 
     override func dummyTransactionData() -> Data {
-        let ownerToDelete = wallet?.owner(role: .browserExtension) ?? wallet?.owner(role: .keycard)
         if let linkedList = remoteOwnersList(),
-            let toDelete = ownerToDelete?.address,
+            let toDelete = wallet?.twoFAOwner?.address,
             linkedList.contains(toDelete) {
             let data = contractProxy.removeOwner(prevOwner: linkedList.addressBefore(toDelete),
                                                  owner: toDelete,
@@ -48,8 +49,7 @@ open class DisconnectTwoFADomainService: ReplaceTwoFADomainService {
     }
 
     public func realTransactionData() -> Data? {
-        let ownerToDelete = wallet?.owner(role: .browserExtension) ?? wallet?.owner(role: .keycard)
-        guard let address = ownerToDelete?.address,
+        guard let address = wallet?.twoFAOwner?.address,
             let linkedList = remoteOwnersList(),
             linkedList.contains(address) else { return nil }
         return contractProxy.removeOwner(prevOwner: linkedList.addressBefore(address),

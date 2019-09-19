@@ -145,6 +145,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
         confirmationCount = 1
     }
 
+    public var hasAuthenticator: Bool {
+        return owner(role: .browserExtension) != nil || owner(role: .keycard) != nil
+    }
+
+    public var twoFAOwner: Owner? {
+        return owner(role: .browserExtension) ?? owner(role: .keycard)
+    }
+
     public func owner(role: OwnerRole) -> Owner? {
         return owners.first(with: role)
     }

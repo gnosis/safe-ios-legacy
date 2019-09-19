@@ -9,7 +9,7 @@ import MultisigWalletApplication
 
 protocol SKActivateViewControllerDelegate: class {
 
-    func activateViewControllerDidActivate(_ controller: SKActivateViewController)
+    func activateViewControllerDidActivate(_ controller: SKActivateViewController, address: String)
 }
 
 class SKActivateViewController: UIViewController {
@@ -91,12 +91,13 @@ class SKActivateViewController: UIViewController {
         confirmButton.isEnabled = false
         DispatchQueue.global().async { [unowned self] in
             do {
-                try ApplicationServiceRegistry.keycardService.connectKeycard(password: self.credentials.pairingPassword,
-                                                                             pin: self.credentials.pin,
-                                                                             initializeWithPUK: self.credentials.puk)
+                let address = try ApplicationServiceRegistry.keycardService
+                    .connectKeycard(password: self.credentials.pairingPassword,
+                                    pin: self.credentials.pin,
+                                    initializeWithPUK: self.credentials.puk)
                 self.isActivationInProgress = false
                 DispatchQueue.main.async {
-                    self.delegate?.activateViewControllerDidActivate(self)
+                    self.delegate?.activateViewControllerDidActivate(self, address: address)
                 }
             } catch {
                 self.isActivationInProgress = false

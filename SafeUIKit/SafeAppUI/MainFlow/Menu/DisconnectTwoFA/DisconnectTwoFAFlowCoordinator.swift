@@ -12,7 +12,6 @@ class DisconnectTwoFAFlowCoordinator: FlowCoordinator {
     fileprivate var applicationService: DisconnectTwoFAApplicationService {
         return ApplicationServiceRegistry.disconnectTwoFAService
     }
-    private var transactionType: TransactionData.TransactionType = .disconnectAuthenticator
 
     enum Strings {
         static let introTitle = LocalizedString("disable_2fa", comment: "Disable 2FA")
@@ -46,7 +45,6 @@ extension IntroContentView.Content {
 extension DisconnectTwoFAFlowCoordinator {
 
     func introViewController() -> RBEIntroViewController {
-        transactionType = applicationService.updateTwoFATransactionType()
         let vc = RBEIntroViewController.create()
         vc.starter = applicationService
         vc.delegate = self
@@ -63,14 +61,16 @@ extension DisconnectTwoFAFlowCoordinator {
     }
 
     func reviewViewController() -> RBEReviewTransactionViewController {
-        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = Strings.introTitle
         var twoFAMethod: String!
+        let transactionType = ApplicationServiceRegistry.walletService.transactionData(transactionID)!.type
         switch transactionType {
         case .disconnectAuthenticator: twoFAMethod = Strings.gnosisSafeAuthenticator
         case .disconnectStatusKeycard: twoFAMethod = Strings.statusKeyacard
         default: break
         }
+
+        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        vc.titleString = Strings.introTitle
         vc.detailString = String(format: Strings.disconnectReviewDescription, twoFAMethod)
         vc.screenTrackingEvent = DisconnectTwoFATrackingEvent.review
         vc.successTrackingEvent = DisconnectTwoFATrackingEvent.success

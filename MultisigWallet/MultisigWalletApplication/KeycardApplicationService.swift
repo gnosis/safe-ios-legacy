@@ -48,6 +48,7 @@ open class KeycardApplicationService {
     }
 
     open var isAvailable: Bool {
+        guard #available(iOS 13.1, *) else { return false }
         return DomainRegistry.keycardService.isAvailable
     }
 
@@ -59,7 +60,7 @@ open class KeycardApplicationService {
     //   - selected wallet with existing device owner (.thisDevice)
     // guarantees:
     //   - keycard is paired or initialized, and the new 'keycard' owner is added to the selected wallet.
-    open func connectKeycard(password: String, pin: String, initializeWithPUK: String? = nil) throws {
+    open func connectKeycard(password: String, pin: String, initializeWithPUK: String? = nil) throws -> String {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let deviceOwner = wallet.owner(role: .thisDevice)!
         let keyPathComponent = keypathComponent(from: deviceOwner.address)
@@ -75,8 +76,7 @@ open class KeycardApplicationService {
                                                                          pin: pin,
                                                                          keyPathComponent: keyPathComponent)
         }
-        wallet.addOwner(Owner(address: keycardOwnerAddress, role: .keycard))
-        DomainRegistry.walletRepository.save(wallet)
+        return keycardOwnerAddress.value
     }
 
     private func keypathComponent(from address: Address) -> KeyPathComponent {
