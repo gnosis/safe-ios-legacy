@@ -95,6 +95,7 @@ class AddTokenTableViewController: UITableViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.searchBarStyle = .prominent
         searchController.searchBar.tintColor = ColorName.hold.color
+        searchController.searchBar.backgroundColor = .white
     }
 
     private func configureTableView() {
