@@ -333,6 +333,41 @@ public enum TransactionType: Int {
 
 }
 
+extension TransactionType {
+
+    var correspondingOwnerRole: OwnerRole? {
+        switch self {
+        case .replaceTwoFAWithAuthenticator,
+             .connectAuthenticator,
+             .disconnectAuthenticator:
+            return .browserExtension
+        case .replaceTwoFAWithStatusKeycard,
+             .connectStatusKeycard,
+             .disconnectStatusKeycard:
+            return .keycard
+        default:
+            return nil
+        }
+    }
+
+    public var isConnectTwoFA: Bool {
+        return self == .connectStatusKeycard || self == .connectAuthenticator
+    }
+
+    public var isDisconnectTwoFA: Bool {
+        return self == .disconnectStatusKeycard || self == .disconnectAuthenticator
+    }
+
+    public var isReplaceTwoFA: Bool {
+        return self == .replaceTwoFAWithAuthenticator || self == .replaceTwoFAWithStatusKeycard
+    }
+
+    public var isReplaceOrDisconnectTwoFA: Bool {
+        return isReplaceTwoFA || isDisconnectTwoFA
+    }
+
+}
+
 /// Owner's signature of the transaction
 public struct Signature: Equatable {
 

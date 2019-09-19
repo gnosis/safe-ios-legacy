@@ -193,7 +193,6 @@ public class WalletApplicationService: Assertable {
 
     public func removeBrowserExtensionOwner() {
         mutateSelectedWallet { wallet in
-            guard wallet.owner(role: .browserExtension) != nil else { return }
             wallet.removeOwner(role: .browserExtension)
         }
     }
@@ -556,22 +555,10 @@ public class WalletApplicationService: Assertable {
     }
 
     internal func transactionData(_ tx: Transaction) -> TransactionData {
-        if tx.type == .replaceTwoFAWithAuthenticator || tx.type == .disconnectAuthenticator {
+        if tx.type.isReplaceOrDisconnectTwoFA {
             return ApplicationServiceRegistry.recoveryService.transactionData(tx)
         }
-        let type: TransactionData.TransactionType
-        switch tx.type {
-        case .transfer: type = .outgoing
-        case .walletRecovery: type = .walletRecovery
-        case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
-        case .replaceTwoFAWithAuthenticator: type = .replaceTwoFAWithAuthenticator
-        case .connectAuthenticator: type = .connectAuthenticator
-        case .disconnectAuthenticator: type = .disconnectAuthenticator
-        case .contractUpgrade: type = .contractUpgrade
-        case .replaceTwoFAWithStatusKeycard: type = .replaceTwoFAWithStatusKeycard
-        case .connectStatusKeycard: type = .connectStatusKeycard
-        case .disconnectStatusKeycard: type = .disconnectStatusKeycard
-        }
+        let type = tx.type.transactionDataType
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
                       balance: (type == .outgoing ? -1 : 1) * (tx.amount?.amount ?? 0)) :
@@ -653,8 +640,7 @@ public class WalletApplicationService: Assertable {
     public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         guard tx.feeEstimate == nil ||
-            (tx.type == .connectAuthenticator || tx.type == .connectStatusKeycard || tx.type == .replaceRecoveryPhrase)
-            && tx.status == .draft else {
+            (tx.type.isConnectTwoFA || tx.type == .replaceRecoveryPhrase) && tx.status == .draft else {
                 return transactionData(id)!
         }
         let request = EstimateTransactionRequest(safe: formatted(tx.sender),
@@ -697,8 +683,7 @@ public class WalletApplicationService: Assertable {
             _ = try requestTransactionConfirmationIfNeeded(id)
             tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         }
-        if [TransactionType.replaceTwoFAWithAuthenticator, .replaceTwoFAWithStatusKeycard,
-            .disconnectAuthenticator, .disconnectStatusKeycard].contains(tx.type) {
+        if tx.type.isReplaceOrDisconnectTwoFA {
             try proceedTransaction(tx)
         } else {
             try signTransaction(tx)
@@ -982,17 +967,6 @@ public class WalletApplicationService: Assertable {
         } catch _ {
             throw error(-3199, LocalizedString("ios_error_safe_generic_error",
                                                comment: "Something wrong with the safe"))
-        }
-    }
-
-}
-
-extension TransactionGroupData.GroupType {
-
-    init(_ type: TransactionGroup.GroupType) {
-        switch type {
-        case .pending: self = .pending
-        case .processed: self = .processed
         }
     }
 

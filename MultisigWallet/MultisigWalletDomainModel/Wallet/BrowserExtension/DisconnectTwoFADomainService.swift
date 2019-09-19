@@ -24,9 +24,8 @@ open class DisconnectTwoFADomainService: ReplaceTwoFADomainService {
     }
 
     override func dummyTransactionData() -> Data {
-        let ownerToDelete = wallet?.owner(role: .browserExtension) ?? wallet?.owner(role: .keycard)
         if let linkedList = remoteOwnersList(),
-            let toDelete = ownerToDelete?.address,
+            let toDelete = wallet?.twoFAOwner?.address,
             linkedList.contains(toDelete) {
             let data = contractProxy.removeOwner(prevOwner: linkedList.addressBefore(toDelete),
                                                  owner: toDelete,
@@ -48,8 +47,7 @@ open class DisconnectTwoFADomainService: ReplaceTwoFADomainService {
     }
 
     public func realTransactionData() -> Data? {
-        let ownerToDelete = wallet?.owner(role: .browserExtension) ?? wallet?.owner(role: .keycard)
-        guard let address = ownerToDelete?.address,
+        guard let address = wallet?.twoFAOwner?.address,
             let linkedList = remoteOwnersList(),
             linkedList.contains(address) else { return nil }
         return contractProxy.removeOwner(prevOwner: linkedList.addressBefore(address),

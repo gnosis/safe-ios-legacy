@@ -21,13 +21,8 @@ open class ReplaceTwoFAApplicationService: OwnerModificationApplicationService {
     }
 
     public func updateTransaction(_ transactionID: RBETransactionID, with type: TransactionData.TransactionType) {
-        var transactionType: TransactionType!
-        switch type {
-        case .replaceTwoFAWithAuthenticator: transactionType = .replaceTwoFAWithAuthenticator
-        case .replaceTwoFAWithStatusKeycard: transactionType = .replaceTwoFAWithStatusKeycard
-        default: preconditionFailure("inproper usage of ReplaceTwoFAApplicationService")
-        }
-        domainService.updateTransaction(TransactionID(transactionID), with: transactionType)
+        precondition(type.transactionType.isReplaceTwoFA, "improper usage of ReplaceTwoFAApplicationService")
+        domainService.updateTransaction(TransactionID(transactionID), with: type.transactionType)
     }
 
 }

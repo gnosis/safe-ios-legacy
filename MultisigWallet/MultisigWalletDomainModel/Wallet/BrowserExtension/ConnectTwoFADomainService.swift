@@ -8,9 +8,7 @@ open class ConnectTwoFADomainService: ReplaceTwoFADomainService {
 
     open override var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
-        let twoFAIsNotConnected = wallet.owner(role: .browserExtension) == nil &&
-            wallet.owner(role: .keycard) == nil
-        return wallet.isReadyToUse && twoFAIsNotConnected
+        return wallet.isReadyToUse && !wallet.hasAuthenticator
     }
 
     private var _transactionType: TransactionType = .connectAuthenticator
@@ -33,10 +31,7 @@ open class ConnectTwoFADomainService: ReplaceTwoFADomainService {
     }
 
     override func validateOwners() throws {
-        try assertNil(requiredWallet.owner(role: .browserExtension),
-                      ReplaceTwoFADomainServiceError.twoFAAlreadyExists)
-        try assertNil(requiredWallet.owner(role: .keycard),
-                      ReplaceTwoFADomainServiceError.twoFAAlreadyExists)
+        try assertFalse(requiredWallet.hasAuthenticator, ReplaceTwoFADomainServiceError.twoFAAlreadyExists)
     }
 
     override func realTransactionData(with newAddress: String) -> Data? {
@@ -44,12 +39,8 @@ open class ConnectTwoFADomainService: ReplaceTwoFADomainService {
     }
 
     override func processSuccess(with newOwner: String, in wallet: Wallet) throws {
-        var role: OwnerRole!
-        switch transactionType {
-        case .connectAuthenticator: role = .browserExtension
-        case .connectStatusKeycard: role = .keycard
-        default: preconditionFailure("Wrong usage of ConnectTwoFADomainService")
-        }
+        precondition(transactionType.isConnectTwoFA, "Wrong usage of ConnectTwoFADomainService")
+        let role = transactionType.correspondingOwnerRole!
         add(newOwner: newOwner, role: role, to: wallet)
         wallet.changeConfirmationCount(2)
         DomainRegistry.walletRepository.save(wallet)

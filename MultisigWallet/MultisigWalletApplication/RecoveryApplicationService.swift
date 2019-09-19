@@ -79,44 +79,6 @@ public class RecoveryApplicationService {
 
     // swiftlint:disable:next cyclomatic_complexity
     public func transactionData(_ tx: Transaction) -> TransactionData {
-        let status: TransactionData.Status
-        switch tx.status {
-        case .draft:
-            status = .waitingForConfirmation
-        case .signing:
-            status = .readyToSubmit
-        case .pending:
-            status = .pending
-        case .rejected:
-            status = .rejected
-        case .failed:
-            status = .failed
-        case .success:
-            status = .success
-        }
-        let type: TransactionData.TransactionType
-        switch tx.type {
-        case .transfer:
-            type = .outgoing
-        case .walletRecovery:
-            type = .walletRecovery
-        case .replaceRecoveryPhrase:
-            type = .replaceRecoveryPhrase
-        case .replaceTwoFAWithAuthenticator:
-            type = .replaceTwoFAWithAuthenticator
-        case .connectAuthenticator:
-            type = .connectAuthenticator
-        case .disconnectAuthenticator:
-            type = .disconnectAuthenticator
-        case .contractUpgrade:
-            type = .contractUpgrade
-        case .replaceTwoFAWithStatusKeycard:
-            type = .replaceTwoFAWithStatusKeycard
-        case .connectStatusKeycard:
-            type = .connectStatusKeycard
-        case .disconnectStatusKeycard:
-            type = .disconnectStatusKeycard
-        }
         let amount = tx.amount ?? TokenAmount(amount: 0, token: Token.Ether)
         let amountTokenData = TokenData(token: amount.token, balance: amount.amount)
         let paymentToken = WalletDomainService.token(id: tx.accountID.tokenID.id) ?? Token.Ether
@@ -129,8 +91,8 @@ public class RecoveryApplicationService {
                                recipient: tx.recipient!.value,
                                amountTokenData: amountTokenData,
                                feeTokenData: feeTokenData,
-                               status: status,
-                               type: type,
+                               status: tx.status.transactionDataStatus,
+                               type: tx.type.transactionDataType,
                                created: tx.createdDate,
                                updated: tx.updatedDate,
                                submitted: tx.submittedDate,

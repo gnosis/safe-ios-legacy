@@ -51,10 +51,6 @@ open class WalletDiagnosticDomainService {
             throw Error.twoFAIsNotOwner
         }
 
-        if remoteIsMissing(role: .keycard) {
-            throw Error.twoFAIsNotOwner
-        }
-
         if remoteIsMissing(role: .paperWallet) || remoteIsMissing(role: .paperWalletDerived) {
             throw Error.paperWalletIsNotOwner
         }

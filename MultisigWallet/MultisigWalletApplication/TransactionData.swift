@@ -5,6 +5,7 @@
 import Foundation
 import BigInt
 import Common
+import MultisigWalletDomainModel
 
 public struct TransactionGroupData: Collection {
 
@@ -125,3 +126,70 @@ public struct TransactionData: Equatable {
     }
 
 }
+
+extension TransactionData.TransactionType {
+
+    var transactionType: TransactionType {
+        switch self {
+        case .connectStatusKeycard: return .connectStatusKeycard
+        case .connectAuthenticator: return .connectAuthenticator
+        case .outgoing: return .transfer
+        case .incoming: return .transfer
+        case .walletRecovery: return .walletRecovery
+        case .replaceRecoveryPhrase: return .replaceRecoveryPhrase
+        case .replaceTwoFAWithAuthenticator: return .replaceTwoFAWithAuthenticator
+        case .disconnectAuthenticator: return .disconnectAuthenticator
+        case .contractUpgrade: return .contractUpgrade
+        case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
+        case .disconnectStatusKeycard: return .disconnectStatusKeycard
+        }
+    }
+
+}
+
+extension TransactionType {
+
+    var transactionDataType: TransactionData.TransactionType {
+        switch self {
+        case .transfer: return .outgoing
+        case .walletRecovery: return .walletRecovery
+        case .replaceRecoveryPhrase: return .replaceRecoveryPhrase
+        case .replaceTwoFAWithAuthenticator: return .replaceTwoFAWithAuthenticator
+        case .connectAuthenticator: return .connectAuthenticator
+        case .disconnectAuthenticator: return .disconnectAuthenticator
+        case .contractUpgrade: return .contractUpgrade
+        case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
+        case .connectStatusKeycard: return .connectStatusKeycard
+        case .disconnectStatusKeycard: return .disconnectStatusKeycard
+        }
+    }
+
+}
+
+
+extension TransactionStatus.Code {
+
+    var transactionDataStatus: TransactionData.Status {
+        switch self {
+        case .draft: return .waitingForConfirmation
+        case .signing: return .readyToSubmit
+        case .pending: return .pending
+        case .rejected: return .rejected
+        case .failed: return .failed
+        case .success: return .success
+        }
+    }
+
+}
+
+extension TransactionGroupData.GroupType {
+
+    init(_ type: TransactionGroup.GroupType) {
+        switch type {
+        case .pending: self = .pending
+        case .processed: self = .processed
+        }
+    }
+
+}
+
