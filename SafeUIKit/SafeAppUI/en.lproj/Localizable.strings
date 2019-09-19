@@ -168,7 +168,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "enter_pass_pin" = "Enter your pairing password and PIN";
 
 /* Enter the PIN. */
-"enter_pin" = "enter_pin";
+"enter_pin" = "Enter the PIN of your Keycard.";
 
 /* Placeholder for the recovery phrase */
 "enter_recovery" = "Enter recovery phrase";
@@ -188,31 +188,31 @@ Please have your recovery phrase ready to disable 2FA.";
 "error" = "Error";
 
 /* Signature invalid */
-"error_keycard_invalid_signature" = "error_keycard_invalid_signature";
+"error_keycard_invalid_signature" = "The signature of the keycard is invalid. Please try again.";
 
 /* Signer invalid */
-"error_keycard_invalid_signer" = "error_keycard_invalid_signer";
+"error_keycard_invalid_signer" = "The signature does not match the safe owner. Please try again.";
 
 /* Key not found */
-"error_keycard_key_not_found" = "error_keycard_key_not_found";
+"error_keycard_key_not_found" = "Failed to find a keycard key. Please re-enable the 2FA with the safe.";
 
 /* Keycard is lost */
-"error_keycard_lost" = "error_keycard_lost";
+"error_keycard_lost" = "The Keycard is permanently blocked because of too many wrong PUK entries. This cannot be undone.";
 
 /* Unknown master key */
-"error_keycard_master_key_unknown" = "error_keycard_master_key_unknown";
+"error_keycard_master_key_unknown" = "The master key in the keycard is unknown. Please load the correct master key.";
 
 /* Pairing invalid */
-"error_keycard_pairing_invalid" = "error_keycard_pairing_invalid";
+"error_keycard_pairing_invalid" = "The pairing is invalid. Please replace 2FA to pair again.";
 
 /* Pairing not found */
-"error_keycard_pairing_not_found" = "error_keycard_pairing_not_found";
+"error_keycard_pairing_not_found" = "No pairings found for this keycard. Please try again with a matching keycard.";
 
 /* Signing failed */
-"error_keycard_signing_failed" = "error_keycard_signing_failed";
+"error_keycard_signing_failed" = "The signing failed for an internal reason. Please try again.";
 
 /* Keycard unknown */
-"error_keycard_unknown" = "error_keycard_unknown";
+"error_keycard_unknown" = "The keycard is not recognized. Please use the correct card.";
 
 /* Exactly x digits */
 "exactly_x_digits" = "Please enter exactly %li digits.";
@@ -276,7 +276,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "incorrect_password" = "Incorrect password";
 
 /* Wrong pin */
-"incorrect_pin_x_attempts" = "incorrect_pin_x_attempts";
+"incorrect_pin_x_attempts" = "Incorrect PIN. %li more tries left before your Keycard gets blocked.";
 
 /* Wrong PUK */
 "incorrect_puk_attempts" = "incorrect_puk_attempts";
@@ -456,7 +456,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "keycard_already_activated" = "This Keycard is already activated.";
 
 /* Keycard authentication */
-"keycard_authentication" = "keycard_authentication";
+"keycard_authentication" = "Keycard authentication";
 
 /* Blocked */
 "keycard_blocked" = "Keycard blocked";
