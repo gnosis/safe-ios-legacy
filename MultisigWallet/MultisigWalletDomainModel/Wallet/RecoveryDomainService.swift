@@ -320,7 +320,7 @@ public class RecoveryDomainService: Assertable {
     }
 
     private func notifyDidCreate(_ wallet: Wallet) throws {
-        try DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
+        try DomainRegistry.communicationService.notifyWalletCreatedIfNeeded(walletID: wallet.id)
     }
 
     public func isRecoveryInProgress() -> Bool {

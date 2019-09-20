@@ -25,10 +25,6 @@ class ContractUpgradeDomainServiceTests: BaseBrowserExtensionModificationTestCas
         XCTAssertFalse(service.isAvailable)
     }
 
-    func test_transactionType() {
-        XCTAssertEqual(service.transactionType, .contractUpgrade)
-    }
-
     func test_realTransactionData() {
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
         provisionWallet(owners: [.thisDevice, .paperWallet, .paperWalletDerived], threshold: 1)

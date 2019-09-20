@@ -141,7 +141,7 @@ class MockCommunicationDomainService: CommunicationDomainService {
 
     enum MyError: Error { case error }
 
-    override func notifyWalletCreated(walletID: WalletID) throws {
+    override func notifyWalletCreatedIfNeeded(walletID: WalletID) throws {
         if shouldThrow {
             throw MyError.error
         }

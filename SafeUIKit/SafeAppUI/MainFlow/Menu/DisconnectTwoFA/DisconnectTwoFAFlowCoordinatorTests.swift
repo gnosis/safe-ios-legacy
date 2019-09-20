@@ -13,7 +13,8 @@ class DisconnectTwoFAFlowCoordinatorTests: XCTestCase {
         let mockDisconnectService = MockDisconnectBrowserExtensionApplicationService()
         let mockWalletService = MockWalletApplicationService()
         let disconnectTwoFADomainService = DisconnectTwoFADomainService()
-        mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit)
+        mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit,
+                                                                             transactionType: .disconnectAuthenticator)
         ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: mockDisconnectService,
                                        for: DisconnectTwoFAApplicationService.self)

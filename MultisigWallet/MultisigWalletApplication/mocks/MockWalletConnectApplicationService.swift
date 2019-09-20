@@ -6,6 +6,10 @@ import Foundation
 
 public class MockWalletConnectApplicationService: WalletConnectApplicationService {
 
+    public override var isAvaliable: Bool {
+        return true
+    }
+
     public var connectURL: String?
     override public func connect(url: String) throws {
         connectURL = url
