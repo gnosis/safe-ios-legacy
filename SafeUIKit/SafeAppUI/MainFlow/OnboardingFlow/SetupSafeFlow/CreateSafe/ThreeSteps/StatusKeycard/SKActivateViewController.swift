@@ -28,7 +28,6 @@ class SKActivateViewController: UIViewController {
 
     enum Strings {
 
-        static let screenTitle = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
         static let title = LocalizedString("backup_credentials", comment: "Backup  your credentials")
         static let description = LocalizedString("you_need_credentials", comment: "You'll need them")
         static let confirmButtonTitle = LocalizedString("i_have_a_copy", comment: "I have a copy")
@@ -51,8 +50,6 @@ class SKActivateViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = Strings.screenTitle
-
         titleLabel.attributedText = NSAttributedString(string: Strings.title, style: TitleStyle())
         descriptionLabel.attributedText = NSAttributedString(string: Strings.description, style: TextStyle())
 

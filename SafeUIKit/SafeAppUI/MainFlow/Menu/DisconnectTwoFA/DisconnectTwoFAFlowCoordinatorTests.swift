@@ -12,7 +12,7 @@ class DisconnectTwoFAFlowCoordinatorTests: XCTestCase {
     func test_tracking() {
         let mockDisconnectService = MockDisconnectBrowserExtensionApplicationService()
         let mockWalletService = MockWalletApplicationService()
-        let disconnectTwoFADomainService = MockDisconnectTwoFADomainService()
+        let disconnectTwoFADomainService = DisconnectTwoFADomainService()
         mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit,
                                                                              transactionType: .disconnectAuthenticator)
         ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
@@ -69,12 +69,4 @@ class MockDisconnectBrowserExtensionApplicationService: DisconnectTwoFAApplicati
     override func startMonitoring(transaction: RBETransactionID) {
         // no-op
     }
-}
-
-class MockDisconnectTwoFADomainService: DisconnectTwoFADomainService {
-
-    func updateTransactionType() -> TransactionType {
-        return .disconnectAuthenticator
-    }
-
 }

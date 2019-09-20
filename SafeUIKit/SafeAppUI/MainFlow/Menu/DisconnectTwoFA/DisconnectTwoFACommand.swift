@@ -8,7 +8,7 @@ import MultisigWalletApplication
 class DisconnectTwoFACommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("disconnect_2fa", comment: "Disconnect 2FA")
+        return LocalizedString("disable_2fa_full", comment: "Disconnect 2FA")
     }
 
     override var isHidden: Bool {

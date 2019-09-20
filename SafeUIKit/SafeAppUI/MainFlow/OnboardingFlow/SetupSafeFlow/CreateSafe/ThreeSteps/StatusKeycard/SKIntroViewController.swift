@@ -8,7 +8,6 @@ import SafeUIKit
 class SKIntroViewController: CardViewController {
 
     enum Strings {
-        static let screenTitle = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
         static let header = LocalizedString("pair_your_keycard", comment: "Pair your card")
         static let body = LocalizedString("keycard_intro_description", comment: "Steps for pairing")
         static let start = LocalizedString("start", comment: "Start")
@@ -39,7 +38,6 @@ class SKIntroViewController: CardViewController {
         let insets = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         embed(view: headerImageTextView, inCardSubview: cardHeaderView, insets: insets)
 
-        title = Strings.screenTitle
         navigationItem.rightBarButtonItem = startButtonItem
         headerImageTextView.titleLabel.text = Strings.header
         headerImageTextView.imageView.image = Asset.statusKeycardIntro.image

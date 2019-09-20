@@ -87,11 +87,12 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Congratulations! */
 "congratulations" = "Congratulations!";
 
-/* Connect 2FA */
-"connect_2fa" = "Connect 2FA";
+/* Connect 2FA
+   Pair 2FA device */
+"connect_2fa" = "Enable 2FA";
 
 /* Explanation text */
-"connecting_in_progress" = "Pairing the 2FA device is in progress. The transaction has been submitted and should take a couple of minutes.";
+"connecting_in_progress" = "Enabling the 2FA device is in progress. The transaction has been submitted and should take a couple of minutes.";
 
 /* Abort safe creation button title
    Continue */
@@ -137,6 +138,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 "disable_2fa_description" = "Once this process is complete, your existing 2FA device will be removed from this Safe and thus 2FA will be disabled. You will be able to set up 2FA again in the Safe menu.\
 Please have your recovery phrase ready to disable 2FA.";
 
+/* Disconnect 2FA */
+"disable_2fa_full" = "Disable 2-factor Authentication";
+
 /* Disable 2FA review description */
 "disable_2fa_review_description" = "This transaction removes the existing 2FA device from your Safe: %@. No 2FA device will be paired with your Safe afterward.";
 
@@ -144,7 +148,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "disconnect" = "Disconnect";
 
 /* Disconnect 2FA */
-"disconnect_2fa" = "Disconnect 2FA";
+"disconnect_2fa" = "Disable 2FA";
 
 /* Explanation text */
 "disconnecting_in_progress" = "Disabling 2FA is in progress. The transaction has been submitted and should take a couple of minutes.";
@@ -157,6 +161,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Description for add browser extension screen */
 "enable_2fa" = "Enable 2-factor authentication by connecting your Safe to the Authenticator.";
+
+/* Connect 2FA */
+"enable_2fa_full" = "Enable 2-factor Authentication";
 
 /* Enter current password */
 "enter_current_password" = "Enter current password";
@@ -576,7 +583,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "pair_safe_with_two_fa" = "Pair the Safe with a 2FA device";
 
 /* Pair with 2FA description */
-"pair_safe_with_two_fa_description" = "Two-factro authentication (2FA) is an extra layer of security that prevents unauthorized access to your account. You can set it up by pairing a 2FA device with this Safe. After a successful setup, all transactions will need to be approved both by this phone and by your 2FA device.";
+"pair_safe_with_two_fa_description" = "Two-factor authentication (2FA) is an extra layer of security that prevents unauthorized access to your account. You can set it up by enabling a 2FA device for this Safe. After a successful setup, all transactions will need to be approved both by this phone and by your 2FA device.";
 
 /* Pair your card */
 "pair_your_keycard" = "Pair your Status Keycard";
@@ -697,6 +704,9 @@ Pairing password: %@";
 
 /* Replace 2FA description */
 "replace_2fa_description" = "Once this process is complete, you can only use the new 2FA device to confirm transactions. Please have your Safe recovery phrase ready to confirm the replacement.";
+
+/* Replace 2FA */
+"replace_2fa_full" = "Replace 2-factor Authentication";
 
 /* Replace 2FA review description */
 "replace_2fa_review_description" = "The existing 2FA device connection will be replaced by the new 2FA device: %@. ";

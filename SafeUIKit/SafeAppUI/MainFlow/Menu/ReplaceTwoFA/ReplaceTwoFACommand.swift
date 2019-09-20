@@ -8,7 +8,7 @@ import MultisigWalletApplication
 class ReplaceTwoFACommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("replace_2fa", comment: "Replace 2FA")
+        return LocalizedString("replace_2fa_full", comment: "Replace 2FA")
     }
 
     override var isHidden: Bool {

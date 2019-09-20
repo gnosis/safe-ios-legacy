@@ -32,7 +32,6 @@ class SKPairViewController: UIViewController {
 
     enum Strings {
 
-        static let screenTitle = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
         static let title = LocalizedString("enter_pass_pin", comment: "Enter password and PIN")
 
         static let passwordPlaceholder = LocalizedString("pairing_password", comment: "Password")
@@ -58,8 +57,6 @@ class SKPairViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.title = Strings.screenTitle
 
         titleLabel.text = Strings.title
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
