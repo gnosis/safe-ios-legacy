@@ -949,20 +949,20 @@ public class WalletApplicationService: Assertable {
         // swiftlint:disable number_separator
         do {
             try DomainRegistry.diagnosticService.runDiagnostics(for: selectedId)
-        } catch WalletDiagnosticDomainService.Error.deviceKeyNotFound {
+        } catch WalletDiagnosticServiceError.deviceKeyNotFound {
             throw error(-3100, LocalizedString("ios_error_no_device_key", comment: "Device key not found"))
-        } catch WalletDiagnosticDomainService.Error.deviceKeyIsNotOwner {
+        } catch WalletDiagnosticServiceError.deviceKeyIsNotOwner {
             throw error(-3101, LocalizedString("ios_error_device_key_not_owner", comment: "Device key not owner"))
-        } catch WalletDiagnosticDomainService.Error.twoFAIsNotOwner {
+        } catch WalletDiagnosticServiceError.twoFAIsNotOwner {
             throw error(-3102, LocalizedString("ios_error_authenticator_not_owner",
                                                comment: "Authenticator address is not owner"))
-        } catch WalletDiagnosticDomainService.Error.paperWalletIsNotOwner {
+        } catch WalletDiagnosticServiceError.paperWalletIsNotOwner {
             throw error(-3103, LocalizedString("ios_error_paper_wallet_not_owner",
                                                comment: "Paper wallet is not owner"))
-        } catch WalletDiagnosticDomainService.Error.unexpectedSafeConfiguration {
+        } catch WalletDiagnosticServiceError.unexpectedSafeConfiguration {
             throw error(-3104, LocalizedString("ios_error_unexpected_configuration",
                                                comment: "Unexpected configuration"))
-        } catch WalletDiagnosticDomainService.Error.safeDoesNotExistInRelay {
+        } catch WalletDiagnosticServiceError.safeDoesNotExistInRelay {
             throw error(-3105, LocalizedString("ios_error_unknown_safe", comment: "This safe is unknown"))
         } catch _ {
             throw error(-3199, LocalizedString("ios_error_safe_generic_error",
