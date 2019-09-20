@@ -91,7 +91,7 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 "connect_2fa" = "Connect 2FA";
 
 /* Explanation text */
-"connecting_in_progress" = "Connecting the Authenticator is now in progress. The transaction has been submitted and should take a couple of minutes.";
+"connecting_in_progress" = "Pairing the 2FA device is in progress. The transaction has been submitted and should take a couple of minutes.";
 
 /* Abort safe creation button title
    Continue */
@@ -895,7 +895,7 @@ Pairing password: %@";
 "try_again_in" = "Try again in";
 
 /* Replacing */
-"tx_submitted_replace_be" = "The transaction has been submitted and should take a couple of minutes. Replacing the Authenticator is in progress.";
+"tx_submitted_replace_be" = "Replacing the 2FA device is in progress. The transaction has been submitted and should take a couple of minutes.";
 
 /* 'Type' parameter name */
 "type" = "Type";

@@ -40,7 +40,9 @@ class TransactionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundView = UIView()
-        backgroundView?.backgroundColor = ColorName.snowwhite.color
+        backgroundView!.backgroundColor = ColorName.snowwhite.color
+        selectedBackgroundView = UIView()
+        selectedBackgroundView!.backgroundColor = ColorName.whitesmokeTwo.color
         identiconView.layer.cornerRadius = identiconView.bounds.width / 2
         identiconView.clipsToBounds = true
         progressView.progressTintColor = ColorName.hold.color

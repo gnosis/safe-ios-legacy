@@ -95,6 +95,7 @@ class AddTokenTableViewController: UITableViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.searchBarStyle = .prominent
         searchController.searchBar.tintColor = ColorName.hold.color
+        searchController.searchBar.backgroundColor = .white
     }
 
     private func configureTableView() {
@@ -111,6 +112,7 @@ class AddTokenTableViewController: UITableViewController {
 
         tableView.sectionIndexMinimumDisplayRowCount = 15
         tableView.sectionIndexColor = ColorName.darkGrey.color
+        tableView.sectionIndexBackgroundColor = ColorName.white.color
     }
 
     @objc func didShowKeyboard(_ notification: NSNotification) {
@@ -138,7 +140,6 @@ class AddTokenTableViewController: UITableViewController {
                        displayBalance: false,
                        displayFullName: true,
                        accessoryType: .none)
-        cell.withTrailingSpace = true
         return cell
     }
 
