@@ -3,17 +3,11 @@
 //
 
 import Foundation
+import MultisigWalletDomainModel
+import UIKit
+import Common
 
-open class WalletDiagnosticDomainService {
-
-    public enum Error: String, Swift.Error {
-        case deviceKeyNotFound
-        case deviceKeyIsNotOwner
-        case twoFAIsNotOwner
-        case paperWalletIsNotOwner
-        case unexpectedSafeConfiguration
-        case safeDoesNotExistInRelay
-    }
+open class WalletDiagnosticDomainService: WalletDiagnosticService {
 
     public init() {}
 
@@ -26,11 +20,12 @@ open class WalletDiagnosticDomainService {
     /// - Parameter id: wallet ID
     /// - Throws: see `WalletDiagnosticDomainService.Error` for different errors.
     open func runDiagnostics(for id: WalletID) throws {
+        guard isFileAccessPossible() else { return }
         guard let wallet = DomainRegistry.walletRepository.find(id: id), wallet.isReadyToUse else { return }
 
         guard let deviceOwner = wallet.owner(role: .thisDevice),
             DomainRegistry.externallyOwnedAccountRepository.find(by: deviceOwner.address) != nil else {
-                throw Error.deviceKeyNotFound
+                throw WalletDiagnosticServiceError.deviceKeyNotFound
         }
 
         let proxy = SafeOwnerManagerContractProxy(wallet.address)
@@ -44,23 +39,42 @@ open class WalletDiagnosticDomainService {
         }
 
         if remoteIsMissing(role: .thisDevice) {
-            throw Error.deviceKeyIsNotOwner
+            throw WalletDiagnosticServiceError.deviceKeyIsNotOwner
         }
 
         if remoteIsMissing(role: .browserExtension) || remoteIsMissing(role: .keycard) {
-            throw Error.twoFAIsNotOwner
+            throw WalletDiagnosticServiceError.twoFAIsNotOwner
         }
 
         if remoteIsMissing(role: .paperWallet) || remoteIsMissing(role: .paperWalletDerived) {
-            throw Error.paperWalletIsNotOwner
+            throw WalletDiagnosticServiceError.paperWalletIsNotOwner
         }
 
         if let remoteConfirmationCount = try? proxy.getThreshold(), wallet.confirmationCount != remoteConfirmationCount {
-            throw Error.unexpectedSafeConfiguration
+            throw WalletDiagnosticServiceError.unexpectedSafeConfiguration
         }
 
         if let safeExists = try? DomainRegistry.transactionRelayService.safeExists(at: wallet.address), !safeExists {
-            throw Error.safeDoesNotExistInRelay
+            throw WalletDiagnosticServiceError.safeDoesNotExistInRelay
+        }
+    }
+
+    func isFileAccessPossible() -> Bool {
+        // the file with protection .completeUnlessOpen can be created even when the device is locked.
+        // however, it cannot be read after it is closed and if the device is locked.
+        // So, to check if access is possible, we'll try to read it and intercept the error.
+        let tempURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent("detectProtection.\(UUID().uuidString)")
+
+        let attrs = [FileAttributeKey.protectionKey: FileProtectionType.completeUnlessOpen]
+        let success = FileManager.default.createFile(atPath: tempURL.path, contents: nil, attributes: attrs)
+        defer { try? FileManager.default.removeItem(at: tempURL) }
+        guard success else { return false }
+        do {
+            try _ = Data(contentsOf: tempURL)
+            return true
+        } catch {
+            return false
         }
     }
 
