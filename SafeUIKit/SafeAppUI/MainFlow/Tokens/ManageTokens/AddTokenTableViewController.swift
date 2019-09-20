@@ -112,6 +112,7 @@ class AddTokenTableViewController: UITableViewController {
 
         tableView.sectionIndexMinimumDisplayRowCount = 15
         tableView.sectionIndexColor = ColorName.darkGrey.color
+        tableView.sectionIndexBackgroundColor = ColorName.white.color
     }
 
     @objc func didShowKeyboard(_ notification: NSNotification) {
@@ -139,7 +140,6 @@ class AddTokenTableViewController: UITableViewController {
                        displayBalance: false,
                        displayFullName: true,
                        accessoryType: .none)
-        cell.withTrailingSpace = true
         return cell
     }
 
