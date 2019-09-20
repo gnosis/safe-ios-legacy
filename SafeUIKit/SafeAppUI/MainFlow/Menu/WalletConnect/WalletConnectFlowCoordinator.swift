@@ -24,6 +24,11 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
+        guard ApplicationServiceRegistry.walletConnectService.isAvaliable else {
+            let message = LocalizedString("walletconnect_error_no_safe", comment: "WalletConnect not available")
+            presentModally(UIAlertController.operationFailed(message: message))
+            return
+        }
         if ApplicationServiceRegistry.walletConnectService.isOnboardingDone() {
             showSessionList()
         } else {
