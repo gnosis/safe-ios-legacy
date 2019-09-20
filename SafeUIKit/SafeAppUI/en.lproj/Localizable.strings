@@ -183,7 +183,6 @@ Please have your recovery phrase ready to disable 2FA.";
 "enter_seed" = "Enter your recovery phrase";
 
 /* Error
-   Error alert's title
    Error title */
 "error" = "Error";
 
@@ -314,8 +313,7 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Word #%@ */
 "ios_enterSeed_word" = "Word #%@";
 
-/* Generic error message alert
-   Generic error message. Try again. */
+/* Generic error message. Try again. */
 "ios_error_description" = "Operation failed because of an error. Please try again.";
 
 /* Browser extension code is expired. */
@@ -921,6 +919,9 @@ We recommend using a password manager or writing the phrase down and storing the
 
 /* WalletConnect */
 "walletconnect" = "WalletConnect";
+
+/* WalletConnect not available */
+"walletconnect_error_no_safe" = "Please set up your safe before using WalletConnect.";
 
 /* Onboarding 1 description */
 "walletconnect_is" = "WalletConnect is a protocol that allows you to connect the Safe to desktop Dapps. The Safe will notify you when the Dapp wants to make a transaction. ";
