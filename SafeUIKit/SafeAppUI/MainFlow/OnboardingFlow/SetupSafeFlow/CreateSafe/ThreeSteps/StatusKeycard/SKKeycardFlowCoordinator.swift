@@ -55,9 +55,9 @@ class SKKeycardFlowCoordinator: FlowCoordinator {
                     DispatchQueue.main.async {
                         guard self != nil else { return }
                         controller?.navigationItem.setRightBarButton(navigationItem, animated: true)
-                        ErrorHandler.showError(message: error.localizedDescription,
-                                               log: error.localizedDescription,
-                                               error: nil)
+                        let alert = UIAlertController.operationFailed(message: error.localizedDescription)
+                        controller?.present(alert, animated: true, completion: nil)
+                        ApplicationServiceRegistry.logger.error(error.localizedDescription)
                     }
                 }
             }

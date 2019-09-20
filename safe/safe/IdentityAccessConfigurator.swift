@@ -56,7 +56,11 @@ class IdentityAccessConfigurator {
             registerIdentityAccessDatabaseMigrations(service: migrationService)
             try migrationService.migrate()
         } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to set up identity access database", error: e)
+            DispatchQueue.main.async {
+                ErrorHandler.showFatalError(log: "Failed to set up identity access database",
+                                            error: e,
+                                            from: appDelegate.window!.rootViewController!)
+            }
         }
     }
 

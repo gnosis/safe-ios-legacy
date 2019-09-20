@@ -147,8 +147,8 @@ fileprivate final class ConfirmPasswordViewController: PasswordViewController {
                     self.nextButton.isEnabled = true
                 }
             } catch {
-                DispatchQueue.main.async {
-                    ErrorHandler.showFatalError(log: "Failed to set master password", error: error)
+                DispatchQueue.main.async { [unowned self] in
+                    ErrorHandler.showFatalError(log: "Failed to set master password", error: error, from: self)
                     self.nextButton.isEnabled = true
                 }
             }

@@ -216,7 +216,9 @@ public final class AuthenticatorViewController: CardViewController {
 
     private func showError(message: String, log: String) {
         DispatchQueue.main.async {
-            ErrorHandler.showError(message: message, log: log, error: nil)
+            let alert = UIAlertController.operationFailed(message: message)
+            self.present(alert, animated: true, completion: nil)
+            ApplicationServiceRegistry.logger.error(log)
         }
     }
 

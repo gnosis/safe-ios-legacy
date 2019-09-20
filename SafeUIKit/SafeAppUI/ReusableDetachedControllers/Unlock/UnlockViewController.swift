@@ -231,7 +231,7 @@ extension UnlockViewController: VerifiableInputDelegate {
                 self.startCountdownIfNeeded()
             }
         } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to authenticate with password", error: e)
+            ErrorHandler.showFatalError(log: "Failed to authenticate with password", error: e, from: self)
         }
     }
 

@@ -128,7 +128,11 @@ class MultisigWalletConfigurator {
 
             migrate(with: migrationService)
         } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
+            DispatchQueue.main.async {
+                ErrorHandler.showFatalError(log: "Failed to set up multisig database",
+                                            error: e,
+                                            from: appDelegate.window!.rootViewController!)
+            }
         }
     }
 

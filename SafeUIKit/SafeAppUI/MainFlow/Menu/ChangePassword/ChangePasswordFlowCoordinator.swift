@@ -31,7 +31,9 @@ extension ChangePasswordFlowCoordinator: SetupNewPasswordViewControllerDelegate 
             try Authenticator.instance.updateUserPassword(with: password)
             push(SuccessViewController.changePasswordSuccess(action: exitFlow))
         } catch {
-            ErrorHandler.showFatalError(log: "Failed to update password", error: error)
+            ErrorHandler.showFatalError(log: "Failed to update password",
+                                        error: error,
+                                        from: navigationController.topViewController!)
         }
     }
 
