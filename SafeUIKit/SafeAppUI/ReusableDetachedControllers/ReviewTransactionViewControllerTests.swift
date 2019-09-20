@@ -70,6 +70,7 @@ class ReviewTransactionViewControllerTests: ReviewTransactionViewControllerBaseT
     func test_whenRequestingConfirmationsFails_thenAlertIsShown() {
         service.requestTransactionConfirmation_throws = true
         let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
+        createWindow(vc)
         vc.viewWillAppear(false)
         delay(0.2)
         XCTAssertAlertShown(message: MockWalletApplicationService.Error.error.errorDescription)
@@ -83,12 +84,11 @@ class ReviewTransactionViewControllerTests: ReviewTransactionViewControllerBaseT
         XCTAssertTrue(vc.submitButton.isEnabled)
     }
 
-    // TODO: ios 13 fix
-    func _test_whenSubmittingUnconfirmedTranasction_thenShowsAlert() {
+    func test_whenSubmittingUnconfirmedTranasction_thenShowsAlert() {
         let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
         createWindow(vc)
         vc.submit()
-        delay()
+        delay(0.2)
         XCTAssertAlertShown(message: ReviewTransactionViewController.Alert.description, actionCount: 2)
     }
 

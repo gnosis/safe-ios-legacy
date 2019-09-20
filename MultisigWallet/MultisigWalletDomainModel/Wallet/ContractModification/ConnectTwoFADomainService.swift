@@ -39,9 +39,7 @@ open class ConnectTwoFADomainService: ReplaceTwoFADomainService {
         add(newOwner: newOwner, role: role, to: wallet)
         wallet.changeConfirmationCount(2)
         DomainRegistry.walletRepository.save(wallet)
-        if tx.type == .connectAuthenticator {
-            try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
-        }
+        try? DomainRegistry.communicationService.notifyWalletCreatedIfNeeded(walletID: wallet.id)        
     }
 
     override func processFailure(tx: Transaction, walletID: WalletID, newOwnerAddress: String) throws {

@@ -117,6 +117,7 @@ class UnlockViewControllerTests: SafeTestCase {
 
     func test_whenAccountBlocked_thenMustNotRequestBiometricAuthentication() {
         authenticationService.blockAuthentication()
+        authenticationService.didRequestBiometricAuthentication = false
         vc.viewDidAppear(false)
         XCTAssertFalse(authenticationService.didRequestBiometricAuthentication)
     }

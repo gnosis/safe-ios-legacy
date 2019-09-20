@@ -12,11 +12,13 @@ class ErrorHandlerTests: XCTestCase {
 
     let logger = MockLogger()
     var window: UIWindow!
+    let controller = UIViewController()
 
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: logger, for: Logger.self)
         window = UIApplication.shared.keyWindow
+        window.rootViewController = controller
     }
 
     override func tearDown() {
@@ -26,20 +28,14 @@ class ErrorHandlerTests: XCTestCase {
     }
 
     func test_presentsWindow() {
-        ErrorHandler.showFatalError(message: "Fatal error", log: "Fatal", error: nil)
+        ErrorHandler.showFatalError(message: "Fatal error", log: "Fatal", error: nil, from: controller)
         delay()
         XCTAssertAlertShown(message: "Fatal error")
     }
 
     func test_logsToLogger() {
-        ErrorHandler.showFatalError(message: "error", log: "Fatal", error: nil)
+        ErrorHandler.showFatalError(message: "error", log: "Fatal", error: nil, from: controller)
         XCTAssertTrue(logger.fatalLogged)
-    }
-
-    func test_whenErrorPresented_thenShowsIt() {
-        ErrorHandler.showError(message: "Error!", log: "Error", error: nil)
-        delay()
-        XCTAssertAlertShown(message: "Error!")
     }
 
 }

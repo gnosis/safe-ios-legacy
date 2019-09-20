@@ -12,7 +12,7 @@ open class WalletSettingsApplicationService {
 
     public func resyncWithBrowserExtension() throws {
         guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
-        try DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
+        try DomainRegistry.communicationService.notifyWalletCreatedIfNeeded(walletID: wallet.id)
     }
 
 }

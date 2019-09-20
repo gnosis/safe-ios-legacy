@@ -266,9 +266,7 @@ open class ReplaceTwoFADomainService: Assertable {
         try removeOldTwoFAOwner(from: wallet)
         let role = tx.type.correspondingOwnerRole!
         add(newOwner: newOwner, role: role, to: wallet)
-        if tx.type == .replaceTwoFAWithAuthenticator {
-            try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
-        }
+        try? DomainRegistry.communicationService.notifyWalletCreatedIfNeeded(walletID: wallet.id)
     }
 
     func processFailure(tx: Transaction, walletID: WalletID, newOwnerAddress: String) throws {

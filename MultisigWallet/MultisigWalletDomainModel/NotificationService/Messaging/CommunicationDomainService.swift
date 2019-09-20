@@ -23,7 +23,7 @@ public class CommunicationDomainService {
         try DomainRegistry.notificationService.deletePair(request: request)
     }
 
-    public func notifyWalletCreated(walletID: WalletID) throws {
+    public func notifyWalletCreatedIfNeeded(walletID: WalletID) throws {
         guard let wallet = DomainRegistry.walletRepository.find(id: walletID),
             let sender = wallet.address,
             let recipient = wallet.owner(role: .browserExtension)?.address,

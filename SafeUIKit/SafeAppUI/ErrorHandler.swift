@@ -44,7 +44,7 @@ public class ErrorHandler {
                            from vc: UIViewController,
                            action: @escaping () -> Void) {
         let controller = alertController(title: title, message: message, log: log, action: action)
-        vc.show(controller, sender: vc)
+        vc.present(controller, animated: true)
     }
 
     private func alertController(

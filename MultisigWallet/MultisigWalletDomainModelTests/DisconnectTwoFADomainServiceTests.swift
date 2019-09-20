@@ -22,10 +22,6 @@ class DisconnectTwoFADomainServiceTests: BaseBrowserExtensionModificationTestCas
         XCTAssertFalse(service.isAvailable)
     }
 
-    func test_txType() {
-        XCTAssertEqual(service.transactionType, .disconnectAuthenticator)
-    }
-
     func test_whenDummyData_thenRemovesOwner() {
         proxy.removeOwnerResult = Data(repeating: 3, count: 32)
         proxy.getOwners_result = wallet.owners.map { $0.address }

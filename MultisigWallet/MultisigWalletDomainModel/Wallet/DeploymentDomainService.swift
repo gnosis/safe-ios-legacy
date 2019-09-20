@@ -240,7 +240,7 @@ public class DeploymentDomainService {
     }
 
     private func notifyDidCreate(_ wallet: Wallet) throws {
-        try DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
+        try DomainRegistry.communicationService.notifyWalletCreatedIfNeeded(walletID: wallet.id)
     }
 
     func creationFailed(_ event: WalletCreationFailed) {

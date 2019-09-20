@@ -22,10 +22,6 @@ class ConnectTwoFADomainServiceTests: BaseBrowserExtensionModificationTestCase {
         XCTAssertFalse(service.isAvailable)
     }
 
-    func test_txType() {
-        XCTAssertEqual(service.transactionType, .connectAuthenticator)
-    }
-
     func test_whenDummyData_thenAddsOwner() {
         proxy.addOwnerResult = Data(repeating: 1, count: 32)
         XCTAssertEqual(service.dummyTransactionData(), proxy.addOwnerResult)
@@ -42,7 +38,9 @@ class ConnectTwoFADomainServiceTests: BaseBrowserExtensionModificationTestCase {
     }
 
     func test_whenProcessingSuccess_thenAddsOwnerAndThreshold() throws {
-        try service.processSuccess(with: Address.testAccount2.value, in: wallet)
+        let txID = service.createTransaction()
+        let tx = transactionRepo.find(id: txID)!
+        try service.processSuccess(tx: tx, with: Address.testAccount2.value, in: wallet)
         XCTAssertEqual(wallet.owner(role: .browserExtension), Owner(address: .testAccount2, role: .browserExtension))
         XCTAssertEqual(wallet.confirmationCount, 2)
     }
@@ -55,6 +53,7 @@ class BaseBrowserExtensionModificationTestCase: XCTestCase {
     let portfolioRepo = InMemorySinglePortfolioRepository()
     let encryptionService = MockEncryptionService()
     let communicationService = MockCommunicationDomainService()
+    let transactionRepo = InMemoryTransactionRepository()
     lazy var proxy = TestableOwnerProxy(wallet.address)
     var wallet: Wallet {
         return walletRepo.selectedWallet()!
@@ -66,6 +65,7 @@ class BaseBrowserExtensionModificationTestCase: XCTestCase {
         DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
         DomainRegistry.put(service: communicationService, for: CommunicationDomainService.self)
+        DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
         encryptionService.addressFromStringResult = nil
         provisionPortfolio()
     }
