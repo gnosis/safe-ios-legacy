@@ -101,7 +101,6 @@ class UnlockViewControllerTests: SafeTestCase {
 
     func test_whenCountdownReachesZero_thenPasswordEntryFocused() throws {
         authenticationService.blockAuthentication()
-        try createVC()
         createWindow(vc)
         clock.countdownTickBlock!(0)
         delay()
