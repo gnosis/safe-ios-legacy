@@ -14,7 +14,7 @@ class ConnectTwoFAFlowCoordinator: FlowCoordinator {
     var mainFlowCoordinator: MainFlowCoordinator!
 
     enum Strings {
-        static let pairTwoFA = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
+        static let enableTwoFA = LocalizedString("connect_2fa", comment: "Pair 2FA device")
         static let pairDescription = LocalizedString("pair_2FA_device_description",
                                                      comment: "Pair 2FA device description")
         static let pairReviewDescription = LocalizedString("pair_2fa_review_description",
@@ -49,7 +49,7 @@ extension ConnectTwoFAFlowCoordinator {
         let vc = RBEIntroViewController.create()
         vc.starter = ApplicationServiceRegistry.connectTwoFAService
         vc.delegate = self
-        vc.setTitle(Strings.pairTwoFA)
+        vc.setTitle(Strings.enableTwoFA)
         vc.setContent(.pairTwoFAContent)
         vc.screenTrackingEvent = ConnectTwoFATrackingEvent.intro
         return vc
@@ -75,7 +75,7 @@ extension ConnectTwoFAFlowCoordinator {
 
     private func reviewTransactionVC(placeholderValue: String) -> RBEReviewTransactionViewController {
         let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = Strings.pairTwoFA
+        vc.titleString = Strings.enableTwoFA
         vc.detailString = String(format: Strings.pairReviewDescription, placeholderValue)
         vc.screenTrackingEvent = ConnectTwoFATrackingEvent.review
         vc.successTrackingEvent = ConnectTwoFATrackingEvent.success
@@ -102,6 +102,7 @@ extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
             keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             keycardFlowCoordinator.hidesSteps = true
             keycardFlowCoordinator.removesKeycardOnGoingBack = false
+            keycardFlowCoordinator.flowTitle = Strings.enableTwoFA
             let transactionID = self.transactionID!
             keycardFlowCoordinator.onSucces = { address in
                 try ApplicationServiceRegistry.connectTwoFAService.connectKeycard(transactionID, address: address)

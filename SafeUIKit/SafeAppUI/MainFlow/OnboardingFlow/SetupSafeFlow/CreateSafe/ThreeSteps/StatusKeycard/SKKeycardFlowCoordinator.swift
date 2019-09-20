@@ -12,6 +12,7 @@ class SKKeycardFlowCoordinator: FlowCoordinator {
 
     weak var mainFlowCoordinator: MainFlowCoordinator!
     var getInTouchCommand = GetInTouchCommand()
+    var flowTitle: String = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
 
     var hidesSteps = false
     var removesKeycardOnGoingBack = true
@@ -27,9 +28,13 @@ class SKKeycardFlowCoordinator: FlowCoordinator {
     }
 
     func showIntro() {
-        push(SKIntroViewController.create { [unowned self] in
-            self.push(SKPairViewController.create(delegate: self))
-        })
+        let introVC = SKIntroViewController.create { [unowned self] in
+            let pairVC = SKPairViewController.create(delegate: self)
+            pairVC.title = self.flowTitle
+            self.push(pairVC)
+        }
+        introVC.title = flowTitle
+        push(introVC)
     }
 
     func showSuccess(address: String) {
@@ -67,6 +72,7 @@ class SKKeycardFlowCoordinator: FlowCoordinator {
         })
         controller.hidesStepView = hidesSteps
         controller.shouldRemoveOnBack = removesKeycardOnGoingBack
+        controller.title = flowTitle
         push(controller)
     }
 }
@@ -78,7 +84,9 @@ extension SKKeycardFlowCoordinator: SKPairViewControllerDelegate {
     }
 
     func pairViewControllerNeedsInitialization(_ controller: SKPairViewController) {
-        push(SKActivateViewController.create(delegate: self))
+        let activateVC = SKActivateViewController.create(delegate: self)
+        activateVC.title = flowTitle
+        push(activateVC)
     }
 
     func pairViewControllerNeedsToGetInTouch(_ controller: SKPairViewController) {

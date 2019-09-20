@@ -14,7 +14,6 @@ class SKPairingSuccessViewController: HeaderImageTextStepController {
     private var onRemove: (() -> Void)!
 
     enum Strings {
-        static let title = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
         static let header = LocalizedString("keycard_paired", comment: "Paired")
         static let text = LocalizedString("after_finishing_setup", comment: "Description")
     }
@@ -30,7 +29,6 @@ class SKPairingSuccessViewController: HeaderImageTextStepController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Strings.title
         trackingEvent = TwoFATrackingEvent.pairSuccess
         threeStepsView.state = .pair2FA_paired
         headerImageTextView.titleLabel.text = Strings.header

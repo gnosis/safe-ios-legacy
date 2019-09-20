@@ -107,6 +107,7 @@ extension ReplaceTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
             keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             keycardFlowCoordinator.hidesSteps = true
             keycardFlowCoordinator.removesKeycardOnGoingBack = false
+            keycardFlowCoordinator.flowTitle = Strings.replaceTwoFA
             let transactionID = self.transactionID!
             keycardFlowCoordinator.onSucces = { address in
                 try ApplicationServiceRegistry.replaceTwoFAService.connectKeycard(transactionID, address: address)
