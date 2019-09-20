@@ -84,9 +84,8 @@ class PasswordViewControllerTests: SafeTestCase {
         prepareConfirmPasswordViewController()
         createWindow(vc)
         vc.verifiableInputDidReturn(vc.verifiableInput)
-        delay()
-        XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController)
-        XCTAssertTrue(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController is UIAlertController)
+        delay(0.2)
+        XCTAssertAlertShown()
     }
 
     func test_whenSetPassword_thenTracks() {
