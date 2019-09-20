@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,15 +12,15 @@
             <rect key="frame" x="0.0" y="0.0" width="378" height="61"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A4J-AL-z5Q" id="zfz-xa-mpY">
-                <rect key="frame" x="0.0" y="0.0" width="378" height="60.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="378" height="61"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQn-2u-kxj">
-                        <rect key="frame" x="0.0" y="0.0" width="378" height="60.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="378" height="61"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWi-Qo-xbp">
-                        <rect key="frame" x="-50" y="58.5" width="478" height="2"/>
+                        <rect key="frame" x="0.0" y="59" width="378" height="2"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" id="CGf-5r-f6H"/>
@@ -37,16 +34,16 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="63H-I3-5yS">
-                        <rect key="frame" x="56" y="12" width="302" height="34.5"/>
+                        <rect key="frame" x="56" y="12" width="302" height="35"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JA-Yj-geB">
-                                <rect key="frame" x="0.0" y="0.0" width="226" height="34.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="226" height="35"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.49358" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAR-ip-ccr">
-                                <rect key="frame" x="234" y="0.0" width="68" height="34.5"/>
+                                <rect key="frame" x="234" y="0.0" width="68" height="35"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -62,13 +59,13 @@
                     <constraint firstItem="bQn-2u-kxj" firstAttribute="leading" secondItem="zfz-xa-mpY" secondAttribute="leading" id="FJO-FE-Zfk"/>
                     <constraint firstAttribute="bottom" secondItem="bQn-2u-kxj" secondAttribute="bottom" id="Gyo-Zk-4eS"/>
                     <constraint firstAttribute="bottom" secondItem="sWi-Qo-xbp" secondAttribute="bottom" id="HU7-cL-TDI"/>
-                    <constraint firstItem="sWi-Qo-xbp" firstAttribute="leading" secondItem="zfz-xa-mpY" secondAttribute="leading" constant="-50" id="Jz3-dv-XNx"/>
+                    <constraint firstItem="sWi-Qo-xbp" firstAttribute="leading" secondItem="zfz-xa-mpY" secondAttribute="leading" id="Jz3-dv-XNx"/>
                     <constraint firstAttribute="trailing" secondItem="bQn-2u-kxj" secondAttribute="trailing" id="TNF-mH-XjF"/>
                     <constraint firstItem="bQn-2u-kxj" firstAttribute="top" secondItem="zfz-xa-mpY" secondAttribute="top" id="Tma-1m-Yju"/>
                     <constraint firstItem="fFa-Xd-WMO" firstAttribute="leading" secondItem="zfz-xa-mpY" secondAttribute="leading" constant="16" id="akD-LA-407"/>
                     <constraint firstAttribute="trailingMargin" secondItem="63H-I3-5yS" secondAttribute="trailing" id="rOa-TA-cwS"/>
                     <constraint firstItem="63H-I3-5yS" firstAttribute="leading" secondItem="zfz-xa-mpY" secondAttribute="leading" priority="750" constant="16" id="rmk-Tl-76k"/>
-                    <constraint firstAttribute="trailing" secondItem="sWi-Qo-xbp" secondAttribute="trailing" constant="-50" id="uTs-Ps-v5w"/>
+                    <constraint firstAttribute="trailing" secondItem="sWi-Qo-xbp" secondAttribute="trailing" id="uTs-Ps-v5w"/>
                     <constraint firstItem="63H-I3-5yS" firstAttribute="top" secondItem="zfz-xa-mpY" secondAttribute="top" constant="12" id="vod-Ls-oyf"/>
                 </constraints>
             </tableViewCellContentView>
