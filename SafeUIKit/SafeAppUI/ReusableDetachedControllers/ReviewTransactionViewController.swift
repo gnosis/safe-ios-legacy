@@ -279,7 +279,9 @@ public class ReviewTransactionViewController: UITableViewController {
             DispatchQueue.main.async { self.showError(error) }
             return
         }
-        ErrorHandler.showError(message: error.localizedDescription, log: "operation failed: \(error)", error: nil)
+        let alert = UIAlertController.operationFailed(message: error.localizedDescription)
+        present(alert, animated: true, completion: nil)
+        ApplicationServiceRegistry.logger.error(error.localizedDescription)
     }
 
     private func reloadData() {
