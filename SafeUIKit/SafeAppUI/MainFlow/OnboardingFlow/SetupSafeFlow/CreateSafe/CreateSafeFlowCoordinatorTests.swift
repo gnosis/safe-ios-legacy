@@ -11,7 +11,6 @@ import MultisigWalletApplication
 class CreateSafeFlowCoordinatorTests: SafeTestCase {
 
     var newSafeFlowCoordinator: CreateSafeFlowCoordinator!
-    let navController = UINavigationController()
 
     var topViewController: UIViewController? {
         return newSafeFlowCoordinator.navigationController.topViewController
@@ -20,8 +19,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         walletService.expect_walletState(.draft)
-        createWindow(navController)
-        newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: navController)
+        newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: UINavigationController())
         newSafeFlowCoordinator.setUp()
     }
 
@@ -44,6 +42,11 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
 
     func test_whenWalletServiceThrowsDuringPairing_thenAlertIsHandled() {
         walletService.shouldThrow = true
+        let navController = UINavigationController()
+        createWindow(navController)
+        walletService.expect_walletState(.draft)
+        newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: navController)
+        newSafeFlowCoordinator.setUp()
         pairWithBrowserExtension()
         delay(0.5)
         XCTAssertAlertShown(message: WalletApplicationServiceError.networkError.localizedDescription)
