@@ -36,10 +36,28 @@ class AllDeploymentStatesTests: BaseDeploymentDomainServiceTests {
 
         expectSafeCreatedNotification()
 
-        start()
+        XCTAssertNoThrow(try {
+            try self.deploymentService.prepareSafeCreationTransaction(self.wallet)
 
-        wallet = walletRepository.find(id: wallet.id)!
-        XCTAssertTrue(wallet.state === wallet.readyToUseState)
+            _ = try self.deploymentService.checkDidReceiveFirstDeposit(self.wallet)
+
+            _ = try self.deploymentService.checkHasMinimumAmount(self.wallet)
+
+            try self.deploymentService.startSafeCreation(self.wallet)
+
+            _ = try self.deploymentService.checkHasSubmittedTransaction(self.wallet)
+            _ = try self.deploymentService.checkHasSubmittedTransaction(self.wallet)
+            _ = try self.deploymentService.checkHasSubmittedTransaction(self.wallet)
+
+            _ = try self.deploymentService.checkHasMinedTransaction(self.wallet)
+            _ = try self.deploymentService.checkHasMinedTransaction(self.wallet)
+            _ = try self.deploymentService.checkHasMinedTransaction(self.wallet)
+
+            try self.deploymentService.postProcessCreation(self.wallet)
+        }())
+
+        self.updateWallet()
+        XCTAssertTrue(wallet.state === wallet.readyToUseState, "Wallet State: \(wallet.state!)")
     }
 
 }

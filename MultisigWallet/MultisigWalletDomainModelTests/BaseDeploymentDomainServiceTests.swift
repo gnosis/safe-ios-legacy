@@ -79,11 +79,11 @@ extension BaseDeploymentDomainServiceTests {
         portfolio.addWallet(wallet.id)
         portfolioRepository.save(portfolio)
         DomainRegistry.accountRepository.save(account)
+        wallet.resume()
     }
 
     func givenConfiguredWallet() {
         givenDraftWalletWithAllOwners()
-        wallet.proceed()
         wallet.changeAddress(Address.safeAddress)
         wallet.updateMinimumTransactionAmount(100)
         wallet.proceed()
@@ -142,6 +142,11 @@ extension BaseDeploymentDomainServiceTests {
     func assertDeploymentCancelled(line: UInt = #line) {
         wallet = walletRepository.find(id: wallet.id)!
         XCTAssertTrue(wallet.state === wallet.newDraftState, line: line)
+    }
+
+    func updateWallet() {
+        assert(wallet != nil)
+        wallet = DomainRegistry.walletRepository.find(id: wallet.id)
     }
 
     @discardableResult
