@@ -10,6 +10,8 @@ import CommonTestSupport
 
 class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
+    // MARK: - Wallet
+
     func test_whenEstimating_thenReturnsResults() {
         prepareEstimationEnvironment()
         let tokenData = self.service.estimateSafeCreation()

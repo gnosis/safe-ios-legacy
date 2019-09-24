@@ -43,12 +43,6 @@ public protocol TokenListItemRepository {
 
 }
 
-public enum TokensListError: String, LocalizedError {
-    case inconsistentData_notEqualToWhitelistedAmount
-    case inconsistentData_notAmongWhitelistedToken
-}
-
-
 // MARK: - Domain Logic for TokenListItemRepository
 
 public extension TokenListItemRepository {
@@ -102,7 +96,7 @@ public extension TokenListItemRepository {
     func rearrange(tokens: [Token]) {
         let whitelisted = self.whitelisted()
         if tokens.count != whitelisted.count {
-            DomainRegistry.errorStream.post(TokensListError.inconsistentData_notEqualToWhitelistedAmount)
+            DomainRegistry.logger.error("Trying to rearrange not equal to whitelisted amount tokens")
         }
         for (index, token) in tokens.enumerated() {
             if let item = whitelisted.first(where: { $0.token.id == token.id }) {
@@ -110,7 +104,7 @@ public extension TokenListItemRepository {
                 item.updateSortingId(with: index)
                 save(item)
             } else {
-                DomainRegistry.errorStream.post(TokensListError.inconsistentData_notAmongWhitelistedToken)
+                DomainRegistry.logger.error("Trying to rearrange token that is not among whitelisted")
             }
         }
         DomainRegistry.eventPublisher.publish(TokensDisplayListChanged())

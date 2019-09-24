@@ -6,6 +6,7 @@ import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
 import CommonTestSupport
+import Common
 
 class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
 
@@ -16,23 +17,21 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
     }
 
     func test_whenGettingTokensDataForSelectedWallet_thenReturnsIt() {
-        XCTAssertEqual(accountRepository.all().count, 3)
+        XCTAssertEqual(accountRepository.all().count, 4)
         let tokensWithEth = service.visibleTokens(withEth: true)
-        // there should be accounts for visible tokens
-        XCTAssertEqual(tokensWithEth.count, accountRepository.all().count)
         XCTAssertEqual(tokensWithEth[0].code, Token.Ether.code)
         XCTAssertEqual(tokensWithEth[0].name, Token.Ether.name)
         XCTAssertEqual(tokensWithEth[0].decimals, Token.Ether.decimals)
         let tokensWithoutEth = service.visibleTokens(withEth: false)
-        XCTAssertEqual(tokensWithoutEth.count, accountRepository.all().count - 1)
+        XCTAssertEqual(tokensWithoutEth.count, 2)
     }
 
     func test_whenGettingHiddenTokens_thenReturnsIt() {
         let hiddenTokens = service.hiddenTokens()
         XCTAssertEqual(hiddenTokens.count, 2)
         // should be sorted by code
-        XCTAssertEqual(hiddenTokens.first!.code, "<3")
-        XCTAssertEqual(hiddenTokens[1].code, "OMG")
+        XCTAssertEqual(hiddenTokens.first!.code, "LOVE")
+        XCTAssertEqual(hiddenTokens[1].code, "MGN")
     }
 
     func test_whenWhitelistingToken_thenItIsWhitelisted() {
@@ -44,7 +43,7 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         let newHidden = service.hiddenTokens()
         XCTAssertEqual(oldWhitelisted.count, newWhitelisted.count - 1)
         XCTAssertEqual(oldHidden.count - 1, newHidden.count)
-        XCTAssertEqual(newWhitelisted.last!.code, "<3")
+        XCTAssertEqual(newWhitelisted.last!.code, "LOVE")
     }
 
     func test_whenRearrangingTokens_thenTheyAreRearranged() {
@@ -82,7 +81,7 @@ private extension TokenListItemApplicationTests {
         givenReadyToUseWallet()
         XCTAssertEqual(accountRepository.all().count, 1)
         DispatchQueue.global().async {
-            self.syncService.sync()
+            self.syncService.syncTokensAndAccountsOnce()
         }
         delay(0.25)
     }
@@ -99,47 +98,57 @@ private extension TokenListItemApplicationTests {
 fileprivate enum TokensResponse {
 
     static let json = """
-    [
+{
+  "count": 4,
+  "next": "https://safe-relay.staging.gnosisdev.com/api/v1/tokens/?limit=10&offset=10",
+  "previous": null,
+  "results": [
     {
-        "token": {
-            "address": "0x975be7f72cea31fd83d0cb2a197f9136f38696b7",
-            "name": "World Energy",
-            "symbol": "WE",
-            "decimals": 4,
-            "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Earth_simple_icon.png"
-        },
-        "default": true
+      "address": "0xd0Dab4E640D95E9E8A47545598c33e31bDb53C7c",
+      "logoUri": "https://gnosis-safe-token-logos.s3.amazonaws.com/0x6810e776880C02933D47DB1b9fc05908e5386b96.png",
+      "default": true,
+      "name": "Gnosis",
+      "symbol": "GNO",
+      "description": "",
+      "decimals": 18,
+      "websiteUri": "",
+      "gas": true
     },
     {
-        "token": {
-            "address": "0x5f92161588c6178130ede8cbdc181acec66a9731",
-            "name": "Gnosis",
-            "symbol": "GNO",
-            "decimals": 18,
-            "logoUrl": "https://github.com/TrustWallet/tokens/blob/master/images/0x6810e776880c02933d47db1b9fc05908e5386b96.png?raw=true"
-        },
-        "default": true
+      "address": "0x62f25065BA60CA3A2044344955A3B2530e355111",
+      "logoUri": "https://gnosis-safe-token-logos.s3.amazonaws.com/0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359.png",
+      "default": true,
+      "name": "Dai",
+      "symbol": "DAI",
+      "description": "",
+      "decimals": 18,
+      "websiteUri": "",
+      "gas": true
     },
     {
-        "token": {
-            "address": "0xb63d06025d580a94d59801f2513f5d309c079559",
-            "name": "OmiseGo",
-            "symbol": "OMG",
-            "decimals": 18,
-            "logoUrl": "https://github.com/TrustWallet/tokens/blob/master/images/0xd26114cd6ee289accf82350c8d8487fedb8a0c07.png?raw=true"
-        },
-        "default": false
+      "address": "0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d",
+      "logoUri": "https://gnosis-safe-token-logos.s3.amazonaws.com/0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d.png",
+      "default": false,
+      "name": "Love",
+      "symbol": "LOVE",
+      "description": "",
+      "decimals": 6,
+      "websiteUri": "",
+      "gas": true
     },
     {
-        "token": {
-            "address": "0xb3a4bc89d8517e0e2c9b66703d09d3029ffa1e6d",
-            "name": "Love",
-            "symbol": "<3",
-            "decimals": 6,
-            "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Heart_left-highlight_jon_01.svg/500px-Heart_left-highlight_jon_01.svg.png"
-        },
-        "default": false
+      "address": "0x4eD5e1eC6bdBecf5967fE257F60E05237DB9D583",
+      "logoUri": "https://gnosis-safe-token-logos.s3.amazonaws.com/0x80f222a749a2e18Eb7f676D371F19ad7EFEEe3b7.png",
+      "default": false,
+      "name": "Magnolia",
+      "symbol": "MGN",
+      "description": "",
+      "decimals": 18,
+      "websiteUri": "",
+      "gas": false
     }
-    ]
+  ]
+}
 """
+
 }

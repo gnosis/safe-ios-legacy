@@ -74,7 +74,6 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.deploymentService.prepareForCreation()
     }
 
-
     /// Gets estimations for all available payment methods.
     ///
     /// - Returns: tokens data to be displayed
@@ -147,6 +146,10 @@ public class WalletApplicationService: Assertable {
 
     public func walletCreationURL() -> URL {
         return configuration.transactionURL(for: selectedWallet!.creationTransactionHash)
+    }
+
+    public func wallets() -> [WalletData] {
+        return DomainRegistry.walletRepository.all().compactMap { WalletData(wallet: $0) }
     }
 
     // MARK: - Owners
@@ -303,24 +306,9 @@ public class WalletApplicationService: Assertable {
     ///
     /// - Parameter subscriber: subscriber.
     public func subscribeOnTokensUpdates(subscriber: EventSubscriber) {
-        DomainRegistry.errorStream.removeHandler(subscriber)
-        DomainRegistry.errorStream.addHandler(subscriber, tokensListUpdatesErrorHandler)
         ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: TokensDisplayListChanged.self)
-    }
-
-    private func tokensListUpdatesErrorHandler(error: Error) {
-        if let err = error as? TokensListError {
-            switch err {
-            case .inconsistentData_notAmongWhitelistedToken:
-                ApplicationServiceRegistry.logger
-                    .error("Trying to rearrange not equal to whitelisted amount tokens")
-            case .inconsistentData_notEqualToWhitelistedAmount:
-                ApplicationServiceRegistry.logger
-                    .error("Trying to rearrange token that is not among whitelisted")
-            }
-        }
     }
 
     public func syncBalances() {
