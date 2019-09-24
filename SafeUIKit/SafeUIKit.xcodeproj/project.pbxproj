@@ -324,6 +324,8 @@
 		552D42D8233A000600C57B5C /* SwitchSafesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42D7233A000600C57B5C /* SwitchSafesCommand.swift */; };
 		552D42DA233A00CC00C57B5C /* SwitchSafesFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42D9233A00CC00C57B5C /* SwitchSafesFlowCoordinator.swift */; };
 		552D42DC233A024E00C57B5C /* SwitchSafesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */; };
+		552D42FC233A37E900C57B5C /* SwitchSafesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */; };
+		552D42FD233A37E900C57B5C /* SwitchSafesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -994,6 +996,8 @@
 		552D42D7233A000600C57B5C /* SwitchSafesCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesCommand.swift; sourceTree = "<group>"; };
 		552D42D9233A00CC00C57B5C /* SwitchSafesFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesFlowCoordinator.swift; sourceTree = "<group>"; };
 		552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewController.swift; sourceTree = "<group>"; };
+		552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewCell.swift; sourceTree = "<group>"; };
+		552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchSafesTableViewCell.xib; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -2031,6 +2035,8 @@
 				552D42D7233A000600C57B5C /* SwitchSafesCommand.swift */,
 				552D42D9233A00CC00C57B5C /* SwitchSafesFlowCoordinator.swift */,
 				552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */,
+				552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */,
+				552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */,
 			);
 			path = SwitchSafes;
 			sourceTree = "<group>";
@@ -2810,6 +2816,7 @@
 				552D0FCA23279C2000127223 /* TwoFATableViewCell.xib in Resources */,
 				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
+				552D42FD233A37E900C57B5C /* SwitchSafesTableViewCell.xib in Resources */,
 				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
 				5568A25E22D78583007C9E0C /* WCSessionListCell.xib in Resources */,
 				0A3BD90422254833007039B4 /* IntroContentView.xib in Resources */,
@@ -3280,6 +3287,7 @@
 				0A334E3B209C8E3800ABC6AE /* AuthenticatorViewController.swift in Sources */,
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
 				0A73C6F2227B3605002EEA32 /* DifferentTransferAndPaymentTokensFeeCalculation.swift in Sources */,
+				552D42FC233A37E900C57B5C /* SwitchSafesTableViewCell.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
 				55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */,

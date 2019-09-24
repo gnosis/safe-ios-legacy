@@ -8,11 +8,11 @@ import MultisigWalletApplication
 final class SwitchSafesCommand: MenuCommand {
 
     override var title: String {
-        return LocalizedString("switch_safe", comment: "Switch Safe")
+        return LocalizedString("switch_safes", comment: "Switch Safes")
     }
 
     override var isHidden: Bool {
-        return ApplicationServiceRegistry.walletService.hasSelectedWallet
+        return ApplicationServiceRegistry.walletService.wallets().isEmpty
     }
 
     override init() {
