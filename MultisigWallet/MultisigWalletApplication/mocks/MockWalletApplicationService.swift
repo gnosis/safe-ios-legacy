@@ -374,8 +374,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         // empty
     }
 
+    public var walletsOutput = [WalletData]()
     public override func wallets() -> [WalletData] {
-        return []
+        return walletsOutput
     }
 
 }
