@@ -44,6 +44,9 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         XCTAssertEqual(all.count, 2)
         XCTAssertEqual(Set([account, account2]), Set(all))
 
+        let walletAccounts = repo.filter(walletID: walletID)
+        XCTAssertEqual(walletAccounts, all)
+
         repo.remove(account)
         XCTAssertNil(repo.find(id: account.id))
     }

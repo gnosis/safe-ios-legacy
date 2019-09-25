@@ -36,6 +36,13 @@ class PortfolioTests: XCTestCase {
         XCTAssertNil(portfolio.selectedWallet)
     }
 
+    func test_whenRemovingSelectedWallet_thenSelectsFirstWallet() {
+        portfolio.addWallet(wallet1.id)
+        portfolio.addWallet(wallet2.id)
+        portfolio.removeWallet(wallet1.id)
+        XCTAssertEqual(portfolio.selectedWallet, wallet2.id)
+    }
+
     func test_whenAddingMultipleWallets_thenCanFetchAll() {
         portfolio.addWallet(wallet1.id)
         portfolio.addWallet(wallet2.id)

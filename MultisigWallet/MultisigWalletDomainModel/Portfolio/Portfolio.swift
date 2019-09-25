@@ -59,6 +59,8 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
         wallets.remove(at: index)
         if wallets.isEmpty {
             selectedWallet = nil
+        } else if let id = selectedWallet, !hasWallet(id) {
+            selectedWallet = wallets.first
         }
     }
 
