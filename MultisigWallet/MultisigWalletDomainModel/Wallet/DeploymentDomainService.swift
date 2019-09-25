@@ -237,7 +237,7 @@ public class DeploymentDomainService {
         let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
         let balance = try self.balance(of: wallet.address, for: token)
         let accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
-        let account = DomainRegistry.accountRepository.find(id: accountID)!
+        guard let account = DomainRegistry.accountRepository.find(id: accountID) else { return 0 }
         account.update(newAmount: balance)
         DomainRegistry.accountRepository.save(account)
         return balance

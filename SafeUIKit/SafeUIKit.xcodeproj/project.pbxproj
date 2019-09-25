@@ -251,6 +251,7 @@
 		0ADE040922DF358E00CA4705 /* OnboardingToolbarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040822DF358E00CA4705 /* OnboardingToolbarTests.swift */; };
 		0ADE040B22DF359800CA4705 /* OnboardingStepViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE040A22DF359800CA4705 /* OnboardingStepViewControllerTests.swift */; };
 		0ADE046822E5F15D00CA4705 /* PlaceholderCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */; };
+		0ADF99F2233B9B2800F14B93 /* CreateSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF99F1233B9B2800F14B93 /* CreateSafeCommand.swift */; };
 		0AE0FE42229C484000ABC552 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */; };
 		0AE0FE5A229D2CE500ABC552 /* TwoFAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */; };
 		0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE0FE5B229D2CF700ABC552 /* TwoFAView.xib */; };
@@ -915,6 +916,7 @@
 		0ADE040822DF358E00CA4705 /* OnboardingToolbarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingToolbarTests.swift; sourceTree = "<group>"; };
 		0ADE040A22DF359800CA4705 /* OnboardingStepViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepViewControllerTests.swift; sourceTree = "<group>"; };
 		0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCreator.swift; sourceTree = "<group>"; };
+		0ADF99F1233B9B2800F14B93 /* CreateSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSafeCommand.swift; sourceTree = "<group>"; };
 		0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		0AE0FE59229D2CE500ABC552 /* TwoFAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFAView.swift; sourceTree = "<group>"; };
 		0AE0FE5B229D2CF700ABC552 /* TwoFAView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoFAView.xib; sourceTree = "<group>"; };
@@ -2282,6 +2284,7 @@
 				552D0FC823279C2000127223 /* TwoFATableViewCell.xib */,
 				552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */,
 				0A2ACBFE23294A360054D1D1 /* StatusKeycard */,
+				0ADF99F1233B9B2800F14B93 /* CreateSafeCommand.swift */,
 			);
 			path = ThreeSteps;
 			sourceTree = "<group>";
@@ -3197,6 +3200,7 @@
 				55CE9CFA23055EE500CB414D /* ContractUpgradeFlowCoordinator.swift in Sources */,
 				0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */,
 				0ADE040122DF2EF100CA4705 /* OnboardingPageDataSource.swift in Sources */,
+				0ADF99F2233B9B2800F14B93 /* CreateSafeCommand.swift in Sources */,
 				55BDA818232651A2005C9E6A /* ThreeStepsToSecurityController.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
 				552D42DA233A00CC00C57B5C /* SwitchSafesFlowCoordinator.swift in Sources */,

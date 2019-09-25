@@ -378,4 +378,20 @@ public class MockWalletApplicationService: WalletApplicationService {
         return []
     }
 
+    public override func selectFirstWalletIfNeeded() {
+        // empty
+    }
+
+    public override func selectedWalletID() -> String? {
+        return nil
+    }
+
+    public override func selectWallet(_ id: String) {
+        // empty
+    }
+
+    public override func removeWallet(_ id: String) {
+        // empty
+    }
+
 }

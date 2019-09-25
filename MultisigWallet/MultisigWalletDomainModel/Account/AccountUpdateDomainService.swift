@@ -53,8 +53,8 @@ open class AccountUpdateDomainService {
 
     private func updateAccountsBalances(_ accountIDs: [AccountID]) throws {
         try accountIDs.forEach { accountID in
-            guard let balance = try self.balance(of: accountID) else { return }
-            let account = DomainRegistry.accountRepository.find(id: accountID)!
+            guard let balance = try self.balance(of: accountID),
+                let account = DomainRegistry.accountRepository.find(id: accountID) else { return }
             account.update(newAmount: balance)
             DomainRegistry.accountRepository.save(account)
         }

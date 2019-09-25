@@ -159,8 +159,8 @@ public class RecoveryDomainService: Assertable {
         if let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) {
             DomainRegistry.transactionRepository.remove(tx)
         }
-        guard let txId = RecoveryTransactionBuilder().build() else { return [] }
-        let tx = DomainRegistry.transactionRepository.find(id: txId)!
+        guard let txId = RecoveryTransactionBuilder().build(),
+            let tx = DomainRegistry.transactionRepository.find(id: txId) else { return [] }
         let request = MultiTokenEstimateTransactionRequest(safe: formatted(tx.sender)!.value,
                                                            to: formatted(tx.ethTo),
                                                            value: String(tx.ethValue),

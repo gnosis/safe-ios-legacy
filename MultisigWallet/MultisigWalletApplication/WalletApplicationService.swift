@@ -153,9 +153,20 @@ public class WalletApplicationService: Assertable {
     }
 
     public func cleanUpDrafts() {
-        let drafts = DomainRegistry.walletRepository.filter(by: .draft)
+        let drafts = DomainRegistry.walletRepository.filter(by: [.draft, .recoveryDraft])
         for draft in drafts {
             removeWallet(draft.id.id)
+        }
+        cleanUpPortfolio()
+    }
+
+    private func cleanUpPortfolio() {
+        guard let portfolio = DomainRegistry.portfolioRepository.portfolio() else { return }
+        let staleWallets = portfolio.wallets.filter { DomainRegistry.walletRepository.find(id: $0) == nil }
+        for walletID in staleWallets {
+            removeFromPortfolio(walletID: walletID)
+            removeAccounts(for: walletID)
+            removeTransactions(for: walletID)
         }
     }
 
@@ -171,22 +182,50 @@ public class WalletApplicationService: Assertable {
             }
 
         }
+        removeFromPortfolio(walletID: walletID)
+        removeAccounts(for: walletID)
+        removeTransactions(for: walletID)
+    }
 
+    private func removeFromPortfolio(walletID: WalletID) {
         if let portfolio = DomainRegistry.portfolioRepository.portfolio() {
             portfolio.removeWallet(walletID)
+            DomainRegistry.portfolioRepository.save(portfolio)
         }
+    }
 
+    private func removeAccounts(for walletID: WalletID) {
         let accounts = DomainRegistry.accountRepository.filter(walletID: walletID)
         for account in accounts {
             DomainRegistry.accountRepository.remove(account)
         }
+    }
 
+    private func removeTransactions(for walletID: WalletID) {
         let transactions = DomainRegistry.transactionRepository.find(wallet: walletID)
         for transaction in transactions {
             DomainRegistry.transactionRepository.remove(transaction)
 
             ApplicationServiceRegistry.walletConnectService
                 .pendingTransactionsRepository.remove(transactionID: transaction.id)
+        }
+    }
+
+    public func selectWallet(_ id: String) {
+        if let wallet = DomainRegistry.walletRepository.find(id: WalletID(id)),
+            let portfolio = DomainRegistry.portfolioRepository.portfolio() {
+            portfolio.selectWallet(wallet.id)
+            DomainRegistry.portfolioRepository.save(portfolio)
+        }
+    }
+
+    public func selectedWalletID() -> String? {
+        return selectedWallet?.id.id
+    }
+
+    public func selectFirstWalletIfNeeded() {
+        if selectedWallet == nil,  let first = DomainRegistry.walletRepository.all().first {
+            selectWallet(first.id.id)
         }
     }
 
@@ -489,8 +528,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public func updateTransaction(_ id: String, amount: BigInt, token: String, recipient: String) {
-        let transaction = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
-        let tokenItem = DomainRegistry.tokenListItemRepository.find(id: TokenID(token))!
+        guard let transaction = DomainRegistry.transactionRepository.find(id: TransactionID(id)),
+            let tokenItem = DomainRegistry.tokenListItemRepository.find(id: TokenID(token)) else { return }
         transaction
             .change(amount: TokenAmount(amount: amount, token: tokenItem.token))
             .change(recipient: Address(recipient))
@@ -641,8 +680,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public func requestTransactionConfirmationIfNeeded(_ id: String) throws -> TransactionData {
-        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
-        guard !transactionHasEnoughSignaturesToSubmit(tx) else { return transactionData(id)! }
+        guard let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)),
+            !transactionHasEnoughSignaturesToSubmit(tx) else { return transactionData(id)! }
         if let extensionAddress = address(of: .browserExtension), !tx.isSignedBy(extensionAddress) {
             try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))
         }
@@ -656,7 +695,7 @@ public class WalletApplicationService: Assertable {
 
     /// Makes transaction estimate-able again
     public func resetTransaction(_ id: String) {
-        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+        guard let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)) else { return }
         tx.reset()
         tx.change(fee: nil)
         tx.change(feeEstimate: nil)
@@ -664,8 +703,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
-        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
-        guard tx.feeEstimate == nil ||
+        guard let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)),
+            tx.feeEstimate == nil ||
             (tx.type.isConnectTwoFA || tx.type == .replaceRecoveryPhrase) && tx.status == .draft else {
                 return transactionData(id)!
         }
@@ -704,10 +743,13 @@ public class WalletApplicationService: Assertable {
     }
 
     public func submitTransaction(_ id: String) throws -> TransactionData {
-        var tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+        guard var tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)) else { return .empty }
         if tx.status == .draft {
             _ = try requestTransactionConfirmationIfNeeded(id)
-            tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+            guard let updatedTx = DomainRegistry.transactionRepository.find(id: TransactionID(id)) else {
+                return .empty
+            }
+            tx = updatedTx
         }
         if tx.type.isReplaceOrDisconnectTwoFA {
             try proceedTransaction(tx)

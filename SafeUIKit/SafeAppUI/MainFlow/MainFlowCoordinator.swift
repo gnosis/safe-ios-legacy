@@ -61,6 +61,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         updateUserIdentifier()
 
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        ApplicationServiceRegistry.walletService.selectFirstWalletIfNeeded()
 
         defer {
             ApplicationServiceRegistry.walletConnectService.subscribeForIncomingTransactions(self)

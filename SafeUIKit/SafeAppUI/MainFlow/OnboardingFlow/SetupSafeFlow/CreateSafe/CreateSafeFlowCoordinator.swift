@@ -36,9 +36,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
                 Tracker.shared.track(event: OnboardingTrackingEvent.newSafeGetStarted)
                 self?.showCreateSafeIntro()
             })
-        vc.onBack = {
-            ApplicationServiceRegistry.walletService.cleanUpDrafts()
-        }
+        vc.onBack = finish
         push(vc)
         onboardingController = vc
     }
@@ -210,6 +208,10 @@ extension CreateSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate
 
     func deploymentDidCancel() {
         finish()
+    }
+
+    func onboardingCreationFeeOpenMenu() {
+        mainFlowCoordinator.openMenu()
     }
 
 }

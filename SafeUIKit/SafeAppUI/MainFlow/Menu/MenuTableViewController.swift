@@ -72,7 +72,9 @@ final class MenuTableViewController: UITableViewController {
     var securityCommands: [MenuCommand] {
         return [FeePaymentMethodCommand(), ChangePasswordCommand(), ResyncWithBrowserExtensionCommand(),
                 ReplaceRecoveryPhraseCommand(), ReplaceTwoFACommand(),
-                ConnectTwoFACommand(), DisconnectTwoFACommand(), WalletConnectMenuCommand(), SwitchSafesCommand()]
+                ConnectTwoFACommand(), DisconnectTwoFACommand(), WalletConnectMenuCommand(),
+                SwitchSafesCommand(),
+                CreateSafeCommand()]
     }
 
     var supportCommands: [MenuCommand] {
