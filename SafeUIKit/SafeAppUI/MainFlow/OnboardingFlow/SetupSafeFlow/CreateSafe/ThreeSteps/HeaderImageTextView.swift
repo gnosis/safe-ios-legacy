@@ -25,4 +25,20 @@ class HeaderImageTextView: BaseCustomView {
         textLabel.textColor = ColorName.darkGrey.color
     }
 
+    func setTitle(_ title: String?, showError: Bool = false) {
+        guard let title = title else {
+            titleLabel.isHidden = true
+            return
+        }
+        let titleText = NSMutableAttributedString()
+        if showError {
+            let attachment = NSTextAttachment(image: Asset.errorIcon.image,
+                                              bounds: CGRect(x: 0, y: -2, width: 16, height: 16))
+            titleText.append(attachment)
+            titleText.append("  ")
+        }
+        titleText.append(NSAttributedString(string: title))
+        titleLabel.attributedText = titleText
+    }
+
 }

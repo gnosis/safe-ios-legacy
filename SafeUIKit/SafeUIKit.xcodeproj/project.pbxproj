@@ -325,6 +325,9 @@
 		552D42DC233A024E00C57B5C /* SwitchSafesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */; };
 		552D42FC233A37E900C57B5C /* SwitchSafesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */; };
 		552D42FD233A37E900C57B5C /* SwitchSafesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */; };
+		552D4300233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42FF233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift */; };
+		552D4302233B674200C57B5C /* RemoveSafeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */; };
+		552D4304233B824500C57B5C /* SafesTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4303233B824500C57B5C /* SafesTrackingEvent.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -995,6 +998,9 @@
 		552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewController.swift; sourceTree = "<group>"; };
 		552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewCell.swift; sourceTree = "<group>"; };
 		552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchSafesTableViewCell.xib; sourceTree = "<group>"; };
+		552D42FF233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeFlowCoordinator.swift; sourceTree = "<group>"; };
+		552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeIntroViewController.swift; sourceTree = "<group>"; };
+		552D4303233B824500C57B5C /* SafesTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafesTrackingEvent.swift; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -2027,13 +2033,24 @@
 		552D42C22339FFD500C57B5C /* SwitchSafes */ = {
 			isa = PBXGroup;
 			children = (
+				552D42FE233B659300C57B5C /* RemoveSafe */,
 				552D42D7233A000600C57B5C /* SwitchSafesCommand.swift */,
 				552D42D9233A00CC00C57B5C /* SwitchSafesFlowCoordinator.swift */,
 				552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */,
 				552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */,
 				552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */,
+				552D4303233B824500C57B5C /* SafesTrackingEvent.swift */,
 			);
 			path = SwitchSafes;
+			sourceTree = "<group>";
+		};
+		552D42FE233B659300C57B5C /* RemoveSafe */ = {
+			isa = PBXGroup;
+			children = (
+				552D42FF233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift */,
+				552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */,
+			);
+			path = RemoveSafe;
 			sourceTree = "<group>";
 		};
 		552DF5C8225C9943008D8AC8 /* CardView */ = {
@@ -3213,6 +3230,7 @@
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				5549B2F4228C268200F3B5B7 /* OwnerModificationFeeCalculation.swift in Sources */,
+				552D4304233B824500C57B5C /* SafesTrackingEvent.swift in Sources */,
 				55BDA8152326426A005C9E6A /* NewSafeThreeStepsBaseController.swift in Sources */,
 				0ADE046822E5F15D00CA4705 /* PlaceholderCreator.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
@@ -3232,6 +3250,7 @@
 				552D0FE02327CD8F00127223 /* TwoFATableViewController.swift in Sources */,
 				554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */,
 				0A2D587E225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift in Sources */,
+				552D4300233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift in Sources */,
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,
 				5568A25C22D7854D007C9E0C /* WCSessionListCell.swift in Sources */,
 				0AFD05F822A6906000888956 /* ChangePasswordTrackingEvent.swift in Sources */,
@@ -3305,6 +3324,7 @@
 				0A3FB8C2228B163D00270573 /* SendFlowCoordinator.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* SendInputViewModel.swift in Sources */,
+				552D4302233B674200C57B5C /* RemoveSafeIntroViewController.swift in Sources */,
 				554597082268AB22009B4A0B /* TermsCommand.swift in Sources */,
 				0AE0FE5A229D2CE500ABC552 /* TwoFAView.swift in Sources */,
 				0A19405B2226D030005B7440 /* DisconnectTwoFACommand.swift in Sources */,
