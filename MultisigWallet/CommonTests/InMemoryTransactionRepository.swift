@@ -24,4 +24,8 @@ open class InMemoryTransactionRepository: BaseInMemoryRepository<Transaction, Tr
         return TransactionID()
     }
 
+    public func find(wallet: WalletID) -> [Transaction] {
+        return all().filter { $0.accountID.walletID == wallet }
+    }
+
 }

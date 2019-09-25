@@ -152,6 +152,44 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.walletRepository.all().compactMap { WalletData(wallet: $0) }
     }
 
+    public func cleanUpDrafts() {
+        let drafts = DomainRegistry.walletRepository.filter(by: .draft)
+        for draft in drafts {
+            removeWallet(draft.id.id)
+        }
+    }
+
+    public func removeWallet(_ id: String) {
+        let walletID = WalletID(id)
+
+        if let wallet = DomainRegistry.walletRepository.find(id: walletID) {
+            DomainRegistry.walletRepository.remove(wallet)
+
+            let owners = wallet.allOwners().map { $0.address }
+            for owner in owners {
+                DomainRegistry.externallyOwnedAccountRepository.remove(address: owner)
+            }
+
+        }
+
+        if let portfolio = DomainRegistry.portfolioRepository.portfolio() {
+            portfolio.removeWallet(walletID)
+        }
+
+        let accounts = DomainRegistry.accountRepository.filter(walletID: walletID)
+        for account in accounts {
+            DomainRegistry.accountRepository.remove(account)
+        }
+
+        let transactions = DomainRegistry.transactionRepository.find(wallet: walletID)
+        for transaction in transactions {
+            DomainRegistry.transactionRepository.remove(transaction)
+
+            ApplicationServiceRegistry.walletConnectService
+                .pendingTransactionsRepository.remove(transactionID: transaction.id)
+        }
+    }
+
     // MARK: - Owners
 
     public func isOwnerExists(_ type: OwnerType) -> Bool {

@@ -36,6 +36,9 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
                 Tracker.shared.track(event: OnboardingTrackingEvent.newSafeGetStarted)
                 self?.showCreateSafeIntro()
             })
+        vc.onBack = {
+            ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        }
         push(vc)
         onboardingController = vc
     }
@@ -86,6 +89,10 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
         push(controller)
     }
 
+    func finish() {
+        ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        exitFlow()
+    }
 }
 
 extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
@@ -194,7 +201,7 @@ extension CreateSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 extension CreateSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate {
 
     func deploymentDidFail() {
-        exitFlow()
+        finish()
     }
 
     func deploymentDidStart() {
@@ -202,7 +209,7 @@ extension CreateSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate
     }
 
     func deploymentDidCancel() {
-        exitFlow()
+        finish()
     }
 
 }
@@ -210,11 +217,11 @@ extension CreateSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate
 extension CreateSafeFlowCoordinator: OnboardingFeePaidViewControllerDelegate {
 
     func onboardingFeePaidDidFail() {
-        exitFlow()
+        finish()
     }
 
     func onboardingFeePaidDidSuccess() {
-        exitFlow()
+        finish()
     }
 
     func onboardingFeePaidOpenMenu() {

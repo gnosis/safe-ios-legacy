@@ -56,6 +56,12 @@ LIMIT 1;
         return try! db.execute(sql: SQL.all, resultMap: accountFromResultSet).compactMap { $0 }
     }
 
+    public func filter(walletID: WalletID) -> [Account] {
+        let sql = "SELECT id, balance FROM tbl_accounts WHERE id GLOB ? ORDER BY rowid;"
+        let id = "*:" + walletID.id
+        return try! db.execute(sql: sql, bindings: [id], resultMap: accountFromResultSet).compactMap { $0 }
+    }
+
     private func accountFromResultSet(_ rs: ResultSet) -> Account? {
         guard let accountID_id = rs.string(at: 0) else { return nil }
         let balance = rs.string(at: 1)

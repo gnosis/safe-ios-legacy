@@ -370,4 +370,12 @@ public class MockWalletApplicationService: WalletApplicationService {
         // empty
     }
 
+    public override func cleanUpDrafts() {
+        // empty
+    }
+
+    public override func wallets() -> [WalletData] {
+        return []
+    }
+
 }
