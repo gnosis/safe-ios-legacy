@@ -30,4 +30,7 @@ public protocol AccountRepository {
     /// - Returns: all accounts
     func all() -> [Account]
 
+    /// Returns all accounts for the wallet id
+    func filter(walletID: WalletID) -> [Account]
+
 }

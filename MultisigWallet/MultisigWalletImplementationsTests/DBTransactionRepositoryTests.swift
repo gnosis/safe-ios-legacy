@@ -92,8 +92,7 @@ class DBTransactionRepositoryTests: XCTestCase {
             .succeed()
     }
 
-    private func txDraft() -> Transaction {
-        let walletID = WalletID()
+    private func txDraft(walletID: WalletID = WalletID()) -> Transaction {
         let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
         return Transaction(id: repo.nextID(), type: .transfer, accountID: accountID)
             .change(amount: .ether(3))
@@ -151,6 +150,11 @@ class DBTransactionRepositoryTests: XCTestCase {
         repo.save(txDraft)
         let found = repo.find(type: txDraft.type, wallet: txDraft.accountID.walletID)
         XCTAssertEqual(found, txDraft)
+
+        let otherTx = self.txDraft(walletID: txDraft.accountID.walletID)
+        repo.save(otherTx)
+        let result = repo.find(wallet: txDraft.accountID.walletID)
+        XCTAssertEqual(result, [txDraft, otherTx])
     }
 
 }

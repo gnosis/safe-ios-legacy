@@ -43,13 +43,11 @@ class MenuTableViewControllerTests: XCTestCase {
         createWindow(controller)
     }
 
-    var safeSection: Int { return controller.index(of: .safe)! }
     var portfolioSection: Int { return controller.index(of: .portfolio)! }
     var securitySection: Int { return controller.index(of: .security)! }
     var supportSection: Int { return controller.index(of: .support)! }
 
     func test_whenCreated_thenConfigured() {
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: securitySection), 6)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: portfolioSection), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 6)
@@ -63,7 +61,6 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     func test_whenGettingRow_thenCreatesAppropriateCell() {
-        XCTAssertTrue(cell(row: 0, section: securitySection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 0, section: portfolioSection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 0, section: supportSection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 5, section: supportSection) is AppVersionTableViewCell)
@@ -91,7 +88,7 @@ class MenuTableViewControllerTests: XCTestCase {
     // MARK: - Did select row
 
     func test_whenSelectingCell_thenDeselectsIt() {
-        selectCell(row: 0, section: safeSection)
+        selectCell(row: 0, section: securitySection)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 

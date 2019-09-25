@@ -59,6 +59,9 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     func appDidFinishLaunching() {
         updateUserIdentifier()
+
+        ApplicationServiceRegistry.walletService.cleanUpDrafts()
+
         defer {
             ApplicationServiceRegistry.walletConnectService.subscribeForIncomingTransactions(self)
         }

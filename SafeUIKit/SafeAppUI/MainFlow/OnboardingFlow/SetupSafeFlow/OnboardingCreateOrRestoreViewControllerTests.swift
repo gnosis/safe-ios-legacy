@@ -25,21 +25,21 @@ class OnboardingCreateOrRestoreViewControllerTests: SafeTestCase {
 
     func test_whenNewSafeButtonPressed_thenDelegateCalled() {
         XCTAssertFalse(delegate.pressedNewSafe)
-        vc.createNewSafe(self)
+        vc.createNewSafe(vc.newSafeButton)
         XCTAssertTrue(delegate.pressedNewSafe)
     }
 
     func test_whenNewSafeButtonPressed_thenNewWalletCreated() {
         walletService.expect_hasSelectedWallet(false)
-        vc.createNewSafe(vc as Any)
+        vc.createNewSafe(vc.newSafeButton)
         XCTAssertTrue(walletService.didCreateNewDraft)
     }
 
-    func test_whenNewSafeButtonPressedTwice_thenExistingDraftWalletIsUsed() {
-        vc.createNewSafe(vc as Any)
+    func test_whenNewSafeButtonPressedTwice_thenNewDraftWalletIsUsed() {
+        vc.createNewSafe(vc.newSafeButton)
         walletService.didCreateNewDraft = false
-        vc.createNewSafe(vc as Any)
-        XCTAssertFalse(walletService.didCreateNewDraft)
+        vc.createNewSafe(vc.newSafeButton)
+        XCTAssertTrue(walletService.didCreateNewDraft)
     }
 
     func test_tracking() {

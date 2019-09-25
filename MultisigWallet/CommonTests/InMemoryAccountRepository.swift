@@ -28,4 +28,8 @@ public class InMemoryAccountRepository: AccountRepository {
         return Array(accounts.values)
     }
 
+    public func filter(walletID: WalletID) -> [Account] {
+        return all().filter { $0.id.walletID == walletID }
+    }
+
 }

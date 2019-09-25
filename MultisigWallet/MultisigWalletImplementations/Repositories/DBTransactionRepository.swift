@@ -97,6 +97,13 @@ LIMIT 1;
         ORDER BY rowid
         LIMIT 1;
         """
+
+        static let filterByWallet = """
+        SELECT \(fieldList)
+        FROM tbl_transactions
+        WHERE account_id GLOB ?
+        ORDER BY rowid;
+        """
         static let findByHash = "SELECT \(fieldList) FROM tbl_transactions WHERE hash = ? ORDER BY rowid LIMIT 1;"
         static let findAll = "SELECT \(fieldList) FROM tbl_transactions;"
 
@@ -190,6 +197,12 @@ LIMIT 1;
         return try! db.execute(sql: SQL.findByTypeAndWallet,
                                bindings: [type.rawValue, "*:" + wallet.id],
                                resultMap: transactionFromResultSet).first as? Transaction
+    }
+
+    public func find(wallet: WalletID) -> [Transaction] {
+        return try! db.execute(sql: SQL.filterByWallet,
+                               bindings: ["*:" + wallet.id],
+                               resultMap: transactionFromResultSet).compactMap { $0 }
     }
 
     public func all() -> [Transaction] {

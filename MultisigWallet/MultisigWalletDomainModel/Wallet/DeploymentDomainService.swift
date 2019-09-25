@@ -44,6 +44,7 @@ public class DeploymentDomainService {
         let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: address)
         let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
         portfolio.addWallet(wallet.id)
+        portfolio.selectWallet(wallet.id)
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.portfolioRepository.save(portfolio)
         DomainRegistry.accountRepository.save(account)

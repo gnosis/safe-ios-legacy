@@ -34,6 +34,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let logger = MockLogger()
     let appSettingsRepository = UserDefaultsAppSettingsRepository()
     let contractMetadataRepository = MockSafeContractMetadataRepository()
+    let wcService = MockWalletConnectApplicationService(chainId: 1)
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -68,6 +69,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
         ApplicationServiceRegistry.put(service: logger, for: Logger.self)
         ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
+        ApplicationServiceRegistry.put(service: wcService, for: WalletConnectApplicationService.self)
 
         ethereumService.prepareToGenerateExternallyOwnedAccount(address: Address.deviceAddress.value,
                                                                 mnemonic: ["a", "b"])

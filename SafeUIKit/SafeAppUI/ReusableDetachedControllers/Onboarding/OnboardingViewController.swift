@@ -51,6 +51,9 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
     let toolbar = OnboardingToolbar()
 
     private weak var _navigationController: UINavigationController!
+    private var backButtonItem: UIBarButtonItem!
+
+    var onBack: (() -> Void)?
 
     static func create(steps: [OnboardingStepInfo]) -> OnboardingViewController {
         let controller = OnboardingViewController(transitionStyle: .scroll,
@@ -93,7 +96,8 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setCustomBackButton()
+        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
+        setCustomBackButton(backButtonItem)
         _navigationController = navigationController
         _navigationController?.navigationBar.shadowImage = UIImage()
     }
@@ -107,6 +111,10 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
         if let index = currentPageIndex {
             transition(to: index + 1)
         }
+    }
+
+    @objc func back() {
+        onBack?()
     }
 
     @objc func pageControlChanged() {
@@ -157,6 +165,14 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
         if let controller = pageDataSource.stepController(at: index) {
             toolbar.setActionTitle(controller.content?.actionTitle)
         }
+    }
+
+}
+
+extension OnboardingViewController: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
     }
 
 }
