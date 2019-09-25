@@ -21,7 +21,7 @@ extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
 
     func didSelect(wallet: WalletData) {}
 
-    func didRequestToDelete(wallet: WalletData) {
+    func didRequestToRemove(wallet: WalletData) {
         removeSafeFlowCoordinator.safeAddress = wallet.address
         enter(flow: removeSafeFlowCoordinator)
     }

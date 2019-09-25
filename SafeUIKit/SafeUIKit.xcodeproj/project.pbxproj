@@ -329,6 +329,7 @@
 		552D4302233B674200C57B5C /* RemoveSafeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */; };
 		552D4304233B824500C57B5C /* SafesTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4303233B824500C57B5C /* SafesTrackingEvent.swift */; };
 		552D4306233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4305233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift */; };
+		552D4308233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4307233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -1003,6 +1004,7 @@
 		552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeIntroViewController.swift; sourceTree = "<group>"; };
 		552D4303233B824500C57B5C /* SafesTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafesTrackingEvent.swift; sourceTree = "<group>"; };
 		552D4305233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		552D4307233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewControllerTests.swift; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -2043,6 +2045,7 @@
 				552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */,
 				552D4303233B824500C57B5C /* SafesTrackingEvent.swift */,
 				552D4305233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift */,
+				552D4307233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift */,
 			);
 			path = SwitchSafes;
 			sourceTree = "<group>";
@@ -3356,6 +3359,7 @@
 				553AEB1A229EA44E00EA3248 /* RBEStarterMock.swift in Sources */,
 				0ACD3F1A232C0269000E9274 /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
+				552D4308233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0A2D588C22575F33001B8BF4 /* AddressInputViewControllerTests.swift in Sources */,

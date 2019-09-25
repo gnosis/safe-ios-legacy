@@ -8,7 +8,7 @@ import Common
 
 protocol SwitchSafesTableViewControllerDelegate: class {
     func didSelect(wallet: WalletData)
-    func didRequestToDelete(wallet: WalletData)
+    func didRequestToRemove(wallet: WalletData)
 }
 
 class SwitchSafesTableViewController: UITableViewController {
@@ -99,10 +99,11 @@ class SwitchSafesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
-        delegate?.didRequestToDelete(wallet: safes[indexPath.row])
+        delegate?.didRequestToRemove(wallet: safes[indexPath.row])
     }
 
-    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+    override func tableView(_ tableView: UITableView,
+                            titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return Strings.remove
     }
 

@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
+import Common
 
 class SwitchSafesFlowCoordinatorTests: SafeTestCase {
 
@@ -21,6 +22,17 @@ class SwitchSafesFlowCoordinatorTests: SafeTestCase {
 
     func test_startViewController_returnsSwitchSafesVC() {
         XCTAssertTrue(topViewController is SwitchSafesTableViewController)
+    }
+
+    func test_whenRequestingToRemoveWallet_thenEntersRemoveSafeFC() {
+        let testFC = TestFlowCoordinator()
+        let removeSafeCoordinator = RemoveSafeFlowCoordinator()
+        removeSafeCoordinator.safeAddress = ""
+        testFC.enter(flow: removeSafeCoordinator)
+        let expectedViewController = testFC.topViewController
+        switchSafesCoordinator.didRequestToRemove(wallet: WalletData(address: "", name: "", state: .pending))
+        let finalTransitionedViewController = switchSafesCoordinator.navigationController.topViewController
+        XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
     }
 
 }
