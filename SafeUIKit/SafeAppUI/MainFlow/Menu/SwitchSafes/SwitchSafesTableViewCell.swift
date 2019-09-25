@@ -13,6 +13,23 @@ class SwitchSafesTableViewCell: UITableViewCell {
     @IBOutlet weak var addressLabel: EthereumAddressLabel!
     @IBOutlet weak var separatorView: UIView!
 
+    enum Animation {
+        static let images = (0...46).compactMap { index in
+            UIImage(named: String(format: "progress_indicator_%05d", index),
+                    in: Bundle(for: SwitchSafesTableViewCell.self),
+                    compatibleWith: nil)
+        }
+        static let duration: TimeInterval = 1.518
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        identiconView.imageView.stopAnimating()
+        identiconView.imageView.animationImages = nil
+        identiconView.imageView.image = nil
+        identiconView.seed = ""
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -26,7 +43,9 @@ class SwitchSafesTableViewCell: UITableViewCell {
         nameLabel.text = walletData.name
         switch walletData.state {
         case .pending:
-            identiconView.imageView.image = Asset.CreateSafe.cryptoWithoutHassle.image
+            identiconView.imageView.animationImages = Animation.images
+            identiconView.imageView.animationDuration = Animation.duration
+            identiconView.imageView.startAnimating()
             addressLabel.text = LocalizedString("deposit_received_creating_safe",
                                                 comment: "Deposit received. Creating Safe...")
         case .created:

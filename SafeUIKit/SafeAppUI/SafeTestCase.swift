@@ -10,7 +10,6 @@ import IdentityAccessImplementations
 import MultisigWalletDomainModel
 import MultisigWalletApplication
 import MultisigWalletImplementations
-import MultisigWalletApplication
 import Common
 
 class SafeTestCase: XCTestCase {
