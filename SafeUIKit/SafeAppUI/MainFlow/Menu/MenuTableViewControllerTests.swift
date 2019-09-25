@@ -61,7 +61,6 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     func test_whenGettingRow_thenCreatesAppropriateCell() {
-        XCTAssertTrue(cell(row: 0, section: securitySection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 0, section: portfolioSection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 0, section: supportSection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 5, section: supportSection) is AppVersionTableViewCell)
@@ -84,6 +83,13 @@ class MenuTableViewControllerTests: XCTestCase {
         controller.viewWillAppear(false)
         XCTAssertTrue(self.headerFor(section: 0) is ContractUpgradeHeaderView)
         XCTAssertEqual(self.cellHeight(row: 0, section: 0), 0)
+    }
+
+    // MARK: - Did select row
+
+    func test_whenSelectingCell_thenDeselectsIt() {
+        selectCell(row: 0, section: securitySection)
+        XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
     // MARK: - Commands
