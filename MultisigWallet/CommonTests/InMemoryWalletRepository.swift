@@ -12,4 +12,8 @@ open class InMemoryWalletRepository: BaseInMemoryRepository<Wallet, WalletID>, W
         return WalletID()
     }
 
+    public func filter(by states: Set<WalletState.State>) -> [Wallet] {
+        return all().filter { states.contains($0.state.state) }
+    }
+
 }

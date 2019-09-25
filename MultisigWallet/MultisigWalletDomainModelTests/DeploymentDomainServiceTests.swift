@@ -8,52 +8,17 @@ import MultisigWalletImplementations
 import CommonTestSupport
 import BigInt
 
-class DeploymentServiceEventSubscriptionTests: BaseDeploymentDomainServiceTests {
-
-    func test_whenStartsTwice_thenDoesNotDuplicateEventHandling() {
-        eventPublisher.addFilter(DeploymentStarted.self)
-
-        encryptionService.always_return_hash(Data(repeating: 7, count: 32))
-
-        givenDraftWalletWithAllOwners()
-        expectSafeCreationTransaction()
-        start()
-
-        portfolioRepository.remove(portfolioRepository.portfolio()!)
-        walletRepository.remove(wallet)
-
-        givenDraftWalletWithAllOwners()
-        expectSafeCreationTransaction()
-        start()
-
-        relayService.verify()
-    }
-
-}
-
-class DeployingWalletTests: BaseDeploymentDomainServiceTests {
+class DeploymentErrorHandlingTests: BaseDeploymentDomainServiceTests {
 
     override func setUp() {
         super.setUp()
         encryptionService.always_return_hash(Data(repeating: 7, count: 32))
-        eventPublisher.addFilter(DeploymentStarted.self)
     }
 
-    func test_whenInDraft_thenFetchesCreationTransactionData() {
-        givenDraftWalletWithAllOwners()
-        expectSafeCreationTransaction()
-        start()
-        relayService.verify()
-    }
-
-    func test_whenFetchedTransactionData_thenUpdatesAddressAndFee() {
-        givenDraftWalletWithAllOwners()
-        let response = SafeCreationRequest.Response.testResponse()
-        relayService.expect_createSafeCreationTransaction(.testRequest(), response)
-        start()
-        wallet = walletRepository.find(id: wallet.id)!
-        XCTAssertEqual(wallet.address, response.safeAddress)
-        XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, response.deploymentFee)
+    override func start() {
+        deploymentService.executeInWallet(for: WalletEvent(wallet)) { wallet in
+            try self.deploymentService.prepareSafeCreationTransaction(wallet)
+        }
     }
 
     func test_whenCreationTransactionThrows_thenErrorPosted() {
@@ -82,17 +47,48 @@ class DeployingWalletTests: BaseDeploymentDomainServiceTests {
         XCTAssertTrue(wallet.state === wallet.deployingState, line: line)
     }
 
+}
+
+class DeployingWalletTests: BaseDeploymentDomainServiceTests {
+
+    override func setUp() {
+        super.setUp()
+        encryptionService.always_return_hash(Data(repeating: 7, count: 32))
+        eventPublisher.addFilter(DeploymentStarted.self)
+    }
+
+    func test_whenInDraft_thenFetchesCreationTransactionData() {
+        givenDraftWalletWithAllOwners()
+        expectSafeCreationTransaction()
+        start()
+        relayService.verify()
+    }
+
+    override func start() {
+        XCTAssertNoThrow(try deploymentService.prepareSafeCreationTransaction(wallet))
+    }
+
+    func test_whenFetchedTransactionData_thenUpdatesAddressAndFee() {
+        givenDraftWalletWithAllOwners()
+        let response = SafeCreationRequest.Response.testResponse()
+        relayService.expect_createSafeCreationTransaction(.testRequest(), response)
+        start()
+        wallet = walletRepository.find(id: wallet.id)!
+        XCTAssertEqual(wallet.address, response.safeAddress)
+        XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, response.deploymentFee)
+    }
+
     func test_whenResumes_thenMovesToNextState() {
         givenFundedWallet(with: 50)
         relayService.expect_createSafeCreationTransaction(.testRequest(), .testResponse())
-        start()
+        wallet.resume()
         XCTAssertTrue(wallet.state === wallet.notEnoughFundsState)
     }
 
     func test_whenEmptyAccount_thenMovesToFirstDeposit() {
         givenConfiguredWallet()
         relayService.expect_createSafeCreationTransaction(.testRequest(), .testResponse())
-        start()
+        wallet.resume()
         XCTAssertTrue(wallet.state === wallet.waitingForFirstDepositState)
     }
 
@@ -118,6 +114,10 @@ class FirstDepositTests: BaseDeploymentDomainServiceTests {
         deploymentService.responseValidator = MockSafeCreationResponseValidator()
     }
 
+    override func start() {
+        XCTAssertNoThrow(try deploymentService.checkDidReceiveFirstDeposit(wallet))
+    }
+
     func test_whenEmptyBalance_thenDoesNothing() {
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 0)
         start()
@@ -139,13 +139,6 @@ class FirstDepositTests: BaseDeploymentDomainServiceTests {
         XCTAssertTrue(wallet.state === wallet.creationStartedState)
     }
 
-    func test_whenObservingBalanceFails_thenCancels() {
-        setupDeploymentService(delay: 0)
-        nodeService.expect_eth_getBalance_throw(TestError.error)
-        start()
-        assertDeploymentCancelled()
-    }
-
 }
 
 class ConfiguredWalletTests: BaseDeploymentDomainServiceTests {
@@ -156,6 +149,9 @@ class ConfiguredWalletTests: BaseDeploymentDomainServiceTests {
         givenFundedWallet(with: 50)
     }
 
+    override func start() {
+        XCTAssertNoThrow(try deploymentService.checkHasMinimumAmount(wallet))
+    }
 
     func test_whenWalletConfigured_thenObservesBalance() {
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
@@ -168,18 +164,8 @@ class ConfiguredWalletTests: BaseDeploymentDomainServiceTests {
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 50)
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
         start()
-        nodeService.verify()
-    }
-
-    func test_whenObservingBalanceFails_thenErrorPosted() {
-        nodeService.expect_eth_getBalance_throw(TestError.error)
-        assertThrows(TestError.error)
-    }
-
-    func test_whenObservingBalanceFails_thenCancels() {
-        nodeService.expect_eth_getBalance_throw(TestError.error)
         start()
-        assertDeploymentCancelled()
+        nodeService.verify()
     }
 
 }
@@ -191,24 +177,15 @@ class DeploymentFundedTests: BaseDeploymentDomainServiceTests {
         eventPublisher.addFilter(DeploymentFunded.self)
     }
 
+    override func start() {
+        XCTAssertNoThrow(try deploymentService.startSafeCreation(wallet))
+    }
+
     func test_whenFunded_thenNotifiesRelayService() {
         givenFundedWallet()
         relayService.expect_startSafeCreation(address: wallet.address)
         start()
         relayService.verify()
-    }
-
-    func test_whenFailsToNotifyService_thenHandlesError() {
-        givenFundedWallet()
-        relayService.expect_startSafeCreation_throw(TestError.error)
-        assertThrows(TestError.error)
-    }
-
-    func test_whenFailsToNotifyService_thenCancels() {
-        givenFundedWallet()
-        relayService.expect_startSafeCreation_throw(TestError.error)
-        start()
-        assertDeploymentCancelled()
     }
 
 }
@@ -223,12 +200,12 @@ class CreationStartedTests: BaseDeploymentDomainServiceTests {
         eventPublisher.addFilter(CreationStarted.self)
     }
 
-    func test_whenFunded_thenRunsSynchronisation() {
-        givenDeployingWallet()
-        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
-        start()
-        delay(0.25)
-        XCTAssertTrue(syncService.didSync)
+    func checkTransactionHash() {
+        XCTAssertNoThrow(try deploymentService.checkHasSubmittedTransaction(wallet))
+    }
+
+    func checkTransactionReceipt() {
+        XCTAssertNoThrow(try deploymentService.checkHasMinedTransaction(wallet))
     }
 
     func test_whenFunded_thenWaitsForTransaction() {
@@ -236,17 +213,22 @@ class CreationStartedTests: BaseDeploymentDomainServiceTests {
         relayService.expect_safeCreationTransactionHash(address: wallet.address, hash: nil)
         relayService.expect_safeCreationTransactionHash(address: wallet.address, hash: TransactionHash.test1)
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
-        start()
+
+        checkTransactionHash()
+        checkTransactionHash()
+        checkTransactionReceipt()
+
         relayService.verify()
         wallet = DomainRegistry.walletRepository.selectedWallet()!
         XCTAssertEqual(wallet.creationTransactionHash, TransactionHash.test1.value)
     }
 
-
     func test_whenTransactionKnown_thenWaitsForItsStatus() {
         givenDeployingWallet()
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
-        start()
+
+        checkTransactionReceipt()
+
         relayService.verify()
         nodeService.verify()
         wallet = DomainRegistry.walletRepository.selectedWallet()!
@@ -256,7 +238,9 @@ class CreationStartedTests: BaseDeploymentDomainServiceTests {
     func test_whenTransactionFailed_thenCancels() {
         givenDeployingWallet()
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: failedReceipt)
-        start()
+
+        checkTransactionReceipt()
+
         wallet = DomainRegistry.walletRepository.selectedWallet()!
         XCTAssertTrue(wallet.state === wallet.finalizingDeploymentState)
     }
@@ -270,11 +254,14 @@ class WalletCreatedTests: BaseDeploymentDomainServiceTests {
         eventPublisher.addFilter(WalletCreated.self)
     }
 
+    override func start() {
+        XCTAssertNoThrow(try deploymentService.postProcessCreation(wallet))
+    }
+
     func test_whenCreated_thenNotifiesExtension() {
         givenCreatedWalletWithNotifiedExtension()
         start()
         wallet.proceed()
-        delay()
         encryptionService.verify()
         notificationService.verify()
     }
@@ -292,7 +279,6 @@ class WalletCreatedTests: BaseDeploymentDomainServiceTests {
 
         start()
         wallet.proceed()
-        delay()
         XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWallet)!.address))
         XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWalletDerived)!.address))
     }
@@ -306,12 +292,15 @@ class WalletCreationFailedTests: BaseDeploymentDomainServiceTests {
         eventPublisher.addFilter(WalletCreationFailed.self)
     }
 
+    override func start() {
+        XCTAssertNoThrow(try deploymentService.crashTheApp(wallet))
+    }
+
     func test_whenFailed_thenExits() {
         givenDeployingWallet()
         start()
         system.expect_exit(EXIT_FAILURE)
         wallet.cancel()
-        delay()
         system.verify()
     }
 

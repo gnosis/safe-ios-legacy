@@ -60,4 +60,14 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
         return find(id: walletID)
     }
 
+    public func filter(by states: Set<WalletState.State>) -> [Wallet] {
+        guard !states.isEmpty else { return all() }
+        let table = self.table
+        let params = states.map { _ in "?" }.joined(separator: ",")
+        let sql =  "SELECT \(table.fieldNameList) FROM \(table.tableName) WHERE state IN (\(params)) ORDER BY rowid"
+        return try! unwrapped(db.execute(sql: sql,
+                                         bindings: states.map { $0.rawValue },
+                                         resultMap: objectFromResultSet))
+    }
+
 }

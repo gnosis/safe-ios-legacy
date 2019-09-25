@@ -24,6 +24,13 @@ class DBWalletRepositoryIntegrationTests: XCTestCase {
         let saved = repo.findByID(wallet.id)
         XCTAssertEqual(saved, wallet)
 
+        let wallet2 = Wallet(id: repo.nextID(), owner: Address.testAccount2)
+        wallet2.state = wallet2.deployingState
+        repo.save(wallet2)
+
+        let result = repo.filter(by: [.draft, .deploying]).sorted { $0.id.id < $1.id.id }
+        XCTAssertEqual(result, [wallet, wallet2].sorted { $0.id.id < $1.id.id })
+
         repo.remove(wallet)
         XCTAssertNil(repo.findByID(wallet.id))
     }
