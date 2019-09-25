@@ -15,12 +15,12 @@ final class RemoveSafeFlowCoordinator: FlowCoordinator {
 
     private func removeSafeIntro() -> UIViewController {
         return RemoveSafeIntroViewController.create(address: safeAddress) { [unowned self] in
-            self.push(self.confirmSafeEnterSeed())
+            self.push(self.removeSafeEnterSeed())
         }
     }
 
-    private func confirmSafeEnterSeed() -> UIViewController {
-        return UIViewController()
+    private func removeSafeEnterSeed() -> UIViewController {
+        return RemoveSafeEnterSeedViewController()
     }
 
 }
