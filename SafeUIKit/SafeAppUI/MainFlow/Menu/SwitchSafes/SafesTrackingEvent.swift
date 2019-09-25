@@ -12,4 +12,3 @@ enum SafesTrackingEvent: String, ScreenTrackingEvent {
     case removeSafeEnterSeed            = "RemoveSafe_EnterSeed"
 
 }
-
