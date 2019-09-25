@@ -128,6 +128,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Onboarding 2 description */
 "current_version" = "The current version of your smart contract is outdated. If you don't upgrade you'll still be able to use your Safe, but we recommend upgrading now to enjoy the latest security updates.";
 
+/* Deposit received. Creating Safe... */
+"deposit_received_creating_safe" = "Deposit received! Creating Safe...";
+
 /* Detected dangerous incoming transaction. */
 "detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
 
@@ -152,6 +155,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Explanation text */
 "disconnecting_in_progress" = "Disabling 2FA is in progress. The transaction has been submitted and should take a couple of minutes.";
+
+/* Edit */
+"edit" = "Edit";
 
 /* E-mail */
 "email" = "E-mail";
@@ -467,7 +473,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "keycard_blocked" = "Keycard blocked";
 
 /* Steps for pairing */
-"keycard_intro_description" = "* Provide the PIN and pairing password of your Keycard.\n* Hold the Keycard to the phone for 3 seconds  to pair the keycard.\n* If you don’t yet have the PIN and pairing password, you can get them on the next screen.";
+"keycard_intro_description" = "* Provide the PIN and pairing password of your Keycard.\n* Hold the Keycard to the phone for 3 seconds  to pair the Keycard.\n* If you don’t yet have the PIN and pairing password, you can get them on the next screen.";
 
 /* Paired */
 "keycard_paired" = "Status Keycard successfully paired";
@@ -830,6 +836,9 @@ Pairing password: %@";
 
 /* Title for support section. */
 "support" = "Support";
+
+/* Switch Safes */
+"switch_safes" = "Switch Safes";
 
 /* Sync with browser extension */
 "sync_with_extension" = "Sync with Authenticator";

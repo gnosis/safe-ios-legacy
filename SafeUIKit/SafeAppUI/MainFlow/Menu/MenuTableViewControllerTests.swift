@@ -57,24 +57,16 @@ class MenuTableViewControllerTests: XCTestCase {
 
     func test_whenCreated_thenRowHeightsAreProvided() {
         let menuCommandHeigt = MenuCommand().height
-        XCTAssertEqual(cellHeight(row: 0, section: safeSection), SafeTableViewCell.height)
         XCTAssertEqual(cellHeight(row: 0, section: securitySection), menuCommandHeigt)
         XCTAssertEqual(cellHeight(row: 0, section: portfolioSection), menuCommandHeigt)
         XCTAssertEqual(cellHeight(row: 0, section: supportSection), menuCommandHeigt)
     }
 
     func test_whenGettingRow_thenCreatesAppropriateCell() {
-        XCTAssertTrue(cell(row: 0, section: safeSection) is SafeTableViewCell)
         XCTAssertTrue(cell(row: 0, section: securitySection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 0, section: portfolioSection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 0, section: supportSection) is BasicTableViewCell)
         XCTAssertTrue(cell(row: 5, section: supportSection) is AppVersionTableViewCell)
-    }
-
-    func test_whenConfiguredSelectedSafeRow_thenAllIsThere() {
-        let cell = self.cell(row: 0, section: safeSection) as! SafeTableViewCell
-        XCTAssertNotNil(cell.safeAddressLabel.text)
-        XCTAssertNotNil(cell.safeIconImageView.image)
     }
 
     func test_whenConfiguredFeePaymentMethodRow_thenAllIsThere() {

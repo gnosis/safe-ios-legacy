@@ -37,7 +37,6 @@ final class MenuTableViewController: UITableViewController {
 
     enum SettingsSection: Hashable {
         case contractUpgrade
-        case safe
         case portfolio
         case security
         case support
@@ -73,7 +72,7 @@ final class MenuTableViewController: UITableViewController {
     var securityCommands: [MenuCommand] {
         return [FeePaymentMethodCommand(), ChangePasswordCommand(), ResyncWithBrowserExtensionCommand(),
                 ReplaceRecoveryPhraseCommand(), ReplaceTwoFACommand(),
-                ConnectTwoFACommand(), DisconnectTwoFACommand(), WalletConnectMenuCommand()]
+                ConnectTwoFACommand(), DisconnectTwoFACommand(), WalletConnectMenuCommand(), SwitchSafesCommand()]
     }
 
     var supportCommands: [MenuCommand] {
@@ -120,16 +119,6 @@ final class MenuTableViewController: UITableViewController {
                 (section: .contractUpgrade,
                  title: "",
                  items: [MenuItem(name: "", hasDisclosure: false, height: 0, command: VoidCommand())])
-            ]
-        }
-        if selectedSafeAddress != nil {
-            menuItemSections += [
-                (section: .safe,
-                 title: Strings.address,
-                 items: [MenuItem(name: "SAFE",
-                                  hasDisclosure: false,
-                                  height: SafeTableViewCell.height,
-                                  command: VoidCommand())])
             ]
         }
         menuItemSections += [
@@ -179,11 +168,6 @@ final class MenuTableViewController: UITableViewController {
         switch menuItemSections[indexPath.section].section {
         case .contractUpgrade:
             return UITableViewCell()
-        case .safe:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTableViewCell",
-                                                     for: indexPath) as! SafeTableViewCell
-            cell.configure(address: selectedSafeAddress!)
-            return cell
         case .portfolio, .security, .support:
             let item = menuItem(at: indexPath)
             if item.name == "AppVersion" {

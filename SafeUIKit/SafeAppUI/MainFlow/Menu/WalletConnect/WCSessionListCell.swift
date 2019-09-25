@@ -6,6 +6,7 @@ import UIKit
 import MultisigWalletApplication
 import Kingfisher
 
+// TODO: move to SafeUIKit and rename
 final class WCSessionListCell: UITableViewCell {
 
     @IBOutlet weak var dAppImageView: UIImageView!

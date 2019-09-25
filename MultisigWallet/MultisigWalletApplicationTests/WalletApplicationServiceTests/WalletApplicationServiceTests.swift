@@ -10,6 +10,8 @@ import CommonTestSupport
 
 class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
+    // MARK: - Wallet
+
     func test_whenEstimating_thenReturnsResults() {
         prepareEstimationEnvironment()
         let tokenData = self.service.estimateSafeCreation()
@@ -113,6 +115,40 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         wallet.updateMinimumTransactionAmount(100)
         walletRepository.save(wallet)
         XCTAssertEqual(service.minimumDeploymentAmount, 100)
+    }
+
+    func test_wallets_returnsWalletInProperState() {
+        givenDraftWallet()
+        XCTAssertEqual(service.wallets().count, 0)
+        let wallet = walletRepository.selectedWallet()!
+
+        wallet.state = wallet.deployingState
+        XCTAssertEqual(service.wallets().count, 0)
+
+        wallet.state = wallet.recoveryDraftState
+        XCTAssertEqual(service.wallets().count, 0)
+
+        wallet.changeAddress(Address.testAccount1)
+        wallet.state = wallet.waitingForFirstDepositState
+        XCTAssertEqual(service.wallets().count, 1)
+
+        wallet.state = wallet.notEnoughFundsState
+        XCTAssertEqual(service.wallets().count, 1)
+
+        wallet.state = wallet.creationStartedState
+        XCTAssertEqual(service.wallets().count, 1)
+
+        wallet.state = wallet.finalizingDeploymentState
+        XCTAssertEqual(service.wallets().count, 1)
+
+        wallet.state = wallet.readyToUseState
+        XCTAssertEqual(service.wallets().count, 1)
+
+        wallet.state = wallet.recoveryInProgressState
+        XCTAssertEqual(service.wallets().count, 1)
+
+        wallet.state = wallet.recoveryPostProcessingState
+        XCTAssertEqual(service.wallets().count, 1)
     }
 
     // MARK: - Payment Token

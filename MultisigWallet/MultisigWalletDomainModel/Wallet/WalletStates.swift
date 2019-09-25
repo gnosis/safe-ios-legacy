@@ -83,6 +83,7 @@ public class DraftState: WalletState {
 
     override var isCreationInProgress: Bool { return false }
     override var canChangeOwners: Bool { return true }
+    override var canChangeAddress: Bool { return true }
 
     private let requiredRoles = [OwnerRole.thisDevice, .paperWallet, .paperWalletDerived]
 

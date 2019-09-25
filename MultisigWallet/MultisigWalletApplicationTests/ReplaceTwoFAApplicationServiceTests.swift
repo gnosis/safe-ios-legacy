@@ -6,17 +6,17 @@ import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
 
-class ReplaceBrowserExtensionApplicationServiceTests: XCTestCase {
+class ReplaceTwoFAApplicationServiceTests: XCTestCase {
 
-    var mockReplaceService = MockReplaceBrowserExtensionDomainService()
+    var mockReplaceService = MockReplaceTwoFADomainService()
     let mockWalletService = MockWalletApplicationService()
-    var service: ReplaceBrowserExtensionApplicationService!
+    var service: ReplaceTwoFAApplicationService!
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: mockReplaceService, for: ReplaceBrowserExtensionDomainService.self)
+        DomainRegistry.put(service: mockReplaceService, for: ReplaceTwoFADomainService.self)
         ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
-        service = ReplaceBrowserExtensionApplicationService.create()
+        service = ReplaceTwoFAApplicationService.create()
     }
 
     func test_whenOldPairNotSet_thenDoesNotDeleteIt() throws {
@@ -57,7 +57,7 @@ class ReplaceBrowserExtensionApplicationServiceTests: XCTestCase {
         do_testThrowing(\.shouldThrowDuringSigning)
     }
 
-    private func do_testThrowing(_ keyPath: WritableKeyPath<MockReplaceBrowserExtensionDomainService, Bool>,
+    private func do_testThrowing(_ keyPath: WritableKeyPath<MockReplaceTwoFADomainService, Bool>,
                                  line: UInt = #line) {
         let (tx, phrase) = ("tx", "phrase")
         mockReplaceService[keyPath: keyPath] = true
@@ -76,7 +76,7 @@ class ReplaceBrowserExtensionApplicationServiceTests: XCTestCase {
 
 }
 
-class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainService {
+class MockReplaceTwoFADomainService: ReplaceTwoFADomainService {
 
     var shouldThrowDuringValidation = false
     var shouldThrowDuringSigning = false
