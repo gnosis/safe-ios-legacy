@@ -532,8 +532,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public func updateTransaction(_ id: String, amount: BigInt, token: String, recipient: String) {
-        guard let transaction = DomainRegistry.transactionRepository.find(id: TransactionID(id)),
-            let tokenItem = DomainRegistry.tokenListItemRepository.find(id: TokenID(token)) else { return }
+        let transaction = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+        let tokenItem = DomainRegistry.tokenListItemRepository.find(id: TokenID(token))!
         transaction
             .change(amount: TokenAmount(amount: amount, token: tokenItem.token))
             .change(recipient: Address(recipient))
@@ -684,8 +684,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public func requestTransactionConfirmationIfNeeded(_ id: String) throws -> TransactionData {
-        guard let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)),
-            !transactionHasEnoughSignaturesToSubmit(tx) else { return transactionData(id)! }
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+        guard !transactionHasEnoughSignaturesToSubmit(tx) else { return transactionData(id)! }
         if let extensionAddress = address(of: .browserExtension), !tx.isSignedBy(extensionAddress) {
             try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))
         }
@@ -699,7 +699,7 @@ public class WalletApplicationService: Assertable {
 
     /// Makes transaction estimate-able again
     public func resetTransaction(_ id: String) {
-        guard let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)) else { return }
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         tx.reset()
         tx.change(fee: nil)
         tx.change(feeEstimate: nil)
@@ -707,8 +707,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
-        guard let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)),
-            tx.feeEstimate == nil ||
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+        guard tx.feeEstimate == nil ||
             (tx.type.isConnectTwoFA || tx.type == .replaceRecoveryPhrase) && tx.status == .draft else {
                 return transactionData(id)!
         }
@@ -747,13 +747,10 @@ public class WalletApplicationService: Assertable {
     }
 
     public func submitTransaction(_ id: String) throws -> TransactionData {
-        guard var tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)) else { return .empty }
+        var tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         if tx.status == .draft {
             _ = try requestTransactionConfirmationIfNeeded(id)
-            guard let updatedTx = DomainRegistry.transactionRepository.find(id: TransactionID(id)) else {
-                return .empty
-            }
-            tx = updatedTx
+            tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         }
         if tx.type.isReplaceOrDisconnectTwoFA {
             try proceedTransaction(tx)

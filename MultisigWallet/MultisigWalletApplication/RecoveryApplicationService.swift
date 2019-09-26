@@ -73,9 +73,7 @@ public class RecoveryApplicationService {
     }
 
     public func transactionData(_ tx: String) -> TransactionData {
-        guard let tx = DomainRegistry.transactionRepository.find(id: TransactionID(tx)) else {
-            return .empty
-        }
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(tx))!
         return transactionData(tx)
     }
 
