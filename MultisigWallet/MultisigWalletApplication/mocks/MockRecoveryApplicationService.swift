@@ -10,4 +10,8 @@ public class MockRecoveryApplicationService: RecoveryApplicationService {
         return false
     }
 
+    public override func resumeRecoveryInBackground() {
+        // empty
+    }
+
 }

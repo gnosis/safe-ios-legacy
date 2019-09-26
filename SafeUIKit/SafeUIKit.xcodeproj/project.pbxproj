@@ -190,6 +190,8 @@
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
 		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
+		0AA21E5E233CC7CF004A4A62 /* RecoverSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA21E5D233CC7CF004A4A62 /* RecoverSafeCommand.swift */; };
+		0AA21E74233CD4AC004A4A62 /* BaseAddSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA21E73233CD4AC004A4A62 /* BaseAddSafeCommand.swift */; };
 		0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF69B22265D19400F06616 /* PasswordViewController.xib */; };
 		0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2012D229813130071510A /* OnboardingCreationFeeViewController.swift */; };
 		0AB20142229848520071510A /* LongProcessTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB20141229848520071510A /* LongProcessTracker.swift */; };
@@ -842,6 +844,8 @@
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
+		0AA21E5D233CC7CF004A4A62 /* RecoverSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeCommand.swift; sourceTree = "<group>"; };
+		0AA21E73233CD4AC004A4A62 /* BaseAddSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAddSafeCommand.swift; sourceTree = "<group>"; };
 		0AAF69B22265D19400F06616 /* PasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
 		0AB0B56B2163898E00FB2435 /* SafeUIKitDemoConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SafeUIKitDemoConfig.xcconfig; sourceTree = "<group>"; };
 		0AB0B56C21638A2400FB2435 /* SafeUIKitDemo.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = SafeUIKitDemo.xcfilelist; sourceTree = "<group>"; };
@@ -1280,6 +1284,7 @@
 				0AE0FEE9229EC7BC00ABC552 /* RecoverReviewViewController.swift */,
 				0AE0FEE7229EC2AF00ABC552 /* RecoverFeePaidViewController.swift */,
 				0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */,
+				0AA21E5D233CC7CF004A4A62 /* RecoverSafeCommand.swift */,
 			);
 			path = RecoverSafe;
 			sourceTree = "<group>";
@@ -1300,6 +1305,7 @@
 				0A2D5889225757FF001B8BF4 /* RecoverSafe */,
 				0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */,
 				0A334DB7209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewController.swift */,
+				0AA21E73233CD4AC004A4A62 /* BaseAddSafeCommand.swift */,
 				0AB20141229848520071510A /* LongProcessTracker.swift */,
 				0A334DB5209C6D8600ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift */,
 				0A2C0E3A2297E11C008A30AC /* OnboardingFeePaidViewController.swift */,
@@ -3181,6 +3187,7 @@
 				0A2ACBFD2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0AE0FE68229D674400ABC552 /* UIViewController+Back.swift in Sources */,
+				0AA21E74233CD4AC004A4A62 /* BaseAddSafeCommand.swift in Sources */,
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				0AE0FEE8229EC2AF00ABC552 /* RecoverFeePaidViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
@@ -3253,6 +3260,7 @@
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				5549B2F4228C268200F3B5B7 /* OwnerModificationFeeCalculation.swift in Sources */,
+				0AA21E5E233CC7CF004A4A62 /* RecoverSafeCommand.swift in Sources */,
 				552D4304233B824500C57B5C /* SafesTrackingEvent.swift in Sources */,
 				55BDA8152326426A005C9E6A /* NewSafeThreeStepsBaseController.swift in Sources */,
 				0ADE046822E5F15D00CA4705 /* PlaceholderCreator.swift in Sources */,

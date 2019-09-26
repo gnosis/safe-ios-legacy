@@ -75,14 +75,9 @@ class OnboardingCreateOrRestoreViewController: UIViewController {
     @IBAction func recoverExistingSafe(_ sender: UIButton) {
         guard sender.isEnabled else { return }
         sender.isEnabled = false
-
-        if !ApplicationServiceRegistry.walletService.hasSelectedWallet {
-            ApplicationServiceRegistry.recoveryService.createRecoverDraftWallet()
-        } else {
-            ApplicationServiceRegistry.recoveryService.prepareForRecovery()
-        }
+        ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        ApplicationServiceRegistry.recoveryService.createRecoverDraftWallet()
         delegate?.didSelectRecoverSafe()
-
         sender.isEnabled = true
     }
 

@@ -8,6 +8,7 @@ import SafeUIKit
 
 public protocol OnboardingIntroViewControllerDelegate: class {
     func didPressNext()
+    func didGoBack()
 }
 
 public class OnboardingIntroViewController: UIViewController {
@@ -43,6 +44,7 @@ public class OnboardingIntroViewController: UIViewController {
     @IBOutlet weak var nextButtonItem: UIBarButtonItem!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var headerLabel: UILabel!
+    var backButtonItem: UIBarButtonItem!
 
     public weak var delegate: OnboardingIntroViewControllerDelegate?
     /// If not nil, then will be tracked, otherwise default onboarding events will be tracked.
@@ -81,6 +83,15 @@ public class OnboardingIntroViewController: UIViewController {
         nextButtonItem.title = nextActionText
         imageView.image = headerImage
         imageView.isHidden = headerImage == nil
+    }
+
+    public override func willMove(toParent parent: UIViewController?) {
+        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
+        setCustomBackButton(backButtonItem)
+    }
+
+    @objc func back() {
+        delegate?.didGoBack()
     }
 
     @IBAction func proceed(_ sender: Any) {
@@ -141,6 +152,14 @@ extension SafeLabelTitleView {
         let view = SafeLabelTitleView()
         view.attributedText = NSAttributedString(string: text, style: OnboardingHeaderStyle())
         return view
+    }
+
+}
+
+extension OnboardingIntroViewController: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
     }
 
 }
