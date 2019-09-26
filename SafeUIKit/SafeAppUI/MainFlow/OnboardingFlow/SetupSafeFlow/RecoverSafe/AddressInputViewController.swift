@@ -90,6 +90,8 @@ extension RecoveryApplicationServiceError: LocalizedError {
         switch self {
         case .invalidContractAddress:
             return LocalizedString("ios_recovery_error_contract", comment: "Invalid contract address")
+        case .walletAlreadyExists:
+            return LocalizedString("ios_recovery_error_already_exists", comment: "Wallet already exists")
         case .recoveryPhraseInvalid:
             return LocalizedString("ios_recovery_error_phrase", comment: "Incorrect recovery phrase")
         case .recoveryAccountsNotFound:

@@ -24,6 +24,11 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
         }
     }
 
+    func finish() {
+        ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        exitFlow()
+    }
+
 }
 
 /// Constructors of the screens participating in the flow
@@ -80,6 +85,9 @@ extension RecoverSafeFlowCoordinator: OnboardingIntroViewControllerDelegate {
         push(addressViewController())
     }
 
+    func didGoBack() {
+        finish()
+    }
 }
 
 extension RecoverSafeFlowCoordinator: AddressInputViewControllerDelegate {
@@ -223,7 +231,7 @@ extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
     }
 
     func recoverRecoveryFeeViewControllerDidCancel() {
-        exitFlow()
+        finish()
     }
 
 }
@@ -252,11 +260,11 @@ extension RecoverSafeFlowCoordinator: RecoverFeePaidViewControllerDelegate {
     }
 
     func recoverFeePaidViewControllerDidFail() {
-        exitFlow()
+        finish()
     }
 
     func recoverFeePaidViewControllerDidSuccess() {
-        exitFlow()
+        finish()
     }
 
 }

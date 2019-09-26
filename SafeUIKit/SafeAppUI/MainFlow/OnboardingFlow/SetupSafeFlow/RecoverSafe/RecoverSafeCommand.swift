@@ -5,24 +5,24 @@
 import Foundation
 import MultisigWalletApplication
 
-final class CreateSafeCommand: BaseAddSafeCommand {
+final class RecoverSafeCommand: BaseAddSafeCommand {
 
     override var title: String {
-        LocalizedString("create_new_safe", comment: "Create Safe")
+        LocalizedString("recover_existing_safe_menu", comment: "Recover Safe")
     }
 
     override init() {
         super.init()
-        childFlowCoordinator = CreateSafeFlowCoordinator()
+        childFlowCoordinator = RecoverSafeFlowCoordinator()
     }
 
     override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        (childFlowCoordinator as! CreateSafeFlowCoordinator).mainFlowCoordinator = mainFlowCoordinator
+        (childFlowCoordinator as! RecoverSafeFlowCoordinator).mainFlowCoordinator = mainFlowCoordinator
         super.run(mainFlowCoordinator: mainFlowCoordinator)
     }
 
     override func createDraft() {
-        ApplicationServiceRegistry.walletService.createNewDraftWallet()
+        ApplicationServiceRegistry.recoveryService.createRecoverDraftWallet()
     }
 
 }

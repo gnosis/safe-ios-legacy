@@ -391,7 +391,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         // empty
     }
 
-    public override func removeWallet(_ id: String) {
+    public override func resumeDeploymentInBackground() {
         // empty
     }
 
