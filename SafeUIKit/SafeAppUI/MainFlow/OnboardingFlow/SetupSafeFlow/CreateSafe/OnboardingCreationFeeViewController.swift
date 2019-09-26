@@ -106,8 +106,6 @@ class OnboardingCreationFeeViewController: CardViewController {
         present(controller, animated: true, completion: nil)
     }
 
-    // should stop updating while in background?
-
     @objc func share() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         let activityController = UIActivityViewController(activityItems: [address], applicationActivities: nil)
