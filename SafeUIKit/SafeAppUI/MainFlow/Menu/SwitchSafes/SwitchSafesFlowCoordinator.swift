@@ -4,6 +4,7 @@
 
 import Foundation
 import Common
+import MultisigWalletApplication
 
 class SwitchSafesFlowCoordinator: FlowCoordinator {
 
@@ -27,8 +28,9 @@ extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
         enter(flow: removeSafeFlowCoordinator) {
             DispatchQueue.main.async { [unowned self] in
                 self.popToLastCheckpoint()
-                // TODO: if no safes -> show
-                // switchToRootController
+                if ApplicationServiceRegistry.walletService.wallets().isEmpty {
+                    self.exitFlow()                    
+                }
             }
         }
     }

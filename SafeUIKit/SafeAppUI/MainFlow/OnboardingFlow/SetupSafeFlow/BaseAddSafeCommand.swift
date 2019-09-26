@@ -15,8 +15,6 @@ class BaseAddSafeCommand: MenuCommand {
     var newWalletID: String?
 
     override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        (childFlowCoordinator as! CreateSafeFlowCoordinator).mainFlowCoordinator = mainFlowCoordinator
-
         selectedWalletID = ApplicationServiceRegistry.walletService.selectedWalletID()
         assert(selectedWalletID != nil)
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
