@@ -208,6 +208,10 @@ public class WalletApplicationService: Assertable {
 
             ApplicationServiceRegistry.walletConnectService
                 .pendingTransactionsRepository.remove(transactionID: transaction.id)
+
+            if let monitor = DomainRegistry.transactionMonitorRepository.find(id: transaction.id) {
+                DomainRegistry.transactionMonitorRepository.remove(monitor)
+            }
         }
     }
 
@@ -224,7 +228,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public func selectFirstWalletIfNeeded() {
-        if selectedWallet == nil,  let first = DomainRegistry.walletRepository.all().first {
+        if selectedWallet == nil, let first = DomainRegistry.walletRepository.all().first {
             selectWallet(first.id.id)
         }
     }

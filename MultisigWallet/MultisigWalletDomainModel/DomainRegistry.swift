@@ -50,6 +50,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: KeycardRepository.self)
     }
 
+    public static var transactionMonitorRepository: RBETransactionMonitorRepository {
+        return service(for: RBETransactionMonitorRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {
@@ -126,10 +130,6 @@ public class DomainRegistry: AbstractRegistry {
 
     public static var communicationService: CommunicationDomainService {
         return service(for: CommunicationDomainService.self)
-    }
-
-    public static var transactionMonitorRepository: RBETransactionMonitorRepository {
-        return service(for: RBETransactionMonitorRepository.self)
     }
 
     public static var walletConnectService: WalletConnectDomainService {

@@ -103,10 +103,10 @@ open class KeycardApplicationService {
     }
 
     open func signTransaction(id: String, pin: String) throws {
-        guard let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)),
-            let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID),
-            let address = wallet.owner(role: .keycard)?.address,
-            !tx.isSignedBy(address) else { return }
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
+        let address = wallet.owner(role: .keycard)!.address
+        guard !tx.isSignedBy(address) else { return }
         let hash = DomainRegistry.encryptionService.hash(of: tx)
         let rawSignature = try DomainRegistry.keycardService.sign(hash: hash, by: address, pin: pin)
         let signature = Signature(data: rawSignature, address: address)
@@ -115,8 +115,8 @@ open class KeycardApplicationService {
     }
 
     open func unblock(puk: String, pin: String) throws {
-        guard let wallet = DomainRegistry.walletRepository.selectedWallet(),
-            let owner = wallet.owner(role: .keycard) else { return }
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        let owner = wallet.owner(role: .keycard)!
         try DomainRegistry.keycardService.unblock(puk: puk, pin: pin, address: owner.address)
     }
 
