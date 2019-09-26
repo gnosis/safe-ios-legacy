@@ -41,4 +41,46 @@ public class WalletDomainService {
         }
     }
 
+    public static func removeWallet(_ id: String) {
+        let walletID = WalletID(id)
+
+        if let wallet = DomainRegistry.walletRepository.find(id: walletID) {
+            DomainRegistry.walletRepository.remove(wallet)
+
+            let owners = wallet.allOwners().map { $0.address }
+            for owner in owners {
+                DomainRegistry.externallyOwnedAccountRepository.remove(address: owner)
+            }
+
+        }
+        removeFromPortfolio(walletID: walletID)
+        removeAccounts(for: walletID)
+        removeTransactions(for: walletID)
+    }
+
+    public static func removeFromPortfolio(walletID: WalletID) {
+        if let portfolio = DomainRegistry.portfolioRepository.portfolio() {
+            portfolio.removeWallet(walletID)
+            DomainRegistry.portfolioRepository.save(portfolio)
+        }
+    }
+
+    public static func removeAccounts(for walletID: WalletID) {
+        let accounts = DomainRegistry.accountRepository.filter(walletID: walletID)
+        for account in accounts {
+            DomainRegistry.accountRepository.remove(account)
+        }
+    }
+
+    public static func removeTransactions(for walletID: WalletID) {
+        let transactions = DomainRegistry.transactionRepository.find(wallet: walletID)
+        for transaction in transactions {
+            DomainRegistry.transactionRepository.remove(transaction)
+
+            if let monitor = DomainRegistry.transactionMonitorRepository.find(id: transaction.id) {
+                DomainRegistry.transactionMonitorRepository.remove(monitor)
+            }
+        }
+    }
+
 }

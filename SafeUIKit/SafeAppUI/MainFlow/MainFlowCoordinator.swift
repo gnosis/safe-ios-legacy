@@ -62,6 +62,8 @@ open class MainFlowCoordinator: FlowCoordinator {
 
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
         ApplicationServiceRegistry.walletService.selectFirstWalletIfNeeded()
+        ApplicationServiceRegistry.walletService.resumeDeploymentInBackground()
+        ApplicationServiceRegistry.recoveryService.resumeRecoveryInBackground()
 
         defer {
             ApplicationServiceRegistry.walletConnectService.subscribeForIncomingTransactions(self)

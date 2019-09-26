@@ -99,6 +99,7 @@
 		0A84C2ED230549E60006DA50 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77D0C3211AD952003582DD /* Fixtures.swift */; };
 		0A84C2EE230549E60006DA50 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1617F82304593B00F6E501 /* ExternallyOwnedAccount+TestFixture.swift */; };
 		0A84C2EF230549E60006DA50 /* WCTestStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D612304544900E7EB07 /* WCTestStubs.swift */; };
+		0AA21E7D233CD739004A4A62 /* InMemoryTransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA21E7B233CD70B004A4A62 /* InMemoryTransactionMonitorRepository.swift */; };
 		0AA52701232A6F9E00B2825F /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA52700232A6F9E00B2825F /* LocalizedString.swift */; };
 		0AAE7C42230450A600E7EB07 /* MultisigWalletDomainModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAE7C39230450A600E7EB07 /* MultisigWalletDomainModel.framework */; };
 		0AAE7C49230450A600E7EB07 /* MultisigWalletDomainModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAE7C3B230450A600E7EB07 /* MultisigWalletDomainModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -583,6 +584,7 @@
 		0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumApplicationService.swift; sourceTree = "<group>"; };
 		0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationTestCase.swift; sourceTree = "<group>"; };
 		0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationService.swift; sourceTree = "<group>"; };
+		0AA21E7B233CD70B004A4A62 /* InMemoryTransactionMonitorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionMonitorRepository.swift; sourceTree = "<group>"; };
 		0AA52700232A6F9E00B2825F /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		0AAAE3E6219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceConfiguration.swift; sourceTree = "<group>"; };
 		0AAE7C39230450A600E7EB07 /* MultisigWalletDomainModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MultisigWalletDomainModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -955,6 +957,7 @@
 				0AAE7D5E2304544900E7EB07 /* InMemorySinglePortfolioRepository.swift */,
 				0AAE7D682304544900E7EB07 /* InMemoryTransactionRepository.swift */,
 				0AAE7D4B2304544900E7EB07 /* InMemoryAccountRepository.swift */,
+				0AA21E7B233CD70B004A4A62 /* InMemoryTransactionMonitorRepository.swift */,
 				0AAE7D212304544800E7EB07 /* InMemoryWalletRepository.swift */,
 				0A77D0C3211AD952003582DD /* Fixtures.swift */,
 				0A1617F82304593B00F6E501 /* ExternallyOwnedAccount+TestFixture.swift */,
@@ -2112,6 +2115,7 @@
 				0ACD3EFE232BE85D000E9274 /* KeycardErrorConverter.swift in Sources */,
 				0A16184C2304593B00F6E501 /* TransactionCall.swift in Sources */,
 				0ACD3EFC232BE833000E9274 /* KeycardCredentialsGenerator.swift in Sources */,
+				0AA21E7D233CD739004A4A62 /* InMemoryTransactionMonitorRepository.swift in Sources */,
 				0A1618472304593B00F6E501 /* DBRBETransactionMonitorRepository.swift in Sources */,
 				0A711E132334E697008F1124 /* WalletDiagnosticDomainService.swift in Sources */,
 				0A1618212304593B00F6E501 /* EthereumKitEthereumService.swift in Sources */,

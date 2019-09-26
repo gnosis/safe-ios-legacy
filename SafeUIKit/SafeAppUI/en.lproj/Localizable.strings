@@ -392,6 +392,9 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Recovery address validation failed alert's message */
 "ios_recovery_address_validation_failure_format" = "Address is invalid: %@";
 
+/* Wallet already exists */
+"ios_recovery_error_already_exists" = "The Safe with this address already exists. Please remove it before recovering it.";
+
 /* Recovery transaction failed to change Safe confirmation count */
 "ios_recovery_error_changecount" = "Recovery transaction failed to change Safe confirmation count";
 
@@ -676,6 +679,9 @@ Pairing password: %@";
 
 /* Transaction name */
 "recover_existing_safe" = "Recover Existing Safe";
+
+/* Recover Safe */
+"recover_existing_safe_menu" = "Recover existing Safe";
 
 /* Restore safe button */
 "recover_safe" = "Recover an Existing Safe";

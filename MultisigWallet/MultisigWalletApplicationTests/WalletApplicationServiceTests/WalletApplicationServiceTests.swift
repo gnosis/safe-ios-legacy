@@ -161,7 +161,7 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
     func test_whenRemovingWallet_thenRemovesCascadeObjects() {
         let tx = givenDraftTransaction()
         let wallet = walletRepository.selectedWallet()!
-        service.removeWallet(wallet.id.id)
+        WalletDomainService.removeWallet(wallet.id.id)
         XCTAssertNil(walletRepository.selectedWallet())
         XCTAssertNil(transactionRepository.find(id: tx.id))
         XCTAssertNil(eoaRepo.find(by: wallet.owner(role: .thisDevice)!.address))

@@ -35,6 +35,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let appSettingsRepository = UserDefaultsAppSettingsRepository()
     let contractMetadataRepository = MockSafeContractMetadataRepository()
     let wcService = MockWalletConnectApplicationService(chainId: 1)
+    let moniotrRepo = InMemoryTransactionMonitorRepository()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -65,6 +66,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: transactionService, for: TransactionDomainService.self)
         DomainRegistry.put(service: appSettingsRepository, for: AppSettingsRepository.self)
         DomainRegistry.put(service: contractMetadataRepository, for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: moniotrRepo, for: RBETransactionMonitorRepository.self)
 
         ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
         ApplicationServiceRegistry.put(service: logger, for: Logger.self)
