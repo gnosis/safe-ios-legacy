@@ -325,6 +325,15 @@
 		552D42DC233A024E00C57B5C /* SwitchSafesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */; };
 		552D42FC233A37E900C57B5C /* SwitchSafesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */; };
 		552D42FD233A37E900C57B5C /* SwitchSafesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */; };
+		552D4300233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42FF233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift */; };
+		552D4302233B674200C57B5C /* RemoveSafeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */; };
+		552D4304233B824500C57B5C /* SafesTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4303233B824500C57B5C /* SafesTrackingEvent.swift */; };
+		552D4306233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4305233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift */; };
+		552D4308233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4307233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift */; };
+		552D430A233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4309233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift */; };
+		552D430C233BA93400C57B5C /* RemoveSafeEnterSeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D430B233BA93300C57B5C /* RemoveSafeEnterSeedViewController.swift */; };
+		552D430E233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D430D233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift */; };
+		552D4310233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D430F233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -995,6 +1004,15 @@
 		552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewController.swift; sourceTree = "<group>"; };
 		552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewCell.swift; sourceTree = "<group>"; };
 		552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchSafesTableViewCell.xib; sourceTree = "<group>"; };
+		552D42FF233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeFlowCoordinator.swift; sourceTree = "<group>"; };
+		552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeIntroViewController.swift; sourceTree = "<group>"; };
+		552D4303233B824500C57B5C /* SafesTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafesTrackingEvent.swift; sourceTree = "<group>"; };
+		552D4305233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		552D4307233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewControllerTests.swift; sourceTree = "<group>"; };
+		552D4309233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		552D430B233BA93300C57B5C /* RemoveSafeEnterSeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeEnterSeedViewController.swift; sourceTree = "<group>"; };
+		552D430D233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeIntroViewControllerTests.swift; sourceTree = "<group>"; };
+		552D430F233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeEnterSeedViewControllerTests.swift; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -2027,13 +2045,30 @@
 		552D42C22339FFD500C57B5C /* SwitchSafes */ = {
 			isa = PBXGroup;
 			children = (
+				552D4303233B824500C57B5C /* SafesTrackingEvent.swift */,
 				552D42D7233A000600C57B5C /* SwitchSafesCommand.swift */,
 				552D42D9233A00CC00C57B5C /* SwitchSafesFlowCoordinator.swift */,
-				552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */,
+				552D4305233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift */,
 				552D42FA233A37E900C57B5C /* SwitchSafesTableViewCell.swift */,
+				552D42DB233A024E00C57B5C /* SwitchSafesTableViewController.swift */,
+				552D4307233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift */,
 				552D42FB233A37E900C57B5C /* SwitchSafesTableViewCell.xib */,
+				552D42FE233B659300C57B5C /* RemoveSafe */,
 			);
 			path = SwitchSafes;
+			sourceTree = "<group>";
+		};
+		552D42FE233B659300C57B5C /* RemoveSafe */ = {
+			isa = PBXGroup;
+			children = (
+				552D430B233BA93300C57B5C /* RemoveSafeEnterSeedViewController.swift */,
+				552D430F233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift */,
+				552D42FF233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift */,
+				552D4309233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift */,
+				552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */,
+				552D430D233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift */,
+			);
+			path = RemoveSafe;
 			sourceTree = "<group>";
 		};
 		552DF5C8225C9943008D8AC8 /* CardView */ = {
@@ -3173,6 +3208,7 @@
 				55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */,
 				552D1012232A6AD900127223 /* AttributedStringStyles.swift in Sources */,
 				0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */,
+				552D430C233BA93400C57B5C /* RemoveSafeEnterSeedViewController.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				55BDA8292326796E005C9E6A /* HeaderImageTextStepController.swift in Sources */,
 				0A2C0E192296F2E3008A30AC /* FeeRequestView.swift in Sources */,
@@ -3213,6 +3249,7 @@
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				5549B2F4228C268200F3B5B7 /* OwnerModificationFeeCalculation.swift in Sources */,
+				552D4304233B824500C57B5C /* SafesTrackingEvent.swift in Sources */,
 				55BDA8152326426A005C9E6A /* NewSafeThreeStepsBaseController.swift in Sources */,
 				0ADE046822E5F15D00CA4705 /* PlaceholderCreator.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
@@ -3232,6 +3269,7 @@
 				552D0FE02327CD8F00127223 /* TwoFATableViewController.swift in Sources */,
 				554CACCF221F04B80086D303 /* SendReviewViewController.swift in Sources */,
 				0A2D587E225752D6001B8BF4 /* ConnectTwoFATrackingEvent.swift in Sources */,
+				552D4300233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift in Sources */,
 				0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */,
 				5568A25C22D7854D007C9E0C /* WCSessionListCell.swift in Sources */,
 				0AFD05F822A6906000888956 /* ChangePasswordTrackingEvent.swift in Sources */,
@@ -3305,6 +3343,7 @@
 				0A3FB8C2228B163D00270573 /* SendFlowCoordinator.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* SendInputViewModel.swift in Sources */,
+				552D4302233B674200C57B5C /* RemoveSafeIntroViewController.swift in Sources */,
 				554597082268AB22009B4A0B /* TermsCommand.swift in Sources */,
 				0AE0FE5A229D2CE500ABC552 /* TwoFAView.swift in Sources */,
 				0A19405B2226D030005B7440 /* DisconnectTwoFACommand.swift in Sources */,
@@ -3322,6 +3361,7 @@
 				0A2D58A52257844C001B8BF4 /* RecoverSafeFlowCoordinatorTests.swift in Sources */,
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* OnboardingWelcomeViewControllerTests.swift in Sources */,
+				552D430A233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift in Sources */,
 				0ADE040722DF358100CA4705 /* OnboardingPageDataSourceTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift in Sources */,
 				554CACD7221F19430086D303 /* SendReviewViewControllerTests.swift in Sources */,
@@ -3333,6 +3373,7 @@
 				553AEB1A229EA44E00EA3248 /* RBEStarterMock.swift in Sources */,
 				0ACD3F1A232C0269000E9274 /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
+				552D4308233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0A2D588C22575F33001B8BF4 /* AddressInputViewControllerTests.swift in Sources */,
@@ -3340,6 +3381,7 @@
 				553AEB16229EA42E00EA3248 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
 				0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */,
 				550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */,
+				552D430E233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift in Sources */,
 				0AC3F1712183402800DAADC9 /* OnboardingTermsViewControllerTests.swift in Sources */,
 				0AF8D53920D00E56001E8423 /* TransactionViewViewControllerTests.swift in Sources */,
 				0A2D588A225759F4001B8BF4 /* ReviewTransactionViewControllerTests.swift in Sources */,
@@ -3348,6 +3390,7 @@
 				0A2D58922257628B001B8BF4 /* TestTrackingHandler.swift in Sources */,
 				0A2D588E225761DC001B8BF4 /* XCTest+Tracking.swift in Sources */,
 				0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */,
+				552D4306233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift in Sources */,
 				0A2D58BE22578A68001B8BF4 /* DisconnectTwoFAFlowCoordinatorTests.swift in Sources */,
 				552C01992297E10F001A158D /* BasePaymentMethodViewControllerTests.swift in Sources */,
 				0A4EEA6D20D1112F005CDAC0 /* MenuTableViewControllerTests.swift in Sources */,
@@ -3358,6 +3401,7 @@
 				0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */,
 				55AA3C2F229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift in Sources */,
 				0AD5091C211091E4008507CB /* SendInputViewModelTests.swift in Sources */,
+				552D4310233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift in Sources */,
 				553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */,
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */,

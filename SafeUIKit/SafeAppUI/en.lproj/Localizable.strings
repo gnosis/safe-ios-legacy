@@ -156,8 +156,8 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Explanation text */
 "disconnecting_in_progress" = "Disabling 2FA is in progress. The transaction has been submitted and should take a couple of minutes.";
 
-/* Edit */
-"edit" = "Edit";
+/* Do you have a backup? */
+"do_you_have_backup" = "Do you have a backup?";
 
 /* E-mail */
 "email" = "E-mail";
@@ -280,6 +280,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* How this works */
 "how_this_works" = "How this works";
+
+/* I have a backup */
+"i_have_a_backup" = "I have a backup";
 
 /* I have a copy */
 "i_have_a_copy" = "I have a copy";
@@ -705,6 +708,9 @@ Pairing password: %@";
 /* Remove? */
 "remove_paired" = "Remove paired 2FA device?";
 
+/* Remove Safe */
+"remove_safe" = "Remove Safe";
+
 /* Replace 2FA */
 "replace_2fa" = "Replace 2FA";
 
@@ -751,6 +757,9 @@ Pairing password: %@";
 
 /* Description of a fee. */
 "safe_recovery_fee_required" = "A network fee will be deducted from your Safe balance to recover your Safe.";
+
+/* Remove Safe description */
+"safe_will_be_remove_description" = "This Safe will be removed from your device. To recover this Safe or to add it to another device you will need the recovery phrase and this Safe's address.";
 
 /* Save button */
 "save" = "Save";

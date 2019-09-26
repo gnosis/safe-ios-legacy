@@ -93,6 +93,55 @@ enum Asset {
     static let scrollBottomGradient = ImageAsset(name: "scroll-bottom-gradient")
   }
   static let replacePhrase = ImageAsset(name: "replacePhrase")
+  enum SafeCreationProgress {
+    static let progressIndicator00000 = ImageAsset(name: "progress_indicator_00000")
+    static let progressIndicator00001 = ImageAsset(name: "progress_indicator_00001")
+    static let progressIndicator00002 = ImageAsset(name: "progress_indicator_00002")
+    static let progressIndicator00003 = ImageAsset(name: "progress_indicator_00003")
+    static let progressIndicator00004 = ImageAsset(name: "progress_indicator_00004")
+    static let progressIndicator00005 = ImageAsset(name: "progress_indicator_00005")
+    static let progressIndicator00006 = ImageAsset(name: "progress_indicator_00006")
+    static let progressIndicator00007 = ImageAsset(name: "progress_indicator_00007")
+    static let progressIndicator00008 = ImageAsset(name: "progress_indicator_00008")
+    static let progressIndicator00009 = ImageAsset(name: "progress_indicator_00009")
+    static let progressIndicator00010 = ImageAsset(name: "progress_indicator_00010")
+    static let progressIndicator00011 = ImageAsset(name: "progress_indicator_00011")
+    static let progressIndicator00012 = ImageAsset(name: "progress_indicator_00012")
+    static let progressIndicator00013 = ImageAsset(name: "progress_indicator_00013")
+    static let progressIndicator00014 = ImageAsset(name: "progress_indicator_00014")
+    static let progressIndicator00015 = ImageAsset(name: "progress_indicator_00015")
+    static let progressIndicator00016 = ImageAsset(name: "progress_indicator_00016")
+    static let progressIndicator00017 = ImageAsset(name: "progress_indicator_00017")
+    static let progressIndicator00018 = ImageAsset(name: "progress_indicator_00018")
+    static let progressIndicator00019 = ImageAsset(name: "progress_indicator_00019")
+    static let progressIndicator00020 = ImageAsset(name: "progress_indicator_00020")
+    static let progressIndicator00021 = ImageAsset(name: "progress_indicator_00021")
+    static let progressIndicator00022 = ImageAsset(name: "progress_indicator_00022")
+    static let progressIndicator00023 = ImageAsset(name: "progress_indicator_00023")
+    static let progressIndicator00024 = ImageAsset(name: "progress_indicator_00024")
+    static let progressIndicator00025 = ImageAsset(name: "progress_indicator_00025")
+    static let progressIndicator00026 = ImageAsset(name: "progress_indicator_00026")
+    static let progressIndicator00027 = ImageAsset(name: "progress_indicator_00027")
+    static let progressIndicator00028 = ImageAsset(name: "progress_indicator_00028")
+    static let progressIndicator00029 = ImageAsset(name: "progress_indicator_00029")
+    static let progressIndicator00030 = ImageAsset(name: "progress_indicator_00030")
+    static let progressIndicator00031 = ImageAsset(name: "progress_indicator_00031")
+    static let progressIndicator00032 = ImageAsset(name: "progress_indicator_00032")
+    static let progressIndicator00033 = ImageAsset(name: "progress_indicator_00033")
+    static let progressIndicator00034 = ImageAsset(name: "progress_indicator_00034")
+    static let progressIndicator00035 = ImageAsset(name: "progress_indicator_00035")
+    static let progressIndicator00036 = ImageAsset(name: "progress_indicator_00036")
+    static let progressIndicator00037 = ImageAsset(name: "progress_indicator_00037")
+    static let progressIndicator00038 = ImageAsset(name: "progress_indicator_00038")
+    static let progressIndicator00039 = ImageAsset(name: "progress_indicator_00039")
+    static let progressIndicator00040 = ImageAsset(name: "progress_indicator_00040")
+    static let progressIndicator00041 = ImageAsset(name: "progress_indicator_00041")
+    static let progressIndicator00042 = ImageAsset(name: "progress_indicator_00042")
+    static let progressIndicator00043 = ImageAsset(name: "progress_indicator_00043")
+    static let progressIndicator00044 = ImageAsset(name: "progress_indicator_00044")
+    static let progressIndicator00045 = ImageAsset(name: "progress_indicator_00045")
+    static let progressIndicator00046 = ImageAsset(name: "progress_indicator_00046")
+  }
   enum SegmentBar {
     static let `left` = ImageAsset(name: "left")
     static let middle = ImageAsset(name: "middle")
@@ -173,6 +222,53 @@ enum Asset {
     ReplaceBrowserExtension.introIcon,
     ReplaceBrowserExtension.scrollBottomGradient,
     replacePhrase,
+    SafeCreationProgress.progressIndicator00000,
+    SafeCreationProgress.progressIndicator00001,
+    SafeCreationProgress.progressIndicator00002,
+    SafeCreationProgress.progressIndicator00003,
+    SafeCreationProgress.progressIndicator00004,
+    SafeCreationProgress.progressIndicator00005,
+    SafeCreationProgress.progressIndicator00006,
+    SafeCreationProgress.progressIndicator00007,
+    SafeCreationProgress.progressIndicator00008,
+    SafeCreationProgress.progressIndicator00009,
+    SafeCreationProgress.progressIndicator00010,
+    SafeCreationProgress.progressIndicator00011,
+    SafeCreationProgress.progressIndicator00012,
+    SafeCreationProgress.progressIndicator00013,
+    SafeCreationProgress.progressIndicator00014,
+    SafeCreationProgress.progressIndicator00015,
+    SafeCreationProgress.progressIndicator00016,
+    SafeCreationProgress.progressIndicator00017,
+    SafeCreationProgress.progressIndicator00018,
+    SafeCreationProgress.progressIndicator00019,
+    SafeCreationProgress.progressIndicator00020,
+    SafeCreationProgress.progressIndicator00021,
+    SafeCreationProgress.progressIndicator00022,
+    SafeCreationProgress.progressIndicator00023,
+    SafeCreationProgress.progressIndicator00024,
+    SafeCreationProgress.progressIndicator00025,
+    SafeCreationProgress.progressIndicator00026,
+    SafeCreationProgress.progressIndicator00027,
+    SafeCreationProgress.progressIndicator00028,
+    SafeCreationProgress.progressIndicator00029,
+    SafeCreationProgress.progressIndicator00030,
+    SafeCreationProgress.progressIndicator00031,
+    SafeCreationProgress.progressIndicator00032,
+    SafeCreationProgress.progressIndicator00033,
+    SafeCreationProgress.progressIndicator00034,
+    SafeCreationProgress.progressIndicator00035,
+    SafeCreationProgress.progressIndicator00036,
+    SafeCreationProgress.progressIndicator00037,
+    SafeCreationProgress.progressIndicator00038,
+    SafeCreationProgress.progressIndicator00039,
+    SafeCreationProgress.progressIndicator00040,
+    SafeCreationProgress.progressIndicator00041,
+    SafeCreationProgress.progressIndicator00042,
+    SafeCreationProgress.progressIndicator00043,
+    SafeCreationProgress.progressIndicator00044,
+    SafeCreationProgress.progressIndicator00045,
+    SafeCreationProgress.progressIndicator00046,
     SegmentBar.`left`,
     SegmentBar.middle,
     SegmentBar.`right`,

@@ -7,6 +7,8 @@ import Common
 
 class SwitchSafesFlowCoordinator: FlowCoordinator {
 
+    let removeSafeFlowCoordinator = RemoveSafeFlowCoordinator()
+
     override func setUp() {
         super.setUp()
         let controller = SwitchSafesTableViewController()
@@ -18,5 +20,10 @@ class SwitchSafesFlowCoordinator: FlowCoordinator {
 extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
 
     func didSelect(wallet: WalletData) {}
-    
+
+    func didRequestToRemove(wallet: WalletData) {
+        removeSafeFlowCoordinator.safeAddress = wallet.address
+        enter(flow: removeSafeFlowCoordinator)
+    }
+
 }

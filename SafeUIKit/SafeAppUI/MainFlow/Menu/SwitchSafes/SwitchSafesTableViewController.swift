@@ -8,6 +8,7 @@ import Common
 
 protocol SwitchSafesTableViewControllerDelegate: class {
     func didSelect(wallet: WalletData)
+    func didRequestToRemove(wallet: WalletData)
 }
 
 class SwitchSafesTableViewController: UITableViewController {
@@ -21,23 +22,29 @@ class SwitchSafesTableViewController: UITableViewController {
 
     enum Strings {
         static let title = LocalizedString("switch_safes", comment: "Switch Safes")
-        static let edit = LocalizedString("edit", comment: "Edit")
+        static let remove = LocalizedString("remove", comment: "Remove")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         update()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(SafesTrackingEvent.switchSafes)
     }
 
     private func configureNavigationBar() {
         title = Strings.title
-        let editButtonItem = UIBarButtonItem(title: Strings.edit, style: .done, target: self, action: #selector(edit))
         navigationItem.rightBarButtonItem = editButtonItem
     }
-
-    @objc private func edit() {}
 
     private func configureTableView() {
         tableView.rowHeight = UITableView.automaticDimension
@@ -76,10 +83,28 @@ class SwitchSafesTableViewController: UITableViewController {
         return checkmarkImageView
     }
 
+    // MARK: - Table view delegate
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.didSelect(wallet: safes[indexPath.row])
         update()
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        delegate?.didRequestToRemove(wallet: safes[indexPath.row])
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return Strings.remove
     }
 
 }

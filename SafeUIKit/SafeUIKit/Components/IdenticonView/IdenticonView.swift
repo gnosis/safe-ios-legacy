@@ -19,7 +19,7 @@ public class IdenticonView: BaseCustomView {
         }
     }
 
-    public var seed: String = "Identicon" {
+    public var seed: String = "" {
         didSet {
             update()
         }
@@ -84,6 +84,10 @@ public class IdenticonView: BaseCustomView {
     }
 
     override public func update() {
+        guard !seed.isEmpty else {
+            imageView.blockiesSeed = nil
+            return
+        }
         imageView.blockiesSeed = seed.lowercased()
     }
 
