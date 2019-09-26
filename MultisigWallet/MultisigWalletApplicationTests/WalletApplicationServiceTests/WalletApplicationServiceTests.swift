@@ -167,6 +167,15 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertNil(eoaRepo.find(by: wallet.owner(role: .thisDevice)!.address))
     }
 
+    func test_whenRemovingWalletByAddress_thenRemovesCascadeObjects() {
+        let tx = givenDraftTransaction()
+        let wallet = walletRepository.selectedWallet()!
+        service.removeWallet(address: wallet.address.value)
+        XCTAssertNil(walletRepository.selectedWallet())
+        XCTAssertNil(transactionRepository.find(id: tx.id))
+        XCTAssertNil(eoaRepo.find(by: wallet.owner(role: .thisDevice)!.address))
+    }
+
     // MARK: - Payment Token
 
     func test_whenFeePaymentTokenIsNil_thenReturnsEther() {

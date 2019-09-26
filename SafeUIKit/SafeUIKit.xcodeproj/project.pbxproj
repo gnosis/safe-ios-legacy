@@ -332,9 +332,7 @@
 		552D4306233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4305233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift */; };
 		552D4308233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4307233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift */; };
 		552D430A233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D4309233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift */; };
-		552D430C233BA93400C57B5C /* RemoveSafeEnterSeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D430B233BA93300C57B5C /* RemoveSafeEnterSeedViewController.swift */; };
 		552D430E233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D430D233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift */; };
-		552D4310233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D430F233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
 		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
@@ -1012,9 +1010,7 @@
 		552D4305233B8B9200C57B5C /* SwitchSafesFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		552D4307233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSafesTableViewControllerTests.swift; sourceTree = "<group>"; };
 		552D4309233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		552D430B233BA93300C57B5C /* RemoveSafeEnterSeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeEnterSeedViewController.swift; sourceTree = "<group>"; };
 		552D430D233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeIntroViewControllerTests.swift; sourceTree = "<group>"; };
-		552D430F233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSafeEnterSeedViewControllerTests.swift; sourceTree = "<group>"; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
@@ -2063,8 +2059,6 @@
 		552D42FE233B659300C57B5C /* RemoveSafe */ = {
 			isa = PBXGroup;
 			children = (
-				552D430B233BA93300C57B5C /* RemoveSafeEnterSeedViewController.swift */,
-				552D430F233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift */,
 				552D42FF233B65CC00C57B5C /* RemoveSafeFlowCoordinator.swift */,
 				552D4309233B9C5B00C57B5C /* RemoveSafeFlowCoordinatorTests.swift */,
 				552D4301233B674200C57B5C /* RemoveSafeIntroViewController.swift */,
@@ -3211,7 +3205,6 @@
 				55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */,
 				552D1012232A6AD900127223 /* AttributedStringStyles.swift in Sources */,
 				0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */,
-				552D430C233BA93400C57B5C /* RemoveSafeEnterSeedViewController.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				55BDA8292326796E005C9E6A /* HeaderImageTextStepController.swift in Sources */,
 				0A2C0E192296F2E3008A30AC /* FeeRequestView.swift in Sources */,
@@ -3405,7 +3398,6 @@
 				0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */,
 				55AA3C2F229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift in Sources */,
 				0AD5091C211091E4008507CB /* SendInputViewModelTests.swift in Sources */,
-				552D4310233BAB9A00C57B5C /* RemoveSafeEnterSeedViewControllerTests.swift in Sources */,
 				553AEB12229EA41B00EA3248 /* RBEIntroViewControllerBaseTestCase.swift in Sources */,
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */,

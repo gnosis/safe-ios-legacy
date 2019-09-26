@@ -170,6 +170,11 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    public func removeWallet(address: String) {
+        guard let wallet = DomainRegistry.walletRepository.find(address: Address(address)) else { return }
+        removeWallet(wallet.id.id)
+    }
+
     public func removeWallet(_ id: String) {
         let walletID = WalletID(id)
 

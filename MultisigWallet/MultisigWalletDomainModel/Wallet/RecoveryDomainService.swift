@@ -122,28 +122,41 @@ public class RecoveryDomainService: Assertable {
 
     public func provide(recoveryPhrase: String) {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let accountOrNil = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: recoveryPhrase)
-        guard let recoveryAccount = accountOrNil else {
-            DomainRegistry.errorStream.post(RecoveryServiceError.recoveryPhraseInvalid)
+        switch verifyRecoveryPhrase(recoveryPhrase, for: wallet, walletOwnersAreKnown: false) {
+        case .failure(let error):
+            DomainRegistry.errorStream.post(error)
             return
+        case .success(let recoveryAccount, let derivedAccount):
+            save(recoveryAccount)
+            save(derivedAccount)
+            wallet.addOwner(Owner(address: recoveryAccount.address, role: .paperWallet))
+            wallet.addOwner(Owner(address: derivedAccount.address, role: .paperWalletDerived))
+            DomainRegistry.walletRepository.save(wallet)
+            DomainRegistry.eventPublisher.publish(WalletRecoveryAccountsAccepted())
         }
-        let derivedAccount = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: recoveryAccount, at: 1)
-        let hasRecoveryAccounts = wallet.contains(owner: owner(from: recoveryAccount)) &&
-            wallet.contains(owner: owner(from: derivedAccount))
-        guard hasRecoveryAccounts else {
-            DomainRegistry.errorStream.post(RecoveryServiceError.recoveryAccountsNotFound)
-            return
-        }
-        save(recoveryAccount)
-        save(derivedAccount)
-        wallet.addOwner(Owner(address: recoveryAccount.address, role: .paperWallet))
-        wallet.addOwner(Owner(address: derivedAccount.address, role: .paperWalletDerived))
-        DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(WalletRecoveryAccountsAccepted())
     }
 
-    private func owner(from account: ExternallyOwnedAccount) -> Owner {
-        return Owner(address: Address(account.address.value.lowercased()), role: .unknown)
+    public func verifyRecoveryPhrase(_ phrase: String, for wallet: Wallet, walletOwnersAreKnown: Bool) ->
+        Result<(accountAt0: ExternallyOwnedAccount, accountAt1: ExternallyOwnedAccount), RecoveryServiceError> {
+        let accountOrNil = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: phrase)
+        guard let recoveryAccount = accountOrNil else {
+            return .failure(RecoveryServiceError.recoveryPhraseInvalid)
+        }
+        let derivedAccount = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: recoveryAccount, at: 1)
+            let recoveryAccountOwnerRole = walletOwnersAreKnown ? OwnerRole.paperWallet : .unknown
+            let derivedAccountOwnerRole = walletOwnersAreKnown ? OwnerRole.paperWalletDerived : .unknown
+            let hasRecoveryAccounts = wallet.contains(owner: owner(from: recoveryAccount,
+                                                                   onwerRole: recoveryAccountOwnerRole)) &&
+                wallet.contains(owner: owner(from: derivedAccount, onwerRole: derivedAccountOwnerRole))
+        guard hasRecoveryAccounts else {
+            return .failure(RecoveryServiceError.recoveryAccountsNotFound)
+        }
+        return .success((accountAt0: recoveryAccount, accountAt1: derivedAccount))
+    }
+
+    private func owner(from account: ExternallyOwnedAccount, onwerRole: OwnerRole) -> Owner {
+        let normalizedAddress = onwerRole == .unknown ? account.address.value.lowercased() : account.address.value
+        return Owner(address: Address(normalizedAddress), role: onwerRole)
     }
 
     private func save(_ account: ExternallyOwnedAccount) {

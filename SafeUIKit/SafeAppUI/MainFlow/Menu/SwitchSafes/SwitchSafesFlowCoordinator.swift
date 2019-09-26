@@ -23,7 +23,14 @@ extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
 
     func didRequestToRemove(wallet: WalletData) {
         removeSafeFlowCoordinator.safeAddress = wallet.address
-        enter(flow: removeSafeFlowCoordinator)
+        saveCheckpoint()
+        enter(flow: removeSafeFlowCoordinator) {
+            DispatchQueue.main.async { [unowned self] in
+                self.popToLastCheckpoint()
+                // TODO: if no safes -> show
+                // switchToRootController
+            }
+        }
     }
 
 }

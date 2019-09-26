@@ -9,7 +9,7 @@ import MultisigWalletApplication
 class BaseInputViewController: UIViewController, EventSubscriber {
 
     var activityIndicatorItem: UIBarButtonItem!
-    let activityIndicatorView = UIActivityIndicatorView(style: .gray)
+    let activityIndicatorView = UIActivityIndicatorView(style: .medium)
     @IBOutlet var nextButtonItem: UIBarButtonItem!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!

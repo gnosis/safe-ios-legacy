@@ -51,6 +51,20 @@ public class RecoveryApplicationService {
         }
     }
 
+    public func verifyRecoveryPhrase(_ phrase: String, address: String) -> Result<Bool, Error> {
+        guard let wallet = DomainRegistry.walletRepository.find(address: Address(address)) else {
+            return .failure(RecoveryApplicationServiceError.invalidContractAddress)
+        }
+        let result = DomainRegistry.recoveryService
+            .verifyRecoveryPhrase(phrase, for: wallet, walletOwnersAreKnown: true)
+        switch result {
+        case .success(_, _):
+            return .success(true)
+        case .failure(let error):
+            return .failure(RecoveryApplicationService.applicationError(from: error))
+        }
+    }
+
     public func estimateRecoveryTransaction() -> [TokenData] {
         return DomainRegistry.recoveryService.estimateRecoveryTransaction()
     }
