@@ -11,6 +11,7 @@ protocol OnboardingCreationFeeViewControllerDelegate: class {
     func deploymentDidCancel()
     func deploymentDidStart()
     func deploymentDidFail()
+    func onboardingCreationFeeOpenMenu()
 }
 
 class OnboardingCreationFeeViewController: CardViewController {
@@ -55,7 +56,8 @@ class OnboardingCreationFeeViewController: CardViewController {
 
         let retryItem = UIBarButtonItem.refreshButton(target: creationProcessTracker,
                                                       action: #selector(creationProcessTracker.start))
-        navigationItem.rightBarButtonItem = retryItem
+        let menuItem = UIBarButtonItem.menuButton(target: self, action: #selector(openMenu))
+        navigationItem.rightBarButtonItems = [menuItem, retryItem]
         creationProcessTracker.retryItem = retryItem
         creationProcessTracker.delegate = self
 
@@ -81,6 +83,11 @@ class OnboardingCreationFeeViewController: CardViewController {
         addressDetailView.footnoteLabel.text = String(format: template, code)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        update()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(OnboardingEvent.createSafe)
@@ -99,7 +106,6 @@ class OnboardingCreationFeeViewController: CardViewController {
         present(controller, animated: true, completion: nil)
     }
 
-
     @objc func share() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         let activityController = UIActivityViewController(activityItems: [address], applicationActivities: nil)
@@ -107,12 +113,16 @@ class OnboardingCreationFeeViewController: CardViewController {
         self.present(activityController, animated: true)
     }
 
+    @objc func openMenu(_ sender: UIBarButtonItem) {
+        delegate?.onboardingCreationFeeOpenMenu()
+    }
+
     override func showNetworkFeeInfo() {
         present(UIAlertController.creationFee(), animated: true, completion: nil)
     }
 
     func update() {
-        let walletState = ApplicationServiceRegistry.walletService.walletState()!
+        guard let walletState = ApplicationServiceRegistry.walletService.walletState() else { return }
         switch walletState {
         case .draft, .deploying:
             // started, but has nothing to show

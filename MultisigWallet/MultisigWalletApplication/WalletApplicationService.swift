@@ -153,9 +153,20 @@ public class WalletApplicationService: Assertable {
     }
 
     public func cleanUpDrafts() {
-        let drafts = DomainRegistry.walletRepository.filter(by: .draft)
+        let drafts = DomainRegistry.walletRepository.filter(by: [.draft, .recoveryDraft])
         for draft in drafts {
             removeWallet(draft.id.id)
+        }
+        cleanUpPortfolio()
+    }
+
+    private func cleanUpPortfolio() {
+        guard let portfolio = DomainRegistry.portfolioRepository.portfolio() else { return }
+        let staleWallets = portfolio.wallets.filter { DomainRegistry.walletRepository.find(id: $0) == nil }
+        for walletID in staleWallets {
+            removeFromPortfolio(walletID: walletID)
+            removeAccounts(for: walletID)
+            removeTransactions(for: walletID)
         }
     }
 
@@ -171,22 +182,54 @@ public class WalletApplicationService: Assertable {
             }
 
         }
+        removeFromPortfolio(walletID: walletID)
+        removeAccounts(for: walletID)
+        removeTransactions(for: walletID)
+    }
 
+    private func removeFromPortfolio(walletID: WalletID) {
         if let portfolio = DomainRegistry.portfolioRepository.portfolio() {
             portfolio.removeWallet(walletID)
+            DomainRegistry.portfolioRepository.save(portfolio)
         }
+    }
 
+    private func removeAccounts(for walletID: WalletID) {
         let accounts = DomainRegistry.accountRepository.filter(walletID: walletID)
         for account in accounts {
             DomainRegistry.accountRepository.remove(account)
         }
+    }
 
+    private func removeTransactions(for walletID: WalletID) {
         let transactions = DomainRegistry.transactionRepository.find(wallet: walletID)
         for transaction in transactions {
             DomainRegistry.transactionRepository.remove(transaction)
 
             ApplicationServiceRegistry.walletConnectService
                 .pendingTransactionsRepository.remove(transactionID: transaction.id)
+
+            if let monitor = DomainRegistry.transactionMonitorRepository.find(id: transaction.id) {
+                DomainRegistry.transactionMonitorRepository.remove(monitor)
+            }
+        }
+    }
+
+    public func selectWallet(_ id: String) {
+        if let wallet = DomainRegistry.walletRepository.find(id: WalletID(id)),
+            let portfolio = DomainRegistry.portfolioRepository.portfolio() {
+            portfolio.selectWallet(wallet.id)
+            DomainRegistry.portfolioRepository.save(portfolio)
+        }
+    }
+
+    public func selectedWalletID() -> String? {
+        return selectedWallet?.id.id
+    }
+
+    public func selectFirstWalletIfNeeded() {
+        if selectedWallet == nil, let first = DomainRegistry.walletRepository.all().first {
+            selectWallet(first.id.id)
         }
     }
 

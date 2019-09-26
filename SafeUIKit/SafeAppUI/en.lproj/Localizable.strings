@@ -107,6 +107,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Copied to clipboard */
 "copied_to_clipboard" = "Copied to clipboard";
 
+/* Create Safe */
+"create_new_safe" = "Create new Safe";
+
 /* Header for set password screen. */
 "create_password" = "Create Password";
 
