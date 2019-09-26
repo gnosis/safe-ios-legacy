@@ -178,7 +178,8 @@ public class WaitingForFirstDepositState: WalletState {
         }
         let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
         let accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
-        let balance = DomainRegistry.accountRepository.find(id: accountID)?.balance ?? 0
+        guard let account = DomainRegistry.accountRepository.find(id: accountID) else { return }
+        let balance = account.balance ?? 0
         wallet.state = balance < minimumBalance ? wallet.notEnoughFundsState : wallet.creationStartedState
         DomainRegistry.walletRepository.save(wallet)
         wallet.state.resume()
