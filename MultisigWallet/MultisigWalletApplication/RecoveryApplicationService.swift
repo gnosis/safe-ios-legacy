@@ -56,12 +56,10 @@ public class RecoveryApplicationService {
         guard let wallet = DomainRegistry.walletRepository.find(address: Address(address)) else {
             return .failure(RecoveryApplicationServiceError.invalidContractAddress)
         }
-        let result = DomainRegistry.recoveryService
-            .verifyRecoveryPhrase(phrase, for: wallet, walletOwnersAreKnown: true)
-        switch result {
-        case .success(_, _):
+        do {
+            try _ = DomainRegistry.recoveryService.verifyRecovery(wallet: wallet, recoveryPhrase: phrase)
             return .success(true)
-        case .failure(let error):
+        } catch {
             return .failure(RecoveryApplicationService.applicationError(from: error))
         }
     }
