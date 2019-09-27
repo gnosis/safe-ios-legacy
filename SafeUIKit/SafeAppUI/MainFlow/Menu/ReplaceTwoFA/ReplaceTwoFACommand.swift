@@ -20,11 +20,4 @@ class ReplaceTwoFACommand: MenuCommand {
         childFlowCoordinator = ReplaceTwoFAFlowCoordinator()
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        let fc = ReplaceTwoFAFlowCoordinator()
-        fc.mainFlowCoordinator = mainFlowCoordinator
-        childFlowCoordinator = fc
-        super.run(mainFlowCoordinator: mainFlowCoordinator)
-    }
-
 }

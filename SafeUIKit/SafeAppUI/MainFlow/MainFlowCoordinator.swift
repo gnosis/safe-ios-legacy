@@ -10,6 +10,8 @@ import UserNotifications
 
 open class MainFlowCoordinator: FlowCoordinator {
 
+    public static let shared = MainFlowCoordinator()
+
     private let manageTokensFlowCoordinator = ManageTokensFlowCoordinator()
     let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
     let sendFlowCoordinator = SendFlowCoordinator()
@@ -34,8 +36,6 @@ open class MainFlowCoordinator: FlowCoordinator {
     public init() {
         super.init(rootViewController: CustomNavigationController())
         configureGloabalAppearance()
-        newSafeFlowCoordinator.mainFlowCoordinator = self
-        recoverSafeFlowCoordinator.mainFlowCoordinator = self
     }
 
     private func configureGloabalAppearance() {
@@ -347,7 +347,7 @@ extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
 extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 
     func didSelectCommand(_ command: MenuCommand) {
-        command.run(mainFlowCoordinator: self)
+        command.run()
     }
 
 }

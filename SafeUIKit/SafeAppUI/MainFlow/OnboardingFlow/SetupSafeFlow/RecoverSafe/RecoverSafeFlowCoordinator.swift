@@ -10,7 +10,6 @@ import Common
 final class RecoverSafeFlowCoordinator: FlowCoordinator {
 
     let flowTitle: String = LocalizedString("recover_safe_title", comment: "Recover Safe")
-    weak var mainFlowCoordinator: MainFlowCoordinator!
     var keycardFlowCoordinator = SKKeycardFlowCoordinator()
 
     override func setUp() {
@@ -121,7 +120,6 @@ extension RecoverSafeFlowCoordinator: TwoFATableViewControllerDelegate {
     func didSelectTwoFAOption(_ option: TwoFAOption) {
         switch option {
         case .statusKeycard:
-            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             keycardFlowCoordinator.hidesSteps = true
             keycardFlowCoordinator.onSucces = { address in
                 ApplicationServiceRegistry.walletService.addOwner(address: address, type: .keycard)
@@ -252,7 +250,7 @@ extension RecoverSafeFlowCoordinator: ReviewTransactionViewControllerDelegate {
 extension RecoverSafeFlowCoordinator: RecoverFeePaidViewControllerDelegate {
 
     func recoverFeePaidViewControllerOpenMenu() {
-        mainFlowCoordinator.openMenu()
+        MainFlowCoordinator.shared.openMenu()
     }
 
     func recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String) {

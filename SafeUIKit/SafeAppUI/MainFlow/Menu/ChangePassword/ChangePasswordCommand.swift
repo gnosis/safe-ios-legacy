@@ -15,7 +15,7 @@ final class ChangePasswordCommand: MenuCommand {
         childFlowCoordinator = ChangePasswordFlowCoordinator()
     }
 
-    override func didExitToMenu(mainFlowCoordinator: MainFlowCoordinator) {
+    override func didExitToMenu() {
         // no-op
     }
 

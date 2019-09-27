@@ -14,7 +14,7 @@ class BaseAddSafeCommand: MenuCommand {
     var selectedWalletID: String?
     var newWalletID: String?
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+    override func run() {
         selectedWalletID = ApplicationServiceRegistry.walletService.selectedWalletID()
         assert(selectedWalletID != nil)
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
@@ -24,15 +24,15 @@ class BaseAddSafeCommand: MenuCommand {
         newWalletID = ApplicationServiceRegistry.walletService.selectedWalletID()
         assert(newWalletID != nil)
         assert(selectedWalletID != newWalletID)
-        mainFlowCoordinator.saveCheckpoint()
+        MainFlowCoordinator.shared.saveCheckpoint()
 
-        mainFlowCoordinator.enter(flow: childFlowCoordinator) { [weak mainFlowCoordinator, weak self] in
-            guard let fc = mainFlowCoordinator, let `self` = self else { return }
-            self.willExitToMenu(mainFlowCoordinator: fc)
+        MainFlowCoordinator.shared.enter(flow: childFlowCoordinator) { [weak self] in
+            guard let `self` = self else { return }
+            self.willExitToMenu()
         }
     }
 
-    func willExitToMenu(mainFlowCoordinator: MainFlowCoordinator) {
+    func willExitToMenu() {
         // exiting back to menu means that the CreateSafe flow either finished successfully (selected wallet is
         // ready to use), or there was a failure or cancellation.
 
@@ -44,11 +44,11 @@ class BaseAddSafeCommand: MenuCommand {
 
         if newWalletID == ApplicationServiceRegistry.walletService.selectedWalletID() {
             assert(ApplicationServiceRegistry.walletService.hasReadyToUseWallet)
-            DispatchQueue.main.async(execute: mainFlowCoordinator.switchToRootController)
+            DispatchQueue.main.async(execute: MainFlowCoordinator.shared.switchToRootController)
         } else {
             // creation failed, keep previous selection.
             ApplicationServiceRegistry.walletService.selectWallet(selectedWalletID!)
-            DispatchQueue.main.async(execute: mainFlowCoordinator.popToLastCheckpoint)
+            DispatchQueue.main.async(execute: MainFlowCoordinator.shared.popToLastCheckpoint)
         }
     }
 

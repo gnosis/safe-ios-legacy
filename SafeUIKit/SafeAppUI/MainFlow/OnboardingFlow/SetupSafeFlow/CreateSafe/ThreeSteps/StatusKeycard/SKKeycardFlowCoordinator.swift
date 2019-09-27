@@ -10,7 +10,6 @@ import MultisigWalletApplication
 // SK prefix for the "Status Keycard"
 class SKKeycardFlowCoordinator: FlowCoordinator {
 
-    weak var mainFlowCoordinator: MainFlowCoordinator!
     var getInTouchCommand = GetInTouchCommand()
     var flowTitle: String = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
 
@@ -90,7 +89,7 @@ extension SKKeycardFlowCoordinator: SKPairViewControllerDelegate {
     }
 
     func pairViewControllerNeedsToGetInTouch(_ controller: SKPairViewController) {
-        getInTouchCommand.run(mainFlowCoordinator: mainFlowCoordinator)
+        getInTouchCommand.run()
     }
 
 }

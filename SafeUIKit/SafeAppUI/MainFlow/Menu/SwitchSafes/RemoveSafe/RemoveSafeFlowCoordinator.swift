@@ -25,6 +25,7 @@ final class RemoveSafeFlowCoordinator: FlowCoordinator {
         controller.title = RemoveSafeIntroViewController.Strings.title
         controller.screenTrackingEvent = SafesTrackingEvent.removeSafeEnterSeed
         controller.nextButtonItem.title = LocalizedString("remove", comment: "Remove")
+        controller.shouldHideLostPhraseButton = false
         return controller
     }
 
@@ -47,6 +48,10 @@ extension RemoveSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
         case .success(_):
             controller.handleSuccess()
         }
+    }
+
+    func recoveryPhraseInputViewControllerDidLooseRecovery() {
+        ReplaceRecoveryPhraseCommand().run()
     }
 
 }

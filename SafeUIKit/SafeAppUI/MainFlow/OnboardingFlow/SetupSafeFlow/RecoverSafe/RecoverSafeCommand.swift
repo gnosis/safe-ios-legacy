@@ -16,11 +16,6 @@ final class RecoverSafeCommand: BaseAddSafeCommand {
         childFlowCoordinator = RecoverSafeFlowCoordinator()
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        (childFlowCoordinator as! RecoverSafeFlowCoordinator).mainFlowCoordinator = mainFlowCoordinator
-        super.run(mainFlowCoordinator: mainFlowCoordinator)
-    }
-
     override func createDraft() {
         ApplicationServiceRegistry.recoveryService.createRecoverDraftWallet()
     }

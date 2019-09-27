@@ -16,11 +16,6 @@ final class CreateSafeCommand: BaseAddSafeCommand {
         childFlowCoordinator = CreateSafeFlowCoordinator()
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        (childFlowCoordinator as! CreateSafeFlowCoordinator).mainFlowCoordinator = mainFlowCoordinator
-        super.run(mainFlowCoordinator: mainFlowCoordinator)
-    }
-
     override func createDraft() {
         ApplicationServiceRegistry.walletService.createNewDraftWallet()
     }
