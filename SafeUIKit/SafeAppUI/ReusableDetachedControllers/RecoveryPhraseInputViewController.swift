@@ -23,7 +23,7 @@ extension RecoveryPhraseInputViewControllerDelegate {
 class RecoveryPhraseInputViewController: BaseInputViewController {
 
     @IBOutlet weak var phraseTextView: CustomTextView!
-    @IBOutlet weak var lostYourRecoveryButton: UIButton!
+    @IBOutlet weak var lostYourRecoveryButton: StandardButton!
 
     var keyboardBehavior: KeyboardAvoidingBehavior!
     weak var delegate: RecoveryPhraseInputViewControllerDelegate?
@@ -47,6 +47,8 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
             update()
         }
     }
+
+    var shouldHideLostPhraseButton = true
 
     @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var placeholderTop: NSLayoutConstraint!
@@ -80,9 +82,10 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         phraseTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         phraseTextView.font = UIFont.systemFont(ofSize: 16, weight: .regular)
 
+        lostYourRecoveryButton.style = .plain
         lostYourRecoveryButton.setTitle(LocalizedString("lost_recovery_phrase", comment: "Lost your recovery phrase?"),
                                         for: .normal)
-        lostYourRecoveryButton.isHidden = true
+        lostYourRecoveryButton.isHidden = shouldHideLostPhraseButton
 
         let insets = textInsets()
         placeholderTop.constant = insets.top

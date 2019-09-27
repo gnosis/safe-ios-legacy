@@ -270,7 +270,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "gnosis_safe_authenticator_description" = "The Authenticator is an extension for Google Chrome connected to the Safe.";
 
 /* I have no password */
-"have_no_password" = "I don't have password";
+"have_no_password" = "I don't have a password";
 
 /* 'Submitted' parameter name */
 "header_submitted" = "Submitted";
@@ -510,6 +510,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Licenses */
 "licenses" = "Licenses";
+
+/* Lost your recovery phrase? */
+"lost_recovery_phrase" = "Lost your recovery phrase?";
 
 /* Add token button
    Manage Tokens menu item */

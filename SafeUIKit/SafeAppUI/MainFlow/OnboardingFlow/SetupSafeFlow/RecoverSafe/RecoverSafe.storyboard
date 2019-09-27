@@ -145,14 +145,14 @@
                                                     </view>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0F-dZ-lsw">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0F-dZ-lsw" customClass="StandardButton" customModule="SafeUIKit">
                                                 <rect key="frame" x="0.0" y="171.5" width="375" height="76"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="76" id="ZJA-gM-XRr"/>
                                                 </constraints>
                                                 <state key="normal" title="Lost your recovery phrase?"/>
                                                 <connections>
-                                                    <action selector="lostRecovery:" destination="iTY-dw-aTR" eventType="touchUpInside" id="QCN-fk-Tqn"/>
+                                                    <action selector="lostRecovery:" destination="iTY-dw-aTR" eventType="touchUpInside" id="KrO-H3-tR2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -199,7 +199,7 @@
                     <connections>
                         <outlet property="backgroundView" destination="Xvp-eC-K4o" id="Ui2-Ud-kVG"/>
                         <outlet property="headerLabel" destination="pCp-BE-BdW" id="fOV-0j-DSU"/>
-                        <outlet property="lostYourRecoveryButton" destination="Q0F-dZ-lsw" id="2Pd-A6-PlY"/>
+                        <outlet property="lostYourRecoveryButton" destination="Q0F-dZ-lsw" id="SiU-Ix-HDh"/>
                         <outlet property="nextButtonItem" destination="xcj-2Y-FNv" id="Y0v-ET-H79"/>
                         <outlet property="phraseTextView" destination="YdR-1b-5sG" id="TNn-IC-kPh"/>
                         <outlet property="placeholderLabel" destination="ghT-Ir-fNl" id="cV3-3w-BpU"/>
