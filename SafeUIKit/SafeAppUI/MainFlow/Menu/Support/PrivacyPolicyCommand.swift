@@ -10,8 +10,8 @@ final class PrivacyPolicyCommand: MenuCommand {
         return LocalizedString("privacy_policy", comment: "Privacy policy menu item").capitalized
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        SupportFlowCoordinator(from: mainFlowCoordinator).openPrivacyPolicy()
+    override func run() {
+        SupportFlowCoordinator(from: MainFlowCoordinator.shared).openPrivacyPolicy()
     }
 
 }

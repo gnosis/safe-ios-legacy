@@ -12,7 +12,7 @@ protocol MenuTableViewControllerDelegate: class {
 
 final class VoidCommand: MenuCommand {
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+    override func run() {
         // no-op
     }
 

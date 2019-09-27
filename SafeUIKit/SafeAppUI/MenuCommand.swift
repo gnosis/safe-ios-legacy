@@ -24,20 +24,20 @@ class MenuCommand {
 
     var childFlowCoordinator: FlowCoordinator!
 
-    func run(mainFlowCoordinator: MainFlowCoordinator) {
-        mainFlowCoordinator.saveCheckpoint()
-        mainFlowCoordinator.enter(flow: childFlowCoordinator) { [unowned mainFlowCoordinator] in
+    func run() {
+        MainFlowCoordinator.shared.saveCheckpoint()
+        MainFlowCoordinator.shared.enter(flow: childFlowCoordinator) {
             DispatchQueue.main.async {
-                mainFlowCoordinator.popToLastCheckpoint()
-                self.didExitToMenu(mainFlowCoordinator: mainFlowCoordinator)
+                MainFlowCoordinator.shared.popToLastCheckpoint()
+                self.didExitToMenu()
             }
         }
     }
 
-    func didExitToMenu(mainFlowCoordinator: MainFlowCoordinator) {
-        mainFlowCoordinator.pop()
+    func didExitToMenu() {
+        MainFlowCoordinator.shared.pop()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) {
-            mainFlowCoordinator.showTransactionList()
+            MainFlowCoordinator.shared.showTransactionList()
         }
     }
 

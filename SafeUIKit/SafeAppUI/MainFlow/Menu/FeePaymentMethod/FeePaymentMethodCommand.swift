@@ -15,8 +15,8 @@ final class FeePaymentMethodCommand: MenuCommand {
         return !ApplicationServiceRegistry.walletService.hasReadyToUseWallet
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        mainFlowCoordinator.push(PaymentMethodViewController())
+    override func run() {
+        MainFlowCoordinator.shared.push(PaymentMethodViewController())
     }
 
 }

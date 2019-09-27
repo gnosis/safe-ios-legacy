@@ -10,8 +10,8 @@ final class GetInTouchCommand: MenuCommand {
         return LocalizedString("get_in_touch", comment: "Get In Touch").capitalized
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        mainFlowCoordinator.push(GetInTouchTableViewController())
+    override func run() {
+        MainFlowCoordinator.shared.push(GetInTouchTableViewController())
     }
 
 }
