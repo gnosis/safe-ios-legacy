@@ -42,12 +42,13 @@ class SwitchSafesTableViewCell: UITableViewCell {
     func configure(walletData: WalletData) {
         nameLabel.text = walletData.name
         switch walletData.state {
-        case .pending:
+        case .pendingCreation, .pendingRecovery:
             identiconView.imageView.animationImages = Animation.images
             identiconView.imageView.animationDuration = Animation.duration
             identiconView.imageView.startAnimating()
-            addressLabel.text = LocalizedString("deposit_received_creating_safe",
-                                                comment: "Deposit received. Creating Safe...")
+            addressLabel.text = walletData.state == .pendingCreation ?
+                LocalizedString("deposit_received_creating_safe", comment: "Deposit received. Creating Safe...") :
+                LocalizedString("recovering_safe", comment: "Recovering your Safe...")
         case .created:
             identiconView.seed = walletData.address
             addressLabel.address = walletData.address

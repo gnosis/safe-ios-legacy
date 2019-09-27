@@ -9,11 +9,12 @@ public extension WalletData {
 
     init?(wallet: Wallet) {
         var walletState: WalletData.State!
-        if wallet.state.isReadyToUse {
+        if wallet.isReadyToUse {
             walletState = .created
-        } else if !wallet.state.canChangeAddress {
-            // wallet can change address only before all owners are known and deployments process is started
-            walletState = .pending
+        } else if wallet.isPendingCreation {
+            walletState = .pendingCreation
+        } else if wallet.isPendingRecovery {
+            walletState = .pendingRecovery
         } else {
             return nil
         }

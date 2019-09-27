@@ -7,7 +7,8 @@ import Foundation
 public struct WalletData: Equatable {
 
     public enum State {
-        case pending
+        case pendingCreation
+        case pendingRecovery
         case created
     }
 

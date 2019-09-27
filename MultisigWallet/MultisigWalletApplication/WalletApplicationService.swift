@@ -94,6 +94,11 @@ public class WalletApplicationService: Assertable {
             DomainRegistry.errorStream.removeHandler(subscriber)
             DomainRegistry.errorStream.addHandler(subscriber, errorHandler)
         }
+        subscribeOnWalletUpdates(subscriber: subscriber)
+        DomainRegistry.deploymentService.start()
+    }
+
+    public func subscribeOnWalletUpdates(subscriber: EventSubscriber) {
         ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
         [DeploymentStarted.self,
          StartedWaitingForFirstDeposit.self,
@@ -106,7 +111,6 @@ public class WalletApplicationService: Assertable {
          AccountsBalancesUpdated.self].forEach {
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
         }
-        DomainRegistry.deploymentService.start()
     }
 
     public func resumeDeploymentInBackground() {

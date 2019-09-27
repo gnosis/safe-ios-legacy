@@ -11,7 +11,7 @@ protocol SwitchSafesTableViewControllerDelegate: class {
     func didRequestToRemove(wallet: WalletData)
 }
 
-class SwitchSafesTableViewController: UITableViewController {
+class SwitchSafesTableViewController: UITableViewController, EventSubscriber {
 
     weak var delegate: SwitchSafesTableViewControllerDelegate?
     var safes = [WalletData]()
@@ -29,6 +29,7 @@ class SwitchSafesTableViewController: UITableViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+        walletService.subscribeOnWalletUpdates(subscriber: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +60,12 @@ class SwitchSafesTableViewController: UITableViewController {
     private func update() {
         safes = walletService.wallets()
         tableView.reloadData()
+    }
+
+    func notify() {
+        DispatchQueue.main.async {
+            self.update()            
+        }
     }
 
     // MARK: - Table view data source

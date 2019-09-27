@@ -698,7 +698,8 @@ Pairing password: %@";
 /* Explanation text. */
 "recovering_requires_fee" = "Recovering your Safe requires a network fee. Please add funds to your Safe.";
 
-/* Recovering safe */
+/* Recovering safe
+   Recovering your Safe... */
 "recovering_safe" = "Recovering your Safe…";
 
 /* Recovery phrase
