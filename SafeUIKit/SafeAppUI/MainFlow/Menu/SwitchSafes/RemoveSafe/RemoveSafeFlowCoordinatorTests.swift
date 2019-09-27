@@ -31,7 +31,7 @@ class RemoveSafeFlowCoordinatorTests: XCTestCase {
         removeSafeVC.viewDidLoad()
         removeSafeVC.footerButton.sendActions(for: .touchUpInside)
         delay()
-        XCTAssertTrue(topViewController is RemoveSafeEnterSeedViewController)
+        XCTAssertTrue(topViewController is RecoveryPhraseInputViewController)
     }
 
 }

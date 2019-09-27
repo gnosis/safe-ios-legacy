@@ -4,6 +4,7 @@
 
 import Foundation
 import Common
+import MultisigWalletApplication
 
 class SwitchSafesFlowCoordinator: FlowCoordinator {
 
@@ -23,7 +24,15 @@ extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
 
     func didRequestToRemove(wallet: WalletData) {
         removeSafeFlowCoordinator.safeAddress = wallet.address
-        enter(flow: removeSafeFlowCoordinator)
+        saveCheckpoint()
+        enter(flow: removeSafeFlowCoordinator) {
+            DispatchQueue.main.async { [unowned self] in
+                self.popToLastCheckpoint()
+                if ApplicationServiceRegistry.walletService.wallets().isEmpty {
+                    self.exitFlow()                    
+                }
+            }
+        }
     }
 
 }

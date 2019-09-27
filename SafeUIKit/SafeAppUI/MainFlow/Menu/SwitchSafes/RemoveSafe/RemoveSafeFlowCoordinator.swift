@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import MultisigWalletApplication
 
 final class RemoveSafeFlowCoordinator: FlowCoordinator {
 
@@ -20,7 +21,32 @@ final class RemoveSafeFlowCoordinator: FlowCoordinator {
     }
 
     private func removeSafeEnterSeed() -> UIViewController {
-        return RemoveSafeEnterSeedViewController()
+        let controller = RecoveryPhraseInputViewController.create(delegate: self)
+        controller.title = RemoveSafeIntroViewController.Strings.title
+        controller.screenTrackingEvent = SafesTrackingEvent.removeSafeEnterSeed
+        controller.nextButtonItem.title = LocalizedString("remove", comment: "Remove")
+        return controller
+    }
+
+}
+
+extension RemoveSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
+
+    func recoveryPhraseInputViewControllerDidFinish() {
+        ApplicationServiceRegistry.walletService.removeWallet(address: safeAddress)
+        exitFlow()
+    }
+
+    func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
+                                           didEnterPhrase phrase: String) {
+        let result = ApplicationServiceRegistry.recoveryService
+            .verifyRecoveryPhrase(phrase, address: safeAddress)
+        switch result {
+        case .failure(let error):
+            controller.handleError(error)
+        case .success(_):
+            controller.handleSuccess()
+        }
     }
 
 }

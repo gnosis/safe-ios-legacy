@@ -12,6 +12,7 @@ public extension WalletData {
         if wallet.state.isReadyToUse {
             walletState = .created
         } else if !wallet.state.canChangeAddress {
+            // wallet can change address only before all owners are known and deployments process is started
             walletState = .pending
         } else {
             return nil

@@ -20,4 +20,9 @@ final class SwitchSafesCommand: MenuCommand {
         childFlowCoordinator = SwitchSafesFlowCoordinator()
     }
 
+    override func didExitToMenu(mainFlowCoordinator: MainFlowCoordinator) {
+        mainFlowCoordinator.pop()
+        mainFlowCoordinator.switchToRootController()
+    }
+
 }
