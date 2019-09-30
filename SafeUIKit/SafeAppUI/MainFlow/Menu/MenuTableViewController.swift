@@ -37,9 +37,10 @@ final class MenuTableViewController: UITableViewController {
 
     enum SettingsSection: Hashable {
         case contractUpgrade
-        case portfolio
-        case security
-        case support
+        case safeSettings
+        case manageSafes
+        case appSettings
+        case aboutTheApp
     }
 
     struct MenuItem {
@@ -57,35 +58,34 @@ final class MenuTableViewController: UITableViewController {
 
     private enum Strings {
         static let title = LocalizedString("menu", comment: "Title for menu screen.")
-        static let address = LocalizedString("address", comment: "Title for safe address section.").uppercased()
-        static let portfolio = LocalizedString("portfolio", comment: "Title for portfolio section.").uppercased()
-        static let security = LocalizedString("security", comment: "Title for security section.").uppercased()
-        static let support = LocalizedString("support", comment: "Title for support section.").uppercased()
+        static let safeSettings = LocalizedString("safe_settings", comment: "Safe Settings").uppercased()
+        static let manageSafes = LocalizedString("manage_safes", comment: "Manage Safes").uppercased()
+        static let appSettings = LocalizedString("app_settings", comment: "App Settings").uppercased()
+        static let aboutTheApp = LocalizedString("about_the_app", comment: "About the App").uppercased()
     }
 
     // MARK: - Commands
 
-    var portfolioCommands: [MenuCommand] {
-        return [ManageTokensCommand()]
-    }
+    lazy var safeSettingsCommands = [FeePaymentMethodCommand(),
+                                     ResyncWithBrowserExtensionCommand(),
+                                     ReplaceRecoveryPhraseCommand(),
+                                     ReplaceTwoFACommand(),
+                                     ConnectTwoFACommand(),
+                                     DisconnectTwoFACommand(),
+                                     WalletConnectMenuCommand()]
 
-    var securityCommands: [MenuCommand] {
-        return [FeePaymentMethodCommand(),
-                ChangePasswordCommand(),
-                ResyncWithBrowserExtensionCommand(),
-                ReplaceRecoveryPhraseCommand(),
-                ReplaceTwoFACommand(),
-                ConnectTwoFACommand(),
-                DisconnectTwoFACommand(),
-                WalletConnectMenuCommand(),
-                SwitchSafesCommand(),
-                CreateSafeCommand(),
-                RecoverSafeCommand()]
-    }
+    lazy var manageSafesCommands = [SwitchSafesCommand(),
+                                    RecoverSafeCommand(),
+                                    CreateSafeCommand()]
 
-    var supportCommands: [MenuCommand] {
-        return [GetInTouchCommand(), TermsCommand(), PrivacyPolicyCommand(), RateAppCommand(), LicensesCommand()]
-    }
+    lazy var appSettingsCommands = [ManageTokensCommand(),
+                                    ChangePasswordCommand()]
+
+    lazy var aboutTheAppCommends = [GetInTouchCommand(),
+                                    TermsCommand(),
+                                    PrivacyPolicyCommand(),
+                                    RateAppCommand(),
+                                    LicensesCommand()]
 
     // MARK: - VC Lifecycle
 
@@ -129,18 +129,29 @@ final class MenuTableViewController: UITableViewController {
                  items: [MenuItem(name: "", hasDisclosure: false, height: 0, command: VoidCommand())])
             ]
         }
+
+        let safeSettingsItems = sectionItems(for: safeSettingsCommands)
+        if !safeSettingsItems.isEmpty {
+            menuItemSections += [(section: .safeSettings,
+                                  title: Strings.safeSettings,
+                                  items: safeSettingsItems)]
+        }
+
+        let manageSafesItems = sectionItems(for: manageSafesCommands)
+        if !manageSafesItems.isEmpty {
+            menuItemSections += [(section: .manageSafes,
+                                  title: Strings.manageSafes,
+                                  items: manageSafesItems)]
+        }
+
         menuItemSections += [
-            (section: .portfolio,
-             title: Strings.portfolio,
-             items: sectionItems(for: portfolioCommands)),
+            (section: .appSettings,
+             title: Strings.appSettings,
+             items: sectionItems(for: appSettingsCommands)),
 
-            (section: .security,
-             title: Strings.security,
-             items: sectionItems(for: securityCommands)),
-
-            (section: .support,
-             title: Strings.support,
-             items: sectionItems(for: supportCommands) +
+            (section: .aboutTheApp,
+             title: Strings.aboutTheApp,
+             items: sectionItems(for: aboutTheAppCommends) +
                 [MenuItem(name: "AppVersion",
                           hasDisclosure: false,
                           height: AppVersionTableViewCell.height,
@@ -176,7 +187,7 @@ final class MenuTableViewController: UITableViewController {
         switch menuItemSections[indexPath.section].section {
         case .contractUpgrade:
             return UITableViewCell()
-        case .portfolio, .security, .support:
+        case .safeSettings, .manageSafes, .appSettings, .aboutTheApp:
             let item = menuItem(at: indexPath)
             if item.name == "AppVersion" {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AppVersionTableViewCell", for: indexPath)

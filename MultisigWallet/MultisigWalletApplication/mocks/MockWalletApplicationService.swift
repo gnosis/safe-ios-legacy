@@ -64,6 +64,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         visibleTokensOutput = [
             TokenData(token: Token.Ether, balance: BigInt(10e17))
         ]
+        walletsOutput = [WalletData(address: "0x111ccccccccccccccccccccccccccccccccccccc", name: "c1", state: .created)]
     }
 
     // MARK: - Wallet
