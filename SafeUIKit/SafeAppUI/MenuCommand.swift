@@ -28,8 +28,8 @@ class MenuCommand {
         mainFlowCoordinator.saveCheckpoint()
         mainFlowCoordinator.enter(flow: childFlowCoordinator) { [unowned mainFlowCoordinator, unowned self] in
             DispatchQueue.main.async {
-                mainFlowCoordinator.popToLastCheckpoint()
-                self.didExitToMenu(mainFlowCoordinator: mainFlowCoordinator)
+                MainFlowCoordinator.shared.popToLastCheckpoint()
+                self.didExitToMenu()
             }
         }
     }

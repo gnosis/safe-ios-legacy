@@ -10,7 +10,6 @@ class ReplaceTwoFAFlowCoordinator: FlowCoordinator {
     weak var introVC: RBEIntroViewController?
     var transactionID: RBETransactionID!
     var keycardFlowCoordinator = SKKeycardFlowCoordinator()
-    var mainFlowCoordinator: MainFlowCoordinator!
     var twoFAMethod: String?
 
     private var applicationService: ReplaceTwoFAApplicationService {
@@ -104,7 +103,6 @@ extension ReplaceTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
         case .statusKeycard:
             twoFAMethod = Strings.statusKeyacard
             applicationService.updateTransaction(transactionID, with: .replaceTwoFAWithStatusKeycard)
-            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             keycardFlowCoordinator.hidesSteps = true
             keycardFlowCoordinator.removesKeycardOnGoingBack = false
             keycardFlowCoordinator.flowTitle = Strings.replaceTwoFA

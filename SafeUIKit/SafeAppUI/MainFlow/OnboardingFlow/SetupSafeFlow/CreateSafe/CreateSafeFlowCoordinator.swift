@@ -10,7 +10,6 @@ import Common
 class CreateSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
-    weak var mainFlowCoordinator: MainFlowCoordinator!
     weak var onboardingController: OnboardingViewController?
     var keycardFlowCoordinator = SKKeycardFlowCoordinator()
 
@@ -126,8 +125,6 @@ extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
     func didSelectTwoFAOption(_ option: TwoFAOption) {
         switch option {
         case .statusKeycard:
-            // TODO: remove coupling - keycardFlowCoordinator should not depend on mainFlowCoordinator
-            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             keycardFlowCoordinator.onSucces = { address in
                 ApplicationServiceRegistry.walletService.addOwner(address: address, type: .keycard)
             }

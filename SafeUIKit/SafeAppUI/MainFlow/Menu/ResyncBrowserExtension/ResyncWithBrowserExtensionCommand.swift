@@ -19,22 +19,22 @@ class ResyncWithBrowserExtensionCommand: MenuCommand {
         return false
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+    override func run() {
         DispatchQueue.global().async { [weak self] in
             do {
                 try ApplicationServiceRegistry.settingsService.resyncWithBrowserExtension()
                 DispatchQueue.main.async {
-                    self?.showSuccess(mainFlowCoordinator: mainFlowCoordinator)
+                    self?.showSuccess()
                 }
             } catch {
                 DispatchQueue.main.async { [weak self] in
-                    self?.showError(error, mainFlowCoordinator: mainFlowCoordinator)
+                    self?.showError(error)
                 }
             }
         }
     }
 
-    func showSuccess(mainFlowCoordinator: MainFlowCoordinator) {
+    func showSuccess() {
         let alert = UIAlertController(title: LocalizedString("info", comment: "Info"),
                                       message: LocalizedString("sync_with_extension_sent", comment: "Success"),
                                       preferredStyle: .alert)
@@ -42,10 +42,10 @@ class ResyncWithBrowserExtensionCommand: MenuCommand {
                                      style: .default,
                                      handler: nil)
         alert.addAction(okAction)
-        mainFlowCoordinator.presentModally(alert)
+        MainFlowCoordinator.shared.presentModally(alert)
     }
 
-    func showError(_ error: Error, mainFlowCoordinator: MainFlowCoordinator) {
+    func showError(_ error: Error) {
         let alert = UIAlertController(title: LocalizedString("error", comment: "Error"),
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
@@ -53,8 +53,7 @@ class ResyncWithBrowserExtensionCommand: MenuCommand {
                                      style: .default,
                                      handler: nil)
         alert.addAction(okAction)
-        mainFlowCoordinator.presentModally(alert)
-
+        MainFlowCoordinator.shared.presentModally(alert)
     }
 
 }

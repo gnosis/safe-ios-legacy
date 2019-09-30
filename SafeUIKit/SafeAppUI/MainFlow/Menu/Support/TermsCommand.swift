@@ -10,8 +10,8 @@ final class TermsCommand: MenuCommand {
         return LocalizedString("terms_of_service", comment: "Terms menu item").capitalized
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        SupportFlowCoordinator(from: mainFlowCoordinator).openTermsOfUse()
+    override func run() {
+        SupportFlowCoordinator(from: MainFlowCoordinator.shared).openTermsOfUse()
     }
 
 }

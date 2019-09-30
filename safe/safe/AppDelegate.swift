@@ -22,7 +22,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     var window: UIWindow?
-    lazy var coordinator = MainFlowCoordinator()
+    lazy var coordinator = MainFlowCoordinator.shared
     var identityAccessDB: Database?
     var multisigWalletDB: Database?
     var secureStore: SecureStore?

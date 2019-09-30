@@ -10,8 +10,8 @@ final class LicensesCommand: MenuCommand {
         return LocalizedString("licenses", comment: "Licenses")
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        SupportFlowCoordinator(from: mainFlowCoordinator).openLicenses()
+    override func run() {
+        SupportFlowCoordinator(from: MainFlowCoordinator.shared).openLicenses()
     }
 
 }

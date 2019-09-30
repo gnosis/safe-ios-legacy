@@ -11,7 +11,6 @@ class ConnectTwoFAFlowCoordinator: FlowCoordinator {
     var transactionID: RBETransactionID!
     var transactionSubmissionHandler = TransactionSubmissionHandler()
     var keycardFlowCoordinator = SKKeycardFlowCoordinator()
-    var mainFlowCoordinator: MainFlowCoordinator!
 
     enum Strings {
         static let enableTwoFA = LocalizedString("connect_2fa", comment: "Pair 2FA device")
@@ -99,7 +98,6 @@ extension ConnectTwoFAFlowCoordinator: TwoFATableViewControllerDelegate {
         switch option {
         case .statusKeycard:
             ApplicationServiceRegistry.connectTwoFAService.updateTransaction(transactionID, with: .connectStatusKeycard)
-            keycardFlowCoordinator.mainFlowCoordinator = mainFlowCoordinator
             keycardFlowCoordinator.hidesSteps = true
             keycardFlowCoordinator.removesKeycardOnGoingBack = false
             keycardFlowCoordinator.flowTitle = Strings.enableTwoFA
