@@ -63,7 +63,7 @@ class SwitchSafesTableViewController: UITableViewController, EventSubscriber {
     }
 
     func notify() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.update()            
         }
     }
