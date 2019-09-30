@@ -4,7 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
-import Common
+import MultisigWalletApplication
 
 class SwitchSafesTableViewControllerTests: SafeTestCase {
 
@@ -24,9 +24,9 @@ class SwitchSafesTableViewControllerTests: SafeTestCase {
         XCTAssertTracksAppearance(in: controller, SafesTrackingEvent.switchSafes)
     }
 
-    func test_whenSelectingRow_thenCallsDelegate() {
+    func test_whenSelectingRow_thenSelectsWallet() {
         controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertEqual(delegate.selectedWallet, WalletData.pending1)
+        XCTAssertEqual(walletService.didSelectWalletID, WalletData.pending1.id)
     }
 
     func test_whenRemovingRow_thenCallsDelegate() {
@@ -39,20 +39,39 @@ class SwitchSafesTableViewControllerTests: SafeTestCase {
 class MockSwitchSafesTableViewControllerDelegate: SwitchSafesTableViewControllerDelegate {
 
     var selectedWallet: WalletData?
-    func didSelect(wallet: WalletData) {
+    var requestedToRemoveWallet: WalletData?
+
+    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController, didSelect wallet: WalletData) {
         selectedWallet = wallet
     }
 
-    var requestedToRemoveWallet: WalletData?
-    func didRequestToRemove(wallet: WalletData) {
+    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController,
+                                        didRequestToRemove wallet: WalletData) {
         requestedToRemoveWallet = wallet
+    }
+
+    func switchSafesTableViewControllerDidFinish(_ controller: SwitchSafesTableViewController) {
+        // empty
     }
 
 }
 
 extension WalletData {
 
-    static let pending1 = WalletData(address: "p1", name: "p1", state: .pending)
-    static let created1 = WalletData(address: "c1", name: "c1", state: .created)
+    static let pending1 = WalletData(id: "id1",
+                                     address: "address1",
+                                     name: "wallet1",
+                                     state: .finalizingDeployment,
+                                     canRemove: false,
+                                     isSelected: true,
+                                     requiresBackupToRemove: true)
+
+    static let created1 = WalletData(id: "id2",
+                                     address: "address2",
+                                     name: "wallet2",
+                                     state: .readyToUse,
+                                     canRemove: true,
+                                     isSelected: false,
+                                     requiresBackupToRemove: true)
 
 }

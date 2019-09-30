@@ -109,6 +109,11 @@ public class MockWalletApplicationService: WalletApplicationService {
         return expected_walletState[actual_walletState.count - 1]
     }
 
+    public func clearExpectations_walletState() {
+        expected_walletState = [WalletStateId]()
+        actual_walletState = [String]()
+    }
+
     private var expected_abortDeployment = [String]()
     private var actual_abortDeployment = [String]()
     public func expect_abortDeployment() {
@@ -379,7 +384,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         return walletsOutput
     }
 
-    public override func selectFirstWalletIfNeeded() {
+    public override func repairModelIfNeeded() {
         // empty
     }
 
@@ -387,12 +392,21 @@ public class MockWalletApplicationService: WalletApplicationService {
         return nil
     }
 
+    public var didSelectWalletID: String?
+
     public override func selectWallet(_ id: String) {
-        // empty
+        didSelectWalletID = id
     }
 
     public override func resumeDeploymentInBackground() {
         // empty
     }
 
+    public override func removeWallet(id: String) {
+        // empty
+    }
+
+    public override func walletAddress(id: String) -> String? {
+        return walletAddress
+    }
 }

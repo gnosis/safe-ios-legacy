@@ -76,7 +76,7 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
     ///
     /// - Parameter wallet: wallet ID to lookup
     /// - Returns: true if portfolio contains wallet, false otherwise.
-    private func hasWallet(_ wallet: WalletID) -> Bool {
+    public func hasWallet(_ wallet: WalletID) -> Bool {
         return wallets.contains(wallet)
     }
 

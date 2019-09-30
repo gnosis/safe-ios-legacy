@@ -19,7 +19,7 @@ enum TwoFAOption {
 class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var selectedOption: Int!
-    let tableView = UITableView()
+    weak var tableView: UITableView!
     weak var delegate: TwoFATableViewControllerDelegate?
 
     let twoFAOptionsMap: [Int: TwoFAOption] = [
@@ -38,6 +38,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
         title = Strings.pick2FA
         selectedOption = NFCNDEFReaderSession.readingAvailable ? 0 : 1
 
+        let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "TwoFATableViewCell", bundle: Bundle(for: TwoFATableViewCell.self)),
@@ -51,6 +52,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
                    tableView.topAnchor.constraint(equalTo: view.topAnchor),
                    tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
                    tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+        self.tableView = tableView
 
         let button = StandardButton()
         button.style = .filled

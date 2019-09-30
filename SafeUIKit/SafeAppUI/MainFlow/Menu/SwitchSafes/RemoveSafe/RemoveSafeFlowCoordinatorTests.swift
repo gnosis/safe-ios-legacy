@@ -6,7 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
 
-class RemoveSafeFlowCoordinatorTests: XCTestCase {
+class RemoveSafeFlowCoordinatorTests: SafeTestCase {
 
     var removeSafeCoordinator: RemoveSafeFlowCoordinator!
 
@@ -17,8 +17,9 @@ class RemoveSafeFlowCoordinatorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         removeSafeCoordinator = RemoveSafeFlowCoordinator(rootViewController: UINavigationController())
-        removeSafeCoordinator.safeAddress = ""
+        removeSafeCoordinator.walletID = ""
         removeSafeCoordinator.setUp()
+        walletService.assignAddress("")
     }
 
     func test_startViewController_returnsRemoveSafeIntroVC() {

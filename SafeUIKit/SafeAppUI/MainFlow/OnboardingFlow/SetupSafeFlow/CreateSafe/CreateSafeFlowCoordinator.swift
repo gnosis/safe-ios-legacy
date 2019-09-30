@@ -20,10 +20,10 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
         case .draft:
             showOnboarding()
         case .deploying, .waitingForFirstDeposit, .notEnoughFunds:
-            creationFeeIntroPay()
+            showCreationFee()
         case .creationStarted, .transactionHashIsKnown, .finalizingDeployment:
-            deploymentDidStart()
-        case .readyToUse:
+            showInProgress()
+        case .readyToUse, .recoveryDraft, .recoveryInProgress, .recoveryPostProcessing:
             exitFlow()
         }
     }
@@ -35,7 +35,9 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
                 Tracker.shared.track(event: OnboardingTrackingEvent.newSafeGetStarted)
                 self?.showCreateSafeIntro()
             })
-        vc.onBack = finish
+        vc.onBack = { [unowned self] in
+            self.finish()
+        }
         push(vc)
         onboardingController = vc
     }
@@ -86,10 +88,38 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
         push(controller)
     }
 
-    func finish() {
+    func showInProgress() {
+        if let existingVC = navigationController.topViewController as? OnboardingFeePaidViewController,
+            existingVC.walletID == ApplicationServiceRegistry.walletService.selectedWalletID() {
+            return
+        }
+        let vc = OnboardingFeePaidViewController.create(delegate: self)
+        setRoot(CustomNavigationController(rootViewController: vc))
+    }
+
+    func showCreationFee() {
+        if let existingVC = navigationController.topViewController as? OnboardingCreationFeeViewController,
+            existingVC.walletID == ApplicationServiceRegistry.walletService.selectedWalletID() { return }
+        let vc = OnboardingCreationFeeViewController.create(delegate: self)
+        setRoot(CustomNavigationController(rootViewController: vc))
+    }
+
+    func finish(from vc: UIViewController? = nil) {
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        if navigationController.topViewController === vc {
+            MainFlowCoordinator.shared.switchToRootController()
+        }
         exitFlow()
     }
+
+    override func setRoot(_ controller: UIViewController) {
+        guard rootViewController !== controller else { return }
+        super.setRoot(controller)
+        [paperWalletFlowCoordinator,
+         keycardFlowCoordinator,
+         MainFlowCoordinator.shared].forEach { $0?.setRoot(controller) }
+    }
+
 }
 
 extension CreateSafeFlowCoordinator: TwoFATableViewControllerDelegate {
@@ -153,6 +183,10 @@ extension CreateSafeFlowCoordinator: AuthenticatorViewControllerDelegate {
 
 extension CreateSafeFlowCoordinator: CreationFeeIntroDelegate {
 
+    func creationFeeIntroPay() {
+        showCreationFee()
+    }
+
     func creationFeeLoadEstimates() -> [TokenData] {
         return ApplicationServiceRegistry.walletService.estimateSafeCreation()
     }
@@ -167,22 +201,18 @@ extension CreateSafeFlowCoordinator: CreationFeeIntroDelegate {
         push(controller)
     }
 
-    func creationFeeIntroPay() {
-        push(OnboardingCreationFeeViewController.create(delegate: self))
-    }
-
 }
 
 extension CreateSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 
     func creationFeePaymentMethodPay() {
-        creationFeeIntroPay()
+        showCreationFee()
     }
 
     func creationFeePaymentMethodLoadEstimates() -> [TokenData] {
         let estimates = creationFeeLoadEstimates()
         // hacky: we want to update the payment intro at this point as well.
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             if let controller = self.navigationController.viewControllers.first(where: {
                 $0 is OnboardingCreationFeeIntroViewController }) as? OnboardingCreationFeeIntroViewController {
                 controller.update(with: estimates)
@@ -195,19 +225,19 @@ extension CreateSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 
 extension CreateSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate {
 
-    func deploymentDidFail() {
-        finish()
+    func onboardingCreationFeeViewControllerDeploymentDidCancel(_ controller: OnboardingCreationFeeViewController) {
+        finish(from: controller)
     }
 
-    func deploymentDidStart() {
-        push(OnboardingFeePaidViewController.create(delegate: self))
+    func onboardingCreationFeeViewControllerDeploymentDidStart(_ controller: OnboardingCreationFeeViewController) {
+        showInProgress()
     }
 
-    func deploymentDidCancel() {
-        finish()
+    func onboardingCreationFeeViewControllerDeploymentDidFail(_ controller: OnboardingCreationFeeViewController) {
+        finish(from: controller)
     }
 
-    func onboardingCreationFeeOpenMenu() {
+    func onboardingCreationFeeViewControllerFeeOpenMenu(_ controller: OnboardingCreationFeeViewController) {
         MainFlowCoordinator.shared.openMenu()
     }
 
@@ -215,15 +245,15 @@ extension CreateSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate
 
 extension CreateSafeFlowCoordinator: OnboardingFeePaidViewControllerDelegate {
 
-    func onboardingFeePaidDidFail() {
-        finish()
+    func onboardingFeePaidViewControllerDidFail(_ controller: OnboardingFeePaidViewController) {
+        finish(from: controller)
     }
 
-    func onboardingFeePaidDidSuccess() {
-        finish()
+    func onboardingFeePaidViewControllerDidSuccess(_ controller: OnboardingFeePaidViewController) {
+        finish(from: controller)
     }
 
-    func onboardingFeePaidOpenMenu() {
+    func onboardingFeePaidViewControllerOpenMenu(_ controller: OnboardingFeePaidViewController) {
         MainFlowCoordinator.shared.openMenu()
     }
 

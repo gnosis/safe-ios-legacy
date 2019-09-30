@@ -100,7 +100,7 @@ extension DisconnectTwoFAFlowCoordinator: RecoveryPhraseInputViewControllerDeleg
         }
     }
 
-    func recoveryPhraseInputViewControllerDidFinish() {
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController) {
         push(reviewViewController())
     }
 
@@ -117,7 +117,9 @@ extension DisconnectTwoFAFlowCoordinator: ReviewTransactionViewControllerDelegat
         DispatchQueue.global.async {
             self.applicationService.startMonitoring(transaction: self.transactionID)
         }
-        push(SuccessViewController.disconnect2FASuccess(action: exitFlow))
+        push(SuccessViewController.disconnect2FASuccess { [unowned self] in
+            self.exitFlow()
+        })
     }
 
 }

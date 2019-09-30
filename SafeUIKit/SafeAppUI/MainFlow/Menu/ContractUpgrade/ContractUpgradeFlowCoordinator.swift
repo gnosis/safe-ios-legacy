@@ -21,10 +21,12 @@ final class ContractUpgradeFlowCoordinator: FlowCoordinator {
     func showOnboarding() {
         let vc = OnboardingViewController.create(next: { [weak self] in
             self?.onboardingController?.transitionToNextPage()
-            }, finish: { [weak self] in
-                Tracker.shared.track(event: ContractUpgradeTrackingEvent.getStarted)
-                self?.showUpgradeIntro()
-            }, showBlogArticle: showBlogArticle)
+        }, finish: { [weak self] in
+            Tracker.shared.track(event: ContractUpgradeTrackingEvent.getStarted)
+            self?.showUpgradeIntro()
+        }, showBlogArticle: { [weak self] in
+            self?.showBlogArticle()
+        })
         push(vc)
         onboardingController = vc
     }
@@ -74,10 +76,12 @@ extension ContractUpgradeFlowCoordinator: ReviewTransactionViewControllerDelegat
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        DispatchQueue.global.async {
+        DispatchQueue.global.async { [unowned self] in
             ApplicationServiceRegistry.contractUpgradeService.startMonitoring(transaction: self.transactionID)
         }
-        push(SuccessViewController.contractUpgrade(action: exitFlow))
+        push(SuccessViewController.contractUpgrade { [unowned self] in
+            self.exitFlow()
+        })
     }
 
 }

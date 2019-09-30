@@ -155,7 +155,9 @@ extension ConnectTwoFAFlowCoordinator: ReviewTransactionViewControllerDelegate {
         DispatchQueue.global.async {
             ApplicationServiceRegistry.connectTwoFAService.startMonitoring(transaction: self.transactionID)
         }
-        push(SuccessViewController.connect2FASuccess(action: exitFlow))
+        push(SuccessViewController.connect2FASuccess { [unowned self] in
+            self.exitFlow()
+        })
     }
 
 }

@@ -124,7 +124,9 @@ open class ReplaceTwoFADomainService: Assertable {
 
     public func accountBalance(for transactionID: TransactionID) -> TokenAmount {
         let tx = transaction(transactionID)
-        let account = DomainRegistry.accountRepository.find(id: tx.accountID)!
+        guard let account = DomainRegistry.accountRepository.find(id: tx.accountID) else {
+            return TokenAmount(amount: 0, token: .Ether)
+        }
         let balance = account.balance ?? 0
         let token = DomainRegistry.tokenListItemRepository.find(id: account.id.tokenID)?.token ?? Token.Ether
         return TokenAmount(amount: balance, token: token)

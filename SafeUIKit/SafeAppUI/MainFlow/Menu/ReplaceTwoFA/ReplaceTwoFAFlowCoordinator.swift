@@ -162,8 +162,7 @@ extension ReplaceTwoFAFlowCoordinator: RecoveryPhraseInputViewControllerDelegate
         }
     }
 
-
-    func recoveryPhraseInputViewControllerDidFinish() {
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController) {
         push(reviewViewController())
     }
 
@@ -180,7 +179,9 @@ extension ReplaceTwoFAFlowCoordinator: ReviewTransactionViewControllerDelegate {
         DispatchQueue.global.async {
             self.applicationService.startMonitoring(transaction: self.transactionID)
         }
-        push(SuccessViewController.replace2FASuccess(action: exitFlow))
+        push(SuccessViewController.replace2FASuccess { [unowned self] in
+            self.exitFlow()
+        })
     }
 
 }

@@ -4,11 +4,13 @@
 
 import UIKit
 import SafeUIKit
+import MultisigWalletApplication
 
 class RemoveSafeIntroViewController: CardViewController {
 
     let headerView = HeaderImageTextView()
     let addressDetailView = AddressDetailView()
+    private var walletID: String!
     private var address: String!
     private var onNext: (() -> Void)!
 
@@ -19,16 +21,18 @@ class RemoveSafeIntroViewController: CardViewController {
         static let iHaveBackup = LocalizedString("i_have_a_backup", comment: "I have a backup")
     }
 
-    static func create(address: String, onNext: @escaping () -> Void) -> RemoveSafeIntroViewController {
+    static func create(walletID: String, onNext: @escaping () -> Void) -> RemoveSafeIntroViewController {
         let controller = RemoveSafeIntroViewController(nibName: String(describing: CardViewController.self),
                                                        bundle: Bundle(for: CardViewController.self))
-        controller.address = address
+        controller.walletID = walletID
         controller.onNext = onNext
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        address = ApplicationServiceRegistry.walletService.walletAddress(id: walletID)
 
         title = Strings.title
         setSubtitle(nil)

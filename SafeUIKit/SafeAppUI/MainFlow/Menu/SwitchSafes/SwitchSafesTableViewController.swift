@@ -7,14 +7,16 @@ import MultisigWalletApplication
 import Common
 
 protocol SwitchSafesTableViewControllerDelegate: class {
-    func didSelect(wallet: WalletData)
-    func didRequestToRemove(wallet: WalletData)
+    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController,
+                                        didRequestToRemove wallet: WalletData)
+    func switchSafesTableViewControllerDidFinish(_ controller: SwitchSafesTableViewController)
 }
 
 class SwitchSafesTableViewController: UITableViewController {
 
     weak var delegate: SwitchSafesTableViewControllerDelegate?
     var safes = [WalletData]()
+    var backButtonItem: UIBarButtonItem!
 
     var walletService: WalletApplicationService {
         return ApplicationServiceRegistry.walletService
@@ -29,6 +31,7 @@ class SwitchSafesTableViewController: UITableViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+        ApplicationServiceRegistry.walletService.subscribeForWalletStateChanges(subscriber: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +42,15 @@ class SwitchSafesTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(SafesTrackingEvent.switchSafes)
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
+        setCustomBackButton(backButtonItem)
+    }
+
+    @objc func back() {
+        delegate?.switchSafesTableViewControllerDidFinish(self)
     }
 
     private func configureNavigationBar() {
@@ -70,9 +82,9 @@ class SwitchSafesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchSafesTableViewCell",
                                                  for: indexPath) as! SwitchSafesTableViewCell
-        let data = safes[indexPath.row]
-        cell.configure(walletData: data)
-        cell.accessoryView = data.address == walletService.selectedWalletAddress ? checkmarkImageView() : nil
+        let safe = safes[indexPath.row]
+        cell.configure(walletData: safe)
+        cell.accessoryView = safe.isSelected ? checkmarkImageView() : nil
         return cell
     }
 
@@ -87,8 +99,12 @@ class SwitchSafesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.didSelect(wallet: safes[indexPath.row])
+        ApplicationServiceRegistry.walletService.selectWallet(safes[indexPath.row].id)
         update()
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return safes[indexPath.row].canRemove
     }
 
     override func tableView(_ tableView: UITableView,
@@ -99,12 +115,30 @@ class SwitchSafesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
-        delegate?.didRequestToRemove(wallet: safes[indexPath.row])
+        delegate?.switchSafesTableViewController(self, didRequestToRemove: safes[indexPath.row])
     }
 
     override func tableView(_ tableView: UITableView,
                             titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return Strings.remove
+    }
+
+}
+
+extension SwitchSafesTableViewController: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
+    }
+
+}
+
+extension SwitchSafesTableViewController: EventSubscriber {
+
+    func notify() {
+        DispatchQueue.main.async { [unowned self] in
+            self.update()
+        }
     }
 
 }

@@ -9,30 +9,48 @@ import MultisigWalletApplication
 class SwitchSafesFlowCoordinator: FlowCoordinator {
 
     let removeSafeFlowCoordinator = RemoveSafeFlowCoordinator()
+    var initialSelection: String?
 
     override func setUp() {
         super.setUp()
+        initialSelection = ApplicationServiceRegistry.walletService.selectedWalletID()
         let controller = SwitchSafesTableViewController()
         controller.delegate = self
         push(controller)
+    }
+
+    override func setRoot(_ controller: UIViewController) {
+        guard rootViewController !== controller else {
+            return
+        }
+        super.setRoot(controller)
+        [removeSafeFlowCoordinator, MainFlowCoordinator.shared].forEach { $0?.setRoot(controller) }
     }
 }
 
 extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
 
-    func didSelect(wallet: WalletData) {}
-
-    func didRequestToRemove(wallet: WalletData) {
-        removeSafeFlowCoordinator.safeAddress = wallet.address
+    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController,
+                                        didRequestToRemove wallet: WalletData) {
+        removeSafeFlowCoordinator.walletID = wallet.id
+        removeSafeFlowCoordinator.requiresRecoveryPhrase = wallet.requiresBackupToRemove
         saveCheckpoint()
-        enter(flow: removeSafeFlowCoordinator) {
-            DispatchQueue.main.async { [unowned self] in
-                self.popToLastCheckpoint()
+        enter(flow: removeSafeFlowCoordinator) { [unowned self] in
+            DispatchQueue.main.async {
                 if ApplicationServiceRegistry.walletService.wallets().isEmpty {
-                    self.exitFlow()                    
+                    MainFlowCoordinator.shared.switchToRootController()
+                } else {
+                    self.popToLastCheckpoint()
                 }
             }
         }
+    }
+
+    func switchSafesTableViewControllerDidFinish(_ controller: SwitchSafesTableViewController) {
+        let currentSelection = ApplicationServiceRegistry.walletService.selectedWalletID()
+        guard currentSelection != initialSelection else { return }
+        MainFlowCoordinator.shared.switchToRootController()
+        setRoot(MainFlowCoordinator.shared.rootViewController)
     }
 
 }

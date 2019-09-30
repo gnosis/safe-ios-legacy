@@ -4,7 +4,7 @@
 
 import UIKit
 import SafeUIKit
-import Common
+import MultisigWalletApplication
 
 class SwitchSafesTableViewCell: UITableViewCell {
 
@@ -42,15 +42,42 @@ class SwitchSafesTableViewCell: UITableViewCell {
     func configure(walletData: WalletData) {
         nameLabel.text = walletData.name
         switch walletData.state {
-        case .pending:
+        case .readyToUse:
+            identiconView.seed = walletData.address!
+            addressLabel.address = walletData.address!
+        default:
             identiconView.imageView.animationImages = Animation.images
             identiconView.imageView.animationDuration = Animation.duration
             identiconView.imageView.startAnimating()
-            addressLabel.text = LocalizedString("deposit_received_creating_safe",
-                                                comment: "Deposit received. Creating Safe...")
-        case .created:
-            identiconView.seed = walletData.address
-            addressLabel.address = walletData.address
+            addressLabel.text = statusText(from: walletData)
+        }
+    }
+
+    // swiftlint:disable:next cyclomatic_complexity
+    private func statusText(from wallet: WalletData) -> String {
+        switch wallet.state {
+        case .draft:
+            return LocalizedString("wallet_draft_creation", comment: "New wallet draft")
+        case .deploying:
+            return LocalizedString("creating_wallet_address", comment: "Creating address")
+        case .waitingForFirstDeposit:
+            return LocalizedString("waiting_for_first_deposit", comment: "Waiting for deposit")
+        case .notEnoughFunds:
+            return LocalizedString("waiting_for_remaining_funds", comment: "No funds")
+        case .creationStarted:
+            return LocalizedString("wallet_creation_started", comment: "Started")
+        case .transactionHashIsKnown:
+            return LocalizedString("wallet_transaction_submitted", comment: "Transaction is submitted")
+        case .finalizingDeployment:
+            return LocalizedString("wallet_finalizing_deployment", comment: "Wallet is finalizing")
+        case .recoveryDraft:
+            return LocalizedString("wallet_draft_recovery", comment: "Draft recovery")
+        case .recoveryInProgress:
+            return LocalizedString("wallet_recovery_in_progress", comment: "Recovery in progress")
+        case .recoveryPostProcessing:
+            return LocalizedString("wallet_recovery_finalizing", comment: "Recovery finalizing")
+        case .readyToUse:
+            return LocalizedString("wallet_is_ready", comment: "Wallet is ready")
         }
     }
 

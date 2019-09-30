@@ -15,6 +15,9 @@ public enum WalletStateId {
     case transactionHashIsKnown
     case finalizingDeployment
     case readyToUse
+    case recoveryDraft
+    case recoveryInProgress
+    case recoveryPostProcessing
 
     init(_ state: WalletState) {
         switch state {
@@ -25,6 +28,9 @@ public enum WalletStateId {
         case is CreationStartedState: self = .creationStarted
         case is FinalizingDeploymentState: self = .finalizingDeployment
         case is ReadyToUseState: self = .readyToUse
+        case is RecoveryDraftState: self = .recoveryDraft
+        case is RecoveryInProgressState: self = .recoveryInProgress
+        case is RecoveryPostProcessingState: self = .recoveryPostProcessing
         default: preconditionFailure("Unknown wallet state")
         }
     }

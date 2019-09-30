@@ -109,16 +109,40 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.deploymentService.start()
     }
 
+    public func subscribeForWalletStateChanges(subscriber: EventSubscriber) {
+        ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
+        [DeploymentStarted.self,
+         StartedWaitingForFirstDeposit.self,
+         StartedWaitingForRemainingFeeAmount.self,
+         DeploymentFunded.self,
+         CreationStarted.self,
+         WalletTransactionHashIsKnown.self,
+         WalletCreated.self,
+         WalletCreationFailed.self,
+         AccountsBalancesUpdated.self,
+         DeploymentAborted.self,
+         RecoveryStarted.self,
+         RecoveryAborted.self,
+         WalletRecovered.self,
+         WalletRecoveryFailed.self].forEach {
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
+        }
+    }
+
     public func resumeDeploymentInBackground() {
         DispatchQueue.global.async(execute: DomainRegistry.deploymentService.start)
     }
 
     public func walletState() -> WalletStateId? {
-        guard let state = selectedWallet?.state else { return nil }
-        if state is FinalizingDeploymentState && selectedWallet!.creationTransactionHash != nil {
+        guard let wallet = selectedWallet else { return nil }
+        return walletStateId(wallet: wallet)
+    }
+
+    private func walletStateId(wallet: Wallet) -> WalletStateId {
+        if wallet.state is FinalizingDeploymentState && wallet.creationTransactionHash != nil {
             return .transactionHashIsKnown
         }
-        return WalletStateId(state)
+        return WalletStateId(wallet.state)
     }
 
     private func notifyBrowserExtension(message: String) throws {
@@ -148,17 +172,35 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.walletRepository.selectedWallet()
     }
 
+    public func walletAddress(id: String) -> String? {
+        DomainRegistry.walletRepository.find(id: WalletID(id))?.address.value
+    }
+
     public func walletCreationURL() -> URL {
         return configuration.transactionURL(for: selectedWallet!.creationTransactionHash)
     }
 
     public func wallets() -> [WalletData] {
-        return DomainRegistry.walletRepository.all().compactMap { WalletData(wallet: $0) }
+        guard let portfolio = DomainRegistry.portfolioRepository.portfolio() else { return [] }
+        let removableStates: [WalletStateId] = [.draft, .deploying,
+                                                .waitingForFirstDeposit, .notEnoughFunds,
+                                                .recoveryDraft, .readyToUse]
+        return portfolio.wallets.compactMap {
+            DomainRegistry.walletRepository.find(id: $0)
+        }.compactMap { wallet in
+            let state = walletStateId(wallet: wallet)
+            return WalletData(id: wallet.id.id,
+                              address: wallet.address?.value,
+                              name: "Safe",
+                              state: state,
+                              canRemove: removableStates.contains(state),
+                              isSelected: portfolio.selectedWallet == wallet.id,
+                              requiresBackupToRemove: state == .readyToUse)
+        }
     }
 
-    public func removeWallet(address: String) {
-        guard let wallet = DomainRegistry.walletRepository.find(address: Address(address)) else { return }
-        WalletDomainService.removeWallet(wallet.id.id)
+    public func removeWallet(id: String) {
+        WalletDomainService.removeWallet(id)
     }
 
     public func cleanUpDrafts() {
@@ -191,7 +233,14 @@ public class WalletApplicationService: Assertable {
         return selectedWallet?.id.id
     }
 
-    public func selectFirstWalletIfNeeded() {
+    public func repairModelIfNeeded() {
+        // find wallets outside of portfolio and add them back.
+        if let portfolio = DomainRegistry.portfolioRepository.portfolio() {
+            let orphanWallets = DomainRegistry.walletRepository.all().map { $0.id }.filter { !portfolio.hasWallet($0) }
+            orphanWallets.forEach { portfolio.addWallet($0) }
+            DomainRegistry.portfolioRepository.save(portfolio)
+        }
+        // repair selection
         if selectedWallet == nil, let first = DomainRegistry.walletRepository.all().first {
             selectWallet(first.id.id)
         }

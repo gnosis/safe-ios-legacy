@@ -35,7 +35,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     public struct ButtonItem: Equatable {
 
         public var text: String
-        public var target: Any?
+        public weak var target: AnyObject?
         public var action: Selector?
         public var icon: UIImage?
 
@@ -152,7 +152,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     }
 
     @discardableResult
-    public func set(button: String, target: Any? = nil, action: Selector? = nil) -> FeeCalculationAssetLine {
+    public func set(button: String, target: AnyObject? = nil, action: Selector? = nil) -> FeeCalculationAssetLine {
         self.asset.button = ButtonItem(text: button, target: target, action: action, icon: nil)
         return self
     }
@@ -160,7 +160,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     @discardableResult
     public func set(valueButton: String,
                     icon: UIImage?,
-                    target: Any? = nil,
+                    target: AnyObject? = nil,
                     action: Selector? = nil) -> FeeCalculationAssetLine {
         self.asset.valueButton = ButtonItem(text: valueButton, target: target, action: action, icon: nil)
         return self

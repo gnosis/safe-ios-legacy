@@ -117,7 +117,9 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ReviewTransactionViewControllerD
         DispatchQueue.global.async {
             ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: self.transactionID)
         }
-        push(SuccessViewController.replaceSeedSuccess(action: exitFlow))
+        push(SuccessViewController.replaceSeedSuccess { [unowned self] in
+            self.exitFlow()
+        })
     }
 
 }

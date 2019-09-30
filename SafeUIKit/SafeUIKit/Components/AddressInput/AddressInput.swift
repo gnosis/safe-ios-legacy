@@ -112,7 +112,9 @@ public final class AddressInput: VerifiableInput {
         trimsText = true
         text = nil
         placeholder = Strings.addressPlaceholder
-        addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress", validation: isValid)
+        addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress") { [unowned self] in
+            self.isValid($0)
+        }
         scanHandler.addDebugButtonToScannerController(title: "Test Address",
                                                       scanValue: "0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0")
     }

@@ -81,7 +81,9 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
         toolbar.pageControl.defersCurrentPageDisplay = true // we'll call the update when page animation finishes
         toolbar.pageControl.numberOfPages = pageDataSource.stepCount
 
-        toolbar.action = didTapActionButton
+        toolbar.action = { [weak self] in
+            self?.didTapActionButton()
+        }
 
         self.dataSource = pageDataSource
         self.delegate = self

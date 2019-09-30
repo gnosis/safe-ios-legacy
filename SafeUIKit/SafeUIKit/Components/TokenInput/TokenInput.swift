@@ -19,7 +19,7 @@ public final class TokenInput: VerifiableInput {
         enum Rules {
             static let valueIsTooBig = LocalizedString("ios_token_input_value_is_too_big",
                                                        comment: "Error to display if entered value is too big.")
-            static let excededAmountOfFractionalDigits =
+            static let exceedDigits =
                 LocalizedString("ios_token_input_exceded_amount_of_fractional_digits",
                                 comment: "Error to display if amount of fractional digits is exceded.")
             static let valueIsNotANumber =
@@ -89,11 +89,15 @@ public final class TokenInput: VerifiableInput {
     }
 
     private func addDefaultValidationsRules() {
-        addRule(Strings.Rules.valueIsTooBig, identifier: "valueIsTooBig") { self.valueIsNotTooBig($0) }
-        addRule(Strings.Rules.excededAmountOfFractionalDigits, identifier: "excededAmountOfFractionalDigits") {
+        addRule(Strings.Rules.valueIsTooBig, identifier: "valueIsTooBig") { [unowned self] in
+            self.valueIsNotTooBig($0)
+        }
+        addRule(Strings.Rules.exceedDigits, identifier: "excededAmountOfFractionalDigits") { [unowned self] in
             self.notExcededAmountOfFractionalDigits($0)
         }
-        addRule(Strings.Rules.valueIsNotANumber, identifier: "valueIsNotANumber") { self.valueIsANumber($0) }
+        addRule(Strings.Rules.valueIsNotANumber, identifier: "valueIsNotANumber") { [unowned self] in
+            self.valueIsANumber($0)
+        }
     }
 
     private func valueIsANumber(_ value: String) -> Bool {
