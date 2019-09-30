@@ -115,7 +115,9 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
     override func setRoot(_ controller: UIViewController) {
         guard rootViewController !== controller else { return }
         super.setRoot(controller)
-        [paperWalletFlowCoordinator, keycardFlowCoordinator, MainFlowCoordinator.shared].forEach { $0?.setRoot(controller) }
+        [paperWalletFlowCoordinator,
+         keycardFlowCoordinator,
+         MainFlowCoordinator.shared].forEach { $0?.setRoot(controller) }
     }
 
 }

@@ -21,7 +21,6 @@ class RemoveSafeIntroViewController: CardViewController {
         static let iHaveBackup = LocalizedString("i_have_a_backup", comment: "I have a backup")
     }
 
-    // use the ID, not address
     static func create(walletID: String, onNext: @escaping () -> Void) -> RemoveSafeIntroViewController {
         let controller = RemoveSafeIntroViewController(nibName: String(describing: CardViewController.self),
                                                        bundle: Bundle(for: CardViewController.self))

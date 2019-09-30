@@ -33,10 +33,19 @@ open class MainFlowCoordinator: FlowCoordinator {
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
 
+    // TODO: GH-1181: re-implement this with a "childFlowCoordinator" idea
+    // or a global root view controller.
+    // The idea here is that when root controller changes, all of the flow coordinators
+    // should change the root.
     override func setRoot(_ controller: UIViewController) {
         guard rootViewController !== controller else { return }
         super.setRoot(controller)
-        [manageTokensFlowCoordinator, masterPasswordFlowCoordinator, sendFlowCoordinator, newSafeFlowCoordinator, recoverSafeFlowCoordinator, walletConnectFlowCoordinator].forEach { $0?.setRoot(controller) }
+        [manageTokensFlowCoordinator,
+         masterPasswordFlowCoordinator,
+         sendFlowCoordinator,
+         newSafeFlowCoordinator,
+         recoverSafeFlowCoordinator,
+         walletConnectFlowCoordinator].forEach { $0?.setRoot(controller) }
     }
 
     public init() {
@@ -114,6 +123,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     func requestToUnlockApp(useUIApplicationRoot: Bool = false) {
+        // TODO: try to use local `lockedViewController` since it will be captured by the UnlockVC's closure.
         lockedViewController = useUIApplicationRoot ? applicationRootViewController : rootViewController
         applicationRootViewController = UnlockViewController.create { [unowned self] success in
             if !success { return }

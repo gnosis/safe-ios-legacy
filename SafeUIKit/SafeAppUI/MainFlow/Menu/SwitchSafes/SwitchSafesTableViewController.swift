@@ -125,7 +125,7 @@ class SwitchSafesTableViewController: UITableViewController {
 
 }
 
-extension SwitchSafesFlowCoordinator: InteractivePopGestureResponder {
+extension SwitchSafesTableViewController: InteractivePopGestureResponder {
 
     func interactivePopGestureShouldBegin() -> Bool {
         return false
