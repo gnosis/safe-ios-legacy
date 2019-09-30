@@ -1,11 +1,11 @@
+/* About the App */
+"about_the_app" = "About the App";
+
 /* Active sessions */
 "active_sessions" = "Active sessions";
 
 /* Title for Add Token screen. */
 "add_token" = "Add Token";
-
-/* Title for safe address section. */
-"address" = "Address";
 
 /* Description */
 "after_finishing_setup" = "After finishing the Safe setup, you will need to enter the PIN and hold the Keycard to your phone to confirm each transaction. You can replace or remove your 2FA device in the Safe menu at any time.";
@@ -21,6 +21,9 @@
 
 /* Received */
 "amount_received" = "Amount received";
+
+/* App Settings */
+"app_settings" = "App Settings";
 
 /* Assets tab title */
 "assets" = "Assets";
@@ -514,6 +517,9 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Lost your recovery phrase? */
 "lost_recovery_phrase" = "Lost your recovery phrase?";
 
+/* Manage Safes */
+"manage_safes" = "Manage Safes";
+
 /* Add token button
    Manage Tokens menu item */
 "manage_tokens" = "Manage Tokens";
@@ -667,9 +673,6 @@ Pairing password: %@";
 /* Please try again later. */
 "please_try_again_later" = "Please try again later.";
 
-/* Title for portfolio section. */
-"portfolio" = "Portfolio";
-
 /* Privacy Policy
    Privacy policy menu item */
 "privacy_policy" = "Privacy Policy";
@@ -770,6 +773,9 @@ Pairing password: %@";
 /* Description of a fee. */
 "safe_recovery_fee_required" = "A network fee will be deducted from your Safe balance to recover your Safe.";
 
+/* Safe Settings */
+"safe_settings" = "Safe Settings";
+
 /* Remove Safe description */
 "safe_will_be_remove_description" = "This Safe will be removed from your device. To recover this Safe or to add it to another device you will need the recovery phrase and this Safe's address.";
 
@@ -788,9 +794,6 @@ Pairing password: %@";
 
 /* Step 3 description */
 "securely_store_your_recovery" = "Securely store your recovery phrase to restore your Safe in case you lose access to this device";
-
-/* Title for security section. */
-"security" = "Security";
 
 /* Update required description */
 "security_upgrade_required" = "Upgrade to the latest audited smart contract version and make your funds even more secure!";
@@ -854,9 +857,6 @@ Pairing password: %@";
 
 /* Submit transaction */
 "submit" = "Submit";
-
-/* Title for support section. */
-"support" = "Support";
 
 /* Switch Safes */
 "switch_safes" = "Switch Safes";
