@@ -234,7 +234,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public func repairModelIfNeeded() {
-        // find wallets outside of portfolio and add them back.F
+        // find wallets outside of portfolio and add them back.
         if let portfolio = DomainRegistry.portfolioRepository.portfolio() {
             let orphanWallets = DomainRegistry.walletRepository.all().map { $0.id }.filter { !portfolio.hasWallet($0) }
             orphanWallets.forEach { portfolio.addWallet($0) }

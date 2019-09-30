@@ -57,10 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         cleanUp()
         sync()
 
+        #if DEBUG
         NSSetUncaughtExceptionHandler { exc in
             print(exc)
             print(exc.callStackSymbols.joined(separator: "\n"))
         }
+        #endif
 
         return true
     }
