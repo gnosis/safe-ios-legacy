@@ -155,7 +155,10 @@ class OnboardingCreationFeeViewController: CardViewController {
         case .creationStarted,
              .transactionHashIsKnown,
              .finalizingDeployment,
-             .readyToUse:
+             .readyToUse,
+             .recoveryDraft,
+             .recoveryInProgress,
+             .recoveryPostProcessing:
             // has to exit from here because the screen is still visible for a while
             guard !isFinished else { return }
             isFinished = true

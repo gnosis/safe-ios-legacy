@@ -11,9 +11,9 @@ final class CreateSafeCommand: BaseAddSafeCommand {
         LocalizedString("create_new_safe", comment: "Create Safe")
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        childFlowCoordinator = mainFlowCoordinator.newSafeFlowCoordinator
-        super.run(mainFlowCoordinator: mainFlowCoordinator)
+    override func run() {
+        childFlowCoordinator = MainFlowCoordinator.shared.newSafeFlowCoordinator
+        super.run()
     }
 
     override func createDraft() {

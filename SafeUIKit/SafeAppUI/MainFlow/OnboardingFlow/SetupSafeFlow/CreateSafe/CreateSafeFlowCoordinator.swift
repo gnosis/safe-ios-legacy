@@ -23,7 +23,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
             showCreationFee()
         case .creationStarted, .transactionHashIsKnown, .finalizingDeployment:
             showInProgress()
-        case .readyToUse:
+        case .readyToUse, .recoveryDraft, .recoveryInProgress, .recoveryPostProcessing:
             exitFlow()
         }
     }
@@ -107,7 +107,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
     func finish(from vc: UIViewController? = nil) {
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
         if navigationController.topViewController === vc {
-            mainFlowCoordinator.switchToRootController()
+            MainFlowCoordinator.shared.switchToRootController()
         }
         exitFlow()
     }
@@ -115,7 +115,7 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
     override func setRoot(_ controller: UIViewController) {
         guard rootViewController !== controller else { return }
         super.setRoot(controller)
-        [paperWalletFlowCoordinator, keycardFlowCoordinator, mainFlowCoordinator].forEach { $0?.setRoot(controller) }
+        [paperWalletFlowCoordinator, keycardFlowCoordinator, MainFlowCoordinator.shared].forEach { $0?.setRoot(controller) }
     }
 
 }
@@ -236,7 +236,7 @@ extension CreateSafeFlowCoordinator: OnboardingCreationFeeViewControllerDelegate
     }
 
     func onboardingCreationFeeViewControllerFeeOpenMenu(_ controller: OnboardingCreationFeeViewController) {
-        mainFlowCoordinator.openMenu()
+        MainFlowCoordinator.shared.openMenu()
     }
 
 }
@@ -252,7 +252,7 @@ extension CreateSafeFlowCoordinator: OnboardingFeePaidViewControllerDelegate {
     }
 
     func onboardingFeePaidViewControllerOpenMenu(_ controller: OnboardingFeePaidViewController) {
-        mainFlowCoordinator.openMenu()
+        MainFlowCoordinator.shared.openMenu()
     }
 
 }

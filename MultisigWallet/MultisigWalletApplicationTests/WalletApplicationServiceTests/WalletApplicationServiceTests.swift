@@ -119,14 +119,14 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
     func test_wallets_returnsWalletInProperState() {
         givenDraftWallet()
-        XCTAssertEqual(service.wallets().count, 0)
+        XCTAssertEqual(service.wallets().count, 1)
         let wallet = walletRepository.selectedWallet()!
 
         wallet.state = wallet.deployingState
-        XCTAssertEqual(service.wallets().count, 0)
+        XCTAssertEqual(service.wallets().count, 1)
 
         wallet.state = wallet.recoveryDraftState
-        XCTAssertEqual(service.wallets().count, 0)
+        XCTAssertEqual(service.wallets().count, 1)
 
         wallet.changeAddress(Address.testAccount1)
         wallet.state = wallet.waitingForFirstDepositState
@@ -162,15 +162,6 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         let tx = givenDraftTransaction()
         let wallet = walletRepository.selectedWallet()!
         WalletDomainService.removeWallet(wallet.id.id)
-        XCTAssertNil(walletRepository.selectedWallet())
-        XCTAssertNil(transactionRepository.find(id: tx.id))
-        XCTAssertNil(eoaRepo.find(by: wallet.owner(role: .thisDevice)!.address))
-    }
-
-    func test_whenRemovingWalletByAddress_thenRemovesCascadeObjects() {
-        let tx = givenDraftTransaction()
-        let wallet = walletRepository.selectedWallet()!
-        service.removeWallet(address: wallet.address.value)
         XCTAssertNil(walletRepository.selectedWallet())
         XCTAssertNil(transactionRepository.find(id: tx.id))
         XCTAssertNil(eoaRepo.find(by: wallet.owner(role: .thisDevice)!.address))

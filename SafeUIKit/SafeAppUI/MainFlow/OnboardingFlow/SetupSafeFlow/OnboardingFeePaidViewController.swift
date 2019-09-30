@@ -80,7 +80,10 @@ class OnboardingFeePaidViewController: FeePaidViewController {
              .waitingForFirstDeposit,
              .notEnoughFunds,
              .creationStarted,
-             .finalizingDeployment:
+             .finalizingDeployment,
+             .recoveryDraft,
+             .recoveryInProgress,
+             .recoveryPostProcessing:
             // nothing to do here, yet
             break
         case .transactionHashIsKnown:

@@ -4,12 +4,11 @@
 
 import XCTest
 @testable import SafeAppUI
-import Common
+import MultisigWalletApplication
 
 class SwitchSafesFlowCoordinatorTests: SafeTestCase {
 
     var switchSafesCoordinator: SwitchSafesFlowCoordinator!
-    let mainFlowCoordinator = MainFlowCoordinator()
 
     var topViewController: UIViewController? {
         return switchSafesCoordinator.navigationController.topViewController
@@ -18,7 +17,6 @@ class SwitchSafesFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         switchSafesCoordinator = SwitchSafesFlowCoordinator(rootViewController: UINavigationController())
-        switchSafesCoordinator.mainFlowCoordinator = mainFlowCoordinator
         switchSafesCoordinator.setUp()
     }
 
@@ -29,10 +27,16 @@ class SwitchSafesFlowCoordinatorTests: SafeTestCase {
     func test_whenRequestingToRemoveWallet_thenEntersRemoveSafeFC() {
         let testFC = TestFlowCoordinator()
         let removeSafeCoordinator = RemoveSafeFlowCoordinator()
-        removeSafeCoordinator.safeAddress = ""
+        removeSafeCoordinator.walletID = ""
         testFC.enter(flow: removeSafeCoordinator)
         let expectedViewController = testFC.topViewController
-        let data = WalletData(id: "", address: "", name: "", state: .pending)
+        let data = WalletData(id: "id1",
+                              address: "address1",
+                              name: "wallet1",
+                              state: .finalizingDeployment,
+                              canRemove: false,
+                              isSelected: true,
+                              requiresBackupToRemove: true)
         switchSafesCoordinator.switchSafesTableViewController(SwitchSafesTableViewController(),
                                                               didRequestToRemove: data)
         let finalTransitionedViewController = switchSafesCoordinator.navigationController.topViewController

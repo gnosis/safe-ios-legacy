@@ -392,12 +392,21 @@ public class MockWalletApplicationService: WalletApplicationService {
         return nil
     }
 
+    public var didSelectWalletID: String?
+
     public override func selectWallet(_ id: String) {
-        // empty
+        didSelectWalletID = id
     }
 
     public override func resumeDeploymentInBackground() {
         // empty
     }
 
+    public override func removeWallet(id: String) {
+        // empty
+    }
+
+    public override func walletAddress(id: String) -> String? {
+        return walletAddress
+    }
 }

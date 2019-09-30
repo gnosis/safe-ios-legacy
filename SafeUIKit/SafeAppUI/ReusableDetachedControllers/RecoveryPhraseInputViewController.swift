@@ -8,15 +8,15 @@ import SafeUIKit
 
 protocol RecoveryPhraseInputViewControllerDelegate: class {
 
-    func recoveryPhraseInputViewControllerDidFinish()
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController)
     func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
                                            didEnterPhrase phrase: String)
-    func recoveryPhraseInputViewControllerDidLooseRecovery()
+    func recoveryPhraseInputViewControllerDidLooseRecovery(_ controller: RecoveryPhraseInputViewController)
 }
 
 extension RecoveryPhraseInputViewControllerDelegate {
 
-    func recoveryPhraseInputViewControllerDidLooseRecovery() {}
+    func recoveryPhraseInputViewControllerDidLooseRecovery(_ controller: RecoveryPhraseInputViewController) {}
 
 }
 
@@ -54,10 +54,6 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     @IBOutlet weak var placeholderTop: NSLayoutConstraint!
     @IBOutlet weak var placeholderTrailing: NSLayoutConstraint!
     @IBOutlet weak var placeholderLeading: NSLayoutConstraint!
-
-    @IBAction func lostRecovery(_ sender: Any) {
-        delegate?.recoveryPhraseInputViewControllerDidLooseRecovery()
-    }
 
     static func create(delegate: RecoveryPhraseInputViewControllerDelegate?) -> RecoveryPhraseInputViewController {
         let controller = StoryboardScene.RecoverSafe.recoveryPhraseInputViewController.instantiate()
@@ -142,6 +138,10 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         keyboardBehavior.stop()
     }
 
+    @IBAction func lostRecovery(_ sender: Any) {
+        delegate?.recoveryPhraseInputViewControllerDidLooseRecovery(self)
+    }
+
     @objc func back() {
         didCancel = true
     }
@@ -167,16 +167,18 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
 
     public func handleSuccess() {
         guard !didCancel else { return }
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
             self.stopActivityIndicator()
             self.enableNextAction()
-            self.delegate?.recoveryPhraseInputViewControllerDidFinish()
+            self.delegate?.recoveryPhraseInputViewControllerDidFinish(self)
         }
     }
 
     public func handleError(_ error: Error) {
         guard !didCancel else { return }
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
             self.stopActivityIndicator()
             self.enableNextAction()
             self.show(error: error)
@@ -190,7 +192,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     override func notify() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.handleSuccess()
         }
     }

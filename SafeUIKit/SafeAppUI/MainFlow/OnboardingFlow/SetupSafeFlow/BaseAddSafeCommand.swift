@@ -11,10 +11,10 @@ class BaseAddSafeCommand: MenuCommand {
         ApplicationServiceRegistry.walletService.wallets().isEmpty
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+    override func run() {
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
         createDraft()
-        mainFlowCoordinator.enter(flow: childFlowCoordinator)
+        MainFlowCoordinator.shared.enter(flow: childFlowCoordinator)
     }
 
     func createDraft() {

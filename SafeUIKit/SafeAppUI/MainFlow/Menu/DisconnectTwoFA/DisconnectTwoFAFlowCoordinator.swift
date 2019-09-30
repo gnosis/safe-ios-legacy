@@ -100,7 +100,7 @@ extension DisconnectTwoFAFlowCoordinator: RecoveryPhraseInputViewControllerDeleg
         }
     }
 
-    func recoveryPhraseInputViewControllerDidFinish() {
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController) {
         push(reviewViewController())
     }
 

@@ -9,12 +9,10 @@ import MultisigWalletApplication
 class SwitchSafesFlowCoordinator: FlowCoordinator {
 
     let removeSafeFlowCoordinator = RemoveSafeFlowCoordinator()
-    weak var mainFlowCoordinator: MainFlowCoordinator!
     var initialSelection: String?
 
     override func setUp() {
         super.setUp()
-        assert(mainFlowCoordinator != nil)
         initialSelection = ApplicationServiceRegistry.walletService.selectedWalletID()
         let controller = SwitchSafesTableViewController()
         controller.delegate = self
@@ -26,25 +24,23 @@ class SwitchSafesFlowCoordinator: FlowCoordinator {
             return
         }
         super.setRoot(controller)
-        [removeSafeFlowCoordinator, mainFlowCoordinator].forEach { $0?.setRoot(controller) }
+        [removeSafeFlowCoordinator, MainFlowCoordinator.shared].forEach { $0?.setRoot(controller) }
     }
 }
 
 extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
 
-    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController, didSelect wallet: WalletData) {
-        ApplicationServiceRegistry.walletService.selectWallet(wallet.id)
-    }
-
     func switchSafesTableViewController(_ controller: SwitchSafesTableViewController,
                                         didRequestToRemove wallet: WalletData) {
-        removeSafeFlowCoordinator.safeAddress = wallet.address
+        removeSafeFlowCoordinator.walletID = wallet.id
+        removeSafeFlowCoordinator.requiresRecoveryPhrase = wallet.requiresBackupToRemove
         saveCheckpoint()
-        enter(flow: removeSafeFlowCoordinator) {
-            DispatchQueue.main.async { [unowned self] in
-                self.popToLastCheckpoint()
+        enter(flow: removeSafeFlowCoordinator) { [unowned self] in
+            DispatchQueue.main.async {
                 if ApplicationServiceRegistry.walletService.wallets().isEmpty {
-                    self.exitFlow()                    
+                    MainFlowCoordinator.shared.switchToRootController()
+                } else {
+                    self.popToLastCheckpoint()
                 }
             }
         }
@@ -53,8 +49,8 @@ extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
     func switchSafesTableViewControllerDidFinish(_ controller: SwitchSafesTableViewController) {
         let currentSelection = ApplicationServiceRegistry.walletService.selectedWalletID()
         guard currentSelection != initialSelection else { return }
-        mainFlowCoordinator.switchToRootController()
-        setRoot(mainFlowCoordinator.rootViewController)
+        MainFlowCoordinator.shared.switchToRootController()
+        setRoot(MainFlowCoordinator.shared.rootViewController)
     }
 
 }

@@ -162,8 +162,7 @@ extension ReplaceTwoFAFlowCoordinator: RecoveryPhraseInputViewControllerDelegate
         }
     }
 
-
-    func recoveryPhraseInputViewControllerDidFinish() {
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController) {
         push(reviewViewController())
     }
 

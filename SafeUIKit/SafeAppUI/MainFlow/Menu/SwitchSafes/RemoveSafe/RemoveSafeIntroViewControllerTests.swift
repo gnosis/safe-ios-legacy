@@ -12,7 +12,7 @@ class RemoveSafeIntroViewControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        controller = RemoveSafeIntroViewController.create(address: "") { [unowned self] in
+        controller = RemoveSafeIntroViewController.create(walletID: "") { [unowned self] in
             self.didPressNext = true
         }
         controller.loadView()

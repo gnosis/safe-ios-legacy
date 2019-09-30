@@ -7,7 +7,6 @@ import MultisigWalletApplication
 import Common
 
 protocol SwitchSafesTableViewControllerDelegate: class {
-    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController, didSelect wallet: WalletData)
     func switchSafesTableViewController(_ controller: SwitchSafesTableViewController,
                                         didRequestToRemove wallet: WalletData)
     func switchSafesTableViewControllerDidFinish(_ controller: SwitchSafesTableViewController)
@@ -32,6 +31,7 @@ class SwitchSafesTableViewController: UITableViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+        ApplicationServiceRegistry.walletService.subscribeForWalletStateChanges(subscriber: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -82,9 +82,9 @@ class SwitchSafesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchSafesTableViewCell",
                                                  for: indexPath) as! SwitchSafesTableViewCell
-        let data = safes[indexPath.row]
-        cell.configure(walletData: data)
-        cell.accessoryView = data.address == walletService.selectedWalletAddress ? checkmarkImageView() : nil
+        let safe = safes[indexPath.row]
+        cell.configure(walletData: safe)
+        cell.accessoryView = safe.isSelected ? checkmarkImageView() : nil
         return cell
     }
 
@@ -99,8 +99,12 @@ class SwitchSafesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.switchSafesTableViewController(self, didSelect: safes[indexPath.row])
+        ApplicationServiceRegistry.walletService.selectWallet(safes[indexPath.row].id)
         update()
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return safes[indexPath.row].canRemove
     }
 
     override func tableView(_ tableView: UITableView,
@@ -125,6 +129,16 @@ extension SwitchSafesFlowCoordinator: InteractivePopGestureResponder {
 
     func interactivePopGestureShouldBegin() -> Bool {
         return false
+    }
+
+}
+
+extension SwitchSafesTableViewController: EventSubscriber {
+
+    func notify() {
+        DispatchQueue.main.async { [unowned self] in
+            self.update()
+        }
     }
 
 }

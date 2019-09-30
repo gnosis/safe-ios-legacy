@@ -119,6 +119,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Create Safe */
 "create_safe_title" = "Create Safe";
 
+/* Creating address */
+"creating_wallet_address" = "Creating a wallet address";
+
 /* Creating safe */
 "creating_your_new_safe" = "Creating your new Safe";
 
@@ -130,9 +133,6 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 
 /* Onboarding 2 description */
 "current_version" = "The current version of your smart contract is outdated. If you don't upgrade you'll still be able to use your Safe, but we recommend upgrading now to enjoy the latest security updates.";
-
-/* Deposit received. Creating Safe... */
-"deposit_received_creating_safe" = "Deposit received! Creating Safe...";
 
 /* Detected dangerous incoming transaction. */
 "detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
@@ -956,6 +956,36 @@ We recommend using a password manager or writing the phrase down and storing the
 
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
+
+/* Waiting for deposit */
+"waiting_for_first_deposit" = "Waiting for the first deposit";
+
+/* No funds */
+"waiting_for_remaining_funds" = "Waiting for remaining funds";
+
+/* Started */
+"wallet_creation_started" = "Wallet creation started";
+
+/* New wallet draft */
+"wallet_draft_creation" = "Draft new wallet";
+
+/* Draft recovery */
+"wallet_draft_recovery" = "Draft recovered wallet";
+
+/* Wallet is finalizing */
+"wallet_finalizing_deployment" = "Wallet finalizing deployment";
+
+/* Wallet is ready */
+"wallet_is_ready" = "Wallet is ready to use";
+
+/* Recovery finalizing */
+"wallet_recovery_finalizing" = "Wallet recovery finalizing";
+
+/* Recovery in progress */
+"wallet_recovery_in_progress" = "Wallet recovery in progress";
+
+/* Transaction is submitted */
+"wallet_transaction_submitted" = "wallet_transaction_submitted";
 
 /* WalletConnect */
 "walletconnect" = "WalletConnect";

@@ -26,7 +26,7 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
     func finish(from vc: UIViewController? = nil) {
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
         if navigationController.topViewController === vc {
-            mainFlowCoordinator.switchToRootController()
+            MainFlowCoordinator.shared.switchToRootController()
         }
         exitFlow()
     }
@@ -34,7 +34,7 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
     override func setRoot(_ controller: UIViewController) {
         guard rootViewController !== controller else { return }
         super.setRoot(controller)
-        [mainFlowCoordinator, keycardFlowCoordinator].forEach { $0?.setRoot(controller) }
+        [MainFlowCoordinator.shared, keycardFlowCoordinator].forEach { $0?.setRoot(controller) }
     }
 
 }
@@ -123,7 +123,7 @@ extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate 
         }
     }
 
-    func recoveryPhraseInputViewControllerDidFinish() {
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController) {
         push(newPairController())
     }
 
@@ -265,7 +265,7 @@ extension RecoverSafeFlowCoordinator: ReviewTransactionViewControllerDelegate {
 extension RecoverSafeFlowCoordinator: RecoverFeePaidViewControllerDelegate {
 
     func recoverFeePaidViewControllerOpenMenu(_ controller: RecoverFeePaidViewController) {
-        mainFlowCoordinator.openMenu()
+        MainFlowCoordinator.shared.openMenu()
     }
 
     func recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(_ controller: RecoverFeePaidViewController,

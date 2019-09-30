@@ -7,7 +7,9 @@ import MultisigWalletApplication
 
 final class RemoveSafeFlowCoordinator: FlowCoordinator {
 
-    var safeAddress: String!
+    var walletID: String!
+    var requiresRecoveryPhrase: Bool = true
+    lazy var replacePhraseCoordinator = ReplaceRecoveryPhraseFlowCoordinator()
 
     override func setUp() {
         super.setUp()
@@ -15,9 +17,18 @@ final class RemoveSafeFlowCoordinator: FlowCoordinator {
     }
 
     private func removeSafeIntro() -> UIViewController {
-        return RemoveSafeIntroViewController.create(address: safeAddress) { [unowned self] in
-            self.push(self.removeSafeEnterSeed())
+        return RemoveSafeIntroViewController.create(walletID: walletID) { [unowned self] in
+            if self.requiresRecoveryPhrase {
+                self.push(self.removeSafeEnterSeed())
+            } else {
+                self.removeWallet()
+            }
         }
+    }
+
+    private func removeWallet() {
+        ApplicationServiceRegistry.walletService.removeWallet(id: walletID)
+        exitFlow()
     }
 
     private func removeSafeEnterSeed() -> UIViewController {
@@ -33,25 +44,26 @@ final class RemoveSafeFlowCoordinator: FlowCoordinator {
 
 extension RemoveSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
 
-    func recoveryPhraseInputViewControllerDidFinish() {
-        ApplicationServiceRegistry.walletService.removeWallet(address: safeAddress)
-        exitFlow()
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController) {
+        removeWallet()
     }
 
     func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
                                            didEnterPhrase phrase: String) {
-        let result = ApplicationServiceRegistry.recoveryService
-            .verifyRecoveryPhrase(phrase, address: safeAddress)
-        switch result {
-        case .failure(let error):
-            controller.handleError(error)
-        case .success(_):
+        do {
+            try ApplicationServiceRegistry.recoveryService.verifyRecoveryPhrase(phrase, id: walletID)
             controller.handleSuccess()
+        } catch {
+            controller.handleError(error)
         }
     }
 
-    func recoveryPhraseInputViewControllerDidLooseRecovery() {
-        ReplaceRecoveryPhraseCommand().run()
+    func recoveryPhraseInputViewControllerDidLooseRecovery(_ controller: RecoveryPhraseInputViewController) {
+        ApplicationServiceRegistry.walletService.selectWallet(walletID)
+        enter(flow: replacePhraseCoordinator) {
+            MainFlowCoordinator.shared.switchToRootController()
+            MainFlowCoordinator.shared.showTransactionList()
+        }
     }
 
 }
