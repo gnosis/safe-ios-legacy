@@ -19,6 +19,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         walletService.expect_walletState(.draft)
+        walletService.expect_walletState(.draft)
         newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: UINavigationController())
         newSafeFlowCoordinator.setUp()
     }
@@ -109,7 +110,8 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
             exp.fulfill()
         }
 
-        newSafeFlowCoordinator.deploymentDidCancel()
+        let vc = OnboardingCreationFeeViewController()
+        newSafeFlowCoordinator.onboardingCreationFeeViewControllerDeploymentDidCancel(vc)
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 
@@ -121,7 +123,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
         testFC.enter(flow: newSafeFlowCoordinator) {
             finished = true
         }
-        newSafeFlowCoordinator.onboardingFeePaidDidSuccess()
+        newSafeFlowCoordinator.onboardingFeePaidViewControllerDidSuccess(OnboardingFeePaidViewController())
         XCTAssertTrue(finished)
     }
 
@@ -136,7 +138,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
             finished = true
         }
 
-        newSafeFlowCoordinator.onboardingFeePaidDidFail()
+        newSafeFlowCoordinator.onboardingFeePaidViewControllerDidFail(OnboardingFeePaidViewController())
 
         XCTAssertTrue(finished)
     }
@@ -168,7 +170,9 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
 private extension CreateSafeFlowCoordinatorTests {
 
     func assert<T>(when state: WalletStateId, then controllerClass: T.Type, line: UInt = #line) {
-        walletService.expect_walletState(state)
+        walletService.clearExpectations_walletState()
+        walletService.expect_walletState(state) // for flow coordinator
+        walletService.expect_walletState(.draft) // for view controller's update() method
         newSafeFlowCoordinator.setUp()
         delay()
         assert(topViewController!, is: controllerClass, line: line)

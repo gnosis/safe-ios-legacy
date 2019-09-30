@@ -53,6 +53,7 @@ class TwoFATableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        onLearnMore = nil
         twoFAImageView.image = nil
         titleLabel.text = nil
         disabledReasonLabel.text = nil

@@ -60,6 +60,8 @@ class MainViewController: UIViewController {
         return ApplicationServiceRegistry.contractUpgradeService.isAvailable
     }
 
+    private(set) var walletID: String?
+
     static func create(delegate: MainViewControllerDelegate & TransactionViewViewControllerDelegate)
         -> MainViewController {
             let controller = StoryboardScene.Main.mainViewController.instantiate()
@@ -86,7 +88,9 @@ class MainViewController: UIViewController {
         headerView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
         headerView.button.addTarget(self, action: #selector(didTapAddress), for: .touchUpInside)
 
-        bannerView.onTap = didTapBanner
+        bannerView.onTap = { [weak self] in
+            self?.didTapBanner()
+        }
         bannerView.text = LocalizedString("upgrade_required", comment: "Security upgrade required")
 
         if !shouldShowBanner {
@@ -104,6 +108,8 @@ class MainViewController: UIViewController {
         ApplicationServiceRegistry.contractUpgradeService.subscribeForContractUpgrade { [weak self] in
             self?.hideBannerViewAnimated()
         }
+
+        walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
 
         runDiagnostics()
     }

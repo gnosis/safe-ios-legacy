@@ -7,15 +7,16 @@ import MultisigWalletApplication
 import SafariServices
 
 protocol OnboardingFeePaidViewControllerDelegate: class {
-    func onboardingFeePaidDidFail()
-    func onboardingFeePaidDidSuccess()
-    func onboardingFeePaidOpenMenu()
+    func onboardingFeePaidViewControllerDidFail(_ controller: OnboardingFeePaidViewController)
+    func onboardingFeePaidViewControllerDidSuccess(_ controller: OnboardingFeePaidViewController)
+    func onboardingFeePaidViewControllerOpenMenu(_ controller: OnboardingFeePaidViewController)
 }
 
 class OnboardingFeePaidViewController: FeePaidViewController {
 
     weak var delegate: OnboardingFeePaidViewControllerDelegate?
     var creationProcessTracker = LongProcessTracker()
+    private(set) var walletID: String!
 
     static func create(delegate: OnboardingFeePaidViewControllerDelegate) -> OnboardingFeePaidViewController {
         let controller = OnboardingFeePaidViewController(nibName: String(describing: FeePaidViewController.self),
@@ -35,6 +36,8 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         setBody(Strings.body)
         setImage(Asset.Onboarding.creatingSafe.image)
         button.isEnabled = false
+        walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
+
 
         let retryItem = UIBarButtonItem.refreshButton(target: creationProcessTracker,
                                                       action: #selector(creationProcessTracker.start))
@@ -50,6 +53,14 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         trackEvent(OnboardingTrackingEvent.feePaid)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if ApplicationServiceRegistry.walletService.selectedWalletID() == walletID,
+            ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            self.delegate?.onboardingFeePaidViewControllerDidSuccess(self)
+        }
+    }
+
     override func tapAction(_ sender: Any) {
         let url = ApplicationServiceRegistry.walletService.walletCreationURL()
         let safari = SFSafariViewController(url: url)
@@ -57,11 +68,12 @@ class OnboardingFeePaidViewController: FeePaidViewController {
     }
 
     override func openMenu() {
-        delegate?.onboardingFeePaidOpenMenu()
+        delegate?.onboardingFeePaidViewControllerOpenMenu(self)
     }
 
     func update() {
-        let walletState = ApplicationServiceRegistry.walletService.walletState()!
+        guard ApplicationServiceRegistry.walletService.selectedWalletID() == walletID,
+            let walletState = ApplicationServiceRegistry.walletService.walletState() else { return }
         switch walletState {
         case .draft,
              .deploying,
@@ -76,7 +88,8 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         case .readyToUse:
             button.isEnabled = true
             progressAnimator.finish(duration: 0.7) { [weak self] in
-                self?.delegate?.onboardingFeePaidDidSuccess()
+                guard let `self` = self else { return }
+                self.delegate?.onboardingFeePaidViewControllerDidSuccess(self)
             }
         }
     }
@@ -98,7 +111,7 @@ extension OnboardingFeePaidViewController: LongProcessTrackerDelegate {
     }
 
     func processDidFail() {
-        delegate?.onboardingFeePaidDidFail()
+        delegate?.onboardingFeePaidViewControllerDidFail(self)
     }
 
 }

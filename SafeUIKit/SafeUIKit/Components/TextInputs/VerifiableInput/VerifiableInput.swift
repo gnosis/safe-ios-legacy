@@ -32,7 +32,7 @@ open class VerifiableInput: UIView {
     @IBOutlet weak var stackView: UIStackView!
     private var spacingConstraint: NSLayoutConstraint!
     private var spacingView: UIView!
-    private var lastAddedRule: RuleLabel?
+    private weak var lastAddedRule: RuleLabel?
 
     /// Indicates whether the view has user input focus
     public private(set) var isActive: Bool = false

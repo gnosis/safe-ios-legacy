@@ -8,10 +8,10 @@ import Common
 import MultisigWalletApplication
 
 protocol OnboardingCreationFeeViewControllerDelegate: class {
-    func deploymentDidCancel()
-    func deploymentDidStart()
-    func deploymentDidFail()
-    func onboardingCreationFeeOpenMenu()
+    func onboardingCreationFeeViewControllerDeploymentDidCancel(_ controller: OnboardingCreationFeeViewController)
+    func onboardingCreationFeeViewControllerDeploymentDidStart(_ controller: OnboardingCreationFeeViewController)
+    func onboardingCreationFeeViewControllerDeploymentDidFail(_ controller: OnboardingCreationFeeViewController)
+    func onboardingCreationFeeViewControllerFeeOpenMenu(_ controller: OnboardingCreationFeeViewController)
 }
 
 class OnboardingCreationFeeViewController: CardViewController {
@@ -22,6 +22,7 @@ class OnboardingCreationFeeViewController: CardViewController {
     weak var delegate: OnboardingCreationFeeViewControllerDelegate?
     var creationProcessTracker = LongProcessTracker()
     var isFinished: Bool = false
+    private(set) var walletID: String!
 
     enum Strings {
 
@@ -75,6 +76,8 @@ class OnboardingCreationFeeViewController: CardViewController {
         addressDetailView.isHidden = true
 
         footerButton.isHidden = true
+
+        walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
         creationProcessTracker.start()
     }
 
@@ -101,7 +104,7 @@ class OnboardingCreationFeeViewController: CardViewController {
             guard let `self` = self else { return }
             self.dismiss(animated: true, completion: nil)
             ApplicationServiceRegistry.walletService.abortDeployment()
-            self.delegate?.deploymentDidCancel()
+            self.delegate?.onboardingCreationFeeViewControllerDeploymentDidCancel(self)
         })
         present(controller, animated: true, completion: nil)
     }
@@ -114,7 +117,7 @@ class OnboardingCreationFeeViewController: CardViewController {
     }
 
     @objc func openMenu(_ sender: UIBarButtonItem) {
-        delegate?.onboardingCreationFeeOpenMenu()
+        delegate?.onboardingCreationFeeViewControllerFeeOpenMenu(self)
     }
 
     override func showNetworkFeeInfo() {
@@ -122,7 +125,8 @@ class OnboardingCreationFeeViewController: CardViewController {
     }
 
     func update() {
-        guard let walletState = ApplicationServiceRegistry.walletService.walletState() else { return }
+        guard ApplicationServiceRegistry.walletService.selectedWalletID() == walletID,
+            let walletState = ApplicationServiceRegistry.walletService.walletState() else { return }
         switch walletState {
         case .draft, .deploying:
             // started, but has nothing to show
@@ -158,7 +162,7 @@ class OnboardingCreationFeeViewController: CardViewController {
             // fee was enough, the creation started.
             // point of no return (or cancelling)
             navigationItem.leftBarButtonItem?.isEnabled = false
-            delegate?.deploymentDidStart()
+            delegate?.onboardingCreationFeeViewControllerDeploymentDidStart(self)
         }
     }
 
@@ -186,7 +190,7 @@ extension OnboardingCreationFeeViewController: LongProcessTrackerDelegate {
     }
 
     func processDidFail() {
-        delegate?.deploymentDidFail()
+        delegate?.onboardingCreationFeeViewControllerDeploymentDidFail(self)
     }
 
 }

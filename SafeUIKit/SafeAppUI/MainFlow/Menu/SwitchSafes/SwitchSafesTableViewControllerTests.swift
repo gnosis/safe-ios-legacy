@@ -39,20 +39,26 @@ class SwitchSafesTableViewControllerTests: SafeTestCase {
 class MockSwitchSafesTableViewControllerDelegate: SwitchSafesTableViewControllerDelegate {
 
     var selectedWallet: WalletData?
-    func didSelect(wallet: WalletData) {
+    var requestedToRemoveWallet: WalletData?
+
+    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController, didSelect wallet: WalletData) {
         selectedWallet = wallet
     }
 
-    var requestedToRemoveWallet: WalletData?
-    func didRequestToRemove(wallet: WalletData) {
+    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController,
+                                        didRequestToRemove wallet: WalletData) {
         requestedToRemoveWallet = wallet
+    }
+
+    func switchSafesTableViewControllerDidFinish(_ controller: SwitchSafesTableViewController) {
+        // empty
     }
 
 }
 
 extension WalletData {
 
-    static let pending1 = WalletData(address: "p1", name: "p1", state: .pending)
-    static let created1 = WalletData(address: "c1", name: "c1", state: .created)
+    static let pending1 = WalletData(id: "w1", address: "p1", name: "p1", state: .pending)
+    static let created1 = WalletData(id: "w2", address: "c1", name: "c1", state: .created)
 
 }

@@ -38,8 +38,8 @@ open class FlowCoordinator {
 
     private var flowCompletion: (() -> Void)?
     private let navigationTracker = NavigationControllerTransitionTracker()
-    public private(set) var rootViewController: UIViewController!
-    private var checkpoints: [UIViewController] = []
+    public var rootViewController: UIViewController!
+    private var checkpoints: [TypedWeakWrapper<UIViewController>] = []
 
     var topViewController: UIViewController? { return navigationController.topViewController }
     var isAnimationEnabled: Bool = true
@@ -75,6 +75,15 @@ open class FlowCoordinator {
         flowCompletion?()
     }
 
+    func setRoot(_ controller: UIViewController) {
+        guard rootViewController !== controller else { return }
+        checkpoints.removeAll()
+        rootViewController = controller
+        if let window = UIApplication.shared.windows.first, window.rootViewController !== controller {
+            window.rootViewController = rootViewController
+        }
+    }
+
     func push(_ controller: UIViewController, onPop action: (() -> Void)? = nil) {
         let animateIfNotRoot = isAnimationEnabled && !navigationController.viewControllers.isEmpty
         navigationController.pushViewController(controller, animated: animateIfNotRoot)
@@ -95,13 +104,19 @@ open class FlowCoordinator {
     }
 
     func saveCheckpoint() {
+        cleanUpCheckpoints()
         if let controller = navigationController.topViewController {
-            checkpoints.append(controller)
+            checkpoints.append(TypedWeakWrapper(controller))
         }
     }
 
+    private func cleanUpCheckpoints() {
+        checkpoints.removeAll { $0.ref == nil }
+    }
+
     func popToLastCheckpoint() {
-        if let controller = checkpoints.last {
+        cleanUpCheckpoints()
+        if let controller = checkpoints.last?.ref {
             checkpoints.removeLast()
             pop(to: controller)
         } else {

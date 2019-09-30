@@ -11,13 +11,8 @@ final class RecoverSafeCommand: BaseAddSafeCommand {
         LocalizedString("recover_existing_safe_menu", comment: "Recover Safe")
     }
 
-    override init() {
-        super.init()
-        childFlowCoordinator = RecoverSafeFlowCoordinator()
-    }
-
     override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        (childFlowCoordinator as! RecoverSafeFlowCoordinator).mainFlowCoordinator = mainFlowCoordinator
+        childFlowCoordinator = mainFlowCoordinator.recoverSafeFlowCoordinator
         super.run(mainFlowCoordinator: mainFlowCoordinator)
     }
 

@@ -327,6 +327,7 @@ extension DeploymentDomainService {
         }
 
         func stop(_ repeater: Repeater, wallet id: WalletID) {
+            repeater.stop()
             let id = id.id
             queue.async { [weak self] in
                 guard let `self` = self else { return }

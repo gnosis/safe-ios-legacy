@@ -153,7 +153,12 @@ public class WalletApplicationService: Assertable {
     }
 
     public func wallets() -> [WalletData] {
-        return DomainRegistry.walletRepository.all().compactMap { WalletData(wallet: $0) }
+        guard let portfolio = DomainRegistry.portfolioRepository.portfolio() else { return [] }
+        return portfolio.wallets.compactMap {
+            DomainRegistry.walletRepository.find(id: $0)
+        }.compactMap {
+            WalletData(wallet: $0)
+        }
     }
 
     public func cleanUpDrafts() {
@@ -186,7 +191,14 @@ public class WalletApplicationService: Assertable {
         return selectedWallet?.id.id
     }
 
-    public func selectFirstWalletIfNeeded() {
+    public func repairModelIfNeeded() {
+        // find wallets outside of portfolio and add them back.F
+        if let portfolio = DomainRegistry.portfolioRepository.portfolio() {
+            let orphanWallets = DomainRegistry.walletRepository.all().map { $0.id }.filter { !portfolio.hasWallet($0) }
+            orphanWallets.forEach { portfolio.addWallet($0) }
+            DomainRegistry.portfolioRepository.save(portfolio)
+        }
+        // repair selection
         if selectedWallet == nil, let first = DomainRegistry.walletRepository.all().first {
             selectWallet(first.id.id)
         }

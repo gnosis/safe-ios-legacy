@@ -26,7 +26,7 @@ class MenuCommand {
 
     func run(mainFlowCoordinator: MainFlowCoordinator) {
         mainFlowCoordinator.saveCheckpoint()
-        mainFlowCoordinator.enter(flow: childFlowCoordinator) { [unowned mainFlowCoordinator] in
+        mainFlowCoordinator.enter(flow: childFlowCoordinator) { [unowned mainFlowCoordinator, unowned self] in
             DispatchQueue.main.async {
                 mainFlowCoordinator.popToLastCheckpoint()
                 self.didExitToMenu(mainFlowCoordinator: mainFlowCoordinator)
@@ -36,7 +36,7 @@ class MenuCommand {
 
     func didExitToMenu(mainFlowCoordinator: MainFlowCoordinator) {
         mainFlowCoordinator.pop()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) { [unowned mainFlowCoordinator] in
             mainFlowCoordinator.showTransactionList()
         }
     }

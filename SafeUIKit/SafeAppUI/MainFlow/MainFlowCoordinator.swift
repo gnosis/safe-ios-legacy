@@ -31,6 +31,12 @@ open class MainFlowCoordinator: FlowCoordinator {
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
 
+    override func setRoot(_ controller: UIViewController) {
+        guard rootViewController !== controller else { return }
+        super.setRoot(controller)
+        [manageTokensFlowCoordinator, masterPasswordFlowCoordinator, sendFlowCoordinator, newSafeFlowCoordinator, recoverSafeFlowCoordinator, walletConnectFlowCoordinator].forEach { $0?.setRoot(controller) }
+    }
+
     public init() {
         super.init(rootViewController: CustomNavigationController())
         configureGloabalAppearance()
@@ -61,7 +67,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         updateUserIdentifier()
 
         ApplicationServiceRegistry.walletService.cleanUpDrafts()
-        ApplicationServiceRegistry.walletService.selectFirstWalletIfNeeded()
+        ApplicationServiceRegistry.walletService.repairModelIfNeeded()
         ApplicationServiceRegistry.walletService.resumeDeploymentInBackground()
         ApplicationServiceRegistry.recoveryService.resumeRecoveryInBackground()
 
@@ -72,10 +78,6 @@ open class MainFlowCoordinator: FlowCoordinator {
             push(OnboardingWelcomeViewController.create(delegate: self))
             applicationRootViewController = rootViewController
             return
-        } else if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
-            didSelectNewSafe()
-        } else if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
-            didSelectRecoverSafe()
         } else {
             switchToRootController()
         }
@@ -89,25 +91,34 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     func switchToRootController() {
-        let nextController: UIViewController
+        updateUserIdentifier()
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
-            updateUserIdentifier()
             DispatchQueue.main.async(execute: registerForRemoteNotifciations)
+
+            if let existingVC = navigationController.topViewController as? MainViewController,
+                existingVC.walletID == ApplicationServiceRegistry.walletService.selectedWalletID() {
+                return
+            }
+
             let mainVC = MainViewController.create(delegate: self)
             mainVC.navigationItem.backBarButtonItem = .backButton()
-            nextController = mainVC
-        } else {
-            nextController = OnboardingCreateOrRestoreViewController.create(delegate: self)
+            setRoot(CustomNavigationController(rootViewController: mainVC))
+        } else if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
+            didSelectNewSafe()
+        } else if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
+            didSelectRecoverSafe()
+        } else if !(navigationController.topViewController is OnboardingCreateOrRestoreViewController) {
+            let vc = OnboardingCreateOrRestoreViewController.create(delegate: self)
+            setRoot(CustomNavigationController(rootViewController: vc))
         }
-        navigationController.setViewControllers([nextController], animated: false)
     }
-
 
     func requestToUnlockApp(useUIApplicationRoot: Bool = false) {
         lockedViewController = useUIApplicationRoot ? applicationRootViewController : rootViewController
         applicationRootViewController = UnlockViewController.create { [unowned self] success in
             if !success { return }
             self.applicationRootViewController = self.lockedViewController
+            self.lockedViewController = nil
         }
     }
 
@@ -279,15 +290,11 @@ extension MainFlowCoordinator: OnboardingTermsViewControllerDelegate {
 extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 
     func didSelectNewSafe() {
-        enter(flow: newSafeFlowCoordinator) { [unowned self] in
-            self.switchToRootController()
-        }
+        enter(flow: newSafeFlowCoordinator)
     }
 
     func didSelectRecoverSafe() {
-        enter(flow: recoverSafeFlowCoordinator) { [unowned self] in
-            self.switchToRootController()
-        }
+        enter(flow: recoverSafeFlowCoordinator)
     }
 
 }

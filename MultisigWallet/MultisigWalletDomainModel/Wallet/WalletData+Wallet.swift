@@ -16,7 +16,7 @@ public extension WalletData {
         } else {
             return nil
         }
-        self.init(address: wallet.address.value, name: "Wallet", state: walletState)
+        self.init(id: wallet.id.id, address: wallet.address.value, name: "Wallet", state: walletState)
     }
 
 }

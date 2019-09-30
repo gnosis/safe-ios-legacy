@@ -65,9 +65,9 @@ public class RecoveryApplicationService {
         }
     }
 
-    public func recoveryTransaction() -> TransactionData? {
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        guard let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) else {
+    public func recoveryTransaction(walletID: String) -> TransactionData? {
+        guard let wallet = DomainRegistry.walletRepository.find(id: WalletID(walletID)),
+            let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) else {
             return nil
         }
         return transactionData(tx)
@@ -109,10 +109,8 @@ public class RecoveryApplicationService {
         return DomainRegistry.recoveryService.isRecoveryInProgress()
     }
 
-    public func cancelRecovery() {
-        if let walletID = DomainRegistry.walletRepository.selectedWallet()?.id {
-            DomainRegistry.recoveryService.cancelRecovery(walletID: walletID)
-        }
+    public func cancelRecovery(walletID: String) {
+        DomainRegistry.recoveryService.cancelRecovery(walletID: WalletID(walletID))
     }
 
     public func isRecoveryTransactionConnectsAuthenticator(_ id: String) -> Bool {

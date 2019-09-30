@@ -7,14 +7,17 @@ import MultisigWalletApplication
 import Common
 
 protocol SwitchSafesTableViewControllerDelegate: class {
-    func didSelect(wallet: WalletData)
-    func didRequestToRemove(wallet: WalletData)
+    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController, didSelect wallet: WalletData)
+    func switchSafesTableViewController(_ controller: SwitchSafesTableViewController,
+                                        didRequestToRemove wallet: WalletData)
+    func switchSafesTableViewControllerDidFinish(_ controller: SwitchSafesTableViewController)
 }
 
 class SwitchSafesTableViewController: UITableViewController {
 
     weak var delegate: SwitchSafesTableViewControllerDelegate?
     var safes = [WalletData]()
+    var backButtonItem: UIBarButtonItem!
 
     var walletService: WalletApplicationService {
         return ApplicationServiceRegistry.walletService
@@ -39,6 +42,15 @@ class SwitchSafesTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(SafesTrackingEvent.switchSafes)
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        backButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(back))
+        setCustomBackButton(backButtonItem)
+    }
+
+    @objc func back() {
+        delegate?.switchSafesTableViewControllerDidFinish(self)
     }
 
     private func configureNavigationBar() {
@@ -87,7 +99,7 @@ class SwitchSafesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.didSelect(wallet: safes[indexPath.row])
+        delegate?.switchSafesTableViewController(self, didSelect: safes[indexPath.row])
         update()
     }
 
@@ -99,12 +111,20 @@ class SwitchSafesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
-        delegate?.didRequestToRemove(wallet: safes[indexPath.row])
+        delegate?.switchSafesTableViewController(self, didRequestToRemove: safes[indexPath.row])
     }
 
     override func tableView(_ tableView: UITableView,
                             titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return Strings.remove
+    }
+
+}
+
+extension SwitchSafesFlowCoordinator: InteractivePopGestureResponder {
+
+    func interactivePopGestureShouldBegin() -> Bool {
+        return false
     }
 
 }

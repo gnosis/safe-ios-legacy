@@ -9,6 +9,7 @@ import Common
 class SwitchSafesFlowCoordinatorTests: SafeTestCase {
 
     var switchSafesCoordinator: SwitchSafesFlowCoordinator!
+    let mainFlowCoordinator = MainFlowCoordinator()
 
     var topViewController: UIViewController? {
         return switchSafesCoordinator.navigationController.topViewController
@@ -17,6 +18,7 @@ class SwitchSafesFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         switchSafesCoordinator = SwitchSafesFlowCoordinator(rootViewController: UINavigationController())
+        switchSafesCoordinator.mainFlowCoordinator = mainFlowCoordinator
         switchSafesCoordinator.setUp()
     }
 
@@ -30,7 +32,9 @@ class SwitchSafesFlowCoordinatorTests: SafeTestCase {
         removeSafeCoordinator.safeAddress = ""
         testFC.enter(flow: removeSafeCoordinator)
         let expectedViewController = testFC.topViewController
-        switchSafesCoordinator.didRequestToRemove(wallet: WalletData(address: "", name: "", state: .pending))
+        let data = WalletData(id: "", address: "", name: "", state: .pending)
+        switchSafesCoordinator.switchSafesTableViewController(SwitchSafesTableViewController(),
+                                                              didRequestToRemove: data)
         let finalTransitionedViewController = switchSafesCoordinator.navigationController.topViewController
         XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
     }

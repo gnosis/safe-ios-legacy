@@ -50,7 +50,9 @@ extension SendFlowCoordinator: ReviewTransactionViewControllerDelegate {
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        push(SuccessViewController.sendSuccess(token: controller.tx.amountTokenData, action: exitFlow))
+        push(SuccessViewController.sendSuccess(token: controller.tx.amountTokenData) { [unowned self] in
+            self.exitFlow()
+        })
     }
 
 }

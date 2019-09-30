@@ -56,6 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         UIApplication.shared.applicationIconBadgeNumber = 0
         cleanUp()
         sync()
+
+        NSSetUncaughtExceptionHandler { exc in
+            print(exc)
+            print(exc.callStackSymbols.joined(separator: "\n"))
+        }
+
         return true
     }
 

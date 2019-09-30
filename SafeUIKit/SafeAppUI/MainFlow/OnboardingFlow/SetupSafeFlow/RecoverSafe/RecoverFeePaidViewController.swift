@@ -7,10 +7,11 @@ import MultisigWalletApplication
 import SafariServices
 
 protocol RecoverFeePaidViewControllerDelegate: class {
-    func recoverFeePaidViewControllerOpenMenu()
-    func recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String)
-    func recoverFeePaidViewControllerDidFail()
-    func recoverFeePaidViewControllerDidSuccess()
+    func recoverFeePaidViewControllerOpenMenu(_ controller: RecoverFeePaidViewController)
+    func recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(_ controller: RecoverFeePaidViewController,
+                                                                            transactionID: String)
+    func recoverFeePaidViewControllerDidFail(_ controller: RecoverFeePaidViewController)
+    func recoverFeePaidViewControllerDidSuccess(_ controller: RecoverFeePaidViewController)
 }
 
 class RecoverFeePaidViewController: FeePaidViewController {
@@ -18,6 +19,7 @@ class RecoverFeePaidViewController: FeePaidViewController {
     weak var delegate: RecoverFeePaidViewControllerDelegate?
     var retryItem: UIBarButtonItem!
     var recoveryProcessTracker = LongProcessTracker()
+    private(set) var walletID: String?
 
     static func create(delegate: RecoverFeePaidViewControllerDelegate) -> RecoverFeePaidViewController {
         let controller = RecoverFeePaidViewController(nibName: String(describing: FeePaidViewController.self),
@@ -52,20 +54,31 @@ class RecoverFeePaidViewController: FeePaidViewController {
         trackEvent(RecoverSafeTrackingEvent.feePaid)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if ApplicationServiceRegistry.walletService.selectedWalletID() == walletID,
+            ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            self.delegate?.recoverFeePaidViewControllerDidSuccess(self)
+        }
+    }
+
     @objc func retry() {
         start()
     }
 
     func start() {
+        walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
         recoveryProcessTracker.start()
     }
 
     // Called when wallet is recovered or transactoin hash is known
     func update() {
+        guard ApplicationServiceRegistry.walletService.selectedWalletID() == walletID else { return }
         progressAnimator.stop()
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
             progressAnimator.finish(duration: 0.7) { [weak self] in
-                self?.delegate?.recoverFeePaidViewControllerDidSuccess()
+                guard let `self` = self else { return }
+                self.delegate?.recoverFeePaidViewControllerDidSuccess(self)
             }
         } else {
             progressAnimator.resume(to: 0.97, duration: 100)
@@ -74,13 +87,14 @@ class RecoverFeePaidViewController: FeePaidViewController {
     }
 
     override func tapAction(_ sender: Any) {
-        if let transaction = ApplicationServiceRegistry.recoveryService.recoveryTransaction() {
-            delegate?.recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(transaction.id)
+        if let transaction = ApplicationServiceRegistry.recoveryService.recoveryTransaction(walletID: walletID!) {
+            delegate?.recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(self,
+                                                                                         transactionID: transaction.id)
         }
     }
 
     override func openMenu() {
-        delegate?.recoverFeePaidViewControllerOpenMenu()
+        delegate?.recoverFeePaidViewControllerOpenMenu(self)
     }
 
 }
@@ -100,7 +114,7 @@ extension RecoverFeePaidViewController: LongProcessTrackerDelegate {
     }
 
     func processDidFail() {
-        delegate?.recoverFeePaidViewControllerDidFail()
+        delegate?.recoverFeePaidViewControllerDidFail(self)
     }
 
 }

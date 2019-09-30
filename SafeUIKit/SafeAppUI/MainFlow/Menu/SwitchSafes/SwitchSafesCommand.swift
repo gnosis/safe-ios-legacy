@@ -20,4 +20,9 @@ final class SwitchSafesCommand: MenuCommand {
         childFlowCoordinator = SwitchSafesFlowCoordinator()
     }
 
+    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+        (childFlowCoordinator as! SwitchSafesFlowCoordinator).mainFlowCoordinator = mainFlowCoordinator
+        super.run(mainFlowCoordinator: mainFlowCoordinator)
+    }
+
 }

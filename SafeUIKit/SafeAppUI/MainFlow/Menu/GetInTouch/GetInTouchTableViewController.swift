@@ -48,9 +48,15 @@ class GetInTouchTableViewController: UITableViewController {
 
     private func generateCells() {
         cells = [
-            Cell(image: Asset.GetInTouch.telegram.image, text: Strings.telegram, action: openTelegram),
-            Cell(image: Asset.GetInTouch.mail.image, text: Strings.email, action: openMail),
-            Cell(image: Asset.GetInTouch.gitter.image, text: Strings.gitter, action: openGitter)
+            Cell(image: Asset.GetInTouch.telegram.image, text: Strings.telegram) { [unowned self] in
+                self.openTelegram()
+            },
+            Cell(image: Asset.GetInTouch.mail.image, text: Strings.email) { [unowned self] in
+                 self.openMail()
+            },
+            Cell(image: Asset.GetInTouch.gitter.image, text: Strings.gitter) { [unowned self] in
+                self.openGitter()
+            }
         ]
     }
 
