@@ -52,7 +52,7 @@ class MockSwitchSafesTableViewControllerDelegate: SwitchSafesTableViewController
 
 extension WalletData {
 
-    static let pending1 = WalletData(address: "p1", name: "p1", state: .pending)
+    static let pending1 = WalletData(address: "p1", name: "p1", state: .pendingCreation)
     static let created1 = WalletData(address: "c1", name: "c1", state: .created)
 
 }

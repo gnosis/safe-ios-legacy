@@ -30,7 +30,7 @@ class SwitchSafesFlowCoordinatorTests: SafeTestCase {
         removeSafeCoordinator.safeAddress = ""
         testFC.enter(flow: removeSafeCoordinator)
         let expectedViewController = testFC.topViewController
-        switchSafesCoordinator.didRequestToRemove(wallet: WalletData(address: "", name: "", state: .pending))
+        switchSafesCoordinator.didRequestToRemove(wallet: WalletData(address: "", name: "", state: .pendingCreation))
         let finalTransitionedViewController = switchSafesCoordinator.navigationController.topViewController
         XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
     }
