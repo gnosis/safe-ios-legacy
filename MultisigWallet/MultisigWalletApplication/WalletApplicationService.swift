@@ -172,6 +172,11 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.walletRepository.selectedWallet()
     }
 
+    public var selectedWalletData: WalletData? {
+        guard let wallet = selectedWallet else { return nil }
+        return walletData(for: wallet, isSelected: true)
+    }
+
     public func walletAddress(id: String) -> String? {
         DomainRegistry.walletRepository.find(id: WalletID(id))?.address.value
     }
@@ -182,25 +187,36 @@ public class WalletApplicationService: Assertable {
 
     public func wallets() -> [WalletData] {
         guard let portfolio = DomainRegistry.portfolioRepository.portfolio() else { return [] }
-        let removableStates: [WalletStateId] = [.draft, .deploying,
-                                                .waitingForFirstDeposit, .notEnoughFunds,
-                                                .recoveryDraft, .readyToUse]
         return portfolio.wallets.compactMap {
             DomainRegistry.walletRepository.find(id: $0)
         }.compactMap { wallet in
-            let state = walletStateId(wallet: wallet)
-            return WalletData(id: wallet.id.id,
-                              address: wallet.address?.value,
-                              name: "Safe",
-                              state: state,
-                              canRemove: removableStates.contains(state),
-                              isSelected: portfolio.selectedWallet == wallet.id,
-                              requiresBackupToRemove: state == .readyToUse)
+            return walletData(for: wallet, isSelected: portfolio.selectedWallet == wallet.id)
         }
+    }
+
+    private let removableStates: [WalletStateId] = [.draft, .deploying,
+                                                    .waitingForFirstDeposit, .notEnoughFunds,
+                                                    .recoveryDraft, .readyToUse]
+
+    private func walletData(for wallet: Wallet, isSelected: Bool) -> WalletData {
+        let state = walletStateId(wallet: wallet)
+        return WalletData(id: wallet.id.id,
+                          address: wallet.address?.value,
+                          name: wallet.name,
+                          state: state,
+                          canRemove: removableStates.contains(state),
+                          isSelected: isSelected,
+                          requiresBackupToRemove: state == .readyToUse)
     }
 
     public func removeWallet(id: String) {
         WalletDomainService.removeWallet(id)
+    }
+
+    public func updateSelectedWalletName(_ name: String) {
+        guard let wallet = selectedWallet else { return }
+        wallet.setName(name)
+        DomainRegistry.walletRepository.save(wallet)
     }
 
     public func cleanUpDrafts() {

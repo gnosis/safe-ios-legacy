@@ -20,7 +20,8 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                      "confirmation_count INTEGER NOT NULL",
                      "fee_payment_token_address TEXT",
                      "master_copy_address TEXT",
-                     "contract_version TEXT")
+                     "contract_version TEXT",
+                     "name TEXT")
     }
 
     public override func insertionBindings(_ object: Wallet) -> [SQLBindable?] {
@@ -33,7 +34,8 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                          object.confirmationCount,
                          object.feePaymentTokenAddress,
                          object.masterCopyAddress,
-                         object.contractVersion])
+                         object.contractVersion,
+                         object.name])
     }
 
     public override func objectFromResultSet(_ rs: ResultSet) -> Wallet? {
@@ -41,7 +43,8 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
             let stateRawValue: Int = rs["state"],
             let state = WalletState.State(rawValue: stateRawValue),
             let ownersString: String = rs["owners"],
-            let confirmationCount: Int = rs["confirmation_count"] else { return nil }
+            let confirmationCount: Int = rs["confirmation_count"],
+            let name: String = rs["name"] else { return nil }
         let minimumDeploymentAmount = TokenInt(serializedValue: rs["minimum_deployment_tx_amount"])
         let wallet = Wallet(id: WalletID(id),
                             state: state,
@@ -52,7 +55,8 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                             creationTransactionHash: rs["creation_tx_hash"],
                             confirmationCount: confirmationCount,
                             masterCopyAddress: Address(serializedValue: rs["master_copy_address"]),
-                            contractVersion: rs["contract_version"])
+                            contractVersion: rs["contract_version"],
+                            name: name)
         return wallet
     }
 

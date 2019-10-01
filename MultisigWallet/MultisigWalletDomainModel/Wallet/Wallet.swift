@@ -40,6 +40,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var owners = OwnerList()
     public private(set) var masterCopyAddress: Address!
     public private(set) var contractVersion: String!
+    public private(set) var name: String!
 
     public var isDeployable: Bool {
         return state.isDeployable
@@ -82,7 +83,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
                             creationTransactionHash: String?,
                             confirmationCount: Int = 1,
                             masterCopyAddress: Address? = nil,
-                            contractVersion: String? = nil) {
+                            contractVersion: String? = nil,
+                            name: String = "SAFE") {
         self.init(id: id)
         initStates()
         self.state = newDraftState
@@ -95,6 +97,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         self.confirmationCount = confirmationCount
         self.masterCopyAddress = masterCopyAddress
         self.contractVersion = contractVersion
+        self.name = name
     }
 
     private func state(from walletState: WalletState.State) -> WalletState {
@@ -225,6 +228,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public func changeContractVersion(_ newValue: String?) {
         contractVersion = newValue
+    }
+
+    public func setName(_ newValue: String) {
+        name = newValue
     }
 
     public func resume() {

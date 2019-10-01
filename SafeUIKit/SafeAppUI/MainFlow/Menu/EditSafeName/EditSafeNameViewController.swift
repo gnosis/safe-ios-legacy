@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import MultisigWalletApplication
 
 class EditSafeNameViewController: UIViewController {
 
@@ -29,7 +30,8 @@ class EditSafeNameViewController: UIViewController {
     }
 
     private func configureVerifiableInput() {
-        verifiableInput.text = "Safe"
+        let wallet = ApplicationServiceRegistry.walletService.selectedWalletData!
+        verifiableInput.text = wallet.name
         verifiableInput.delegate = self
         verifiableInput.showErrorsOnly = true
         verifiableInput.maxLength = 120
@@ -48,6 +50,8 @@ class EditSafeNameViewController: UIViewController {
     }
 
     @objc private func save() {
+        guard let name = verifiableInput.text, !name.isEmpty else { return }
+        ApplicationServiceRegistry.walletService.updateSelectedWalletName(name)
         navigationController?.popViewController(animated: true)
     }
 
