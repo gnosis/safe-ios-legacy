@@ -832,7 +832,7 @@ public class WalletApplicationService: Assertable {
         let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
         let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
         let signatures = signByAllAvailableWallets(message: dataString)
-        guard !signatures.isEmpty  else { return }
+        guard !signatures.isEmpty else { return }
         let request = AuthRequest(pushToken: pushToken,
                                   signatures: signatures.map { $0.signature },
                                   buildNumber: buildNumber,
