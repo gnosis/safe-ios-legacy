@@ -404,6 +404,8 @@
 		5579C57C22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */; };
 		5579C57E22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */; };
 		5579C58022C3739400BB93CA /* WCSessionListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */; };
+		5590F1AE2343447A002F120B /* EditSafeNameCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590F1AD2343447A002F120B /* EditSafeNameCommand.swift */; };
+		5590F1B12343465C002F120B /* EditSafeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590F1AF2343465C002F120B /* EditSafeNameViewController.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
 		55980001225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE9225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift */; };
 		55980003225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFEB225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift */; };
@@ -1074,6 +1076,8 @@
 		5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectMenuCommandTests.swift; sourceTree = "<group>"; };
 		5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListTableViewControllerTests.swift; sourceTree = "<group>"; };
+		5590F1AD2343447A002F120B /* EditSafeNameCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSafeNameCommand.swift; sourceTree = "<group>"; };
+		5590F1AF2343465C002F120B /* EditSafeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSafeNameViewController.swift; sourceTree = "<group>"; };
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		5598FFE5225B73B3006D5792 /* SetupNewPasswordViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewControllerTests.swift; sourceTree = "<group>"; };
 		5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewController.swift; sourceTree = "<group>"; };
@@ -1515,6 +1519,7 @@
 				0AF5BB35222420A6006856E0 /* ConnectTwoFA */,
 				55CE9CDC2304039E00CB414D /* ContractUpgrade */,
 				0A1940472226CF27005B7440 /* DisconnectTwoFA */,
+				5590F19823434453002F120B /* EditSafeName */,
 				551D777D22819AD8003B7910 /* FeePaymentMethod */,
 				55329FE522F9750800E40B06 /* GetInTouch */,
 				55B5DF6222782BF6001A32F4 /* Portfolio */,
@@ -2246,6 +2251,15 @@
 				0A334E0F209C8E3800ABC6AE /* AuthenticatorViewControllerTests.swift */,
 			);
 			path = TwoFA;
+			sourceTree = "<group>";
+		};
+		5590F19823434453002F120B /* EditSafeName */ = {
+			isa = PBXGroup;
+			children = (
+				5590F1AD2343447A002F120B /* EditSafeNameCommand.swift */,
+				5590F1AF2343465C002F120B /* EditSafeNameViewController.swift */,
+			);
+			path = EditSafeName;
 			sourceTree = "<group>";
 		};
 		5598FFE3225B73B3006D5792 /* ChangePassword */ = {
@@ -3210,6 +3224,7 @@
 				0AC3F16E21830BD500DAADC9 /* OnboardingTermsViewController.swift in Sources */,
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
 				55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */,
+				5590F1B12343465C002F120B /* EditSafeNameViewController.swift in Sources */,
 				552D1012232A6AD900127223 /* AttributedStringStyles.swift in Sources */,
 				0A73C6E2227B35F5002EEA32 /* SameTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
@@ -3330,6 +3345,7 @@
 				0A1940572226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift in Sources */,
 				0AE0FE42229C484000ABC552 /* CustomNavigationController.swift in Sources */,
 				0AB2013C229813140071510A /* OnboardingCreationFeeViewController.swift in Sources */,
+				5590F1AE2343447A002F120B /* EditSafeNameCommand.swift in Sources */,
 				5568A24E22D7284C007C9E0C /* WCSendReviewViewController.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,

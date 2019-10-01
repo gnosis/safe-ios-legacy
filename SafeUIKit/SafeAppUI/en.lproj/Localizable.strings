@@ -165,6 +165,9 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Do you have a backup? */
 "do_you_have_backup" = "Do you have a backup?";
 
+/* Edit Safe name */
+"edit_safe_name" = "Edit Safe name";
+
 /* E-mail */
 "email" = "E-mail";
 
@@ -531,6 +534,12 @@ Please have your recovery phrase ready to disable 2FA.";
 /* More info in our blog. */
 "more_info_in_our_blog" = "More info in our blog.";
 
+/* The name can not be empty */
+"name_cannot_be_blank" = "Name cannot be blank";
+
+/* The name is too long. Max 120 characters. */
+"name_too_long" = "The name is too long. Max 120 characters.";
+
 /* Onboarding 3 description */
 "need_confirm_upgrade" = "You will need to confirm the smart contract upgrade just like a normal transaction. Please make sure your Safe has enough funds to pay the network fee.";
 
@@ -779,7 +788,8 @@ Pairing password: %@";
 /* Remove Safe description */
 "safe_will_be_remove_description" = "This Safe will be removed from your device. To recover this Safe or to add it to another device you will need the recovery phrase and this Safe's address.";
 
-/* Save button */
+/* Save
+   Save button */
 "save" = "Save";
 
 /* Scan

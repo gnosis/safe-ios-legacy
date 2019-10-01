@@ -46,7 +46,7 @@ open class VerifiableInput: UIView {
     }
 
     public var isValid: Bool {
-        return allRules.reduce(true) { $0 && $1.status == .success }
+        return allRules.allSatisfy { $0.status == .success }
     }
 
     public var trimsText: Bool = false {
@@ -71,6 +71,8 @@ open class VerifiableInput: UIView {
     }
 
     public var maxLength: Int = Int.max
+
+    public var validateEmptyText = false
 
     /// When setting this property textInput.text value is formatted and validated.
     public var text: String? {
@@ -215,7 +217,7 @@ open class VerifiableInput: UIView {
 
     // triggered on every text change
     func validateRules(for text: String) {
-        guard !text.isEmpty else {
+        guard !text.isEmpty || validateEmptyText else {
             resetRules()
             return
         }
@@ -271,7 +273,7 @@ open class VerifiableInput: UIView {
             removeRule(rule)
         }
         self.explicitErrorRuleWasReset = false
-        addRule(error) { [unowned self] text in
+        addRule(error) { [unowned self] _ in
             let oldValue = self.explicitErrorRuleWasReset
             if !self.explicitErrorRuleWasReset {
                 self.explicitErrorRuleWasReset = true
