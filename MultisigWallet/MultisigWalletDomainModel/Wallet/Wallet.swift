@@ -84,7 +84,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
                             confirmationCount: Int = 1,
                             masterCopyAddress: Address? = nil,
                             contractVersion: String? = nil,
-                            name: String = "SAFE") {
+                            name: String? = nil) {
         self.init(id: id)
         initStates()
         self.state = newDraftState

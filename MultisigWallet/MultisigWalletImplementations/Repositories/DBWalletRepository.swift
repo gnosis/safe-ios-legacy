@@ -43,8 +43,7 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
             let stateRawValue: Int = rs["state"],
             let state = WalletState.State(rawValue: stateRawValue),
             let ownersString: String = rs["owners"],
-            let confirmationCount: Int = rs["confirmation_count"],
-            let name: String = rs["name"] else { return nil }
+            let confirmationCount: Int = rs["confirmation_count"] else { return nil }
         let minimumDeploymentAmount = TokenInt(serializedValue: rs["minimum_deployment_tx_amount"])
         let wallet = Wallet(id: WalletID(id),
                             state: state,
@@ -56,7 +55,7 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                             confirmationCount: confirmationCount,
                             masterCopyAddress: Address(serializedValue: rs["master_copy_address"]),
                             contractVersion: rs["contract_version"],
-                            name: name)
+                            name: rs["name"])
         return wallet
     }
 

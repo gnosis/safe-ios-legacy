@@ -17,5 +17,6 @@ enum MenuTrackingEvent: String, ScreenTrackingEvent {
     case telegram               = "Telegram"
     case gitter                 = "Gitter"
     case email                  = "E-mail"
+    case editSafeName           = "EditSafeName"
 
 }

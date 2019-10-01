@@ -74,6 +74,9 @@ public class DeploymentDomainService {
         let version = DomainRegistry.safeContractMetadataRepository.version(masterCopyAddress:
             response.masterCopyAddress)
         wallet.changeContractVersion(version)
+        let firstSafe = WalletDomainService.fetchOrCreatePortfolio().wallets.count == 1
+        let name = firstSafe ? "Safe" : "Safe \(response.safeAddress.value.suffix(4))"
+        wallet.setName(name)
         wallet.proceed()
     }
 

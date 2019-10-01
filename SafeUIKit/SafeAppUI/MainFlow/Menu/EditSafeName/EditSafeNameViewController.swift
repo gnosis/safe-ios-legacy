@@ -29,6 +29,11 @@ class EditSafeNameViewController: UIViewController {
         configureVerifiableInput()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(MenuTrackingEvent.editSafeName)
+    }
+
     private func configureVerifiableInput() {
         let wallet = ApplicationServiceRegistry.walletService.selectedWalletData!
         verifiableInput.text = wallet.name
