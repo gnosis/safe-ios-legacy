@@ -826,23 +826,20 @@ public class WalletApplicationService: Assertable {
     public func auth(pushToken: String) throws {
         precondition(!Thread.isMainThread)
         DomainRegistry.appSettingsRepository.set(setting: pushToken, for: pushTokenKey)
-        guard let deviceOwnerAddress = ownerAddress(of: .thisDevice) else { return }
         let buildNumber = SystemInfo.buildNumber ?? 0
         let versionName = SystemInfo.marketingVersion ?? "0.0.0"
         let client = "ios"
         let bundle = SystemInfo.bundleIdentifier ?? "io.gnosis.safe"
         let dataString = "GNO" + pushToken + String(describing: buildNumber) + versionName + client + bundle
-        let service = ApplicationServiceRegistry.ethereumService
-        // it may happen that this code is executing while the Keychain is locked (device is locked)
-        // that means that we don't have access to the private key, so we exit.
-        guard let signature = service.sign(message: dataString, by: deviceOwnerAddress) else { return }
+        let signatures = signByAllAvailableWallets(message: dataString)
+        guard !signatures.isEmpty  else { return }
         let request = AuthRequest(pushToken: pushToken,
-                                  signatures: [signature],
+                                  signatures: signatures.map { $0.signature },
                                   buildNumber: buildNumber,
                                   versionName: versionName,
                                   client: client,
                                   bundle: bundle,
-                                  deviceOwnerAddresses: [deviceOwnerAddress])
+                                  deviceOwnerAddresses: signatures.map { $0.address })
         if let authRequestData = DomainRegistry.appSettingsRepository.setting(for: authRequestDataKey) as? Data,
             let requestData = try? JSONEncoder().encode(request),
             authRequestData == requestData { // we already sent this data before
@@ -854,6 +851,25 @@ public class WalletApplicationService: Assertable {
                 DomainRegistry.appSettingsRepository.set(setting: requestData, for: authRequestDataKey)
             }
         }
+    }
+
+    private func signByAllAvailableWallets(message: String) -> [(address: String, signature: EthSignature)] {
+        guard let walletIDs = DomainRegistry.portfolioRepository.portfolio()?.wallets, !walletIDs.isEmpty else { return [] }
+        let wallets = DomainRegistry.walletRepository.all().filter { walletIDs.contains($0.id) }
+
+        let owners = wallets.compactMap { $0.owner(role: .thisDevice)?.address.value }
+        assert(owners.count == wallets.count, "Not all 'ready to use' wallets have device owners!")
+
+        let signatures = owners.compactMap { owner -> (address: String, signature: EthSignature)? in
+            // it may happen that the device key is missing (after restoring from iCloud, for example).
+            // that means that we don't have access to the private key, and signing will fail.
+            guard let signature = ApplicationServiceRegistry.ethereumService.sign(message: message, by: owner) else {
+                return nil
+            }
+            return (owner, signature)
+
+        }
+        return signatures
     }
 
     public func pushToken() -> String? {

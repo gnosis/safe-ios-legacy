@@ -50,7 +50,6 @@ extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
         let currentSelection = ApplicationServiceRegistry.walletService.selectedWalletID()
         guard currentSelection != initialSelection else { return }
         MainFlowCoordinator.shared.switchToRootController()
-        setRoot(MainFlowCoordinator.shared.rootViewController)
     }
 
 }
