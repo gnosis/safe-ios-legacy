@@ -867,7 +867,6 @@ public class WalletApplicationService: Assertable {
                 return nil
             }
             return (owner, signature)
-
         }
         return signatures
     }
