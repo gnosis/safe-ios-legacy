@@ -71,7 +71,6 @@ class OnboardingCreationFeeViewController: CardViewController {
 
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
 
-        addressDetailView.headerLabel.isHidden = true
         addressDetailView.footnoteLabel.isHidden = true
         addressDetailView.isHidden = true
 
