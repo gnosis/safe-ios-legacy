@@ -33,14 +33,15 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     var hasBrowserExtension: Bool {
-        return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
+        return ApplicationServiceRegistry.walletService.address(of: .browserExtension, in: tx.walletID) != nil
     }
 
     var hasKeycard: Bool {
-        return ApplicationServiceRegistry.walletService.ownerAddress(of: .keycard) != nil
+        return ApplicationServiceRegistry.walletService.address(of: .keycard, in: tx.walletID) != nil
     }
 
-    private(set) var tx: TransactionData!
+    private(set) var tx: TransactionData! // wallet by transaction id
+
     private(set) weak var delegate: ReviewTransactionViewControllerDelegate!
     private var submitBarButton: UIBarButtonItem!
     /// To control how frequent a user can send confirmation requests
@@ -211,7 +212,7 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func doSubmit() {
-        doAfterEstimateTransaction { [weak self] in
+        doAfterEstimateTransaction { [weak self] in  
             guard let `self` = self else { return TransactionData.empty }
             return try ApplicationServiceRegistry.walletService.submitTransaction(self.tx.id)
         }
@@ -356,7 +357,8 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     internal func balance(of token: TokenData) -> BigInt? {
-        return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address))
+        return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address),
+                                                                       walletID: tx.walletID)
     }
 
     // MARK: - Other

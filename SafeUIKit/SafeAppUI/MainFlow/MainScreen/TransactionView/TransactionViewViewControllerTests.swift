@@ -89,6 +89,7 @@ class TransactionViewViewControllerTests: XCTestCase {
     func test_whenPendingTransaction_thenDisplaysPendingData() {
         let now = Date()
         let transaction = TransactionData(id: UUID().uuidString,
+                                          walletID: "0x674647242239941b2D35368e66A4EdC39b161Da9",
                                           sender: "0x674647242239941b2D35368e66A4EdC39b161Da9",
                                           recipient: "0x97e3bA6cC43b2aF2241d4CAD4520DA8266170988",
                                           amountTokenData: TokenData.gno.withBalance(3),
@@ -136,6 +137,7 @@ extension TransactionGroupData {
     static func group(type: GroupType = .processed, date: Date? = nil, count: Int = 0) -> TransactionGroupData {
         let transactions = (0..<count).map { i in
             TransactionData(id: String(i),
+                            walletID: "some",
                             sender: "sender",
                             recipient: "recipient",
                             amountTokenData: TokenData.Ether,

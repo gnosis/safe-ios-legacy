@@ -190,10 +190,11 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
     }
 
     func test_whenTransactionIsPending_thenStatusIsPending() throws {
-        let walletID = WalletID()
+        givenReadyToUseWallet()
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
-                             accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
+                             accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
         tx.change(sender: Address.safeAddress)
             .change(recipient: Address.testAccount1)
             .change(amount: TokenAmount.ether(1))

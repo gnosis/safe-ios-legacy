@@ -91,8 +91,6 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         wallet.state = wallet.readyToUseState
         wallet.changeContractVersion("1.0.0")
         walletRepository.save(wallet)
-        service.update(account: Token.Ether.id, newBalance: 1)
-        service.update(account: Token.Ether.id, newBalance: 100)
     }
 
     func givenDraftTransaction() -> Transaction {
@@ -119,7 +117,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
             encryptionService.addressFromHashSignature_output = extensionAddress.value.lowercased()
             encryptionService.dataFromSignature_output = signatureData
 
-            let walletID = WalletID()
+            let walletID = walletRepository.selectedWallet()!.id
             let transaction = Transaction(id: TransactionID(),
                                           type: .transfer,
                                           accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))

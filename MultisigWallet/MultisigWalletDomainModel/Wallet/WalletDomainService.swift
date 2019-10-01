@@ -22,17 +22,6 @@ public class WalletDomainService {
         return result
     }
 
-    public static func recreateOwners() {
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        for owner in wallet.allOwners() {
-            DomainRegistry.externallyOwnedAccountRepository.remove(address: owner.address)
-            wallet.removeOwner(role: owner.role)
-        }
-        let newOwnerAddress = newOwner()
-        wallet.addOwner(Owner(address: newOwnerAddress, role: .thisDevice))
-        DomainRegistry.walletRepository.save(wallet)
-    }
-
     public static func token(id: String) -> Token? {
         if id == Token.Ether.id.id {
             return Token.Ether

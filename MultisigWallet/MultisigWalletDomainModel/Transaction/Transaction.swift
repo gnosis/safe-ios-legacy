@@ -82,9 +82,9 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Validating transaction
 
-    public func isDangerous() -> Bool {
+    public func isDangerous(walletAddress: Address) -> Bool {
         return ![nil, .call].contains(operation) ||
-            (recipient == DomainRegistry.walletRepository.selectedWallet()?.address && !(data?.isEmpty ?? true))
+            (recipient == walletAddress && !(data?.isEmpty ?? true))
     }
 
     // MARK: - Changing transaction's status

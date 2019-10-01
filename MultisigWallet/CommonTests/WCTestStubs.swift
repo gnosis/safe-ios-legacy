@@ -36,27 +36,36 @@ extension WCDAppInfo {
 
 extension WCWalletInfo {
 
-    static let testWalletInfo = WCWalletInfo(approved: true,
-                                             accounts: [],
-                                             chainId: 1,
-                                             peerId: "peer1",
-                                             peerMeta: WCClientMeta.testMeta)
+    static let testWalletInfo = test(accounts: [])
+
+    static func test(accounts: [String]) -> WCWalletInfo {
+        WCWalletInfo(approved: true,
+                     accounts: accounts,
+                     chainId: 1,
+                     peerId: "peer1",
+                     peerMeta: WCClientMeta.testMeta)
+    }
+
 
 }
 
 extension WCSession {
 
-    static let testSession = WCSession(url: MultisigWalletDomainModel.WCURL.testURL,
-                                       dAppInfo: WCDAppInfo.testDAppInfo,
-                                       walletInfo: WCWalletInfo.testWalletInfo,
-                                       status: .connected,
-                                       created: Date(timeIntervalSince1970: 20_000))
+    static let testSession = test(walletInfo: WCWalletInfo.testWalletInfo)
 
     static let connectingTestSession = WCSession(url: MultisigWalletDomainModel.WCURL.testURL2,
                                                  dAppInfo: WCDAppInfo.testDAppInfo,
                                                  walletInfo: nil,
                                                  status: .connecting,
                                                  created: Date(timeIntervalSince1970: 10_000))
+
+    static func test(walletInfo: WCWalletInfo?) -> WCSession {
+        WCSession(url: MultisigWalletDomainModel.WCURL.testURL,
+                  dAppInfo: WCDAppInfo.testDAppInfo,
+                  walletInfo: walletInfo,
+                  status: .connected,
+                  created: Date(timeIntervalSince1970: 20_000))
+    }
 
 }
 

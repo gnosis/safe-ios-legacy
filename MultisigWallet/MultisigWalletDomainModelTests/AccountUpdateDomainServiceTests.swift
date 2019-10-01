@@ -50,7 +50,7 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         publisher.expectToPublish(AccountsBalancesUpdated.self)
         updateBalances()
         XCTAssertTrue(publisher.publishedWhatWasExpected())
-    }
+    } 
 
     func test_updateAccountsBalances_otherWalletsShouldNotInfluenceSelectedWallet() {
         givenEmptyWalletAndTokenItemsWithWhitelistedAndPaymentTokens()

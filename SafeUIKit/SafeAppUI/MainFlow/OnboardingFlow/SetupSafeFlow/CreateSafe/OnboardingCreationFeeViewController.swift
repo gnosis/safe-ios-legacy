@@ -140,7 +140,7 @@ class OnboardingCreationFeeViewController: CardViewController {
             let required = ApplicationServiceRegistry.walletService.feePaymentTokenData
                 .withBalance(ApplicationServiceRegistry.walletService.minimumDeploymentAmount!)
             let received = ApplicationServiceRegistry.walletService
-                .accountBalance(tokenID: BaseID(required.address)) ?? 0
+                .accountBalance(tokenID: BaseID(required.address), walletID: walletID) ?? 0
             let remaining = required.balance == nil ? nil : max(required.balance! - received, 0)
 
             setSubtitle(Strings.Insufficient.subtitle, showError: true)

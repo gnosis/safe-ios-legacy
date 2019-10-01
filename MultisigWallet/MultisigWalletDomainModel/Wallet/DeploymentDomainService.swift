@@ -50,14 +50,6 @@ public class DeploymentDomainService {
         DomainRegistry.accountRepository.save(account)
     }
 
-    public func prepareForCreation() {
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        wallet.reset()
-        wallet.prepareForCreation()
-        DomainRegistry.walletRepository.save(wallet)
-        WalletDomainService.recreateOwners()
-    }
-
     // MARK: -  Wallet Creation Stages
 
     func prepareSafeCreationTransaction(_ wallet: Wallet) throws {

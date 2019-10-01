@@ -62,7 +62,7 @@ class OnboardingFeePaidViewController: FeePaidViewController {
     }
 
     override func tapAction(_ sender: Any) {
-        let url = ApplicationServiceRegistry.walletService.walletCreationURL()
+        let url = ApplicationServiceRegistry.walletService.walletCreationURL(walletID)
         let safari = SFSafariViewController(url: url)
         present(safari, animated: true)
     }

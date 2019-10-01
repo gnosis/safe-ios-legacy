@@ -13,6 +13,7 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
     override func setUp() {
         super.setUp()
         tokenItemsService.json = TokensResponse.json
+        DomainRegistry.put(service: AccountUpdateDomainService(), for: AccountUpdateDomainService.self)
         syncTokens()
     }
 

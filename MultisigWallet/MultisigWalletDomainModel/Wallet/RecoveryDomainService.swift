@@ -60,14 +60,6 @@ public class RecoveryDomainService: Assertable {
         return WalletDomainService.fetchOrCreatePortfolio()
     }
 
-    public func prepareForRecovery() {
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        wallet.reset()
-        wallet.prepareForRecovery()
-        DomainRegistry.walletRepository.save(wallet)
-        WalletDomainService.recreateOwners()
-    }
-
     // MARK: - Getting Ready for Recovery
 
     public func change(address: Address) {
