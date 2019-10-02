@@ -16,6 +16,8 @@ public class AccountID: BaseID {
     }
 
     public init(tokenID: TokenID, walletID: WalletID) {
+        precondition(!walletID.id.isEmpty)
+        precondition(!tokenID.id.isEmpty)
         super.init("\(tokenID.id)\(AccountID.idSeparator)\(walletID.id)")
     }
 

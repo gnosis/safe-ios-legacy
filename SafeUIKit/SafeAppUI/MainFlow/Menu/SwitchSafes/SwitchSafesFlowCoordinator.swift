@@ -26,6 +26,13 @@ class SwitchSafesFlowCoordinator: FlowCoordinator {
         super.setRoot(controller)
         [removeSafeFlowCoordinator, MainFlowCoordinator.shared].forEach { $0?.setRoot(controller) }
     }
+
+    func switchToRoot() {
+        MainFlowCoordinator.shared.switchToRootController()
+        // preventing memory leak due to retained view controllers
+        self.setRoot(MainFlowCoordinator.shared.rootViewController)
+    }
+
 }
 
 extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
@@ -38,7 +45,7 @@ extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
         enter(flow: removeSafeFlowCoordinator) { [unowned self] in
             DispatchQueue.main.async {
                 if ApplicationServiceRegistry.walletService.wallets().isEmpty {
-                    MainFlowCoordinator.shared.switchToRootController()
+                    self.switchToRoot()
                 } else {
                     self.popToLastCheckpoint()
                 }
@@ -49,9 +56,7 @@ extension SwitchSafesFlowCoordinator: SwitchSafesTableViewControllerDelegate {
     func switchSafesTableViewControllerDidFinish(_ controller: SwitchSafesTableViewController) {
         let currentSelection = ApplicationServiceRegistry.walletService.selectedWalletID()
         guard currentSelection != initialSelection else { return }
-        MainFlowCoordinator.shared.switchToRootController()
-        // preventing memory leak due to retained view controllers
-        setRoot(MainFlowCoordinator.shared.rootViewController)
+        self.switchToRoot()
     }
 
 }

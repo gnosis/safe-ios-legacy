@@ -449,7 +449,7 @@ public class WalletApplicationService: Assertable {
     /// - Parameter withEth: should the Eth be amoung Token Data returned or not.
     /// - Returns: token data array.
     public func visibleTokens(withEth: Bool) -> [TokenData] {
-        let walletID = selectedWalletID()!
+        guard let walletID = selectedWalletID() else { return [] }
         let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
             return tokenData(id: $0.token.id.id, walletID: walletID)
         }
