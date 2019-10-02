@@ -58,7 +58,6 @@ class RecoverRecoveryFeeViewController: CardViewController {
         recoveryProcessTracker.retryItem = retryItem
         recoveryProcessTracker.delegate = self
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
-        addressDetailView.headerLabel.isHidden = true
 
         start()
     }

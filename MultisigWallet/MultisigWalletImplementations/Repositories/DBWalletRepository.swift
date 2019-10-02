@@ -20,7 +20,8 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                      "confirmation_count INTEGER NOT NULL",
                      "fee_payment_token_address TEXT",
                      "master_copy_address TEXT",
-                     "contract_version TEXT")
+                     "contract_version TEXT",
+                     "name TEXT")
     }
 
     public override func insertionBindings(_ object: Wallet) -> [SQLBindable?] {
@@ -33,7 +34,8 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                          object.confirmationCount,
                          object.feePaymentTokenAddress,
                          object.masterCopyAddress,
-                         object.contractVersion])
+                         object.contractVersion,
+                         object.name])
     }
 
     public override func objectFromResultSet(_ rs: ResultSet) -> Wallet? {
@@ -52,7 +54,8 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                             creationTransactionHash: rs["creation_tx_hash"],
                             confirmationCount: confirmationCount,
                             masterCopyAddress: Address(serializedValue: rs["master_copy_address"]),
-                            contractVersion: rs["contract_version"])
+                            contractVersion: rs["contract_version"],
+                            name: rs["name"])
         return wallet
     }
 

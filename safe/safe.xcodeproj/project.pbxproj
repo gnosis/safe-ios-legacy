@@ -101,6 +101,7 @@
 		555C94F120E537E900A0621D /* HTTPNotificatonServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */; };
 		555D33FE2110BD810055D87C /* PushLocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */; };
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
+		5590F1B4234360F2002F120B /* M0008_AddWalletNameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590F1B3234360F2002F120B /* M0008_AddWalletNameField.swift */; };
 		55A7B2A320ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */; };
 		55B5DF792278AD2F001A32F4 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */; };
 		55B5DF98227C567D001A32F4 /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF97227C567D001A32F4 /* Migrations.swift */; };
@@ -501,6 +502,7 @@
 		555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalizationStrings.swift; sourceTree = "<group>"; };
 		558FD81420767F18004F070E /* NewSafeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeScreen.swift; sourceTree = "<group>"; };
+		5590F1B3234360F2002F120B /* M0008_AddWalletNameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0008_AddWalletNameField.swift; sourceTree = "<group>"; };
 		55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPGnosisTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
 		55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		55B5DF97227C567D001A32F4 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
@@ -656,6 +658,7 @@
 				0A3476BD22B131E100FEA7FC /* M0005_ChangeTransactionFeeColumnType.swift */,
 				0A34773322B3A22C00FEA7FC /* M0006_RemoveWalletIDFromTransactions.swift */,
 				55329FD022F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift */,
+				5590F1B3234360F2002F120B /* M0008_AddWalletNameField.swift */,
 				55B5DF97227C567D001A32F4 /* Migrations.swift */,
 			);
 			path = Migrations;
@@ -1439,6 +1442,7 @@
 				55B5DF98227C567D001A32F4 /* Migrations.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				0A364B40226886DB002E80B7 /* IdentityAccessConfigurator.swift in Sources */,
+				5590F1B4234360F2002F120B /* M0008_AddWalletNameField.swift in Sources */,
 				55329FD122F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift in Sources */,
 				0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */,
 				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,

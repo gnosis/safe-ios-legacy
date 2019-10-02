@@ -9,7 +9,7 @@ import MultisigWalletApplication
 class ReceiveFundsViewController: CardViewController {
 
     let addressDetailView = AddressDetailView()
-    let headerLabel = UILabel()
+
     private var address: String!
 
     static func create() -> ReceiveFundsViewController {
@@ -18,30 +18,51 @@ class ReceiveFundsViewController: CardViewController {
         return controller
     }
 
+    enum Strings {
+        static let title = LocalizedString("receive_funds", comment: "Receive Funds")
+        static let description = LocalizedString("share_your_address",
+                                                 comment: "Description for Receive Funds screen.")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         address = ApplicationServiceRegistry.walletService.selectedWalletAddress
 
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: 19, right: 0)
-        embed(view: headerLabel, inCardSubview: cardHeaderView, insets: insets)
+        embed(view: headerView(), inCardSubview: cardHeaderView, insets: insets)
         embed(view: addressDetailView, inCardSubview: cardBodyView, insets: insets)
 
         title = Strings.title
-
-        headerLabel.textColor = ColorName.darkGrey.color
-        headerLabel.text = Strings.description
-        headerLabel.numberOfLines = 0
-        headerLabel.font = UIFont.systemFont(ofSize: 17)
-        headerLabel.textAlignment = .center
 
         subtitleLabel.isHidden = true
         subtitleDetailLabel.isHidden = true
         footerButton.isHidden = true
 
-        SafeLabelTitleView.apply(to: addressDetailView.headerLabel)
         addressDetailView.footnoteLabel.isHidden = true
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
         addressDetailView.address = address
+    }
+
+    private func headerView() -> UIView {
+        let titleLabel = UILabel()
+        titleLabel.textColor = ColorName.darkBlue.color
+        titleLabel.text = ApplicationServiceRegistry.walletService.selectedWalletData!.name
+        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+
+        let descriptionLabel = UILabel()
+        descriptionLabel.textColor = ColorName.darkGrey.color
+        descriptionLabel.text = Strings.description
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = UIFont.systemFont(ofSize: 17)
+        descriptionLabel.textAlignment = .center
+
+        let stackView = UIStackView()
+        stackView.spacing = 11
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(descriptionLabel)
+        return stackView
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -53,12 +74,6 @@ class ReceiveFundsViewController: CardViewController {
         let activityController = UIActivityViewController(activityItems: [address!], applicationActivities: nil)
         activityController.view.tintColor = ColorName.systemBlue.color
         present(activityController, animated: true)
-    }
-
-    enum Strings {
-        static let title = LocalizedString("receive_funds", comment: "Receive Funds")
-        static let description = LocalizedString("share_your_address",
-                                                 comment: "Description for Receive Funds screen.")
     }
 
 }

@@ -66,7 +66,8 @@ final class MenuTableViewController: UITableViewController {
 
     // MARK: - Commands
 
-    lazy var safeSettingsCommands = [FeePaymentMethodCommand(),
+    lazy var safeSettingsCommands = [EditSafeNameCommand(),
+                                     FeePaymentMethodCommand(),
                                      ResyncWithBrowserExtensionCommand(),
                                      ReplaceRecoveryPhraseCommand(),
                                      ReplaceTwoFACommand(),

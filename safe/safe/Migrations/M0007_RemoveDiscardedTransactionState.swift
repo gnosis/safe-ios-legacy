@@ -6,7 +6,6 @@ import Foundation
 import Database
 import CommonImplementations
 
-
 final class M0007_RemoveDiscardedTransactionState: Migration {
 
     convenience init() {

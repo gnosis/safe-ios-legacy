@@ -15,7 +15,8 @@ struct WalletMigrations {
         M0004_AddColumnsToWallet(),
         M0005_ChangeTransactionFeeColumnType(),
         M0006_RemoveWalletIDFromTransactions(),
-        M0007_RemoveDiscardedTransactionState()
+        M0007_RemoveDiscardedTransactionState(),
+        M0008_AddWalletNameField()
     ]
 
     static let latest = all.last!
