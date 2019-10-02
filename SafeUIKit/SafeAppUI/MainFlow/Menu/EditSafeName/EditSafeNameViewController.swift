@@ -35,8 +35,7 @@ class EditSafeNameViewController: UIViewController {
     }
 
     private func configureVerifiableInput() {
-        let wallet = ApplicationServiceRegistry.walletService.selectedWalletData!
-        verifiableInput.text = wallet.name
+        verifiableInput.text = ApplicationServiceRegistry.walletService.selectedWalletData.name
         verifiableInput.delegate = self
         verifiableInput.showErrorsOnly = true
         verifiableInput.maxLength = 120

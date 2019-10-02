@@ -133,7 +133,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.shadowImage = UIImage()
-        title = ApplicationServiceRegistry.walletService.selectedWalletData!.name
+        title = ApplicationServiceRegistry.walletService.selectedWalletData.name
     }
 
     override func viewWillDisappear(_ animated: Bool) {

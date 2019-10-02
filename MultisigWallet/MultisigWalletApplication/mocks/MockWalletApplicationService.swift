@@ -418,4 +418,15 @@ public class MockWalletApplicationService: WalletApplicationService {
     public override func walletAddress(id: String) -> String? {
         return walletAddress
     }
+
+    public override var selectedWalletData: WalletData {
+        WalletData(id: "some",
+                   address: "some",
+                   name: "some",
+                   state: .readyToUse,
+                   canRemove: true,
+                   isSelected: true,
+                   requiresBackupToRemove: true)
+    }
+    
 }

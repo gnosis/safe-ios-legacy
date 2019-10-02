@@ -175,7 +175,7 @@ public class TransactionDetailsViewController: UIViewController {
             settingsHeaderView.detailText = String(format: Strings.DisableTwoFA.detail, Strings.gnosisSafeAuthenticator)
         case .contractUpgrade:
             settingsHeaderView.titleText = Strings.ContractUpgrade.title
-            let safeName = ApplicationServiceRegistry.walletService.selectedWalletData!.name
+            let safeName = ApplicationServiceRegistry.walletService.selectedWalletData.name
             settingsHeaderView.detailText = Strings.ContractUpgrade.detail(safeName: safeName)
         case .walletRecovery:
             settingsHeaderView.titleText = Strings.WalletRecovery.title

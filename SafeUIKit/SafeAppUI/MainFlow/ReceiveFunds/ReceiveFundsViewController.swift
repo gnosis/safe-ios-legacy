@@ -46,7 +46,7 @@ class ReceiveFundsViewController: CardViewController {
     private func headerView() -> UIView {
         let titleLabel = UILabel()
         titleLabel.textColor = ColorName.darkBlue.color
-        titleLabel.text = ApplicationServiceRegistry.walletService.selectedWalletData!.name
+        titleLabel.text = ApplicationServiceRegistry.walletService.selectedWalletData.name
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
 
         let descriptionLabel = UILabel()

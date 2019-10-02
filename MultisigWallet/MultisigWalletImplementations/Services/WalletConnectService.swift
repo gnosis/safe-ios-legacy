@@ -129,7 +129,7 @@ extension WalletConnectService: RequestHandler {
                 var wcRequest = try request.parameter(of: WCSendTransactionRequest.self, at: 0)
                 wcRequest.url = request.url.wcURL
                 delegate.handleSendTransactionRequest(wcRequest) { [weak self] result in
-                    guard let self = self else { return }
+                    guard let `self` = self else { return }
                     var response: Response
                     switch result {
                     case .success(let hash):
@@ -154,7 +154,7 @@ extension WalletConnectService: RequestHandler {
             }
         } else {
             delegate.handleEthereumNodeRequest(request.wcRequest) { [weak self] result in
-                guard let self = self else { return }
+                guard let `self` = self else { return }
                 switch result {
                 case .success(let wcResponse):
                     do {

@@ -17,7 +17,7 @@ final class WalletConnectMenuCommand: MenuCommand {
 
     override init() {
         super.init()
-        childFlowCoordinator = WalletConnectFlowCoordinator()
+        childFlowCoordinator = MainFlowCoordinator.shared.walletConnectFlowCoordinator
     }
 
 }

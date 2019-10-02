@@ -29,15 +29,16 @@ class IncomingTransactionFlowCoordinator: FlowCoordinator {
         switch source {
         case .browserExtension:
             let reviewVC = SendReviewViewController(transactionID: transactionID, delegate: self)
-            reviewVC.onBack = { [unowned self] in
-                self.onBackButton?()
+            reviewVC.onBack = { [weak self] in
+                self?.onBackButton?()
             }
             push(reviewVC)
         case .walletConnect:
             let wcSessionData = sourceMeta as! WCSessionData
             let reviewVC = WCSendReviewViewController(transactionID: transactionID, delegate: self)
             reviewVC.wcSessionData = wcSessionData
-            reviewVC.onBack = { [unowned self] in
+            reviewVC.onBack = { [weak self] in
+                guard let `self` = self else { return }
                 self.onBackButton?()
                 self.pop()
             }
