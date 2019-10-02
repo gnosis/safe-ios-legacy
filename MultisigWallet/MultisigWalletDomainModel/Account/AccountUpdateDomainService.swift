@@ -32,6 +32,7 @@ open class AccountUpdateDomainService {
         guard let walletIDs = DomainRegistry.portfolioRepository.portfolio()?.wallets else { return }
 
         for walletID in walletIDs {
+            guard DomainRegistry.walletRepository.find(id: walletID) != nil else { continue }
             let existingIDs = Set(DomainRegistry.accountRepository.filter(walletID: walletID).map { $0.id.tokenID })
             let newTokenIDs = tokenIDs.subtracting(existingIDs)
             let newAccounts = newTokenIDs.map { Account(tokenID: $0, walletID: walletID) }

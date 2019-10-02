@@ -60,9 +60,10 @@ extension RemoveSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
 
     func recoveryPhraseInputViewControllerDidLooseRecovery(_ controller: RecoveryPhraseInputViewController) {
         ApplicationServiceRegistry.walletService.selectWallet(walletID)
-        enter(flow: replacePhraseCoordinator) {
+        enter(flow: replacePhraseCoordinator) { [unowned self] in
             MainFlowCoordinator.shared.switchToRootController()
             MainFlowCoordinator.shared.showTransactionList()
+            self.setRoot(MainFlowCoordinator.shared.rootViewController)
         }
     }
 

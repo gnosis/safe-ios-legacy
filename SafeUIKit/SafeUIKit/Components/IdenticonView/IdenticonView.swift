@@ -62,7 +62,7 @@ public class IdenticonView: BaseCustomView {
         identiconControl.frame = bounds
         identiconControl.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         identiconControl.addTarget(self, action: #selector(didTap), for: .touchUpInside)
-        identiconControl.onBeginTracking = {
+        identiconControl.onBeginTracking = { [unowned self] in
             guard self.displayShadow else { return }
             let frame = self.imageView.frame
             self.imageView.frame = CGRect(x: frame.minX,
@@ -71,7 +71,7 @@ public class IdenticonView: BaseCustomView {
                                           height: frame.height)
             self._displayShadow = false
         }
-        identiconControl.onEndTracking = {
+        identiconControl.onEndTracking = { [unowned self] in
             guard self.displayShadow else { return }
             let frame = self.imageView.frame
             self.imageView.frame = CGRect(x: frame.minX,

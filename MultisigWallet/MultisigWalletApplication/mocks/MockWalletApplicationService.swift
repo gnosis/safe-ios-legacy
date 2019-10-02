@@ -268,7 +268,7 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     private var funds: [TokenID: BigInt] = [:]
 
-    public override func accountBalance(tokenID: BaseID, walletID: String) -> BigInt? {
+    public override func accountBalance(tokenID: BaseID, walletID: String?) -> BigInt? {
         return funds[TokenID(tokenID.id)]
     }
 

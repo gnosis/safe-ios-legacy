@@ -73,7 +73,7 @@ class BaseInputViewController: UIViewController, EventSubscriber {
     @IBAction func next(_ sender: Any) {}
 
     func notify() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.stopActivityIndicator()
             self.enableNextAction()
         }

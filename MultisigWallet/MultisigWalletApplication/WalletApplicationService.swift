@@ -434,7 +434,7 @@ public class WalletApplicationService: Assertable {
     ///
     /// - Parameter id: Token address
     /// - Returns: TokenData
-    public func tokenData(id: String, walletID: String) -> TokenData? {
+    public func tokenData(id: String, walletID: String?) -> TokenData? {
         guard let token = self.token(id: id) else { return nil }
         let balance = accountBalance(tokenID: token.id, walletID: walletID)
         return TokenData(token: token, balance: balance)
@@ -449,7 +449,7 @@ public class WalletApplicationService: Assertable {
     /// - Parameter withEth: should the Eth be amoung Token Data returned or not.
     /// - Returns: token data array.
     public func visibleTokens(withEth: Bool) -> [TokenData] {
-        let walletID = selectedWalletID()!
+        let walletID = selectedWalletID()
         let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
             return tokenData(id: $0.token.id.id, walletID: walletID)
         }
@@ -517,7 +517,8 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Accounts
 
-    public func accountBalance(tokenID: BaseID, walletID: String) -> BigInt? {
+    public func accountBalance(tokenID: BaseID, walletID: String?) -> BigInt? {
+        guard let walletID = walletID else { return nil }
         let account = findAccount(TokenID(tokenID.id), walletID: WalletID(walletID))
         return account?.balance
     }
