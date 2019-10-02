@@ -170,9 +170,8 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.walletRepository.selectedWallet()
     }
 
-    public var selectedWalletData: WalletData? {
-        guard let wallet = selectedWallet else { return nil }
-        return walletData(for: wallet, isSelected: true)
+    public var selectedWalletData: WalletData {
+        return walletData(for: selectedWallet!, isSelected: true)
     }
 
     public func walletAddress(id: String) -> String? {
@@ -201,7 +200,7 @@ public class WalletApplicationService: Assertable {
         let state = walletStateId(wallet: wallet)
         return WalletData(id: wallet.id.id,
                           address: wallet.address?.value,
-                          name: wallet.name,
+                          name: wallet.name ?? "Safe",
                           state: state,
                           canRemove: removableStates.contains(state),
                           isSelected: isSelected,

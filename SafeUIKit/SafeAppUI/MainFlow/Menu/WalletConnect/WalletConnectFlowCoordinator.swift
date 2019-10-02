@@ -15,12 +15,7 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     ///
     /// We defer connecting to this URL until the session list screen is shown because before that
     /// the UI is not properly intiialized to show error or other information.
-    private var connectionURL: URL?
-
-    convenience init(connectionURL url: URL?, rootViewController: UIViewController? = nil) {
-        self.init(rootViewController: rootViewController)
-        self.connectionURL = url
-    }
+    var connectionURL: URL?
 
     override func setUp() {
         super.setUp()

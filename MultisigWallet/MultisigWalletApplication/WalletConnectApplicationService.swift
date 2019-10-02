@@ -61,7 +61,12 @@ public class WalletConnectApplicationService {
     }
 
     public func sessions() -> [WCSessionData] {
-        return service.sessions().map { WCSessionData(wcSession: $0) }
+        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return [] }
+        return service.sessions().filter {
+            $0.walletInfo?.accounts.first == address
+        }.map {
+            WCSessionData(wcSession: $0)
+        }
     }
 
     public func subscribeForSessionUpdates(_ subscriber: EventSubscriber) {

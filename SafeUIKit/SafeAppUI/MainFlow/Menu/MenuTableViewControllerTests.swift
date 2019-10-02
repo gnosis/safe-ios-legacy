@@ -49,7 +49,7 @@ class MenuTableViewControllerTests: XCTestCase {
     var aboutTheAppSection: Int { return controller.index(of: .aboutTheApp)! }
 
     func test_whenCreated_thenConfigured() {
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSettingsSection), 5)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSettingsSection), 6)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: manageSafesSection), 3)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: appSettingsSection), 2)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: aboutTheAppSection), 6)
@@ -71,7 +71,7 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     func test_whenConfiguredFeePaymentMethodRow_thenAllIsThere() {
-        let cell = self.cell(row: 0, section: safeSettingsSection)  as! BasicTableViewCell
+        let cell = self.cell(row: 1, section: safeSettingsSection)  as! BasicTableViewCell
         XCTAssertEqual(cell.leftTextLabel.text, FeePaymentMethodCommand().title)
         XCTAssertEqual(cell.rightTextLabel.text, TokenData.Ether.code)
     }
@@ -99,28 +99,33 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.selectedCommand is ManageTokensCommand)
     }
 
-    func test_whenSelectingFeePaymentMethod_thenCommandIsCalled() {
+    func test_whenSelectingEditSafeName_thenCommandIsCalled() {
         selectCell(row: 0, section: safeSettingsSection)
+        XCTAssertTrue(delegate.selectedCommand is EditSafeNameCommand)
+    }
+
+    func test_whenSelectingFeePaymentMethod_thenCommandIsCalled() {
+        selectCell(row: 1, section: safeSettingsSection)
         XCTAssertTrue(delegate.selectedCommand is FeePaymentMethodCommand)
     }
 
     func test_whenSelectingResyncWithAuthenticator_thenCommandIsCalled() {
-        selectCell(row: 1, section: safeSettingsSection)
+        selectCell(row: 2, section: safeSettingsSection)
         XCTAssertTrue(delegate.selectedCommand is ReplaceRecoveryPhraseCommand)
     }
 
     func test_whenSelectingReplaceRecoveryPhrase_thenCommandIsCalled() {
-        selectCell(row: 2, section: safeSettingsSection)
+        selectCell(row: 3, section: safeSettingsSection)
         XCTAssertTrue(delegate.selectedCommand is ReplaceTwoFACommand)
     }
 
     func test_whenSelectingReplaceTwoFA_thenCommandIsCalled() {
-        selectCell(row: 3, section: safeSettingsSection)
+        selectCell(row: 4, section: safeSettingsSection)
         XCTAssertTrue(delegate.selectedCommand is ConnectTwoFACommand)
     }
 
     func test_whenSelectingWalletConnect_thenCommandIsCalled() {
-        selectCell(row: 4, section: safeSettingsSection)
+        selectCell(row: 5, section: safeSettingsSection)
         XCTAssertTrue(delegate.selectedCommand is WalletConnectMenuCommand)
     }
 

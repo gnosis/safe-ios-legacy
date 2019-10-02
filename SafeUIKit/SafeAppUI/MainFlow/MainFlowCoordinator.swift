@@ -18,7 +18,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     let newSafeFlowCoordinator = CreateSafeFlowCoordinator()
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionsManager = IncomingTransactionsManager()
-    private (set) var walletConnectFlowCoordinator: WalletConnectFlowCoordinator!
+    let walletConnectFlowCoordinator = WalletConnectFlowCoordinator()
     /// Used for modal transitioning of Terms screen
     private lazy var overlayAnimatorFactory = OverlayAnimatorFactory()
 
@@ -45,7 +45,7 @@ open class MainFlowCoordinator: FlowCoordinator {
          sendFlowCoordinator,
          newSafeFlowCoordinator,
          recoverSafeFlowCoordinator,
-         walletConnectFlowCoordinator].forEach { $0?.setRoot(controller) }
+         walletConnectFlowCoordinator].forEach { $0.setRoot(controller) }
     }
 
     public init() {
@@ -164,7 +164,7 @@ open class MainFlowCoordinator: FlowCoordinator {
                         tx.id == vc.tx.id {
                         vc.update(with: tx)
                     } else if tx.status != .rejected {
-                        self.handleIncomingBETransaction(transactionID)
+                        self.handleIncomingPushTransaction(transactionID)
                     }
                 }
             } catch WalletApplicationServiceError.validationFailed { // dangerous transaction
@@ -179,10 +179,12 @@ open class MainFlowCoordinator: FlowCoordinator {
         }
     }
 
-    private func handleIncomingBETransaction(_ transactionID: String) {
+    private func handleIncomingPushTransaction(_ transactionID: String) {
         let coordinator = incomingTransactionsManager.coordinator(for: transactionID, source: .browserExtension)
-        enterTransactionFlow(coordinator) { [unowned self] in
-            self.incomingTransactionsManager.releaseCoordinator(by: coordinator.transactionID)
+        // it is important not to use the coordinator inside the flow completion, because it creates retain cycle.
+        let transactionID = coordinator.transactionID
+        enterTransactionFlow(coordinator, transactionID: transactionID) { [unowned self] in
+            self.incomingTransactionsManager.releaseCoordinator(by: transactionID)
         }
     }
 
@@ -197,21 +199,34 @@ open class MainFlowCoordinator: FlowCoordinator {
                                                                   source: .walletConnect,
                                                                   sourceMeta: transaction.sessionData,
                                                                   onBack: rejectHandler)
-        enterTransactionFlow(coordinator) { [unowned self] in
-            self.incomingTransactionsManager.releaseCoordinator(by: coordinator.transactionID)
+        // it is important not to use the coordinator inside the flow completion, because it creates retain cycle.
+        let transactionID = coordinator.transactionID
+        enterTransactionFlow(coordinator, transactionID: transactionID) { [unowned self] in
+            self.incomingTransactionsManager.releaseCoordinator(by: transactionID)
             let hash = ApplicationServiceRegistry.walletService.transactionHash(transaction.transactionID) ?? "0x"
             transaction.completion(.success(hash))
         }
     }
 
     // Used for incoming transaction and send flow
-    fileprivate func enterTransactionFlow(_ flow: FlowCoordinator, completion: (() -> Void)? = nil) {
+    fileprivate func enterTransactionFlow(_ flow: FlowCoordinator,
+                                          transactionID: String? = nil,
+                                          completion: (() -> Void)? = nil) {
         dismissModal()
         saveCheckpoint()
-        enter(flow: flow) {
-            DispatchQueue.main.async { [unowned self] in
+        enter(flow: flow) { [unowned self] in
+            DispatchQueue.main.async {
                 self.popToLastCheckpoint()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { [unowned self] in
+
+                // if the transaction belongs to a different wallet than selected one, then it won't be shown
+                // in the transaction list. Thus, we should skip opening the list in that case.
+                if let id = transactionID,
+                    let transaction = ApplicationServiceRegistry.walletService.transactionData(id),
+                    let selectedWalletID = ApplicationServiceRegistry.walletService.selectedWalletID(),
+                    transaction.walletID != selectedWalletID {
+                    return
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                     self.showTransactionList()
                 }
             }
@@ -243,7 +258,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     open func receive(url: URL) {
-        walletConnectFlowCoordinator = WalletConnectFlowCoordinator(connectionURL: url)
+        walletConnectFlowCoordinator.connectionURL = url
         self.enter(flow: walletConnectFlowCoordinator)
     }
 

@@ -88,7 +88,9 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
     }
 
     func test_sessions() {
-        domainService.sessionsArray = [WCSession.testSession]
+        prepareSession()
+        walletService.assignAddress(selectedWallet.address.value)
+        domainService.sessionsArray = DomainRegistry.walletConnectSessionRepository.all()
         XCTAssertEqual(appService.sessions().count, 1)
     }
 
