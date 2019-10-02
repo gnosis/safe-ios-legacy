@@ -20,7 +20,6 @@ final class VerifyCurrentPasswordViewController: UIViewController {
     private var authenticationService: AuthenticationApplicationService {
         return ApplicationServiceRegistry.authenticationService
     }
-    private var clockService: Clock { return ApplicationServiceRegistry.clock }
 
     static func create(delegate: VerifyCurrentPasswordViewControllerDelegate) -> VerifyCurrentPasswordViewController {
         let vc = StoryboardScene.ChangePassword.verifyCurrentPasswordViewController.instantiate()

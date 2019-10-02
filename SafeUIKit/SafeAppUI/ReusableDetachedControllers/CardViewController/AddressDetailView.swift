@@ -10,8 +10,6 @@ class AddressDetailView: BaseCustomView {
     @IBOutlet var wrapperView: UIView!
     @IBOutlet weak var contentStackView: UIStackView!
 
-    @IBOutlet weak var headerLabel: UILabel!
-
     @IBOutlet weak var addressStackView: UIStackView!
     @IBOutlet weak var identiconView: IdenticonView!
     @IBOutlet weak var addressLabel: FullEthereumAddressLabel!

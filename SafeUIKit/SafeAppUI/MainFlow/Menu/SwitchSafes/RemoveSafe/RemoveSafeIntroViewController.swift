@@ -46,7 +46,6 @@ class RemoveSafeIntroViewController: CardViewController {
 
         addressDetailView.address = address
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
-        addressDetailView.headerLabel.isHidden = true
         addressDetailView.qrCodeView.isHidden = true
         addressDetailView.footnoteLabel.isHidden = true
         let addressDetailInsets = UIEdgeInsets(top: 0, left: 0, bottom: 11, right: 0)
