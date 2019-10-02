@@ -131,10 +131,11 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
     // TODO: move to domain service
     public func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
                                              completion: @escaping (Result<String, Error>) -> Void) {
-        guard let wcSession = sessionRepo.find(url: request.url) else { return }
-        let wallet = walletRepository.selectedWallet()!
+        guard let wcSession = sessionRepo.find(url: request.url),
+            let walletAddress = wcSession.walletInfo?.accounts.first,
+            let wallet = walletRepository.find(address: Address(walletAddress)) else { return }
         let txID = walletService.createDraftTransaction(in: wallet, sendTransactionData: request)
-        guard let tx = transactionsRepository.find(id: txID), !tx.isDangerous() else {
+        guard let tx = transactionsRepository.find(id: txID), !tx.isDangerous(walletAddress: wallet.address) else {
             let error = NSError(domain: "io.gnosis.safe",
                                 code: -501,
                                 userInfo: [NSLocalizedDescriptionKey: "Attempt to perform a restricted transaction."])

@@ -102,7 +102,9 @@ open class MainFlowCoordinator: FlowCoordinator {
     func switchToRootController() {
         updateUserIdentifier()
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
-            DispatchQueue.main.async(execute: registerForRemoteNotifciations)
+            DispatchQueue.main.async { [unowned self] in
+                self.registerForRemoteNotifciations()
+            }
 
             if let existingVC = navigationController.topViewController as? MainViewController,
                 existingVC.walletID == ApplicationServiceRegistry.walletService.selectedWalletID() {

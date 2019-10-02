@@ -115,7 +115,8 @@ class RecoverRecoveryFeeViewController: CardViewController {
 
         addressDetailView.address = tx.sender
 
-        let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(tx.feeTokenData.address))
+        let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(tx.feeTokenData.address),
+                                                                              walletID: walletID!)
 
         feeRequestView.amountReceivedAmountLabel.amount = tx.feeTokenData.withBalance(balance)
         feeRequestView.amountNeededAmountLabel.amount = abs(tx.feeTokenData)

@@ -80,9 +80,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         didCreateNewDraft = true
     }
 
-    public override func prepareForCreation() {
-    }
-
     public var estimateSafeCreation_output = [TokenData]()
     public var didCallEstimateSafeCreation = false
     public override func estimateSafeCreation() -> [TokenData] {
@@ -183,6 +180,10 @@ public class MockWalletApplicationService: WalletApplicationService {
         return existingOwners[type]
     }
 
+    public override func address(of type: OwnerType, in walletID: String) -> String? {
+        return existingOwners[type]
+    }
+
     // MARK: - Tokens
 
     private func throwIfNeeded() throws {
@@ -267,11 +268,11 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     private var funds: [TokenID: BigInt] = [:]
 
-    public override func accountBalance(tokenID: BaseID) -> BigInt? {
+    public override func accountBalance(tokenID: BaseID, walletID: String) -> BigInt? {
         return funds[TokenID(tokenID.id)]
     }
 
-    public override func update(account: BaseID, newBalance: BigInt?) {
+    public func update(account: BaseID, newBalance: BigInt?) {
         guard let newBalance = newBalance else {
             funds.removeValue(forKey: TokenID(account.id))
             return
@@ -331,6 +332,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     public var requestTransactionConfirmation_input: String?
     public var requestTransactionConfirmation_output =
         TransactionData(id: "id",
+                        walletID: "wallet",
                         sender: "sender",
                         recipient: "recipient",
                         amountTokenData: TokenData(token: Token.Ether, balance: 0),
@@ -396,7 +398,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public override func selectedWalletID() -> String? {
-        return nil
+        return "someID"
     }
 
     public var didSelectWalletID: String?

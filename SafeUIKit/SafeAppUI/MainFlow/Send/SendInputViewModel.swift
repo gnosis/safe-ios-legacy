@@ -20,7 +20,9 @@ class SendInputViewModel {
     }
 
     var accountBalanceTokenData: TokenData {
-        return ApplicationServiceRegistry.walletService.tokenData(id: transferTokenID.id)!
+        let walletID = ApplicationServiceRegistry.walletService.selectedWalletID()!
+        return ApplicationServiceRegistry.walletService.tokenData(id: transferTokenID.id,
+                                                                  walletID: walletID)!
     }
     private(set) var resultingBalanceTokenData: TokenData!
 
@@ -90,7 +92,8 @@ class SendInputViewModel {
     }
 
     private func updateFeeData() {
-        let fee = self.walletService.tokenData(id: self.feeTokenID.id)!
+        let walletID = ApplicationServiceRegistry.walletService.selectedWalletID()!
+        let fee = self.walletService.tokenData(id: self.feeTokenID.id, walletID: walletID)!
         feeBalanceTokenData = fee
         feeEstimatedAmountTokenData = fee.withBalance(estimatedFee != nil ? -estimatedFee! : nil)
     }

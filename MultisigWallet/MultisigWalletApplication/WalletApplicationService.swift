@@ -35,20 +35,21 @@ public class WalletApplicationService: Assertable {
         return wallet.isCreationInProgress
     }
 
-    public var canChangeAccount: Bool {
-        return selectedWalletAddress != nil
-    }
-
     public var selectedWalletAddress: String? {
         return selectedWallet?.address?.value
     }
 
     public var feePaymentTokenData: TokenData {
-        guard let tokenAddress = selectedWallet?.feePaymentTokenAddress,
-            let data = tokenData(id: tokenAddress.value) else {
-            return tokenData(id: Token.Ether.id.id)!
+        paymentTokenData(for: selectedWalletID()!)
+    }
+
+    private func paymentTokenData(for walletID: String) -> TokenData {
+        guard let wallet = DomainRegistry.walletRepository.find(id: WalletID(walletID)),
+            let tokenAddress = wallet.feePaymentTokenAddress,
+            let result = tokenData(id: tokenAddress.value, walletID: walletID) else {
+                return tokenData(id: Token.Ether.id.id, walletID: walletID)!
         }
-        return data
+        return result
     }
 
     public var minimumDeploymentAmount: BigInt? {
@@ -68,10 +69,6 @@ public class WalletApplicationService: Assertable {
 
     public func createNewDraftWallet() {
         DomainRegistry.deploymentService.createNewDraftWallet()
-    }
-
-    public func prepareForCreation() {
-        DomainRegistry.deploymentService.prepareForCreation()
     }
 
     /// Gets estimations for all available payment methods.
@@ -145,14 +142,15 @@ public class WalletApplicationService: Assertable {
         return WalletStateId(wallet.state)
     }
 
-    private func notifyBrowserExtension(message: String) throws {
-        guard let recipient = ownerAddress(of: .browserExtension) else { return }
-        let sender = ownerAddress(of: .thisDevice)!
+    private func notifyBrowserExtension(message: String, wallet: Wallet) throws {
+        guard let recipient = wallet.owner(role: .browserExtension)?.address else { return }
+        let sender = wallet.owner(role: .thisDevice)!.address.value
         // the signing might be not available if the app is in background already, so we should bail out
+        // also, if the device key is missing, then the signing will fail.
         guard let signedAddress = ethereumService.sign(message: "GNO" + message, by: sender) else {
             throw WalletApplicationServiceError.validationFailed
         }
-        let request = SendNotificationRequest(message: message, to: recipient, from: signedAddress)
+        let request = SendNotificationRequest(message: message, to: recipient.value, from: signedAddress)
         try handleNotificationServiceError {
             try notificationService.send(notificationRequest: request)
         }
@@ -181,8 +179,9 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.walletRepository.find(id: WalletID(id))?.address.value
     }
 
-    public func walletCreationURL() -> URL {
-        return configuration.transactionURL(for: selectedWallet!.creationTransactionHash)
+    public func walletCreationURL(_ id: String) -> URL {
+        let wallet = DomainRegistry.walletRepository.find(id: WalletID(id))!
+        return configuration.transactionURL(for: wallet.creationTransactionHash)
     }
 
     public func wallets() -> [WalletData] {
@@ -400,6 +399,12 @@ public class WalletApplicationService: Assertable {
         return code
     }
 
+    public func address(of type: OwnerType, in walletID: String) -> String? {
+        guard let wallet = DomainRegistry.walletRepository.find(id: WalletID(walletID)) else { return nil }
+        let role = OwnerRole(rawValue: type.rawValue)!
+        return wallet.owner(role: role)?.address.value
+    }
+
     public func ownerAddress(of type: OwnerType) -> String? {
         return address(of: type)?.value
     }
@@ -430,9 +435,9 @@ public class WalletApplicationService: Assertable {
     ///
     /// - Parameter id: Token address
     /// - Returns: TokenData
-    public func tokenData(id: String) -> TokenData? {
+    public func tokenData(id: String, walletID: String) -> TokenData? {
         guard let token = self.token(id: id) else { return nil }
-        let balance = accountBalance(tokenID: token.id)
+        let balance = accountBalance(tokenID: token.id, walletID: walletID)
         return TokenData(token: token, balance: balance)
     }
 
@@ -445,11 +450,12 @@ public class WalletApplicationService: Assertable {
     /// - Parameter withEth: should the Eth be amoung Token Data returned or not.
     /// - Returns: token data array.
     public func visibleTokens(withEth: Bool) -> [TokenData] {
+        let walletID = selectedWalletID()!
         let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
-            return tokenData(id: $0.token.id.id)
+            return tokenData(id: $0.token.id.id, walletID: walletID)
         }
         guard withEth else { return tokens }
-        guard let ethData = tokenData(id: Token.Ether.id.id) else { return tokens }
+        guard let ethData = tokenData(id: Token.Ether.id.id, walletID: walletID) else { return tokens }
         return [ethData] + tokens
     }
 
@@ -512,26 +518,9 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Accounts
 
-    public func accountBalance(tokenID: BaseID) -> BigInt? {
-        let account = findAccount(TokenID(tokenID.id))
+    public func accountBalance(tokenID: BaseID, walletID: String) -> BigInt? {
+        let account = findAccount(TokenID(tokenID.id), walletID: WalletID(walletID))
         return account?.balance
-    }
-
-    private func assertCanChangeAccount() {
-        try! assertTrue(canChangeAccount, WalletApplicationServiceError.invalidWalletState)
-    }
-
-    public func update(account tokenID: TokenID, newBalance: BigInt) {
-        assertCanChangeAccount()
-        mutateAccount(tokenID: tokenID) { account in
-            account.update(newAmount: newBalance)
-        }
-    }
-
-    private func mutateAccount(tokenID: TokenID, closure: (Account) -> Void) {
-        let account = findAccount(tokenID)!
-        closure(account)
-        DomainRegistry.accountRepository.save(account)
     }
 
     public func subscribeForBalanceUpdates(subscriber: EventSubscriber) {
@@ -664,8 +653,9 @@ public class WalletApplicationService: Assertable {
         let feeTokenData = tx.feeEstimate != nil ?
             TokenData(token: tx.feeEstimate!.totalDisplayedToUser.token,
                       balance: tx.feeEstimate!.totalDisplayedToUser.amount) :
-            TokenData(token: feePaymentTokenData.token(), balance: nil)
+            TokenData(token: paymentTokenData(for: tx.accountID.walletID.id).token(), balance: nil)
         return TransactionData(id: tx.id.id,
+                               walletID: tx.accountID.walletID.id,
                                sender: tx.sender?.value ?? "",
                                recipient: tx.recipient?.value ?? "",
                                amountTokenData: amountTokenData,
@@ -685,18 +675,20 @@ public class WalletApplicationService: Assertable {
 
     private func status(of tx: Transaction) -> TransactionData.Status {
         // TODO: refactor to have similar statuses of transaction in domain model and app
-        let hasBrowserExtension = address(of: .browserExtension) != nil
-        let hasKeycard = address(of: .keycard) != nil
+        let extensionAddress = address(of: .browserExtension, in: tx.accountID.walletID.id)
+        let keycardAddress = address(of: .keycard, in: tx.accountID.walletID.id)
+        let hasBrowserExtension = extensionAddress != nil
+        let hasKeycard = keycardAddress != nil
         let defaultStatus: TransactionData.Status =
             (hasBrowserExtension || hasKeycard) ? .waitingForConfirmation : .readyToSubmit
         switch tx.status {
         case .signing:
             let isSignedByExtension = hasBrowserExtension &&
                 tx.signatures.count == 1
-                && tx.isSignedBy(address(of: .browserExtension)!)
+                && tx.isSignedBy(Address(extensionAddress!))
             let isSignedByKeycard = hasKeycard &&
                 tx.signatures.count == 1
-                && tx.isSignedBy(address(of: .keycard)!)
+                && tx.isSignedBy(Address(keycardAddress!))
             return (isSignedByExtension || isSignedByKeycard) ? .readyToSubmit : defaultStatus
         case .rejected: return .rejected
         case .pending: return .pending
@@ -714,16 +706,15 @@ public class WalletApplicationService: Assertable {
 
     public func requestTransactionConfirmationIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
-        guard !transactionHasEnoughSignaturesToSubmit(tx) else { return transactionData(id)! }
-        if let extensionAddress = address(of: .browserExtension), !tx.isSignedBy(extensionAddress) {
-            try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
+        // below '- 1' because later, when submititg, we will add the device signature.
+        let hasEnoughSignatures = tx.signatures.count >= wallet.confirmationCount - 1
+        guard !hasEnoughSignatures else { return transactionData(id)! }
+        if let extensionAddress = wallet.owner(role: .browserExtension)?.address, !tx.isSignedBy(extensionAddress) {
+            try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!),
+                                       wallet: wallet)
         }
         return transactionData(id)!
-    }
-
-    private func transactionHasEnoughSignaturesToSubmit(_ tx: Transaction) -> Bool {
-        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
-        return tx.signatures.count >= wallet.confirmationCount - 1 // When submititg we add device signature.
     }
 
     /// Makes transaction estimate-able again
@@ -741,12 +732,13 @@ public class WalletApplicationService: Assertable {
             (tx.type.isConnectTwoFA || tx.type == .replaceRecoveryPhrase) && tx.status == .draft else {
                 return transactionData(id)!
         }
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
         let request = EstimateTransactionRequest(safe: formatted(tx.sender),
                                                  to: formatted(tx.ethTo),
                                                  value: String(tx.ethValue),
                                                  data: tx.ethData,
                                                  operation: tx.operation ?? .call,
-                                                 gasToken: selectedWallet!.feePaymentTokenAddress?.value)
+                                                 gasToken: wallet.feePaymentTokenAddress?.value)
         let estimationResponse = try handleRelayServiceErrors {
             try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
         }
@@ -784,30 +776,26 @@ public class WalletApplicationService: Assertable {
         if tx.type.isReplaceOrDisconnectTwoFA {
             try proceedTransaction(tx)
         } else {
-            try signTransaction(tx)
+            let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
+            try signTransaction(tx, wallet: wallet)
             try proceedTransaction(tx)
-            try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx))
+            try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx),
+                                        wallet: wallet)
         }
         return transactionData(id)!
     }
 
-    private func proceedTransaction(_ tx: Transaction) throws {
-        let hash = try submitTransaction(tx)
-        tx.set(hash: hash).proceed()
-        DomainRegistry.transactionRepository.save(tx)
-    }
-
-    private func signTransaction(_ tx: Transaction) throws {
-        if let extensionAddress = address(of: .browserExtension) {
+    private func signTransaction(_ tx: Transaction, wallet: Wallet) throws {
+        if let extensionAddress = wallet.owner(role: .browserExtension)?.address {
             try! assertTrue(tx.isSignedBy(extensionAddress), TransactionError.unsignedTransaction)
         }
-        if let keycardAddress = address(of: .keycard) {
+        if let keycardAddress = wallet.owner(role: .keycard)?.address {
             try! assertTrue(tx.isSignedBy(keycardAddress), TransactionError.unsignedTransaction)
         }
-        let myAddress = address(of: .thisDevice)!
+        let myAddress = wallet.owner(role: .thisDevice)!.address
         if !tx.isSignedBy(myAddress) {
-            // the eoa may not be available if Keychain is blocked because the device is locked. In that case, the
-            // force unwrapping of the nil eoa will crash.
+            // the eoa may not be available if Keychain is blocked because the device is locked; or if
+            // the key is not restored on the device after iCloud restoration.
             guard let pk = DomainRegistry.externallyOwnedAccountRepository.find(by: myAddress)?.privateKey else {
                 throw WalletApplicationServiceError.failedToSignTransactionByDevice
             }
@@ -816,7 +804,13 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func submitTransaction(_ tx: Transaction) throws -> TransactionHash {
+    private func proceedTransaction(_ tx: Transaction) throws {
+        let hash = try submitTransactionToBackend(tx)
+        tx.set(hash: hash).proceed()
+        DomainRegistry.transactionRepository.save(tx)
+    }
+
+    private func submitTransactionToBackend(_ tx: Transaction) throws -> TransactionHash {
         let sortedSignatures = tx.signatures.sorted { $0.address.value.lowercased() < $1.address.value.lowercased() }
         let ethSignatures = sortedSignatures.map {
             DomainRegistry.encryptionService.ethSignature(from: $0)
@@ -828,13 +822,9 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func findAccount(_ tokenID: TokenID) -> Account? {
-        guard let wallet = selectedWallet,
-            let account = DomainRegistry.accountRepository.find(
-                id: AccountID(tokenID: tokenID, walletID: wallet.id)) else {
-            return nil
-        }
-        return account
+    private func findAccount(_ tokenID: TokenID, walletID: WalletID) -> Account? {
+        let accountID = AccountID(tokenID: tokenID, walletID: walletID)
+        return DomainRegistry.accountRepository.find(id: accountID)
     }
 
     // MARK: - Notifications
@@ -907,10 +897,10 @@ public class WalletApplicationService: Assertable {
 
     func handle(message: TransactionConfirmedMessage) -> String? {
         guard let transaction = self.transaction(from: message, hash: message.hash) else { return nil }
-        let extensionAddress = address(of: .browserExtension)!
-        let encryptionService = DomainRegistry.encryptionService
-        transaction.add(signature: Signature(data: encryptionService.data(from: message.signature),
-                                             address: extensionAddress))
+        let rawSignature = DomainRegistry.encryptionService.data(from: message.signature)
+        let extensionAddress = address(of: .browserExtension, in: transaction.accountID.walletID.id)!
+        let signature = Signature(data: rawSignature, address: Address(extensionAddress))
+        transaction.add(signature: signature)
         DomainRegistry.transactionRepository.save(transaction)
         return transaction.id.id
     }
@@ -918,7 +908,8 @@ public class WalletApplicationService: Assertable {
     private func transaction(from message: TransactionDecisionMessage, hash: Data) -> Transaction? {
         guard let transaction = DomainRegistry.transactionRepository.find(hash: message.hash, status: .signing),
             let sender = ethereumService.address(hash: hash, signature: message.signature),
-            let extensionAddress = ownerAddress(of: .browserExtension),
+            let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID),
+            let extensionAddress = wallet.owner(role: .browserExtension)?.address.value,
             sender.value.lowercased() == extensionAddress.lowercased() else {
                 return nil
         }
@@ -951,7 +942,7 @@ public class WalletApplicationService: Assertable {
         update(transaction: transaction, with: message)
         // We don't allow dangerous transactions initiated by Authenticator.
         // Malicious dapp could try to modifying safe owners or make a delegateCall.
-        guard !transaction.isDangerous() else { throw WalletApplicationServiceError.validationFailed }
+        guard !transaction.isDangerous(walletAddress: wallet.address) else { throw WalletApplicationServiceError.validationFailed }
 
         let hash = DomainRegistry.encryptionService.hash(of: transaction)
         guard hash == message.hash else {
@@ -960,7 +951,7 @@ public class WalletApplicationService: Assertable {
         }
         transaction.change(hash: hash)
         guard let sender = ethereumService.address(hash: message.hash, signature: message.signature),
-            let extensionAddress = ownerAddress(of: .browserExtension),
+            let extensionAddress = wallet.owner(role: .browserExtension)?.address.value,
             sender.value.lowercased() == extensionAddress.lowercased() else {
                 DomainRegistry.transactionRepository.remove(transaction)
                 return nil

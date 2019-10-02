@@ -125,9 +125,9 @@ class TransactionTests: XCTestCase {
 
     func test_whenTransactionIsDelegateCall_thenItIsDangerous() {
         givenNewlyCreatedTransaction()
-        XCTAssertFalse(transaction.isDangerous())
+        XCTAssertFalse(transaction.isDangerous(walletAddress: walletAddress))
         transaction.change(operation: .delegateCall)
-        XCTAssertTrue(transaction.isDangerous())
+        XCTAssertTrue(transaction.isDangerous(walletAddress: walletAddress))
     }
 
     func test_whenTransactionIsSentToTheSafeAndHasData_thenItIsDangerous() {
@@ -136,16 +136,16 @@ class TransactionTests: XCTestCase {
 
         transaction.change(recipient: walletAddress)
         transaction.change(data: nil)
-        XCTAssertFalse(transaction.isDangerous())
+        XCTAssertFalse(transaction.isDangerous(walletAddress: walletAddress))
 
         transaction.change(data: Data(hex: "0x"))
-        XCTAssertFalse(transaction.isDangerous())
+        XCTAssertFalse(transaction.isDangerous(walletAddress: walletAddress))
 
         transaction.change(data: Data(hex: "0x0"))
-        XCTAssertTrue(transaction.isDangerous())
+        XCTAssertTrue(transaction.isDangerous(walletAddress: walletAddress))
 
         transaction.change(recipient: someAddress)
-        XCTAssertFalse(transaction.isDangerous())
+        XCTAssertFalse(transaction.isDangerous(walletAddress: walletAddress))
     }
 
     private func givenDraftWallet() {

@@ -29,11 +29,6 @@ public class RecoveryApplicationService {
         DomainRegistry.recoveryService.createRecoverDraftWallet()
     }
 
-    public func prepareForRecovery() {
-        // remove all owners, recreate new owner
-        DomainRegistry.recoveryService.prepareForRecovery()
-    }
-
     public func validate(address: String,
                          subscriber: EventSubscriber,
                          onError errorHandler: @escaping (Error) -> Void) {
@@ -99,6 +94,7 @@ public class RecoveryApplicationService {
         let feeEstimate = tx.feeEstimate ?? zeroFeeEstimate
         let feeTokenData = TokenData(token: paymentToken, balance: -feeEstimate.totalDisplayedToUser.amount)
         return TransactionData(id: tx.id.id,
+                               walletID: tx.accountID.walletID.id,
                                sender: tx.sender!.value,
                                recipient: tx.recipient!.value,
                                amountTokenData: amountTokenData,

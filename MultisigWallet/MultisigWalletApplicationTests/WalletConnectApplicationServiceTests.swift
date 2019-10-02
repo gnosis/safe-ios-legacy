@@ -211,7 +211,9 @@ class WalletConnectApplicationServiceTests: BaseWalletApplicationServiceTests {
 
     private func prepareSession() {
         givenReadyToUseWallet()
-        sessionRepository.save(WCSession.testSession)
+        let wallet = walletRepository.selectedWallet()!
+        let session = WCSession.test(walletInfo: WCWalletInfo.test(accounts: [wallet.address.value]))
+        sessionRepository.save(session)
     }
 
 }
