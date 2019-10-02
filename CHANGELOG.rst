@@ -8,6 +8,19 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.8.0`_ - 2019-10-04
+======================
+Changed
+--------
+- Menu structure changed: added recover and create safe from menu.
+- Improvements in memory management
+
+Added
+-------
+- Support for multiple safes
+- Switch Safe command
+- Remove Safe flow
+
 `1.7.0`_ - 2019-09-20
 ======================
 Changed
@@ -399,6 +412,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.8.0: https://github.com/gnosis/safe-ios/tree/1.8.0
 .. _1.7.0: https://github.com/gnosis/safe-ios/tree/1.7.0
 .. _1.6.0: https://github.com/gnosis/safe-ios/tree/1.6.0
 .. _1.5.0: https://github.com/gnosis/safe-ios/tree/1.5.0
