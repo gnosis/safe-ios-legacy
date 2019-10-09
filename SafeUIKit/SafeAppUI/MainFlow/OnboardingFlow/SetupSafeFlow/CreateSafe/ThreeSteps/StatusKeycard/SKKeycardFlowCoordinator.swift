@@ -41,7 +41,7 @@ class SKKeycardFlowCoordinator: FlowCoordinator {
         controller = SKPairingSuccessViewController.create(onNext: { [weak self, controller] in
 
             // set activity indicator
-            let activityIndicator = UIActivityIndicatorView(style: .medium)
+            let activityIndicator = UIActivityIndicatorView.medium()
             let activityItem = UIBarButtonItem(customView: activityIndicator)
             let navigationItem = controller?.navigationItem.rightBarButtonItem
             controller?.navigationItem.setRightBarButton(activityItem, animated: true)

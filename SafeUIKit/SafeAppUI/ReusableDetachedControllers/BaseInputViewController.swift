@@ -9,7 +9,9 @@ import MultisigWalletApplication
 class BaseInputViewController: UIViewController, EventSubscriber {
 
     var activityIndicatorItem: UIBarButtonItem!
-    let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+
+    let activityIndicatorView = UIActivityIndicatorView.medium()
+
     @IBOutlet var nextButtonItem: UIBarButtonItem!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -76,6 +78,18 @@ class BaseInputViewController: UIViewController, EventSubscriber {
         DispatchQueue.main.async { [unowned self] in
             self.stopActivityIndicator()
             self.enableNextAction()
+        }
+    }
+
+}
+
+extension UIActivityIndicatorView {
+
+    static func medium() -> UIActivityIndicatorView {
+        if #available(iOS 13, *) {
+            return UIActivityIndicatorView(style: .medium)
+        } else {
+            return UIActivityIndicatorView(style: .gray)
         }
     }
 

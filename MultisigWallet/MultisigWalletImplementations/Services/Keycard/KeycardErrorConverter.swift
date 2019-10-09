@@ -4,8 +4,8 @@
 
 import Foundation
 import CoreNFC
-import Keycard
 import MultisigWalletApplication
+import Keycard
 
 // General
 //
@@ -19,6 +19,7 @@ import MultisigWalletApplication
 //          - TLVError.endOfTLV if failed to parse response data
 //          - TLVError.unexpectedTag if failed to parse the response data
 //          - TLVError.unexpectedLength if failed to parse response data
+@available(iOS 13.1, *)
 class KeycardErrorConverter {
 
     enum Strings {

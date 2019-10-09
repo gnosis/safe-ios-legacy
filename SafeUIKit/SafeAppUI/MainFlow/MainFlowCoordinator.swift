@@ -19,6 +19,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionsManager = IncomingTransactionsManager()
     let walletConnectFlowCoordinator = WalletConnectFlowCoordinator()
+    let contractUpgradeFlowCoordinator = ContractUpgradeFlowCoordinator()
     /// Used for modal transitioning of Terms screen
     private lazy var overlayAnimatorFactory = OverlayAnimatorFactory()
 
@@ -45,7 +46,8 @@ open class MainFlowCoordinator: FlowCoordinator {
          sendFlowCoordinator,
          newSafeFlowCoordinator,
          recoverSafeFlowCoordinator,
-         walletConnectFlowCoordinator].forEach { $0.setRoot(controller) }
+         walletConnectFlowCoordinator,
+         contractUpgradeFlowCoordinator].forEach { $0.setRoot(controller) }
     }
 
     public init() {
@@ -350,7 +352,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
     func upgradeContract() {
         saveCheckpoint()
-        enter(flow: ContractUpgradeFlowCoordinator()) { [unowned self] in
+        enter(flow: contractUpgradeFlowCoordinator) { [unowned self] in
             DispatchQueue.main.async {
                 self.popToLastCheckpoint()
                 self.showTransactionList()

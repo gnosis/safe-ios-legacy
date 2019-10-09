@@ -83,7 +83,7 @@
 		0A2ACC0023294A8A0054D1D1 /* DBKeycardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBFF23294A8A0054D1D1 /* DBKeycardRepository.swift */; };
 		0A2ACC04232A392B0054D1D1 /* DBKeycardRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACC03232A392B0054D1D1 /* DBKeycardRepositoryTests.swift */; };
 		0A53C6D523265EF7004A7BC3 /* KeycardHardwareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53C6D423265EF7004A7BC3 /* KeycardHardwareService.swift */; };
-		0A70D98E232A7AFE00FC04D4 /* Keycard in Frameworks */ = {isa = PBXBuildFile; productRef = 0A70D98D232A7AFE00FC04D4 /* Keycard */; };
+		0A70D98E232A7AFE00FC04D4 /* Keycard in Frameworks */ = {isa = PBXBuildFile; productRef = 0A70D98D232A7AFE00FC04D4 /* Keycard */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0A70D9D3232A912E00FC04D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A70D9D5232A912E00FC04D4 /* Localizable.strings */; };
 		0A711E132334E697008F1124 /* WalletDiagnosticDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A711E122334E697008F1124 /* WalletDiagnosticDomainService.swift */; };
 		0A84C2B9230546320006DA50 /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D372304544800E7EB07 /* MockNotificationService.swift */; };
@@ -2333,7 +2333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -3053,7 +3053,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3111,7 +3111,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -3175,7 +3175,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
