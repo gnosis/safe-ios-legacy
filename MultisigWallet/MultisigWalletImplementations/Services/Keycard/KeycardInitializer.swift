@@ -3,10 +3,11 @@
 //
 
 import Foundation
-import Keycard
 import MultisigWalletDomainModel
 import MultisigWalletApplication
+import Keycard
 
+@available(iOS 13.1, *)
 class KeycardInitializer {
 
     private weak var keycard: KeycardFacade!

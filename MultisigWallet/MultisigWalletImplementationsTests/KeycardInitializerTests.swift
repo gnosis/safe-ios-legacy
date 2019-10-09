@@ -7,6 +7,7 @@ import XCTest
 import MultisigWalletDomainModel
 import Keycard
 
+@available(iOS 13.1, *)
 class KeycardInitializerTests: XCTestCase {
 
     let keycard = MockKeycardFacade()

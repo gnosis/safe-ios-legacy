@@ -3,15 +3,16 @@
 //
 
 import Foundation
-import Keycard
 import MultisigWalletDomainModel
 import MultisigWalletApplication
 import CoreNFC
+import Keycard
 
 typealias KeycardDomainServiceError = KeycardApplicationService.Error
 
 /// This class implements methods for interaction with the NFC hardware and executing various commands on the Keycard
 /// for its activating, pairing, and signing data.
+@available(iOS 13.1, *)
 public class KeycardHardwareService: KeycardDomainService {
 
     private var keycardController: KeycardController?

@@ -61,6 +61,7 @@ open class KeycardApplicationService {
     // guarantees:
     //   - keycard is paired or initialized, and the new 'keycard' owner is added to the selected wallet.
     open func connectKeycard(password: String, pin: String, initializeWithPUK: String? = nil) throws -> String {
+        guard #available(iOS 13.1, *) else { preconditionFailure() }
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let deviceOwner = wallet.owner(role: .thisDevice)!
         let keyPathComponent = keypathComponent(from: deviceOwner.address)
@@ -80,6 +81,7 @@ open class KeycardApplicationService {
     }
 
     private func keypathComponent(from address: Address) -> KeyPathComponent {
+        guard #available(iOS 13.1, *) else { preconditionFailure() }
         let randomUInt256 = BigUInt.randomInteger(withMaximumWidth: 256)
         let seedBytes = Data(hex: address.value + String(randomUInt256, radix: 16))
         let hash = Digest.sha3(Array(seedBytes), variant: .keccak256)
@@ -91,10 +93,12 @@ open class KeycardApplicationService {
     }
 
     open func generateCredentials() -> (pin: String, puk: String, pairingPassword: String) {
+        guard #available(iOS 13.1, *) else { preconditionFailure() }
         return DomainRegistry.keycardService.generateCredentials()
     }
 
     open func removeKeycard() {
+        guard #available(iOS 13.1, *) else { preconditionFailure() }
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         guard let owner = wallet.owner(role: .keycard) else { return }
         wallet.removeOwner(role: .keycard)
@@ -103,6 +107,7 @@ open class KeycardApplicationService {
     }
 
     open func signTransaction(id: String, pin: String) throws {
+        guard #available(iOS 13.1, *) else { preconditionFailure() }
         let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id))!
         let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
         let address = wallet.owner(role: .keycard)!.address
@@ -115,6 +120,7 @@ open class KeycardApplicationService {
     }
 
     open func unblock(puk: String, pin: String) throws {
+        guard #available(iOS 13.1, *) else { preconditionFailure() }
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let owner = wallet.owner(role: .keycard)!
         try DomainRegistry.keycardService.unblock(puk: puk, pin: pin, address: owner.address)
