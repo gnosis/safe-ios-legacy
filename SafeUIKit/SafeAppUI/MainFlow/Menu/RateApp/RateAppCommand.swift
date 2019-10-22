@@ -10,8 +10,8 @@ final class RateAppCommand: MenuCommand {
         return LocalizedString("rate_app", comment: "Rate App").capitalized
     }
 
-    override func run(mainFlowCoordinator: MainFlowCoordinator) {
-        SupportFlowCoordinator(from: mainFlowCoordinator).openRateApp()
+    override func run() {
+        SupportFlowCoordinator(from: MainFlowCoordinator.shared).openRateApp()
     }
 
 }

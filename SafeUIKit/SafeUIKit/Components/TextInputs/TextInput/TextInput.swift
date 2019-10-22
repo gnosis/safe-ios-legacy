@@ -10,6 +10,9 @@ public class TextInput: UITextField {
     private let clearButton = UIButton(type: .custom)
     private let successImageView = UIImageView()
     private let edgeViewPadding: CGFloat = 14
+    private let leftViewLeftPadding: CGFloat = 21
+    public static let smallAccessoryRect = CGRect(x: 0, y: 0, width: 26, height: 14)
+    public static let normalAccessoryRect = CGRect(x: 0, y: 0, width: 26, height: 26)
     private let fontSize: CGFloat = 16
 
     public var textInputHeight: CGFloat = 50 {
@@ -148,13 +151,13 @@ public class TextInput: UITextField {
 
     private func setupCustomClearButton() {
         clearButton.accessibilityIdentifier = "Clear text"
-        clearButton.frame = CGRect(x: 0, y: 0, width: 26, height: 14)
+        clearButton.frame = TextInput.smallAccessoryRect
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
         clearButton.setImage(Asset.TextInputs.clearIcon.image, for: .normal)
     }
 
     private func setupCustomSuccessImage() {
-        successImageView.frame = CGRect(x: 0, y: 0, width: 26, height: 14)
+        successImageView.frame = TextInput.smallAccessoryRect
         successImageView.image = Asset.TextInputs.successIcon.image
         successImageView.contentMode = .scaleAspectFit
     }
@@ -218,22 +221,28 @@ public class TextInput: UITextField {
 
     private func setLeftImageView(with image: UIImage) {
         leftViewMode = UITextField.ViewMode.always
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
+        imageView = UIImageView(frame: TextInput.normalAccessoryRect)
         imageView!.contentMode = .scaleAspectFit
         imageView!.image = image
         leftView = imageView!
     }
 
     override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        var leftRect = super.leftViewRect(forBounds: bounds)
-        leftRect.origin.x += edgeViewPadding
-        return leftRect
+        let size = CGSize(width: leftView?.frame.width ?? TextInput.normalAccessoryRect.width,
+                          height: leftView?.frame.height ?? TextInput.normalAccessoryRect.height)
+        return CGRect(x: leftViewLeftPadding,
+                      y: (bounds.height - size.height) / 2,
+                      width: size.width,
+                      height: size.height)
     }
 
     public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
-        var rightRect = super.rightViewRect(forBounds: bounds)
-        rightRect.origin.x -= edgeViewPadding / 2
-        return rightRect
+        let size = CGSize(width: rightView?.frame.width ?? TextInput.normalAccessoryRect.width,
+                          height: rightView?.frame.height ?? TextInput.normalAccessoryRect.height)
+        return CGRect(x: bounds.maxX - edgeViewPadding - size.width,
+                      y: (bounds.height - size.height) / 2,
+                      width: size.width,
+                      height: size.height)
     }
 
     public override func textRect(forBounds bounds: CGRect) -> CGRect {

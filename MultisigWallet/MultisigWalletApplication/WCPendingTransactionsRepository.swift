@@ -37,4 +37,7 @@ final class WCPendingTransactionsRepository {
         return pendingTransactions
     }
 
+    func remove(transactionID: TransactionID) {
+        pendingTransactions.removeAll { $0.transactionID == transactionID }
+    }
 }

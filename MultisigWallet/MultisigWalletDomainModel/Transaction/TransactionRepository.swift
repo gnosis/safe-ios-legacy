@@ -39,6 +39,8 @@ public protocol TransactionRepository {
     /// - Returns: found result or nil
     func find(type: TransactionType, wallet: WalletID) -> Transaction?
 
+    func find(wallet: WalletID) -> [Transaction]
+
     /// Generates new transaction identifier
     ///
     /// - Returns: new transaction identifier

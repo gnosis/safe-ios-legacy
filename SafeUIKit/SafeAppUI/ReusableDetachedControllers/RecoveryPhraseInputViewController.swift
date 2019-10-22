@@ -8,14 +8,23 @@ import SafeUIKit
 
 protocol RecoveryPhraseInputViewControllerDelegate: class {
 
-    func recoveryPhraseInputViewControllerDidFinish()
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController)
     func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
                                            didEnterPhrase phrase: String)
+    func recoveryPhraseInputViewControllerDidLooseRecovery(_ controller: RecoveryPhraseInputViewController)
+}
+
+extension RecoveryPhraseInputViewControllerDelegate {
+
+    func recoveryPhraseInputViewControllerDidLooseRecovery(_ controller: RecoveryPhraseInputViewController) {}
+
 }
 
 class RecoveryPhraseInputViewController: BaseInputViewController {
 
     @IBOutlet weak var phraseTextView: CustomTextView!
+    @IBOutlet weak var lostYourRecoveryButton: StandardButton!
+
     var keyboardBehavior: KeyboardAvoidingBehavior!
     weak var delegate: RecoveryPhraseInputViewControllerDelegate?
     var backButtonItem: UIBarButtonItem!
@@ -38,6 +47,8 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
             update()
         }
     }
+
+    var shouldHideLostPhraseButton = true
 
     @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var placeholderTop: NSLayoutConstraint!
@@ -66,6 +77,11 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         phraseTextView.textColor = ColorName.darkBlue.color
         phraseTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         phraseTextView.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+
+        lostYourRecoveryButton.style = .plain
+        lostYourRecoveryButton.setTitle(LocalizedString("lost_recovery_phrase", comment: "Lost your recovery phrase?"),
+                                        for: .normal)
+        lostYourRecoveryButton.isHidden = shouldHideLostPhraseButton
 
         let insets = textInsets()
         placeholderTop.constant = insets.top
@@ -122,6 +138,10 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         keyboardBehavior.stop()
     }
 
+    @IBAction func lostRecovery(_ sender: Any) {
+        delegate?.recoveryPhraseInputViewControllerDidLooseRecovery(self)
+    }
+
     @objc func back() {
         didCancel = true
     }
@@ -147,16 +167,18 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
 
     public func handleSuccess() {
         guard !didCancel else { return }
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
             self.stopActivityIndicator()
             self.enableNextAction()
-            self.delegate?.recoveryPhraseInputViewControllerDidFinish()
+            self.delegate?.recoveryPhraseInputViewControllerDidFinish(self)
         }
     }
 
     public func handleError(_ error: Error) {
         guard !didCancel else { return }
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
             self.stopActivityIndicator()
             self.enableNextAction()
             self.show(error: error)
@@ -170,7 +192,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     override func notify() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.handleSuccess()
         }
     }

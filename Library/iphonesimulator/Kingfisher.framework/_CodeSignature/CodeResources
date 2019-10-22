@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/Kingfisher-Swift.h</key>
 		<data>
-		k12iP7DpSO2y6+T2pUnoJK9juDQ=
+		5/43brGNXu1pYvm7fuwofIZXstQ=
 		</data>
 		<key>Headers/Kingfisher.h</key>
 		<data>
@@ -14,23 +14,39 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Aiu1CeRdmGd95hiV5NT2Lw4gp9s=
+		hneDuz/Huw+MATNx+gcO6W7Ga8c=
+		</data>
+		<key>Modules/Kingfisher.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<data>
+		0mewTJLFnskAoU+WlrjOEhF2kkc=
+		</data>
+		<key>Modules/Kingfisher.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<data>
+		rG2Noa7ZXI0I76ABKm6sHUWPFks=
 		</data>
 		<key>Modules/Kingfisher.swiftmodule/i386.swiftdoc</key>
 		<data>
-		P6gDCbc0bGGRS4Br3RT/nmUfrqs=
+		0mewTJLFnskAoU+WlrjOEhF2kkc=
 		</data>
 		<key>Modules/Kingfisher.swiftmodule/i386.swiftmodule</key>
 		<data>
-		rVHqB+QSX8dbIUEpKQ7gn9zcQT0=
+		rG2Noa7ZXI0I76ABKm6sHUWPFks=
+		</data>
+		<key>Modules/Kingfisher.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		t4wew9C8tmN4GQYthhgGRc8AtKQ=
+		</data>
+		<key>Modules/Kingfisher.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		89M+nOfdWDdeDRDka5nWd7nQQvI=
 		</data>
 		<key>Modules/Kingfisher.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		jJWZeImR9m8BvxfmuzyZvqS2TUI=
+		t4wew9C8tmN4GQYthhgGRc8AtKQ=
 		</data>
 		<key>Modules/Kingfisher.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		n01vUnMChcrsO1VnDdDsUDwevpU=
+		89M+nOfdWDdeDRDka5nWd7nQQvI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +59,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			k12iP7DpSO2y6+T2pUnoJK9juDQ=
+			5/43brGNXu1pYvm7fuwofIZXstQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			YtpvoPPHpiQC87RXjR8nyvfi0UtenOfqDDbx/sXAAN4=
+			DZLG/Ic4UbfkhL4P1753mQ5VwZ4zaLPj+pjGLmk91J8=
 			</data>
 		</dict>
 		<key>Headers/Kingfisher.h</key>
@@ -61,48 +77,92 @@
 			XRcwWlIc4rZPefd5ds74LhfVpx3qH4E85TQiHgMMSF8=
 			</data>
 		</dict>
+		<key>Modules/Kingfisher.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			0mewTJLFnskAoU+WlrjOEhF2kkc=
+			</data>
+			<key>hash2</key>
+			<data>
+			IyxZX6LM7OflmZK2QKuKdY/NSm4W8bZ+khQPuCSi1Bg=
+			</data>
+		</dict>
+		<key>Modules/Kingfisher.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			rG2Noa7ZXI0I76ABKm6sHUWPFks=
+			</data>
+			<key>hash2</key>
+			<data>
+			S0Hc4toR+X1olrp31KW1CGVLGl7aZa/sfqSyg/NbxUA=
+			</data>
+		</dict>
 		<key>Modules/Kingfisher.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			P6gDCbc0bGGRS4Br3RT/nmUfrqs=
+			0mewTJLFnskAoU+WlrjOEhF2kkc=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZOsb20zO4DNS8jVsYFIO+VsKIMl37fmByCnekH/HOVQ=
+			IyxZX6LM7OflmZK2QKuKdY/NSm4W8bZ+khQPuCSi1Bg=
 			</data>
 		</dict>
 		<key>Modules/Kingfisher.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rVHqB+QSX8dbIUEpKQ7gn9zcQT0=
+			rG2Noa7ZXI0I76ABKm6sHUWPFks=
 			</data>
 			<key>hash2</key>
 			<data>
-			R9wQ5xGLNEhebxhWsgLlMUAfaE+Ppp6JLthgXFqIoTQ=
+			S0Hc4toR+X1olrp31KW1CGVLGl7aZa/sfqSyg/NbxUA=
+			</data>
+		</dict>
+		<key>Modules/Kingfisher.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			t4wew9C8tmN4GQYthhgGRc8AtKQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			EGLW6FnHMKlcRxgO6Kl5F8nNKRn/jYjOrEWzRpeavc8=
+			</data>
+		</dict>
+		<key>Modules/Kingfisher.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			89M+nOfdWDdeDRDka5nWd7nQQvI=
+			</data>
+			<key>hash2</key>
+			<data>
+			P1d9zfyj6L+2+pOSjcpHFrOdSBGHILOs+GojSzSIa1M=
 			</data>
 		</dict>
 		<key>Modules/Kingfisher.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			jJWZeImR9m8BvxfmuzyZvqS2TUI=
+			t4wew9C8tmN4GQYthhgGRc8AtKQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			kkdk2jzJ4RXrcnQH4LcNr1uvetg27zYWPNw2gl9KL8I=
+			EGLW6FnHMKlcRxgO6Kl5F8nNKRn/jYjOrEWzRpeavc8=
 			</data>
 		</dict>
 		<key>Modules/Kingfisher.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			n01vUnMChcrsO1VnDdDsUDwevpU=
+			89M+nOfdWDdeDRDka5nWd7nQQvI=
 			</data>
 			<key>hash2</key>
 			<data>
-			lzle+rLIktEk/l1fVK1zDB6tC6Fy+ZEvMGLeiAm8qi0=
+			P1d9zfyj6L+2+pOSjcpHFrOdSBGHILOs+GojSzSIa1M=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

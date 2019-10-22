@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/CryptoSwift-Swift.h</key>
 		<data>
-		O59SqpirwCUWfbD0Wv+pc9qJnnw=
+		C+a7GtFo2NdfuPplbP7AFCwXanc=
 		</data>
 		<key>Headers/CryptoSwift.h</key>
 		<data>
@@ -14,23 +14,39 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		W2em/EU6wN+inOy/+12QJHaVutY=
+		vLGr3NI2IFUXvtn68UqnsTBA0UA=
+		</data>
+		<key>Modules/CryptoSwift.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<data>
+		u4V55Mk1hY+HlpJpl5SEKHdZP18=
+		</data>
+		<key>Modules/CryptoSwift.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<data>
+		U2Ud+dOJUbDr/O37iciJNQdM83U=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/i386.swiftdoc</key>
 		<data>
-		PviO1L0ckKEgCLVBinYEkFhNcjk=
+		u4V55Mk1hY+HlpJpl5SEKHdZP18=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/i386.swiftmodule</key>
 		<data>
-		MJ5CglLnSAQ72CN4RUEW+sfhAK0=
+		U2Ud+dOJUbDr/O37iciJNQdM83U=
+		</data>
+		<key>Modules/CryptoSwift.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		ArLert60JbOWfBWiX7dEL9rlQfk=
+		</data>
+		<key>Modules/CryptoSwift.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		Fpi/dsfD7KKMj8RdOcJRQiIHjn4=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		c+bX6cfOHic3HQZGA4LxibnWv18=
+		ArLert60JbOWfBWiX7dEL9rlQfk=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		RsFeTdTVxogHePMJTYJ6kTMRhPI=
+		Fpi/dsfD7KKMj8RdOcJRQiIHjn4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +59,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			O59SqpirwCUWfbD0Wv+pc9qJnnw=
+			C+a7GtFo2NdfuPplbP7AFCwXanc=
 			</data>
 			<key>hash2</key>
 			<data>
-			Skm36TvMJB+Paxec7074env+2nu6/bITcD0Xy7I0tm8=
+			kbSB7XPCzTgCarDfYfvERUhmMU4bSEgrtajXx1Dl1Is=
 			</data>
 		</dict>
 		<key>Headers/CryptoSwift.h</key>
@@ -61,48 +77,92 @@
 			LKTFZeCP6yi+xx9GiYdLvJom52FZ5NRrUx7+M7cJWyM=
 			</data>
 		</dict>
+		<key>Modules/CryptoSwift.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			u4V55Mk1hY+HlpJpl5SEKHdZP18=
+			</data>
+			<key>hash2</key>
+			<data>
+			sqxmGrUJSmy6L2dBTEFHZYp99SSoQ2lGpfzrJsNJlDo=
+			</data>
+		</dict>
+		<key>Modules/CryptoSwift.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			U2Ud+dOJUbDr/O37iciJNQdM83U=
+			</data>
+			<key>hash2</key>
+			<data>
+			cr/1VGNmYPv6vdXESdQots/FbROrl6eS+kYDYc+YY6g=
+			</data>
+		</dict>
 		<key>Modules/CryptoSwift.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			PviO1L0ckKEgCLVBinYEkFhNcjk=
+			u4V55Mk1hY+HlpJpl5SEKHdZP18=
 			</data>
 			<key>hash2</key>
 			<data>
-			GQM64gVTAuxp3A8Q8VQFaYaRqoHjkAwvcVoOLymwsXM=
+			sqxmGrUJSmy6L2dBTEFHZYp99SSoQ2lGpfzrJsNJlDo=
 			</data>
 		</dict>
 		<key>Modules/CryptoSwift.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			MJ5CglLnSAQ72CN4RUEW+sfhAK0=
+			U2Ud+dOJUbDr/O37iciJNQdM83U=
 			</data>
 			<key>hash2</key>
 			<data>
-			BkdGCUHYyUPZwJVfjx8r6IhxFNdQEW95hIDvlwaQzus=
+			cr/1VGNmYPv6vdXESdQots/FbROrl6eS+kYDYc+YY6g=
+			</data>
+		</dict>
+		<key>Modules/CryptoSwift.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ArLert60JbOWfBWiX7dEL9rlQfk=
+			</data>
+			<key>hash2</key>
+			<data>
+			S9P92fE0BKdw4xKXSOOci02TTLXXMeCCh9YaM5eU+NY=
+			</data>
+		</dict>
+		<key>Modules/CryptoSwift.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Fpi/dsfD7KKMj8RdOcJRQiIHjn4=
+			</data>
+			<key>hash2</key>
+			<data>
+			KlbWRcFqZRrZ5YJDxDD+OtWM1cQrMAJmS/afNmNk//4=
 			</data>
 		</dict>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			c+bX6cfOHic3HQZGA4LxibnWv18=
+			ArLert60JbOWfBWiX7dEL9rlQfk=
 			</data>
 			<key>hash2</key>
 			<data>
-			Hc2EbJ1quXiHQ9Lt5BvytRm/rDT+xgY3v0KHsY8GxIg=
+			S9P92fE0BKdw4xKXSOOci02TTLXXMeCCh9YaM5eU+NY=
 			</data>
 		</dict>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			RsFeTdTVxogHePMJTYJ6kTMRhPI=
+			Fpi/dsfD7KKMj8RdOcJRQiIHjn4=
 			</data>
 			<key>hash2</key>
 			<data>
-			j3z30gNgqB4SUu8rEZhqFoI8QUZhAaoc+R0S3JltmHw=
+			KlbWRcFqZRrZ5YJDxDD+OtWM1cQrMAJmS/afNmNk//4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

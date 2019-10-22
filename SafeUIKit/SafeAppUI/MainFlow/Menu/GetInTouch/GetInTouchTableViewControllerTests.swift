@@ -7,13 +7,11 @@ import XCTest
 
 class GetInTouchTableViewControllerTests: XCTestCase {
 
-    var controller: GetInTouchTableViewController!
-    // swiftlint:disable:next weak_delegate
-    let delegate = MockGetInTouchTableViewControllerDelegate()
+    var controller: MockGetInTouchTableViewController!
 
     override func setUp() {
         super.setUp()
-        controller = GetInTouchTableViewController(delegate: delegate)
+        controller = MockGetInTouchTableViewController()
         controller.viewDidLoad()
     }
 
@@ -31,21 +29,21 @@ class GetInTouchTableViewControllerTests: XCTestCase {
     }
 
     func test_whenSelectingTelegram_thenCallsDelegate() {
-        XCTAssertFalse(delegate.didOpenTelegram)
+        XCTAssertFalse(controller.didOpenTelegram)
         selectCell(row: 0, section: 0)
-        XCTAssertTrue(delegate.didOpenTelegram)
+        XCTAssertTrue(controller.didOpenTelegram)
     }
 
     func test_whenSelectingMail_thenCallsDelegate() {
-        XCTAssertFalse(delegate.didOpenMail)
+        XCTAssertFalse(controller.didOpenMail)
         selectCell(row: 1, section: 0)
-        XCTAssertTrue(delegate.didOpenMail)
+        XCTAssertTrue(controller.didOpenMail)
     }
 
     func test_whenSelectingGitter_thenCallsDelegate() {
-        XCTAssertFalse(delegate.didOpenGitter)
+        XCTAssertFalse(controller.didOpenGitter)
         selectCell(row: 2, section: 0)
-        XCTAssertTrue(delegate.didOpenGitter)
+        XCTAssertTrue(controller.didOpenGitter)
     }
 
     private func selectCell(row: Int, section: Int) {
@@ -54,20 +52,20 @@ class GetInTouchTableViewControllerTests: XCTestCase {
 
 }
 
-class MockGetInTouchTableViewControllerDelegate: GetInTouchTableViewControllerDelegate {
+class MockGetInTouchTableViewController: GetInTouchTableViewController {
 
     var didOpenTelegram = false
-    func openTelegram() {
+    override func openTelegram() {
         didOpenTelegram = true
     }
 
     var didOpenMail = false
-    func openMail() {
+    override func openMail() {
         didOpenMail = true
     }
 
     var didOpenGitter = false
-    func openGitter() {
+    override func openGitter() {
         didOpenGitter = true
     }
 

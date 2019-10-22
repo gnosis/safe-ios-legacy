@@ -55,10 +55,12 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
     ///
     /// - Parameter wallet: wallet to remove.
     public func removeWallet(_ wallet: WalletID) {
-        let index = wallets.firstIndex(of: wallet)!
+        guard let index = wallets.firstIndex(of: wallet) else { return }
         wallets.remove(at: index)
         if wallets.isEmpty {
             selectedWallet = nil
+        } else if let id = selectedWallet, !hasWallet(id) {
+            selectedWallet = wallets.first
         }
     }
 
@@ -74,7 +76,7 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
     ///
     /// - Parameter wallet: wallet ID to lookup
     /// - Returns: true if portfolio contains wallet, false otherwise.
-    private func hasWallet(_ wallet: WalletID) -> Bool {
+    public func hasWallet(_ wallet: WalletID) -> Bool {
         return wallets.contains(wallet)
     }
 

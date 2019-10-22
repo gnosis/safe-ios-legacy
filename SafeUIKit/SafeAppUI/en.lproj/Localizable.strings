@@ -1,14 +1,20 @@
+/* About the App */
+"about_the_app" = "About the App";
+
 /* Active sessions */
 "active_sessions" = "Active sessions";
 
 /* Title for Add Token screen. */
 "add_token" = "Add Token";
 
-/* Title for safe address section. */
-"address" = "Address";
+/* Description */
+"after_finishing_setup" = "After finishing the Safe setup, you will need to enter the PIN and hold the Keycard to your phone to confirm each transaction. You can replace or remove your 2FA device in the Safe menu at any time.";
 
 /* Agree */
 "agree" = "Agree";
+
+/* Description of no more slots */
+"all_slots_in_use" = "Your card currently uses all pairing slots. Please free up a slot with the Keycard's management app or tool and try again.";
 
 /* Needed */
 "amount_needed" = "Amount needed";
@@ -16,11 +22,24 @@
 /* Received */
 "amount_received" = "Amount received";
 
+/* App Settings */
+"app_settings" = "App Settings";
+
 /* Assets tab title */
 "assets" = "Assets";
 
+/* Authenticator paired description */
+"authenticator_paired_description" = "After finishing the Safe setup, you will need to open the Authenticator on your desktop computer to confirm each transaction.\
+You can replace or remove your 2FA device in the Safe menu at any time.";
+
 /* Back */
 "back" = "Back";
+
+/* Backup  your credentials */
+"backup_credentials" = "Backup your card credentials before activating the card";
+
+/* Backup your recovery phrase */
+"backup_recovery" = "Backup your recovery phrase";
 
 /* Balance */
 "balance" = "Balance";
@@ -57,7 +76,8 @@
 /* Close */
 "close" = "Close";
 
-/* Confirm button title */
+/* Confirm
+   Confirm button title */
 "confirm" = "Confirm";
 
 /* Header for set password screen.
@@ -70,8 +90,12 @@
 /* Congratulations! */
 "congratulations" = "Congratulations!";
 
+/* Connect 2FA
+   Pair 2FA device */
+"connect_2fa" = "Enable 2FA";
+
 /* Explanation text */
-"connecting_in_progress" = "Connecting the Authenticator is now in progress. The transaction has been submitted and should take a couple of minutes.";
+"connecting_in_progress" = "Enabling the 2FA device is in progress. The transaction has been submitted and should take a couple of minutes.";
 
 /* Abort safe creation button title
    Continue */
@@ -86,6 +110,9 @@
 /* Copied to clipboard */
 "copied_to_clipboard" = "Copied to clipboard";
 
+/* Create Safe */
+"create_new_safe" = "Create new Safe";
+
 /* Header for set password screen. */
 "create_password" = "Create Password";
 
@@ -95,8 +122,14 @@
 /* Create Safe */
 "create_safe_title" = "Create Safe";
 
+/* Creating address */
+"creating_wallet_address" = "Creating a wallet address";
+
 /* Creating safe */
 "creating_your_new_safe" = "Creating your new Safe";
+
+/* New Safe onboarding 3 title */
+"crypto_without_the_hassle" = "Crypto without the hassle";
 
 /* Current password */
 "current_password" = "Current password";
@@ -107,14 +140,33 @@
 /* Detected dangerous incoming transaction. */
 "detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
 
+/* Disable 2FA */
+"disable_2fa" = "Disable 2FA";
+
+/* Disable 2FA description */
+"disable_2fa_description" = "Once this process is complete, your existing 2FA device will be removed from this Safe and thus 2FA will be disabled. You will be able to set up 2FA again in the Safe menu.\
+Please have your recovery phrase ready to disable 2FA.";
+
+/* Disconnect 2FA */
+"disable_2fa_full" = "Disable 2-factor Authentication";
+
+/* Disable 2FA review description */
+"disable_2fa_review_description" = "This transaction removes the existing 2FA device from your Safe: %@. No 2FA device will be paired with your Safe afterward.";
+
 /* Disconnect */
 "disconnect" = "Disconnect";
 
-/* Disconnect browser extension description */
-"disconnect_2fa_description" = "Once this process is complete, you won't need to confirm transactions with the Authenticator.\n\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
+/* Disconnect 2FA */
+"disconnect_2fa" = "Disable 2FA";
 
 /* Explanation text */
-"disconnecting_in_progress" = "Disconnecting the Authenticator is now in progress. The transaction has been submitted and should take a couple of minutes.";
+"disconnecting_in_progress" = "Disabling 2FA is in progress. The transaction has been submitted and should take a couple of minutes.";
+
+/* Do you have a backup? */
+"do_you_have_backup" = "Do you have a backup?";
+
+/* Edit Safe name */
+"edit_safe_name" = "Edit Safe name";
 
 /* E-mail */
 "email" = "E-mail";
@@ -125,11 +177,20 @@
 /* Description for add browser extension screen */
 "enable_2fa" = "Enable 2-factor authentication by connecting your Safe to the Authenticator.";
 
+/* Connect 2FA */
+"enable_2fa_full" = "Enable 2-factor Authentication";
+
 /* Enter current password */
 "enter_current_password" = "Enter current password";
 
 /* Header for new password screen */
 "enter_new_password" = "Enter new password";
+
+/* Enter password and PIN */
+"enter_pass_pin" = "Enter your pairing password and PIN";
+
+/* Enter the PIN. */
+"enter_pin" = "Enter the PIN of your Keycard.";
 
 /* Placeholder for the recovery phrase */
 "enter_recovery" = "Enter recovery phrase";
@@ -144,9 +205,38 @@
 "enter_seed" = "Enter your recovery phrase";
 
 /* Error
-   Error alert's title
    Error title */
 "error" = "Error";
+
+/* Signature invalid */
+"error_keycard_invalid_signature" = "The signature of the keycard is invalid. Please try again.";
+
+/* Signer invalid */
+"error_keycard_invalid_signer" = "The signature does not match the safe owner. Please try again.";
+
+/* Key not found */
+"error_keycard_key_not_found" = "Failed to find a keycard key. Please re-enable the 2FA with the safe.";
+
+/* Keycard is lost */
+"error_keycard_lost" = "The Keycard is permanently blocked because of too many wrong PUK entries. This cannot be undone.";
+
+/* Unknown master key */
+"error_keycard_master_key_unknown" = "The master key in the keycard is unknown. Please load the correct master key.";
+
+/* Pairing invalid */
+"error_keycard_pairing_invalid" = "The pairing is invalid. Please replace 2FA to pair again.";
+
+/* Pairing not found */
+"error_keycard_pairing_not_found" = "No pairings found for this keycard. Please try again with a matching keycard.";
+
+/* Signing failed */
+"error_keycard_signing_failed" = "The signing failed for an internal reason. Please try again.";
+
+/* Keycard unknown */
+"error_keycard_unknown" = "The keycard is not recognized. Please use the correct card.";
+
+/* Exactly x digits */
+"exactly_x_digits" = "Please enter exactly %li digits.";
 
 /* Recovery without authenticator. */
 "existing_safe_recovered" = "The existing Safe will be recovered and associated with this device.";
@@ -179,8 +269,14 @@
 /* Gitter */
 "gitter" = "Gitter";
 
-/* Guidelines */
-"guidelines" = "Guidelines";
+/* Gnosis Safe Authenticator */
+"gnosis_safe_authenticator" = "Gnosis Safe Authenticator";
+
+/* Gnosis Safe Authenticator description */
+"gnosis_safe_authenticator_description" = "The Authenticator is an extension for Google Chrome connected to the Safe.";
+
+/* I have no password */
+"have_no_password" = "I don't have a password";
 
 /* 'Submitted' parameter name */
 "header_submitted" = "Submitted";
@@ -194,11 +290,26 @@
 /* How this works */
 "how_this_works" = "How this works";
 
+/* I have a backup */
+"i_have_a_backup" = "I have a backup";
+
+/* I have a copy */
+"i_have_a_copy" = "I have a copy";
+
 /* Incorrect password */
 "incorrect_password" = "Incorrect password";
 
+/* Wrong pin */
+"incorrect_pin_x_attempts" = "Incorrect PIN. %li more tries left before your Keycard gets blocked.";
+
+/* Wrong PUK */
+"incorrect_puk_attempts" = "incorrect_puk_attempts";
+
 /* Info */
 "info" = "Info";
+
+/* Initialize */
+"initialize" = "Initialize";
 
 /* Insufficient funds header. */
 "insufficient_funds" = "Insufficient funds";
@@ -209,8 +320,7 @@
 /* blog. */
 "ios_blog" = "blog.";
 
-/* Connect browser extension
-   Header for add browser extension screen */
+/* Header for add browser extension screen */
 "ios_connect_browser_extension" = "Connect\nAuthenticator";
 
 /* Contract upgrade */
@@ -218,12 +328,6 @@
 
 /* Pending safe failed alert's message */
 "ios_creationFee_failed_error" = "Error: %@ Please try again later.";
-
-/* Disconnect browser extension */
-"ios_disconnect_browser_extension" = "Disconnect\nAuthenticator";
-
-/* Connect browser extension description */
-"ios_enable_2fa" = "Enable 2-factor authentication by connecting your Safe to Gnosis Safe Authenticator.\n\nAll future transactions will need to be approved by both devices.";
 
 /* Title for confirm recovery screen. */
 "ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
@@ -234,7 +338,7 @@
 /* Word #%@ */
 "ios_enterSeed_word" = "Word #%@";
 
-/* Generic error message alert */
+/* Generic error message. Try again. */
 "ios_error_description" = "Operation failed because of an error. Please try again.";
 
 /* Browser extension code is expired. */
@@ -282,9 +386,6 @@
 /* Scan its QR code. */
 "ios_install_browser_extension" = "2. Install the Authenticator on your desktop computer and scan its QR code.";
 
-/* Content paragraphs, separated by '\n'. Sublist lines are separated by '\r\t\t'. */
-"ios_new_safe_guidelines_content" = "* Your Safe consists of:\n  1. This mobile app.\n  2. Gnosis Safe Authenticator.\n  3. Address and recovery phrase.\n* Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\n* If you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.\n";
-
 /* Download the 'Gnosis Safe Chrome browser exntension.' */
 "ios_open_be_link_substring" = "Gnosis Safe Authenticator link";
 
@@ -296,6 +397,9 @@
 
 /* Recovery address validation failed alert's message */
 "ios_recovery_address_validation_failure_format" = "Address is invalid: %@";
+
+/* Wallet already exists */
+"ios_recovery_error_already_exists" = "The Safe with this address already exists. Please remove it before recovering it.";
 
 /* Recovery transaction failed to change Safe confirmation count */
 "ios_recovery_error_changecount" = "Recovery transaction failed to change Safe confirmation count";
@@ -330,7 +434,7 @@
 /* Cannot recover because couldn't find the Safe with this address */
 "ios_recovery_error_walletnotfound" = "Cannot recover because couldn't find the Safe with this address";
 
-/* Content paragraphs, separated by '\n' */
+/* Content paragraphs */
 "ios_recovery_intro_content" = "* Please have your Safe's address and recovery phrase ready.\n* A recovery fee will be automatically deducted from the balance of the recovered Safe.\n* If the Safe has insufficient funds, you will be asked to deposit the minimum amount required to cover the fee.";
 
 /* Replace browser extension */
@@ -365,7 +469,7 @@
 /* Warning for setup recovery phrase screen. */
 "ios_showSeed_warning" = "Without these, you won’t be able to recover your Safe and its assets.";
 
-/* Each bullet starts with '* '. Separated by newline '\n'. */
+/* Bulleted list */
 "ios_terms_contents" = "* We do not collect demographic data such as age and gender.\n* We collect anonymized app usage data and crash reports to ensure the quality of our app.";
 
 /* 'View on Etherscan' button name */
@@ -374,11 +478,26 @@
 /* Time indication of 'Just now' */
 "just_now" = "Just now";
 
-/* Detail for the header in review screen */
-"layout_connect_browser_extension_info_description" = "This transaction connects this Safe with the Authenticator. Future transactions require a confirmation from both devices.";
+/* Already activated */
+"keycard_already_activated" = "This Keycard is already activated.";
 
-/* Detail for the header in review screen */
-"layout_disconnect_browser_extension_info_description" = "This transaction disconnects this Safe from the Authenticator. Future transactions will not require confirmations.";
+/* Keycard authentication */
+"keycard_authentication" = "Keycard authentication";
+
+/* Blocked */
+"keycard_blocked" = "Keycard blocked";
+
+/* Steps for pairing */
+"keycard_intro_description" = "* Provide the PIN and pairing password of your Keycard.\n* Hold the Keycard to the phone for 3 seconds  to pair the Keycard.\n* If you don’t yet have the PIN and pairing password, you can get them on the next screen.";
+
+/* Paired */
+"keycard_paired" = "Status Keycard successfully paired";
+
+/* Get in touch */
+"keycard_unblock_get_in_touch" = "To restore the Keycard please get in touch with us.";
+
+/* Not initialized */
+"keycard_uninitialized" = "Keycard not initialized";
 
 /* Recovery with authenticator */
 "layout_recovered_authenticator_safe_info_description" = "The existing Safe was recovered and associated with this device and connected Authenticator.";
@@ -387,16 +506,22 @@
 "layout_recovered_safe_info_description" = "The existing Safe was recovered and associated with this device.";
 
 /* Detail for the header in review screen */
-"layout_replace_browser_extension_info_description" = "The existing Authenticator connection will be replaced by the new Authenticator.";
-
-/* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
+
+/* Learn more */
+"learn_more" = "Learn more";
 
 /* Onboarding 3 title */
 "lets_get_started" = "Let's get started";
 
 /* Licenses */
 "licenses" = "Licenses";
+
+/* Lost your recovery phrase? */
+"lost_recovery_phrase" = "Lost your recovery phrase?";
+
+/* Manage Safes */
+"manage_safes" = "Manage Safes";
 
 /* Add token button
    Manage Tokens menu item */
@@ -408,6 +533,12 @@
 
 /* More info in our blog. */
 "more_info_in_our_blog" = "More info in our blog.";
+
+/* The name can not be empty */
+"name_cannot_be_blank" = "Name cannot be blank";
+
+/* The name is too long. Max 120 characters. */
+"name_too_long" = "The name is too long. Max 120 characters.";
 
 /* Onboarding 3 description */
 "need_confirm_upgrade" = "You will need to confirm the smart contract upgrade just like a normal transaction. Please make sure your Safe has enough funds to pay the network fee.";
@@ -445,8 +576,14 @@
 /* No results found */
 "no_results_found" = "No results found";
 
+/* No more slots */
+"no_slots_available" = "No free slots available on Keycard";
+
 /* No Thanks */
 "no_thanks" = "No Thanks";
+
+/* Not empty */
+"not_empty" = "This field must not be empty";
 
 /* Fatal error alert's Ok button title
    OK
@@ -456,11 +593,48 @@
 /* Intro body text */
 "once_process_is_complete" = "Once this process is complete, you can only use the new Authenticator to confirm transactions.\n\nPlease have your Safe recovery phrase ready to confirm the recovery.";
 
+/* Use digits only */
+"only_digits" = "Please use only digits";
+
 /* Title for transaction confirmation alert. */
 "open_browser_extension" = "Please open the Gnosis Safe Authenticator to confirm this transaction";
 
+/* Pair 2FA device */
+"pair_2FA_device" = "Pair 2FA device";
+
+/* Pair 2FA device description */
+"pair_2FA_device_description" = "Once this process is complete, you can use your 2FA device to confirm transactions.";
+
+/* Pair 2FA device review description
+   Pair 2FA review description */
+"pair_2fa_review_description" = "This transaction pairs this Safe with your 2FA device: %@. Future transactions require confirmation from both devices.";
+
+/* Pair Keycard */
+"pair_keycard" = "Pair Keycard";
+
+/* Pair the Safe with a 2FA device */
+"pair_safe_with_two_fa" = "Pair the Safe with a 2FA device";
+
+/* Pair with 2FA description */
+"pair_safe_with_two_fa_description" = "Two-factor authentication (2FA) is an extra layer of security that prevents unauthorized access to your account. You can set it up by enabling a 2FA device for this Safe. After a successful setup, all transactions will need to be approved both by this phone and by your 2FA device.";
+
+/* Pair your card */
+"pair_your_keycard" = "Pair your Status Keycard";
+
+/* You'll remove */
+"paired_will_be_lost" = "By going back, your paired 2FA device will be lost. You will be able to pair a new 2FA device.";
+
+/* Wrong password */
+"pairing_failed_password" = "Pairing failed: Incorrect pairing password.";
+
+/* Wrong pin */
+"pairing_failed_pin_x_attempts" = "Pairing failed: Incorrect PIN code. %li more tries left before your Keycard gets blocked.";
+
 /* Replace BE pairing description. */
 "pairing_info" = "All transactions need to be approved by both this device and the Authenticator.";
+
+/* Password */
+"pairing_password" = "Pairing password";
 
 /* Password field placeholder
    Password placeholder */
@@ -488,6 +662,17 @@
 /* Pending transactions group header */
 "pending" = "Pending";
 
+/* Pick 2FA device */
+"pick_2fa_device" = "Pick 2FA device";
+
+/* PIN */
+"pin" = "PIN";
+
+/* PIN: x, PUK: y, Password: z */
+"pin_puk_password" = "PIN: %@\
+PUK: %@\
+Pairing password: %@";
+
 /* Header label */
 "please_review_terms_and_privacy_policy" = "Please review our Terms of Use and Privacy Policy.";
 
@@ -496,9 +681,6 @@
 
 /* Please try again later. */
 "please_try_again_later" = "Please try again later.";
-
-/* Title for portfolio section. */
-"portfolio" = "Portfolio";
 
 /* Privacy Policy
    Privacy policy menu item */
@@ -512,6 +694,9 @@
 
 /* Transaction name */
 "recover_existing_safe" = "Recover Existing Safe";
+
+/* Recover Safe */
+"recover_existing_safe_menu" = "Recover existing Safe";
 
 /* Restore safe button */
 "recover_safe" = "Recover an Existing Safe";
@@ -528,8 +713,12 @@
 /* Recovering safe */
 "recovering_safe" = "Recovering your Safe…";
 
-/* Title for setup recovery phrase screen. */
+/* Recovery phrase
+   Title for setup recovery phrase screen. */
 "recovery_phrase" = "Recovery phrase";
+
+/* Recovery phrase backed up */
+"recovery_phrase_backed_up" = "Recovery phrase successfully backed up ";
 
 /* Refresh */
 "refresh" = "Refresh";
@@ -537,11 +726,35 @@
 /* Reject */
 "reject" = "Reject";
 
+/* Remove */
+"remove" = "Remove";
+
+/* Remove? */
+"remove_paired" = "Remove paired 2FA device?";
+
+/* Remove Safe */
+"remove_safe" = "Remove Safe";
+
+/* Replace 2FA */
+"replace_2fa" = "Replace 2FA";
+
+/* Replace 2FA description */
+"replace_2fa_description" = "Once this process is complete, you can only use the new 2FA device to confirm transactions. Please have your Safe recovery phrase ready to confirm the replacement.";
+
+/* Replace 2FA */
+"replace_2fa_full" = "Replace 2-factor Authentication";
+
+/* Replace 2FA review description */
+"replace_2fa_review_description" = "The existing 2FA device connection will be replaced by the new 2FA device: %@. ";
+
 /* Detail for the header in review screen */
 "replace_browser_extension_transaction_info" = "The existing Authenticator connection will be replaced by the new Authenticator. ";
 
 /* Explanation text */
 "replaceseed_in_progress" = "The transaction has been submitted and should take a couple of minutes. Replacing the recovery phrase is in progress. ";
+
+/* Requires NFC support */
+"requires_nfc_support" = "Requires NFC support";
 
 /* Resend button. */
 "resend" = "Resend";
@@ -552,6 +765,9 @@
 /* Review button for Send screen
    Review transaction title */
 "review" = "Review";
+
+/* Authenticator successfully paired */
+"safe_authenticator_paired" = "Gnosis Safe Authenticator successfully paired";
 
 /* Current balance
    Safe balance */
@@ -566,7 +782,14 @@
 /* Description of a fee. */
 "safe_recovery_fee_required" = "A network fee will be deducted from your Safe balance to recover your Safe.";
 
-/* Save button */
+/* Safe Settings */
+"safe_settings" = "Safe Settings";
+
+/* Remove Safe description */
+"safe_will_be_remove_description" = "This Safe will be removed from your device. To recover this Safe or to add it to another device you will need the recovery phrase and this Safe's address.";
+
+/* Save
+   Save button */
 "save" = "Save";
 
 /* Scan
@@ -576,8 +799,11 @@
 /* Scan QR code */
 "scan_qr_code" = "Scan QR Code";
 
-/* Title for security section. */
-"security" = "Security";
+/* New Safe onboarding 2 title */
+"secure_by_design" = "Secure by design";
+
+/* Step 3 description */
+"securely_store_your_recovery" = "Securely store your recovery phrase to restore your Safe in case you lose access to this device";
 
 /* Update required description */
 "security_upgrade_required" = "Upgrade to the latest audited smart contract version and make your funds even more secure!";
@@ -588,8 +814,17 @@
 /* Send */
 "send_title" = "Send %@";
 
+/* Step 1 description */
+"set_up_password_to_protect" = "Set up a password to protect this app";
+
+/* Step 2 description */
+"set_up_two_fa_method" = "(Optional) Set up two-factor-authentication method";
+
 /* Settings change */
 "settings_change" = "Settings change";
+
+/* Setup 2FA */
+"setup_2fa" = "Setup 2FA";
 
 /* Set up password button title */
 "setup_password" = "Setup Password";
@@ -603,7 +838,8 @@
 /* Description for Receive Funds screen. */
 "share_your_address" = "Share your address with contracts or enable senders to scan your QR code to receive Ether and tokens.";
 
-/* Skip button text */
+/* Skip and setup later
+   Skip button text */
 "skip_setup_later" = "Skip and setup later";
 
 /* Start
@@ -617,6 +853,12 @@
    Failed status */
 "status_failed" = "Failed";
 
+/* Status Keycard */
+"status_keycard" = "Status Keycard";
+
+/* Status Keycard description */
+"status_keycard_description" = "The Keycard is a smartcard you can use to safely receive, store and send cryptocurrencies.";
+
 /* 'Pending' status */
 "status_pending" = "Pending";
 
@@ -626,8 +868,8 @@
 /* Submit transaction */
 "submit" = "Submit";
 
-/* Title for support section. */
-"support" = "Support";
+/* Switch Safes */
+"switch_safes" = "Switch Safes";
 
 /* Sync with browser extension */
 "sync_with_extension" = "Sync with Authenticator";
@@ -657,6 +899,9 @@
 /* Contract Upgrade
    Upgrading contract */
 "this_will_upgrade" = "This will upgrade '%@' to the latest version of the Gnosis Safe contract.";
+
+/* The three steps to security */
+"three_steps_to_security" = "The three steps to security";
 
 /* Onboarding 3 description */
 "to_connect_to_dapp" = "To connect your Safe to the desktop Dapp, scan its QR code.";
@@ -698,7 +943,7 @@
 "try_again_in" = "Try again in";
 
 /* Replacing */
-"tx_submitted_replace_be" = "The transaction has been submitted and should take a couple of minutes. Replacing the Authenticator is in progress.";
+"tx_submitted_replace_be" = "Replacing the 2FA device is in progress. The transaction has been submitted and should take a couple of minutes.";
 
 /* 'Type' parameter name */
 "type" = "Type";
@@ -712,14 +957,57 @@
 /* Face ID button explanation */
 "use_faceid_to_unlock" = "Use Face ID to unlock";
 
+/* Use selected device */
+"use_selected_device" = "Use selected device";
+
+/* Recovery phrase description */
+"use_the_phrase_on_the_next_screen" = "Use the phrase on the next screen, together with your Safe address, to recover your wallet in case you lose access to it.\
+We recommend using a password manager or writing the phrase down and storing the paper copy in a safe place that only you have access to.";
+
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
+
+/* Waiting for deposit */
+"waiting_for_first_deposit" = "Waiting for the first deposit";
+
+/* No funds */
+"waiting_for_remaining_funds" = "Waiting for remaining funds";
+
+/* Started */
+"wallet_creation_started" = "Wallet creation started";
+
+/* New wallet draft */
+"wallet_draft_creation" = "Draft new wallet";
+
+/* Draft recovery */
+"wallet_draft_recovery" = "Draft recovered wallet";
+
+/* Wallet is finalizing */
+"wallet_finalizing_deployment" = "Wallet finalizing deployment";
+
+/* Wallet is ready */
+"wallet_is_ready" = "Wallet is ready to use";
+
+/* Recovery finalizing */
+"wallet_recovery_finalizing" = "Wallet recovery finalizing";
+
+/* Recovery in progress */
+"wallet_recovery_in_progress" = "Wallet recovery in progress";
+
+/* Transaction is submitted */
+"wallet_transaction_submitted" = "wallet_transaction_submitted";
 
 /* WalletConnect */
 "walletconnect" = "WalletConnect";
 
+/* WalletConnect not available */
+"walletconnect_error_no_safe" = "Please set up your safe before using WalletConnect.";
+
 /* Onboarding 1 description */
 "walletconnect_is" = "WalletConnect is a protocol that allows you to connect the Safe to desktop Dapps. The Safe will notify you when the Dapp wants to make a transaction. ";
+
+/* Do you want to do it? */
+"want_to_initialize" = "Would you like to initialize it now?";
 
 /* Onboarding 1 description */
 "we_performed_formal_verification" = "We performed formal verification of our smart contract. Upgrade now to take advantage of the highest security standards available.";
@@ -733,15 +1021,44 @@
 /* Safe Creation Fee */
 "what_is_safe_recovery_fee" = "What is the Safe recovery fee?";
 
+/* New Safe onboarding 1 title */
+"what_is_the_gnosis_safe" = "What is the Gnosis Safe?";
+
 /* Onboarding 1 title */
 "what_is_this_about" = "What is this about?";
+
+/* New Safe onboarding 2 description */
+"while_our_code_is_always_audited" = "While our code is always audited, we've also formally verified the Gnosis Safe smart contracts.\
+Use two-factor authentication to further increase the security of your wallet.";
 
 /* Onboarding 2 title */
 "why_upgrade" = "Why upgrade?";
 
+/* New Safe onboarding 3 description */
+"with_walletconnect_you_can_connect" = "With WalletConnect you can connect to Dapps securely within seconds.\
+Gnosis Safe allows you to safe your ETH and pay network fees with ERC-20 tokens.";
+
 /* You are disconnecting from... */
 "you_are_disconnecting_from" = "You are disconnecting from %@";
 
+/* New Safe onboarding 4 title */
+"you_are_in_control" = "You're in control";
+
 /* Onboarding 2 description */
 "you_can_manage_connections" = "You can manage connections using the list of active sessions. Transaction requests from Dapps can be confirmed using your Safe.";
+
+/* You can replace your phrase */
+"you_can_replace_phrase_anytime" = "You can replace your recovery phrase in the Safe menu at any time.";
+
+/* You'll need them */
+"you_need_credentials" = "You’ll need these credentials together with your Keycard to confirm each transaction.\
+\
+We recommend using a password manager or writing the credentials down and storing the paper-copy in a safe place that only you have access to.";
+
+/* New Safe onboarding 4 description */
+"your_funds_are_held_securely" = "Your funds are held securely in this mobile Safe and cannot be accessed by Gnosis.\
+Lost or changed your phone? Regain access anytime using the Safe's recovery methods.";
+
+/* New Safe onboarding 1 description */
+"your_safe_is_a_smart_contract" = "Your Safe is a smart contract wallet that allows you to safely manage your crypto funds and connect to Dapps.";
 

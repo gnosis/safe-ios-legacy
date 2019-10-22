@@ -105,14 +105,18 @@ public final class AddressInput: VerifiableInput {
 
     private func commonInit() {
         scanHandler.delegate = self
-        scanHandler.scanValidatedConverter = validatedAddress
+        scanHandler.scanValidatedConverter = { [weak self] in
+            self?.validatedAddress($0)
+        }
         configureTextInput()
         addAddressLabel()
         showErrorsOnly = true
         trimsText = true
         text = nil
         placeholder = Strings.addressPlaceholder
-        addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress", validation: isValid)
+        addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress") { [weak self] in
+            self?.isValid($0) ?? false
+        }
         scanHandler.addDebugButtonToScannerController(title: "Test Address",
                                                       scanValue: "0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0")
     }
@@ -146,7 +150,7 @@ public final class AddressInput: VerifiableInput {
     private func dotsRightView() -> UIView {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 14))
         imageView.image = Asset.AddressInput.dots.image
-        imageView.contentMode = .center
+        imageView.contentMode = .right
         return imageView
     }
 
@@ -208,13 +212,13 @@ public extension AddressInput {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let alertController = UIAlertController()
         alertController.addAction(
-            UIAlertAction(title: Strings.AlertActions.paste, style: .default) { _ in
+            UIAlertAction(title: Strings.AlertActions.paste, style: .default) { [unowned self] _ in
                 if let value = UIPasteboard.general.string {
                     self.update(text: value)
                 }
             })
         alertController.addAction(
-            UIAlertAction(title: Strings.AlertActions.scan, style: .default) { _ in
+            UIAlertAction(title: Strings.AlertActions.scan, style: .default) { [unowned self] _ in
                 self.scanHandler.scan()
 
         })
@@ -232,7 +236,7 @@ extension AddressInput: ScanQRCodeHandlerDelegate {
     }
 
     func didScanCode(raw: String, converted: String?) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.update(text: converted)
         }
     }

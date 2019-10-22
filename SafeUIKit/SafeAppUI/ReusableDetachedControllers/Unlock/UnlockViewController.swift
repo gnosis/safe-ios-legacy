@@ -108,13 +108,18 @@ public final class UnlockViewController: UIViewController {
         } else {
             contentViewBottomOffset = 0
         }
+        UIView.animate(withDuration: animationDuration,
+                       delay: 0,
+                       options: [curveOption(animationCurve)],
+                       animations: { [unowned self] in
+                        self.contentViewBottomConstraint.constant = contentViewBottomOffset
+                        self.view.layoutIfNeeded()
+            }, completion: nil)
+    }
+
+    func curveOption(_ curve: UIView.AnimationCurve) -> UIView.AnimationOptions {
         // see https://is.gd/qcYyqL
-        UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(animationDuration)
-        UIView.setAnimationCurve(animationCurve)
-        contentViewBottomConstraint.constant = contentViewBottomOffset
-        view.layoutIfNeeded()
-        UIView.commitAnimations()
+        return UIView.AnimationOptions(rawValue: UInt(curve.rawValue) << 16)
     }
 
     @discardableResult
@@ -170,8 +175,8 @@ public final class UnlockViewController: UIViewController {
             } catch {
                 DispatchQueue.main.async {
                     self.focusPasswordField()
-                    ApplicationServiceRegistry.logger.error("Failed to authenticate with biometry: \(error)",
-                        error: error)
+                    let message = "Failed to authenticate with biometry: \(error)"
+                    ApplicationServiceRegistry.logger.error(message, error: error)
                 }
             }
         }
@@ -210,7 +215,7 @@ extension UnlockViewController: VerifiableInputDelegate {
                 self.startCountdownIfNeeded()
             }
         } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to authenticate with password", error: e)
+            ErrorHandler.showFatalError(log: "Failed to authenticate with password", error: e, from: self)
         }
     }
 

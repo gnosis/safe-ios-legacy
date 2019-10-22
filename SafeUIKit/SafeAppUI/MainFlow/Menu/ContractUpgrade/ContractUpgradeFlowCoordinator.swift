@@ -21,10 +21,12 @@ final class ContractUpgradeFlowCoordinator: FlowCoordinator {
     func showOnboarding() {
         let vc = OnboardingViewController.create(next: { [weak self] in
             self?.onboardingController?.transitionToNextPage()
-            }, finish: { [weak self] in
-                Tracker.shared.track(event: ContractUpgradeTrackingEvent.getStarted)
-                self?.showUpgradeIntro()
-            }, showBlogArticle: showBlogArticle)
+        }, finish: { [weak self] in
+            Tracker.shared.track(event: ContractUpgradeTrackingEvent.getStarted)
+            self?.showUpgradeIntro()
+        }, showBlogArticle: { [weak self] in
+            self?.showBlogArticle()
+        })
         push(vc)
         onboardingController = vc
     }
@@ -34,6 +36,7 @@ final class ContractUpgradeFlowCoordinator: FlowCoordinator {
         controller.starter = ApplicationServiceRegistry.contractUpgradeService
         controller.delegate = self
         controller.screenTrackingEvent = ContractUpgradeTrackingEvent.intro
+        controller.setTitle(LocalizedString("contract_upgrade", comment: "Contract Upgrade"))
         controller.setContent(.contractUpgrade)
         push(controller)
         introVC = controller
@@ -73,10 +76,12 @@ extension ContractUpgradeFlowCoordinator: ReviewTransactionViewControllerDelegat
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        DispatchQueue.global.async {
+        DispatchQueue.global.async { [unowned self] in
             ApplicationServiceRegistry.contractUpgradeService.startMonitoring(transaction: self.transactionID)
         }
-        push(SuccessViewController.contractUpgrade(action: exitFlow))
+        push(SuccessViewController.contractUpgrade { [unowned self] in
+            self.exitFlow()
+        })
     }
 
 }
@@ -95,8 +100,7 @@ fileprivate extension SuccessViewController {
 fileprivate extension IntroContentView.Content {
 
     static let contractUpgrade =
-        IntroContentView.Content(header: LocalizedString("contract_upgrade", comment: "Contract Upgrade"),
-                                 body: String(format: LocalizedString("this_will_upgrade", comment: "Contract Upgrade"),
+        IntroContentView.Content(body: String(format: LocalizedString("this_will_upgrade", comment: "Contract Upgrade"),
                                               "Safe"),
                                  icon: Asset.ContractUpgrade.contractUpgrade.image)
 }

@@ -1,0 +1,33 @@
+/* Hold device near the card */
+"hold_near_card" = "Hold your iPhone near the Status Keycard";
+
+/* Initializing */
+"initializing_wait" = "Initializing... Please wait.";
+
+/* Multiple tags found */
+"multiple_tags" = "More than one tag was found. Please present only one tag.";
+
+/* Operation failed */
+"operation_failed" = "Operation failed";
+
+/* Initializing */
+"pairing_wait" = "Pairing... Please wait.";
+
+/* Signing */
+"signing_wait" = "Signing... Please wait.";
+
+/* Success */
+"success" = "Success";
+
+/* Tag error */
+"tag_connection_error" = "Connection error. Please try again.";
+
+/* Lost connection */
+"tag_connection_lost" = "Lost connection to Keycard. Try again.";
+
+/* Unblocking */
+"unblocking_wait" = "Unblocking... Please wait.";
+
+/* Tag not supported */
+"unsupported_tag" = "Unsupported Smart Card.";
+

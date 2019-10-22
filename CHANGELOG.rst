@@ -8,6 +8,53 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.8.1`_ - 2019-10-09
+======================
+Changed
+--------
+- Enabled iOS 12 support
+- Fixed issue with Contract Upgrade Onboarding's "Next" button
+
+`1.8.0`_ - 2019-10-04
+======================
+Changed
+--------
+- Menu structure changed: added recover and create safe from menu.
+- Improvements in memory management
+
+Added
+-------
+- Support for multiple safes
+- Switch Safe command
+- Remove Safe flow
+
+`1.7.0`_ - 2019-09-20
+======================
+Changed
+--------
+- All static libraries in the project converted to frameworks to workaround
+  bug in Xcode with static Swift libraries.
+- 2-factor authentication flows changed to select between Gnosis Authenticator
+  and Status Keycard. Flows affected:
+  
+  + Create Safe - added new onboarding screens, added 3-step header to the screens.
+  + Recover Safe
+  + Connect Authenticator -> renamed to Enable 2FA
+  + Disconnect Authenticator -> renamed to Disable 2FA
+  + Replace Authenticator -> renamed to Replace 2FA
+
+- UI adjustments, crash and bug fixes
+
+Added
+-------
+- iOS 13 support - dark mode temporary opted out
+- Added Keycard.swift and secp256k1.swift as Swift PM dependencies
+- Status Keycard support as a 2-factor authenticator
+  
+  + Pairing with a Keycard - SKPairViewController
+  + Initializing the Keycard - SKActivateViewController
+  + Signing with the Keycard - SKSignWIthPinViewController
+
 `1.6.0`_ - 2019-08-27
 ======================
 Changed
@@ -372,6 +419,9 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.8.1: https://github.com/gnosis/safe-ios/tree/1.8.1
+.. _1.8.0: https://github.com/gnosis/safe-ios/tree/1.8.0
+.. _1.7.0: https://github.com/gnosis/safe-ios/tree/1.7.0
 .. _1.6.0: https://github.com/gnosis/safe-ios/tree/1.6.0
 .. _1.5.0: https://github.com/gnosis/safe-ios/tree/1.5.0
 .. _1.4.0: https://github.com/gnosis/safe-ios/tree/1.4.0

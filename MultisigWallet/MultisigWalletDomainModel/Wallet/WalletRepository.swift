@@ -12,6 +12,10 @@ public protocol WalletRepository {
     func nextID() -> WalletID
     func all() -> [Wallet]
 
+    /// Finds and returns all wallets in any of the states, sorted by order of creation of wallets
+    /// - Parameter states: set of states to filter by
+    func filter(by states: Set<WalletState.State>) -> [Wallet]
+
 }
 
 public extension WalletRepository {
@@ -23,6 +27,10 @@ public extension WalletRepository {
 
     func find(address: Address) -> Wallet? {
         return all().first { $0.address == address }
+    }
+
+    func filter(by state: WalletState.State) -> [Wallet] {
+        return filter(by: [state])
     }
 
 }

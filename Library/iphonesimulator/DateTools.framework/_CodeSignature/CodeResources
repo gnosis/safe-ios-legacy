@@ -384,19 +384,27 @@
 		</dict>
 		<key>Headers/DateTools-Swift.h</key>
 		<data>
-		nkX25LVXm4GxCkzKEakq0zlYBfM=
+		W8pc7/ew2aKqJW5chhEG/EPpRvI=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		FZG7JW2v/Pcwv3xjzuU6cESsv+g=
+		W6is6H1hCC3hjrqcyvHNXPJwFHI=
+		</data>
+		<key>Modules/DateTools.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		0iHW3DAyL8d0zf2jkCwoZEuPFdY=
+		</data>
+		<key>Modules/DateTools.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		FVbdZZ3yt3kL9A+slFktbdLN3bo=
 		</data>
 		<key>Modules/DateTools.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		ccZViY+lOxFEBSQbrR+vYkETh8g=
+		0iHW3DAyL8d0zf2jkCwoZEuPFdY=
 		</data>
 		<key>Modules/DateTools.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		8nh//lbAS5DiEoiRMiGmmi4Ve54=
+		FVbdZZ3yt3kL9A+slFktbdLN3bo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -787,21 +795,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CKrbWtYNix6dcQhV9tQ6+M1h6dB4DIgWHjiQXQhOZj0=
+			vX31tXtMOlWEJ4E2CC9FkRryNAqcTeqgJnJIiL1C7i4=
+			</data>
+		</dict>
+		<key>Modules/DateTools.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pbK9RWsSMgXmr1b85g5rDqk003TN01RTN5BNTtSWKpU=
+			</data>
+		</dict>
+		<key>Modules/DateTools.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ndgaOSeIL+O90IkNPv2jak1AA9EiFHheju0pVIht2KE=
 			</data>
 		</dict>
 		<key>Modules/DateTools.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YprCyQBn0sg/aR658SHVDfIgO3TwK4npCV5w8kIqoO8=
+			pbK9RWsSMgXmr1b85g5rDqk003TN01RTN5BNTtSWKpU=
 			</data>
 		</dict>
 		<key>Modules/DateTools.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6bK3yuYvvZTGwvKU9K56wpCFkKiJ7+jYvZt4maE3TPE=
+			ndgaOSeIL+O90IkNPv2jak1AA9EiFHheju0pVIht2KE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

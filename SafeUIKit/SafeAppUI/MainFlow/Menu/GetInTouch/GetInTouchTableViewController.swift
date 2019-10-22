@@ -4,14 +4,11 @@
 
 import UIKit
 import SafeUIKit
+import SafariServices
+import MultisigWalletApplication
+import MessageUI
 
-protocol GetInTouchTableViewControllerDelegate: class {
-    func openTelegram()
-    func openMail()
-    func openGitter()
-}
-
-final class GetInTouchTableViewController: UITableViewController {
+class GetInTouchTableViewController: UITableViewController {
 
     enum Strings {
         static let title = LocalizedString("get_in_touch", comment: "Get In Touch").capitalized
@@ -27,12 +24,6 @@ final class GetInTouchTableViewController: UITableViewController {
     }
 
     var cells = [Cell]()
-    private weak var delegate: GetInTouchTableViewControllerDelegate!
-
-    convenience init(delegate: GetInTouchTableViewControllerDelegate) {
-        self.init()
-        self.delegate = delegate
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,12 +48,54 @@ final class GetInTouchTableViewController: UITableViewController {
 
     private func generateCells() {
         cells = [
-            Cell(image: Asset.GetInTouch.telegram.image, text: Strings.telegram, action: delegate.openTelegram),
-            Cell(image: Asset.GetInTouch.mail.image, text: Strings.email, action: delegate.openMail),
-            Cell(image: Asset.GetInTouch.gitter.image, text: Strings.gitter, action: delegate.openGitter)
+            Cell(image: Asset.GetInTouch.telegram.image, text: Strings.telegram) { [unowned self] in
+                self.openTelegram()
+            },
+            Cell(image: Asset.GetInTouch.mail.image, text: Strings.email) { [unowned self] in
+                 self.openMail()
+            },
+            Cell(image: Asset.GetInTouch.gitter.image, text: Strings.gitter) { [unowned self] in
+                self.openGitter()
+            }
         ]
     }
 
+    func openTelegram() {
+        trackEvent(MenuTrackingEvent.telegram)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.telegramURL)
+    }
+
+    private lazy var mailComposeHandler = MailComposeHandler()
+
+    func openMail() {
+        trackEvent(MenuTrackingEvent.email)
+        if MFMailComposeViewController.canSendMail() {
+            let composeVC = MFMailComposeViewController()
+            composeVC.mailComposeDelegate = mailComposeHandler
+            composeVC.setToRecipients([ApplicationServiceRegistry.walletService.configuration.supportMail])
+            // 08.08.2019: Product decision was not to localise this mail.
+            composeVC.setSubject("Feedback")
+            let message = """
+            \(SystemInfo.appVersionText)
+            Safe addresses: \(ApplicationServiceRegistry.walletService.selectedWalletAddress ?? "None")
+            Feedback:
+            """
+            composeVC.setMessageBody(message, isHTML: false)
+            present(composeVC, animated: true, completion: nil)
+        } else {
+            present(UIAlertController.mailClientIsNotConfigured(), animated: true, completion: nil)
+        }
+    }
+
+    func openGitter() {
+        trackEvent(MenuTrackingEvent.gitter)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.gitterURL)
+    }
+
+    func openInSafari(_ url: URL) {
+        let safari = SFSafariViewController(url: url)
+        present(safari, animated: true, completion: nil)
+    }
 
     // MARK: - Table view data source
 
@@ -91,6 +124,16 @@ fileprivate extension BasicTableViewCell {
     func configure(with cell: GetInTouchTableViewController.Cell) {
         leftImageView.image = cell.image
         leftTextLabel.text = cell.text
+    }
+
+}
+
+fileprivate class MailComposeHandler: NSObject, MFMailComposeViewControllerDelegate {
+
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
+        controller.dismiss(animated: true)
     }
 
 }

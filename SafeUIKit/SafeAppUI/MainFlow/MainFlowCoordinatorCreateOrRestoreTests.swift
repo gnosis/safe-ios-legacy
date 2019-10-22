@@ -32,18 +32,7 @@ class MainFlowCoordinatorCreateOrRestoreTests: SafeTestCase {
         mainFlowCoordinator.setUp()
         mainFlowCoordinator.didSelectNewSafe()
         delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is OnboardingIntroViewController)
-    }
-
-    func test_whenNewSafeFlowExits_thenShowsRoot() {
-        walletService.expect_walletState(.creationStarted)
-        walletService.expect_isSafeCreationInProgress(true)
-        mainFlowCoordinator.setUp()
-        delay()
-        mainFlowCoordinator.newSafeFlowCoordinator.exitFlow()
-        delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is
-            OnboardingCreateOrRestoreViewController)
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is OnboardingViewController)
     }
 
 }

@@ -13,7 +13,7 @@ public class MockAuthenticationService: AuthenticationApplicationService {
     public private(set) var didRequestUserRegistration = false
     private var userAuthenticated = false
     private var authenticationAllowed = false
-    public private(set) var didRequestBiometricAuthentication = false
+    public var didRequestBiometricAuthentication = false
     public private(set) var didRequestPasswordAuthentication = false
     private var enabledAuthenticationMethods = AuthenticationMethod.password
     private var possibleAuthenticationMethods: AuthenticationMethod = [.password, .touchID, .faceID]

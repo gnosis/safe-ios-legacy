@@ -71,6 +71,10 @@ public class MockEncryptionService: EncryptionDomainService {
         return addressFromStringResult ?? Address(string)
     }
 
+    public func address(publicKey: Data) -> Address {
+        preconditionFailure()
+    }
+
     public var hash_output = Data(repeating: 3, count: 32)
     public var hash_input: Data?
 
@@ -103,6 +107,10 @@ public class MockEncryptionService: EncryptionDomainService {
     public var deriveExternallyOwnedAccountFromMnemonicResult: ExternallyOwnedAccount?
     public func deriveExternallyOwnedAccount(from mnemonic: String) -> ExternallyOwnedAccount? {
         return deriveExternallyOwnedAccountFromMnemonicResult
+    }
+
+    public func recoveredAddress(from signature: Data, hash: Data) -> Address? {
+        preconditionFailure()
     }
 
 }

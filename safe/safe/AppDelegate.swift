@@ -22,7 +22,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     var window: UIWindow?
-    lazy var coordinator = MainFlowCoordinator()
+    lazy var coordinator = MainFlowCoordinator.shared
     var identityAccessDB: Database?
     var multisigWalletDB: Database?
     var secureStore: SecureStore?
@@ -56,6 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         UIApplication.shared.applicationIconBadgeNumber = 0
         cleanUp()
         sync()
+
+        #if DEBUG
+        NSSetUncaughtExceptionHandler { exc in
+            print(exc)
+            print(exc.callStackSymbols.joined(separator: "\n"))
+        }
+        #endif
+
         return true
     }
 

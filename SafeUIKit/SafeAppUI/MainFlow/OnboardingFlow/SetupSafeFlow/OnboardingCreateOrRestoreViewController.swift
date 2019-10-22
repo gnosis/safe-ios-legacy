@@ -63,22 +63,22 @@ class OnboardingCreateOrRestoreViewController: UIViewController {
         trackEvent(OnboardingTrackingEvent.createOrRestore)
     }
 
-    @IBAction func createNewSafe(_ sender: Any) {
-        if !ApplicationServiceRegistry.walletService.hasSelectedWallet {
-            ApplicationServiceRegistry.walletService.createNewDraftWallet()
-        } else {
-            ApplicationServiceRegistry.walletService.prepareForCreation()
-        }
+    @IBAction func createNewSafe(_ sender: UIButton) {
+        guard sender.isEnabled else { return }
+        sender.isEnabled = false
+        ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        ApplicationServiceRegistry.walletService.createNewDraftWallet()
         delegate?.didSelectNewSafe()
+        sender.isEnabled = true
     }
 
-    @IBAction func recoverExistingSafe(_ sender: Any) {
-        if !ApplicationServiceRegistry.walletService.hasSelectedWallet {
-            ApplicationServiceRegistry.recoveryService.createRecoverDraftWallet()
-        } else {
-            ApplicationServiceRegistry.recoveryService.prepareForRecovery()
-        }
+    @IBAction func recoverExistingSafe(_ sender: UIButton) {
+        guard sender.isEnabled else { return }
+        sender.isEnabled = false
+        ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        ApplicationServiceRegistry.recoveryService.createRecoverDraftWallet()
         delegate?.didSelectRecoverSafe()
+        sender.isEnabled = true
     }
 
 

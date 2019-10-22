@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
-   version = "1.3">
+   LastUpgradeVersion = "1100"
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
-               BuildableName = "libMultisigWalletImplementations.a"
+               BlueprintIdentifier = "0AAE7C78230450BC00E7EB07"
+               BuildableName = "MultisigWalletImplementations.framework"
                BlueprintName = "MultisigWalletImplementations"
                ReferencedContainer = "container:MultisigWallet.xcodeproj">
             </BuildableReference>
@@ -27,29 +27,24 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:MultisigWalletImplementationsTests/MultisigWalletImplementations.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AEF8AB420A088C3006A1265"
+               BlueprintIdentifier = "0AAE7C80230450BC00E7EB07"
                BuildableName = "MultisigWalletImplementationsTests.xctest"
                BlueprintName = "MultisigWalletImplementationsTests"
                ReferencedContainer = "container:MultisigWallet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
-            BuildableName = "libMultisigWalletImplementations.a"
-            BlueprintName = "MultisigWalletImplementations"
-            ReferencedContainer = "container:MultisigWallet.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -61,17 +56,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
-            BuildableName = "libMultisigWalletImplementations.a"
-            BlueprintName = "MultisigWalletImplementations"
-            ReferencedContainer = "container:MultisigWallet.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -82,8 +66,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
-            BuildableName = "libMultisigWalletImplementations.a"
+            BlueprintIdentifier = "0AAE7C78230450BC00E7EB07"
+            BuildableName = "MultisigWalletImplementations.framework"
             BlueprintName = "MultisigWalletImplementations"
             ReferencedContainer = "container:MultisigWallet.xcodeproj">
          </BuildableReference>

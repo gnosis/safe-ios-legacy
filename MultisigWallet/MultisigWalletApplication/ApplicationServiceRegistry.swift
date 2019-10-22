@@ -15,16 +15,16 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: ReplaceRecoveryPhraseApplicationService.self)
     }
 
-    public static var replaceExtensionService: ReplaceBrowserExtensionApplicationService {
-        return service(for: ReplaceBrowserExtensionApplicationService.self)
+    public static var replaceTwoFAService: ReplaceTwoFAApplicationService {
+        return service(for: ReplaceTwoFAApplicationService.self)
     }
 
-    public static var connectExtensionService: ConnectBrowserExtensionApplicationService {
-        return service(for: ConnectBrowserExtensionApplicationService.self)
+    public static var connectTwoFAService: ConnectTwoFAApplicationService {
+        return service(for: ConnectTwoFAApplicationService.self)
     }
 
-    public static var disconnectExtensionService: DisconnectBrowserExtensionApplicationService {
-        return service(for: DisconnectBrowserExtensionApplicationService.self)
+    public static var disconnectTwoFAService: DisconnectTwoFAApplicationService {
+        return service(for: DisconnectTwoFAApplicationService.self)
     }
 
     public static var contractUpgradeService: ContractUpgradeApplicationService {
@@ -53,6 +53,10 @@ public class ApplicationServiceRegistry: AbstractRegistry {
 
     static var eventRelay: EventRelay {
         return service(for: EventRelay.self)
+    }
+
+    public static var keycardService: KeycardApplicationService {
+        return service(for: KeycardApplicationService.self)
     }
 
 }

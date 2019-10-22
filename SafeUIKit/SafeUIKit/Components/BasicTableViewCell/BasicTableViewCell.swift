@@ -14,13 +14,6 @@ open class BasicTableViewCell: UITableViewCell {
 
     public static let defaultHeight: CGFloat = 62
 
-    /// Used if table view section index should be displayed
-    public var withTrailingSpace: Bool = false {
-        didSet {
-            backgroundColor = withTrailingSpace ? ColorName.transparent.color : ColorName.snowwhite.color
-        }
-    }
-
     open override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
@@ -42,9 +35,8 @@ open class BasicTableViewCell: UITableViewCell {
         rightTextLabel.textColor = ColorName.darkBlue.color
         rightTextLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         separatorView.backgroundColor = ColorName.white.color
-        let selectedView = UIView()
-        selectedView.backgroundColor = ColorName.whitesmokeTwo.color
-        selectedBackgroundView = selectedView
+        selectedBackgroundView = UIView()
+        selectedBackgroundView!.backgroundColor = ColorName.whitesmokeTwo.color
     }
 
     open func splitLeftTextLabel(title: String, subtitle: String) {

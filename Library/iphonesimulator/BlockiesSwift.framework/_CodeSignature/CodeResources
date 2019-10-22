@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/BlockiesSwift-Swift.h</key>
 		<data>
-		hlXJVycxnuEwST50aGblNpeRygc=
+		Xng7j6MRVZs0TPEavtdeETxq2KE=
 		</data>
 		<key>Headers/BlockiesSwift.h</key>
 		<data>
@@ -14,23 +14,39 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		c4z4ASfvKeXltcofE0Mstp+KiGU=
+		M4WfM2pyLR6WTzsRCy2OWhE+yHc=
+		</data>
+		<key>Modules/BlockiesSwift.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<data>
+		cEcXyAKjO7Xl+5NNzgdd6oZumkY=
+		</data>
+		<key>Modules/BlockiesSwift.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<data>
+		XNMpWiTJYjVA3modxbaJaxJ1Gh0=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftdoc</key>
 		<data>
-		9NTXnmnryncRkd6DNAQl0kF2aSo=
+		cEcXyAKjO7Xl+5NNzgdd6oZumkY=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftmodule</key>
 		<data>
-		7K38ALESGelBeFfgGthObQbY/Uc=
+		XNMpWiTJYjVA3modxbaJaxJ1Gh0=
+		</data>
+		<key>Modules/BlockiesSwift.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		1OzpY1UsieADvu5PTAeLFDhygMI=
+		</data>
+		<key>Modules/BlockiesSwift.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		JhbiiwTO+wip88E1vdl+p9ReveU=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		XJQSy2hIqyJw4c6sKRss1qaPu0M=
+		1OzpY1UsieADvu5PTAeLFDhygMI=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		PoBAhxfHFKVG2TJFoj3qJiLjGNM=
+		JhbiiwTO+wip88E1vdl+p9ReveU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +59,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			hlXJVycxnuEwST50aGblNpeRygc=
+			Xng7j6MRVZs0TPEavtdeETxq2KE=
 			</data>
 			<key>hash2</key>
 			<data>
-			0Del1ajcMhFaiS2nY9A1dKsggmRcGyjI/AMF3E0Dw4w=
+			vQBG1n2XuliAjtfr4mqn15hFKhh2agIr2V0weTEQLck=
 			</data>
 		</dict>
 		<key>Headers/BlockiesSwift.h</key>
@@ -61,48 +77,92 @@
 			M7ifHW9fV/gDaFWPEcgFeAzZAuWiz+SNO0RNUQhaTvU=
 			</data>
 		</dict>
+		<key>Modules/BlockiesSwift.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			cEcXyAKjO7Xl+5NNzgdd6oZumkY=
+			</data>
+			<key>hash2</key>
+			<data>
+			7Z8nnagOuCPt/pq24N//mh9lexn+NBGcMAUwHtsfPs0=
+			</data>
+		</dict>
+		<key>Modules/BlockiesSwift.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			XNMpWiTJYjVA3modxbaJaxJ1Gh0=
+			</data>
+			<key>hash2</key>
+			<data>
+			tIqRnYsWNYTA/mgWJ7HiQ5SByKLgP/lI5290iySOooA=
+			</data>
+		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			9NTXnmnryncRkd6DNAQl0kF2aSo=
+			cEcXyAKjO7Xl+5NNzgdd6oZumkY=
 			</data>
 			<key>hash2</key>
 			<data>
-			3wKtrzaYoTcW0k6bZMko1piX5YKIGsCQ7+viHj+qb40=
+			7Z8nnagOuCPt/pq24N//mh9lexn+NBGcMAUwHtsfPs0=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			7K38ALESGelBeFfgGthObQbY/Uc=
+			XNMpWiTJYjVA3modxbaJaxJ1Gh0=
 			</data>
 			<key>hash2</key>
 			<data>
-			vy54MMeB+g4NhHFmPYCJr2NssHl9Ds88yDn9MAa7pxQ=
+			tIqRnYsWNYTA/mgWJ7HiQ5SByKLgP/lI5290iySOooA=
+			</data>
+		</dict>
+		<key>Modules/BlockiesSwift.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1OzpY1UsieADvu5PTAeLFDhygMI=
+			</data>
+			<key>hash2</key>
+			<data>
+			+6X5lDdpX1a1pGkWetAkAhYNzU9wffdis0vllADzvT4=
+			</data>
+		</dict>
+		<key>Modules/BlockiesSwift.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			JhbiiwTO+wip88E1vdl+p9ReveU=
+			</data>
+			<key>hash2</key>
+			<data>
+			SOooSifsgYnfheB9IY01wEN/EPunwu3zUgpX6uPid8I=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XJQSy2hIqyJw4c6sKRss1qaPu0M=
+			1OzpY1UsieADvu5PTAeLFDhygMI=
 			</data>
 			<key>hash2</key>
 			<data>
-			FPPyBamLkENNqbjDNUXxzOQQTEfsoYA3c2XIwIfEiZ0=
+			+6X5lDdpX1a1pGkWetAkAhYNzU9wffdis0vllADzvT4=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			PoBAhxfHFKVG2TJFoj3qJiLjGNM=
+			JhbiiwTO+wip88E1vdl+p9ReveU=
 			</data>
 			<key>hash2</key>
 			<data>
-			H62YVLl0fiAHiUKXXAkNalRfBO6gtVOGrnOlFNx9A9w=
+			SOooSifsgYnfheB9IY01wEN/EPunwu3zUgpX6uPid8I=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

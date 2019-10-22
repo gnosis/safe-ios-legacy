@@ -32,7 +32,9 @@ public class TransactionDetailsViewController: UIViewController {
         static let outgoingType = LocalizedString("transaction_type_asset_transfer",
                                                   comment: "Outgoing transafer")
         static let settingsChangeType = LocalizedString("settings_change", comment: "Settings change")
-
+        static let statusKeyacard = LocalizedString("status_keycard", comment: "Status Keycard")
+        static let gnosisSafeAuthenticator = LocalizedString("gnosis_safe_authenticator",
+                                                             comment: "Gnosis Safe Authenticator")
 
         enum ReplaceRecoveryPhrase {
             static let title = LocalizedString("ios_replace_recovery_phrase", comment: "Replace recovery phrase")
@@ -40,24 +42,21 @@ public class TransactionDetailsViewController: UIViewController {
             static let detail = LocalizedString("layout_replace_recovery_phrase_transaction_info_description",
                                                 comment: "Detail for the header in review screen")
         }
-        enum ReplaceBrowserExtension {
-            static let title = LocalizedString("ios_replace_browser_extension", comment: "Replace browser extension")
-                .replacingOccurrences(of: "\n", with: " ")
-            static let detail = LocalizedString("layout_replace_browser_extension_info_description",
-                                                comment: "Detail for the header in review screen")
+        enum ReplaceTwoFA {
+            static let title = LocalizedString("replace_2fa", comment: "Replace 2FA")
+            static let detail = LocalizedString("replace_2fa_review_description",
+                                                comment: "Replace 2FA review description")
         }
-        enum ConnectBrowserExtension {
-            static let title = LocalizedString("ios_connect_browser_extension", comment: "Connect browser extension")
-                .replacingOccurrences(of: "\n", with: " ")
-            static let detail = LocalizedString("layout_connect_browser_extension_info_description",
-                                                comment: "Detail for the header in review screen")
+        enum PairTwoFA {
+            static let title = LocalizedString("pair_2FA_device", comment: "Pair 2FA device")
+            static let detail = LocalizedString("pair_2fa_review_description",
+                                                comment: "Pair 2FA device review description")
         }
-        enum DisconnectBrowserExtension {
-            static let title = LocalizedString("ios_disconnect_browser_extension",
-                                               comment: "Disconnect browser extension")
-                .replacingOccurrences(of: "\n", with: " ")
-            static let detail = LocalizedString("layout_disconnect_browser_extension_info_description",
-                                                comment: "Detail for the header in review screen")
+        enum DisableTwoFA {
+            static let title = LocalizedString("disable_2fa",
+                                               comment: "Disable 2FA")
+            static let detail = LocalizedString("disable_2fa_review_description",
+                                                comment: "Disable 2FA review description")
         }
         enum WalletRecovery {
             static let title = LocalizedString("ios_recovered_safe", comment: "Recovered Safe")
@@ -125,11 +124,14 @@ public class TransactionDetailsViewController: UIViewController {
         switch type {
         case .incoming, .outgoing: return .send
         case .replaceRecoveryPhrase: return .replaceRecoveryPhrase
-        case .replaceBrowserExtension: return .replaceBrowserExtension
-        case .connectBrowserExtension: return .connectBrowserExtension
-        case .disconnectBrowserExtension: return .disconnectBrowserExtension
+        case .replaceTwoFAWithAuthenticator: return .replaceTwoFAWithAuthenticator
+        case .connectAuthenticator: return .connectAuthenticator
+        case .disconnectAuthenticator: return .disconnectAuthenticator
         case .walletRecovery: return .recoverSafe
         case .contractUpgrade: return .contractUpgrade
+        case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
+        case .connectStatusKeycard: return .connectStatusKeycard
+        case .disconnectStatusKeycard: return .disconnectStatusKeycard
         }
 
     }
@@ -144,7 +146,11 @@ public class TransactionDetailsViewController: UIViewController {
         configureViewInOtherApp()
     }
 
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     private func configureTransferDetails() {
+        transferView.isHidden = true
+        settingsHeaderView.isHidden = false
+        settingsHeaderView.fromAddress = transaction.sender
         switch transaction.type {
         case .incoming:
             transferView.setIncoming()
@@ -158,42 +164,34 @@ public class TransactionDetailsViewController: UIViewController {
         case .replaceRecoveryPhrase:
             settingsHeaderView.titleText = Strings.ReplaceRecoveryPhrase.title
             settingsHeaderView.detailText = Strings.ReplaceRecoveryPhrase.detail
-            settingsHeaderView.fromAddress = transaction.sender
-            transferView.isHidden = true
-            settingsHeaderView.isHidden = false
-        case .replaceBrowserExtension:
-            settingsHeaderView.titleText = Strings.ReplaceBrowserExtension.title
-            settingsHeaderView.detailText = Strings.ReplaceBrowserExtension.detail
-            settingsHeaderView.fromAddress = transaction.sender
-            transferView.isHidden = true
-            settingsHeaderView.isHidden = false
-        case .connectBrowserExtension:
-            settingsHeaderView.titleText = Strings.ConnectBrowserExtension.title
-            settingsHeaderView.detailText = Strings.ConnectBrowserExtension.detail
-            settingsHeaderView.fromAddress = transaction.sender
-            transferView.isHidden = true
-            settingsHeaderView.isHidden = false
-        case .disconnectBrowserExtension:
-            settingsHeaderView.titleText = Strings.DisconnectBrowserExtension.title
-            settingsHeaderView.detailText = Strings.DisconnectBrowserExtension.detail
-            settingsHeaderView.fromAddress = transaction.sender
-            transferView.isHidden = true
-            settingsHeaderView.isHidden = false
+        case .replaceTwoFAWithAuthenticator:
+            settingsHeaderView.titleText = Strings.ReplaceTwoFA.title
+            settingsHeaderView.detailText = String(format: Strings.ReplaceTwoFA.detail, Strings.gnosisSafeAuthenticator)
+        case .connectAuthenticator:
+            settingsHeaderView.titleText = Strings.PairTwoFA.title
+            settingsHeaderView.detailText = String(format: Strings.PairTwoFA.detail, Strings.gnosisSafeAuthenticator)
+        case .disconnectAuthenticator:
+            settingsHeaderView.titleText = Strings.DisableTwoFA.title
+            settingsHeaderView.detailText = String(format: Strings.DisableTwoFA.detail, Strings.gnosisSafeAuthenticator)
         case .contractUpgrade:
             settingsHeaderView.titleText = Strings.ContractUpgrade.title
-            settingsHeaderView.detailText = Strings.ContractUpgrade.detail()
-            settingsHeaderView.fromAddress = transaction.sender
-            transferView.isHidden = true
-            settingsHeaderView.isHidden = false
+            let safeName = ApplicationServiceRegistry.walletService.selectedWalletData.name
+            settingsHeaderView.detailText = Strings.ContractUpgrade.detail(safeName: safeName)
         case .walletRecovery:
             settingsHeaderView.titleText = Strings.WalletRecovery.title
             settingsHeaderView.detailText =
                 ApplicationServiceRegistry.recoveryService.isRecoveryTransactionConnectsAuthenticator(transactionID) ?
                     Strings.WalletRecovery.detailWithAuthenticator :
                 Strings.WalletRecovery.detail
-            settingsHeaderView.fromAddress = transaction.sender
-            transferView.isHidden = true
-            settingsHeaderView.isHidden = false
+        case .replaceTwoFAWithStatusKeycard:
+            settingsHeaderView.titleText = Strings.ReplaceTwoFA.title
+            settingsHeaderView.detailText = String(format: Strings.ReplaceTwoFA.detail, Strings.statusKeyacard)
+        case .connectStatusKeycard:
+            settingsHeaderView.titleText = Strings.PairTwoFA.title
+            settingsHeaderView.detailText = String(format: Strings.PairTwoFA.detail, Strings.statusKeyacard)
+        case .disconnectStatusKeycard:
+            settingsHeaderView.titleText = Strings.DisableTwoFA.title
+            settingsHeaderView.detailText = String(format: Strings.DisableTwoFA.detail, Strings.statusKeyacard)
         }
         if transaction.status == .failed {
             settingsHeaderView.setFailed()
@@ -206,8 +204,9 @@ public class TransactionDetailsViewController: UIViewController {
         switch transaction.type {
         case .outgoing: transactionTypeView.value = Strings.outgoingType
         case .incoming: transactionTypeView.value = "" // we do not have incomming transactions yet
-        case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension,
-             .disconnectBrowserExtension, .contractUpgrade:
+        case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
+             .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
+             .disconnectStatusKeycard:
             transactionTypeView.value = Strings.settingsChangeType
         }
     }

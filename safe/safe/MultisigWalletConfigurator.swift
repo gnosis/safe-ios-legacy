@@ -22,6 +22,7 @@ class MultisigWalletConfigurator {
         ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
                                        for: WalletSettingsApplicationService.self)
         ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
+        ApplicationServiceRegistry.put(service: KeycardApplicationService(), for: KeycardApplicationService.self)
 
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: config.notificationServiceURL,
@@ -37,12 +38,12 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: DeploymentDomainService(), for: DeploymentDomainService.self)
         DomainRegistry.put(service: TransactionDomainService(), for: TransactionDomainService.self)
         DomainRegistry.put(service: RecoveryDomainService(), for: RecoveryDomainService.self)
-        DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
-                           for: ReplaceBrowserExtensionDomainService.self)
-        DomainRegistry.put(service: ConnectBrowserExtensionDomainService(),
-                           for: ConnectBrowserExtensionDomainService.self)
-        DomainRegistry.put(service: DisconnectBrowserExtensionDomainService(),
-                           for: DisconnectBrowserExtensionDomainService.self)
+        DomainRegistry.put(service: ReplaceTwoFADomainService(),
+                           for: ReplaceTwoFADomainService.self)
+        DomainRegistry.put(service: ConnectTwoFADomainService(),
+                           for: ConnectTwoFADomainService.self)
+        DomainRegistry.put(service: DisconnectTwoFADomainService(),
+                           for: DisconnectTwoFADomainService.self)
         DomainRegistry.put(service: ReplaceRecoveryPhraseDomainService(),
                            for: ReplaceRecoveryPhraseDomainService.self)
         DomainRegistry.put(service: ContractUpgradeDomainService(),
@@ -51,22 +52,25 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: config.safeContractMetadata),
                            for: SafeContractMetadataRepository.self)
         DomainRegistry.put(service: UserDefaultsAppSettingsRepository(), for: AppSettingsRepository.self)
-        DomainRegistry.put(service: WalletDiagnosticDomainService(), for: WalletDiagnosticDomainService.self)
+        DomainRegistry.put(service: WalletDiagnosticDomainService(), for: WalletDiagnosticService.self)
 
+        if #available(iOS 13.1, *) {
+            DomainRegistry.put(service: KeycardHardwareService(), for: KeycardDomainService.self)
+        }
 
         let relay = EventRelay(publisher: DomainRegistry.eventPublisher)
         ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
 
         // temporal coupling with domain model's services
         ApplicationServiceRegistry
-            .put(service: ReplaceBrowserExtensionApplicationService.create(),
-                 for: ReplaceBrowserExtensionApplicationService.self)
+            .put(service: ReplaceTwoFAApplicationService.create(),
+                 for: ReplaceTwoFAApplicationService.self)
         ApplicationServiceRegistry
-            .put(service: ConnectBrowserExtensionApplicationService.create(),
-                 for: ConnectBrowserExtensionApplicationService.self)
+            .put(service: ConnectTwoFAApplicationService.create(),
+                 for: ConnectTwoFAApplicationService.self)
         ApplicationServiceRegistry
-            .put(service: DisconnectBrowserExtensionApplicationService.createDisconnectService(),
-                 for: DisconnectBrowserExtensionApplicationService.self)
+            .put(service: DisconnectTwoFAApplicationService.createDisconnectService(),
+                 for: DisconnectTwoFAApplicationService.self)
         ApplicationServiceRegistry
             .put(service: ReplaceRecoveryPhraseApplicationService.create(),
                  for: ReplaceRecoveryPhraseApplicationService.self)
@@ -94,6 +98,7 @@ class MultisigWalletConfigurator {
             let tokenListItemRepo = DBTokenListItemRepository(db: db)
             let monitorRepo = DBRBETransactionMonitorRepository(db: db)
             let walletConnectRepo = DBWalletConnectSessionRepository(db: db)
+            let keycardRepo = DBKeycardRepository(db: db)
             let migrationRepo = DBMigrationRepository(db: db)
             let migrationService = DBMigrationService(repository: migrationRepo)
             DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
@@ -103,6 +108,7 @@ class MultisigWalletConfigurator {
             DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
             DomainRegistry.put(service: monitorRepo, for: RBETransactionMonitorRepository.self)
             DomainRegistry.put(service: walletConnectRepo, for: WalletConnectSessionRepository.self)
+            DomainRegistry.put(service: keycardRepo, for: KeycardRepository.self)
 
             let noDatabase = !db.exists
             if noDatabase {
@@ -116,6 +122,7 @@ class MultisigWalletConfigurator {
             tokenListItemRepo.setUp()
             monitorRepo.setUp()
             walletConnectRepo.setUp()
+            keycardRepo.setUp()
             migrationRepo.setUp()
 
             if noDatabase {
@@ -124,7 +131,11 @@ class MultisigWalletConfigurator {
 
             migrate(with: migrationService)
         } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
+            DispatchQueue.main.async {
+                ErrorHandler.showFatalError(log: "Failed to set up multisig database",
+                                            error: e,
+                                            from: appDelegate.window!.rootViewController!)
+            }
         }
     }
 

@@ -8,6 +8,7 @@ import Common
 
 public enum RecoveryApplicationServiceError: Error {
     case invalidContractAddress
+    case walletAlreadyExists
     case recoveryPhraseInvalid
     case recoveryAccountsNotFound
     case unsupportedOwnerCount
@@ -28,11 +29,6 @@ public class RecoveryApplicationService {
         DomainRegistry.recoveryService.createRecoverDraftWallet()
     }
 
-    public func prepareForRecovery() {
-        // remove all owners, recreate new owner
-        DomainRegistry.recoveryService.prepareForRecovery()
-    }
-
     public func validate(address: String,
                          subscriber: EventSubscriber,
                          onError errorHandler: @escaping (Error) -> Void) {
@@ -51,6 +47,17 @@ public class RecoveryApplicationService {
         }
     }
 
+    public func verifyRecoveryPhrase(_ phrase: String, id: String) throws {
+        guard let wallet = DomainRegistry.walletRepository.find(id: WalletID(id)) else {
+            throw RecoveryApplicationServiceError.invalidContractAddress
+        }
+        do {
+            try _ = DomainRegistry.recoveryService.verifyRecovery(wallet: wallet, recoveryPhrase: phrase)
+        } catch {
+            throw RecoveryApplicationService.applicationError(from: error)
+        }
+    }
+
     public func estimateRecoveryTransaction() -> [TokenData] {
         return DomainRegistry.recoveryService.estimateRecoveryTransaction()
     }
@@ -64,9 +71,9 @@ public class RecoveryApplicationService {
         }
     }
 
-    public func recoveryTransaction() -> TransactionData? {
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        guard let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) else {
+    public func recoveryTransaction(walletID: String) -> TransactionData? {
+        guard let wallet = DomainRegistry.walletRepository.find(id: WalletID(walletID)),
+            let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) else {
             return nil
         }
         return transactionData(tx)
@@ -79,38 +86,6 @@ public class RecoveryApplicationService {
 
     // swiftlint:disable:next cyclomatic_complexity
     public func transactionData(_ tx: Transaction) -> TransactionData {
-        let status: TransactionData.Status
-        switch tx.status {
-        case .draft:
-            status = .waitingForConfirmation
-        case .signing:
-            status = .readyToSubmit
-        case .pending:
-            status = .pending
-        case .rejected:
-            status = .rejected
-        case .failed:
-            status = .failed
-        case .success:
-            status = .success
-        }
-        let type: TransactionData.TransactionType
-        switch tx.type {
-        case .transfer:
-            type = .outgoing
-        case .walletRecovery:
-            type = .walletRecovery
-        case .replaceRecoveryPhrase:
-            type = .replaceRecoveryPhrase
-        case .replaceBrowserExtension:
-            type = .replaceBrowserExtension
-        case .connectBrowserExtension:
-            type = .connectBrowserExtension
-        case .disconnectBrowserExtension:
-            type = .disconnectBrowserExtension
-        case .contractUpgrade:
-            type = .contractUpgrade
-        }
         let amount = tx.amount ?? TokenAmount(amount: 0, token: Token.Ether)
         let amountTokenData = TokenData(token: amount.token, balance: amount.amount)
         let paymentToken = WalletDomainService.token(id: tx.accountID.tokenID.id) ?? Token.Ether
@@ -119,12 +94,13 @@ public class RecoveryApplicationService {
         let feeEstimate = tx.feeEstimate ?? zeroFeeEstimate
         let feeTokenData = TokenData(token: paymentToken, balance: -feeEstimate.totalDisplayedToUser.amount)
         return TransactionData(id: tx.id.id,
+                               walletID: tx.accountID.walletID.id,
                                sender: tx.sender!.value,
                                recipient: tx.recipient!.value,
                                amountTokenData: amountTokenData,
                                feeTokenData: feeTokenData,
-                               status: status,
-                               type: type,
+                               status: tx.status.transactionDataStatus,
+                               type: tx.type.transactionDataType,
                                created: tx.createdDate,
                                updated: tx.updatedDate,
                                submitted: tx.submittedDate,
@@ -140,8 +116,8 @@ public class RecoveryApplicationService {
         return DomainRegistry.recoveryService.isRecoveryInProgress()
     }
 
-    public func cancelRecovery() {
-        DomainRegistry.recoveryService.cancelRecovery()
+    public func cancelRecovery(walletID: String) {
+        DomainRegistry.recoveryService.cancelRecovery(walletID: WalletID(walletID))
     }
 
     public func isRecoveryTransactionConnectsAuthenticator(_ id: String) -> Bool {
@@ -150,10 +126,20 @@ public class RecoveryApplicationService {
 
     public func resumeRecovery(subscriber: EventSubscriber,
                                onError errorHandler: @escaping (Error) -> Void) {
+        guard let walletID = DomainRegistry.walletRepository.selectedWallet()?.id else { return }
         withEnvironment(for: subscriber, errorHandler: errorHandler) {
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletRecovered.self)
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: RecoveryTransactionHashIsKnown.self)
-            DomainRegistry.recoveryService.resume()
+            DomainRegistry.recoveryService.resume(walletID: walletID)
+        }
+    }
+
+    public func resumeRecoveryInBackground() {
+        let walletIDs = DomainRegistry.walletRepository.all().filter { $0.isRecoveryInProgress }.map { WalletID($0.id.id) }
+        for walletID in walletIDs {
+            DispatchQueue.global().async {
+                DomainRegistry.recoveryService.resume(walletID: walletID)
+            }
         }
     }
 
@@ -179,6 +165,8 @@ public class RecoveryApplicationService {
         switch domainError {
         case RecoveryServiceError.invalidContractAddress:
             return RecoveryApplicationServiceError.invalidContractAddress
+        case RecoveryServiceError.walletAlreadyExists:
+            return RecoveryApplicationServiceError.walletAlreadyExists
         case RecoveryServiceError.recoveryPhraseInvalid:
             return RecoveryApplicationServiceError.recoveryPhraseInvalid
         case RecoveryServiceError.recoveryAccountsNotFound:

@@ -23,8 +23,7 @@ class ReplaceRecoveryPhraseFlowCoordinator: FlowCoordinator {
 extension IntroContentView.Content {
 
     static let replacePhrase =
-        IntroContentView.Content(header: LocalizedString("new_seed", comment: "Replace recovery phrase"),
-                                 body: LocalizedString("this_will_generate_new_seed",
+        IntroContentView.Content(body: LocalizedString("this_will_generate_new_seed",
                                                        comment: "Text between stars (*) will be emphasized"),
                                  icon: Asset.replacePhrase.image)
 
@@ -33,8 +32,9 @@ extension IntroContentView.Content {
 extension ReplaceRecoveryPhraseFlowCoordinator {
 
     enum ReplaceRecoveryPhraseStrings {
-        static let title = LocalizedString("ios_replace_recovery_phrase",
-                                           comment: "Title for the header in review screen")
+        static let introTitle = LocalizedString("new_seed", comment: "Replace recovery phrase")
+        static let reviewTitle = LocalizedString("ios_replace_recovery_phrase",
+                                                 comment: "Title for the header in review screen")
             .replacingOccurrences(of: "\n", with: " ")
         static let detail = LocalizedString("ios_replace_seed_details",
                                             comment: "Detail for the header in review screen")
@@ -45,6 +45,7 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
         controller.starter = ApplicationServiceRegistry.replacePhraseService
         controller.delegate = self
         controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.intro
+        controller.setTitle(ReplaceRecoveryPhraseStrings.introTitle)
         controller.setContent(.replacePhrase)
         return controller
     }
@@ -65,7 +66,7 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
 
     func reviewViewController() -> UIViewController {
         let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = ReplaceRecoveryPhraseStrings.title
+        vc.titleString = ReplaceRecoveryPhraseStrings.reviewTitle
         vc.detailString = ReplaceRecoveryPhraseStrings.detail
         vc.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.review
         vc.successTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.success
@@ -116,7 +117,9 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ReviewTransactionViewControllerD
         DispatchQueue.global.async {
             ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: self.transactionID)
         }
-        push(SuccessViewController.replaceSeedSuccess(action: exitFlow))
+        push(SuccessViewController.replaceSeedSuccess { [unowned self] in
+            self.exitFlow()
+        })
     }
 
 }

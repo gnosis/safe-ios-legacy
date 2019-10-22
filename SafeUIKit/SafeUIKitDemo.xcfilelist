@@ -12,7 +12,5 @@ ${SRCROOT}/../Library/${PLATFORM_NAME}/BigInt.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/CryptoEthereumSwift.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/DateTools.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/EthereumKit.framework
-${SRCROOT}/../Library/${PLATFORM_NAME}/CryptoSwift.framework
-${SRCROOT}/../Library/${PLATFORM_NAME}/CryptoEthereumSwift.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/Starscream.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/WalletConnectSwift.framework

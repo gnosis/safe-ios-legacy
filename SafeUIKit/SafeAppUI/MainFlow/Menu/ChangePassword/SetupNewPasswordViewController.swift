@@ -91,7 +91,7 @@ class SetupNewPasswordViewController: UIViewController {
         confirmNewPasswordInput.textInput.placeholder = Strings.confirmPasswordPlaceholder
         confirmNewPasswordInput.addRule(Strings.passwordDoesNotMatch,
                                         successText: Strings.confirmed,
-                                        inactiveText: " ") {
+                                        inactiveText: " ") { [unowned self] in
                                             $0 == self.password.new
         }
     }

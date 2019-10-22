@@ -12,10 +12,8 @@ public class ErrorHandler {
     public enum Strings {
 
         public static let fatalErrorTitle = LocalizedString("ios_fatal", comment: "Fatal error alert's title")
-        public static let errorTitle = LocalizedString("error", comment: "Error alert's title")
-        public static let ok = LocalizedString("ok", comment: "Fatal error alert's Ok button title")
         public static let fatalErrorMessage = LocalizedString("ios_fatal_description", comment: "Fatal error alert's message")
-        public static let errorMessage = LocalizedString("ios_error_description", comment: "Generic error message alert")
+        public static let ok = LocalizedString("ok", comment: "Fatal error alert's Ok button title")
 
     }
     // swiftlint:enable line_length
@@ -28,35 +26,25 @@ public class ErrorHandler {
     public static func showFatalError(message: String = Strings.fatalErrorMessage,
                                       log: String,
                                       error: Error?,
+                                      from vc: UIViewController,
                                       file: StaticString = #file,
                                       line: UInt = #line) {
         ApplicationServiceRegistry.logger.fatal(log, error: error, file: file, line: line)
-        instance.showError(title: Strings.fatalErrorTitle, message: message, log: log, error: error) {
+        instance.showError(title: Strings.fatalErrorTitle, message: message, log: log, error: error, from: vc) {
             if instance.crashOnFatalError {
                 fatalError(message + "; " + log + (error == nil ? "" : "; \(error!): \(error!.localizedDescription)"))
             }
         }
     }
 
-    public static func showError(message: String = Strings.errorMessage,
-                                 log: String,
-                                 error: Error?,
-                                 file: StaticString = #file,
-                                 line: UInt = #line) {
-        ApplicationServiceRegistry.logger.error(log, error: error, file: file, line: line)
-        // swiftlint:disable trailing_closure
-        instance.showError(title: Strings.errorTitle, message: message, log: log, error: error, action: {})
-    }
-
-    private func showError(title: String, message: String, log: String, error: Error?, action: @escaping () -> Void) {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = UIViewController()
-        vc.view.backgroundColor = ColorName.transparent.color
-        window.rootViewController = vc
-        window.windowLevel = UIWindow.Level.alert + 1
-        window.makeKeyAndVisible()
+    private func showError(title: String,
+                           message: String,
+                           log: String,
+                           error: Error?,
+                           from vc: UIViewController,
+                           action: @escaping () -> Void) {
         let controller = alertController(title: title, message: message, log: log, action: action)
-        vc.show(controller, sender: vc)
+        vc.present(controller, animated: true)
     }
 
     private func alertController(

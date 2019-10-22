@@ -22,7 +22,7 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
     func test_whenLoadedForEth_thenHasCorrectFees() {
         let (data, vc) = ethDataAndCotroller()
 
-        let balance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
+        let balance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address), walletID: data.walletID)!
         let resultingBalance = balance - data.amountTokenData.balance! - data.feeTokenData.balance!
         let formatter = TokenFormatter()
 
@@ -38,11 +38,12 @@ class SendReviewViewControllerTests: ReviewTransactionViewControllerTests {
     func test_whenLoadedForToken_thenHasCorrectFees() {
         let (data, vc) = tokenDataAndCotroller()
 
-        let tokenBalance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
+        let tokenBalance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address),
+                                                  walletID: data.walletID)!
         let tokenResultingBalance = tokenBalance - data.amountTokenData.balance!
         let formatter = TokenFormatter()
 
-        let feeBalance = service.accountBalance(tokenID: BaseID(data.feeTokenData.address))!
+        let feeBalance = service.accountBalance(tokenID: BaseID(data.feeTokenData.address), walletID: data.walletID)!
         let feeResultingBalance = feeBalance - data.feeTokenData.balance!
 
         let cell = vc.cellForRow(vc.cellCount() - 2) as! FeeCalculationCell

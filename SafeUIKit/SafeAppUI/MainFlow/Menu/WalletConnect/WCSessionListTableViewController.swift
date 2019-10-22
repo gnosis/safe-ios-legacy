@@ -91,7 +91,8 @@ import MultisigWalletApplication
 
     private func update() {
         sessions = wcService.sessions()
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
             self.tableView.backgroundView = self.sessions.isEmpty ? self.noSessionsView : nil
             self.tableView.reloadData()
         }

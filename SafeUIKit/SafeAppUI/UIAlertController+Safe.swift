@@ -19,7 +19,11 @@ extension UIAlertController {
     }
 
     func withCloseAction(handler: @escaping () -> Void = {}) -> UIAlertController {
-        addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"),
+        return withDefaultAction(title: LocalizedString("close", comment: "Close"), handler: handler)
+    }
+
+    func withDefaultAction(title: String, handler: @escaping () -> Void = {}) -> UIAlertController {
+        addAction(UIAlertAction(title: title,
                                 style: .default,
                                 handler: wrapNoArguments(closure: handler)))
         return self
@@ -116,6 +120,21 @@ extension UIAlertController {
         let alert = create(title: "E-mail",
                            message: ApplicationServiceRegistry.walletService.configuration.supportMail)
         return alert.withCloseAction()
+    }
+
+    static func genericError() -> UIAlertController {
+        let errorText = LocalizedString("ios_error_description",
+                                        comment: "Generic error message. Try again.")
+        return UIAlertController.operationFailed(message: errorText)
+    }
+
+    static func keycardBlocked(getInTouch: @escaping () -> Void) -> UIAlertController {
+        let title = LocalizedString("keycard_blocked", comment: "Blocked")
+        let message = LocalizedString("keycard_unblock_get_in_touch", comment: "Get in touch")
+        let button = LocalizedString("get_in_touch", comment: "Get In Touch")
+        return UIAlertController.create(title: title, message: message)
+            .withCancelAction()
+            .withDefaultAction(title: button, handler: getInTouch)
     }
 
 }

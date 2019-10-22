@@ -20,7 +20,6 @@ final class VerifyCurrentPasswordViewController: UIViewController {
     private var authenticationService: AuthenticationApplicationService {
         return ApplicationServiceRegistry.authenticationService
     }
-    private var clockService: Clock { return ApplicationServiceRegistry.clock }
 
     static func create(delegate: VerifyCurrentPasswordViewControllerDelegate) -> VerifyCurrentPasswordViewController {
         let vc = StoryboardScene.ChangePassword.verifyCurrentPasswordViewController.instantiate()
@@ -64,20 +63,13 @@ final class VerifyCurrentPasswordViewController: UIViewController {
 
 extension VerifyCurrentPasswordViewController: VerifiableInputDelegate {
 
-    func verifiableInputWillEnter(_ verifiableInput: VerifiableInput, newValue: String) {
-        passwordInput.removeAllRules()
-        passwordInput.revalidateText()
-    }
-
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         let isValidPassword = ApplicationServiceRegistry.authenticationService.verifyPassword(verifiableInput.text!)
 
-        passwordInput.removeAllRules()
-        passwordInput.addRule(Strings.incorrect) { _ in isValidPassword }
-        passwordInput.revalidateText()
-
         if isValidPassword {
             delegate.didVerifyPassword()
+        } else {
+            passwordInput.setExplicitError(Strings.incorrect)
         }
     }
 

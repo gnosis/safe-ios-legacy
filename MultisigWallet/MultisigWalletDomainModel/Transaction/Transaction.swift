@@ -38,7 +38,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Querying transaction data
 
-    public let type: TransactionType
+    public private(set) var type: TransactionType
     public private(set) var sender: Address?
     public private(set) var recipient: Address?
     public private(set) var amount: TokenAmount?
@@ -82,9 +82,9 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Validating transaction
 
-    public func isDangerous() -> Bool {
+    public func isDangerous(walletAddress: Address) -> Bool {
         return ![nil, .call].contains(operation) ||
-            (recipient == DomainRegistry.walletRepository.selectedWallet()?.address && !(data?.isEmpty ?? true))
+            (recipient == walletAddress && !(data?.isEmpty ?? true))
     }
 
     // MARK: - Changing transaction's status
@@ -215,6 +215,14 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         return self
     }
 
+    @discardableResult
+    public func change(type: TransactionType) -> Transaction {
+        assertCanChangeParameters()
+        self.type = type
+        timestampUpdated(at: Date())
+        return self
+    }
+
     private func assertCanChangeParameters() {
         try! assertTrue(state.canChangeParameters, Error.invalidStatusForEditing(status))
     }
@@ -315,10 +323,48 @@ public enum TransactionType: Int {
     case transfer = 0
     case walletRecovery = 1
     case replaceRecoveryPhrase = 2
-    case replaceBrowserExtension = 3
-    case connectBrowserExtension = 4
-    case disconnectBrowserExtension = 5
+    case replaceTwoFAWithAuthenticator = 3
+    case connectAuthenticator = 4
+    case disconnectAuthenticator = 5
     case contractUpgrade = 6
+    case replaceTwoFAWithStatusKeycard = 7
+    case connectStatusKeycard = 8
+    case disconnectStatusKeycard = 9
+
+}
+
+extension TransactionType {
+
+    var correspondingOwnerRole: OwnerRole? {
+        switch self {
+        case .replaceTwoFAWithAuthenticator,
+             .connectAuthenticator,
+             .disconnectAuthenticator:
+            return .browserExtension
+        case .replaceTwoFAWithStatusKeycard,
+             .connectStatusKeycard,
+             .disconnectStatusKeycard:
+            return .keycard
+        default:
+            return nil
+        }
+    }
+
+    public var isConnectTwoFA: Bool {
+        return self == .connectStatusKeycard || self == .connectAuthenticator
+    }
+
+    public var isDisconnectTwoFA: Bool {
+        return self == .disconnectStatusKeycard || self == .disconnectAuthenticator
+    }
+
+    public var isReplaceTwoFA: Bool {
+        return self == .replaceTwoFAWithAuthenticator || self == .replaceTwoFAWithStatusKeycard
+    }
+
+    public var isReplaceOrDisconnectTwoFA: Bool {
+        return isReplaceTwoFA || isDisconnectTwoFA
+    }
 
 }
 

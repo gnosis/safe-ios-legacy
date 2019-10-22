@@ -9,7 +9,7 @@ public final class MockAccountUpdateService: AccountUpdateDomainService {
     public var didUpdateBalances = false
     public override func updateAccountsBalances() throws {
         didUpdateBalances = true
-        try super.updateAccountsBalances()
+        DomainRegistry.eventPublisher.publish(AccountsBalancesUpdated())
     }
 
     public var updateAccountBalance_input: Token?

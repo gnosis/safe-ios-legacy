@@ -10,17 +10,31 @@ import Common
 final class RecoverSafeFlowCoordinator: FlowCoordinator {
 
     let flowTitle: String = LocalizedString("recover_safe_title", comment: "Recover Safe")
-    weak var mainFlowCoordinator: MainFlowCoordinator!
+    var keycardFlowCoordinator = SKKeycardFlowCoordinator()
 
     override func setUp() {
         super.setUp()
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
             exitFlow()
         } else if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
-            push(inProgressViewController())
+            showInProgress()
         } else {
             push(introViewController())
         }
+    }
+
+    func finish(from vc: UIViewController? = nil) {
+        ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        if navigationController.topViewController === vc {
+            MainFlowCoordinator.shared.switchToRootController()
+        }
+        exitFlow()
+    }
+
+    override func setRoot(_ controller: UIViewController) {
+        guard rootViewController !== controller else { return }
+        super.setRoot(controller)
+        [MainFlowCoordinator.shared, keycardFlowCoordinator].forEach { $0?.setRoot(controller) }
     }
 
 }
@@ -34,20 +48,24 @@ extension RecoverSafeFlowCoordinator {
         return controller
     }
 
-    func inProgressViewController() -> UIViewController {
-        return RecoverFeePaidViewController.create(delegate: self)
+    func showInProgress() {
+        if let existingVC = navigationController.topViewController as? RecoverFeePaidViewController,
+            existingVC.walletID == ApplicationServiceRegistry.walletService.selectedWalletID() {
+            return
+        }
+        let vc = RecoverFeePaidViewController.create(delegate: self)
+        setRoot(CustomNavigationController(rootViewController: vc))
     }
 
-    func newPairController() -> TwoFAViewController {
-        let controller = TwoFAViewController.create(delegate: self)
-        controller.screenTitle = flowTitle
-        controller.screenHeader = LocalizedString("ios_connect_browser_extension",
-                                                  comment: "Header for add browser extension screen")
-                                  .replacingOccurrences(of: "\n", with: " ")
-        controller.descriptionText = LocalizedString("enable_2fa",
-                                                     comment: "Description for add browser extension screen")
-        controller.screenTrackingEvent = RecoverSafeTrackingEvent.twoFA
-        controller.scanTrackingEvent = RecoverSafeTrackingEvent.twoFAScan
+    func newPairController() -> UIViewController {
+        let controller = PairWith2FAController.create(onNext: { [unowned self] in
+            let controller = TwoFATableViewController()
+            controller.delegate = self
+            self.push(controller)
+        }, onSkip: { [unowned self] in
+            self.showPaymentIntro()
+        })
+        controller.hidesStepView = true
         controller.navigationItem.backBarButtonItem = .backButton()
         return controller
     }
@@ -80,6 +98,9 @@ extension RecoverSafeFlowCoordinator: OnboardingIntroViewControllerDelegate {
         push(addressViewController())
     }
 
+    func didGoBack() {
+        finish()
+    }
 }
 
 extension RecoverSafeFlowCoordinator: AddressInputViewControllerDelegate {
@@ -102,24 +123,62 @@ extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate 
         }
     }
 
-    func recoveryPhraseInputViewControllerDidFinish() {
+    func recoveryPhraseInputViewControllerDidFinish(_ controller: RecoveryPhraseInputViewController) {
         push(newPairController())
     }
 
 }
 
-extension RecoverSafeFlowCoordinator: TwoFAViewControllerDelegate {
+extension RecoverSafeFlowCoordinator: TwoFATableViewControllerDelegate {
 
-    func twoFAViewController(_ controller: TwoFAViewController, didScanAddress address: String, code: String) throws {
+    func didSelectTwoFAOption(_ option: TwoFAOption) {
+        switch option {
+        case .statusKeycard:
+            keycardFlowCoordinator.hidesSteps = true
+            keycardFlowCoordinator.onSucces = { address in
+                ApplicationServiceRegistry.walletService.addOwner(address: address, type: .keycard)
+            }
+            enter(flow: keycardFlowCoordinator) {
+                self.showPaymentIntro()
+            }
+        case .gnosisAuthenticator:
+            showConnectAuthenticator()
+        }
+    }
+
+    func didSelectLearnMore(for option: TwoFAOption) {
+        let supportCoordinator = SupportFlowCoordinator(from: self)
+        switch option {
+        case .gnosisAuthenticator:
+            supportCoordinator.openAuthenticatorInfo()
+        case .statusKeycard:
+            supportCoordinator.openStausKeycardInfo()
+        }
+    }
+
+    private func showConnectAuthenticator() {
+        let controller = AuthenticatorViewController.create(delegate: self)
+        push(controller)
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: AuthenticatorViewControllerDelegate {
+
+    func authenticatorViewController(_ controller: AuthenticatorViewController, didScanAddress address: String, code: String) throws {
         try ApplicationServiceRegistry.walletService
             .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
     }
 
-    func twoFAViewControllerDidFinish() {
+    func authenticatorViewControllerDidFinish() {
         showPaymentIntro()
     }
 
-    func twoFAViewControllerDidSkipPairing() {
+    func didSelectOpenAuthenticatorInfo() {
+        SupportFlowCoordinator(from: self).openAuthenticatorInfo()
+    }
+
+    func authenticatorViewControllerDidSkipPairing() {
         ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
         showPaymentIntro()
     }
@@ -173,8 +232,9 @@ extension RecoverSafeFlowCoordinator: CreationFeePaymentMethodDelegate {
 
 extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
 
-    func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit() {
-        let tx = ApplicationServiceRegistry.recoveryService.recoveryTransaction()!
+    func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit(_ controller: RecoverRecoveryFeeViewController) {
+        guard let walletID = ApplicationServiceRegistry.walletService.selectedWalletID(),
+            let tx = ApplicationServiceRegistry.recoveryService.recoveryTransaction(walletID: walletID) else { return }
         let controller = RecoverReviewViewController(transactionID: tx.id, delegate: self)
         controller.screenTrackingEvent = RecoverSafeTrackingEvent.review
         var stack = navigationController.viewControllers
@@ -183,8 +243,8 @@ extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
         navigationController.viewControllers = stack
     }
 
-    func recoverRecoveryFeeViewControllerDidCancel() {
-        exitFlow()
+    func recoverRecoveryFeeViewControllerDidCancel(_ controller: RecoverRecoveryFeeViewController) {
+        finish(from: controller)
     }
 
 }
@@ -192,7 +252,7 @@ extension RecoverSafeFlowCoordinator: RecoverRecoveryFeeViewControllerDelegate {
 extension RecoverSafeFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        push(inProgressViewController())
+        showInProgress()
     }
 
     func reviewTransactionViewControllerWantsToSubmitTransaction(_ controller: ReviewTransactionViewController,
@@ -204,20 +264,21 @@ extension RecoverSafeFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
 extension RecoverSafeFlowCoordinator: RecoverFeePaidViewControllerDelegate {
 
-    func recoverFeePaidViewControllerOpenMenu() {
-        mainFlowCoordinator.openMenu()
+    func recoverFeePaidViewControllerOpenMenu(_ controller: RecoverFeePaidViewController) {
+        MainFlowCoordinator.shared.openMenu()
     }
 
-    func recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String) {
+    func recoverFeePaidViewControllerWantsToOpenTransactionInExternalViewer(_ controller: RecoverFeePaidViewController,
+                                                                            transactionID: String) {
         SupportFlowCoordinator(from: self).openTransactionBrowser(transactionID)
     }
 
-    func recoverFeePaidViewControllerDidFail() {
-        exitFlow()
+    func recoverFeePaidViewControllerDidFail(_ controller: RecoverFeePaidViewController) {
+        finish(from: controller)
     }
 
-    func recoverFeePaidViewControllerDidSuccess() {
-        exitFlow()
+    func recoverFeePaidViewControllerDidSuccess(_ controller: RecoverFeePaidViewController) {
+        finish(from: controller)
     }
 
 }

@@ -10,13 +10,16 @@ import UserNotifications
 
 open class MainFlowCoordinator: FlowCoordinator {
 
+    public static let shared = MainFlowCoordinator()
+
     private let manageTokensFlowCoordinator = ManageTokensFlowCoordinator()
     let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
     let sendFlowCoordinator = SendFlowCoordinator()
     let newSafeFlowCoordinator = CreateSafeFlowCoordinator()
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionsManager = IncomingTransactionsManager()
-    private (set) var walletConnectFlowCoordinator: WalletConnectFlowCoordinator!
+    let walletConnectFlowCoordinator = WalletConnectFlowCoordinator()
+    let contractUpgradeFlowCoordinator = ContractUpgradeFlowCoordinator()
     /// Used for modal transitioning of Terms screen
     private lazy var overlayAnimatorFactory = OverlayAnimatorFactory()
 
@@ -31,15 +34,30 @@ open class MainFlowCoordinator: FlowCoordinator {
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
 
+    // TODO: GH-1181: re-implement this with a "childFlowCoordinator" idea
+    // or a global root view controller.
+    // The idea here is that when root controller changes, all of the flow coordinators
+    // should change the root.
+    override func setRoot(_ controller: UIViewController) {
+        guard rootViewController !== controller else { return }
+        super.setRoot(controller)
+        [manageTokensFlowCoordinator,
+         masterPasswordFlowCoordinator,
+         sendFlowCoordinator,
+         newSafeFlowCoordinator,
+         recoverSafeFlowCoordinator,
+         walletConnectFlowCoordinator,
+         contractUpgradeFlowCoordinator].forEach { $0.setRoot(controller) }
+    }
+
     public init() {
         super.init(rootViewController: CustomNavigationController())
         configureGloabalAppearance()
-        newSafeFlowCoordinator.mainFlowCoordinator = self
-        recoverSafeFlowCoordinator.mainFlowCoordinator = self
     }
 
     private func configureGloabalAppearance() {
         UIButton.appearance().tintColor = ColorName.hold.color
+        UIBarButtonItem.appearance().tintColor = ColorName.hold.color
         UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = nil
 
         let navBarAppearance = UINavigationBar.appearance()
@@ -58,6 +76,12 @@ open class MainFlowCoordinator: FlowCoordinator {
 
     func appDidFinishLaunching() {
         updateUserIdentifier()
+
+        ApplicationServiceRegistry.walletService.cleanUpDrafts()
+        ApplicationServiceRegistry.walletService.repairModelIfNeeded()
+        ApplicationServiceRegistry.walletService.resumeDeploymentInBackground()
+        ApplicationServiceRegistry.recoveryService.resumeRecoveryInBackground()
+
         defer {
             ApplicationServiceRegistry.walletConnectService.subscribeForIncomingTransactions(self)
         }
@@ -65,10 +89,6 @@ open class MainFlowCoordinator: FlowCoordinator {
             push(OnboardingWelcomeViewController.create(delegate: self))
             applicationRootViewController = rootViewController
             return
-        } else if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
-            didSelectNewSafe()
-        } else if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
-            didSelectRecoverSafe()
         } else {
             switchToRootController()
         }
@@ -82,25 +102,37 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     func switchToRootController() {
-        let nextController: UIViewController
+        updateUserIdentifier()
         if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
-            updateUserIdentifier()
-            DispatchQueue.main.async(execute: registerForRemoteNotifciations)
+            DispatchQueue.main.async { [unowned self] in
+                self.registerForRemoteNotifciations()
+            }
+
+            if let existingVC = navigationController.topViewController as? MainViewController,
+                existingVC.walletID == ApplicationServiceRegistry.walletService.selectedWalletID() {
+                return
+            }
+
             let mainVC = MainViewController.create(delegate: self)
             mainVC.navigationItem.backBarButtonItem = .backButton()
-            nextController = mainVC
-        } else {
-            nextController = OnboardingCreateOrRestoreViewController.create(delegate: self)
+            setRoot(CustomNavigationController(rootViewController: mainVC))
+        } else if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
+            didSelectNewSafe()
+        } else if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
+            didSelectRecoverSafe()
+        } else if !(navigationController.topViewController is OnboardingCreateOrRestoreViewController) {
+            let vc = OnboardingCreateOrRestoreViewController.create(delegate: self)
+            setRoot(CustomNavigationController(rootViewController: vc))
         }
-        navigationController.setViewControllers([nextController], animated: false)
     }
 
-
     func requestToUnlockApp(useUIApplicationRoot: Bool = false) {
+        // TODO: try to use local `lockedViewController` since it will be captured by the UnlockVC's closure.
         lockedViewController = useUIApplicationRoot ? applicationRootViewController : rootViewController
         applicationRootViewController = UnlockViewController.create { [unowned self] success in
             if !success { return }
             self.applicationRootViewController = self.lockedViewController
+            self.lockedViewController = nil
         }
     }
 
@@ -134,7 +166,7 @@ open class MainFlowCoordinator: FlowCoordinator {
                         tx.id == vc.tx.id {
                         vc.update(with: tx)
                     } else if tx.status != .rejected {
-                        self.handleIncomingBETransaction(transactionID)
+                        self.handleIncomingPushTransaction(transactionID)
                     }
                 }
             } catch WalletApplicationServiceError.validationFailed { // dangerous transaction
@@ -149,10 +181,12 @@ open class MainFlowCoordinator: FlowCoordinator {
         }
     }
 
-    private func handleIncomingBETransaction(_ transactionID: String) {
+    private func handleIncomingPushTransaction(_ transactionID: String) {
         let coordinator = incomingTransactionsManager.coordinator(for: transactionID, source: .browserExtension)
-        enterTransactionFlow(coordinator) { [unowned self] in
-            self.incomingTransactionsManager.releaseCoordinator(by: coordinator.transactionID)
+        // it is important not to use the coordinator inside the flow completion, because it creates retain cycle.
+        let transactionID = coordinator.transactionID
+        enterTransactionFlow(coordinator, transactionID: transactionID) { [unowned self] in
+            self.incomingTransactionsManager.releaseCoordinator(by: transactionID)
         }
     }
 
@@ -167,21 +201,34 @@ open class MainFlowCoordinator: FlowCoordinator {
                                                                   source: .walletConnect,
                                                                   sourceMeta: transaction.sessionData,
                                                                   onBack: rejectHandler)
-        enterTransactionFlow(coordinator) { [unowned self] in
-            self.incomingTransactionsManager.releaseCoordinator(by: coordinator.transactionID)
+        // it is important not to use the coordinator inside the flow completion, because it creates retain cycle.
+        let transactionID = coordinator.transactionID
+        enterTransactionFlow(coordinator, transactionID: transactionID) { [unowned self] in
+            self.incomingTransactionsManager.releaseCoordinator(by: transactionID)
             let hash = ApplicationServiceRegistry.walletService.transactionHash(transaction.transactionID) ?? "0x"
             transaction.completion(.success(hash))
         }
     }
 
     // Used for incoming transaction and send flow
-    fileprivate func enterTransactionFlow(_ flow: FlowCoordinator, completion: (() -> Void)? = nil) {
+    fileprivate func enterTransactionFlow(_ flow: FlowCoordinator,
+                                          transactionID: String? = nil,
+                                          completion: (() -> Void)? = nil) {
         dismissModal()
         saveCheckpoint()
-        enter(flow: flow) {
-            DispatchQueue.main.async { [unowned self] in
+        enter(flow: flow) { [unowned self] in
+            DispatchQueue.main.async {
                 self.popToLastCheckpoint()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { [unowned self] in
+
+                // if the transaction belongs to a different wallet than selected one, then it won't be shown
+                // in the transaction list. Thus, we should skip opening the list in that case.
+                if let id = transactionID,
+                    let transaction = ApplicationServiceRegistry.walletService.transactionData(id),
+                    let selectedWalletID = ApplicationServiceRegistry.walletService.selectedWalletID(),
+                    transaction.walletID != selectedWalletID {
+                    return
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                     self.showTransactionList()
                 }
             }
@@ -213,7 +260,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     open func receive(url: URL) {
-        walletConnectFlowCoordinator = WalletConnectFlowCoordinator(connectionURL: url)
+        walletConnectFlowCoordinator.connectionURL = url
         self.enter(flow: walletConnectFlowCoordinator)
     }
 
@@ -272,15 +319,11 @@ extension MainFlowCoordinator: OnboardingTermsViewControllerDelegate {
 extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 
     func didSelectNewSafe() {
-        enter(flow: newSafeFlowCoordinator) { [unowned self] in
-            self.switchToRootController()
-        }
+        enter(flow: newSafeFlowCoordinator)
     }
 
     func didSelectRecoverSafe() {
-        enter(flow: recoverSafeFlowCoordinator) { [unowned self] in
-            self.switchToRootController()
-        }
+        enter(flow: recoverSafeFlowCoordinator)
     }
 
 }
@@ -309,7 +352,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
     func upgradeContract() {
         saveCheckpoint()
-        enter(flow: ContractUpgradeFlowCoordinator()) { [unowned self] in
+        enter(flow: contractUpgradeFlowCoordinator) { [unowned self] in
             DispatchQueue.main.async {
                 self.popToLastCheckpoint()
                 self.showTransactionList()
@@ -340,7 +383,7 @@ extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
 extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 
     func didSelectCommand(_ command: MenuCommand) {
-        command.run(mainFlowCoordinator: self)
+        command.run()
     }
 
 }

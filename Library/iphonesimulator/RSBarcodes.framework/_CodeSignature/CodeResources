@@ -6,27 +6,43 @@
 	<dict>
 		<key>Headers/RSBarcodes-Swift.h</key>
 		<data>
-		YzJbcD/FHXnj9DUUjMtqZAUvJMY=
+		AmWuis92RA09cjAdooOoaSuPi0s=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		jFCY+8uUjZg7vP5WyvwK997GR3g=
+		7idaRgVHdV4hHR/X6TVrbgjVAiA=
+		</data>
+		<key>Modules/RSBarcodes.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<data>
+		IMyQNbQGY2exCpLWlTNzcBXrtAI=
+		</data>
+		<key>Modules/RSBarcodes.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<data>
+		XhjXSl4Yo5fkqWj9rW5aCE3aJdI=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftdoc</key>
 		<data>
-		e7c6Vv8RH/3ILtAREP/qo6RcHX4=
+		IMyQNbQGY2exCpLWlTNzcBXrtAI=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftmodule</key>
 		<data>
-		wlxUes9HwReCZFrL0yL5tllFlIA=
+		XhjXSl4Yo5fkqWj9rW5aCE3aJdI=
+		</data>
+		<key>Modules/RSBarcodes.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		32oN1h76e6AKyyFosW28UFnN3Ys=
+		</data>
+		<key>Modules/RSBarcodes.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		guQN4PwfiXqEoDccG/Gf+EpoiTY=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		l6Yk1qlw/28QXv5dOFYlSv4scCs=
+		32oN1h76e6AKyyFosW28UFnN3Ys=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		fbgCjDC1y6eX1qZ3qaAUebQdE4g=
+		guQN4PwfiXqEoDccG/Gf+EpoiTY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,55 +55,99 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YzJbcD/FHXnj9DUUjMtqZAUvJMY=
+			AmWuis92RA09cjAdooOoaSuPi0s=
 			</data>
 			<key>hash2</key>
 			<data>
-			AGNuoPVlML/cEq9oX4URQqbOPKsLCpVNDfGi1LvaIsc=
+			z0/2YgqHkg5OPpdyuYAHjWTVevyBXfK35Oza6rFl+TY=
+			</data>
+		</dict>
+		<key>Modules/RSBarcodes.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			IMyQNbQGY2exCpLWlTNzcBXrtAI=
+			</data>
+			<key>hash2</key>
+			<data>
+			JxJguV3flSSsGL1OUmbOlB4Mu9DajKDTigONA9vQG+o=
+			</data>
+		</dict>
+		<key>Modules/RSBarcodes.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			XhjXSl4Yo5fkqWj9rW5aCE3aJdI=
+			</data>
+			<key>hash2</key>
+			<data>
+			KhxLeETlZZ7oDqI7136LX6ioz6A+3dSbfBM2+o1TVMs=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			e7c6Vv8RH/3ILtAREP/qo6RcHX4=
+			IMyQNbQGY2exCpLWlTNzcBXrtAI=
 			</data>
 			<key>hash2</key>
 			<data>
-			wOnWmyqMmyBpvBszhx7ltMcJOpEmEqy5Sk4Z8Sqzirs=
+			JxJguV3flSSsGL1OUmbOlB4Mu9DajKDTigONA9vQG+o=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			wlxUes9HwReCZFrL0yL5tllFlIA=
+			XhjXSl4Yo5fkqWj9rW5aCE3aJdI=
 			</data>
 			<key>hash2</key>
 			<data>
-			wVeyC3wB4FBEbZbYiJiaQfnIxwUjD+ce1VEicghjB08=
+			KhxLeETlZZ7oDqI7136LX6ioz6A+3dSbfBM2+o1TVMs=
+			</data>
+		</dict>
+		<key>Modules/RSBarcodes.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			32oN1h76e6AKyyFosW28UFnN3Ys=
+			</data>
+			<key>hash2</key>
+			<data>
+			DaVRIng8QMb14nHDe3rqM4AdwNlf+uU4sVGtc5dveMM=
+			</data>
+		</dict>
+		<key>Modules/RSBarcodes.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			guQN4PwfiXqEoDccG/Gf+EpoiTY=
+			</data>
+			<key>hash2</key>
+			<data>
+			xeoIfJPe08iNkB1bxE+QTX2bHOyvZeVu6oj+so76NjE=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			l6Yk1qlw/28QXv5dOFYlSv4scCs=
+			32oN1h76e6AKyyFosW28UFnN3Ys=
 			</data>
 			<key>hash2</key>
 			<data>
-			KK/U6FGqzmNcELdLuJp6jL1wlPy4KFFy8mgthsyNBeY=
+			DaVRIng8QMb14nHDe3rqM4AdwNlf+uU4sVGtc5dveMM=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			fbgCjDC1y6eX1qZ3qaAUebQdE4g=
+			guQN4PwfiXqEoDccG/Gf+EpoiTY=
 			</data>
 			<key>hash2</key>
 			<data>
-			i3A6KH/tF1Q6/gTmPUgBY2qXtm4lhoAD2vVIBRlpFcs=
+			xeoIfJPe08iNkB1bxE+QTX2bHOyvZeVu6oj+so76NjE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

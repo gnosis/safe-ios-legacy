@@ -32,7 +32,7 @@ extension FeeCalculationAssetLine {
     ///   - target: target for button action.
     ///   - action: button action.
     ///   - displayedDecimals: displayed decimals.
-    func set(valueButton value: TokenData, target: Any? = nil, action: Selector? = nil, roundUp: Bool = false) {
+    func set(valueButton value: TokenData, target: AnyObject? = nil, action: Selector? = nil, roundUp: Bool = false) {
         var valueButtonStr = value.code
         if value.balance != nil {
             let formatter = TokenFormatter()

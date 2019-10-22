@@ -8,9 +8,10 @@ import Common
 import MultisigWalletApplication
 
 protocol OnboardingCreationFeeViewControllerDelegate: class {
-    func deploymentDidCancel()
-    func deploymentDidStart()
-    func deploymentDidFail()
+    func onboardingCreationFeeViewControllerDeploymentDidCancel(_ controller: OnboardingCreationFeeViewController)
+    func onboardingCreationFeeViewControllerDeploymentDidStart(_ controller: OnboardingCreationFeeViewController)
+    func onboardingCreationFeeViewControllerDeploymentDidFail(_ controller: OnboardingCreationFeeViewController)
+    func onboardingCreationFeeViewControllerFeeOpenMenu(_ controller: OnboardingCreationFeeViewController)
 }
 
 class OnboardingCreationFeeViewController: CardViewController {
@@ -21,6 +22,7 @@ class OnboardingCreationFeeViewController: CardViewController {
     weak var delegate: OnboardingCreationFeeViewControllerDelegate?
     var creationProcessTracker = LongProcessTracker()
     var isFinished: Bool = false
+    private(set) var walletID: String!
 
     enum Strings {
 
@@ -55,7 +57,8 @@ class OnboardingCreationFeeViewController: CardViewController {
 
         let retryItem = UIBarButtonItem.refreshButton(target: creationProcessTracker,
                                                       action: #selector(creationProcessTracker.start))
-        navigationItem.rightBarButtonItem = retryItem
+        let menuItem = UIBarButtonItem.menuButton(target: self, action: #selector(openMenu))
+        navigationItem.rightBarButtonItems = [menuItem, retryItem]
         creationProcessTracker.retryItem = retryItem
         creationProcessTracker.delegate = self
 
@@ -68,17 +71,23 @@ class OnboardingCreationFeeViewController: CardViewController {
 
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
 
-        addressDetailView.headerLabel.isHidden = true
         addressDetailView.footnoteLabel.isHidden = true
         addressDetailView.isHidden = true
 
         footerButton.isHidden = true
+
+        walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
         creationProcessTracker.start()
     }
 
     func setFootnoteTokenCode(_ code: String) {
         let template = LocalizedString("please_send_x", comment: "Please send %")
         addressDetailView.footnoteLabel.text = String(format: template, code)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        update()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -94,11 +103,10 @@ class OnboardingCreationFeeViewController: CardViewController {
             guard let `self` = self else { return }
             self.dismiss(animated: true, completion: nil)
             ApplicationServiceRegistry.walletService.abortDeployment()
-            self.delegate?.deploymentDidCancel()
+            self.delegate?.onboardingCreationFeeViewControllerDeploymentDidCancel(self)
         })
         present(controller, animated: true, completion: nil)
     }
-
 
     @objc func share() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
@@ -107,12 +115,17 @@ class OnboardingCreationFeeViewController: CardViewController {
         self.present(activityController, animated: true)
     }
 
+    @objc func openMenu(_ sender: UIBarButtonItem) {
+        delegate?.onboardingCreationFeeViewControllerFeeOpenMenu(self)
+    }
+
     override func showNetworkFeeInfo() {
         present(UIAlertController.creationFee(), animated: true, completion: nil)
     }
 
     func update() {
-        let walletState = ApplicationServiceRegistry.walletService.walletState()!
+        guard ApplicationServiceRegistry.walletService.selectedWalletID() == walletID,
+            let walletState = ApplicationServiceRegistry.walletService.walletState() else { return }
         switch walletState {
         case .draft, .deploying:
             // started, but has nothing to show
@@ -126,7 +139,7 @@ class OnboardingCreationFeeViewController: CardViewController {
             let required = ApplicationServiceRegistry.walletService.feePaymentTokenData
                 .withBalance(ApplicationServiceRegistry.walletService.minimumDeploymentAmount!)
             let received = ApplicationServiceRegistry.walletService
-                .accountBalance(tokenID: BaseID(required.address)) ?? 0
+                .accountBalance(tokenID: BaseID(required.address), walletID: walletID) ?? 0
             let remaining = required.balance == nil ? nil : max(required.balance! - received, 0)
 
             setSubtitle(Strings.Insufficient.subtitle, showError: true)
@@ -141,14 +154,17 @@ class OnboardingCreationFeeViewController: CardViewController {
         case .creationStarted,
              .transactionHashIsKnown,
              .finalizingDeployment,
-             .readyToUse:
+             .readyToUse,
+             .recoveryDraft,
+             .recoveryInProgress,
+             .recoveryPostProcessing:
             // has to exit from here because the screen is still visible for a while
             guard !isFinished else { return }
             isFinished = true
             // fee was enough, the creation started.
             // point of no return (or cancelling)
             navigationItem.leftBarButtonItem?.isEnabled = false
-            delegate?.deploymentDidStart()
+            delegate?.onboardingCreationFeeViewControllerDeploymentDidStart(self)
         }
     }
 
@@ -176,7 +192,7 @@ extension OnboardingCreationFeeViewController: LongProcessTrackerDelegate {
     }
 
     func processDidFail() {
-        delegate?.deploymentDidFail()
+        delegate?.onboardingCreationFeeViewControllerDeploymentDidFail(self)
     }
 
 }

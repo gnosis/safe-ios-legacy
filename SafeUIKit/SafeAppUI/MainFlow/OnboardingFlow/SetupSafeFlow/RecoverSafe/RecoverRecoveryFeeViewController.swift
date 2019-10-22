@@ -8,8 +8,8 @@ import Common
 import MultisigWalletApplication
 
 protocol RecoverRecoveryFeeViewControllerDelegate: class {
-    func recoverRecoveryFeeViewControllerDidCancel()
-    func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit()
+    func recoverRecoveryFeeViewControllerDidCancel(_ controller: RecoverRecoveryFeeViewController)
+    func recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit(_ controller: RecoverRecoveryFeeViewController)
 }
 
 /// Estimates recovery transaction and if balance is not enough, shows the needed amount to transfer.
@@ -25,6 +25,8 @@ class RecoverRecoveryFeeViewController: CardViewController {
     /// Flag to remember that transaction became ready for submission.
     /// Controller will then ignore all other update events
     var isFinished: Bool = false
+
+    private var walletID: String?
 
     enum Strings {
 
@@ -56,13 +58,13 @@ class RecoverRecoveryFeeViewController: CardViewController {
         recoveryProcessTracker.retryItem = retryItem
         recoveryProcessTracker.delegate = self
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
-        addressDetailView.headerLabel.isHidden = true
 
         start()
     }
 
     func start() {
         navigationItem.titleView = LoadingTitleView()
+        walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
         recoveryProcessTracker.start()
     }
 
@@ -72,10 +74,9 @@ class RecoverRecoveryFeeViewController: CardViewController {
     }
 
     @objc func cancel() {
-        DispatchQueue.global().async {
-            ApplicationServiceRegistry.recoveryService.cancelRecovery()
-        }
-        delegate?.recoverRecoveryFeeViewControllerDidCancel()
+        isFinished = true
+        ApplicationServiceRegistry.recoveryService.cancelRecovery(walletID: walletID!)
+        delegate?.recoverRecoveryFeeViewControllerDidCancel(self)
     }
 
     @objc func share() {
@@ -91,12 +92,15 @@ class RecoverRecoveryFeeViewController: CardViewController {
 
     func update() {
         if isFinished { return }
+        guard ApplicationServiceRegistry.walletService.selectedWalletID() == walletID else { return }
         if ApplicationServiceRegistry.recoveryService.isRecoveryTransactionReadyToSubmit() {
             isFinished = true
-            delegate?.recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit()
+            delegate?.recoverRecoveryFeeViewControllerDidBecomeReadyToSubmit(self)
             return
         }
-        guard let tx = ApplicationServiceRegistry.recoveryService.recoveryTransaction() else { return }
+        guard let tx = ApplicationServiceRegistry.recoveryService.recoveryTransaction(walletID: walletID!) else {
+            return
+        }
 
         navigationItem.titleView = nil
         navigationItem.title = Strings.title
@@ -111,7 +115,8 @@ class RecoverRecoveryFeeViewController: CardViewController {
 
         addressDetailView.address = tx.sender
 
-        let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(tx.feeTokenData.address))
+        let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(tx.feeTokenData.address),
+                                                                              walletID: walletID!)
 
         feeRequestView.amountReceivedAmountLabel.amount = tx.feeTokenData.withBalance(balance)
         feeRequestView.amountNeededAmountLabel.amount = abs(tx.feeTokenData)
@@ -147,7 +152,7 @@ extension RecoverRecoveryFeeViewController: LongProcessTrackerDelegate {
     }
 
     func processDidFail() {
-        delegate?.recoverRecoveryFeeViewControllerDidCancel()
+        delegate?.recoverRecoveryFeeViewControllerDidCancel(self)
     }
 
 }

@@ -15,7 +15,7 @@ public func XCTAssertAlertShown(message expectedMessage: String? = nil,
     XCTAssertNotNil(vc.presentedViewController, file: file, line: line)
     let alert = (vc.presentedViewController as? UIAlertController) ??
         (vc.presentedViewController?.presentedViewController as? UIAlertController)
-    XCTAssertNotNil(alert)
+    XCTAssertNotNil(alert, file: file, line: line)
     guard let alertVC = alert else { return }
     if let expectedMessage = expectedMessage {
         XCTAssertEqual(alertVC.message, expectedMessage, file: file, line: line)

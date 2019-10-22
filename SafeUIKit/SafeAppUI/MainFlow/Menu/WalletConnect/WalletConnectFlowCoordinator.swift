@@ -15,15 +15,15 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     ///
     /// We defer connecting to this URL until the session list screen is shown because before that
     /// the UI is not properly intiialized to show error or other information.
-    private var connectionURL: URL?
-
-    convenience init(connectionURL url: URL?, rootViewController: UIViewController? = nil) {
-        self.init(rootViewController: rootViewController)
-        self.connectionURL = url
-    }
+    var connectionURL: URL?
 
     override func setUp() {
         super.setUp()
+        guard ApplicationServiceRegistry.walletConnectService.isAvaliable else {
+            let message = LocalizedString("walletconnect_error_no_safe", comment: "WalletConnect not available")
+            presentModally(UIAlertController.operationFailed(message: message))
+            return
+        }
         if ApplicationServiceRegistry.walletConnectService.isOnboardingDone() {
             showSessionList()
         } else {

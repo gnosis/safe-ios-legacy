@@ -8,7 +8,7 @@ final class ContractUpgradeCommand: MenuCommand {
 
     override init() {
         super.init()
-        childFlowCoordinator = ContractUpgradeFlowCoordinator()
+        childFlowCoordinator = MainFlowCoordinator.shared.contractUpgradeFlowCoordinator
     }
 
 }

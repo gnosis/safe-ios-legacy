@@ -38,6 +38,7 @@ class ChangePasswordFlowCoordinatorTests: SafeTestCase {
         authenticationService.shouldThrowDuringUpdatePassword = true
         createWindow(flowCoordinator.navigationController)
         flowCoordinator.didEnterNewPassword("NewPassword")
+        delay(0.3)
         XCTAssertAlertShown()
     }
 

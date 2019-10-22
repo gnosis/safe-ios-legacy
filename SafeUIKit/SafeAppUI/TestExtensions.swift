@@ -72,6 +72,7 @@ extension TransactionData {
 
     static func ethData(status: Status) -> TransactionData {
         return TransactionData(id: "some",
+                               walletID: "some",
                                sender: "some",
                                recipient: "some",
                                amountTokenData: TokenData.Ether.withBalance(BigInt(10).power(18)),
@@ -85,14 +86,15 @@ extension TransactionData {
                                processed: nil)
     }
 
-    static func tokenData(status: Status) -> TransactionData {
+    static func tokenData(status: Status, transactionType: TransactionType = .outgoing) -> TransactionData {
         return TransactionData(id: "some",
+                               walletID: "some",
                                sender: "some",
                                recipient: "some",
                                amountTokenData: TokenData.gno.withBalance(BigInt(10).power(18)),
                                feeTokenData: TokenData.gno.withBalance(BigInt(10).power(17)),
                                status: status,
-                               type: .outgoing,
+                               type: transactionType,
                                created: nil,
                                updated: nil,
                                submitted: nil,
@@ -102,6 +104,7 @@ extension TransactionData {
 
     static func mixedTokenData(status: Status) -> TransactionData {
         return TransactionData(id: "some",
+                               walletID: "some",
                                sender: "some",
                                recipient: "some",
                                amountTokenData: TokenData.Ether.withBalance(BigInt(10).power(18)),

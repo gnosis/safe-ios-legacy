@@ -5,9 +5,23 @@
 import UIKit
 
 @objc public protocol VerifiableInputDelegate: class {
+    /// Called when the verification passess all rules successfully.
+    /// This happens either on pressing Enter in the field, or by calling `verify()` method.
+    /// - Parameter verifiableInput: input on which the verification was called.
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput)
+
+
+    /// Called when the text field begins editing.
+    /// - Parameter verifiableInput: input in which editing starts
     @objc optional func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput)
+
+    /// Called when text field ends editing
+    /// - Parameter verifiableInput: input in which editing stops
     @objc optional func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput)
+
+    /// Called when input is about to replace current text with a new text.
+    /// - Parameter verifiableInput: input in which entry occurs
+    /// - Parameter newValue: new text to replace current one.
     @objc optional func verifiableInputWillEnter(_ verifiableInput: VerifiableInput, newValue: String)
 }
 
@@ -18,6 +32,7 @@ open class VerifiableInput: UIView {
     @IBOutlet weak var stackView: UIStackView!
     private var spacingConstraint: NSLayoutConstraint!
     private var spacingView: UIView!
+    private weak var lastAddedRule: RuleLabel?
 
     /// Indicates whether the view has user input focus
     public private(set) var isActive: Bool = false
@@ -31,7 +46,7 @@ open class VerifiableInput: UIView {
     }
 
     public var isValid: Bool {
-        return allRules.reduce(true) { $0 && $1.status == .success }
+        return allRules.allSatisfy { $0.status == .success }
     }
 
     public var trimsText: Bool = false {
@@ -56,6 +71,8 @@ open class VerifiableInput: UIView {
     }
 
     public var maxLength: Int = Int.max
+
+    public var validateEmptyText = false
 
     /// When setting this property textInput.text value is formatted and validated.
     public var text: String? {
@@ -158,6 +175,11 @@ open class VerifiableInput: UIView {
         ruleLabel.accessibilityIdentifier = identifier
         hideRuleIfNeeded(ruleLabel)
         stackView.addArrangedSubview(ruleLabel)
+        lastAddedRule = ruleLabel
+    }
+
+    private func removeRule(_ rule: RuleLabel) {
+        rule.removeFromSuperview()
     }
 
     public func removeAllRules() {
@@ -193,8 +215,9 @@ open class VerifiableInput: UIView {
         text = textInput.text // validation
     }
 
+    // triggered on every text change
     func validateRules(for text: String) {
-        guard !text.isEmpty else {
+        guard !text.isEmpty || validateEmptyText else {
             resetRules()
             return
         }
@@ -206,6 +229,31 @@ open class VerifiableInput: UIView {
         textInput.inputState = isValid ? successOrNormal : .error
     }
 
+    private func resetRules() {
+        allRules.forEach {
+            $0.reset()
+            hideRuleIfNeeded($0)
+        }
+        textInput.inputState = .normal
+    }
+
+    private func hideRuleIfNeeded(_ rule: RuleLabel) {
+        guard let text = rule.currentText, !text.isEmpty else {
+            rule.isHidden = true
+            return
+        }
+        let isError = rule.status == .error
+        if showErrorsOnly {
+            if adjustsHeightForHiddenRules {
+                rule.alpha = isError ? 1 : 0
+            } else {
+                rule.isHidden = !isError
+            }
+        } else {
+            rule.isHidden = false
+        }
+    }
+
     @discardableResult
     public func verify() -> Bool {
         if isValid {
@@ -214,6 +262,26 @@ open class VerifiableInput: UIView {
             shake()
         }
         return isValid
+    }
+
+    private var explicitErrorRule: RuleLabel?
+    private var explicitErrorRuleWasReset: Bool = false
+
+    /// Shows the error immediately until the text is changed or revalidated.
+    public func setExplicitError(_ error: String) {
+        if let rule = explicitErrorRule {
+            removeRule(rule)
+        }
+        self.explicitErrorRuleWasReset = false
+        addRule(error) { [unowned self] _ in
+            let oldValue = self.explicitErrorRuleWasReset
+            if !self.explicitErrorRuleWasReset {
+                self.explicitErrorRuleWasReset = true
+            }
+            return oldValue
+        }
+        explicitErrorRule = lastAddedRule
+        revalidateText()
     }
 
 }
@@ -243,31 +311,6 @@ extension VerifiableInput: UITextFieldDelegate {
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.verifiableInputDidEndEditing?(self)
-    }
-
-    private func resetRules() {
-        allRules.forEach {
-            $0.reset()
-            hideRuleIfNeeded($0)
-        }
-        textInput.inputState = .normal
-    }
-
-    private func hideRuleIfNeeded(_ rule: RuleLabel) {
-        guard let text = rule.currentText, !text.isEmpty else {
-            rule.isHidden = true
-            return
-        }
-        let isError = rule.status == .error
-        if showErrorsOnly {
-            if adjustsHeightForHiddenRules {
-                rule.alpha = isError ? 1 : 0
-            } else {
-                rule.isHidden = !isError
-            }
-        } else {
-            rule.isHidden = false
-        }
     }
 
 }

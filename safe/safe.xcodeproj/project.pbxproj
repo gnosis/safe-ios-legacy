@@ -16,10 +16,7 @@
 		0A05952A22E9CFF60001D7D5 /* Averta-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A05951E22E9CFEC0001D7D5 /* Averta-Regular.otf */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
-		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
-		0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C874920976D3A00471885 /* NewSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */; };
-		0A0E837122CA00050027A96E /* WalletConnectIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E837022CA00050027A96E /* WalletConnectIntegrationTests.swift */; };
 		0A0FD8A42254ED27008475E7 /* PendingSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */; };
 		0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B6020A07C2D00E064E1 /* SafeAppUI.framework */; };
 		0A160B8620A07C7300E064E1 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B6020A07C2D00E064E1 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -33,19 +30,35 @@
 		0A364B40226886DB002E80B7 /* IdentityAccessConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A364B3F226886DB002E80B7 /* IdentityAccessConfigurator.swift */; };
 		0A364B4222688891002E80B7 /* Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A364B4122688891002E80B7 /* Safe.swift */; };
 		0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */; };
-		0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */; };
-		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
-		0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC58A209CA2E500BA7A06 /* libCommon.a */; };
 		0A814EEB225369C90099C45E /* NewSafeGuidelinesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */; };
 		0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84BBDE21060F6100708DE5 /* AppConfig.swift */; };
 		0A84BBF42106168600708DE5 /* AppConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A84BBE82106168600708DE5 /* AppConfig.json */; };
-		0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BE620B41D3F00F002F6 /* libCommonImplementations.a */; };
-		0A8E3BF620B41E7100F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BF520B41E7100F002F6 /* libCommonImplementations.a */; };
-		0A8E3C0B20B42C2100F002F6 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3C0A20B42C2100F002F6 /* libMultisigWalletImplementations.a */; };
+		0A84C2962305450D0006DA50 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C289230544E90006DA50 /* Common.framework */; };
+		0A84C2972305450D0006DA50 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C289230544E90006DA50 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C2982305450D0006DA50 /* CommonImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C293230544E90006DA50 /* CommonImplementations.framework */; };
+		0A84C2992305450D0006DA50 /* CommonImplementations.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C293230544E90006DA50 /* CommonImplementations.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C29A2305450D0006DA50 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C28F230544E90006DA50 /* Database.framework */; };
+		0A84C29B2305450D0006DA50 /* Database.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C28F230544E90006DA50 /* Database.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C2AD230545BA0006DA50 /* IdentityAccessApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B7C20A07C3F00E064E1 /* IdentityAccessApplication.framework */; };
+		0A84C2AE230545BA0006DA50 /* IdentityAccessApplication.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B7C20A07C3F00E064E1 /* IdentityAccessApplication.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C2AF230545BA0006DA50 /* IdentityAccessDomainModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B7020A07C3F00E064E1 /* IdentityAccessDomainModel.framework */; };
+		0A84C2B0230545BA0006DA50 /* IdentityAccessDomainModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B7020A07C3F00E064E1 /* IdentityAccessDomainModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C2B1230545BA0006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B7420A07C3F00E064E1 /* IdentityAccessImplementations.framework */; };
+		0A84C2B2230545BA0006DA50 /* IdentityAccessImplementations.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B7420A07C3F00E064E1 /* IdentityAccessImplementations.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C2B3230545BA0006DA50 /* MultisigWalletApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C2AA230545BA0006DA50 /* MultisigWalletApplication.framework */; };
+		0A84C2B4230545BA0006DA50 /* MultisigWalletApplication.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C2AA230545BA0006DA50 /* MultisigWalletApplication.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C2B5230545BA0006DA50 /* MultisigWalletDomainModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C2AB230545BA0006DA50 /* MultisigWalletDomainModel.framework */; };
+		0A84C2B6230545BA0006DA50 /* MultisigWalletDomainModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C2AB230545BA0006DA50 /* MultisigWalletDomainModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C2B7230545BA0006DA50 /* MultisigWalletImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C2AC230545BA0006DA50 /* MultisigWalletImplementations.framework */; };
+		0A84C2B8230545BA0006DA50 /* MultisigWalletImplementations.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C2AC230545BA0006DA50 /* MultisigWalletImplementations.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A84C2C5230546BD0006DA50 /* CommonImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C293230544E90006DA50 /* CommonImplementations.framework */; };
+		0A84C2C6230546BD0006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C28D230544E90006DA50 /* CommonTestSupport.framework */; };
+		0A84C2C7230546BD0006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B7420A07C3F00E064E1 /* IdentityAccessImplementations.framework */; };
+		0A84C2F023054CC20006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C28D230544E90006DA50 /* CommonTestSupport.framework */; };
+		0A84C2F123054CC20006DA50 /* CommonTestSupport.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C28D230544E90006DA50 /* CommonTestSupport.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A99436C20A04C6700E36FD7 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A99436B20A04C6700E36FD7 /* LocalizedString.swift */; };
 		0A99436E20A04C9C00E36FD7 /* SafeAppUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A99436D20A04C9B00E36FD7 /* SafeAppUI.strings */; };
-		0AA0C856207B74AC0019E282 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */; };
 		0AA0C858207B74B10019E282 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C857207B74B10019E282 /* XCTest.framework */; };
 		0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */; };
 		0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */; };
@@ -63,7 +76,7 @@
 		0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */; };
 		0ABA90EB20C56AB5001AEAE4 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */; };
 		0AC14B12225F474A004C2649 /* PushLocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */; };
-		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; };
 		0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */; };
 		0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
@@ -78,10 +91,7 @@
 		0ACB1A422099EF2300EBE267 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A412099EF2300EBE267 /* Springboard.swift */; };
 		0ACB1A442099F3F500EBE267 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A432099F3F500EBE267 /* CameraScreen.swift */; };
 		0AD899F322845D33008AE325 /* M0004_AddColumnsToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD899F222845D33008AE325 /* M0004_AddColumnsToWallet.swift */; };
-		0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A3C20A08262006A1265 /* libDatabase.a */; };
 		0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */; };
-		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
-		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		551D76F2227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D76F1227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift */; };
 		551D770D227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D770C227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift */; };
 		55329FD122F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55329FD022F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift */; };
@@ -89,9 +99,9 @@
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
 		555C94F120E537E900A0621D /* HTTPNotificatonServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */; };
-		555C94F320E53BEF00A0621D /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */; };
 		555D33FE2110BD810055D87C /* PushLocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */; };
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
+		5590F1B4234360F2002F120B /* M0008_AddWalletNameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590F1B3234360F2002F120B /* M0008_AddWalletNameField.swift */; };
 		55A7B2A320ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */; };
 		55B5DF792278AD2F001A32F4 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */; };
 		55B5DF98227C567D001A32F4 /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5DF97227C567D001A32F4 /* Migrations.swift */; };
@@ -203,19 +213,110 @@
 			remoteGlobalIDString = 0A537BFE207CFB9200921FB9;
 			remoteInfo = IdentityAccessApplicationTests;
 		};
-		0A160B7F20A07C3F00E064E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A0C8703209747E100471885;
-			remoteInfo = IdentityAccessImplementationsResources;
-		};
 		0A160B8A20A07CC200E064E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 0A9670B120480C5700445AC2;
 			remoteInfo = SafeUIKit;
+		};
+		0A84C286230544E90006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A934D4F20B711F400F15616;
+			remoteInfo = CommonIntegration;
+		};
+		0A84C288230544E90006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A0592E8230418D500E71A60;
+			remoteInfo = Common;
+		};
+		0A84C28A230544E90006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A0592F0230418D500E71A60;
+			remoteInfo = CommonTests;
+		};
+		0A84C28C230544E90006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05930F230418DF00E71A60;
+			remoteInfo = CommonTestSupport;
+		};
+		0A84C28E230544E90006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A059335230418E800E71A60;
+			remoteInfo = Database;
+		};
+		0A84C290230544E90006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05933D230418E900E71A60;
+			remoteInfo = DatabaseTests;
+		};
+		0A84C292230544E90006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A05935B230418F200E71A60;
+			remoteInfo = CommonImplementations;
+		};
+		0A84C294230544E90006DA50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A059363230418F200E71A60;
+			remoteInfo = CommonImplementationsTests;
+		};
+		0ABEFD2C2305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C39230450A600E7EB07;
+			remoteInfo = MultisigWalletDomainModel;
+		};
+		0ABEFD2E2305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C41230450A600E7EB07;
+			remoteInfo = MultisigWalletDomainModelTests;
+		};
+		0ABEFD302305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C59230450B300E7EB07;
+			remoteInfo = MultisigWalletApplication;
+		};
+		0ABEFD322305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C61230450B300E7EB07;
+			remoteInfo = MultisigWalletApplicationTests;
+		};
+		0ABEFD342305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C79230450BC00E7EB07;
+			remoteInfo = MultisigWalletImplementations;
+		};
+		0ABEFD362305577D00168055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AAE7C81230450BC00E7EB07;
+			remoteInfo = MultisigWalletImplementationsTests;
 		};
 		0AC33F182119CBE1009A5CFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -265,8 +366,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0A84C2B2230545BA0006DA50 /* IdentityAccessImplementations.framework in Embed Frameworks */,
 				0A160B8620A07C7300E064E1 /* SafeAppUI.framework in Embed Frameworks */,
+				0A84C2B4230545BA0006DA50 /* MultisigWalletApplication.framework in Embed Frameworks */,
+				0A84C2B8230545BA0006DA50 /* MultisigWalletImplementations.framework in Embed Frameworks */,
+				0A84C29B2305450D0006DA50 /* Database.framework in Embed Frameworks */,
+				0A84C2992305450D0006DA50 /* CommonImplementations.framework in Embed Frameworks */,
+				0A84C2972305450D0006DA50 /* Common.framework in Embed Frameworks */,
+				0A84C2B0230545BA0006DA50 /* IdentityAccessDomainModel.framework in Embed Frameworks */,
+				0A84C2B6230545BA0006DA50 /* MultisigWalletDomainModel.framework in Embed Frameworks */,
+				0A84C2F123054CC20006DA50 /* CommonTestSupport.framework in Embed Frameworks */,
 				0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */,
+				0A84C2AE230545BA0006DA50 /* IdentityAccessApplication.framework in Embed Frameworks */,
 				0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -288,9 +399,7 @@
 		0A06608B2099B4FF0048FBD3 /* XCUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCUIElement.h; sourceTree = "<group>"; };
 		0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCUIApplication.h; sourceTree = "<group>"; };
 		0A0C86FD2097461700471885 /* SafeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SafeUIKit.strings; sourceTree = "<group>"; };
-		0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IdentityAccessImplementationsResources.bundle; sourceTree = "<group>"; };
 		0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeScreenUITests.swift; sourceTree = "<group>"; };
-		0A0E837022CA00050027A96E /* WalletConnectIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectIntegrationTests.swift; sourceTree = "<group>"; };
 		0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SafeUIKit.xcodeproj; path = ../SafeUIKit/SafeUIKit.xcodeproj; sourceTree = "<group>"; };
 		0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccess.xcodeproj; path = ../IdentityAccess/IdentityAccess.xcodeproj; sourceTree = "<group>"; };
 		0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitFileSystemGuard.swift; sourceTree = "<group>"; };
@@ -313,6 +422,20 @@
 		0A84BBE82106168600708DE5 /* AppConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AppConfig.json; path = ../AppConfig.json; sourceTree = "<group>"; };
 		0A84BBF5210616C100708DE5 /* AppConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = AppConfig.xcconfig; path = ../AppConfig.xcconfig; sourceTree = "<group>"; };
 		0A84BBFE210616E900708DE5 /* AppConfig.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = AppConfig.yml; path = ../AppConfig.yml; sourceTree = "<group>"; };
+		0A84C24E230543A10006DA50 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C24F230543A10006DA50 /* CommonImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C250230543A10006DA50 /* Database.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Database.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C251230543A10006DA50 /* MultisigWalletImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MultisigWallet.xcodeproj; path = ../MultisigWallet/MultisigWallet.xcodeproj; sourceTree = "<group>"; };
+		0A84C27B230544E90006DA50 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
+		0A84C29C2305451D0006DA50 /* MultisigWalletImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C2A0230545550006DA50 /* MultisigWalletApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C2A1230545550006DA50 /* MultisigWalletDomainModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletDomainModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C2AA230545BA0006DA50 /* MultisigWalletApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C2AB230545BA0006DA50 /* MultisigWalletDomainModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletDomainModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C2AC230545BA0006DA50 /* MultisigWalletImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C2C3230546B90006DA50 /* MultisigWalletImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84C2C8230546DB0006DA50 /* MultisigWalletImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MultisigWalletImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8E3BE620B41D3F00F002F6 /* libCommonImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8E3BF520B41E7100F002F6 /* libCommonImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8E3C0820B42BF200F002F6 /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,6 +502,7 @@
 		555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalizationStrings.swift; sourceTree = "<group>"; };
 		558FD81420767F18004F070E /* NewSafeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeScreen.swift; sourceTree = "<group>"; };
+		5590F1B3234360F2002F120B /* M0008_AddWalletNameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0008_AddWalletNameField.swift; sourceTree = "<group>"; };
 		55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPGnosisTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
 		55B5DF782278AD2F001A32F4 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		55B5DF97227C567D001A32F4 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
@@ -405,15 +529,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A8E3C0B20B42C2100F002F6 /* libMultisigWalletImplementations.a in Frameworks */,
-				0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */,
-				0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */,
-				0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */,
+				0A84C2AF230545BA0006DA50 /* IdentityAccessDomainModel.framework in Frameworks */,
+				0A84C2AD230545BA0006DA50 /* IdentityAccessApplication.framework in Frameworks */,
 				0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */,
-				0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */,
-				0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
-				0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */,
-				0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */,
+				0A84C2B7230545BA0006DA50 /* MultisigWalletImplementations.framework in Frameworks */,
+				0A84C2B5230545BA0006DA50 /* MultisigWalletDomainModel.framework in Frameworks */,
+				0A84C2B1230545BA0006DA50 /* IdentityAccessImplementations.framework in Frameworks */,
+				0A84C2962305450D0006DA50 /* Common.framework in Frameworks */,
+				0A84C2982305450D0006DA50 /* CommonImplementations.framework in Frameworks */,
+				0A84C29A2305450D0006DA50 /* Database.framework in Frameworks */,
+				0A84C2F023054CC20006DA50 /* CommonTestSupport.framework in Frameworks */,
+				0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */,
+				0A84C2B3230545BA0006DA50 /* MultisigWalletApplication.framework in Frameworks */,
 				0A160B8820A07CC200E064E1 /* SafeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,11 +549,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				555C94F320E53BEF00A0621D /* libMultisigWalletImplementations.a in Frameworks */,
-				0A8E3BF620B41E7100F002F6 /* libCommonImplementations.a in Frameworks */,
-				0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
+				0A84C2C5230546BD0006DA50 /* CommonImplementations.framework in Frameworks */,
+				0A84C2C6230546BD0006DA50 /* CommonTestSupport.framework in Frameworks */,
+				0A84C2C7230546BD0006DA50 /* IdentityAccessImplementations.framework in Frameworks */,
 				0AA0C858207B74B10019E282 /* XCTest.framework in Frameworks */,
-				0AA0C856207B74AC0019E282 /* libCommonTestSupport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,13 +593,12 @@
 		0A160B6420A07C3E00E064E1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A160B7020A07C3F00E064E1 /* libIdentityAccessDomainModel.a */,
+				0A160B7020A07C3F00E064E1 /* IdentityAccessDomainModel.framework */,
 				0A160B7220A07C3F00E064E1 /* IdentityAccessDomainModelTests.xctest */,
-				0A160B7420A07C3F00E064E1 /* libIdentityAccessImplementations.a */,
+				0A160B7420A07C3F00E064E1 /* IdentityAccessImplementations.framework */,
 				0A160B7620A07C3F00E064E1 /* IdentityAccessImplementationsTests.xctest */,
-				0A160B7C20A07C3F00E064E1 /* libIdentityAccessApplication.a */,
+				0A160B7C20A07C3F00E064E1 /* IdentityAccessApplication.framework */,
 				0A160B7E20A07C3F00E064E1 /* IdentityAccessApplicationTests.xctest */,
-				0A160B8020A07C3F00E064E1 /* IdentityAccessImplementationsResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -481,6 +606,18 @@
 		0A53306B2073C73E00DE55F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A84C2C8230546DB0006DA50 /* MultisigWalletImplementations.framework */,
+				0A84C2C3230546B90006DA50 /* MultisigWalletImplementations.framework */,
+				0A84C2AA230545BA0006DA50 /* MultisigWalletApplication.framework */,
+				0A84C2AB230545BA0006DA50 /* MultisigWalletDomainModel.framework */,
+				0A84C2AC230545BA0006DA50 /* MultisigWalletImplementations.framework */,
+				0A84C2A0230545550006DA50 /* MultisigWalletApplication.framework */,
+				0A84C2A1230545550006DA50 /* MultisigWalletDomainModel.framework */,
+				0A84C29C2305451D0006DA50 /* MultisigWalletImplementations.framework */,
+				0A84C24E230543A10006DA50 /* Common.framework */,
+				0A84C24F230543A10006DA50 /* CommonImplementations.framework */,
+				0A84C250230543A10006DA50 /* Database.framework */,
+				0A84C251230543A10006DA50 /* MultisigWalletImplementations.framework */,
 				0AB0B5842163A97F00FB2435 /* AVFoundation.framework */,
 				555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */,
 				0A8E3C0A20B42C2100F002F6 /* libMultisigWalletImplementations.a */,
@@ -521,6 +658,7 @@
 				0A3476BD22B131E100FEA7FC /* M0005_ChangeTransactionFeeColumnType.swift */,
 				0A34773322B3A22C00FEA7FC /* M0006_RemoveWalletIDFromTransactions.swift */,
 				55329FD022F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift */,
+				5590F1B3234360F2002F120B /* M0008_AddWalletNameField.swift */,
 				55B5DF97227C567D001A32F4 /* Migrations.swift */,
 			);
 			path = Migrations;
@@ -533,6 +671,21 @@
 				0A84BBE82106168600708DE5 /* AppConfig.json */,
 			);
 			name = generated;
+			sourceTree = "<group>";
+		};
+		0A84C27C230544E90006DA50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A84C287230544E90006DA50 /* CommonIntegration.app */,
+				0A84C289230544E90006DA50 /* Common.framework */,
+				0A84C28B230544E90006DA50 /* CommonTests.xctest */,
+				0A84C28D230544E90006DA50 /* CommonTestSupport.framework */,
+				0A84C28F230544E90006DA50 /* Database.framework */,
+				0A84C291230544E90006DA50 /* DatabaseTests.xctest */,
+				0A84C293230544E90006DA50 /* CommonImplementations.framework */,
+				0A84C295230544E90006DA50 /* CommonImplementationsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		0ABA90EC20C57842001AEAE4 /* Supporting Files */ = {
@@ -552,6 +705,19 @@
 			isa = PBXGroup;
 			children = (
 				0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0ABEFD162305577B00168055 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0ABEFD2D2305577D00168055 /* MultisigWalletDomainModel.framework */,
+				0ABEFD2F2305577D00168055 /* MultisigWalletDomainModelTests.xctest */,
+				0ABEFD312305577D00168055 /* MultisigWalletApplication.framework */,
+				0ABEFD332305577D00168055 /* MultisigWalletApplicationTests.xctest */,
+				0ABEFD352305577D00168055 /* MultisigWalletImplementations.framework */,
+				0ABEFD372305577D00168055 /* MultisigWalletImplementationsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -627,9 +793,10 @@
 			isa = PBXGroup;
 			children = (
 				55247315213FF79100A77557 /* Fonts */,
+				0A84C27B230544E90006DA50 /* Common.xcodeproj */,
+				0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */,
 				0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */,
 				0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */,
-				0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */,
 				0ABCA964207E560500E2C193 /* Library.xcodeproj */,
 				0AFEDEB62073C846002F5924 /* config */,
 				55D6C2F72045C38D0026BC72 /* TestTools */,
@@ -698,7 +865,6 @@
 				555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */,
 				0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */,
 				55A7B29420ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift */,
-				0A0E837022CA00050027A96E /* WalletConnectIntegrationTests.swift */,
 				0A364B4122688891002E80B7 /* Safe.swift */,
 				0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */,
 				55FB25C0212582EC00E81666 /* HTTPTokenListServiceTests.swift */,
@@ -776,7 +942,6 @@
 			buildConfigurationList = 5540A513203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "safe" */;
 			buildPhases = (
 				55DF6A95203C681A00DF6486 /* Lint */,
-				0A0C873C2097526C00471885 /* Copy IdentityAccessImplementationsResources */,
 				5540A4E7203C3054009C9BE3 /* Sources */,
 				5540A4E8203C3054009C9BE3 /* Frameworks */,
 				0A53AD5020598A0600D713AD /* Localize */,
@@ -888,12 +1053,20 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 0A84C27C230544E90006DA50 /* Products */;
+					ProjectRef = 0A84C27B230544E90006DA50 /* Common.xcodeproj */;
+				},
+				{
 					ProductGroup = 0A160B6420A07C3E00E064E1 /* Products */;
 					ProjectRef = 0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */;
 				},
 				{
 					ProductGroup = 0ABCA965207E560500E2C193 /* Products */;
 					ProjectRef = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+				},
+				{
+					ProductGroup = 0ABEFD162305577B00168055 /* Products */;
+					ProjectRef = 0A84C266230544C10006DA50 /* MultisigWallet.xcodeproj */;
 				},
 				{
 					ProductGroup = 0A160B4F20A07C2D00E064E1 /* Products */;
@@ -953,10 +1126,10 @@
 			remoteRef = 0A160B6120A07C2D00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A160B7020A07C3F00E064E1 /* libIdentityAccessDomainModel.a */ = {
+		0A160B7020A07C3F00E064E1 /* IdentityAccessDomainModel.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libIdentityAccessDomainModel.a;
+			fileType = wrapper.framework;
+			path = IdentityAccessDomainModel.framework;
 			remoteRef = 0A160B6F20A07C3F00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -967,10 +1140,10 @@
 			remoteRef = 0A160B7120A07C3F00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A160B7420A07C3F00E064E1 /* libIdentityAccessImplementations.a */ = {
+		0A160B7420A07C3F00E064E1 /* IdentityAccessImplementations.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libIdentityAccessImplementations.a;
+			fileType = wrapper.framework;
+			path = IdentityAccessImplementations.framework;
 			remoteRef = 0A160B7320A07C3F00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -981,10 +1154,10 @@
 			remoteRef = 0A160B7520A07C3F00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A160B7C20A07C3F00E064E1 /* libIdentityAccessApplication.a */ = {
+		0A160B7C20A07C3F00E064E1 /* IdentityAccessApplication.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libIdentityAccessApplication.a;
+			fileType = wrapper.framework;
+			path = IdentityAccessApplication.framework;
 			remoteRef = 0A160B7B20A07C3F00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -995,11 +1168,102 @@
 			remoteRef = 0A160B7D20A07C3F00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A160B8020A07C3F00E064E1 /* IdentityAccessImplementationsResources.bundle */ = {
+		0A84C287230544E90006DA50 /* CommonIntegration.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CommonIntegration.app;
+			remoteRef = 0A84C286230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C289230544E90006DA50 /* Common.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Common.framework;
+			remoteRef = 0A84C288230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C28B230544E90006DA50 /* CommonTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = IdentityAccessImplementationsResources.bundle;
-			remoteRef = 0A160B7F20A07C3F00E064E1 /* PBXContainerItemProxy */;
+			path = CommonTests.xctest;
+			remoteRef = 0A84C28A230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C28D230544E90006DA50 /* CommonTestSupport.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonTestSupport.framework;
+			remoteRef = 0A84C28C230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C28F230544E90006DA50 /* Database.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Database.framework;
+			remoteRef = 0A84C28E230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C291230544E90006DA50 /* DatabaseTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DatabaseTests.xctest;
+			remoteRef = 0A84C290230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C293230544E90006DA50 /* CommonImplementations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonImplementations.framework;
+			remoteRef = 0A84C292230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A84C295230544E90006DA50 /* CommonImplementationsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommonImplementationsTests.xctest;
+			remoteRef = 0A84C294230544E90006DA50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD2D2305577D00168055 /* MultisigWalletDomainModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MultisigWalletDomainModel.framework;
+			remoteRef = 0ABEFD2C2305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD2F2305577D00168055 /* MultisigWalletDomainModelTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MultisigWalletDomainModelTests.xctest;
+			remoteRef = 0ABEFD2E2305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD312305577D00168055 /* MultisigWalletApplication.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MultisigWalletApplication.framework;
+			remoteRef = 0ABEFD302305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD332305577D00168055 /* MultisigWalletApplicationTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MultisigWalletApplicationTests.xctest;
+			remoteRef = 0ABEFD322305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD352305577D00168055 /* MultisigWalletImplementations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MultisigWalletImplementations.framework;
+			remoteRef = 0ABEFD342305577D00168055 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ABEFD372305577D00168055 /* MultisigWalletImplementationsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MultisigWalletImplementationsTests.xctest;
+			remoteRef = 0ABEFD362305577D00168055 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */ = {
@@ -1030,7 +1294,6 @@
 				0A05952A22E9CFF60001D7D5 /* Averta-Regular.otf in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
 				0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */,
-				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
 				0A84BBF42106168600708DE5 /* AppConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1046,7 +1309,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
 				0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */,
 				0AA27835205FC60100EBB9D1 /* Localizable.strings in Resources */,
 				0A99436E20A04C9C00E36FD7 /* SafeAppUI.strings in Resources */,
@@ -1073,23 +1335,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cp ${SCRIPT_INPUT_FILE_0} ${SCRIPT_OUTPUT_FILE_0}\ncp ${SCRIPT_INPUT_FILE_1} ${SCRIPT_OUTPUT_FILE_1}";
-			showEnvVarsInLog = 0;
-		};
-		0A0C873C2097526C00471885 /* Copy IdentityAccessImplementationsResources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/IdentityAccessImplementationsResources.bundle",
-			);
-			name = "Copy IdentityAccessImplementationsResources";
-			outputPaths = (
-				"$(SRCROOT)/IdentityAccessImplementationsResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -ex\nrsync -r ${SCRIPT_INPUT_FILE_0}/ ${SCRIPT_OUTPUT_FILE_0}\n";
 			showEnvVarsInLog = 0;
 		};
 		0A53AD5020598A0600D713AD /* Localize */ = {
@@ -1174,7 +1419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1197,6 +1442,7 @@
 				55B5DF98227C567D001A32F4 /* Migrations.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				0A364B40226886DB002E80B7 /* IdentityAccessConfigurator.swift in Sources */,
+				5590F1B4234360F2002F120B /* M0008_AddWalletNameField.swift in Sources */,
 				55329FD122F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift in Sources */,
 				0A364B3322688473002E80B7 /* MultisigWalletConfigurator.swift in Sources */,
 				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,
@@ -1215,7 +1461,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A0E837122CA00050027A96E /* WalletConnectIntegrationTests.swift in Sources */,
 				555C94F120E537E900A0621D /* HTTPNotificatonServiceTests.swift in Sources */,
 				0A364B4222688891002E80B7 /* Safe.swift in Sources */,
 				0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */,
@@ -1493,7 +1738,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZKG876RKJ8;
 				INFOPLIST_FILE = safe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1553,7 +1798,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SafeUITests/SafeUITests-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = safe;
 			};
@@ -1684,7 +1929,7 @@
 				CODE_SIGN_ENTITLEMENTS = safe/safe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZKG876RKJ8;
 				INFOPLIST_FILE = safe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1714,7 +1959,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZKG876RKJ8;
 				INFOPLIST_FILE = safe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1798,7 +2043,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SafeUITests/SafeUITests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = safe;
 			};
@@ -1822,7 +2067,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SafeUITests/SafeUITests-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = safe;
 			};
@@ -1900,7 +2145,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZKG876RKJ8;
 				INFOPLIST_FILE = safe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1962,7 +2207,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SafeUITests/SafeUITests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = safe;
 			};

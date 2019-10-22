@@ -33,10 +33,15 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     var hasBrowserExtension: Bool {
-        return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
+        return ApplicationServiceRegistry.walletService.address(of: .browserExtension, in: tx.walletID) != nil
     }
 
-    private(set) var tx: TransactionData!
+    var hasKeycard: Bool {
+        return ApplicationServiceRegistry.walletService.address(of: .keycard, in: tx.walletID) != nil
+    }
+
+    private(set) var tx: TransactionData! // wallet by transaction id
+
     private(set) weak var delegate: ReviewTransactionViewControllerDelegate!
     private var submitBarButton: UIBarButtonItem!
     /// To control how frequent a user can send confirmation requests
@@ -60,8 +65,11 @@ public class ReviewTransactionViewController: UITableViewController {
         configureTableView()
         createCells()
 
-        if !hasBrowserExtension {
+        if !hasBrowserExtension && !hasKeycard {
             confirmationCell.confirmationView.showsOnlyButton = true
+        }
+        if hasKeycard {
+            confirmationCell.confirmationView.twoFAType = .keycard
         }
         if showsSubmitInNavigationBar {
             if let key = cells.first(where: { $0.value === confirmationCell })?.key {
@@ -127,18 +135,44 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     @objc internal func submit() {
-        if tx.status == .rejected {
+        if hasKeycard {
+            submitWithKeycard()
+        } else {
+            submitWithAuthenticator()
+        }
+    }
+
+    func submitWithAuthenticator() {
+        switch tx.status {
+        case .readyToSubmit:
+            submitWithUserPermission()
+        case .rejected:
             ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
             doRequest()
-        } else if tx.status == .readyToSubmit {
-            delegate.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [weak self] allowed in
-                if allowed {
-                    self?.doSubmit()
-                }
-            }
-        } else {
+        default:
             showResendAlert(action: scheduleConfirmationRequest)
         }
+    }
+
+    func submitWithKeycard() {
+        switch tx.status {
+        case .waitingForConfirmation:
+            openSignWithKeycard()
+        case .readyToSubmit:
+            submitWithUserPermission()
+        case .rejected:
+            ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
+            openSignWithKeycard()
+        default: break
+        }
+    }
+
+    func openSignWithKeycard() {
+        let signController = SKSignWithPinViewController.create(transactionID: tx.id) {
+            self.tx = self.fetchTransaction(self.tx.id)
+            self.postProcessing()
+        }
+        show(signController, sender: self)
     }
 
     /// Supposed to be called from flow coordinator when the screen is already shown, but new transaction data
@@ -169,8 +203,16 @@ public class ReviewTransactionViewController: UITableViewController {
         }
     }
 
+    func submitWithUserPermission() {
+        delegate.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [weak self] allowed in
+            if allowed {
+                self?.doSubmit()
+            }
+        }
+    }
+
     private func doSubmit() {
-        doAfterEstimateTransaction { [weak self] in
+        doAfterEstimateTransaction { [weak self] in  
             guard let `self` = self else { return TransactionData.empty }
             return try ApplicationServiceRegistry.walletService.submitTransaction(self.tx.id)
         }
@@ -238,7 +280,9 @@ public class ReviewTransactionViewController: UITableViewController {
             DispatchQueue.main.async { self.showError(error) }
             return
         }
-        ErrorHandler.showError(message: error.localizedDescription, log: "operation failed: \(error)", error: nil)
+        let alert = UIAlertController.operationFailed(message: error.localizedDescription)
+        present(alert, animated: true, completion: nil)
+        ApplicationServiceRegistry.logger.error(error.localizedDescription)
     }
 
     private func reloadData() {
@@ -313,7 +357,8 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     internal func balance(of token: TokenData) -> BigInt? {
-        return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address))
+        return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address),
+                                                                       walletID: tx.walletID)
     }
 
     // MARK: - Other

@@ -9,6 +9,5 @@ public enum OwnerType: String {
     case browserExtension
     case paperWallet
     case paperWalletDerived
-
-    static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet, .paperWalletDerived]
+    case keycard
 }

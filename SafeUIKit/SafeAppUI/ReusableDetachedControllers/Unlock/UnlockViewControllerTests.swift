@@ -74,6 +74,7 @@ class UnlockViewControllerTests: SafeTestCase {
         authenticationService.makeBiometricAuthenticationImpossible()
         vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
+        vc.viewDidAppear(false)
         XCTAssertTrue(vc.biometryStackView.isHidden)
     }
 
@@ -100,7 +101,6 @@ class UnlockViewControllerTests: SafeTestCase {
 
     func test_whenCountdownReachesZero_thenPasswordEntryFocused() throws {
         authenticationService.blockAuthentication()
-        try createVC()
         createWindow(vc)
         clock.countdownTickBlock!(0)
         delay()
@@ -116,6 +116,7 @@ class UnlockViewControllerTests: SafeTestCase {
 
     func test_whenAccountBlocked_thenMustNotRequestBiometricAuthentication() {
         authenticationService.blockAuthentication()
+        authenticationService.didRequestBiometricAuthentication = false
         vc.viewDidAppear(false)
         XCTAssertFalse(authenticationService.didRequestBiometricAuthentication)
     }
@@ -152,6 +153,7 @@ extension UnlockViewControllerTests {
             self.didLogIn = success
         }
         UIApplication.shared.keyWindow?.rootViewController = vc
+        vc.viewDidAppear(false)
     }
 
     private func authenticateWithBiometryResult(_ result: Bool) {

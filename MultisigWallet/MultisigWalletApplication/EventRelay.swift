@@ -22,12 +22,14 @@ public class EventRelay {
 
     func subscribe(_ subject: EventSubscriber, for event: DomainEvent.Type) {
         subscribers.append((event, WeakWrapper(subject)))
+        removeWeakNils()
     }
 
     func unsubscribe(_ subject: EventSubscriber) {
         if let index = subscribers.firstIndex(where: { $0.subscriber.ref === subject }) {
             subscribers.remove(at: index)
         }
+        removeWeakNils()
     }
 
     private func handleEvent(_ event: DomainEvent) {

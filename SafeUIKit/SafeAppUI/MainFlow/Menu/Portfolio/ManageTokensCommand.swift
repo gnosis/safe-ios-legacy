@@ -15,7 +15,7 @@ final class ManageTokensCommand: MenuCommand {
         childFlowCoordinator = ManageTokensFlowCoordinator()
     }
 
-    override func didExitToMenu(mainFlowCoordinator: MainFlowCoordinator) {
+    override func didExitToMenu() {
         // no-op
     }
 

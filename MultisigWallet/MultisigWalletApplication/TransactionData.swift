@@ -5,6 +5,7 @@
 import Foundation
 import BigInt
 import Common
+import MultisigWalletDomainModel
 
 public struct TransactionGroupData: Collection {
 
@@ -50,13 +51,17 @@ public struct TransactionData: Equatable {
         case incoming
         case walletRecovery
         case replaceRecoveryPhrase
-        case replaceBrowserExtension
-        case connectBrowserExtension
-        case disconnectBrowserExtension
+        case replaceTwoFAWithAuthenticator
+        case connectAuthenticator
+        case disconnectAuthenticator
         case contractUpgrade
+        case replaceTwoFAWithStatusKeycard
+        case connectStatusKeycard
+        case disconnectStatusKeycard
     }
 
     public let id: String
+    public let walletID: String
     public let sender: String
     public let recipient: String
     public let amountTokenData: TokenData
@@ -74,6 +79,7 @@ public struct TransactionData: Equatable {
     }
 
     public static let empty = TransactionData(id: "",
+                                              walletID: "",
                                               sender: "",
                                               recipient: "",
                                               amountTokenData: .empty(),
@@ -87,6 +93,7 @@ public struct TransactionData: Equatable {
                                               processed: nil)
 
     public init(id: String,
+                walletID: String,
                 sender: String,
                 recipient: String,
                 amountTokenData: TokenData,
@@ -99,6 +106,7 @@ public struct TransactionData: Equatable {
                 rejected: Date?,
                 processed: Date?) {
         self.id = id
+        self.walletID = walletID
         self.sender = sender
         self.recipient = recipient
         self.amountTokenData = amountTokenData
@@ -122,3 +130,70 @@ public struct TransactionData: Equatable {
     }
 
 }
+
+extension TransactionData.TransactionType {
+
+    var transactionType: TransactionType {
+        switch self {
+        case .connectStatusKeycard: return .connectStatusKeycard
+        case .connectAuthenticator: return .connectAuthenticator
+        case .outgoing: return .transfer
+        case .incoming: return .transfer
+        case .walletRecovery: return .walletRecovery
+        case .replaceRecoveryPhrase: return .replaceRecoveryPhrase
+        case .replaceTwoFAWithAuthenticator: return .replaceTwoFAWithAuthenticator
+        case .disconnectAuthenticator: return .disconnectAuthenticator
+        case .contractUpgrade: return .contractUpgrade
+        case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
+        case .disconnectStatusKeycard: return .disconnectStatusKeycard
+        }
+    }
+
+}
+
+extension TransactionType {
+
+    var transactionDataType: TransactionData.TransactionType {
+        switch self {
+        case .transfer: return .outgoing
+        case .walletRecovery: return .walletRecovery
+        case .replaceRecoveryPhrase: return .replaceRecoveryPhrase
+        case .replaceTwoFAWithAuthenticator: return .replaceTwoFAWithAuthenticator
+        case .connectAuthenticator: return .connectAuthenticator
+        case .disconnectAuthenticator: return .disconnectAuthenticator
+        case .contractUpgrade: return .contractUpgrade
+        case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
+        case .connectStatusKeycard: return .connectStatusKeycard
+        case .disconnectStatusKeycard: return .disconnectStatusKeycard
+        }
+    }
+
+}
+
+
+extension TransactionStatus.Code {
+
+    var transactionDataStatus: TransactionData.Status {
+        switch self {
+        case .draft: return .waitingForConfirmation
+        case .signing: return .readyToSubmit
+        case .pending: return .pending
+        case .rejected: return .rejected
+        case .failed: return .failed
+        case .success: return .success
+        }
+    }
+
+}
+
+extension TransactionGroupData.GroupType {
+
+    init(_ type: TransactionGroup.GroupType) {
+        switch type {
+        case .pending: self = .pending
+        case .processed: self = .processed
+        }
+    }
+
+}
+

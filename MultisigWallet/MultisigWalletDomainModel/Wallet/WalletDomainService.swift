@@ -22,22 +22,53 @@ public class WalletDomainService {
         return result
     }
 
-    public static func recreateOwners() {
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        for owner in wallet.allOwners() {
-            DomainRegistry.externallyOwnedAccountRepository.remove(address: owner.address)
-            wallet.removeOwner(role: owner.role)
-        }
-        let newOwnerAddress = newOwner()
-        wallet.addOwner(Owner(address: newOwnerAddress, role: .thisDevice))
-        DomainRegistry.walletRepository.save(wallet)
-    }
-
     public static func token(id: String) -> Token? {
         if id == Token.Ether.id.id {
             return Token.Ether
         } else {
             return DomainRegistry.tokenListItemRepository.find(id: TokenID(id))?.token
+        }
+    }
+
+    public static func removeWallet(_ id: String) {
+        let walletID = WalletID(id)
+
+        if let wallet = DomainRegistry.walletRepository.find(id: walletID) {
+            DomainRegistry.walletRepository.remove(wallet)
+
+            let owners = wallet.allOwners().map { $0.address }
+            for owner in owners {
+                DomainRegistry.externallyOwnedAccountRepository.remove(address: owner)
+            }
+
+        }
+        removeFromPortfolio(walletID: walletID)
+        removeAccounts(for: walletID)
+        removeTransactions(for: walletID)
+    }
+
+    public static func removeFromPortfolio(walletID: WalletID) {
+        if let portfolio = DomainRegistry.portfolioRepository.portfolio() {
+            portfolio.removeWallet(walletID)
+            DomainRegistry.portfolioRepository.save(portfolio)
+        }
+    }
+
+    public static func removeAccounts(for walletID: WalletID) {
+        let accounts = DomainRegistry.accountRepository.filter(walletID: walletID)
+        for account in accounts {
+            DomainRegistry.accountRepository.remove(account)
+        }
+    }
+
+    public static func removeTransactions(for walletID: WalletID) {
+        let transactions = DomainRegistry.transactionRepository.find(wallet: walletID)
+        for transaction in transactions {
+            DomainRegistry.transactionRepository.remove(transaction)
+
+            if let monitor = DomainRegistry.transactionMonitorRepository.find(id: transaction.id) {
+                DomainRegistry.transactionMonitorRepository.remove(monitor)
+            }
         }
     }
 

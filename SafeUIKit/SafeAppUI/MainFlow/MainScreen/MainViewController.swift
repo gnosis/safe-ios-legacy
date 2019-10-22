@@ -60,6 +60,8 @@ class MainViewController: UIViewController {
         return ApplicationServiceRegistry.contractUpgradeService.isAvailable
     }
 
+    private(set) var walletID: String?
+
     static func create(delegate: MainViewControllerDelegate & TransactionViewViewControllerDelegate)
         -> MainViewController {
             let controller = StoryboardScene.Main.mainViewController.instantiate()
@@ -86,7 +88,9 @@ class MainViewController: UIViewController {
         headerView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
         headerView.button.addTarget(self, action: #selector(didTapAddress), for: .touchUpInside)
 
-        bannerView.onTap = didTapBanner
+        bannerView.onTap = { [weak self] in
+            self?.didTapBanner()
+        }
         bannerView.text = LocalizedString("upgrade_required", comment: "Security upgrade required")
 
         if !shouldShowBanner {
@@ -104,6 +108,8 @@ class MainViewController: UIViewController {
         ApplicationServiceRegistry.contractUpgradeService.subscribeForContractUpgrade { [weak self] in
             self?.hideBannerViewAnimated()
         }
+
+        walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
 
         runDiagnostics()
     }
@@ -127,6 +133,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.shadowImage = UIImage()
+        title = ApplicationServiceRegistry.walletService.selectedWalletData.name
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -151,8 +158,23 @@ class MainViewController: UIViewController {
         assetViewController.delegate?.openAddressDetails()
     }
 
-    func runDiagnostics() {
-        DispatchQueue.global().async {
+    private var isRunningDiagnostics = false
+
+    // don't run diagnostics if the app is not in foreground or diagnostics is already running
+    @objc func runDiagnostics() {
+        guard UIApplication.shared.applicationState == .active else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(runDiagnostics),
+                                                   name: UIApplication.willEnterForegroundNotification,
+                                                   object: nil)
+            return
+        }
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.willEnterForegroundNotification,
+                                                  object: nil)
+        guard !isRunningDiagnostics else { return }
+        isRunningDiagnostics = true
+        DispatchQueue.global().async { [unowned self] in
             do {
                 try ApplicationServiceRegistry.walletService.runDiagnostics()
             } catch {
@@ -162,6 +184,7 @@ class MainViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             }
+            self.isRunningDiagnostics = false
         }
     }
 

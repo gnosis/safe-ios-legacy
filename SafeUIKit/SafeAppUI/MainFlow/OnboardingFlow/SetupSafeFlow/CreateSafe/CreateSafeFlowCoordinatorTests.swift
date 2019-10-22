@@ -19,46 +19,51 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         walletService.expect_walletState(.draft)
+        walletService.expect_walletState(.draft)
         newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: UINavigationController())
         newSafeFlowCoordinator.setUp()
     }
 
-    func test_startViewController_returnsSetupSafeStartVC() {
-        assert(topViewController, is: OnboardingIntroViewController.self)
+    func test_startViewController_returnsOnboardingInroVC() {
+        assert(topViewController, is: OnboardingViewController.self)
     }
 
     func test_didSelectBrowserExtensionSetup_showsController() {
-        newSafeFlowCoordinator.didPressNext()
+        newSafeFlowCoordinator.didSelectTwoFAOption(.gnosisAuthenticator)
         delay()
-        XCTAssertTrue(topViewController is TwoFAViewController)
+        XCTAssertTrue(topViewController is AuthenticatorViewController)
     }
 
-    func test_pairWithBrowserExtensionCompletion_thenAddsBowserExtensionAndPopsToStartVC() {
+    func test_pairWithBrowserExtensionCompletion_thenAddsBowserExtensionNavigatesToConnectSuccessViewController() {
         XCTAssertFalse(walletService.isOwnerExists(.browserExtension))
         pairWithBrowserExtension()
         XCTAssertTrue(walletService.isOwnerExists(.browserExtension))
-        XCTAssertTrue(topViewController is SaveMnemonicViewController)
+        XCTAssertTrue(topViewController is HeaderImageTextStepController)
     }
 
     func test_whenWalletServiceThrowsDuringPairing_thenAlertIsHandled() {
         walletService.shouldThrow = true
+        let navController = UINavigationController()
+        createWindow(navController)
+        walletService.expect_walletState(.draft)
+        newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: navController)
+        newSafeFlowCoordinator.setUp()
         pairWithBrowserExtension()
+        delay(0.5)
         XCTAssertAlertShown(message: WalletApplicationServiceError.networkError.localizedDescription)
-        assert(topViewController, is: TwoFAViewController.self)
+        assert(topViewController, is: AuthenticatorViewController.self)
     }
 
     func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
         let testFC = TestFlowCoordinator()
         testFC.enter(flow: PaperWalletFlowCoordinator())
         let expectedViewController = testFC.topViewController
-
-        newSafeFlowCoordinator.showSeed()
-
+        newSafeFlowCoordinator.showSeed(paired: false)
         let finalTransitionedViewController = newSafeFlowCoordinator.navigationController.topViewController
         XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
     }
 
-    func test_didSelectNext_presentsNextController() {
+    func test_showPayment_presentsOnboardingCreationFeeIntro() {
         newSafeFlowCoordinator.showPayment()
         delay()
         assert(topViewController, is: OnboardingCreationFeeIntroViewController.self)
@@ -83,9 +88,13 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_paperWalletSetupCompletion_showsPayment() {
-        newSafeFlowCoordinator.showSeed()
+        newSafeFlowCoordinator.showSeed(paired: false)
         delay()
         newSafeFlowCoordinator.paperWalletFlowCoordinator.exitFlow()
+        delay()
+        let controller = topViewController as? HeaderImageTextStepController
+        XCTAssertNotNil(controller)
+        controller?.navigateNext()
         delay()
         assert(topViewController, is: OnboardingCreationFeeIntroViewController.self)
     }
@@ -101,7 +110,8 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
             exp.fulfill()
         }
 
-        newSafeFlowCoordinator.deploymentDidCancel()
+        let vc = OnboardingCreationFeeViewController()
+        newSafeFlowCoordinator.onboardingCreationFeeViewControllerDeploymentDidCancel(vc)
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 
@@ -113,7 +123,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
         testFC.enter(flow: newSafeFlowCoordinator) {
             finished = true
         }
-        newSafeFlowCoordinator.onboardingFeePaidDidSuccess()
+        newSafeFlowCoordinator.onboardingFeePaidViewControllerDidSuccess(OnboardingFeePaidViewController())
         XCTAssertTrue(finished)
     }
 
@@ -128,13 +138,13 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
             finished = true
         }
 
-        newSafeFlowCoordinator.onboardingFeePaidDidFail()
+        newSafeFlowCoordinator.onboardingFeePaidViewControllerDidFail(OnboardingFeePaidViewController())
 
         XCTAssertTrue(finished)
     }
 
     func test_startStates() {
-        assert(when: .draft, then: OnboardingIntroViewController.self)
+        assert(when: .draft, then: OnboardingViewController.self)
         assert(when: .deploying, then: OnboardingCreationFeeViewController.self)
         assert(when: .waitingForFirstDeposit, then: OnboardingCreationFeeViewController.self)
         assert(when: .notEnoughFunds, then: OnboardingCreationFeeViewController.self)
@@ -144,15 +154,15 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_tracking() {
-        newSafeFlowCoordinator.didPressNext()
+        newSafeFlowCoordinator.didSelectTwoFAOption(.gnosisAuthenticator)
         delay(0.5)
         let controller = newSafeFlowCoordinator.navigationController.topViewController as!
-            TwoFAViewController
-        let screenEvent = controller.screenTrackingEvent as? OnboardingTrackingEvent
-        XCTAssertEqual(screenEvent, .twoFA)
+            AuthenticatorViewController
+        let screenEvent = controller.screenTrackingEvent as? TwoFATrackingEvent
+        XCTAssertEqual(screenEvent, .connectAuthenticator)
 
-        let scanEvent = controller.scanTrackingEvent as? OnboardingTrackingEvent
-        XCTAssertEqual(scanEvent, .twoFAScan)
+        let scanEvent = controller.scanTrackingEvent as? TwoFATrackingEvent
+        XCTAssertEqual(scanEvent, .connectAuthenticatorScan)
     }
 
 }
@@ -160,23 +170,25 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
 private extension CreateSafeFlowCoordinatorTests {
 
     func assert<T>(when state: WalletStateId, then controllerClass: T.Type, line: UInt = #line) {
-        walletService.expect_walletState(state)
+        walletService.clearExpectations_walletState()
+        walletService.expect_walletState(state) // for flow coordinator
+        walletService.expect_walletState(.draft) // for view controller's update() method
         newSafeFlowCoordinator.setUp()
         delay()
         assert(topViewController!, is: controllerClass, line: line)
     }
 
     func assert<T>(_ object: Any?, is aType: T.Type, file: StaticString = #file, line: UInt = #line) {
-        let message = "Expected \(T.self) but got \(String(describing: type(of: object)))"
+        let message = "Expected \(T.self) but got \(object == nil ? "nil" : String(reflecting: type(of: object!)))"
         XCTAssertTrue(object is T, message, file: file, line: line)
     }
 
     func pairWithBrowserExtension() {
         ethereumService.browserExtensionAddress = "code"
         walletService.expect_isSafeCreationInProgress(true)
-        newSafeFlowCoordinator.didPressNext()
+        newSafeFlowCoordinator.didSelectTwoFAOption(.gnosisAuthenticator)
         delay()
-        let pairVC = topViewController as? TwoFAViewController
+        let pairVC = topViewController as? AuthenticatorViewController
         pairVC!.loadViewIfNeeded()
         pairVC!.scanBarButtonItemDidScanValidCode("code")
         delay()

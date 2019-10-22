@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,25 +16,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yxb-5f-S3J">
-                                <rect key="frame" x="0.0" y="64" width="375" height="736"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="756"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGY-Bp-qGQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="756"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htj-cX-uIl">
-                                                <rect key="frame" x="20" y="40" width="335" height="48"/>
+                                                <rect key="frame" x="20" y="40" width="335" height="41"/>
                                                 <string key="text">Stay secure.
 Save this recovery phrase.</string>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJL-Wu-tSJ">
-                                                <rect key="frame" x="16" y="119" width="343" height="127.5"/>
+                                                <rect key="frame" x="16" y="112" width="343" height="113.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram Octogram" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8c-qh-D5l">
-                                                        <rect key="frame" x="16" y="16" width="311" height="95.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <rect key="frame" x="16" y="16" width="311" height="81.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -51,21 +48,21 @@ Save this recovery phrase.</string>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkP-Rj-RvE">
-                                                <rect key="frame" x="256" y="254.5" width="87" height="30"/>
+                                                <rect key="frame" x="256" y="233.5" width="87" height="30"/>
                                                 <state key="normal" title="Make a copy"/>
                                                 <connections>
                                                     <action selector="copyToClipboard:" destination="FDt-8A-d9p" eventType="touchUpInside" id="qdv-8h-O8e"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQs-yC-xbp">
-                                                <rect key="frame" x="32" y="296.5" width="311" height="57.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="32" y="275.5" width="311" height="61"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Without these, you won’t be able to recover your Safe and its assets." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3R-nP-mmG">
-                                                <rect key="frame" x="32" y="384" width="311" height="38.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                <rect key="frame" x="32" y="366.5" width="311" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -132,19 +129,19 @@ Save this recovery phrase.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1F-YR-xad">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGw-OJ-g8w">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the following words from your recovery phrase." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxD-ES-jJ0">
-                                                <rect key="frame" x="20" y="40" width="335" height="48"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <rect key="frame" x="20" y="40" width="335" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jQ9-6b-oHW">
-                                                <rect key="frame" x="16" y="148" width="343" height="130"/>
+                                                <rect key="frame" x="16" y="141" width="343" height="130"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-TH-gJW" customClass="VerifiableInput" customModule="SafeUIKit">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
@@ -215,7 +212,7 @@ Save this recovery phrase.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WNT-0N-qa2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1v-Kw-okT">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="500.5"/>
@@ -288,5 +285,305 @@ Save this recovery phrase.</string>
             </objects>
             <point key="canvasLocation" x="3348" y="-176.76161919040482"/>
         </scene>
+        <!--Pair View Controller-->
+        <scene sceneID="6C5-zS-k8F">
+            <objects>
+                <viewController storyboardIdentifier="SKPairViewController" id="Lwx-FY-CcW" customClass="SKPairViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tnZ-lA-cYj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBt-Ia-MpR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPW-Vc-Rdk" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="390"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5jy-tE-izg">
+                                                <rect key="frame" x="16" y="24" width="343" height="366"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your pairing password and PIN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB2-bF-3uH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="1Da-Pl-of0"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSa-hc-p3A" customClass="VerifiableInput" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="62" width="343" height="56"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" placeholder="YES" id="4Of-MF-lVa"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNf-3D-z7F" customClass="VerifiableInput" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="148" width="343" height="56"/>
+                                                        <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" placeholder="YES" id="U5B-by-ph3"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3YB-AB-x31">
+                                                        <rect key="frame" x="0.0" y="234" width="343" height="132"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2p-jY-cZE" customClass="StandardButton" customModule="SafeUIKit">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="56" id="5Qu-BV-V7c"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Pair Keycard"/>
+                                                                <connections>
+                                                                    <action selector="pairKeycard" destination="Lwx-FY-CcW" eventType="touchUpInside" id="2ae-WT-Y2N"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1n4-6P-ZNR" customClass="StandardButton" customModule="SafeUIKit">
+                                                                <rect key="frame" x="0.0" y="56" width="343" height="76"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="76" id="n84-q9-qCc"/>
+                                                                </constraints>
+                                                                <state key="normal" title="I don't have password"/>
+                                                                <connections>
+                                                                    <action selector="initializeKeycard" destination="Lwx-FY-CcW" eventType="touchUpInside" id="uBi-IO-rVd"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="5jy-tE-izg" secondAttribute="trailing" constant="16" id="BTh-tX-Te9"/>
+                                            <constraint firstAttribute="bottom" secondItem="5jy-tE-izg" secondAttribute="bottom" id="EOe-1U-MCs"/>
+                                            <constraint firstItem="5jy-tE-izg" firstAttribute="leading" secondItem="rPW-Vc-Rdk" secondAttribute="leading" constant="16" id="v36-yq-mHV"/>
+                                            <constraint firstItem="5jy-tE-izg" firstAttribute="top" secondItem="rPW-Vc-Rdk" secondAttribute="top" constant="24" id="zvh-E0-MrN"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="rPW-Vc-Rdk" firstAttribute="width" secondItem="me4-Lp-Pzx" secondAttribute="width" id="5SV-Kh-gwX"/>
+                                    <constraint firstItem="rPW-Vc-Rdk" firstAttribute="bottom" secondItem="pN7-IY-jN2" secondAttribute="bottom" id="BZt-vw-fmx"/>
+                                    <constraint firstItem="rPW-Vc-Rdk" firstAttribute="leading" secondItem="pN7-IY-jN2" secondAttribute="leading" id="U3E-Fv-Xtk"/>
+                                    <constraint firstItem="pN7-IY-jN2" firstAttribute="width" secondItem="rPW-Vc-Rdk" secondAttribute="width" id="Xky-pw-byI"/>
+                                    <constraint firstItem="rPW-Vc-Rdk" firstAttribute="top" secondItem="pN7-IY-jN2" secondAttribute="top" id="ik1-Ny-hzn"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="pN7-IY-jN2"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="me4-Lp-Pzx"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rBt-Ia-MpR" firstAttribute="leading" secondItem="bKM-df-xmf" secondAttribute="leading" id="H3s-hX-vCg"/>
+                            <constraint firstItem="rBt-Ia-MpR" firstAttribute="top" secondItem="bKM-df-xmf" secondAttribute="top" id="LcJ-Sv-f48"/>
+                            <constraint firstItem="bKM-df-xmf" firstAttribute="bottom" secondItem="rBt-Ia-MpR" secondAttribute="bottom" id="kdJ-Co-nUM"/>
+                            <constraint firstItem="bKM-df-xmf" firstAttribute="trailing" secondItem="rBt-Ia-MpR" secondAttribute="trailing" id="sdY-8D-OHx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bKM-df-xmf"/>
+                    </view>
+                    <connections>
+                        <outlet property="initializeButton" destination="1n4-6P-ZNR" id="i9D-Jo-kWh"/>
+                        <outlet property="pairButton" destination="b2p-jY-cZE" id="aEE-uS-x1o"/>
+                        <outlet property="pairingPasswordField" destination="gSa-hc-p3A" id="zsY-Kn-roq"/>
+                        <outlet property="pinField" destination="RNf-3D-z7F" id="2gX-dn-Sjt"/>
+                        <outlet property="scrollView" destination="rBt-Ia-MpR" id="8lB-hb-Z6J"/>
+                        <outlet property="titleLabel" destination="qB2-bF-3uH" id="w4y-52-nrn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdQ-M0-7ba" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4088.8000000000002" y="-177.66116941529236"/>
+        </scene>
+        <!--Activate View Controller-->
+        <scene sceneID="LRz-RF-WgU">
+            <objects>
+                <viewController storyboardIdentifier="SKActivateViewController" id="oxT-Co-aab" customClass="SKActivateViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pay-ly-w6F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aM5-2C-Ng4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-HW-kxy" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="358.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="USd-am-PkZ">
+                                                <rect key="frame" x="16" y="0.0" width="343" height="358.5"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8r4-ez-0k8" userLabel="SpacingView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="0.0"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" id="dvt-vG-Npx"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup your card" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHo-m9-axu">
+                                                        <rect key="frame" x="0.0" y="24" width="343" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statusKeycardActivated" translatesAutoresizingMaskIntoConstraints="NO" id="tV6-KC-Bod">
+                                                        <rect key="frame" x="0.0" y="68.5" width="343" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="xq5-PG-yP6"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hy3-F3-iSB">
+                                                        <rect key="frame" x="0.0" y="152.5" width="343" height="61"/>
+                                                        <string key="text">PIN:
+PUK:
+Password:</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7f-cz-ZnS">
+                                                        <rect key="frame" x="0.0" y="237.5" width="343" height="41"/>
+                                                        <string key="text">This is to explain what all this mean.
+In several paragraphs.</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzl-uP-n6C" customClass="StandardButton" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="302.5" width="343" height="56"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="uaW-p2-Ma0"/>
+                                                        </constraints>
+                                                        <state key="normal" title="I have a copy"/>
+                                                        <connections>
+                                                            <action selector="didTapConfirm" destination="oxT-Co-aab" eventType="touchUpInside" id="j2b-ba-11W"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="USd-am-PkZ" firstAttribute="top" secondItem="GGh-HW-kxy" secondAttribute="top" id="0RG-5c-1cm"/>
+                                            <constraint firstItem="USd-am-PkZ" firstAttribute="leading" secondItem="GGh-HW-kxy" secondAttribute="leading" constant="16" id="85o-LZ-NlI"/>
+                                            <constraint firstAttribute="trailing" secondItem="USd-am-PkZ" secondAttribute="trailing" constant="16" id="PYq-cF-NgT"/>
+                                            <constraint firstAttribute="bottom" secondItem="USd-am-PkZ" secondAttribute="bottom" id="WMT-Ar-nhf"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="GGh-HW-kxy" firstAttribute="bottom" secondItem="eRI-7P-oI0" secondAttribute="bottom" id="55M-Wl-bfh"/>
+                                    <constraint firstItem="GGh-HW-kxy" firstAttribute="leading" secondItem="eRI-7P-oI0" secondAttribute="leading" id="JfQ-WV-YT8"/>
+                                    <constraint firstItem="GGh-HW-kxy" firstAttribute="trailing" secondItem="eRI-7P-oI0" secondAttribute="trailing" id="jwZ-MH-HXg"/>
+                                    <constraint firstItem="GGh-HW-kxy" firstAttribute="top" secondItem="eRI-7P-oI0" secondAttribute="top" id="kXo-Bf-hf0"/>
+                                    <constraint firstItem="GGh-HW-kxy" firstAttribute="width" secondItem="Es8-05-Jda" secondAttribute="width" id="qv1-t2-rW7"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="eRI-7P-oI0"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Es8-05-Jda"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0nL-1X-DKS" firstAttribute="bottom" secondItem="aM5-2C-Ng4" secondAttribute="bottom" id="8ng-4W-fPg"/>
+                            <constraint firstItem="0nL-1X-DKS" firstAttribute="trailing" secondItem="aM5-2C-Ng4" secondAttribute="trailing" id="VQf-Fn-BD9"/>
+                            <constraint firstItem="aM5-2C-Ng4" firstAttribute="leading" secondItem="0nL-1X-DKS" secondAttribute="leading" id="dGS-0z-9G1"/>
+                            <constraint firstItem="aM5-2C-Ng4" firstAttribute="top" secondItem="0nL-1X-DKS" secondAttribute="top" id="wtb-rL-zvQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0nL-1X-DKS"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmButton" destination="Zzl-uP-n6C" id="T6R-rL-qJ9"/>
+                        <outlet property="credentialsLabel" destination="Hy3-F3-iSB" id="d2T-oy-cew"/>
+                        <outlet property="descriptionLabel" destination="a7f-cz-ZnS" id="U1B-MQ-kt4"/>
+                        <outlet property="iconImageView" destination="tV6-KC-Bod" id="sET-LO-Lae"/>
+                        <outlet property="scrollView" destination="aM5-2C-Ng4" id="iEd-UL-yoT"/>
+                        <outlet property="titleLabel" destination="sHo-m9-axu" id="NtJ-Me-eQ2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TJB-FI-mv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4805.6000000000004" y="-181.25937031484258"/>
+        </scene>
+        <!--Sign With Pin View Controller-->
+        <scene sceneID="lax-nT-I8S">
+            <objects>
+                <viewController storyboardIdentifier="SKSignWithPinViewController" id="C3X-V4-3xe" customClass="SKSignWithPinViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I6s-ix-44u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEz-T9-Fbg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDM-Ta-f57" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="171"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="cSx-Iy-d8P">
+                                                <rect key="frame" x="16" y="24" width="343" height="123"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keycard authentication" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wx-7D-2pa">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the PIN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndd-Bq-a9E">
+                                                        <rect key="frame" x="0.0" y="33.5" width="343" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABl-5t-FcF" customClass="VerifiableInput" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="67" width="343" height="56"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" placeholder="YES" id="oWU-qY-SSL"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="cSx-Iy-d8P" secondAttribute="bottom" constant="24" id="OpV-xp-It6"/>
+                                            <constraint firstItem="cSx-Iy-d8P" firstAttribute="leading" secondItem="lDM-Ta-f57" secondAttribute="leading" constant="16" id="aNJ-FO-eEy"/>
+                                            <constraint firstItem="cSx-Iy-d8P" firstAttribute="top" secondItem="lDM-Ta-f57" secondAttribute="top" constant="24" id="dHX-o3-fqB"/>
+                                            <constraint firstAttribute="trailing" secondItem="cSx-Iy-d8P" secondAttribute="trailing" constant="16" id="yjB-vS-qlt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="top" secondItem="UUN-ly-BN3" secondAttribute="top" id="0Tg-Ck-k39"/>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="width" secondItem="j8l-Lp-rbu" secondAttribute="width" id="I6O-Lc-gU1"/>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="trailing" secondItem="UUN-ly-BN3" secondAttribute="trailing" id="PlO-uX-jjU"/>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="leading" secondItem="UUN-ly-BN3" secondAttribute="leading" id="gBO-0y-BuG"/>
+                                    <constraint firstItem="lDM-Ta-f57" firstAttribute="bottom" secondItem="UUN-ly-BN3" secondAttribute="bottom" id="geD-eJ-zx7"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="UUN-ly-BN3"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="j8l-Lp-rbu"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xEz-T9-Fbg" firstAttribute="top" secondItem="vKU-d5-aHW" secondAttribute="top" id="9OC-ZB-JV3"/>
+                            <constraint firstItem="vKU-d5-aHW" firstAttribute="trailing" secondItem="xEz-T9-Fbg" secondAttribute="trailing" id="MeO-JC-1x5"/>
+                            <constraint firstItem="vKU-d5-aHW" firstAttribute="bottom" secondItem="xEz-T9-Fbg" secondAttribute="bottom" id="wAI-1v-2Jk"/>
+                            <constraint firstItem="xEz-T9-Fbg" firstAttribute="leading" secondItem="vKU-d5-aHW" secondAttribute="leading" id="wxU-Kf-l51"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vKU-d5-aHW"/>
+                    </view>
+                    <connections>
+                        <outlet property="pinField" destination="ABl-5t-FcF" id="ptB-QU-uHi"/>
+                        <outlet property="scrollView" destination="xEz-T9-Fbg" id="3pt-xQ-rL5"/>
+                        <outlet property="textLabel" destination="ndd-Bq-a9E" id="FVE-0s-72j"/>
+                        <outlet property="titleLabel" destination="7Wx-7D-2pa" id="Kr9-zz-kpq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZy-ah-1lJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5505" y="-187"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="statusKeycardActivated" width="96" height="60"/>
+    </resources>
 </document>

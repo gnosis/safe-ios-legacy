@@ -70,10 +70,9 @@ extension AddressInputViewController: AddressInputDelegate {
     func didRecieveValidAddress(_ address: String) {
         disableNextAction()
         startActivityIndicator()
-        DispatchQueue.global().async {
-            let service = ApplicationServiceRegistry.recoveryService
-            service.validate(address: address, subscriber: self) { [weak self] error in
-                guard let `self` = self else { return }
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            ApplicationServiceRegistry.recoveryService.validate(address: address, subscriber: self) { error in
                 DispatchQueue.main.async {
                     self.stopActivityIndicator()
                     self.show(error: error)
@@ -90,6 +89,8 @@ extension RecoveryApplicationServiceError: LocalizedError {
         switch self {
         case .invalidContractAddress:
             return LocalizedString("ios_recovery_error_contract", comment: "Invalid contract address")
+        case .walletAlreadyExists:
+            return LocalizedString("ios_recovery_error_already_exists", comment: "Wallet already exists")
         case .recoveryPhraseInvalid:
             return LocalizedString("ios_recovery_error_phrase", comment: "Incorrect recovery phrase")
         case .recoveryAccountsNotFound:

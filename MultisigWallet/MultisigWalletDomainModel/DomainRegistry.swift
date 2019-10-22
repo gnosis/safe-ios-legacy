@@ -46,6 +46,14 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: AppSettingsRepository.self)
     }
 
+    public static var keycardRepository: KeycardRepository {
+        return service(for: KeycardRepository.self)
+    }
+
+    public static var transactionMonitorRepository: RBETransactionMonitorRepository {
+        return service(for: RBETransactionMonitorRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {
@@ -104,16 +112,16 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: ReplaceRecoveryPhraseDomainService.self)
     }
 
-    public static var replaceExtensionService: ReplaceBrowserExtensionDomainService {
-        return service(for: ReplaceBrowserExtensionDomainService.self)
+    public static var replace2FAService: ReplaceTwoFADomainService {
+        return service(for: ReplaceTwoFADomainService.self)
     }
 
-    public static var connectExtensionService: ConnectBrowserExtensionDomainService {
-        return service(for: ConnectBrowserExtensionDomainService.self)
+    public static var connectTwoFAService: ConnectTwoFADomainService {
+        return service(for: ConnectTwoFADomainService.self)
     }
 
-    public static var disconnectExtensionService: DisconnectBrowserExtensionDomainService {
-        return service(for: DisconnectBrowserExtensionDomainService.self)
+    public static var disconnectTwoFAService: DisconnectTwoFADomainService {
+        return service(for: DisconnectTwoFADomainService.self)
     }
 
     public static var contractUpgradeService: ContractUpgradeDomainService {
@@ -124,16 +132,16 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: CommunicationDomainService.self)
     }
 
-    public static var transactionMonitorRepository: RBETransactionMonitorRepository {
-        return service(for: RBETransactionMonitorRepository.self)
-    }
-
     public static var walletConnectService: WalletConnectDomainService {
         return service(for: WalletConnectDomainService.self)
     }
 
-    public static var diagnosticService: WalletDiagnosticDomainService {
-        return service(for: WalletDiagnosticDomainService.self)
+    public static var diagnosticService: WalletDiagnosticService {
+        return service(for: WalletDiagnosticService.self)
+    }
+
+    public static var keycardService: KeycardDomainService {
+        return service(for: KeycardDomainService.self)
     }
 
     public static var logger: Logger {

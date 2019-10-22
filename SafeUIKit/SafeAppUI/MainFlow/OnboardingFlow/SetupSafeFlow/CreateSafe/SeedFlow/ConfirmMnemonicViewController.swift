@@ -6,7 +6,6 @@ import UIKit
 import Common
 import SafeUIKit
 import MultisigWalletApplication
-import MultisigWalletApplication
 
 protocol ConfirmMnemonicDelegate: class {
     func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController)
@@ -104,6 +103,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     private func configureTexts() {
         title = screenTitle
         headerLabel.text = Strings.header
+        headerLabel.textColor = ColorName.darkBlue.color
         let nextButton = UIBarButtonItem(title: Strings.next, style: .plain, target: self, action: #selector(confirm))
         navigationItem.rightBarButtonItem = nextButton
     }

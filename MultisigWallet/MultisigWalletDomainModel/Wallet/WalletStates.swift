@@ -24,6 +24,13 @@ public class WalletState {
         case recoveryInProgress = 7
         case recoveryPostProcessing = 8
         case waitingForFirstDeposit = 9
+
+        static let creationStates: Set<State> = [.draft,
+                                                 .deploying,
+                                                 .notEnoughFunds,
+                                                 .creationStarted,
+                                                 .finalizingDeployment,
+                                                 .waitingForFirstDeposit]
     }
 
     public var state: State { preconditionFailure("Not implemented") }
@@ -62,15 +69,29 @@ extension WalletState: CustomStringConvertible {
 
 }
 
-public class DeploymentStarted: DomainEvent {}
-public class StartedWaitingForFirstDeposit: DomainEvent {}
-public class DeploymentAborted: DomainEvent {}
-public class WalletTransactionHashIsKnown: DomainEvent {}
-public class StartedWaitingForRemainingFeeAmount: DomainEvent {}
-public class CreationStarted: DomainEvent {}
-public class DeploymentFunded: DomainEvent {}
-public class WalletCreated: DomainEvent {}
-public class WalletCreationFailed: DomainEvent {}
+public class WalletEvent: DomainEvent {
+
+    public let walletID: WalletID
+
+    public init(_ id: WalletID) {
+        self.walletID = WalletID(id.id)
+    }
+
+    public convenience init(_ wallet: Wallet) {
+        self.init(wallet.id)
+    }
+
+}
+
+public class DeploymentStarted: WalletEvent {}
+public class StartedWaitingForFirstDeposit: WalletEvent {}
+public class DeploymentAborted: WalletEvent {}
+public class WalletTransactionHashIsKnown: WalletEvent {}
+public class StartedWaitingForRemainingFeeAmount: WalletEvent {}
+public class CreationStarted: WalletEvent {}
+public class DeploymentFunded: WalletEvent {}
+public class WalletCreated: WalletEvent {}
+public class WalletCreationFailed: WalletEvent {}
 
 public class RecoveryStarted: DomainEvent {}
 public class RecoveryAborted: DomainEvent {}
@@ -83,6 +104,7 @@ public class DraftState: WalletState {
 
     override var isCreationInProgress: Bool { return false }
     override var canChangeOwners: Bool { return true }
+    override var canChangeAddress: Bool { return true }
 
     private let requiredRoles = [OwnerRole.thisDevice, .paperWallet, .paperWalletDerived]
 
@@ -99,7 +121,9 @@ public class DraftState: WalletState {
         guard hasAllRoles, ownerCount <= 4 else {
             preconditionFailure("Wallet is misconfigured. Must have all roles set up.")
         }
-        let confirmations = wallet.owner(role: .browserExtension) == nil ? 1 : 2
+
+        let confirmations = ownerCount - (requiredRoles.count - 1) // .thisDevice + all other factors
+        precondition(confirmations == 1 || confirmations == 2, "Invalid confirmation count during creation")
         wallet.changeConfirmationCount(confirmations)
         proceed()
     }
@@ -120,7 +144,7 @@ public class DeployingState: WalletState {
     override var canChangeAddress: Bool { return true }
 
     override func resume() {
-        DomainRegistry.eventPublisher.publish(DeploymentStarted())
+        DomainRegistry.eventPublisher.publish(DeploymentStarted(wallet))
     }
 
     override func proceed() {
@@ -133,7 +157,7 @@ public class DeployingState: WalletState {
         wallet.state = wallet.newDraftState
         wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(DeploymentAborted())
+        DomainRegistry.eventPublisher.publish(DeploymentAborted(wallet))
     }
 
 }
@@ -145,7 +169,7 @@ public class WaitingForFirstDepositState: WalletState {
     override var isCreationInProgress: Bool { return true }
 
     override func resume() {
-        DomainRegistry.eventPublisher.publish(StartedWaitingForFirstDeposit())
+        DomainRegistry.eventPublisher.publish(StartedWaitingForFirstDeposit(wallet))
     }
 
     override func proceed() {
@@ -154,7 +178,8 @@ public class WaitingForFirstDepositState: WalletState {
         }
         let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
         let accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
-        let balance = DomainRegistry.accountRepository.find(id: accountID)!.balance ?? 0
+        guard let account = DomainRegistry.accountRepository.find(id: accountID) else { return }
+        let balance = account.balance ?? 0
         wallet.state = balance < minimumBalance ? wallet.notEnoughFundsState : wallet.creationStartedState
         DomainRegistry.walletRepository.save(wallet)
         wallet.state.resume()
@@ -164,7 +189,7 @@ public class WaitingForFirstDepositState: WalletState {
         wallet.state = wallet.newDraftState
         wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(DeploymentAborted())
+        DomainRegistry.eventPublisher.publish(DeploymentAborted(wallet))
     }
 
 }
@@ -176,7 +201,7 @@ public class NotEnoughFundsState: WalletState {
     override var isCreationInProgress: Bool { return true }
 
     override func resume() {
-        DomainRegistry.eventPublisher.publish(StartedWaitingForRemainingFeeAmount())
+        DomainRegistry.eventPublisher.publish(StartedWaitingForRemainingFeeAmount(wallet))
     }
 
     override func proceed() {
@@ -189,7 +214,7 @@ public class NotEnoughFundsState: WalletState {
         wallet.state = wallet.newDraftState
         wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(DeploymentAborted())
+        DomainRegistry.eventPublisher.publish(DeploymentAborted(wallet))
     }
 
 }
@@ -201,7 +226,7 @@ public class CreationStartedState: WalletState {
     override var isCreationInProgress: Bool { return true }
 
     override func resume() {
-        DomainRegistry.eventPublisher.publish(DeploymentFunded())
+        DomainRegistry.eventPublisher.publish(DeploymentFunded(wallet))
     }
 
     override func proceed() {
@@ -214,7 +239,7 @@ public class CreationStartedState: WalletState {
         wallet.state = wallet.newDraftState
         wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(DeploymentAborted())
+        DomainRegistry.eventPublisher.publish(DeploymentAborted(wallet))
     }
 }
 
@@ -226,17 +251,17 @@ public class FinalizingDeploymentState: WalletState {
     override var canChangeTransactionHash: Bool { return true }
 
     override func resume() {
-        DomainRegistry.eventPublisher.publish(CreationStarted())
+        DomainRegistry.eventPublisher.publish(CreationStarted(wallet))
     }
 
     override func proceed() {
         wallet.state = wallet.readyToUseState
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(WalletCreated())
+        DomainRegistry.eventPublisher.publish(WalletCreated(wallet))
     }
 
     override func cancel() {
-        DomainRegistry.eventPublisher.publish(WalletCreationFailed())
+        DomainRegistry.eventPublisher.publish(WalletCreationFailed(wallet))
     }
 
 }

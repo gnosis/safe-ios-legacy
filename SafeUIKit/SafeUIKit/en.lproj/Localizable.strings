@@ -1,3 +1,6 @@
+/* 2FA device (optional) */
+"2fa_device" = "2FA device (optional)";
+
 /* Error to display if address is invalid. */
 "address_invalid" = "Address is invalid";
 
@@ -13,13 +16,16 @@
 /* T */
 "amount_trillions" = "T";
 
-/* Explanation how to confirm. */
+/* Authentication required */
+"authentication_2fa" = "Authentication required with your 2FA Keycard";
+
+/* Description. */
 "authentication_explanation" = "Open the Authenticator to confirm this transaction.";
 
 /* Authentication required */
 "authentication_required" = "Authentication required";
 
-/* Transaction approved by the browser extension */
+/* Approved by extension */
 "browser_extension_approved" = "The Authenticator has approved this transaction.";
 
 /* Cancel alert item.
@@ -31,6 +37,9 @@
 
 /* Confirmed by browser extension. */
 "confirmed" = "Confirmed";
+
+/* Confirmed with Keycard */
+"confirmed_keycard" = "The transaction was confirmed with your Status Keycard";
 
 /* Copied to clipboard */
 "copied_to_clipboard" = "Copied to clipboard";
@@ -65,17 +74,26 @@
 /* OK */
 "ok" = "OK";
 
+/* Password protected app */
+"password_protected_app" = "Password protected app";
+
 /* Paste from clipboard alert item. */
 "paste_from_clipboard" = "Paste from Clipboard";
 
 /* Recipient's address in address input. */
 "recipients_address" = "Recipient’s address";
 
+/* Recovery phrase */
+"recovery_phrase" = "Recovery phrase";
+
 /* Rejected by browser extension. */
 "rejected" = "Rejected";
 
-/* Transaction rejected by the browser extension. */
+/* Rejected by extension */
 "rejected_by_extension" = "The transaction was rejected by the Authenticator";
+
+/* Rejected by Keycard */
+"rejected_keycard" = "The transaction was rejected by your Status Keycard";
 
 /* Resend if needed */
 "request_confirmation" = "Resend confirmation request";
@@ -83,9 +101,18 @@
 /* Resend */
 "resend" = "Resend";
 
+/* Retry */
+"retry" = "Retry";
+
 /* Scan QR code alert item. */
 "scan_qr_code" = "Scan QR Code";
 
+/* Start */
+"start" = "Start";
+
 /* Submit transaction */
 "submit" = "Submit";
+
+/* Submit Transaction */
+"submit_transaction" = "Submit Transaction";
 

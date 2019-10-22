@@ -80,7 +80,7 @@ class TextInputViewController: UIViewController {
     }
 
     private func gnosisRightView() -> UIView {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 14))
+        let imageView = UIImageView(frame: TextInput.smallAccessoryRect)
         imageView.image = UIImage(named: "gnosis-icon")
         imageView.contentMode = .scaleAspectFit
         return imageView
