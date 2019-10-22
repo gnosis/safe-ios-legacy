@@ -25,7 +25,7 @@ public class EthereumAddressLabel: BaseCustomLabel {
         set { tooltipSource.isActive = newValue }
     }
 
-    private var tooltipSource: TooltipSource!
+    var tooltipSource: TooltipSource!
 
     public override func commonInit() {
         formatter.hexMode = .mixedcased

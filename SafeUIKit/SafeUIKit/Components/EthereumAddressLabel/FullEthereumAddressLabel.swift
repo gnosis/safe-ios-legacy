@@ -4,26 +4,16 @@
 
 import UIKit
 
-public class FullEthereumAddressLabel: BaseCustomLabel {
+public class FullEthereumAddressLabel: EthereumAddressLabel {
 
     private enum Strings {
         static let copiedMessage = LocalizedString("copied_to_clipboard", comment: "Copied to clipboard")
-    }
-
-    public var formatter = EthereumAddressFormatter()
-
-    public var address: String? {
-        didSet {
-            update()
-        }
     }
 
     public var hasCopyAddressTooltip: Bool {
         get { return tooltipSource.isActive }
         set { tooltipSource.isActive = newValue }
     }
-
-    private var tooltipSource: TooltipSource!
 
     private let defaultBodyAttributes: [NSAttributedString.Key: Any] =
         [.foregroundColor: ColorName.mediumGrey.color]
