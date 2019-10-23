@@ -18,6 +18,11 @@
 		0A0974D620480CEB005753DF /* UnlockDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */; };
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A107112236046F2002DBA36 /* AddressBookEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A107110236046F2002DBA36 /* AddressBookEntryTableViewCell.swift */; };
+		0A107113236046F2002DBA36 /* AddressBookEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A107111236046F2002DBA36 /* AddressBookEntryTableViewCell.xib */; };
+		0A10712923604989002DBA36 /* AddressBookEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10712823604989002DBA36 /* AddressBookEntry.swift */; };
+		0A10712B2360570F002DBA36 /* AddressBookMenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10712A2360570F002DBA36 /* AddressBookMenuCommand.swift */; };
+		0A10712D23605756002DBA36 /* AddressBookFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10712C23605756002DBA36 /* AddressBookFlowCoordinator.swift */; };
 		0A179C7D2256274A00C60138 /* MainTrackingEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */; };
 		0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */; };
 		0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */; };
@@ -182,6 +187,7 @@
 		0A84C24123053BDC0006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84C23423053BA30006DA50 /* IdentityAccessImplementations.framework */; };
 		0A84C24223053BDC0006DA50 /* MultisigWalletImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3BD95222255174007039B4 /* MultisigWalletImplementations.framework */; };
 		0A84C24323053BE00006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1565220B393A00E340DB /* CommonTestSupport.framework */; };
+		0A8A742A235F2DCB00748E1B /* AddressBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A7429235F2DCB00748E1B /* AddressBookViewController.swift */; };
 		0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -677,6 +683,11 @@
 		0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockDemoViewController.swift; sourceTree = "<group>"; };
 		0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeUIKitDemoUITests.swift; sourceTree = "<group>"; };
 		0A0974EB20480E45005753DF /* SafeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUIKit.h; sourceTree = "<group>"; };
+		0A107110236046F2002DBA36 /* AddressBookEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEntryTableViewCell.swift; sourceTree = "<group>"; };
+		0A107111236046F2002DBA36 /* AddressBookEntryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressBookEntryTableViewCell.xib; sourceTree = "<group>"; };
+		0A10712823604989002DBA36 /* AddressBookEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEntry.swift; sourceTree = "<group>"; };
+		0A10712A2360570F002DBA36 /* AddressBookMenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookMenuCommand.swift; sourceTree = "<group>"; };
+		0A10712C23605756002DBA36 /* AddressBookFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTrackingEvent.swift; sourceTree = "<group>"; };
 		0A179C8E225664DC00C60138 /* MenuTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTrackingEvent.swift; sourceTree = "<group>"; };
 		0A1940562226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFAFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -825,6 +836,7 @@
 		0A80D1B6232F9DA000E45BD3 /* SKSignWithPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSignWithPinViewController.swift; sourceTree = "<group>"; };
 		0A84C21523053B820006DA50 /* IdentityAccessImplementations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentityAccessImplementations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A84C22623053BA30006DA50 /* IdentityAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccess.xcodeproj; path = ../IdentityAccess/IdentityAccess.xcodeproj; sourceTree = "<group>"; };
+		0A8A7429235F2DCB00748E1B /* AddressBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookViewController.swift; sourceTree = "<group>"; };
 		0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseTestCase.swift; sourceTree = "<group>"; };
 		0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerStateTransitionTests.swift; sourceTree = "<group>"; };
 		0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseState.swift; sourceTree = "<group>"; };
@@ -1530,6 +1542,7 @@
 				554596F622689A45009B4A0B /* Support */,
 				552D42C22339FFD500C57B5C /* SwitchSafes */,
 				5579C56622C3662500BB93CA /* WalletConnect */,
+				0A8A743F235F2DD000748E1B /* AddressBook */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1576,6 +1589,19 @@
 				0A84C23A23053BA30006DA50 /* IdentityAccessApplicationTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8A743F235F2DD000748E1B /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				0A8A7429235F2DCB00748E1B /* AddressBookViewController.swift */,
+				0A10712A2360570F002DBA36 /* AddressBookMenuCommand.swift */,
+				0A10712C23605756002DBA36 /* AddressBookFlowCoordinator.swift */,
+				0A10712823604989002DBA36 /* AddressBookEntry.swift */,
+				0A107110236046F2002DBA36 /* AddressBookEntryTableViewCell.swift */,
+				0A107111236046F2002DBA36 /* AddressBookEntryTableViewCell.xib */,
+			);
+			path = AddressBook;
 			sourceTree = "<group>";
 		};
 		0A8C961920D2A783007D2410 /* TransactionDetails */ = {
@@ -2867,6 +2893,7 @@
 				55CE9CF0230410BB00CB414D /* ContractUpgradeHeaderView.xib in Resources */,
 				0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */,
 				0A2C0E172296F2E3008A30AC /* CardViewController.xib in Resources */,
+				0A107113236046F2002DBA36 /* AddressBookEntryTableViewCell.xib in Resources */,
 				5549B2A722859F5F00F3B5B7 /* PaymentMethodHeaderView.xib in Resources */,
 				55BDA84123267B32005C9E6A /* HeaderImageTextView.xib in Resources */,
 				0ADE03EB22DDF9D300CA4705 /* OnboardingStepViewController.xib in Resources */,
@@ -3201,6 +3228,7 @@
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */,
 				55980003225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift in Sources */,
+				0A10712D23605756002DBA36 /* AddressBookFlowCoordinator.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
 				0A2D588222575435001B8BF4 /* ReplaceTwoFATrackingEvent.swift in Sources */,
@@ -3214,6 +3242,7 @@
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A2D58802257536B001B8BF4 /* DisconnectTwoFATrackingEvent.swift in Sources */,
 				551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */,
+				0A8A742A235F2DCB00748E1B /* AddressBookViewController.swift in Sources */,
 				0A6EF3C821BA8CC100F1074E /* AddressInputViewController.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
 				0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */,
@@ -3318,10 +3347,12 @@
 				552D1010232A644D00127223 /* SeedIntroViewController.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
+				0A10712923604989002DBA36 /* AddressBookEntry.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift in Sources */,
 				5579C57622C3664300BB93CA /* WalletConnectMenuCommand.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */,
 				55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */,
+				0A10712B2360570F002DBA36 /* AddressBookMenuCommand.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				5549194B22C3C94E003E63E0 /* WCTrackingEvent.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
@@ -3331,6 +3362,7 @@
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
 				0A73C6F2227B3605002EEA32 /* DifferentTransferAndPaymentTokensFeeCalculation.swift in Sources */,
 				552D42FC233A37E900C57B5C /* SwitchSafesTableViewCell.swift in Sources */,
+				0A107112236046F2002DBA36 /* AddressBookEntryTableViewCell.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
 				55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */,

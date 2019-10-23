@@ -13,6 +13,7 @@ enum MainTrackingEvent: String, ScreenTrackingEvent {
     case manageTokens = "ManageTokens"
     case addToken     = "ManageTokens_AddToken"
     case unlock       = "UnlockSafe"
+    case addressBook  = "AddressBook"
 
 }
 

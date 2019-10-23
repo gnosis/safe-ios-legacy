@@ -80,6 +80,7 @@ final class MenuTableViewController: UITableViewController {
                                     CreateSafeCommand()]
 
     lazy var appSettingsCommands = [ManageTokensCommand(),
+                                    AddressBookMenuCommand(),
                                     ChangePasswordCommand()]
 
     lazy var aboutTheAppCommends = [GetInTouchCommand(),

@@ -51,7 +51,7 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenCreated_thenConfigured() {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSettingsSection), 6)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: manageSafesSection), 3)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: appSettingsSection), 2)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: appSettingsSection), 3)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: aboutTheAppSection), 6)
     }
 
@@ -131,6 +131,11 @@ class MenuTableViewControllerTests: XCTestCase {
 
     func test_whenSelectingChangePassword_thenCommandIsCalled() {
         selectCell(row: 1, section: appSettingsSection)
+        XCTAssertTrue(delegate.selectedCommand is AddressBookMenuCommand)
+    }
+
+    func test_whenSelectingAddressBook_thenCommandIsCalled() {
+        selectCell(row: 2, section: appSettingsSection)
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
     }
 

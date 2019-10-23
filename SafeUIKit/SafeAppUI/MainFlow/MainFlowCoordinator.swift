@@ -19,6 +19,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
     let incomingTransactionsManager = IncomingTransactionsManager()
     let walletConnectFlowCoordinator = WalletConnectFlowCoordinator()
+    let addressBookFlowCoordinator = AddressBookFlowCoordinator()
     let contractUpgradeFlowCoordinator = ContractUpgradeFlowCoordinator()
     /// Used for modal transitioning of Terms screen
     private lazy var overlayAnimatorFactory = OverlayAnimatorFactory()
@@ -47,6 +48,7 @@ open class MainFlowCoordinator: FlowCoordinator {
          newSafeFlowCoordinator,
          recoverSafeFlowCoordinator,
          walletConnectFlowCoordinator,
+         addressBookFlowCoordinator,
          contractUpgradeFlowCoordinator].forEach { $0.setRoot(controller) }
     }
 
