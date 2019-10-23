@@ -81,6 +81,14 @@ extension AddressInputViewController: AddressInputDelegate {
         }
     }
 
+    func nameForAddress(_ address: String) -> String? {
+        return nil
+    }
+
+    func didRequestAddressBook() {
+        // TODO
+    }
+
 }
 
 extension RecoveryApplicationServiceError: LocalizedError {

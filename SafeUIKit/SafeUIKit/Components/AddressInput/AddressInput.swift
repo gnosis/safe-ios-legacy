@@ -5,16 +5,20 @@
 import UIKit
 
 public protocol AddressInputDelegate: class {
+
     func presentController(_ controller: UIViewController)
     func didRecieveValidAddress(_ address: String)
     func didRecieveInvalidAddress(_ string: String)
     func didClear()
+    func nameForAddress(_ address: String) -> String?
+    func didRequestAddressBook()
+
 }
 
 public final class AddressInput: VerifiableInput {
 
     var scanHandler = ScanQRCodeHandler()
-    private let addressLabel = FullEthereumAddressLabel()
+    let addressLabel = FullEthereumAddressLabel()
     private let hexCharsSet: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                                                "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"]
 
@@ -34,29 +38,34 @@ public final class AddressInput: VerifiableInput {
 
     public override var text: String? {
         get {
-            return addressLabel.text
+            return addressLabel.address ?? addressLabel.text
         }
         set {
             textInput.leftView = nil
             textInput.leftViewMode = .never
             if newValue != nil {
-                let displayAddress = safeUserInput(newValue)
-                addressLabel.text = displayAddress
+                let displayText = safeUserInput(newValue)
+                addressLabel.text = displayText
                 textInput.placeholder = nil
-                validateRules(for: displayAddress)
+                // check that address is 40 hex digits of 42 if with 0x prefix
+                validateRules(for: displayText)
                 if isValid {
-                    addressLabel.address = displayAddress
+                    // add hex prefix if needed
+                    let normalizedAddress = addressFromERC681(displayText)
+                    addressLabel.address = normalizedAddress
+                    addressLabel.name = addressInputDelegate?.nameForAddress(normalizedAddress)
                     let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
-                    identicon.seed = displayAddress
+                    identicon.seed = normalizedAddress
                     textInput.leftView = identicon
                     textInput.leftViewMode = .always
-                    let validAddress = addressLabel.formatter.string(from: displayAddress) ?? displayAddress
+                    let validAddress = addressLabel.formatter.string(from: normalizedAddress) ?? normalizedAddress
                     addressInputDelegate?.didRecieveValidAddress(validAddress)
                 } else {
-                    addressInputDelegate?.didRecieveInvalidAddress(displayAddress)
+                    addressInputDelegate?.didRecieveInvalidAddress(displayText)
                 }
             } else {
                 addressLabel.address = nil
+                addressLabel.name = nil
                 textInput.placeholder = self.placeholder
                 addressInputDelegate?.didClear()
             }
@@ -83,6 +92,7 @@ public final class AddressInput: VerifiableInput {
                                                         comment: "Error to display if address is invalid.")
         }
         enum AlertActions {
+            static let addressBook = LocalizedString("address_book", comment: "Address Book")
             static let paste = LocalizedString("paste_from_clipboard", comment: "Paste from clipboard alert item.")
             static let scan = LocalizedString("scan_qr_code", comment: "Scan QR code alert item.")
             static let cancel = LocalizedString("cancel", comment: "Cancel alert item.")
@@ -183,7 +193,7 @@ public final class AddressInput: VerifiableInput {
         let hasCorrectLengthWithPrefix = address.count == addressCharacterCount && address.hasPrefix(hexPrefix)
         let hasCorrectLengthWithoutPrefix = address.count == addressDigitCount
         guard (hasCorrectLengthWithPrefix || hasCorrectLengthWithoutPrefix) &&
-            address.suffix(addressDigitCount).reduce(true, { $0 && hexCharsSet.contains($1) }) else {
+            address.suffix(addressDigitCount).allSatisfy({ hexCharsSet.contains($0) }) else {
             return false
         }
         return true
@@ -191,11 +201,12 @@ public final class AddressInput: VerifiableInput {
 
     // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-681.md
     private func addressFromERC681(_ address: String) -> String {
-        let withoutScheme = String(address.replacingOccurrences(of: "ethereum:", with: ""))
+        let withoutScheme = String(address.replacingOccurrences(of: "ethereum:pay-", with: "")
+            .replacingOccurrences(of: "ethereum:", with: ""))
         let hasPrefix = withoutScheme.hasPrefix(hexPrefix)
-        let withourPrefix = hasPrefix ? String(withoutScheme.dropFirst(hexPrefix.count)) : withoutScheme
-        let leadingHexChars = String(withourPrefix.prefix { hexCharsSet.contains($0) })
-        return hasPrefix ? hexPrefix + leadingHexChars : leadingHexChars
+        let withoutPrefix = hasPrefix ? String(withoutScheme.dropFirst(hexPrefix.count)) : withoutScheme
+        let leadingHexChars = String(withoutPrefix.prefix { hexCharsSet.contains($0) })
+        return hexPrefix + leadingHexChars
     }
 
     private func update(text: String?) {
@@ -211,6 +222,10 @@ public extension AddressInput {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let alertController = UIAlertController()
+        alertController.addAction(
+            UIAlertAction(title: Strings.AlertActions.addressBook, style: .default) { [unowned self] _ in
+                self.addressInputDelegate?.didRequestAddressBook()
+            })
         alertController.addAction(
             UIAlertAction(title: Strings.AlertActions.paste, style: .default) { [unowned self] _ in
                 if let value = UIPasteboard.general.string {

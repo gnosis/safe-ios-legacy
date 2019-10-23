@@ -36,5 +36,11 @@ extension AddressInputViewController: AddressInputDelegate {
     func presentController(_ controller: UIViewController) {
         present(controller, animated: true)
     }
+
+    func nameForAddress(_ address: String) -> String? {
+        return "Test Account"
+    }
+
+    func didRequestAddressBook() {}
     
 }
