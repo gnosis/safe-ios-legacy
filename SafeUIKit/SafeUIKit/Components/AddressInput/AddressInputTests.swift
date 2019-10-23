@@ -129,4 +129,6 @@ class MockAddressInputDelegate: AddressInputDelegate {
         return displayedName
     }
 
+    func didRequestAddressBook() {}
+
 }

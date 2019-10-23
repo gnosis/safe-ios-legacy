@@ -1,6 +1,9 @@
 /* 2FA device (optional) */
 "2fa_device" = "2FA device (optional)";
 
+/* Address Book */
+"address_book" = "Address Book";
+
 /* Error to display if address is invalid. */
 "address_invalid" = "Address is invalid";
 

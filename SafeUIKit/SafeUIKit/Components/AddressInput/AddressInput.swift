@@ -11,6 +11,7 @@ public protocol AddressInputDelegate: class {
     func didRecieveInvalidAddress(_ string: String)
     func didClear()
     func nameForAddress(_ address: String) -> String?
+    func didRequestAddressBook()
 
 }
 
@@ -91,6 +92,7 @@ public final class AddressInput: VerifiableInput {
                                                         comment: "Error to display if address is invalid.")
         }
         enum AlertActions {
+            static let addressBook = LocalizedString("address_book", comment: "Address Book")
             static let paste = LocalizedString("paste_from_clipboard", comment: "Paste from clipboard alert item.")
             static let scan = LocalizedString("scan_qr_code", comment: "Scan QR code alert item.")
             static let cancel = LocalizedString("cancel", comment: "Cancel alert item.")
@@ -191,7 +193,7 @@ public final class AddressInput: VerifiableInput {
         let hasCorrectLengthWithPrefix = address.count == addressCharacterCount && address.hasPrefix(hexPrefix)
         let hasCorrectLengthWithoutPrefix = address.count == addressDigitCount
         guard (hasCorrectLengthWithPrefix || hasCorrectLengthWithoutPrefix) &&
-            address.suffix(addressDigitCount).reduce(true, { $0 && hexCharsSet.contains($1) }) else {
+            address.suffix(addressDigitCount).allSatisfy({ hexCharsSet.contains($0) }) else {
             return false
         }
         return true
@@ -220,6 +222,10 @@ public extension AddressInput {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let alertController = UIAlertController()
+        alertController.addAction(
+            UIAlertAction(title: Strings.AlertActions.addressBook, style: .default) { [unowned self] _ in
+                self.addressInputDelegate?.didRequestAddressBook()
+            })
         alertController.addAction(
             UIAlertAction(title: Strings.AlertActions.paste, style: .default) { [unowned self] _ in
                 if let value = UIPasteboard.general.string {

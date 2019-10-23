@@ -202,6 +202,10 @@ extension SendInputViewController: AddressInputDelegate {
         return nil
     }
 
+    public func didRequestAddressBook() {
+        // TODO
+    }
+
 }
 
 extension SendInputViewController: VerifiableInputDelegate {

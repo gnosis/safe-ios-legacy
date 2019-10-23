@@ -40,5 +40,7 @@ extension AddressInputViewController: AddressInputDelegate {
     func nameForAddress(_ address: String) -> String? {
         return "Test Account"
     }
+
+    func didRequestAddressBook() {}
     
 }
