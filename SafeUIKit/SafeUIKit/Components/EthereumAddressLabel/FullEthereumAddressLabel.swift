@@ -52,6 +52,13 @@ public class FullEthereumAddressLabel: EthereumAddressLabel {
 
     private func formattedText() -> NSAttributedString? {
         guard let address = address else { return nil }
+        if let name = name {
+            let str = NSMutableAttributedString(string: name + "\n")
+            if let addressStr = withNameFormatter.attributedString(from: address) {
+                str.append(addressStr)
+            }
+            return str
+        }
         return formatter.attributedString(from: address)
     }
 

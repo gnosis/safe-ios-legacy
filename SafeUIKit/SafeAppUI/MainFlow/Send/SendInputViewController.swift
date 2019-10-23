@@ -198,6 +198,10 @@ extension SendInputViewController: AddressInputDelegate {
         model.change(recipient: address)
     }
 
+    public func nameForAddress(_ address: String) -> String? {
+        return nil
+    }
+
 }
 
 extension SendInputViewController: VerifiableInputDelegate {

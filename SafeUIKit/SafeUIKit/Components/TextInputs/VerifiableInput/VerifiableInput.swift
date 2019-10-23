@@ -5,11 +5,11 @@
 import UIKit
 
 @objc public protocol VerifiableInputDelegate: class {
+
     /// Called when the verification passess all rules successfully.
     /// This happens either on pressing Enter in the field, or by calling `verify()` method.
     /// - Parameter verifiableInput: input on which the verification was called.
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput)
-
 
     /// Called when the text field begins editing.
     /// - Parameter verifiableInput: input in which editing starts
@@ -23,6 +23,7 @@ import UIKit
     /// - Parameter verifiableInput: input in which entry occurs
     /// - Parameter newValue: new text to replace current one.
     @objc optional func verifiableInputWillEnter(_ verifiableInput: VerifiableInput, newValue: String)
+
 }
 
 open class VerifiableInput: UIView {

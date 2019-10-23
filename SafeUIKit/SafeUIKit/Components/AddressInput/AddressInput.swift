@@ -5,16 +5,19 @@
 import UIKit
 
 public protocol AddressInputDelegate: class {
+
     func presentController(_ controller: UIViewController)
     func didRecieveValidAddress(_ address: String)
     func didRecieveInvalidAddress(_ string: String)
     func didClear()
+    func nameForAddress(_ address: String) -> String?
+
 }
 
 public final class AddressInput: VerifiableInput {
 
     var scanHandler = ScanQRCodeHandler()
-    private let addressLabel = FullEthereumAddressLabel()
+    let addressLabel = FullEthereumAddressLabel()
     private let hexCharsSet: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                                                "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"]
 
@@ -34,7 +37,7 @@ public final class AddressInput: VerifiableInput {
 
     public override var text: String? {
         get {
-            return addressLabel.text
+            return addressLabel.address ?? addressLabel.text
         }
         set {
             textInput.leftView = nil
@@ -46,6 +49,7 @@ public final class AddressInput: VerifiableInput {
                 validateRules(for: displayAddress)
                 if isValid {
                     addressLabel.address = displayAddress
+                    addressLabel.name = addressInputDelegate?.nameForAddress(displayAddress)
                     let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
                     identicon.seed = displayAddress
                     textInput.leftView = identicon
@@ -57,6 +61,7 @@ public final class AddressInput: VerifiableInput {
                 }
             } else {
                 addressLabel.address = nil
+                addressLabel.name = nil
                 textInput.placeholder = self.placeholder
                 addressInputDelegate?.didClear()
             }
@@ -191,11 +196,12 @@ public final class AddressInput: VerifiableInput {
 
     // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-681.md
     private func addressFromERC681(_ address: String) -> String {
-        let withoutScheme = String(address.replacingOccurrences(of: "ethereum:", with: ""))
+        let withoutScheme = String(address.replacingOccurrences(of: "ethereum:pay-", with: "")
+            .replacingOccurrences(of: "ethereum:", with: ""))
         let hasPrefix = withoutScheme.hasPrefix(hexPrefix)
-        let withourPrefix = hasPrefix ? String(withoutScheme.dropFirst(hexPrefix.count)) : withoutScheme
-        let leadingHexChars = String(withourPrefix.prefix { hexCharsSet.contains($0) })
-        return hasPrefix ? hexPrefix + leadingHexChars : leadingHexChars
+        let withoutPrefix = hasPrefix ? String(withoutScheme.dropFirst(hexPrefix.count)) : withoutScheme
+        let leadingHexChars = String(withoutPrefix.prefix { hexCharsSet.contains($0) })
+        return hexPrefix + leadingHexChars
     }
 
     private func update(text: String?) {

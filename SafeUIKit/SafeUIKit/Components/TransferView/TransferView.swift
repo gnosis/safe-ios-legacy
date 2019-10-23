@@ -20,16 +20,31 @@ public final class TransferView: BaseCustomView {
             update()
         }
     }
+
+    public var fromAddressName: String? {
+        didSet {
+            update()
+        }
+    }
+
     public var toAddress: String! {
         didSet {
             update()
         }
     }
+
+    public var toAddressName: String? {
+        didSet {
+            update()
+        }
+    }
+
     public var balanceData: TokenData! {
         didSet {
             update()
         }
     }
+
     public var tokenData: TokenData! {
         didSet {
             update()
@@ -59,8 +74,10 @@ public final class TransferView: BaseCustomView {
     public override func update() {
         fromIdenticonView.seed = fromAddress ?? ""
         fromAddressLabel.address = fromAddress
+        fromAddressLabel.name = fromAddressName
         toIdenticonView.seed = toAddress ?? ""
         toAddressLabel.address = toAddress
+        toAddressLabel.name = toAddressName
         amountLabel.amount = tokenData
         balanceLabel.amount = balanceData
     }
