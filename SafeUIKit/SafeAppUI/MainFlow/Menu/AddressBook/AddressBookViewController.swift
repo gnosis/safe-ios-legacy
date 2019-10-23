@@ -81,6 +81,7 @@ class AddressBookViewController: UITableViewController {
                                                selector: #selector(didShowKeyboard(_:)),
                                                name: UIResponder.keyboardDidShowNotification,
                                                object: nil)
+        setCustomBackButton()
     }
 
     @objc func didShowKeyboard(_ notification: NSNotification) {
