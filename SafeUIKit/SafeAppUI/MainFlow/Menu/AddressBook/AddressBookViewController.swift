@@ -26,6 +26,7 @@ class AddressBookViewController: UITableViewController {
 
     enum Strings {
         static let noResults = LocalizedString("no_results_found", comment: "No results found")
+        static let noEntries = LocalizedString("no_entries", comment: "No entries")
         static let title = LocalizedString("address_book", comment: "Address Book")
         static let edit = LocalizedString("edit", comment: "Edit")
         static let delete = LocalizedString("delete", comment: "Delete")
@@ -53,8 +54,6 @@ class AddressBookViewController: UITableViewController {
         searchController.searchBar.tintColor = ColorName.hold.color
         searchController.searchBar.backgroundColor = .white
         searchController.searchBar.barTintColor = .white
-
-        emptyView.text = Strings.noResults
 
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -103,10 +102,11 @@ class AddressBookViewController: UITableViewController {
     }
 
     private func reloadData() {
-        sourceEntries = [
+        sourceEntries = []
             AddressBookEntry(id: "1", name: "Angela's Safe", address: "0xa369b18cfc016e6d0bc8ab643154caebe6eba07c"),
             AddressBookEntry(id: "2", name: "Martin's Safe", address: "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819"),
             AddressBookEntry(id: "3", name: "Tobias's Safe", address: "0x5e07B6F1B98a11F7e04E7Ffa8707b63F1c177753")]
+
         applyFilter()
     }
 
@@ -116,6 +116,7 @@ class AddressBookViewController: UITableViewController {
         } else {
             displayedEntries = sourceEntries
         }
+        emptyView.text = searchController.isActive ? Strings.noResults : Strings.noEntries
         tableView.backgroundView = displayedEntries.isEmpty ?  emptyView : nil
         tableView.reloadData()
     }

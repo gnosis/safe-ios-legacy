@@ -585,6 +585,9 @@ Please have your recovery phrase ready to disable 2FA.";
 /* No active sessions */
 "no_active_sessions" = "No active sessions";
 
+/* No entries */
+"no_entries" = "No entries exist yet";
+
 /* No results found */
 "no_results_found" = "No results found";
 
