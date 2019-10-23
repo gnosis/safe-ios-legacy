@@ -13,25 +13,36 @@ final class AddressBookFlowCoordinator: FlowCoordinator {
         push(vc)
     }
 
+    func showEdit(_ entryID: AddressBookEntryID) {
+        // to be implemented
+    }
+
 }
 
 extension AddressBookFlowCoordinator: AddressBookViewControllerDelegate {
 
     func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntry) {
-        // to be replaced with actual implementation
-        let alert = UIAlertController(title: entry.name, message: entry.address, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        controller.present(alert, animated: true, completion: nil)
+        let vc = AddressBookEntryViewController.create(entryID: entry.id)
+        vc.delegate = self
+        push(vc)
     }
 
     func addressBookViewController(controller: AddressBookViewController, edit entry: AddressBookEntry) {
-        // to be replaced with actual implementation
-        print("edit \(entry)")
+        showEdit(entry.id)
     }
 
     func addressBookViewControllerCreateNewEntry(controller: AddressBookViewController) {
         // to be replaced with actual implementation
         print("new entry")
+    }
+
+}
+
+extension AddressBookFlowCoordinator: AddressBookEntryViewControllerDelegate {
+
+    func addressBookEntryViewController(_ controller: AddressBookEntryViewController,
+                                        editEntry id: AddressBookEntryID) {
+        showEdit(id)
     }
 
 }

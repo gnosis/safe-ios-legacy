@@ -195,6 +195,7 @@
 		0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */; };
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
+		0A9CDD9323608CD700A6CC4E /* AddressBookEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CDD9223608CD700A6CC4E /* AddressBookEntryViewController.swift */; };
 		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
 		0AA21E5E233CC7CF004A4A62 /* RecoverSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA21E5D233CC7CF004A4A62 /* RecoverSafeCommand.swift */; };
 		0AA21E74233CD4AC004A4A62 /* BaseAddSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA21E73233CD4AC004A4A62 /* BaseAddSafeCommand.swift */; };
@@ -855,6 +856,7 @@
 		0A99436A20A0489800E36FD7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		0A9CDD9223608CD700A6CC4E /* AddressBookEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEntryViewController.swift; sourceTree = "<group>"; };
 		0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		0AA21E5D233CC7CF004A4A62 /* RecoverSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeCommand.swift; sourceTree = "<group>"; };
 		0AA21E73233CD4AC004A4A62 /* BaseAddSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAddSafeCommand.swift; sourceTree = "<group>"; };
@@ -1595,6 +1597,7 @@
 			isa = PBXGroup;
 			children = (
 				0A8A7429235F2DCB00748E1B /* AddressBookViewController.swift */,
+				0A9CDD9223608CD700A6CC4E /* AddressBookEntryViewController.swift */,
 				0A10712A2360570F002DBA36 /* AddressBookMenuCommand.swift */,
 				0A10712C23605756002DBA36 /* AddressBookFlowCoordinator.swift */,
 				0A10712823604989002DBA36 /* AddressBookEntry.swift */,
@@ -3268,6 +3271,7 @@
 				55329FF622F9752900E40B06 /* RateAppCommand.swift in Sources */,
 				0A2C0E182296F2E3008A30AC /* AddressDetailView.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
+				0A9CDD9323608CD700A6CC4E /* AddressBookEntryViewController.swift in Sources */,
 				5545970A2268AB9F009B4A0B /* PrivacyPolicyCommand.swift in Sources */,
 				55CE9CFF23058C6F00CB414D /* ContractUpgradeCommand.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
