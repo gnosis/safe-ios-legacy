@@ -102,7 +102,7 @@ class AddressBookViewController: UITableViewController {
     }
 
     private func reloadData() {
-        sourceEntries = []
+        sourceEntries = [
             AddressBookEntry(id: "1", name: "Angela's Safe", address: "0xa369b18cfc016e6d0bc8ab643154caebe6eba07c"),
             AddressBookEntry(id: "2", name: "Martin's Safe", address: "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819"),
             AddressBookEntry(id: "3", name: "Tobias's Safe", address: "0x5e07B6F1B98a11F7e04E7Ffa8707b63F1c177753")]
