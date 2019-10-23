@@ -982,6 +982,9 @@ We recommend using a password manager or writing the phrase down and storing the
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
+/* View Entry */
+"view_entry" = "View Entry";
+
 /* Waiting for deposit */
 "waiting_for_first_deposit" = "Waiting for the first deposit";
 
