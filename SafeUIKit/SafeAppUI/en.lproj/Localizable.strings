@@ -7,6 +7,9 @@
 /* Title for Add Token screen. */
 "add_token" = "Add Token";
 
+/* Address Book */
+"address_book" = "Address Book";
+
 /* Description */
 "after_finishing_setup" = "After finishing the Safe setup, you will need to enter the PIN and hold the Keycard to your phone to confirm each transaction. You can replace or remove your 2FA device in the Safe menu at any time.";
 
@@ -137,6 +140,12 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Onboarding 2 description */
 "current_version" = "The current version of your smart contract is outdated. If you don't upgrade you'll still be able to use your Safe, but we recommend upgrading now to enjoy the latest security updates.";
 
+/* Delete */
+"delete" = "Delete";
+
+/* Delete Entry */
+"delete_entry" = "Delete Entry";
+
 /* Detected dangerous incoming transaction. */
 "detected_dangerous_incoming_transaction" = "Detected dangerous incoming transaction.";
 
@@ -164,6 +173,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Do you have a backup? */
 "do_you_have_backup" = "Do you have a backup?";
+
+/* Edit */
+"edit" = "Edit";
 
 /* Edit Safe name */
 "edit_safe_name" = "Edit Safe name";
@@ -572,6 +584,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* No active sessions */
 "no_active_sessions" = "No active sessions";
+
+/* No entries */
+"no_entries" = "No entries exist yet";
 
 /* No results found */
 "no_results_found" = "No results found";
