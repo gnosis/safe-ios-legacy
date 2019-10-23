@@ -43,21 +43,24 @@ public final class AddressInput: VerifiableInput {
             textInput.leftView = nil
             textInput.leftViewMode = .never
             if newValue != nil {
-                let displayAddress = safeUserInput(newValue)
-                addressLabel.text = displayAddress
+                let displayText = safeUserInput(newValue)
+                addressLabel.text = displayText
                 textInput.placeholder = nil
-                validateRules(for: displayAddress)
+                // check that address is 40 hex digits of 42 if with 0x prefix
+                validateRules(for: displayText)
                 if isValid {
-                    addressLabel.address = displayAddress
-                    addressLabel.name = addressInputDelegate?.nameForAddress(displayAddress)
+                    // add hex prefix if needed
+                    let normalizedAddress = addressFromERC681(displayText)
+                    addressLabel.address = normalizedAddress
+                    addressLabel.name = addressInputDelegate?.nameForAddress(normalizedAddress)
                     let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
-                    identicon.seed = displayAddress
+                    identicon.seed = normalizedAddress
                     textInput.leftView = identicon
                     textInput.leftViewMode = .always
-                    let validAddress = addressLabel.formatter.string(from: displayAddress) ?? displayAddress
+                    let validAddress = addressLabel.formatter.string(from: normalizedAddress) ?? normalizedAddress
                     addressInputDelegate?.didRecieveValidAddress(validAddress)
                 } else {
-                    addressInputDelegate?.didRecieveInvalidAddress(displayAddress)
+                    addressInputDelegate?.didRecieveInvalidAddress(displayText)
                 }
             } else {
                 addressLabel.address = nil
