@@ -24,6 +24,8 @@ public final class AddressInput: VerifiableInput {
 
     public weak var addressInputDelegate: AddressInputDelegate?
 
+    public var showsAddressBook: Bool = true
+
     private let identiconSize = CGSize(width: 32, height: 32)
     private let inputHeight: CGFloat = 56
     private let inputHeightWithAddress: CGFloat = 78
@@ -209,7 +211,7 @@ public final class AddressInput: VerifiableInput {
         return hexPrefix + leadingHexChars
     }
 
-    private func update(text: String?) {
+    public func update(text: String?) {
         self.text = text
         self.textInput.heightConstraint.constant = self.inputHeightWithAddress
     }
@@ -222,10 +224,12 @@ public extension AddressInput {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let alertController = UIAlertController()
-        alertController.addAction(
-            UIAlertAction(title: Strings.AlertActions.addressBook, style: .default) { [unowned self] _ in
-                self.addressInputDelegate?.didRequestAddressBook()
-            })
+        if showsAddressBook {
+            alertController.addAction(
+                UIAlertAction(title: Strings.AlertActions.addressBook, style: .default) { [unowned self] _ in
+                    self.addressInputDelegate?.didRequestAddressBook()
+                })
+        }
         alertController.addAction(
             UIAlertAction(title: Strings.AlertActions.paste, style: .default) { [unowned self] _ in
                 if let value = UIPasteboard.general.string {

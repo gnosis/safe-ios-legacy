@@ -177,6 +177,9 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Edit */
 "edit" = "Edit";
 
+/* Edit Entry */
+"edit_entry" = "Edit Entry";
+
 /* Edit Safe name */
 "edit_safe_name" = "Edit Safe name";
 
