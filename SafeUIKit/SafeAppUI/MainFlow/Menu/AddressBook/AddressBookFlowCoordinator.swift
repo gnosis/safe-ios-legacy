@@ -14,7 +14,8 @@ final class AddressBookFlowCoordinator: FlowCoordinator {
     }
 
     func showEdit(_ entryID: AddressBookEntryID) {
-        // to be implemented
+        let vc = AddressBookEditEntryViewController.create(entryID: entryID, delegate: self)
+        push(vc)
     }
 
 }
@@ -43,6 +44,20 @@ extension AddressBookFlowCoordinator: AddressBookEntryViewControllerDelegate {
     func addressBookEntryViewController(_ controller: AddressBookEntryViewController,
                                         editEntry id: AddressBookEntryID) {
         showEdit(id)
+    }
+
+}
+
+extension AddressBookFlowCoordinator: AddressBookEditEntryViewControllerDelegate {
+
+    func addressBookEditEntryViewController(_ controller: AddressBookEditEntryViewController,
+                                            didSave id: AddressBookEntryID) {
+        pop()
+    }
+
+    func addressBookEditEntryViewController(_ controller: AddressBookEditEntryViewController,
+                                            didDelete id: AddressBookEntryID) {
+        pop()
     }
 
 }

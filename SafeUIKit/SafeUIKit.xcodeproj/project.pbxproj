@@ -139,6 +139,8 @@
 		0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */; };
 		0A442DF9210B58BF00F19F80 /* SendInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */; };
 		0A4776ED230A8FC6006DA635 /* MainBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4776EC230A8FC6006DA635 /* MainBannerView.swift */; };
+		0A4B8F3E2361980C00CDAEB5 /* AddressBookEditEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B8F3C2361980C00CDAEB5 /* AddressBookEditEntryViewController.swift */; };
+		0A4B8F3F2361980C00CDAEB5 /* AddressBookEditEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4B8F3D2361980C00CDAEB5 /* AddressBookEditEntryViewController.xib */; };
 		0A4DF82020CE6FC70095C00D /* AssetViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF81F20CE6FC70095C00D /* AssetViewViewController.swift */; };
 		0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82320CE6FE20095C00D /* Main.storyboard */; };
 		0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82E20CE9D5B0095C00D /* TransactionViewViewController.swift */; };
@@ -801,6 +803,8 @@
 		0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		0A442DF8210B58BF00F19F80 /* SendInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputViewControllerTests.swift; sourceTree = "<group>"; };
 		0A4776EC230A8FC6006DA635 /* MainBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerView.swift; sourceTree = "<group>"; };
+		0A4B8F3C2361980C00CDAEB5 /* AddressBookEditEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEditEntryViewController.swift; sourceTree = "<group>"; };
+		0A4B8F3D2361980C00CDAEB5 /* AddressBookEditEntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressBookEditEntryViewController.xib; sourceTree = "<group>"; };
 		0A4DF81F20CE6FC70095C00D /* AssetViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewViewController.swift; sourceTree = "<group>"; };
 		0A4DF82320CE6FE20095C00D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A4DF82C20CE9A080095C00D /* AssetViewViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1598,6 +1602,8 @@
 			children = (
 				0A8A7429235F2DCB00748E1B /* AddressBookViewController.swift */,
 				0A9CDD9223608CD700A6CC4E /* AddressBookEntryViewController.swift */,
+				0A4B8F3C2361980C00CDAEB5 /* AddressBookEditEntryViewController.swift */,
+				0A4B8F3D2361980C00CDAEB5 /* AddressBookEditEntryViewController.xib */,
 				0A10712A2360570F002DBA36 /* AddressBookMenuCommand.swift */,
 				0A10712C23605756002DBA36 /* AddressBookFlowCoordinator.swift */,
 				0A10712823604989002DBA36 /* AddressBookEntry.swift */,
@@ -2890,6 +2896,7 @@
 				0A2C0E1A2296F2E3008A30AC /* AddressDetailView.xib in Resources */,
 				55BDA81C23265367005C9E6A /* ThreeStepsToSecurityView.xib in Resources */,
 				0A2C0E2B2297DCFF008A30AC /* FeePaidViewController.xib in Resources */,
+				0A4B8F3F2361980C00CDAEB5 /* AddressBookEditEntryViewController.xib in Resources */,
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* CreateSafe.storyboard in Resources */,
@@ -3295,6 +3302,7 @@
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
 				0A4776ED230A8FC6006DA635 /* MainBannerView.swift in Sources */,
 				0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */,
+				0A4B8F3E2361980C00CDAEB5 /* AddressBookEditEntryViewController.swift in Sources */,
 				55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
 				55329FFA22F982E300E40B06 /* GetInTouchTableViewController.swift in Sources */,
