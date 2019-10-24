@@ -82,11 +82,33 @@ extension AddressInputViewController: AddressInputDelegate {
     }
 
     func nameForAddress(_ address: String) -> String? {
+        // TODO: get from the address book
         return nil
     }
 
     func didRequestAddressBook() {
-        // TODO
+        let vc = AddressBookViewController(nibName: nil, bundle: nil)
+        vc.delegate = self
+        vc.pickerModeEnabled = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+}
+
+extension AddressInputViewController: AddressBookViewControllerDelegate {
+
+    func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntry) {
+        navigationController?.popViewController(animated: true)
+        addressInput.update(text: entry.address)
+        didRecieveValidAddress(entry.address)
+    }
+
+    func addressBookViewController(controller: AddressBookViewController, edit entry: AddressBookEntry) {
+        // no-op
+    }
+
+    func addressBookViewControllerCreateNewEntry(controller: AddressBookViewController) {
+        // no-op
     }
 
 }

@@ -15,6 +15,9 @@ protocol AddressBookViewControllerDelegate: class {
 class AddressBookViewController: UITableViewController {
 
     weak var delegate: AddressBookViewControllerDelegate?
+
+    var pickerModeEnabled: Bool = false
+
     private let cellClass = AddressBookEntryTableViewCell.self
 
     private var filter: ((AddressBookEntry) -> Bool)?
@@ -32,6 +35,7 @@ class AddressBookViewController: UITableViewController {
         static let delete = LocalizedString("delete", comment: "Delete")
         static let deleteEntry = LocalizedString("delete_entry", comment: "Delete Entry")
         static let cancel = LocalizedString("cancel", comment: "Cancel")
+        static let choose = LocalizedString("choose_address", comment: "Choose Address")
     }
 
     required init?(coder: NSCoder) {
@@ -57,15 +61,18 @@ class AddressBookViewController: UITableViewController {
 
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(newEntry))
-        title = Strings.title
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = pickerModeEnabled ? Strings.choose : Strings.title
+
+        if !pickerModeEnabled {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                target: self,
+                                                                action: #selector(newEntry))
+        }
+
         let nib = UINib(nibName: "\(cellClass)", bundle: Bundle(for: cellClass))
         tableView.register(nib, forCellReuseIdentifier: "\(cellClass)")
         tableView.tableFooterView = UIView()
@@ -147,7 +154,7 @@ class AddressBookViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
-            guard indexPath.row < displayedEntries.count else { return nil }
+            guard indexPath.row < displayedEntries.count, !pickerModeEnabled else { return nil }
             let entry = displayedEntries[indexPath.row]
             let editAction = UIContextualAction(style: .normal,
                                                 title: Strings.edit) { [weak self] _, _, completion in
