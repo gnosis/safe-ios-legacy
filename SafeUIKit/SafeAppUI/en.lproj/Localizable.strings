@@ -73,6 +73,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Change payment method */
 "change_payment_method" = "Change fee payment method";
 
+/* Choose Address */
+"choose_address" = "Choose Address";
+
 /* Choose how to pay the creation fee. */
 "choose_how_to_pay_creation_fee" = "Choose how to pay the creation fee.";
 

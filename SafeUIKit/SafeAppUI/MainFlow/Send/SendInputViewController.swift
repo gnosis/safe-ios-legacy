@@ -191,7 +191,7 @@ extension SendInputViewController: AddressInputDelegate {
     public func didClear() {}
 
     public func presentController(_ controller: UIViewController) {
-        self.present(controller, animated: true)
+        present(controller, animated: true)
     }
 
     public func didRecieveValidAddress(_ address: String) {
@@ -203,7 +203,10 @@ extension SendInputViewController: AddressInputDelegate {
     }
 
     public func didRequestAddressBook() {
-        // TODO
+        let vc = AddressBookViewController(nibName: nil, bundle: nil)
+        vc.pickerModeEnabled = true
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }
@@ -226,6 +229,24 @@ extension SendInputViewController: PaymentMethodViewControllerDelegate {
 
     func paymentMethodViewControllerDidChangePaymentMethod(_ controller: PaymentMethodViewController) {
         setNeedsEstimation()
+    }
+
+}
+
+extension SendInputViewController: AddressBookViewControllerDelegate {
+
+    func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntry) {
+        navigationController?.popViewController(animated: true)
+        addressInput.update(text: entry.address)
+        model.change(recipient: entry.address)
+    }
+
+    func addressBookViewController(controller: AddressBookViewController, edit entry: AddressBookEntry) {
+        // no-op
+    }
+
+    func addressBookViewControllerCreateNewEntry(controller: AddressBookViewController) {
+        // no-op
     }
 
 }
