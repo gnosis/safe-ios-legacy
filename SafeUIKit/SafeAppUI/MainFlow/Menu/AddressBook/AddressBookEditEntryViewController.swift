@@ -109,7 +109,7 @@ class AddressBookEditEntryViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(MainTrackingEvent.addressBookEditEntry)
+        trackEvent(isEditEntry ? MainTrackingEvent.addressBookEditEntry : MainTrackingEvent.addressBookNewEntry)
     }
 
     func updateSaveButtonState(name: String? = nil) {
