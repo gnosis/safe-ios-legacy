@@ -312,7 +312,12 @@
 		5542B4DF231E770E00835F89 /* ContractUpgradeDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4D7231E770800835F89 /* ContractUpgradeDomainServiceTests.swift */; };
 		5542B4E1231E772C00835F89 /* WalletDiagnosticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4E0231E772C00835F89 /* WalletDiagnosticService.swift */; };
 		5542B4E3231E775700835F89 /* ContractUpgradeApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4E2231E775700835F89 /* ContractUpgradeApplicationService.swift */; };
+		559319782361D06B006830C9 /* DBAddressBookRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559319772361D06B006830C9 /* DBAddressBookRepositoryTests.swift */; };
 		559C2EB3231FC1FA0071B14C /* GetSafeStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C2EAE231FC1F90071B14C /* GetSafeStatusRequest.swift */; };
+		55E9D39C23619FF500D2959A /* AddressBookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9D39B23619FF500D2959A /* AddressBookRepository.swift */; };
+		55E9D39E2361A08E00D2959A /* AddressBookEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9D39D2361A08E00D2959A /* AddressBookEntry.swift */; };
+		55E9D3A02361A23000D2959A /* InMemoryAddressBookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9D39F2361A23000D2959A /* InMemoryAddressBookRepository.swift */; };
+		55E9D3A22361A46900D2959A /* DBAddressBookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9D3A12361A46900D2959A /* DBAddressBookRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -779,7 +784,12 @@
 		5568A21322D5E7FD007C9E0C /* WalletConnectApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectApplicationService.swift; sourceTree = "<group>"; };
 		5568A24F22D73AFC007C9E0C /* WCSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionData.swift; sourceTree = "<group>"; };
 		5568A25522D7613A007C9E0C /* MockWalletConnectApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletConnectApplicationService.swift; sourceTree = "<group>"; };
+		559319772361D06B006830C9 /* DBAddressBookRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAddressBookRepositoryTests.swift; sourceTree = "<group>"; };
 		559C2EAE231FC1F90071B14C /* GetSafeStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSafeStatusRequest.swift; sourceTree = "<group>"; };
+		55E9D39B23619FF500D2959A /* AddressBookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookRepository.swift; sourceTree = "<group>"; };
+		55E9D39D2361A08E00D2959A /* AddressBookEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEntry.swift; sourceTree = "<group>"; };
+		55E9D39F2361A23000D2959A /* InMemoryAddressBookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAddressBookRepository.swift; sourceTree = "<group>"; };
+		55E9D3A12361A46900D2959A /* DBAddressBookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAddressBookRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -873,18 +883,19 @@
 			isa = PBXGroup;
 			children = (
 				0A1617F62304593B00F6E501 /* Address+DBSerializable.swift */,
-				0A1617F72304593B00F6E501 /* DBTokeListItemRepository.swift */,
-				0A1617F92304593B00F6E501 /* SecureExternallyOwnedAccountRepository.swift */,
-				0A1617FA2304593B00F6E501 /* DBSerializable */,
-				0A1618002304593B00F6E501 /* DBTransactionRepository.swift */,
 				0A1618012304593B00F6E501 /* DBAccountRepository.swift */,
-				0A1618022304593B00F6E501 /* InMemorySafeContractMetadataRepository.swift */,
-				0A1618032304593B00F6E501 /* DBWalletConnectSessionRepository.swift */,
-				0A1618042304593B00F6E501 /* DBSinglePortfolioRepository.swift */,
-				0A1618052304593B00F6E501 /* DBWalletRepository.swift */,
-				0A1618062304593B00F6E501 /* UserDefaultsAppSettingsRepository.swift */,
-				0A1618072304593B00F6E501 /* DBRBETransactionMonitorRepository.swift */,
+				55E9D3A12361A46900D2959A /* DBAddressBookRepository.swift */,
 				0A2ACBFF23294A8A0054D1D1 /* DBKeycardRepository.swift */,
+				0A1618072304593B00F6E501 /* DBRBETransactionMonitorRepository.swift */,
+				0A1618042304593B00F6E501 /* DBSinglePortfolioRepository.swift */,
+				0A1617F72304593B00F6E501 /* DBTokeListItemRepository.swift */,
+				0A1618002304593B00F6E501 /* DBTransactionRepository.swift */,
+				0A1618032304593B00F6E501 /* DBWalletConnectSessionRepository.swift */,
+				0A1618052304593B00F6E501 /* DBWalletRepository.swift */,
+				0A1618022304593B00F6E501 /* InMemorySafeContractMetadataRepository.swift */,
+				0A1617F92304593B00F6E501 /* SecureExternallyOwnedAccountRepository.swift */,
+				0A1618062304593B00F6E501 /* UserDefaultsAppSettingsRepository.swift */,
+				0A1617FA2304593B00F6E501 /* DBSerializable */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -947,6 +958,7 @@
 				0A16181C2304593B00F6E501 /* InMemoryTokenListItemRepository.swift */,
 				0A16181D2304593B00F6E501 /* InMemoryExternallyOwnedAccountRepository.swift */,
 				0A16181E2304593B00F6E501 /* InMemoryWCSessionRepository.swift */,
+				55E9D39F2361A23000D2959A /* InMemoryAddressBookRepository.swift */,
 			);
 			path = MockRepositories;
 			sourceTree = "<group>";
@@ -969,6 +981,7 @@
 		0AAE7C3A230450A600E7EB07 /* MultisigWalletDomainModel */ = {
 			isa = PBXGroup;
 			children = (
+				55E9D39623619F3C00D2959A /* AddressBook */,
 				0AAE7D492304544900E7EB07 /* Account */,
 				0AAE7D6B2304544900E7EB07 /* AppSettingsRepository.swift */,
 				0AAE7D332304544800E7EB07 /* BaseInMemoryRepository.swift */,
@@ -1123,11 +1136,13 @@
 		0AAE7C85230450BC00E7EB07 /* MultisigWalletImplementationsTests */ = {
 			isa = PBXGroup;
 			children = (
+				0AAE7C88230450BC00E7EB07 /* Info.plist */,
 				0A1618672304594500F6E501 /* DBAccountRepositoryIntegrationTests.swift */,
+				559319772361D06B006830C9 /* DBAddressBookRepositoryTests.swift */,
+				0A2ACC03232A392B0054D1D1 /* DBKeycardRepositoryTests.swift */,
 				0A1618642304594500F6E501 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */,
 				0A1618622304594500F6E501 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
 				0A16185B2304594400F6E501 /* DBTransactionRepositoryTests.swift */,
-				0A2ACC03232A392B0054D1D1 /* DBKeycardRepositoryTests.swift */,
 				0A1618692304594500F6E501 /* DBWalletConnectSessionRepositoryTests.swift */,
 				0A16186C2304594600F6E501 /* DBWalletRepositoryIntegrationTests.swift */,
 				0A1618652304594500F6E501 /* EncryptionServiceTests.swift */,
@@ -1135,15 +1150,14 @@
 				0A16185E2304594400F6E501 /* EthTypesTests.swift */,
 				0A1618662304594500F6E501 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
 				0A1618612304594500F6E501 /* InMemoryWCSessionRepositoryTests.swift */,
+				0ACD3F04232BEB8C000E9274 /* KeycardInitializerTests.swift */,
+				0AAE7C86230450BC00E7EB07 /* MultisigWalletImplementationsTests.swift */,
 				0A16186B2304594600F6E501 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
 				0A1618682304594500F6E501 /* SessionTests.swift */,
 				0A16185C2304594400F6E501 /* SynchronisationServiceTests.swift */,
 				0A16185F2304594400F6E501 /* TokenListItemRepositoryTests.swift */,
 				0A1618632304594500F6E501 /* UserDefaultsAppSettingsRepositoryTests.swift */,
 				0A16185D2304594400F6E501 /* WalletConnectServiceTests.swift */,
-				0AAE7C86230450BC00E7EB07 /* MultisigWalletImplementationsTests.swift */,
-				0ACD3F04232BEB8C000E9274 /* KeycardInitializerTests.swift */,
-				0AAE7C88230450BC00E7EB07 /* Info.plist */,
 				0A16187F2304595200F6E501 /* MultisigWalletImplementations.xctestplan */,
 			);
 			path = MultisigWalletImplementationsTests;
@@ -1446,6 +1460,15 @@
 				552D42EA233A107D00C57B5C /* BaseWalletApplicationServiceTests.swift */,
 			);
 			path = WalletApplicationServiceTests;
+			sourceTree = "<group>";
+		};
+		55E9D39623619F3C00D2959A /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				55E9D39B23619FF500D2959A /* AddressBookRepository.swift */,
+				55E9D39D2361A08E00D2959A /* AddressBookEntry.swift */,
+			);
+			path = AddressBook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1892,6 +1915,7 @@
 				0AAE7DB62304544A00E7EB07 /* NotificationDomainService.swift in Sources */,
 				0AAE7DB92304544A00E7EB07 /* AccountUpdateDomainService.swift in Sources */,
 				0AAE7D7A2304544A00E7EB07 /* SafeContractMetadataRepository.swift in Sources */,
+				55E9D39C23619FF500D2959A /* AddressBookRepository.swift in Sources */,
 				0AAE7D782304544A00E7EB07 /* MockErrorStream.swift in Sources */,
 				0AAE7D762304544A00E7EB07 /* RecoveryDomainService.swift in Sources */,
 				0AAE7DB42304544A00E7EB07 /* TransactionSentMessage.swift in Sources */,
@@ -1967,6 +1991,7 @@
 				0AAE7D9B2304544A00E7EB07 /* EncryptionDomainService.swift in Sources */,
 				0AAE7D8B2304544A00E7EB07 /* RetryWithIncreasingDelay.swift in Sources */,
 				0AAE7DCF2304544A00E7EB07 /* TransactionRepository.swift in Sources */,
+				55E9D39E2361A08E00D2959A /* AddressBookEntry.swift in Sources */,
 				0AAE7D812304544A00E7EB07 /* System.swift in Sources */,
 				0AAE7DC02304544A00E7EB07 /* SubmitTransactionRequest.swift in Sources */,
 				0AAE7D7C2304544A00E7EB07 /* SafeCreationResponseValidator.swift in Sources */,
@@ -2099,6 +2124,7 @@
 			files = (
 				0A1618572304593B00F6E501 /* InfuraEthereumNodeService.swift in Sources */,
 				0A16183D2304593B00F6E501 /* Token+DBSerializable.swift in Sources */,
+				55E9D3A22361A46900D2959A /* DBAddressBookRepository.swift in Sources */,
 				0A16183E2304593B00F6E501 /* WalletIDList+DBSerializable.swift in Sources */,
 				0A1618582304593B00F6E501 /* InMemoryTokenListItemRepository.swift in Sources */,
 				0A16181F2304593B00F6E501 /* SynchronisationService.swift in Sources */,
@@ -2152,6 +2178,7 @@
 				0A84C2DE230549D30006DA50 /* InMemoryAccountRepository.swift in Sources */,
 				0A53C6D523265EF7004A7BC3 /* KeycardHardwareService.swift in Sources */,
 				0A16183A2304593B00F6E501 /* SecureExternallyOwnedAccountRepository.swift in Sources */,
+				55E9D3A02361A23000D2959A /* InMemoryAddressBookRepository.swift in Sources */,
 				0ACD3F02232BE8B2000E9274 /* KeycardInitializer.swift in Sources */,
 				0A1618462304593B00F6E501 /* UserDefaultsAppSettingsRepository.swift in Sources */,
 				0A84C2DF230549D30006DA50 /* InMemoryWalletRepository.swift in Sources */,
@@ -2180,6 +2207,7 @@
 				0A16186D2304594600F6E501 /* DBTransactionRepositoryTests.swift in Sources */,
 				0A1618772304594600F6E501 /* EncryptionServiceTests.swift in Sources */,
 				0A16187B2304594600F6E501 /* DBWalletConnectSessionRepositoryTests.swift in Sources */,
+				559319782361D06B006830C9 /* DBAddressBookRepositoryTests.swift in Sources */,
 				0A1618792304594600F6E501 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
 				0A1618702304594600F6E501 /* EthTypesTests.swift in Sources */,
 				0A1618762304594600F6E501 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */,

@@ -101,6 +101,7 @@ class MultisigWalletConfigurator {
             let keycardRepo = DBKeycardRepository(db: db)
             let migrationRepo = DBMigrationRepository(db: db)
             let migrationService = DBMigrationService(repository: migrationRepo)
+            let addressBookRepo = DBAddressBookRepository(db: db)
             DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
             DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
             DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
@@ -109,6 +110,7 @@ class MultisigWalletConfigurator {
             DomainRegistry.put(service: monitorRepo, for: RBETransactionMonitorRepository.self)
             DomainRegistry.put(service: walletConnectRepo, for: WalletConnectSessionRepository.self)
             DomainRegistry.put(service: keycardRepo, for: KeycardRepository.self)
+            DomainRegistry.put(service: addressBookRepo, for: AddressBookRepository.self)
 
             let noDatabase = !db.exists
             if noDatabase {
@@ -124,6 +126,7 @@ class MultisigWalletConfigurator {
             walletConnectRepo.setUp()
             keycardRepo.setUp()
             migrationRepo.setUp()
+            addressBookRepo.setUp()
 
             if noDatabase {
                 skipMigrationsBeforeAndIncluding(WalletMigrations.latest, with: migrationService)

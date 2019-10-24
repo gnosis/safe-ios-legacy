@@ -54,6 +54,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: RBETransactionMonitorRepository.self)
     }
 
+    public static var addressBookRepository: AddressBookRepository {
+        return service(for: AddressBookRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {
