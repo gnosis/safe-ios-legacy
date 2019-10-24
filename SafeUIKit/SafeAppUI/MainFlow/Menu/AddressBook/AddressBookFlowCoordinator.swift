@@ -33,8 +33,8 @@ extension AddressBookFlowCoordinator: AddressBookViewControllerDelegate {
     }
 
     func addressBookViewControllerCreateNewEntry(controller: AddressBookViewController) {
-        // to be replaced with actual implementation
-        print("new entry")
+        let vc = AddressBookEditEntryViewController.create(name: nil, address: nil, delegate: self)
+        push(vc)
     }
 
 }

@@ -10,6 +10,9 @@
 /* Address Book */
 "address_book" = "Address Book";
 
+/* Enter address */
+"address_hint" = "Enter Address";
+
 /* Description */
 "after_finishing_setup" = "After finishing the Safe setup, you will need to enter the PIN and hold the Keycard to your phone to confirm each transaction. You can replace or remove your 2FA device in the Safe menu at any time.";
 
@@ -197,6 +200,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Enter current password */
 "enter_current_password" = "Enter current password";
+
+/* Enter name */
+"enter_name" = "Enter name";
 
 /* Header for new password screen */
 "enter_new_password" = "Enter new password";
@@ -567,6 +573,9 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Network fee description
    Network fee required */
 "network_fee_required" = "A network fee is required to create your new Safe.";
+
+/* New Entry */
+"new_entry" = "New Entry";
 
 /* Placeholder text for new password field */
 "new_password" = "New password";
