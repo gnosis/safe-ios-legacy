@@ -9,7 +9,7 @@ public class InMemoryWCSessionRepository: WalletConnectSessionRepository {
 
     private var sessions = [WCSessionID: WCSession]()
 
-    public init () {}
+    public init() {}
 
     public func save(_ item: WCSession) {
         sessions[item.id] = item
