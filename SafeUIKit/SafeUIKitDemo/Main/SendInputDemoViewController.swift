@@ -23,7 +23,7 @@ class SendInputDemoViewController: BaseDemoViewController {
         service.update(account: ethID, newBalance: BigInt(1e18) + BigInt(3e14))
         service.update(account: ethID, newBalance: BigInt(1e18))
         service.estimatedFee_output = BigInt(1e14)
-        controller = .create(tokenID: ethID)
+        controller = .create(tokenID: ethID, address: nil)
         navController = UINavigationController(rootViewController: controller)
     }
 
