@@ -63,7 +63,9 @@ public struct TransactionData: Equatable {
     public let id: String
     public let walletID: String
     public let sender: String
+    public let senderName: String?
     public let recipient: String
+    public let recipientName: String?
     public let amountTokenData: TokenData
     public let feeTokenData: TokenData
     public let status: Status
@@ -81,7 +83,9 @@ public struct TransactionData: Equatable {
     public static let empty = TransactionData(id: "",
                                               walletID: "",
                                               sender: "",
+                                              senderName: nil,
                                               recipient: "",
+                                              recipientName: nil,
                                               amountTokenData: .empty(),
                                               feeTokenData: .empty(),
                                               status: .rejected,
@@ -95,7 +99,9 @@ public struct TransactionData: Equatable {
     public init(id: String,
                 walletID: String,
                 sender: String,
+                senderName: String?,
                 recipient: String,
+                recipientName: String?,
                 amountTokenData: TokenData,
                 feeTokenData: TokenData,
                 status: Status,
@@ -108,7 +114,9 @@ public struct TransactionData: Equatable {
         self.id = id
         self.walletID = walletID
         self.sender = sender
+        self.senderName = senderName
         self.recipient = recipient
+        self.recipientName = recipientName
         self.amountTokenData = amountTokenData
         self.feeTokenData = feeTokenData
         self.status = status
