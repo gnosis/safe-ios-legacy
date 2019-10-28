@@ -199,7 +199,7 @@ extension SendInputViewController: AddressInputDelegate {
     }
 
     public func nameForAddress(_ address: String) -> String? {
-        return nil
+        return ApplicationServiceRegistry.walletService.addressName(for: address)        
     }
 
     public func didRequestAddressBook() {

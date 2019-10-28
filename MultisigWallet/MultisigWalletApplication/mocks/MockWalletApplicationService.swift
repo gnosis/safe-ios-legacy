@@ -428,5 +428,12 @@ public class MockWalletApplicationService: WalletApplicationService {
                    isSelected: true,
                    requiresBackupToRemove: true)
     }
+
+    // MARK: - Address Book
+
+    var addressNames: [String: String]?
+    public override func addressName(for address: String) -> String? {
+        return addressNames?[address]
+    }
     
 }

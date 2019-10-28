@@ -82,8 +82,7 @@ extension AddressInputViewController: AddressInputDelegate {
     }
 
     func nameForAddress(_ address: String) -> String? {
-        // TODO: get from the address book
-        return nil
+        return ApplicationServiceRegistry.walletService.addressName(for: address)
     }
 
     func didRequestAddressBook() {

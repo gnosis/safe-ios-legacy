@@ -1074,4 +1074,10 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    // MARK: - Address Book
+
+    public func addressName(for address: String) -> String? {
+        return DomainRegistry.addressBookRepository.find(address: address).first?.name
+    }
+
 }
