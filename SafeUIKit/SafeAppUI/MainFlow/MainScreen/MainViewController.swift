@@ -174,7 +174,8 @@ class MainViewController: UIViewController {
                                                   object: nil)
         guard !isRunningDiagnostics else { return }
         isRunningDiagnostics = true
-        DispatchQueue.global().async { [unowned self] in
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
             do {
                 try ApplicationServiceRegistry.walletService.runDiagnostics()
             } catch {
