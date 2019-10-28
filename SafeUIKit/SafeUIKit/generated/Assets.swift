@@ -180,6 +180,7 @@ enum Asset {
   }
   enum TransferView {
     static let arrowDown = ImageAsset(name: "arrow-down")
+    static let threeDotsDark = ImageAsset(name: "threeDotsDark")
   }
   enum Twofa {
     static let _2faRequired00000 = ImageAsset(name: "2fa_required_00000")
@@ -346,6 +347,7 @@ enum Asset {
     TokenIcons.eth,
     TokenIcons.defaultToken,
     TransferView.arrowDown,
+    TransferView.threeDotsDark,
     Twofa._2faRequired00000,
     Twofa._2faRequired00001,
     Twofa._2faRequired00002,

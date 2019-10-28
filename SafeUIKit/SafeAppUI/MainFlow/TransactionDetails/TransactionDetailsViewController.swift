@@ -157,9 +157,14 @@ public class TransactionDetailsViewController: UIViewController {
             fallthrough
         case .outgoing:
             transferView.fromAddress = transaction.sender
+            transferView.fromAddressName = ApplicationServiceRegistry.walletService.addressName(for: transaction.sender)
             transferView.toAddress = transaction.recipient
+            transferView.toAddressName =
+                ApplicationServiceRegistry.walletService.addressName(for: transaction.recipient)
+            transferView.showToAddressActions = true
             transferView.tokenData = transaction.amountTokenData
             transferView.isHidden = false
+            transferView.delegate = self
             settingsHeaderView.isHidden = true
         case .replaceRecoveryPhrase:
             settingsHeaderView.titleText = Strings.ReplaceRecoveryPhrase.title
@@ -279,6 +284,14 @@ extension TransactionDetailsViewController: InfoLabelDelegate {
 
     public func didTap() {
         present(UIAlertController.networkFee(), animated: true, completion: nil)
+    }
+
+}
+
+extension TransactionDetailsViewController: TransferViewDelegate {
+
+    public func transferView(_ view: TransferView, didSelectActionForAddress address: String) {
+        // TODO
     }
 
 }

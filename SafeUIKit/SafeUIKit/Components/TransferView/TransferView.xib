@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,9 +14,11 @@
                 <outlet property="balanceLabel" destination="V0c-TE-6U6" id="YCc-5h-ypa"/>
                 <outlet property="fromAddressLabel" destination="zs1-2D-vQj" id="fzt-wO-5Dq"/>
                 <outlet property="fromIdenticonView" destination="FGi-iH-Tep" id="waz-1x-YZu"/>
+                <outlet property="fromThreeDotsButton" destination="Ao6-KE-gE5" id="iuH-zk-Eqf"/>
                 <outlet property="separatorView" destination="8zW-Yu-peS" id="iAJ-3y-Tav"/>
                 <outlet property="toAddressLabel" destination="zms-IU-Lc2" id="C8W-20-jSN"/>
                 <outlet property="toIdenticonView" destination="L7F-Ks-zDU" id="E7b-Nr-VD9"/>
+                <outlet property="toThreeDotsButton" destination="Va3-rK-ajN" id="hy8-7s-Agi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -80,6 +80,28 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ao6-KE-gE5">
+                    <rect key="frame" x="149" y="25" width="50" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="5VZ-V0-isU"/>
+                        <constraint firstAttribute="width" constant="50" id="gx8-1o-WaL"/>
+                    </constraints>
+                    <state key="normal" image="threeDotsDark"/>
+                    <connections>
+                        <action selector="selectFromAddressAction:" destination="-1" eventType="touchUpInside" id="h1M-RK-qe4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Va3-rK-ajN">
+                    <rect key="frame" x="149" y="108" width="50" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="W7l-XK-gSw"/>
+                        <constraint firstAttribute="width" constant="50" id="aqd-yu-YMC"/>
+                    </constraints>
+                    <state key="normal" image="threeDotsDark"/>
+                    <connections>
+                        <action selector="selectToAddressAction:" destination="-1" eventType="touchUpInside" id="c5V-5x-Anh"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -90,12 +112,16 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Rph-I6-gFQ" secondAttribute="trailing" constant="16" id="BIr-HS-BAD"/>
                 <constraint firstItem="zs1-2D-vQj" firstAttribute="leading" secondItem="FGi-iH-Tep" secondAttribute="trailing" constant="14" id="BjI-9L-nOr"/>
                 <constraint firstItem="FGi-iH-Tep" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="DZN-ys-dLR"/>
+                <constraint firstItem="Ao6-KE-gE5" firstAttribute="centerY" secondItem="zs1-2D-vQj" secondAttribute="centerY" id="Gst-52-IaB"/>
                 <constraint firstItem="FGi-iH-Tep" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="HO3-2X-Jtp"/>
                 <constraint firstItem="Rph-I6-gFQ" firstAttribute="centerY" secondItem="8zW-Yu-peS" secondAttribute="centerY" constant="-2" id="IdB-UU-VRt"/>
                 <constraint firstItem="zms-IU-Lc2" firstAttribute="leading" secondItem="zs1-2D-vQj" secondAttribute="leading" id="Jcq-Bt-NPs"/>
+                <constraint firstItem="Va3-rK-ajN" firstAttribute="leading" secondItem="zms-IU-Lc2" secondAttribute="trailing" id="N1d-Bu-2d8"/>
                 <constraint firstItem="V0c-TE-6U6" firstAttribute="firstBaseline" secondItem="zs1-2D-vQj" secondAttribute="firstBaseline" id="RPD-CS-WUv"/>
                 <constraint firstItem="V0c-TE-6U6" firstAttribute="trailing" secondItem="Rph-I6-gFQ" secondAttribute="trailing" id="Tmf-AA-Xg3"/>
+                <constraint firstItem="Ao6-KE-gE5" firstAttribute="leading" secondItem="zs1-2D-vQj" secondAttribute="trailing" id="Uw4-Ye-KaN"/>
                 <constraint firstItem="8zW-Yu-peS" firstAttribute="centerY" secondItem="w1d-bt-Oe8" secondAttribute="centerY" id="WIq-w6-rkf"/>
+                <constraint firstItem="Va3-rK-ajN" firstAttribute="centerY" secondItem="zms-IU-Lc2" secondAttribute="centerY" id="ZYe-XX-438"/>
                 <constraint firstItem="zms-IU-Lc2" firstAttribute="centerY" secondItem="L7F-Ks-zDU" secondAttribute="centerY" id="bcg-2k-ga9"/>
                 <constraint firstItem="L7F-Ks-zDU" firstAttribute="leading" secondItem="FGi-iH-Tep" secondAttribute="leading" id="h0f-cK-5gB"/>
                 <constraint firstItem="w1d-bt-Oe8" firstAttribute="top" secondItem="FGi-iH-Tep" secondAttribute="bottom" constant="17" id="iSQ-nr-CLW"/>
@@ -109,5 +135,6 @@
     </objects>
     <resources>
         <image name="arrow-down" width="14" height="21"/>
+        <image name="threeDotsDark" width="20" height="4"/>
     </resources>
 </document>
