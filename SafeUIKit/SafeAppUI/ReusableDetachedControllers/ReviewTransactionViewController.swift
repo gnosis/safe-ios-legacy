@@ -117,7 +117,9 @@ public class ReviewTransactionViewController: UITableViewController {
 
     // overriden in subclass
     internal func fetchTransaction(_ id: String) -> TransactionData {
-        return ApplicationServiceRegistry.walletService.transactionData(id)!
+        // GH-1192: the transactionData may return nil if the draft transaction is removed but
+        // the screen was still open in the background
+        return ApplicationServiceRegistry.walletService.transactionData(id) ?? .empty
     }
 
     override public func viewWillAppear(_ animated: Bool) {
