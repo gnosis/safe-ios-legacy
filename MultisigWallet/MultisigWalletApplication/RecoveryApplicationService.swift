@@ -93,10 +93,16 @@ public class RecoveryApplicationService {
         let zeroFeeEstimate = TransactionFeeEstimate(gas: 0, dataGas: 0, operationalGas: 0, gasPrice: zeroGasPrice)
         let feeEstimate = tx.feeEstimate ?? zeroFeeEstimate
         let feeTokenData = TokenData(token: paymentToken, balance: -feeEstimate.totalDisplayedToUser.amount)
+        let sender = tx.sender!.value
+        let senderName = ApplicationServiceRegistry.walletService.addressName(for: sender)
+        let recipient = tx.recipient!.value
+        let recipientName = ApplicationServiceRegistry.walletService.addressName(for: recipient)
         return TransactionData(id: tx.id.id,
                                walletID: tx.accountID.walletID.id,
-                               sender: tx.sender!.value,
-                               recipient: tx.recipient!.value,
+                               sender: sender,
+                               senderName: senderName,
+                               recipient: recipient,
+                               recipientName: recipientName,
                                amountTokenData: amountTokenData,
                                feeTokenData: feeTokenData,
                                status: tx.status.transactionDataStatus,

@@ -654,10 +654,16 @@ public class WalletApplicationService: Assertable {
             TokenData(token: tx.feeEstimate!.totalDisplayedToUser.token,
                       balance: tx.feeEstimate!.totalDisplayedToUser.amount) :
             TokenData(token: paymentTokenData(for: tx.accountID.walletID.id).token(), balance: nil)
+        let sender = tx.sender?.value ?? ""
+        let senderName = sender.isEmpty ? nil : addressName(for: sender)
+        let recipient = tx.recipient?.value ?? ""
+        let recipientName = recipient.isEmpty ? nil : addressName(for: recipient)
         return TransactionData(id: tx.id.id,
                                walletID: tx.accountID.walletID.id,
-                               sender: tx.sender?.value ?? "",
-                               recipient: tx.recipient?.value ?? "",
+                               sender: sender,
+                               senderName: senderName,
+                               recipient: recipient,
+                               recipientName: recipientName,
                                amountTokenData: amountTokenData,
                                feeTokenData: feeTokenData,
                                status: status(of: tx),
@@ -1077,7 +1083,12 @@ public class WalletApplicationService: Assertable {
     // MARK: - Address Book
 
     public func addressName(for address: String) -> String? {
-        return DomainRegistry.addressBookRepository.find(address: address).first?.name
+        if let entry = DomainRegistry.addressBookRepository.find(address: address).first {
+            return entry.name
+        } else if let wallet = DomainRegistry.walletRepository.find(address: Address(address)) {
+            return wallet.name
+        }
+        return nil
     }
 
 }

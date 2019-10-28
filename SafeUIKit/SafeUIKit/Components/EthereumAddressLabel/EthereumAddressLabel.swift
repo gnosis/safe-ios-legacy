@@ -46,6 +46,8 @@ public class EthereumAddressLabel: BaseCustomLabel {
         set { tooltipSource.isActive = newValue }
     }
 
+    public var showsBothNameAndAddress: Bool = true
+
     var tooltipSource: TooltipSource!
 
     public override func commonInit() {
@@ -65,24 +67,29 @@ public class EthereumAddressLabel: BaseCustomLabel {
         tooltipSource.message = address
     }
 
+    // This produces 3 different formats:
+    //  1) name suffix
+    //  2) address suffix
+    //  3) name suffix \n
+    //     address
     private func formattedText() -> NSAttributedString? {
         guard let address = address else { return nil }
-        if let suffix = suffix {
-            let str = NSMutableAttributedString()
-            if let addressStr = formatter.attributedString(from: address) {
-                str.append(addressStr)
-            }
-            str.append(NSAttributedString(string: " \(suffix)"))
-            return str
-        } else if let name = name {
-            let str = NSMutableAttributedString(string: name + "\n")
-            if let addressStr = withNameFormatter.attributedString(from: address) {
+        let suffixStr = NSAttributedString(string: suffix == nil ? "" : " \(suffix!)")
+        if let name = name {
+            let str = NSMutableAttributedString(string: name)
+            str.append(suffixStr)
+
+            if showsBothNameAndAddress, let addressStr = withNameFormatter.attributedString(from: address) {
+                str.append(NSAttributedString(string: "\n"))
                 str.append(addressStr)
             }
             return str
-        } else {
-            return formatter.attributedString(from: address)
+        } else if let addressStr = formatter.attributedString(from: address) {
+            let str = NSMutableAttributedString(attributedString: addressStr)
+            str.append(suffixStr)
+            return str
         }
+        return nil
     }
 
 }

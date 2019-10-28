@@ -51,12 +51,13 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     func configure(transaction: TransactionData) {
-        identiconView.seed = recipient(transaction)
+        (_, identiconView.seed) = recipient(transaction)
         if transaction.status == .failed {
             identiconView.imageView.image = Asset.TransactionOverviewIcons.error.image
         }
 
-        addressLabel.address = recipient(transaction)
+        addressLabel.showsBothNameAndAddress = false
+        (addressLabel.name, addressLabel.address) = recipient(transaction)
         addressLabel.suffix = addressSuffix(transaction)
         addressLabel.textColor = addressColor(transaction)
         addressLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -124,13 +125,14 @@ class TransactionTableViewCell: UITableViewCell {
         }
     }
 
-    private func recipient(_ transaction: TransactionData) -> String {
+    private func recipient(_ transaction: TransactionData) -> (name: String?, address: String) {
         switch transaction.type {
         case .incoming, .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
              .disconnectStatusKeycard:
-            return transaction.sender
-        case .outgoing: return transaction.recipient
+            return (transaction.senderName, transaction.sender)
+        case .outgoing:
+            return (transaction.recipientName, transaction.recipient)
         }
     }
 
