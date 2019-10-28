@@ -380,6 +380,16 @@ extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
         SupportFlowCoordinator(from: self).openTransactionBrowser(controller.transactionID!)
     }
 
+    public func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
+                                                 didSelectToEditNameForAddress address: String) {
+        // TODO
+    }
+
+    public func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
+                                                 didSelectToSendToken token: TokenData) {
+        // TODO
+    }
+
 }
 
 extension MainFlowCoordinator: MenuTableViewControllerDelegate {

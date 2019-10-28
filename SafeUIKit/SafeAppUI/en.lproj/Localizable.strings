@@ -4,6 +4,9 @@
 /* Active sessions */
 "active_sessions" = "Active sessions";
 
+/* Add to address book */
+"add_to_address_book" = "Add to address book";
+
 /* Title for Add Token screen. */
 "add_token" = "Add Token";
 
@@ -185,6 +188,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Edit Entry */
 "edit_entry" = "Edit Entry";
+
+/* Edit entry details */
+"edit_entry_details" = "Edit entry details";
 
 /* Edit Safe name */
 "edit_safe_name" = "Edit Safe name";
@@ -837,6 +843,9 @@ Pairing password: %@";
 
 /* Update required description */
 "security_upgrade_required" = "Upgrade to the latest audited smart contract version and make your funds even more secure!";
+
+/* Send token again */
+"send_again" = "Send %@ again";
 
 /* Send the remainder */
 "send_remainder" = "Send at least the remainder to your new Safe:";
