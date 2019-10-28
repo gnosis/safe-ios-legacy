@@ -101,6 +101,7 @@ class SwitchSafesTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         ApplicationServiceRegistry.walletService.selectWallet(safes[indexPath.row].id)
         update()
+        delegate?.switchSafesTableViewControllerDidFinish(self)
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
