@@ -437,5 +437,21 @@ public class MockWalletApplicationService: WalletApplicationService {
     public override func addressName(for address: String) -> String? {
         return addressNames?[address]
     }
-    
+
+    public override func allAddressBookEntries() -> [AddressBookEntryData] {
+        return []
+    }
+
+    public override func addressBookEntry(id: String) -> AddressBookEntryData? {
+        return nil
+    }
+
+    public override func createOrUpdateAddressBookEntry(id: String?, name: String, address: String) -> String {
+        return "id"
+    }
+
+    public override func removeAddressBookEntry(id: String) {
+        // empty
+    }
+
 }

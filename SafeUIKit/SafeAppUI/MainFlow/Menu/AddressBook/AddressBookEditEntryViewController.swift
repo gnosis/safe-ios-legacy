@@ -4,6 +4,9 @@
 
 import UIKit
 import SafeUIKit
+import MultisigWalletApplication
+
+typealias AddressBookEntryID = String
 
 protocol AddressBookEditEntryViewControllerDelegate: class {
 
@@ -86,12 +89,14 @@ class AddressBookEditEntryViewController: UIViewController {
         deleteButton.addTarget(self, action: #selector(deleteEntry), for: .touchUpInside)
         deleteButton.isHidden = !isEditEntry
 
-        if isEditEntry {
-            let entry = AddressBookEntry(id: "1",
-                                         name: "Angela's Safe",
-                                         address: "0xa369b18cfc016e6d0bc8ab643154caebe6eba07c")
-
-            set(name: entry.name, address: entry.address)
+        if let entryID = entryID {
+            DispatchQueue.global().async { [weak self] in
+                guard let entry = ApplicationServiceRegistry.walletService.addressBookEntry(id: entryID) else { return }
+                DispatchQueue.main.async {  [weak self] in
+                    guard let `self` = self else { return }
+                    self.set(name: entry.name, address: entry.address)
+                }
+            }
         }
     }
 
@@ -124,8 +129,18 @@ class AddressBookEditEntryViewController: UIViewController {
     }
 
     @objc func save() {
-        // TODO: actually save
-        delegate?.addressBookEditEntryViewController(self, didSave: entryID ?? "NewID")
+        let id = entryID
+        let name = nameInput.text!
+        let address = addressInput.text!
+        DispatchQueue.global().async { [weak self] in
+            let entryID = ApplicationServiceRegistry.walletService.createOrUpdateAddressBookEntry(id: id,
+                                                                                                  name: name,
+                                                                                                  address: address)
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                self.delegate?.addressBookEditEntryViewController(self, didSave: entryID)
+            }
+        }
     }
 
     @objc func deleteEntry() {
@@ -138,8 +153,14 @@ class AddressBookEditEntryViewController: UIViewController {
     }
 
     func removeEntry() {
-        // TODO: actually remove
-        delegate?.addressBookEditEntryViewController(self, didDelete: entryID!)
+        let id = entryID!
+        DispatchQueue.global().async { [weak self] in
+            ApplicationServiceRegistry.walletService.removeAddressBookEntry(id: id)
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                self.delegate?.addressBookEditEntryViewController(self, didDelete: id)
+            }
+        }
     }
 
 }
