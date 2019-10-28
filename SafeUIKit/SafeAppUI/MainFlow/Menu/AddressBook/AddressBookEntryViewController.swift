@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import MultisigWalletApplication
 
 protocol AddressBookEntryViewControllerDelegate: class {
 
@@ -18,7 +19,7 @@ class AddressBookEntryViewController: CardViewController {
     let nameLabel = UILabel()
 
     var entryID: AddressBookEntryID!
-    var entry: AddressBookEntry!
+    var entry: AddressBookEntryData!
 
     static func create(entryID: AddressBookEntryID) -> AddressBookEntryViewController {
         let controller = AddressBookEntryViewController(nibName: String(describing: CardViewController.self),
@@ -33,10 +34,7 @@ class AddressBookEntryViewController: CardViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        entry = AddressBookEntry(id: "1",
-                                 name: "Angela's Safe",
-                                 address: "0xa369b18cfc016e6d0bc8ab643154caebe6eba07c")
-        nameLabel.attributedText = NSAttributedString(string: entry.name, style: HeaderStyle())
+
         embed(view: nameLabel, inCardSubview: cardHeaderView)
 
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: 19, right: 0)
@@ -51,16 +49,27 @@ class AddressBookEntryViewController: CardViewController {
 
         addressDetailView.footnoteLabel.isHidden = true
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
-        addressDetailView.address = entry.address
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
                                                             target: self,
                                                             action: #selector(editEntry))
     }
 
+    func reloadData() {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            self.entry = ApplicationServiceRegistry.walletService.addressBookEntry(id: self.entryID)
+            DispatchQueue.main.async {
+                self.nameLabel.attributedText = NSAttributedString(string: self.entry.name, style: HeaderStyle())
+                self.addressDetailView.address = self.entry.address
+            }
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setCustomBackButton()
+        reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {

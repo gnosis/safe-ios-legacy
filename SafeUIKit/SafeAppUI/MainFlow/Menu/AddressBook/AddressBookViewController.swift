@@ -3,11 +3,12 @@
 //
 
 import UIKit
+import MultisigWalletApplication
 
 protocol AddressBookViewControllerDelegate: class {
 
-    func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntry)
-    func addressBookViewController(controller: AddressBookViewController, edit entry: AddressBookEntry)
+    func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntryData)
+    func addressBookViewController(controller: AddressBookViewController, edit entry: AddressBookEntryData)
     func addressBookViewControllerCreateNewEntry(controller: AddressBookViewController)
 
 }
@@ -20,9 +21,11 @@ class AddressBookViewController: UITableViewController {
 
     private let cellClass = AddressBookEntryTableViewCell.self
 
-    private var filter: ((AddressBookEntry) -> Bool)?
-    private var sourceEntries: [AddressBookEntry] = []
-    private var displayedEntries: [AddressBookEntry] = []
+    private var filter: ((AddressBookEntryData) -> Bool)?
+    private var sourceEntries: [AddressBookEntryData] = []
+    private var displayedEntries: [AddressBookEntryData] = []
+
+    private var serialFilteringQueue = OperationQueue()
 
     private let searchController = UISearchController(searchResultsController: nil)
     private let emptyView = EmptyResultsView()
@@ -49,6 +52,8 @@ class AddressBookViewController: UITableViewController {
     }
 
     private func commonInit() {
+        serialFilteringQueue.maxConcurrentOperationCount = 1
+
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -79,7 +84,6 @@ class AddressBookViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = 70
         tableView.backgroundColor = ColorName.white.color
-        reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -107,26 +111,33 @@ class AddressBookViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.addressBook)
+        reloadData()
     }
 
-    private func reloadData() {
-        sourceEntries = [
-            AddressBookEntry(id: "1", name: "Angela's Safe", address: "0xa369b18cfc016e6d0bc8ab643154caebe6eba07c"),
-            AddressBookEntry(id: "2", name: "Martin's Safe", address: "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819"),
-            AddressBookEntry(id: "3", name: "Tobias's Safe", address: "0x5e07B6F1B98a11F7e04E7Ffa8707b63F1c177753")]
-
-        applyFilter()
+    func reloadData() {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            self.sourceEntries = ApplicationServiceRegistry.walletService.allAddressBookEntries()
+            self.applyFilter()
+        }
     }
 
     private func applyFilter() {
-        if let filter = self.filter {
-            displayedEntries = sourceEntries.filter(filter)
-        } else {
-            displayedEntries = sourceEntries
+        serialFilteringQueue.cancelAllOperations()
+        serialFilteringQueue.addOperation { [weak self] in
+            guard let `self` = self else { return }
+            if let filter = self.filter {
+                self.displayedEntries = self.sourceEntries.filter(filter)
+            } else {
+                self.displayedEntries = self.sourceEntries
+            }
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                self.emptyView.text = self.searchController.isActive ? Strings.noResults : Strings.noEntries
+                self.tableView.backgroundView = self.displayedEntries.isEmpty ?  self.emptyView : nil
+                self.tableView.reloadData()
+            }
         }
-        emptyView.text = searchController.isActive ? Strings.noResults : Strings.noEntries
-        tableView.backgroundView = displayedEntries.isEmpty ?  emptyView : nil
-        tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -174,7 +185,7 @@ class AddressBookViewController: UITableViewController {
             return configuration
     }
 
-    private func deleteEntry(_ entry: AddressBookEntry) {
+    private func deleteEntry(_ entry: AddressBookEntryData) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: Strings.deleteEntry,
                                       style: .destructive) { [unowned self] action in
@@ -184,12 +195,12 @@ class AddressBookViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    private func remove(_ entry: AddressBookEntry) {
-        if let index = sourceEntries.firstIndex(of: entry) {
-            sourceEntries.remove(at: index)
-            tableView.reloadData()
+    private func remove(_ entry: AddressBookEntryData) {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            ApplicationServiceRegistry.walletService.removeAddressBookEntry(id: entry.id)
+            self.reloadData()
         }
-        reloadData()
     }
 
 }
