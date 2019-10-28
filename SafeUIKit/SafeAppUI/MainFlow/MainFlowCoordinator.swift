@@ -268,6 +268,8 @@ open class MainFlowCoordinator: FlowCoordinator {
 
 }
 
+// MARK: - EventSubscriber
+
 extension MainFlowCoordinator: EventSubscriber {
 
     // SendTransactionRequested
@@ -281,6 +283,8 @@ extension MainFlowCoordinator: EventSubscriber {
 
 }
 
+// MARK: - OnboardingWelcomeViewControllerDelegate
+
 extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
 
     func didStart() {
@@ -293,6 +297,8 @@ extension MainFlowCoordinator: OnboardingWelcomeViewControllerDelegate {
     }
 
 }
+
+// MARK: - OnboardingTermsViewControllerDelegate
 
 extension MainFlowCoordinator: OnboardingTermsViewControllerDelegate {
 
@@ -318,6 +324,8 @@ extension MainFlowCoordinator: OnboardingTermsViewControllerDelegate {
 
 }
 
+// MARK: - OnboardingCreateOrRestoreViewControllerDelegate
+
 extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 
     func didSelectNewSafe() {
@@ -329,6 +337,8 @@ extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
     }
 
 }
+
+// MARK: - MainViewControllerDelegate
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
 
@@ -364,6 +374,8 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
 }
 
+// MARK: - TransactionViewViewControllerDelegate
+
 extension MainFlowCoordinator: TransactionViewViewControllerDelegate {
 
     public func didSelectTransaction(id: String) {
@@ -374,6 +386,8 @@ extension MainFlowCoordinator: TransactionViewViewControllerDelegate {
 
 }
 
+// MARK: - TransactionDetailsViewControllerDelegate
+
 extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
 
     public func showTransactionInExternalApp(from controller: TransactionDetailsViewController) {
@@ -382,20 +396,47 @@ extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
 
     public func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
                                                  didSelectToEditNameForAddress address: String) {
-        // TODO
+        if ApplicationServiceRegistry.walletService.addressName(for: address) != nil {
+            let entryID = ApplicationServiceRegistry.walletService.addressBookEntryID(for: address)!
+            let vc = AddressBookEditEntryViewController.create(entryID: entryID, delegate: self)
+            push(vc)
+        } else {
+            let vc = AddressBookEditEntryViewController.create(name: nil, address: nil, delegate: self)
+            push(vc)
+        }
     }
 
     public func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
                                                  didSelectToSendToken token: TokenData) {
-        // TODO
+        createNewTransaction(token: token.code)
     }
 
+
+
 }
+
+// MARK: - MenuTableViewControllerDelegate
 
 extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 
     func didSelectCommand(_ command: MenuCommand) {
         command.run()
+    }
+
+}
+
+// MARK: - AddressBookEditEntryViewControllerDelegate
+
+extension MainFlowCoordinator: AddressBookEditEntryViewControllerDelegate {
+
+    func addressBookEditEntryViewController(_ controller: AddressBookEditEntryViewController,
+                                            didSave id: AddressBookEntryID) {
+        pop()
+    }
+
+    func addressBookEditEntryViewController(_ controller: AddressBookEditEntryViewController,
+                                            didDelete id: AddressBookEntryID) {
+        pop()
     }
 
 }
