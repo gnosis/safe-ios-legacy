@@ -4,7 +4,6 @@
 
 import Foundation
 import MultisigWalletDomainModel
-import MultisigWalletApplication
 import Keycard
 
 @available(iOS 13.1, *)
