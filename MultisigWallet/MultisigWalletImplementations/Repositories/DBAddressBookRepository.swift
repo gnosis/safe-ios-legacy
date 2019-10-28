@@ -30,7 +30,7 @@ public class DBAddressBookRepository: DBEntityRepository<AddressBookEntry, Addre
     }
 
     public func find(address: String) -> [AddressBookEntry] {
-        return find(key: "address", value: address, orderBy: "name")
+        return find(key: "address", value: address, caseSensitive: false, orderBy: "name")
     }
 
     public override func all() -> [AddressBookEntry] {

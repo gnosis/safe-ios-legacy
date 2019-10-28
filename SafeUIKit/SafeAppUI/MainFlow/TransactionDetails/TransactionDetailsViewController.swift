@@ -13,7 +13,8 @@ public protocol TransactionDetailsViewControllerDelegate: class {
     func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
                                           didSelectToEditNameForAddress address: String)
     func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
-                                          didSelectToSendToken token: TokenData)
+                                          didSelectToSendToken token: TokenData,
+                                          forAddress address: String)
 }
 
 internal class ClockService {
@@ -123,6 +124,10 @@ public class TransactionDetailsViewController: UIViewController {
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
         wrapperView.backgroundColor = ColorName.snowwhite.color
         transferView.setSmallerAmountLabelFontSize()
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         reloadData()
     }
 
@@ -320,7 +325,8 @@ extension TransactionDetailsViewController: TransferViewDelegate {
         let sendAgainAction = UIAlertAction(title: sendAgainStr, style: .default) {
             [unowned self] _ in
             self.delegate?.transactionDetailsViewController(self,
-                                                            didSelectToSendToken: self.transaction.amountTokenData)
+                                                            didSelectToSendToken: self.transaction.amountTokenData,
+                                                            forAddress: address)
         }
         alertController.addAction(sendAgainAction)
         let cancelAction = UIAlertAction(title: Strings.AddressEntryActions.cancel, style: .cancel, handler: nil)

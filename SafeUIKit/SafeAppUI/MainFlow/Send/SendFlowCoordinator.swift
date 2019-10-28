@@ -10,6 +10,7 @@ import Common
 class SendFlowCoordinator: FlowCoordinator {
 
     var token: String!
+    var address: String?
 
     convenience init() {
         self.init(rootViewController: nil)
@@ -18,7 +19,7 @@ class SendFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         assert(token != nil, "Token must be set before entering SendFlowCoordinator")
-        let transactionVC = SendInputViewController.create(tokenID: BaseID(token))
+        let transactionVC = SendInputViewController.create(tokenID: BaseID(token), address: address)
         transactionVC.delegate = self
         transactionVC.navigationItem.backBarButtonItem = .backButton()
         push(transactionVC) {

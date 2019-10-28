@@ -116,8 +116,7 @@ public final class FeedbackTooltip: CardView {
         // swiftlint:disable line_length
         let maxTooltipWidth = superview.bounds.width - 2 * tooltip.horizontalPadding
         let viewTopInSuperview = superview.convert(view.bounds, from: view).minY
-        let constraints = [tooltip.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                           tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: tooltip.horizontalPadding),
+        let constraints = [tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: tooltip.horizontalPadding),
                            tooltip.trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -tooltip.horizontalPadding),
                            tooltip.widthAnchor.constraint(lessThanOrEqualToConstant: maxTooltipWidth),
                            tooltip.bottomAnchor.constraint(equalTo: superview.topAnchor, constant: viewTopInSuperview - tooltip.verticalPadding)]

@@ -77,7 +77,7 @@ class DBKeycardPairingRepository: DBAbstractRepository<KeycardPairing> {
     }
 
     func find(instanceUID: Data) -> KeycardPairing? {
-        return find(key: "instance_uid", value: instanceUID, orderBy: "rowid").first
+        return find(key: "instance_uid", value: instanceUID, caseSensitive: true, orderBy: "rowid").first
     }
 
 }
@@ -120,7 +120,7 @@ class DBKeycardKeyRepository: DBAbstractRepository<KeycardKey> {
     }
 
     func find(address: Address) -> KeycardKey? {
-        return find(key: "address", value: address.value, orderBy: "address").first
+        return find(key: "address", value: address.value, caseSensitive: true, orderBy: "address").first
     }
 
 }

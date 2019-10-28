@@ -342,8 +342,9 @@ extension MainFlowCoordinator: OnboardingCreateOrRestoreViewControllerDelegate {
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
 
-    func createNewTransaction(token: String) {
+    func createNewTransaction(token: String, address: String?) {
         sendFlowCoordinator.token = token
+        sendFlowCoordinator.address = address
         enterTransactionFlow(sendFlowCoordinator)
     }
 
@@ -401,17 +402,18 @@ extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
             let vc = AddressBookEditEntryViewController.create(entryID: entryID, delegate: self)
             push(vc)
         } else {
-            let vc = AddressBookEditEntryViewController.create(name: nil, address: nil, delegate: self)
+            let vc = AddressBookEditEntryViewController.create(name: nil, address: address, delegate: self)
             push(vc)
         }
     }
 
     public func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
-                                                 didSelectToSendToken token: TokenData) {
-        createNewTransaction(token: token.code)
+                                                 didSelectToSendToken token: TokenData,
+                                                 forAddress address: String) {
+        // TODO: when finishing sendTransactionFlow here, we will be again on TransactionDetailsVC.
+        // We should go to transactions list
+        createNewTransaction(token: token.address, address: address)
     }
-
-
 
 }
 

@@ -69,7 +69,7 @@ final class AssetViewViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.createNewTransaction(token: tokenData(for: indexPath).address)
+        delegate?.createNewTransaction(token: tokenData(for: indexPath).address, address: nil)
     }
 
     // MARK: - Scroll View delegate
