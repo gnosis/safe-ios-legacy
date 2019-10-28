@@ -20,7 +20,6 @@
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A107112236046F2002DBA36 /* AddressBookEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A107110236046F2002DBA36 /* AddressBookEntryTableViewCell.swift */; };
 		0A107113236046F2002DBA36 /* AddressBookEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A107111236046F2002DBA36 /* AddressBookEntryTableViewCell.xib */; };
-		0A10712923604989002DBA36 /* AddressBookEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10712823604989002DBA36 /* AddressBookEntry.swift */; };
 		0A10712B2360570F002DBA36 /* AddressBookMenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10712A2360570F002DBA36 /* AddressBookMenuCommand.swift */; };
 		0A10712D23605756002DBA36 /* AddressBookFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10712C23605756002DBA36 /* AddressBookFlowCoordinator.swift */; };
 		0A179C7D2256274A00C60138 /* MainTrackingEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */; };
@@ -688,7 +687,6 @@
 		0A0974EB20480E45005753DF /* SafeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUIKit.h; sourceTree = "<group>"; };
 		0A107110236046F2002DBA36 /* AddressBookEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEntryTableViewCell.swift; sourceTree = "<group>"; };
 		0A107111236046F2002DBA36 /* AddressBookEntryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressBookEntryTableViewCell.xib; sourceTree = "<group>"; };
-		0A10712823604989002DBA36 /* AddressBookEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEntry.swift; sourceTree = "<group>"; };
 		0A10712A2360570F002DBA36 /* AddressBookMenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookMenuCommand.swift; sourceTree = "<group>"; };
 		0A10712C23605756002DBA36 /* AddressBookFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A179C8C2256611F00C60138 /* SendTrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTrackingEvent.swift; sourceTree = "<group>"; };
@@ -1606,7 +1604,6 @@
 				0A4B8F3D2361980C00CDAEB5 /* AddressBookEditEntryViewController.xib */,
 				0A10712A2360570F002DBA36 /* AddressBookMenuCommand.swift */,
 				0A10712C23605756002DBA36 /* AddressBookFlowCoordinator.swift */,
-				0A10712823604989002DBA36 /* AddressBookEntry.swift */,
 				0A107110236046F2002DBA36 /* AddressBookEntryTableViewCell.swift */,
 				0A107111236046F2002DBA36 /* AddressBookEntryTableViewCell.xib */,
 			);
@@ -3359,7 +3356,6 @@
 				552D1010232A644D00127223 /* SeedIntroViewController.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
-				0A10712923604989002DBA36 /* AddressBookEntry.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift in Sources */,
 				5579C57622C3664300BB93CA /* WalletConnectMenuCommand.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */,

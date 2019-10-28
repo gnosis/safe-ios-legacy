@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import MultisigWalletApplication
 
 final class AddressBookFlowCoordinator: FlowCoordinator {
 
@@ -22,13 +23,13 @@ final class AddressBookFlowCoordinator: FlowCoordinator {
 
 extension AddressBookFlowCoordinator: AddressBookViewControllerDelegate {
 
-    func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntry) {
+    func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntryData) {
         let vc = AddressBookEntryViewController.create(entryID: entry.id)
         vc.delegate = self
         push(vc)
     }
 
-    func addressBookViewController(controller: AddressBookViewController, edit entry: AddressBookEntry) {
+    func addressBookViewController(controller: AddressBookViewController, edit entry: AddressBookEntryData) {
         showEdit(entry.id)
     }
 

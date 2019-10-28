@@ -1091,4 +1091,39 @@ public class WalletApplicationService: Assertable {
         return nil
     }
 
+    public func allAddressBookEntries() -> [AddressBookEntryData] {
+        let entries = DomainRegistry.addressBookRepository.all()
+        return entries.map { entry in
+            AddressBookEntryData(id: entry.id.id,
+                                 name: entry.name,
+                                 address: entry.address)
+        }
+    }
+
+    public func addressBookEntry(id: String) -> AddressBookEntryData? {
+        guard let entry = DomainRegistry.addressBookRepository.find(id: AddressBookEntryID(id)) else { return nil }
+        return AddressBookEntryData(id: entry.id.id,
+                                    name: entry.name,
+                                    address: entry.address)
+    }
+
+    public func createOrUpdateAddressBookEntry(id: String?, name: String, address: String) -> String {
+        var entry: AddressBookEntry
+        if let id = id, let existingEntry = DomainRegistry.addressBookRepository.find(id: AddressBookEntryID(id)) {
+            entry = existingEntry
+            existingEntry.name = name
+            existingEntry.address = address
+        } else {
+            entry = AddressBookEntry(name: name, address: address)
+        }
+        DomainRegistry.addressBookRepository.save(entry)
+        return entry.id.id
+    }
+
+    public func removeAddressBookEntry(id: String) {
+        if let item = DomainRegistry.addressBookRepository.find(id: AddressBookEntryID(id)) {
+            DomainRegistry.addressBookRepository.remove(item)
+        }
+    }
+
 }
