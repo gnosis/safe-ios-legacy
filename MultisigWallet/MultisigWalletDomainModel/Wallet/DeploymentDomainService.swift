@@ -178,7 +178,7 @@ public class DeploymentDomainService {
     /// For an error that is not a NetworkServiceError, or a NSURLErrorDomain, the wallet deployment will be cancelled.
     /// This would trigger the "DeploymentAborted" event implicitly through the change of wallet state.
     func executeInWallet(for event: WalletEvent, _ closure: (Wallet) throws -> Void) {
-        let wallet = DomainRegistry.walletRepository.find(id: event.walletID)!
+        guard let wallet = DomainRegistry.walletRepository.find(id: event.walletID) else { return }
         do {
             try closure(wallet)
         } catch let error {
