@@ -12,7 +12,8 @@ open class AccountUpdateDomainService {
     public init() {}
 
     public func updateAccountBalance(token: Token) throws {
-        guard let walletIDs = DomainRegistry.portfolioRepository.portfolio()?.wallets else { return }
+        guard let walletIDs = DomainRegistry.portfolioRepository.portfolio()?.wallets.filter({ !$0.id.isEmpty }),
+            !walletIDs.isEmpty else { return }
         let accountIDs = walletIDs.map { findOrCreateAccount(tokenID: token.id, walletID: $0) }
         try updateAccountsBalances(accountIDs)
         DomainRegistry.eventPublisher.publish(AccountsBalancesUpdated())
