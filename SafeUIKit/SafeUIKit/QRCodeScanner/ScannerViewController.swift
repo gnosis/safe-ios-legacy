@@ -62,7 +62,9 @@ class ScannerViewController: UIViewController {
             codeReaderVC.view.backgroundColor = ColorName.hold.color
         } else {
             codeReaderVC = RSCodeReaderViewController()
-            (codeReaderVC as! RSCodeReaderViewController).barcodesHandler = barcodesHandler
+            (codeReaderVC as! RSCodeReaderViewController).barcodesHandler = { [weak self] codes in
+                self?.barcodesHandler(codes)
+            }
         }
 
         addChild(codeReaderVC)
