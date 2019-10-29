@@ -46,6 +46,7 @@ struct ColorAsset {
 enum Asset {
   static let chevronHighlighted = ImageAsset(name: "Chevron-highlighted")
   static let chevron = ImageAsset(name: "Chevron")
+  static let addTokenGetInTouch = ImageAsset(name: "add-token-get-in-touch")
   static let add = ImageAsset(name: "add")
   static let checkmark = ImageAsset(name: "checkmark")
   static let congratulations = ImageAsset(name: "congratulations")
@@ -189,6 +190,7 @@ enum Asset {
   static let allImages: [ImageAsset] = [
     chevronHighlighted,
     chevron,
+    addTokenGetInTouch,
     add,
     checkmark,
     congratulations,

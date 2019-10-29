@@ -561,6 +561,9 @@ Please have your recovery phrase ready to disable 2FA.";
    Title for menu screen. */
 "menu" = "Menu";
 
+/* Missing a token description. */
+"missing_token_get_in_touch" = "Missing a token? Get in touch with us and we’ll add it!";
+
 /* More info in our blog. */
 "more_info_in_our_blog" = "More info in our blog.";
 

@@ -396,6 +396,8 @@
 		556251F9214912AA00F569EE /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251F8214912AA00F569EE /* QRCodeView.swift */; };
 		556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251FA2149135F00F569EE /* QRCodeViewController.swift */; };
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
+		5562D03F236871EA00BD3AA5 /* NoResultsForAddTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562D03E236871EA00BD3AA5 /* NoResultsForAddTokenView.swift */; };
+		5562D055236871FF00BD3AA5 /* NoResultsForAddTokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562D054236871FF00BD3AA5 /* NoResultsForAddTokenView.xib */; };
 		5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562E64D216E1C0F00C54D57 /* RuleLabel.swift */; };
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		5568A24E22D7284C007C9E0C /* WCSendReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */; };
@@ -1076,6 +1078,8 @@
 		556251F8214912AA00F569EE /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		556251FA2149135F00F569EE /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		556252052149201500F569EE /* QRCodeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewTests.swift; sourceTree = "<group>"; };
+		5562D03E236871EA00BD3AA5 /* NoResultsForAddTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsForAddTokenView.swift; sourceTree = "<group>"; };
+		5562D054236871FF00BD3AA5 /* NoResultsForAddTokenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoResultsForAddTokenView.xib; sourceTree = "<group>"; };
 		5562E64D216E1C0F00C54D57 /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
 		5562E64F216E1CF500C54D57 /* RuleLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RuleLabel.xib; sourceTree = "<group>"; };
 		5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSendReviewViewController.swift; sourceTree = "<group>"; };
@@ -1961,6 +1965,8 @@
 				550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */,
 				55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */,
 				55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */,
+				5562D03E236871EA00BD3AA5 /* NoResultsForAddTokenView.swift */,
+				5562D054236871FF00BD3AA5 /* NoResultsForAddTokenView.xib */,
 			);
 			path = ManageTokens;
 			sourceTree = "<group>";
@@ -2903,6 +2909,7 @@
 				0A107113236046F2002DBA36 /* AddressBookEntryTableViewCell.xib in Resources */,
 				5549B2A722859F5F00F3B5B7 /* PaymentMethodHeaderView.xib in Resources */,
 				55BDA84123267B32005C9E6A /* HeaderImageTextView.xib in Resources */,
+				5562D055236871FF00BD3AA5 /* NoResultsForAddTokenView.xib in Resources */,
 				0ADE03EB22DDF9D300CA4705 /* OnboardingStepViewController.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
@@ -3396,6 +3403,7 @@
 				0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */,
 				0A05951D22E99F050001D7D5 /* Colors.swift in Sources */,
 				552D0FC923279C2000127223 /* TwoFATableViewCell.swift in Sources */,
+				5562D03F236871EA00BD3AA5 /* NoResultsForAddTokenView.swift in Sources */,
 				0A2C0E2A2297DCFF008A30AC /* FeePaidViewController.swift in Sources */,
 				552D1016232A8A2C00127223 /* ConnectAuthenticatorSuccessViewController.swift in Sources */,
 				0A73C6F4227B3617002EEA32 /* FeeCalculationAssetLine+TokenData.swift in Sources */,

@@ -16,7 +16,7 @@ class AddTokenTableViewController: UITableViewController {
     weak var delegate: AddTokenTableViewControllerDelegate!
 
     let searchController = UISearchController(searchResultsController: nil)
-    let emptyView = EmptyResultsView()
+    let emptyView = NoResultsForAddTokenView.create()
 
     private let tokens = ApplicationServiceRegistry.walletService.hiddenTokens() // already sorted
 
@@ -41,7 +41,6 @@ class AddTokenTableViewController: UITableViewController {
 
     private enum Strings {
         static let title = LocalizedString("add_token", comment: "Title for Add Token screen.")
-        static let noResults = LocalizedString("no_results_found", comment: "No results found")
     }
 
     static func create(delegate: AddTokenTableViewControllerDelegate) -> UINavigationController {
@@ -54,31 +53,18 @@ class AddTokenTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        emptyView.text = Strings.noResults
         configureNavigationItem()
         configureSearchController()
         configureTableView()
-
         filteredTokens = tokens
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didShowKeyboard(_:)),
-                                               name: UIResponder.keyboardDidShowNotification,
-                                               object: nil)
+        emptyView.onGetInTouch = { [unowned self] in
+            self.present(GetInTouchTableViewController.inNavigationController(), animated: true)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.addToken)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
     }
 
     private func configureNavigationItem() {
@@ -113,14 +99,6 @@ class AddTokenTableViewController: UITableViewController {
         tableView.sectionIndexMinimumDisplayRowCount = 15
         tableView.sectionIndexColor = ColorName.darkGrey.color
         tableView.sectionIndexBackgroundColor = ColorName.white.color
-    }
-
-    @objc func didShowKeyboard(_ notification: NSNotification) {
-        guard let screenValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
-            return
-        }
-        let keyboardScreen = screenValue.cgRectValue
-        emptyView.centerPadding = (EmptyResultsView.defaultCenterPadding + keyboardScreen.height) / 2
     }
 
     // MARK: - Table view data source
