@@ -26,29 +26,26 @@ final public class QRCodeView: BaseCustomView {
     }
 
     internal let imageView = UIImageView()
-    private let loadingLabel = UILabel()
+    private let activityIndicator = UIActivityIndicatorView(style: .gray)
 
     override public func commonInit() {
         imageView.accessibilityIdentifier = "qr code"
         imageView.frame = bounds
         imageView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         addSubview(imageView)
-        loadingLabel.text = LocalizedString("loading", comment: "Loading")
-        loadingLabel.font = UIFont.systemFont(ofSize: 10)
-        loadingLabel.textAlignment = .center
-        loadingLabel.frame = bounds
-        loadingLabel.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        addSubview(loadingLabel)
-        loadingLabel.isHidden = true
+        activityIndicator.frame = bounds
+        activityIndicator.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        addSubview(activityIndicator)
+        activityIndicator.hidesWhenStopped = true
         update()
     }
 
     // QR-code generation takes significant time to load the first time, so it is off-loaded to background
-    // and we show a placeholder "loading" text instead.
+    // and we show a loading indicator instead.
     override public func update() {
         guard let value = value else { return }
         let size = imageView.bounds.size
-        loadingLabel.isHidden = false
+        activityIndicator.startAnimating()
         DispatchQueue.global().async { [weak self] in
             let generator = RSUnifiedCodeGenerator.shared
             generator.fillColor = ColorName.snowwhite.color
@@ -60,7 +57,7 @@ final public class QRCodeView: BaseCustomView {
                                                                      contentMode: .scaleAspectFit) else { return }
             DispatchQueue.main.async {
                 guard let `self` = self, self.value == value else { return }
-                self.loadingLabel.isHidden = true
+                self.activityIndicator.stopAnimating()
                 self.imageView.image = finalImage
             }
         }
