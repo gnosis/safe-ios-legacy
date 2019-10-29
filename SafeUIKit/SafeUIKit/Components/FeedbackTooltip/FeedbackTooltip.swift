@@ -64,7 +64,7 @@ public final class FeedbackTooltip: CardView {
     }
 
     @objc func dismissTooltip() {
-        hide(completion: nil)
+        hide()
     }
 
     // swiftlint:disable multiline_arguments multiple_closures_with_trailing_closure
@@ -76,7 +76,7 @@ public final class FeedbackTooltip: CardView {
         }, completion: nil)
     }
 
-    public func hide(completion: (() -> Void)?) {
+    public func hide(completion: (() -> Void)? = nil) {
         self.delegate?.tooltipWillDisappear(self)
         isVisible = false
         layer.removeAllAnimations()

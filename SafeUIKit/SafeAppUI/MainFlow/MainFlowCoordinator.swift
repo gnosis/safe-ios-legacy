@@ -410,8 +410,6 @@ extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
     public func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
                                                  didSelectToSendToken token: TokenData,
                                                  forAddress address: String) {
-        // TODO: when finishing sendTransactionFlow here, we will be again on TransactionDetailsVC.
-        // We should go to transactions list
         createNewTransaction(token: token.address, address: address)
     }
 

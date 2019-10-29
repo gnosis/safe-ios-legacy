@@ -32,7 +32,7 @@ public class TooltipSource: FeedbackTooltipDelegate {
 
     @objc private func didTap() {
         if let tooltip = self.tooltip, tooltip.isVisible {
-            tooltip.hide(completion: nil)
+            tooltip.hide()
             return
         }
         guard isActive,
