@@ -93,6 +93,10 @@ class AddressBookViewController: UITableViewController {
                                                name: UIResponder.keyboardDidShowNotification,
                                                object: nil)
         setCustomBackButton()
+        // otherwise the serch bar background is transparent, which results in a black background animating below
+        // the search bar on screen appearance and dismissal.
+        navigationController?.view.backgroundColor = ColorName.snowwhite.color
+        reloadData()
     }
 
     @objc func didShowKeyboard(_ notification: NSNotification) {
@@ -111,7 +115,6 @@ class AddressBookViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.addressBook)
-        reloadData()
     }
 
     func reloadData() {

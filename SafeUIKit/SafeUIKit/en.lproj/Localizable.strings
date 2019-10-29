@@ -71,7 +71,8 @@
 /* Error to display if entered value is too big. */
 "ios_token_input_value_is_too_big" = "Value is too big.";
 
-/* Loading... */
+/* Loading
+   Loading... */
 "loading" = "Loading…";
 
 /* OK */
