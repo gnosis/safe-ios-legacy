@@ -1083,12 +1083,11 @@ public class WalletApplicationService: Assertable {
     // MARK: - Address Book
 
     public func addressName(for address: String) -> String? {
-        if let entry = DomainRegistry.addressBookRepository.find(address: address).first {
-            return entry.name
-        } else if let wallet = DomainRegistry.walletRepository.find(address: Address(address)) {
-            return wallet.name
-        }
-        return nil
+        return DomainRegistry.addressBookRepository.find(address: address).first?.name
+    }
+
+    public func addressBookEntryID(for address: String) -> String? {
+        return DomainRegistry.addressBookRepository.find(address: address).first?.id.id
     }
 
     public func allAddressBookEntries() -> [AddressBookEntryData] {

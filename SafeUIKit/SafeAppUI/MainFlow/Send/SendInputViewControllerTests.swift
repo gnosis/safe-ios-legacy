@@ -18,7 +18,7 @@ class SendInputViewControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        controller = SendInputViewController.create(tokenID: ethID)
+        controller = SendInputViewController.create(tokenID: ethID, address: nil)
         walletService.assignAddress(walletAddress)
         walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)

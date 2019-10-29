@@ -5,6 +5,10 @@
 import UIKit
 import Common
 
+public protocol TransferViewDelegate: class {
+    func transferView(_ view: TransferView, didSelectActionForAddress address: String)
+}
+
 public final class TransferView: BaseCustomView {
 
     @IBOutlet weak var fromIdenticonView: IdenticonView!
@@ -14,6 +18,10 @@ public final class TransferView: BaseCustomView {
     @IBOutlet weak var amountLabel: AmountLabel!
     @IBOutlet weak var balanceLabel: AmountLabel!
     @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var fromThreeDotsButton: UIButton!
+    @IBOutlet weak var toThreeDotsButton: UIButton!
+
+    public weak var delegate: TransferViewDelegate?
 
     public var fromAddress: String! {
         didSet {
@@ -51,6 +59,18 @@ public final class TransferView: BaseCustomView {
         }
     }
 
+    public var showFromAddressActions: Bool = false {
+        didSet {
+            update()
+        }
+    }
+
+    public var showToAddressActions: Bool = false {
+        didSet {
+            update()
+        }
+    }
+
     public override func commonInit() {
         safeUIKit_loadFromNib(forClass: TransferView.self)
         style()
@@ -80,6 +100,8 @@ public final class TransferView: BaseCustomView {
         toAddressLabel.name = toAddressName
         amountLabel.amount = tokenData
         balanceLabel.amount = balanceData
+        fromThreeDotsButton.isHidden = !showFromAddressActions
+        toThreeDotsButton.isHidden = !showToAddressActions
     }
 
     public func setFailed() {
@@ -92,6 +114,14 @@ public final class TransferView: BaseCustomView {
 
     public func setSmallerAmountLabelFontSize() {
         amountLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+    }
+
+    @IBAction func selectFromAddressAction(_ sender: Any) {
+        delegate?.transferView(self, didSelectActionForAddress: fromAddress)
+    }
+
+    @IBAction func selectToAddressAction(_ sender: Any) {
+        delegate?.transferView(self, didSelectActionForAddress: toAddress)
     }
 
 }

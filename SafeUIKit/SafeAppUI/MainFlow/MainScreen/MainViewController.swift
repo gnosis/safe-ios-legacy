@@ -7,7 +7,7 @@ import SafeUIKit
 import MultisigWalletApplication
 
 protocol MainViewControllerDelegate: class {
-    func createNewTransaction(token: String)
+    func createNewTransaction(token: String, address: String?)
     func openMenu()
     func manageTokens()
     func openAddressDetails()

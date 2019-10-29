@@ -28,14 +28,16 @@ public class SendInputViewController: UIViewController {
     internal var transactionID: String?
 
     private var tokenID: BaseID!
+    private var initialAddress: String?
     private var feeTokenID: BaseID {
         return BaseID(ApplicationServiceRegistry.walletService.feePaymentTokenData.address)
     }
     private var needsEstimation: Bool = false
 
-    public static func create(tokenID: BaseID) -> SendInputViewController {
+    public static func create(tokenID: BaseID, address: String?) -> SendInputViewController {
         let controller = StoryboardScene.Main.sendInputViewController.instantiate()
         controller.tokenID = tokenID
+        controller.initialAddress = address
         return controller
     }
 
@@ -58,6 +60,7 @@ public class SendInputViewController: UIViewController {
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
         addressInput.spacingAfterInput = 0
+        addressInput.update(text: initialAddress)
 
         tokenInput.addRule("", identifier: "notEnoughFunds") { [weak self] in
             guard let `self` = self, self.model.feeEstimatedAmountTokenData.balance != nil else { return true }
@@ -199,7 +202,7 @@ extension SendInputViewController: AddressInputDelegate {
     }
 
     public func nameForAddress(_ address: String) -> String? {
-        return ApplicationServiceRegistry.walletService.addressName(for: address)        
+        return ApplicationServiceRegistry.walletService.addressName(for: address)
     }
 
     public func didRequestAddressBook() {

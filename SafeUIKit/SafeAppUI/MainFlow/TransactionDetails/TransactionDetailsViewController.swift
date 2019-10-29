@@ -6,9 +6,15 @@ import UIKit
 import DateTools
 import MultisigWalletApplication
 import SafeUIKit
+import Common
 
 public protocol TransactionDetailsViewControllerDelegate: class {
     func showTransactionInExternalApp(from controller: TransactionDetailsViewController)
+    func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
+                                          didSelectToEditNameForAddress address: String)
+    func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
+                                          didSelectToSendToken token: TokenData,
+                                          forAddress address: String)
 }
 
 internal class ClockService {
@@ -76,6 +82,12 @@ public class TransactionDetailsViewController: UIViewController {
                 return String(format: detailFormat, safeName)
             }
         }
+        enum AddressEntryActions {
+            static let editDetails = LocalizedString("edit_entry_details", comment: "Edit entry details")
+            static let addToAddressBook = LocalizedString("add_to_address_book", comment: "Add to address book")
+            static let sendTokenAgain = LocalizedString("send_again", comment: "Send token again")
+            static let cancel = LocalizedString("cancel", comment: "Cancel")
+        }
     }
     @IBOutlet weak var separatorLineView: HorizontalSeparatorView!
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
@@ -112,6 +124,10 @@ public class TransactionDetailsViewController: UIViewController {
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
         wrapperView.backgroundColor = ColorName.snowwhite.color
         transferView.setSmallerAmountLabelFontSize()
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         reloadData()
     }
 
@@ -157,9 +173,14 @@ public class TransactionDetailsViewController: UIViewController {
             fallthrough
         case .outgoing:
             transferView.fromAddress = transaction.sender
+            transferView.fromAddressName = ApplicationServiceRegistry.walletService.addressName(for: transaction.sender)
             transferView.toAddress = transaction.recipient
+            transferView.toAddressName =
+                ApplicationServiceRegistry.walletService.addressName(for: transaction.recipient)
+            transferView.showToAddressActions = true
             transferView.tokenData = transaction.amountTokenData
             transferView.isHidden = false
+            transferView.delegate = self
             settingsHeaderView.isHidden = true
         case .replaceRecoveryPhrase:
             settingsHeaderView.titleText = Strings.ReplaceRecoveryPhrase.title
@@ -279,6 +300,38 @@ extension TransactionDetailsViewController: InfoLabelDelegate {
 
     public func didTap() {
         present(UIAlertController.networkFee(), animated: true, completion: nil)
+    }
+
+}
+
+extension TransactionDetailsViewController: TransferViewDelegate {
+
+    public func transferView(_ view: TransferView, didSelectActionForAddress address: String) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        if ApplicationServiceRegistry.walletService.addressName(for: address) != nil {
+            let editEntryAction = UIAlertAction(title: Strings.AddressEntryActions.editDetails, style: .default) {
+                [unowned self] _ in
+                self.delegate?.transactionDetailsViewController(self, didSelectToEditNameForAddress: address)
+            }
+            alertController.addAction(editEntryAction)
+        } else {
+            let addEntryAction = UIAlertAction(title: Strings.AddressEntryActions.addToAddressBook, style: .default) {
+                [unowned self] _ in
+                self.delegate?.transactionDetailsViewController(self, didSelectToEditNameForAddress: address)
+            }
+            alertController.addAction(addEntryAction)
+        }
+        let sendAgainStr = String(format: Strings.AddressEntryActions.sendTokenAgain, transaction.amountTokenData.code)
+        let sendAgainAction = UIAlertAction(title: sendAgainStr, style: .default) {
+            [unowned self] _ in
+            self.delegate?.transactionDetailsViewController(self,
+                                                            didSelectToSendToken: self.transaction.amountTokenData,
+                                                            forAddress: address)
+        }
+        alertController.addAction(sendAgainAction)
+        let cancelAction = UIAlertAction(title: Strings.AddressEntryActions.cancel, style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
 
 }

@@ -62,9 +62,7 @@ public class DBTokenListItemRepository: DBEntityRepository<TokenListItem, TokenI
     }
 
     public func paymentTokens() -> [TokenListItem] {
-        let items = find(key: "can_pay_transaction_fee",
-                         value: true,
-                         orderBy: "rowid")
+        let items = find(key: "can_pay_transaction_fee", value: true, orderBy: "rowid")
         return items.sorted { $0.token.code < $1.token.code }
     }
 

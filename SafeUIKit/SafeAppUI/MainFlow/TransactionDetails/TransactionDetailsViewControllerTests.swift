@@ -79,6 +79,7 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         service.transactionData_output = TransactionData.pending
         controller.loadViewIfNeeded()
         XCTAssertTracks { handler in
+            controller.viewWillAppear(false)
             controller.viewDidAppear(false)
             XCTAssertEqual(handler.screenName(at: 0), TransactionDetailTrackingEvent(type: .send).rawValue)
             XCTAssertEqual(handler.parameter(at: 0, name: TransactionDetailTrackingEvent.transactionTypeParameterName),
@@ -130,5 +131,11 @@ class TestTransactionDetailsViewControllerDelegate: TransactionDetailsViewContro
     func verify() -> Bool {
         return actual_showTransactionInExternalApp == expected_showTransactionInExternalApp
     }
+
+    func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
+                                          didSelectToEditNameForAddress address: String) {}
+
+    func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
+                                          didSelectToSendToken token: TokenData, forAddress address: String) {}
 
 }

@@ -49,7 +49,7 @@ class MockMainViewControllerDelegate: MainViewControllerDelegate, TransactionVie
     func didSelectTransaction(id: String) {}
 
     var didCallCreateNewTransaction = false
-    func createNewTransaction(token: String) {
+    func createNewTransaction(token: String, address: String?) {
         didCallCreateNewTransaction = true
     }
 

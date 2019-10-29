@@ -76,7 +76,7 @@ public final class FeedbackTooltip: CardView {
         }, completion: nil)
     }
 
-    public func hide() {
+    public func hide(completion: (() -> Void)? = nil) {
         self.delegate?.tooltipWillDisappear(self)
         isVisible = false
         layer.removeAllAnimations()
@@ -84,6 +84,7 @@ public final class FeedbackTooltip: CardView {
             self.alpha = 0
         }, completion: { [weak self] _ in
             self?.removeFromSuperview()
+            completion?()
         })
     }
 
@@ -116,11 +117,13 @@ public final class FeedbackTooltip: CardView {
         // swiftlint:disable line_length
         let maxTooltipWidth = superview.bounds.width - 2 * tooltip.horizontalPadding
         let viewTopInSuperview = superview.convert(view.bounds, from: view).minY
+        let viewWidthConstraint = view.widthAnchor.constraint(equalToConstant: view.bounds.width)
         let constraints = [tooltip.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                            tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: tooltip.horizontalPadding),
                            tooltip.trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -tooltip.horizontalPadding),
                            tooltip.widthAnchor.constraint(lessThanOrEqualToConstant: maxTooltipWidth),
-                           tooltip.bottomAnchor.constraint(equalTo: superview.topAnchor, constant: viewTopInSuperview - tooltip.verticalPadding)]
+                           tooltip.bottomAnchor.constraint(equalTo: superview.topAnchor, constant: viewTopInSuperview - tooltip.verticalPadding),
+                           viewWidthConstraint]
         // swiftlint:enable
         constraints[0].priority = .defaultHigh
         NSLayoutConstraint.activate(constraints)
@@ -130,7 +133,9 @@ public final class FeedbackTooltip: CardView {
         // using asyncAfter instead of UIView.animation with delay because the latter blocks user interaction
         // even if the .allowUserInteraction passed as an option
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(Int(visibleDurationSeconds * 1_000))) {
-            tooltip.hide()
+            tooltip.hide {
+                NSLayoutConstraint.deactivate([viewWidthConstraint])
+            }
         }
         return tooltip
     }
