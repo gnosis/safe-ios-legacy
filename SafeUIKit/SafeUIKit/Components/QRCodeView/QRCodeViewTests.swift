@@ -3,8 +3,8 @@
 //
 
 import XCTest
+import CommonTestSupport
 @testable import SafeUIKit
-
 
 class QRCodeViewTests: XCTestCase {
 
@@ -17,8 +17,10 @@ class QRCodeViewTests: XCTestCase {
     func test_whenChangingValue_thenImageChanges() {
         view.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
         view.value = "a"
+        delay()
         let imageA = view.imageView.image
         view.value = "b"
+        delay()
         let imageB = view.imageView.image
         XCTAssertNotEqual(imageA, imageB)
     }
