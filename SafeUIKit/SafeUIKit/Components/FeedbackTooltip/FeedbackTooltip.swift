@@ -11,12 +11,14 @@ public protocol FeedbackTooltipDelegate: class {
 
 }
 
-public final class FeedbackTooltip: CardView {
+public final class FeedbackTooltip: BaseCustomView {
 
     private let label = UILabel()
+    private let background = UIImageView()
 
-    private let horizontalLabelPadding: CGFloat = 12
-    private let verticalLabelPadding: CGFloat = 10
+    private let labelHorizontalInset: CGFloat = 12
+    private let labelVerticalInset: CGFloat = 10
+
     private let horizontalPadding: CGFloat = 15
     private let verticalPadding: CGFloat = 12
 
@@ -27,40 +29,37 @@ public final class FeedbackTooltip: CardView {
 
     public weak var delegate: FeedbackTooltipDelegate?
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
+    public override func commonInit() {
+        background.image = Asset.Tooltip.whiteTooltipBackground.image
+        addSubview(background)
 
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        commonInit()
-    }
-
-    private func commonInit() {
-        layer.shadowColor = ColorName.cardShadowTooltip.color.cgColor
-        layer.shadowOpacity = 0.18
-        backgroundColor = ColorName.snowwhite.color
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = ColorName.darkBlue.color
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isUserInteractionEnabled = true
         addSubview(label)
+
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissTooltip))
         addGestureRecognizer(tapRecognizer)
         isUserInteractionEnabled = true
-        label.isUserInteractionEnabled = true
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        background.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalLabelPadding),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalLabelPadding),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: verticalLabelPadding),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -verticalLabelPadding)])
+            widthAnchor.constraint(equalTo: label.widthAnchor, constant: 2 * labelHorizontalInset),
+            heightAnchor.constraint(equalTo: label.heightAnchor, constant: 2 * labelVerticalInset),
+
+            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+
+            background.leadingAnchor.constraint(equalTo: leadingAnchor),
+            background.trailingAnchor.constraint(equalTo: trailingAnchor),
+            background.topAnchor.constraint(equalTo: topAnchor),
+            background.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 
     @objc func dismissTooltip() {
@@ -97,7 +96,6 @@ public final class FeedbackTooltip: CardView {
         tooltip.delegate = delegate
         tooltip.label.text = message
         tooltip.alpha = 0
-        tooltip.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(tooltip)
 
         // The idea is to show the tooltip within bounds, with the minimum possible width.
