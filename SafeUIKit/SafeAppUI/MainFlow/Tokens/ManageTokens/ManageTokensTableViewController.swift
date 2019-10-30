@@ -50,7 +50,8 @@ final class ManageTokensTableViewController: UITableViewController {
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
         let targetItem = UIBarButtonItem(customView: addButtonTargetView)
-        navigationItem.setLeftBarButtonItems([addButton, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), targetItem], animated: false)
+        let spacingItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        navigationItem.setLeftBarButtonItems([addButton, spacingItem, targetItem], animated: false)
         setEditing(true, animated: false)
         reloadData()
     }
@@ -61,7 +62,7 @@ final class ManageTokensTableViewController: UITableViewController {
             Timer.wait(delay)
             self.tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
             DispatchQueue.main.async {
-            self.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
