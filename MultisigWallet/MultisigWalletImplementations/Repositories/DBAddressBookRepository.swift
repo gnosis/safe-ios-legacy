@@ -13,24 +13,29 @@ public class DBAddressBookRepository: DBEntityRepository<AddressBookEntry, Addre
         return .init("tbl_address_book",
                      "id TEXT NOT NULL PRIMARY KEY",
                      "name TEXT NOT NULL",
-                     "address TEXT NOT NULL")
+                     "address TEXT NOT NULL",
+                     "type INTEGER NOT NULL")
     }
 
     public override func insertionBindings(_ object: AddressBookEntry) -> [SQLBindable?] {
         return bindable([object.id,
                          object.name,
-                         object.address])
+                         object.address,
+                         object.type.rawValue])
     }
 
     public override func objectFromResultSet(_ rs: ResultSet) throws -> AddressBookEntry? {
         guard let id: String = rs["id"],
             let name: String = rs["name"],
-            let address: String = rs["address"] else { return nil }
-        return AddressBookEntry(id: AddressBookEntryID(id), name: name, address: address)
+            let address: String = rs["address"],
+            let type: Int = rs["type"],
+            let entryType = AddressBookEntryType(rawValue: type) else { return nil }
+        return AddressBookEntry(id: AddressBookEntryID(id), name: name, address: address, type: entryType)
     }
 
-    public func find(address: String) -> [AddressBookEntry] {
+    public func find(address: String, types: [AddressBookEntryType]) -> [AddressBookEntry] {
         return find(key: "address", value: address, caseSensitive: false, orderBy: "name")
+            .filter { types.contains($0.type) }
     }
 
     public override func all() -> [AddressBookEntry] {

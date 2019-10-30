@@ -67,7 +67,7 @@ public class RecoveryDomainService: Assertable {
             try validate(address: address)
             changeWallet(address: address)
             let name = portfolio().wallets.count == 1 ? "Safe" : "Safe \(address.value.suffix(4))"
-            changeWallet(name: name)
+            createWalletEntryInAddressBook(name: name)
             try pullWalletData()
             DomainRegistry.eventPublisher.publish(WalletAddressChanged())
         } catch let error {
@@ -97,11 +97,11 @@ public class RecoveryDomainService: Assertable {
         DomainRegistry.walletRepository.save(wallet)
     }
 
-    private func changeWallet(name: String) {
+    private func createWalletEntryInAddressBook(name: String) {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         assert(wallet.state === wallet.recoveryDraftState)
-        wallet.setName(name)
-        DomainRegistry.walletRepository.save(wallet)
+        let entry = AddressBookEntry(name: name, address: wallet.address.value, type: .safe)
+        DomainRegistry.addressBookRepository.save(entry)
     }
 
     private func pullWalletData() throws {

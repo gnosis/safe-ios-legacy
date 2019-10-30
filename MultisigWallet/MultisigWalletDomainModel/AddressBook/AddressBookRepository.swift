@@ -9,7 +9,7 @@ public protocol AddressBookRepository {
     func save(_ item: AddressBookEntry)
     func remove(_ item: AddressBookEntry)
     func find(id: AddressBookEntryID) -> AddressBookEntry?
-    func find(address: String) -> [AddressBookEntry]
+    func find(address: String, types: [AddressBookEntryType]) -> [AddressBookEntry]
     func all() -> [AddressBookEntry]
 
 }

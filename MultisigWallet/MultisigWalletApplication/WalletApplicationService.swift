@@ -198,9 +198,11 @@ public class WalletApplicationService: Assertable {
 
     private func walletData(for wallet: Wallet, isSelected: Bool) -> WalletData {
         let state = walletStateId(wallet: wallet)
+        let name = DomainRegistry.addressBookRepository
+            .find(address: wallet.address.value, types: [.safe]).first?.name ?? "Safe"
         return WalletData(id: wallet.id.id,
                           address: wallet.address?.value,
-                          name: wallet.name ?? "Safe",
+                          name: name,
                           state: state,
                           canRemove: removableStates.contains(state),
                           isSelected: isSelected,
@@ -212,9 +214,11 @@ public class WalletApplicationService: Assertable {
     }
 
     public func updateSelectedWalletName(_ name: String) {
-        guard let wallet = selectedWallet else { return }
-        wallet.setName(name)
-        DomainRegistry.walletRepository.save(wallet)
+        guard let wallet = selectedWallet,
+            let entry = DomainRegistry.addressBookRepository
+                .find(address: wallet.address.value, types: [.safe]).first else { return }
+        entry.name = name
+        DomainRegistry.addressBookRepository.save(entry)
     }
 
     public func cleanUpDrafts() {
@@ -1083,11 +1087,13 @@ public class WalletApplicationService: Assertable {
     // MARK: - Address Book
 
     public func addressName(for address: String) -> String? {
-        return DomainRegistry.addressBookRepository.find(address: address).first?.name
+        return DomainRegistry.addressBookRepository.find(address: address, types: [.safe]).first?.name ??
+            DomainRegistry.addressBookRepository.find(address: address, types: [.regular]).first?.name
     }
 
     public func addressBookEntryID(for address: String) -> String? {
-        return DomainRegistry.addressBookRepository.find(address: address).first?.id.id
+        return DomainRegistry.addressBookRepository.find(address: address, types: [.safe]).first?.id.id ??
+            DomainRegistry.addressBookRepository.find(address: address, types: [.regular]).first?.id.id
     }
 
     public func allAddressBookEntries() -> [AddressBookEntryData] {
@@ -1113,7 +1119,8 @@ public class WalletApplicationService: Assertable {
             existingEntry.name = name
             existingEntry.address = address
         } else {
-            entry = AddressBookEntry(name: name, address: address)
+            // from address book we can create only regular entries
+            entry = AddressBookEntry(name: name, address: address, type: .regular)
         }
         DomainRegistry.addressBookRepository.save(entry)
         return entry.id.id

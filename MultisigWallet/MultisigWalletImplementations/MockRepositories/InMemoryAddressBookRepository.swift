@@ -23,9 +23,9 @@ public class InMemoryAddressBookRepository: AddressBookRepository {
         return entries[id]
     }
 
-    public func find(address: String) -> [AddressBookEntry] {
+    public func find(address: String, types: [AddressBookEntryType]) -> [AddressBookEntry] {
         return entries.values
-            .compactMap { $0.address.lowercased() == address.lowercased() ? $0 : nil }
+            .compactMap { $0.address.lowercased() == address.lowercased() && types.contains($0.type) ? $0 : nil }
             .sorted { $0.name < $1.name }
     }
 
