@@ -109,6 +109,8 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         }
     }
 
+    public static let settingsButtonTag = 0x10
+
     private func makeSettingsButton(textStyle: TextStyle, item: ButtonItem) -> UIButton {
         let button = UIButton(type: .custom)
         button.setAttributedTitle(NSAttributedString(string: item.text, style: textStyle.valueButton),
@@ -123,6 +125,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         button.flipImageToTrailingSide(spacing: 7)
         button.contentHorizontalAlignment = .leading // instead of trailing, because the sides flipped
         button.addUnderline(color: textStyle.valueButton.fontColor, width: 1.0, offset: 1.0, pattern: [2, 2])
+        button.tag = FeeCalculationAssetLine.settingsButtonTag
 
         return button
     }

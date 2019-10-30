@@ -196,6 +196,7 @@
 		0A9673BB227AE91E0068D540 /* AccountBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9673BA227AE91E0068D540 /* AccountBalanceView.swift */; };
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
+		0A9C0BA12369AFF30042035A /* TooltipControlCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9C0BA02369AFF30042035A /* TooltipControlCenter.swift */; };
 		0A9CDD9323608CD700A6CC4E /* AddressBookEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CDD9223608CD700A6CC4E /* AddressBookEntryViewController.swift */; };
 		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
 		0AA21E5E233CC7CF004A4A62 /* RecoverSafeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA21E5D233CC7CF004A4A62 /* RecoverSafeCommand.swift */; };
@@ -862,6 +863,7 @@
 		0A99436A20A0489800E36FD7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		0A9C0BA02369AFF30042035A /* TooltipControlCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipControlCenter.swift; sourceTree = "<group>"; };
 		0A9CDD9223608CD700A6CC4E /* AddressBookEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEntryViewController.swift; sourceTree = "<group>"; };
 		0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		0AA21E5D233CC7CF004A4A62 /* RecoverSafeCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeCommand.swift; sourceTree = "<group>"; };
@@ -1854,6 +1856,7 @@
 				0A334E69209C8F8500ABC6AE /* ErrorHandlerTests.swift */,
 				0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */,
 				0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */,
+				0A9C0BA02369AFF30042035A /* TooltipControlCenter.swift */,
 				0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */,
 				0A3D14F1220B1CE800E340DB /* MenuCommand.swift */,
 				0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */,
@@ -3357,6 +3360,7 @@
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
 				0A2D58862257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift in Sources */,
 				552D42DC233A024E00C57B5C /* SwitchSafesTableViewController.swift in Sources */,
+				0A9C0BA12369AFF30042035A /* TooltipControlCenter.swift in Sources */,
 				0AB20142229848520071510A /* LongProcessTracker.swift in Sources */,
 				55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */,
 				0A4DF82020CE6FC70095C00D /* AssetViewViewController.swift in Sources */,

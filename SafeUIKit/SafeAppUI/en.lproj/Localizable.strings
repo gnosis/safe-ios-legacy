@@ -922,6 +922,15 @@ Pairing password: %@";
 /* Title for Manage Tokens Screen. */
 "tab_title_assets" = "Manage Tokens";
 
+/* Tap */
+"tap_add_token" = "Tap to add token";
+
+/* Tap */
+"tap_to_change_token" = "Tap to change the payment token";
+
+/* Tap */
+"tap_view_options" = "Tap here to view options";
+
 /* Telegram */
 "telegram" = "Telegram";
 
@@ -953,6 +962,9 @@ Pairing password: %@";
 
 /* Title for the transaction details screen */
 "transaction_details" = "Transaction Details";
+
+/* Tap */
+"transaction_details_here" = "View transaction details here";
 
 /* Network fee */
 "transaction_fee" = "Network fee";

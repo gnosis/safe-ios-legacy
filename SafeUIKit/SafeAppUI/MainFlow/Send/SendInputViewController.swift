@@ -113,6 +113,13 @@ public class SendInputViewController: UIViewController {
         trackEvent(SendTrackingEvent(.input,
                                      token: model.accountBalanceTokenData.address,
                                      tokenName: model.accountBalanceTokenData.code))
+
+        if let target = feeCalculationView.viewWithTag(FeeCalculationAssetLine.settingsButtonTag) {
+            TooltipControlCenter.showFirstTimeTooltip(persistenceKey: "io.gnosis.safe.payment_token.visited",
+                                                      target: target,
+                                                      parent: view,
+                                                      text: LocalizedString("tap_to_change_token", comment: "Tap"))
+        }
     }
 
     override public func viewWillDisappear(_ animated: Bool) {

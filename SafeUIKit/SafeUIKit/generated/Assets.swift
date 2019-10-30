@@ -178,6 +178,12 @@ enum Asset {
     static let eth = ImageAsset(name: "ETH")
     static let defaultToken = ImageAsset(name: "default-token")
   }
+  enum Tooltip {
+    static let greenTooltipArrow = ImageAsset(name: "Green_Tooltip_Arrow")
+    static let greenTooltipBackground = ImageAsset(name: "Green_Tooltip_Background")
+    static let greenTooltipCross = ImageAsset(name: "Green_Tooltip_Cross")
+    static let whiteTooltipBackground = ImageAsset(name: "White_Tooltip_Background")
+  }
   enum TransferView {
     static let arrowDown = ImageAsset(name: "arrow-down")
     static let threeDotsDark = ImageAsset(name: "threeDotsDark")
@@ -346,6 +352,10 @@ enum Asset {
     ThreeSteps.gradientLineSkipped,
     TokenIcons.eth,
     TokenIcons.defaultToken,
+    Tooltip.greenTooltipArrow,
+    Tooltip.greenTooltipBackground,
+    Tooltip.greenTooltipCross,
+    Tooltip.whiteTooltipBackground,
     TransferView.arrowDown,
     TransferView.threeDotsDark,
     Twofa._2faRequired00000,
