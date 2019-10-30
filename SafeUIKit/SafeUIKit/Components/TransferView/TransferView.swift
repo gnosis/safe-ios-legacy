@@ -19,7 +19,7 @@ public final class TransferView: BaseCustomView {
     @IBOutlet weak var balanceLabel: AmountLabel!
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var fromThreeDotsButton: UIButton!
-    @IBOutlet weak var toThreeDotsButton: UIButton!
+    @IBOutlet public internal(set) weak var toThreeDotsButton: UIButton!
 
     public weak var delegate: TransferViewDelegate?
 

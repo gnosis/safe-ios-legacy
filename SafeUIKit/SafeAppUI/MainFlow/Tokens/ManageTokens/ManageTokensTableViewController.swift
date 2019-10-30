@@ -26,6 +26,7 @@ extension Array {
 final class ManageTokensTableViewController: UITableViewController {
 
     weak var delegate: ManageTokensTableViewControllerDelegate?
+    var addButtonTargetView = UIView()
 
     private(set) var tokens = [TokenData]()
 
@@ -48,7 +49,8 @@ final class ManageTokensTableViewController: UITableViewController {
         tableView.separatorStyle = .none
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
-        navigationItem.setLeftBarButton(addButton, animated: false)
+        let targetItem = UIBarButtonItem(customView: addButtonTargetView)
+        navigationItem.setLeftBarButtonItems([addButton, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), targetItem], animated: false)
         setEditing(true, animated: false)
         reloadData()
     }
@@ -59,7 +61,7 @@ final class ManageTokensTableViewController: UITableViewController {
             Timer.wait(delay)
             self.tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+            self.tableView.reloadData()
             }
         }
     }
@@ -67,6 +69,11 @@ final class ManageTokensTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.manageTokens)
+
+        TooltipControlCenter.showFirstTimeTooltip(persistenceKey: "io.gnosis.safe.manage_tokens.visited",
+                                                  target: addButtonTargetView,
+                                                  parent: navigationController!.view,
+                                                  text: LocalizedString("tap_add_token", comment: "Tap"))
     }
 
     @objc internal func addToken() {

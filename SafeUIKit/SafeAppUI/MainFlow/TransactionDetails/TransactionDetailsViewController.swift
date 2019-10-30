@@ -182,6 +182,11 @@ public class TransactionDetailsViewController: UIViewController {
             transferView.isHidden = false
             transferView.delegate = self
             settingsHeaderView.isHidden = true
+
+            TooltipControlCenter.showFirstTimeTooltip(persistenceKey: "io.gnosis.safe.transaction_details.visited",
+                                                      target: transferView.toThreeDotsButton,
+                                                      parent: view,
+                                                      text: LocalizedString("tap_view_options", comment: "Tap"))
         case .replaceRecoveryPhrase:
             settingsHeaderView.titleText = Strings.ReplaceRecoveryPhrase.title
             settingsHeaderView.detailText = Strings.ReplaceRecoveryPhrase.detail

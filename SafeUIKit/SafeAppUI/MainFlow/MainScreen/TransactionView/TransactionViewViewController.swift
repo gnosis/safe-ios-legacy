@@ -113,6 +113,10 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
         } else {
             cell.showProgress(transaction, animated: false)
         }
+        TooltipControlCenter.showFirstTimeTooltip(persistenceKey: "io.gnosis.safe.transactions_view.visited",
+                                                  target: cell,
+                                                  parent: view,
+                                                  text: LocalizedString("transaction_details_here", comment: "Tap"))
     }
 
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
