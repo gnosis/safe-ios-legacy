@@ -26,8 +26,7 @@ class NoResultsForAddTokenView: UIView {
 
     static func create() -> NoResultsForAddTokenView {
         return Bundle(for: NoResultsForAddTokenView.self)
-            .loadNibNamed(
-                "NoResultsForAddTokenView", owner: nil, options: nil)!.first! as! NoResultsForAddTokenView
+            .loadNibNamed("NoResultsForAddTokenView", owner: nil, options: nil)!.first! as! NoResultsForAddTokenView
     }
 
     override func awakeFromNib() {

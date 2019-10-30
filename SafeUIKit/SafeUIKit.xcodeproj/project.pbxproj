@@ -398,6 +398,8 @@
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
 		5562D03F236871EA00BD3AA5 /* NoResultsForAddTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562D03E236871EA00BD3AA5 /* NoResultsForAddTokenView.swift */; };
 		5562D055236871FF00BD3AA5 /* NoResultsForAddTokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562D054236871FF00BD3AA5 /* NoResultsForAddTokenView.xib */; };
+		5562D0572368A4E500BD3AA5 /* MissingTokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562D0562368A4E500BD3AA5 /* MissingTokenFooterView.swift */; };
+		5562D0592368A4F800BD3AA5 /* MissingTokenFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562D0582368A4F800BD3AA5 /* MissingTokenFooterView.xib */; };
 		5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562E64D216E1C0F00C54D57 /* RuleLabel.swift */; };
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		5568A24E22D7284C007C9E0C /* WCSendReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */; };
@@ -1080,6 +1082,8 @@
 		556252052149201500F569EE /* QRCodeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewTests.swift; sourceTree = "<group>"; };
 		5562D03E236871EA00BD3AA5 /* NoResultsForAddTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsForAddTokenView.swift; sourceTree = "<group>"; };
 		5562D054236871FF00BD3AA5 /* NoResultsForAddTokenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoResultsForAddTokenView.xib; sourceTree = "<group>"; };
+		5562D0562368A4E500BD3AA5 /* MissingTokenFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingTokenFooterView.swift; sourceTree = "<group>"; };
+		5562D0582368A4F800BD3AA5 /* MissingTokenFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MissingTokenFooterView.xib; sourceTree = "<group>"; };
 		5562E64D216E1C0F00C54D57 /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
 		5562E64F216E1CF500C54D57 /* RuleLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RuleLabel.xib; sourceTree = "<group>"; };
 		5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSendReviewViewController.swift; sourceTree = "<group>"; };
@@ -1959,14 +1963,11 @@
 		550D1ED32133E6420035109A /* ManageTokens */ = {
 			isa = PBXGroup;
 			children = (
+				5562D05A2368A66F00BD3AA5 /* AddToken */,
 				550D1ED62133E66C0035109A /* ManageTokensTableViewController.swift */,
 				550D1EDA213406380035109A /* ManageTokensTableViewControllerTests.swift */,
 				550D1ED82133FD2E0035109A /* ManageTokensFlowCoordinator.swift */,
 				550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */,
-				55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */,
-				55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */,
-				5562D03E236871EA00BD3AA5 /* NoResultsForAddTokenView.swift */,
-				5562D054236871FF00BD3AA5 /* NoResultsForAddTokenView.xib */,
 			);
 			path = ManageTokens;
 			sourceTree = "<group>";
@@ -2232,6 +2233,19 @@
 				556252052149201500F569EE /* QRCodeViewTests.swift */,
 			);
 			path = QRCodeView;
+			sourceTree = "<group>";
+		};
+		5562D05A2368A66F00BD3AA5 /* AddToken */ = {
+			isa = PBXGroup;
+			children = (
+				55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */,
+				55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */,
+				5562D03E236871EA00BD3AA5 /* NoResultsForAddTokenView.swift */,
+				5562D054236871FF00BD3AA5 /* NoResultsForAddTokenView.xib */,
+				5562D0562368A4E500BD3AA5 /* MissingTokenFooterView.swift */,
+				5562D0582368A4F800BD3AA5 /* MissingTokenFooterView.xib */,
+			);
+			path = AddToken;
 			sourceTree = "<group>";
 		};
 		557353542293F0AB00248F87 /* ReceiveFunds */ = {
@@ -2915,6 +2929,7 @@
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
 				0A3BD90622254833007039B4 /* RBEIntroViewController.xib in Resources */,
 				0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */,
+				5562D0592368A4F800BD3AA5 /* MissingTokenFooterView.xib in Resources */,
 				0A2C0E1B2296F2E3008A30AC /* FeeRequestView.xib in Resources */,
 				0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */,
 				55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */,
@@ -3296,6 +3311,7 @@
 				0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */,
 				0ADE040122DF2EF100CA4705 /* OnboardingPageDataSource.swift in Sources */,
 				0ADF99F2233B9B2800F14B93 /* CreateSafeCommand.swift in Sources */,
+				5562D0572368A4E500BD3AA5 /* MissingTokenFooterView.swift in Sources */,
 				55BDA818232651A2005C9E6A /* ThreeStepsToSecurityController.swift in Sources */,
 				0A179C8F225664DC00C60138 /* MenuTrackingEvent.swift in Sources */,
 				552D42DA233A00CC00C57B5C /* SwitchSafesFlowCoordinator.swift in Sources */,

@@ -85,15 +85,16 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     private func configureTableView() {
-        tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
-        tableView.sectionFooterHeight = 0
+        tableView.register(UINib(nibName: "MissingTokenFooterView", bundle: Bundle(for: MissingTokenFooterView.self)),
+                           forHeaderFooterViewReuseIdentifier: "MissingTokenFooterView")
         tableView.separatorStyle = .none
 
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.sectionFooterHeight = 0
         tableView.backgroundColor = ColorName.white.color
 
         tableView.sectionIndexMinimumDisplayRowCount = 15
@@ -144,6 +145,25 @@ class AddTokenTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return BackgroundHeaderFooterView.height
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if shouldHideFooter(for: section) { return nil }
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MissingTokenFooterView")
+            as! MissingTokenFooterView
+        view.onGetInTouch = { [unowned self] in
+            self.present(GetInTouchTableViewController.inNavigationController(), animated: true)
+        }
+        return view
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if shouldHideFooter(for: section) { return 0 }
+        return MissingTokenFooterView.estimatedHeight
+    }
+
+    private func shouldHideFooter(for section: Int) -> Bool {
+        return filteredTokens.isEmpty || section < tableView.numberOfSections - 1
     }
 
 }
