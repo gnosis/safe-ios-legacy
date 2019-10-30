@@ -25,6 +25,15 @@ class GetInTouchTableViewController: UITableViewController {
 
     var cells = [Cell]()
 
+    static func inNavigationController() -> UINavigationController {
+        let navigationController = UINavigationController()
+        let getInTouchController = GetInTouchTableViewController()
+        getInTouchController.navigationItem.rightBarButtonItem =
+            UIBarButtonItem.closeButton(target: getInTouchController, action: #selector(close))
+        navigationController.viewControllers = [getInTouchController]
+        return navigationController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -95,6 +104,10 @@ class GetInTouchTableViewController: UITableViewController {
     func openInSafari(_ url: URL) {
         let safari = SFSafariViewController(url: url)
         present(safari, animated: true, completion: nil)
+    }
+
+    @objc private func close() {
+        dismiss(animated: true)
     }
 
     // MARK: - Table view data source

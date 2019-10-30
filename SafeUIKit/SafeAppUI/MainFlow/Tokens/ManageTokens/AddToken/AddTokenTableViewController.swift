@@ -16,7 +16,7 @@ class AddTokenTableViewController: UITableViewController {
     weak var delegate: AddTokenTableViewControllerDelegate!
 
     let searchController = UISearchController(searchResultsController: nil)
-    let emptyView = EmptyResultsView()
+    let emptyView = NoResultsForAddTokenView.create()
 
     private let tokens = ApplicationServiceRegistry.walletService.hiddenTokens() // already sorted
 
@@ -41,7 +41,6 @@ class AddTokenTableViewController: UITableViewController {
 
     private enum Strings {
         static let title = LocalizedString("add_token", comment: "Title for Add Token screen.")
-        static let noResults = LocalizedString("no_results_found", comment: "No results found")
     }
 
     static func create(delegate: AddTokenTableViewControllerDelegate) -> UINavigationController {
@@ -54,31 +53,18 @@ class AddTokenTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        emptyView.text = Strings.noResults
         configureNavigationItem()
         configureSearchController()
         configureTableView()
-
         filteredTokens = tokens
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didShowKeyboard(_:)),
-                                               name: UIResponder.keyboardDidShowNotification,
-                                               object: nil)
+        emptyView.onGetInTouch = { [unowned self] in
+            self.present(GetInTouchTableViewController.inNavigationController(), animated: true)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.addToken)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
     }
 
     private func configureNavigationItem() {
@@ -99,28 +85,21 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     private func configureTableView() {
-        tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "BasicTableViewCell", bundle: Bundle(for: BasicTableViewCell.self)),
                            forCellReuseIdentifier: "BasicTableViewCell")
         tableView.register(BackgroundHeaderFooterView.self,
                            forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
-        tableView.sectionFooterHeight = 0
+        tableView.register(UINib(nibName: "MissingTokenFooterView", bundle: Bundle(for: MissingTokenFooterView.self)),
+                           forHeaderFooterViewReuseIdentifier: "MissingTokenFooterView")
         tableView.separatorStyle = .none
 
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.sectionFooterHeight = 0
         tableView.backgroundColor = ColorName.white.color
 
         tableView.sectionIndexMinimumDisplayRowCount = 15
         tableView.sectionIndexColor = ColorName.darkGrey.color
         tableView.sectionIndexBackgroundColor = ColorName.white.color
-    }
-
-    @objc func didShowKeyboard(_ notification: NSNotification) {
-        guard let screenValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
-            return
-        }
-        let keyboardScreen = screenValue.cgRectValue
-        emptyView.centerPadding = (EmptyResultsView.defaultCenterPadding + keyboardScreen.height) / 2
     }
 
     // MARK: - Table view data source
@@ -166,6 +145,25 @@ class AddTokenTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return BackgroundHeaderFooterView.height
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if shouldHideFooter(for: section) { return nil }
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MissingTokenFooterView")
+            as! MissingTokenFooterView
+        view.onGetInTouch = { [unowned self] in
+            self.present(GetInTouchTableViewController.inNavigationController(), animated: true)
+        }
+        return view
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if shouldHideFooter(for: section) { return 0 }
+        return MissingTokenFooterView.estimatedHeight
+    }
+
+    private func shouldHideFooter(for section: Int) -> Bool {
+        return filteredTokens.isEmpty || section < tableView.numberOfSections - 1
     }
 
 }
