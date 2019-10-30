@@ -7,9 +7,9 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 ansiColor('xterm') {
-                    sh 'scripts/jenkins_build.sh adhoc'
+                    sh 'scripts/jenkins_build.sh test'
                     // sh 'scripts/codecov.sh -D . -c'
-                    // junit 'Build/reports/**/*.junit'
+                    junit 'Build/reports/**/*.junit'
                 }
             }
         }
