@@ -3,4 +3,4 @@
 //
 
 #include "CommonConfig.xcconfig"
-OTHER_LDFLAGS = $(inherited) -framework "IdentityAccessDomainModel" -framework "IdentityAccessApplication" -lsqlite3 -framework "CommonImplementations"  -lcrypto -lsecp256k1
+OTHER_LDFLAGS = $(inherited) -framework "IdentityAccessDomainModel" -framework "IdentityAccessApplication" -lsqlite3 -framework "CommonImplementations"  -lcrypto -framework "secp256k1"

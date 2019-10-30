@@ -4,12 +4,13 @@ pipeline {
         ENCRYPTED_FILES_SECRET_KEY = credentials('ENCRYPTED_FILES_SECRET_KEY')
     }
     stages {
-        stage('Unit Tests') {
+        // stage('Unit Tests') {
+        stage('Test Adhoc')
             steps {
                 ansiColor('xterm') {
-                    sh 'scripts/jenkins_build.sh test'
+                    sh 'scripts/jenkins_build.sh adhoc'
                     // sh 'scripts/codecov.sh -D . -c'
-                    junit 'Build/reports/**/*.junit'
+                    // junit 'Build/reports/**/*.junit'
                 }
             }
         }

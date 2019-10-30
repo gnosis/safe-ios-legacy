@@ -1,4 +1,4 @@
 
 FIREBASE_MESSAGING_FRAMEWORKS=-framework "FirebaseMessaging" -framework "Protobuf"
 FIREBASE_PERFORMANCE_FRAMEWORKS=-framework "FirebaseABTesting" -framework "FirebasePerformance" -framework "FirebaseRemoteConfig" -framework "GTMSessionFetcher" -framework "GoogleToolboxForMac"
-OTHER_LDFLAGS=$(inherited) -lsqlite3 -ObjC ${FIREBASE_MESSAGING_FRAMEWORKS} ${FIREBASE_PERFORMANCE_FRAMEWORKS} -framework "CryptoEthereumSwift" -framework "BigInt" -framework "BlockiesSwift" -framework "RSBarcodes" -framework "CryptoSwift" -framework "EthereumKit" -framework "Kingfisher" -framework "SipHash" -framework "DateTools"
+OTHER_LDFLAGS=$(inherited) -lsqlite3 -ObjC ${FIREBASE_MESSAGING_FRAMEWORKS} ${FIREBASE_PERFORMANCE_FRAMEWORKS} -framework "CryptoEthereumSwift" -framework "BigInt" -framework "BlockiesSwift" -framework "RSBarcodes" -framework "CryptoSwift" -framework "EthereumKit" -framework "Kingfisher" -framework "SipHash" -framework "DateTools" -framework "Keycard" -framework "secp256k1"

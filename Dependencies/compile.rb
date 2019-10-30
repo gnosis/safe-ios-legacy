@@ -31,7 +31,7 @@ deps.each do |dependency|
             "DSTROOT='${SRCROOT}/../../Library/${PLATFORM_NAME}'",
             "FRAMEWORK_SEARCH_PATHS='${SRCROOT}/../../Library/${PLATFORM_NAME}'",
             "LIBRARY_SEARCH_PATHS='${SRCROOT}/../../Library/${PLATFORM_NAME}'",
-            "HEADER_SEARCH_PATHS='${SRCROOT}/../../Library/${PLATFORM_NAME}/include'",
+            "HEADER_SEARCH_PATHS='${SRCROOT}/../../Library/${PLATFORM_NAME}/include $(inherited)'",
             "INSTALL_PATH=/", 
             "DWARF_DSYM_FOLDER_PATH='${DSTROOT}'",
             "DEBUG_INFORMATION_FORMAT=dwarf-with-dsym",
@@ -39,6 +39,22 @@ deps.each do |dependency|
             "GCC_GENERATE_DEBUGGING_SYMBOLS=YES",
             "VALID_ARCHS='arm64 armv7 armv7s i386 x86_64'",
             "SKIP_INSTALL=NO install"].join(" ")
+        # for the Keycard to build, the Library Search Paths, Header Search Paths and Framework Search Paths had to be removed.
+        if target == "Keycard" 
+          cmd = ["xcodebuild -project #{project}",
+              "-target #{target} -sdk #{sdk}",
+              "-configuration Release",
+              "SYMROOT='${SRCROOT}/../../Build/'", 
+              "DSTROOT='${SRCROOT}/../../Library/${PLATFORM_NAME}'",
+              "INSTALL_PATH=/", 
+              "DWARF_DSYM_FOLDER_PATH='${DSTROOT}'",
+              "DEBUG_INFORMATION_FORMAT=dwarf-with-dsym",
+              "COPY_PHASE_STRIP=NO",
+              "GCC_GENERATE_DEBUGGING_SYMBOLS=YES",
+              "VALID_ARCHS='arm64 armv7 armv7s i386 x86_64'",
+              "SKIP_INSTALL=NO install"].join(" ")
+        end
+
         puts cmd
         abort unless system cmd
     end

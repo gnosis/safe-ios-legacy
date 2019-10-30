@@ -1,0 +1,6 @@
+framework module secp256k1 {
+    header "secp256k1.h"
+    header "secp256k1_ecdh.h"
+    header "secp256k1_recovery.h"
+    header "secp256k1_preallocated.h"
+}
