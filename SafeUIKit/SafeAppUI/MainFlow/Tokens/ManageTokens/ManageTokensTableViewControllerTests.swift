@@ -27,7 +27,7 @@ class ManageTokensTableViewControllerTests: XCTestCase {
 
     func test_whenAddsToken_thenCallsDelegate() {
         controller.addToken()
-        delay()
+        delay(0.2)
         XCTAssertTrue(delegate.didAddToken)
     }
 
