@@ -12,11 +12,12 @@ extension WalletIDList: DBSerializable {
     static let separator = ","
 
     init(serializedString: String) {
-        self.init(serializedString.components(separatedBy: WalletIDList.separator).map { WalletID($0) })
+        self.init(serializedString.components(separatedBy: WalletIDList.separator)
+            .filter { !$0.isEmpty }.map { WalletID($0) })
     }
 
     public var serializedValue: SQLBindable {
-        return map { $0.id }.joined(separator: WalletIDList.separator)
+        return map { $0.id }.filter { !$0.isEmpty }.joined(separator: WalletIDList.separator)
     }
 
 }
