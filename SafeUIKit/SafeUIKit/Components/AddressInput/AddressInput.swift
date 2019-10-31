@@ -53,7 +53,6 @@ public final class AddressInput: VerifiableInput {
                 addressLabel.alpha = 1
                 identicon.alpha = 1
             }
-
         }
     }
 
