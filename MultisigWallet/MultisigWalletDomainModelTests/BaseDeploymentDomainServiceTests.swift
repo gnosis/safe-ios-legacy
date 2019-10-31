@@ -27,6 +27,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
     let syncService = MockSynchronisationService()
     let communicationService = CommunicationDomainService()
     let metadataRepo = InMemorySafeContractMetadataRepository(metadata: .testMetadata())
+    let addressBookRepo = InMemoryAddressBookRepository()
     var wallet: Wallet!
 
     override func setUp() {
@@ -48,6 +49,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: communicationService, for: CommunicationDomainService.self)
         DomainRegistry.put(service: metadataRepo, for: SafeContractMetadataRepository.self)
         DomainRegistry.put(service: MockLogger(), for: Logger.self)
+        DomainRegistry.put(service: addressBookRepo, for: AddressBookRepository.self)
     }
 
     func start() {

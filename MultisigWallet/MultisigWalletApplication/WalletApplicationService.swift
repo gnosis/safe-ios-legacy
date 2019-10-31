@@ -198,8 +198,12 @@ public class WalletApplicationService: Assertable {
 
     private func walletData(for wallet: Wallet, isSelected: Bool) -> WalletData {
         let state = walletStateId(wallet: wallet)
-        let name = DomainRegistry.addressBookRepository
-            .find(address: wallet.address.value, types: [.wallet]).first?.name ?? "Safe"
+        var name = "Safe"
+        if let walletAddress = wallet.address,
+            let addressBookEntry = DomainRegistry.addressBookRepository.find(address: walletAddress.value,
+                                                                             types: [.wallet]).first  {
+            name = addressBookEntry.name
+        }
         return WalletData(id: wallet.id.id,
                           address: wallet.address?.value,
                           name: name,
