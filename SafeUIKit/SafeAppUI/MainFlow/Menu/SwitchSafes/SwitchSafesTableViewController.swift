@@ -137,8 +137,8 @@ extension SwitchSafesTableViewController: InteractivePopGestureResponder {
 extension SwitchSafesTableViewController: EventSubscriber {
 
     func notify() {
-        DispatchQueue.main.async { [unowned self] in
-            self.update()
+        DispatchQueue.main.async { [weak self] in
+            self?.update()
         }
     }
 

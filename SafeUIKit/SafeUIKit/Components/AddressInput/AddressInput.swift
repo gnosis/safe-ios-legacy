@@ -26,7 +26,7 @@ public final class AddressInput: VerifiableInput {
 
     public var showsAddressBook: Bool = true
 
-    private let identiconSize = CGSize(width: 32, height: 32)
+    private let identicon = IdenticonView(frame: CGRect(origin: .zero, size: CGSize(width: 32, height: 32)))
     private let inputHeight: CGFloat = 56
     private let inputHeightWithAddress: CGFloat = 78
     private let addressLabelSidePadding: CGFloat = 12
@@ -37,6 +37,24 @@ public final class AddressInput: VerifiableInput {
     private let hexPrefix: String = "0x"
 
     private var leadingInputConstraint: NSLayoutConstraint!
+
+    public override var isEnabled: Bool {
+        get {
+            return textInput.isEnabled
+        }
+        set {
+            textInput.isEnabled = newValue
+            if !newValue {
+                textInput.style = .gray
+                addressLabel.alpha = 0.5
+                identicon.alpha = 0.5
+            } else {
+                textInput.style = .white
+                addressLabel.alpha = 1
+                identicon.alpha = 1
+            }
+        }
+    }
 
     public override var text: String? {
         get {
@@ -49,6 +67,7 @@ public final class AddressInput: VerifiableInput {
                 let displayText = safeUserInput(newValue)
                 addressLabel.text = displayText
                 textInput.placeholder = nil
+                textInput.heightConstraint.constant = inputHeightWithAddress
                 // check that address is 40 hex digits of 42 if with 0x prefix
                 validateRules(for: displayText)
                 if isValid {
@@ -56,7 +75,6 @@ public final class AddressInput: VerifiableInput {
                     let normalizedAddress = addressFromERC681(displayText)
                     addressLabel.address = normalizedAddress
                     addressLabel.name = addressInputDelegate?.nameForAddress(normalizedAddress)
-                    let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
                     identicon.seed = normalizedAddress
                     textInput.leftView = identicon
                     textInput.leftViewMode = .always
@@ -69,6 +87,7 @@ public final class AddressInput: VerifiableInput {
                 addressLabel.address = nil
                 addressLabel.name = nil
                 textInput.placeholder = self.placeholder
+                textInput.heightConstraint.constant = inputHeight
                 addressInputDelegate?.didClear()
             }
             leadingInputConstraint.constant = calculateInputLeading()
@@ -211,11 +230,6 @@ public final class AddressInput: VerifiableInput {
         return hexPrefix + leadingHexChars
     }
 
-    public func update(text: String?) {
-        self.text = text
-        self.textInput.heightConstraint.constant = self.inputHeightWithAddress
-    }
-
 }
 
 // MARK: - UITextFieldDelegate
@@ -233,7 +247,7 @@ public extension AddressInput {
         alertController.addAction(
             UIAlertAction(title: Strings.AlertActions.paste, style: .default) { [unowned self] _ in
                 if let value = UIPasteboard.general.string {
-                    self.update(text: value)
+                    self.text = value
                 }
             })
         alertController.addAction(
@@ -256,7 +270,7 @@ extension AddressInput: ScanQRCodeHandlerDelegate {
 
     func didScanCode(raw: String, converted: String?) {
         DispatchQueue.main.async { [unowned self] in
-            self.update(text: converted)
+            self.text = converted
         }
     }
 

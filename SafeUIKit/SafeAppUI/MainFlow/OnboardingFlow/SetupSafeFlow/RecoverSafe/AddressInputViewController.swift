@@ -98,7 +98,7 @@ extension AddressInputViewController: AddressBookViewControllerDelegate {
 
     func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntryData) {
         navigationController?.popViewController(animated: true)
-        addressInput.update(text: entry.address)
+        addressInput.text = entry.address
         didRecieveValidAddress(entry.address)
     }
 
