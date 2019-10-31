@@ -1101,7 +1101,8 @@ public class WalletApplicationService: Assertable {
         return entries.map { entry in
             AddressBookEntryData(id: entry.id.id,
                                  name: entry.name,
-                                 address: entry.address)
+                                 address: entry.address,
+                                 isWallet: entry.type == .safe)
         }
     }
 
@@ -1109,7 +1110,8 @@ public class WalletApplicationService: Assertable {
         guard let entry = DomainRegistry.addressBookRepository.find(id: AddressBookEntryID(id)) else { return nil }
         return AddressBookEntryData(id: entry.id.id,
                                     name: entry.name,
-                                    address: entry.address)
+                                    address: entry.address,
+                                    isWallet: entry.type == .safe)
     }
 
     public func createOrUpdateAddressBookEntry(id: String?, name: String, address: String) -> String {

@@ -60,7 +60,7 @@ public class SendInputViewController: UIViewController {
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
         addressInput.spacingAfterInput = 0
-        addressInput.update(text: initialAddress)
+        addressInput.text = initialAddress
 
         tokenInput.addRule("", identifier: "notEnoughFunds") { [weak self] in
             guard let `self` = self, self.model.feeEstimatedAmountTokenData.balance != nil else { return true }
@@ -240,7 +240,7 @@ extension SendInputViewController: AddressBookViewControllerDelegate {
 
     func addressBookViewController(controller: AddressBookViewController, didSelect entry: AddressBookEntryData) {
         navigationController?.popViewController(animated: true)
-        addressInput.update(text: entry.address)
+        addressInput.text = entry.address
         model.change(recipient: entry.address)
     }
 

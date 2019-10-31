@@ -85,6 +85,7 @@ class AddressBookEditEntryViewController: UIViewController {
         addressInput.placeholder = Strings.enterAddress
 
         deleteButton.setTitleColor(ColorName.tomato.color, for: .normal)
+        deleteButton.setTitleColor(ColorName.mediumGrey.color, for: .disabled)
         deleteButton.setTitle(Strings.deleteEntry, for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteEntry), for: .touchUpInside)
         deleteButton.isHidden = !isEditEntry
@@ -94,6 +95,10 @@ class AddressBookEditEntryViewController: UIViewController {
                 guard let entry = ApplicationServiceRegistry.walletService.addressBookEntry(id: entryID) else { return }
                 DispatchQueue.main.async {  [weak self] in
                     guard let `self` = self else { return }
+                    if entry.isWallet {
+                        self.addressInput.isEnabled = false
+                        self.deleteButton.isEnabled = false
+                    }
                     self.set(name: entry.name, address: entry.address)
                 }
             }
@@ -103,7 +108,7 @@ class AddressBookEditEntryViewController: UIViewController {
     func set(name: String?, address: String?) {
         nameInput.text = name
         nameInput.revalidateText()
-        addressInput.update(text: address)
+        addressInput.text = address
         updateSaveButtonState()
     }
 

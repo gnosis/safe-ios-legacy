@@ -190,7 +190,7 @@ public class TextInput: UITextField {
             backgroundColor = ColorName.white.color
             clearButton.tintColor = ColorName.mediumGrey.color
             switch inputState {
-            case .normal, .success: layer.borderColor = ColorName.snowwhite.color.cgColor
+            case .normal, .success: layer.borderColor = ColorName.whitesmoke.color.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
             }
         case .opaqueWhite:
