@@ -68,7 +68,7 @@ public class DeploymentDomainService {
         wallet.changeContractVersion(version)
         let firstSafe = WalletDomainService.fetchOrCreatePortfolio().wallets.count == 1
         let name = firstSafe ? "Safe" : "Safe \(response.safeAddress.value.suffix(4))"
-        let addressBookEntry = AddressBookEntry(name: name, address: wallet.address.value, type: .safe)
+        let addressBookEntry = AddressBookEntry(name: name, address: wallet.address.value, type: .wallet)
         DomainRegistry.addressBookRepository.save(addressBookEntry)        
         wallet.proceed()
     }

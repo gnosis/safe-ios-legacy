@@ -199,7 +199,7 @@ public class WalletApplicationService: Assertable {
     private func walletData(for wallet: Wallet, isSelected: Bool) -> WalletData {
         let state = walletStateId(wallet: wallet)
         let name = DomainRegistry.addressBookRepository
-            .find(address: wallet.address.value, types: [.safe]).first?.name ?? "Safe"
+            .find(address: wallet.address.value, types: [.wallet]).first?.name ?? "Safe"
         return WalletData(id: wallet.id.id,
                           address: wallet.address?.value,
                           name: name,
@@ -216,7 +216,7 @@ public class WalletApplicationService: Assertable {
     public func updateSelectedWalletName(_ name: String) {
         guard let wallet = selectedWallet,
             let entry = DomainRegistry.addressBookRepository
-                .find(address: wallet.address.value, types: [.safe]).first else { return }
+                .find(address: wallet.address.value, types: [.wallet]).first else { return }
         entry.name = name
         DomainRegistry.addressBookRepository.save(entry)
     }
@@ -1087,12 +1087,12 @@ public class WalletApplicationService: Assertable {
     // MARK: - Address Book
 
     public func addressName(for address: String) -> String? {
-        return DomainRegistry.addressBookRepository.find(address: address, types: [.safe]).first?.name ??
+        return DomainRegistry.addressBookRepository.find(address: address, types: [.wallet]).first?.name ??
             DomainRegistry.addressBookRepository.find(address: address, types: [.regular]).first?.name
     }
 
     public func addressBookEntryID(for address: String) -> String? {
-        return DomainRegistry.addressBookRepository.find(address: address, types: [.safe]).first?.id.id ??
+        return DomainRegistry.addressBookRepository.find(address: address, types: [.wallet]).first?.id.id ??
             DomainRegistry.addressBookRepository.find(address: address, types: [.regular]).first?.id.id
     }
 
@@ -1102,7 +1102,7 @@ public class WalletApplicationService: Assertable {
             AddressBookEntryData(id: entry.id.id,
                                  name: entry.name,
                                  address: entry.address,
-                                 isWallet: entry.type == .safe)
+                                 isWallet: entry.type == .wallet)
         }
     }
 
@@ -1111,7 +1111,7 @@ public class WalletApplicationService: Assertable {
         return AddressBookEntryData(id: entry.id.id,
                                     name: entry.name,
                                     address: entry.address,
-                                    isWallet: entry.type == .safe)
+                                    isWallet: entry.type == .wallet)
     }
 
     public func createOrUpdateAddressBookEntry(id: String?, name: String, address: String) -> String {

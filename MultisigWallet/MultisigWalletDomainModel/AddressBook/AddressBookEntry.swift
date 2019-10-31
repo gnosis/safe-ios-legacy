@@ -11,7 +11,7 @@ public class AddressBookEntryID: BaseID {}
 // Adding new ones is OK as long as you don't change old values.
 public enum AddressBookEntryType: Int {
     case regular = 0
-    case safe = 1
+    case wallet = 1
 }
 
 public class AddressBookEntry: IdentifiableEntity<AddressBookEntryID> {

@@ -42,7 +42,7 @@ public class WalletDomainService {
             }
 
             if let addressBookEntry =
-                DomainRegistry.addressBookRepository.find(address: wallet.address.value, types: [.safe]).first {
+                DomainRegistry.addressBookRepository.find(address: wallet.address.value, types: [.wallet]).first {
                 DomainRegistry.addressBookRepository.remove(addressBookEntry)
             }
         }
