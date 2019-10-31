@@ -14,14 +14,8 @@ final class M0009_MigrateSafesNamesToAddressBook: Migration {
     }
 
     override func setUp(connection: Connection) throws {
-        try addTypeColumnToAddressBookEntry(connection: connection)
         try createAddressBookEntriesForSafes(connection: connection)
         try deleteNameColumnFromWalletsTable(connection: connection)
-    }
-
-    private func addTypeColumnToAddressBookEntry(connection: Connection) throws {
-        let addTypeSQL = "ALTER TABLE tbl_address_book ADD type INTEGER DEFAULT 0;"
-        try connection.execute(sql: addTypeSQL)
     }
 
     private func createAddressBookEntriesForSafes(connection: Connection) throws {
