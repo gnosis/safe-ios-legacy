@@ -13,3 +13,5 @@
 - DateTools
 - Starscream
 - WalletConnectSwift
+- secp256k1.swift: { secp256k1.swift/secp256k1.xcodeproj: secp256k1 }
+- Keycard.swift: { Keycard.swift/Keycard.xcodeproj: Keycard }

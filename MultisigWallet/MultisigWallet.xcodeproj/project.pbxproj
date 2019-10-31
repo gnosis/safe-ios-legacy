@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -83,7 +83,6 @@
 		0A2ACC0023294A8A0054D1D1 /* DBKeycardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBFF23294A8A0054D1D1 /* DBKeycardRepository.swift */; };
 		0A2ACC04232A392B0054D1D1 /* DBKeycardRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACC03232A392B0054D1D1 /* DBKeycardRepositoryTests.swift */; };
 		0A53C6D523265EF7004A7BC3 /* KeycardHardwareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53C6D423265EF7004A7BC3 /* KeycardHardwareService.swift */; };
-		0A70D98E232A7AFE00FC04D4 /* Keycard in Frameworks */ = {isa = PBXBuildFile; productRef = 0A70D98D232A7AFE00FC04D4 /* Keycard */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0A70D9D3232A912E00FC04D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A70D9D5232A912E00FC04D4 /* Localizable.strings */; };
 		0A711E132334E697008F1124 /* WalletDiagnosticDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A711E122334E697008F1124 /* WalletDiagnosticDomainService.swift */; };
 		0A84C2B9230546320006DA50 /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D372304544800E7EB07 /* MockNotificationService.swift */; };
@@ -579,8 +578,6 @@
 		0A5E016922607CA3007F4F38 /* SystemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfo.swift; sourceTree = "<group>"; };
 		0A60B521211343F70066821A /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryApplicationService.swift; sourceTree = "<group>"; };
-		0A70D98B232A7AD600FC04D4 /* Keycard.swift */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Keycard.swift; sourceTree = "<group>"; };
-		0A70D98C232A7AD600FC04D4 /* secp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = folder; path = secp256k1.swift; sourceTree = "<group>"; };
 		0A70D9D4232A912E00FC04D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A711E122334E697008F1124 /* WalletDiagnosticDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDiagnosticDomainService.swift; sourceTree = "<group>"; };
 		0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
@@ -838,7 +835,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A70D98E232A7AFE00FC04D4 /* Keycard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1402,8 +1398,6 @@
 		0AEF8A6A20A08868006A1265 = {
 			isa = PBXGroup;
 			children = (
-				0A70D98B232A7AD600FC04D4 /* Keycard.swift */,
-				0A70D98C232A7AD600FC04D4 /* secp256k1.swift */,
 				0A1618802304597200F6E501 /* CommonTests */,
 				0AB0B5802163929200FB2435 /* config */,
 				0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */,
@@ -1598,7 +1592,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0AFC7BA423264FEA00AC5912 /* PBXTargetDependency */,
 				0AAE7CAA2304521200E7EB07 /* PBXTargetDependency */,
 				0AAE7CAC2304521200E7EB07 /* PBXTargetDependency */,
 				0AAE7CAE2304521200E7EB07 /* PBXTargetDependency */,
@@ -1607,7 +1600,6 @@
 			);
 			name = MultisigWalletImplementations;
 			packageProductDependencies = (
-				0A70D98D232A7AFE00FC04D4 /* Keycard */,
 			);
 			productName = MultisigWalletImplementations;
 			productReference = 0AAE7C79230450BC00E7EB07 /* MultisigWalletImplementations.framework */;
@@ -2293,10 +2285,6 @@
 			isa = PBXTargetDependency;
 			target = 0AAE7C78230450BC00E7EB07 /* MultisigWalletImplementations */;
 			targetProxy = 0AAE7DE42304559000E7EB07 /* PBXContainerItemProxy */;
-		};
-		0AFC7BA423264FEA00AC5912 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 0AFC7BA323264FEA00AC5912 /* Keycard */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3348,17 +3336,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0A70D98D232A7AFE00FC04D4 /* Keycard */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Keycard;
-		};
-		0AFC7BA323264FEA00AC5912 /* Keycard */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Keycard;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0AEF8A6B20A08868006A1265 /* Project object */;
 }

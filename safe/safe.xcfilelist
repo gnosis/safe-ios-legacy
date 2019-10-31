@@ -15,3 +15,5 @@ ${SRCROOT}/../Library/${PLATFORM_NAME}/SipHash.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/DateTools.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/Starscream.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/WalletConnectSwift.framework
+${SRCROOT}/../Library/${PLATFORM_NAME}/secp256k1.framework
+${SRCROOT}/../Library/${PLATFORM_NAME}/Keycard.framework

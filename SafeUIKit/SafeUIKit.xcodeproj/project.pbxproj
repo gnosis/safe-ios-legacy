@@ -301,7 +301,6 @@
 		550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954F120C966CF00F5F25F /* UIView+Extensions.swift */; };
 		550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1ED62133E66C0035109A /* ManageTokensTableViewController.swift */; };
 		550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1ED82133FD2E0035109A /* ManageTokensFlowCoordinator.swift */; };
-		550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDA213406380035109A /* ManageTokensTableViewControllerTests.swift */; };
 		550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */; };
 		550E7CDC21708E1F0032DE6C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550E7CDB21708E1E0032DE6C /* String+Extensions.swift */; };
 		550E7CDE21708E540032DE6C /* UITextField+TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550E7CDD21708E540032DE6C /* UITextField+TokenInput.swift */; };
@@ -3469,7 +3468,6 @@
 				0AF5BB3B222424C2006856E0 /* ConnectTwoFAFlowCoordinatorTests.swift in Sources */,
 				553AEB16229EA42E00EA3248 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
 				0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */,
-				550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */,
 				552D430E233BAA4100C57B5C /* RemoveSafeIntroViewControllerTests.swift in Sources */,
 				0AC3F1712183402800DAADC9 /* OnboardingTermsViewControllerTests.swift in Sources */,
 				0AF8D53920D00E56001E8423 /* TransactionViewViewControllerTests.swift in Sources */,

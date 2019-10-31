@@ -33,8 +33,8 @@
 	path = Dependencies/WalletConnectSwift
 	url = https://github.com/WalletConnect/WalletConnectSwift.git
 [submodule "Keycard.swift"]
-	path = MultisigWallet/Keycard.swift
+	path = Dependencies/Keycard.swift
 	url = https://github.com/gnosis/Keycard.swift.git
 [submodule "libsecp256k1"]
-	path = MultisigWallet/secp256k1.swift
+	path = Dependencies/secp256k1.swift
 	url = https://github.com/gnosis/secp256k1.swift.git

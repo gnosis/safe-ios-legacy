@@ -73,7 +73,7 @@ final class ManageTokensTableViewController: UITableViewController {
 
         TooltipControlCenter.showFirstTimeTooltip(persistenceKey: "io.gnosis.safe.manage_tokens.visited",
                                                   target: addButtonTargetView,
-                                                  parent: navigationController!.view,
+                                                  parent: navigationController?.view ?? view,
                                                   text: LocalizedString("tap_add_token", comment: "Tap"))
     }
 
