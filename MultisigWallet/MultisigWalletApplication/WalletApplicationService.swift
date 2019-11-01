@@ -257,8 +257,8 @@ public class WalletApplicationService: Assertable {
         // now duplicates will be ordered one after another, we'll delete them
         for i in (1..<walletEntriesSortedByAddress.count) {
             let current = walletEntriesSortedByAddress[i]
-            let previuos = walletEntriesSortedByAddress[i-1]
-            if current.address.caseInsensitiveCompare(previuos.address) == .orderedSame {
+            let previous = walletEntriesSortedByAddress[i - 1]
+            if current.address.caseInsensitiveCompare(previous.address) == .orderedSame {
                 DomainRegistry.addressBookRepository.remove(current)
             }
         }
