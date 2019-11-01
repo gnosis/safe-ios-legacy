@@ -43,7 +43,7 @@ public class WalletDomainService {
 
             if let walletAddress = wallet.address {
                 let entries = DomainRegistry.addressBookRepository.find(address: walletAddress.value, types: [.wallet])
-                assert(entries.count == 1, "Make sure that the wallet address is unique in address book!")
+                assert(entries.count < 2, "Make sure that the wallet address is unique in address book!")
                 for entry in entries {
                     DomainRegistry.addressBookRepository.remove(entry)
                 }
