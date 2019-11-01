@@ -184,7 +184,8 @@ class AddressBookViewController: UITableViewController {
                 completion(true)
             }
             deleteAction.backgroundColor = ColorName.tomato.color
-            let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+            let actions = entry.isWallet ? [editAction] : [deleteAction, editAction]
+            let configuration = UISwipeActionsConfiguration(actions: actions)
             return configuration
     }
 
