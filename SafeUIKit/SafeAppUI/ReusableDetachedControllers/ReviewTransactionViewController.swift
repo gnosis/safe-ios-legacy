@@ -353,6 +353,7 @@ public class ReviewTransactionViewController: UITableViewController {
     internal func settingsCell(title: String, details: String) -> UITableViewCell {
         let cell = SettingsTransactionHeaderCell(frame: .zero)
         cell.headerView.fromAddress = tx.sender
+        cell.headerView.fromAddressName = tx.senderName
         cell.headerView.titleText = title
         cell.headerView.detailText = details
         return cell

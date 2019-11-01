@@ -167,16 +167,16 @@ public class TransactionDetailsViewController: UIViewController {
         transferView.isHidden = true
         settingsHeaderView.isHidden = false
         settingsHeaderView.fromAddress = transaction.sender
+        settingsHeaderView.fromAddressName = transaction.senderName
         switch transaction.type {
         case .incoming:
             transferView.setIncoming()
             fallthrough
         case .outgoing:
             transferView.fromAddress = transaction.sender
-            transferView.fromAddressName = ApplicationServiceRegistry.walletService.addressName(for: transaction.sender)
+            transferView.fromAddressName = transaction.senderName
             transferView.toAddress = transaction.recipient
-            transferView.toAddressName =
-                ApplicationServiceRegistry.walletService.addressName(for: transaction.recipient)
+            transferView.toAddressName = transaction.recipientName
             transferView.showToAddressActions = true
             transferView.tokenData = transaction.amountTokenData
             transferView.isHidden = false
