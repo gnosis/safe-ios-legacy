@@ -100,18 +100,6 @@ class WalletTests: XCTestCase {
         XCTAssertFalse(wallet.isDeployable)
     }
 
-    func test_whenCancelling_thenWalletResetsData() {
-        DomainRegistry.put(service: InMemoryWalletRepository(), for: WalletRepository.self)
-        DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
-        wallet.state = wallet.deployingState
-        wallet.changeAddress(Address.safeAddress)
-        wallet.updateMinimumTransactionAmount(100)
-        wallet.state = wallet.creationStartedState
-        wallet.cancel()
-        XCTAssertNil(wallet.address)
-        XCTAssertNil(wallet.minimumDeploymentTransactionAmount)
-    }
-
     func test_whenUpdatingFeePaymentToken_thenSavesChanges() {
         XCTAssertNil(wallet.feePaymentTokenAddress)
         wallet.changeFeePaymentToken(Address.one)
