@@ -80,9 +80,11 @@ public class SendInputViewController: UIViewController {
 
         setNeedsEstimation()
 
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             // For unknown reasons, the identicon does not show up if updated in the viewDidLoad
-            self.accountBalanceHeaderView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+            guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+            self.accountBalanceHeaderView.address = address
+            self.accountBalanceHeaderView.name = ApplicationServiceRegistry.walletService.addressName(for: address)
         }
     }
 
