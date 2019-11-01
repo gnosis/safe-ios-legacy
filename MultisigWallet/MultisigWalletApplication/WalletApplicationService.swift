@@ -243,6 +243,35 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    // TODO: Needs to revisit the bugs. :-( giving up on the edge cases
+    public func cleanUpAddressBook() {
+        removeDuplicateAddressBookWalletEntries()
+        removeStaleAddressBookWalletEntries()
+    }
+
+    private func removeDuplicateAddressBookWalletEntries() {
+        let walletEntriesSortedByAddress = DomainRegistry.addressBookRepository.all()
+            .filter { $0.type == .wallet }
+            .sorted { a, b in a.address.caseInsensitiveCompare(b.address) == .orderedAscending }
+        // now duplicates will be ordered one after another, we'll delete them
+        for i in (1..<walletEntriesSortedByAddress.count) {
+            let current = walletEntriesSortedByAddress[i]
+            let previuos = walletEntriesSortedByAddress[i-1]
+            if current.address.caseInsensitiveCompare(previuos.address) == .orderedSame {
+                DomainRegistry.addressBookRepository.remove(current)
+            }
+        }
+    }
+
+    private func removeStaleAddressBookWalletEntries() {
+        let entries = DomainRegistry.addressBookRepository.all()
+        let walletAddresses = DomainRegistry.walletRepository.all().map { $0.address.value.lowercased() }
+        let nonExistingWalletEntries = entries.filter { !walletAddresses.contains($0.address.lowercased()) }
+        for entry in nonExistingWalletEntries {
+            DomainRegistry.addressBookRepository.remove(entry)
+        }
+    }
+
     public func selectWallet(_ id: String) {
         if let wallet = DomainRegistry.walletRepository.find(id: WalletID(id)),
             let portfolio = DomainRegistry.portfolioRepository.portfolio() {
