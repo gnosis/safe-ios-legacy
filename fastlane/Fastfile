@@ -72,7 +72,8 @@ platform :ios do
 
   def do_run_tests(params)
     set_bundle_id DEV_APP_ID
-    sh "xcrun simctl erase 'iPhone Xs'"
+    system("xcrun simctl shutdown 'iPhone Xs'")
+    system("xcrun simctl erase 'iPhone Xs'")
     run_tests({configuration: "Debug", 
       skip_build: true, 
       slack_only_on_failure: true, 

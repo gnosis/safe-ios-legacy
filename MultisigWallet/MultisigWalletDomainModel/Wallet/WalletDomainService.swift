@@ -41,10 +41,12 @@ public class WalletDomainService {
                 DomainRegistry.externallyOwnedAccountRepository.remove(address: owner)
             }
 
-            if let walletAddress = wallet.address,
-                let addressBookEntry = DomainRegistry.addressBookRepository.find(address: walletAddress.value,
-                                                                                 types: [.wallet]).first {
-                DomainRegistry.addressBookRepository.remove(addressBookEntry)
+            if let walletAddress = wallet.address {
+                let entries = DomainRegistry.addressBookRepository.find(address: walletAddress.value, types: [.wallet])
+                assert(entries.count < 2, "Make sure that the wallet address is unique in address book!")
+                for entry in entries {
+                    DomainRegistry.addressBookRepository.remove(entry)
+                }
             }
         }
         removeFromPortfolio(walletID: walletID)
