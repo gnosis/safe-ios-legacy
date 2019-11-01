@@ -8,6 +8,17 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.9.0`_ - 2019-11-01
+======================
+Added
+--------
+- Address Book
+
+Changed
+--------
+- Safe names are now stored as address book entries
+- Stability improvements
+
 `1.8.1`_ - 2019-10-09
 ======================
 Changed
@@ -419,6 +430,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.9.0: https://github.com/gnosis/safe-ios/tree/1.9.0
 .. _1.8.1: https://github.com/gnosis/safe-ios/tree/1.8.1
 .. _1.8.0: https://github.com/gnosis/safe-ios/tree/1.8.0
 .. _1.7.0: https://github.com/gnosis/safe-ios/tree/1.7.0
