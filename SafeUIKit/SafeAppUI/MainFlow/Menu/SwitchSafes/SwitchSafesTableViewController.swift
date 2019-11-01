@@ -126,14 +126,6 @@ class SwitchSafesTableViewController: UITableViewController {
 
 }
 
-extension SwitchSafesTableViewController: InteractivePopGestureResponder {
-
-    func interactivePopGestureShouldBegin() -> Bool {
-        return false
-    }
-
-}
-
 extension SwitchSafesTableViewController: EventSubscriber {
 
     func notify() {
