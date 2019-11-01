@@ -17,6 +17,12 @@ public class AccountBalanceView: BaseCustomView {
         }
     }
 
+    public var name: String? {
+        didSet {
+            update()
+        }
+    }
+
     public var amount: TokenData? {
         didSet {
             update()
@@ -51,6 +57,7 @@ public class AccountBalanceView: BaseCustomView {
     public override func update() {
         identiconView.seed = address ?? ""
         addressLabel.address = address
+        addressLabel.name = name
         balanceLabel.amount = amount
     }
 

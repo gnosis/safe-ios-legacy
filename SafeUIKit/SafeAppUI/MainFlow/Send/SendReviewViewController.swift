@@ -76,9 +76,9 @@ class SendReviewViewController: ReviewTransactionViewController {
     func transferViewCell() -> UITableViewCell {
         let cell = TransferViewCell(frame: .zero)
         cell.transferView.fromAddress = tx.sender
-        cell.transferView.fromAddressName = ApplicationServiceRegistry.walletService.addressName(for: tx.sender)
+        cell.transferView.fromAddressName = tx.senderName
         cell.transferView.toAddress = tx.recipient
-        cell.transferView.toAddressName = ApplicationServiceRegistry.walletService.addressName(for: tx.recipient)
+        cell.transferView.toAddressName = tx.recipientName
         cell.transferView.tokenData = tx.amountTokenData
         cell.transferView.balanceData = tx.amountTokenData.withBalance(balance(of: tx.amountTokenData))
         return cell

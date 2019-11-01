@@ -18,6 +18,12 @@ public class SettingsTransactionHeaderView: BaseCustomView {
         }
     }
 
+    public var fromAddressName: String? {
+        didSet {
+            update()
+        }
+    }
+
     public var titleText: String? {
         didSet {
             update()
@@ -46,6 +52,7 @@ public class SettingsTransactionHeaderView: BaseCustomView {
     public override func update() {
         fromIdenticonView.seed = fromAddress ?? ""
         fromAddressLabel.address = fromAddress
+        fromAddressLabel.name = fromAddressName
         titleLabel.text = titleText
         detailLabel.text = detailText
     }
