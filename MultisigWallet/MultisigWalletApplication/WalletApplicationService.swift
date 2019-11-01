@@ -253,6 +253,7 @@ public class WalletApplicationService: Assertable {
         let walletEntriesSortedByAddress = DomainRegistry.addressBookRepository.all()
             .filter { $0.type == .wallet }
             .sorted { a, b in a.address.caseInsensitiveCompare(b.address) == .orderedAscending }
+        guard walletEntriesSortedByAddress.count > 1 else { return }
         // now duplicates will be ordered one after another, we'll delete them
         for i in (1..<walletEntriesSortedByAddress.count) {
             let current = walletEntriesSortedByAddress[i]
