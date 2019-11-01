@@ -26,8 +26,7 @@ extension Array {
 final class ManageTokensTableViewController: UITableViewController {
 
     weak var delegate: ManageTokensTableViewControllerDelegate?
-    var addButtonTargetView = UIView()
-
+    private var addButtonItem: UIBarButtonItem!
     private(set) var tokens = [TokenData]()
 
     private enum Strings {
@@ -48,10 +47,11 @@ final class ManageTokensTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
-        let targetItem = UIBarButtonItem(customView: addButtonTargetView)
-        let spacingItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        navigationItem.setLeftBarButtonItems([addButton, spacingItem, targetItem], animated: false)
+        // adding space before the "+" button because otherwise the tooltip's arrow will be too far off to the left
+        let spacingItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacingItem.width = 0
+        addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
+        navigationItem.setLeftBarButtonItems([spacingItem, addButtonItem], animated: false)
         setEditing(true, animated: false)
         reloadData()
     }
@@ -71,10 +71,12 @@ final class ManageTokensTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         trackEvent(MainTrackingEvent.manageTokens)
 
-        TooltipControlCenter.showFirstTimeTooltip(persistenceKey: "io.gnosis.safe.manage_tokens.visited",
-                                                  target: addButtonTargetView,
-                                                  parent: navigationController?.view ?? view,
-                                                  text: LocalizedString("tap_add_token", comment: "Tap"))
+        if let buttonView = addButtonItem.value(forKey: "view") as? UIView {
+            TooltipControlCenter.showFirstTimeTooltip(persistenceKey: "io.gnosis.safe.manage_tokens.visited",
+                                                      target: buttonView,
+                                                      parent: navigationController?.view ?? view,
+                                                      text: LocalizedString("tap_add_token", comment: "Tap"))
+        }
     }
 
     @objc internal func addToken() {
