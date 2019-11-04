@@ -454,4 +454,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         // empty
     }
 
+    public override func cleanUpAddressBook() {
+        // empty
+    }
 }

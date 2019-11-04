@@ -115,6 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     private func cleanUp() {
         DispatchQueue.global().async {
             DomainRegistry.transactionService.cleanUpStaleTransactions()
+            ApplicationServiceRegistry.walletService.cleanUpAddressBook()
         }
     }
 
