@@ -53,7 +53,9 @@ public class SendInputViewController: UIViewController {
         nextBarButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
 
-        model = SendInputViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
+        model = SendInputViewModel(tokenID: tokenID) { [weak self] in
+            self?.updateFromViewModel()
+        }
 
         navigationItem.title = String(format: Strings.titleFormatString, model.accountBalanceTokenData.code)
 
