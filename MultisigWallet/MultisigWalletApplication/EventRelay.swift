@@ -34,7 +34,6 @@ public class EventRelay {
         }
     }
 
-    // TODO: make thread safe
     func unsubscribe(_ subject: EventSubscriber) {
         queue.async { [weak self] in
             guard let `self` = self else { return }
