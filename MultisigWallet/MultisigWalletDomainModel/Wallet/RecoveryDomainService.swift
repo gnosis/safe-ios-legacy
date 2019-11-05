@@ -100,10 +100,8 @@ public class RecoveryDomainService: Assertable {
     private func createWalletEntryInAddressBook(name: String) {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         assert(wallet.state === wallet.recoveryDraftState)
-        if DomainRegistry.addressBookRepository.find(address: wallet.address.value, types: [.wallet]).isEmpty {
-            let entry = AddressBookEntry(name: name, address: wallet.address.value, type: .wallet)
-            DomainRegistry.addressBookRepository.save(entry)
-        }
+        let entry = AddressBookEntry(name: name, address: wallet.address.value, type: .wallet)
+        DomainRegistry.addressBookRepository.save(entry)
     }
 
     private func pullWalletData() throws {

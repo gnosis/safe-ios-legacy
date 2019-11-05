@@ -9,6 +9,8 @@ import Database
 
 public class DBAddressBookRepository: DBEntityRepository<AddressBookEntry, AddressBookEntryID>, AddressBookRepository {
 
+    private let queue = DispatchQueue(label: "io.gnosis.safe.DBAddressBookRepository")
+
     public override var table: TableSchema {
         return .init("tbl_address_book",
                      "id TEXT NOT NULL PRIMARY KEY",
@@ -40,6 +42,24 @@ public class DBAddressBookRepository: DBEntityRepository<AddressBookEntry, Addre
 
     public override func all() -> [AddressBookEntry] {
         return super.all().sorted { $0.name < $1.name }
+    }
+
+    public override func save(_ item: AddressBookEntry) {
+        queue.sync { [unowned self] in
+            if item.type == .wallet {
+                // we do not allow to create new wallet type entries with same address, but we allow to update them
+                if let existing = self.find(address: item.address, types: [.wallet]).first, existing.id != item.id {
+                    return
+                }
+            }
+            // we can not use super.save with captured self here.
+            self._save(item: item)
+        }
+    }
+
+    private func _save(item: AddressBookEntry) {
+        dispatchPrecondition(condition: .onQueue(queue))
+        super.save(item)
     }
 
 }

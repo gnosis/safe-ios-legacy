@@ -22,8 +22,8 @@ class SendFlowCoordinator: FlowCoordinator {
         let transactionVC = SendInputViewController.create(tokenID: BaseID(token), address: address)
         transactionVC.delegate = self
         transactionVC.navigationItem.backBarButtonItem = .backButton()
-        push(transactionVC) {
-            transactionVC.willBeRemoved()
+        push(transactionVC) { [weak transactionVC] in
+            transactionVC?.willBeRemoved()
         }
     }
 
