@@ -155,7 +155,6 @@ public class DeployingState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.newDraftState
-        wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(DeploymentAborted(wallet))
     }
@@ -187,7 +186,6 @@ public class WaitingForFirstDepositState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.newDraftState
-        wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(DeploymentAborted(wallet))
     }
@@ -212,7 +210,6 @@ public class NotEnoughFundsState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.newDraftState
-        wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(DeploymentAborted(wallet))
     }
@@ -237,7 +234,6 @@ public class CreationStartedState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.newDraftState
-        wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(DeploymentAborted(wallet))
     }
@@ -310,7 +306,6 @@ public class RecoveryInProgressState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.recoveryDraftState
-        wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(RecoveryAborted())
     }
@@ -331,7 +326,6 @@ public class RecoveryPostProcessingState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.recoveryDraftState
-        wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(WalletRecoveryFailed())
     }

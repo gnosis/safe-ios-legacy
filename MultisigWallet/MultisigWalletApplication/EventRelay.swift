@@ -15,34 +15,51 @@ public protocol EventSubscriber: class {
 public class EventRelay {
 
     private var subscribers = [(type: DomainEvent.Type, subscriber: WeakWrapper)]()
+    private var queue: DispatchQueue
 
     public init(publisher: EventPublisher) {
-        publisher.subscribe(self, handleEvent)
+        queue = DispatchQueue(label: "io.gnosis.safe.EventRelay",
+                              qos: .userInitiated,
+                              attributes: [])
+        publisher.subscribe(self) { [unowned self] event in
+            self.handleEvent(event)
+        }
     }
 
     func subscribe(_ subject: EventSubscriber, for event: DomainEvent.Type) {
-        subscribers.append((event, WeakWrapper(subject)))
-        removeWeakNils()
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            self.subscribers.append((event, WeakWrapper(subject)))
+            self.removeWeakNils()
+        }
     }
 
     func unsubscribe(_ subject: EventSubscriber) {
-        if let index = subscribers.firstIndex(where: { $0.subscriber.ref === subject }) {
-            subscribers.remove(at: index)
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            if let index = self.subscribers.firstIndex(where: { $0.subscriber.ref === subject }) {
+                self.subscribers.remove(at: index)
+            }
+            self.removeWeakNils()
         }
-        removeWeakNils()
     }
 
     private func handleEvent(_ event: DomainEvent) {
-        removeWeakNils()
-        subscribers.filter {
-            $0.type == type(of: event) || $0.type == DomainEvent.self
-        }.forEach {
-            // unwrapped optional because the subscriber's ref might nil out on a different thread.
-            ($0.subscriber.ref as? EventSubscriber)?.notify()
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            self.removeWeakNils()
+            self.subscribers.filter {
+                $0.type == type(of: event) || $0.type == DomainEvent.self
+            }.forEach {
+                // unwrapped optional because the subscriber's ref might nil out on a different thread.
+                ($0.subscriber.ref as? EventSubscriber)?.notify()
+            }
         }
+
     }
 
     private func removeWeakNils() {
+        dispatchPrecondition(condition: .onQueue(queue))
         subscribers = subscribers.filter { $0.subscriber.ref != nil }
     }
 

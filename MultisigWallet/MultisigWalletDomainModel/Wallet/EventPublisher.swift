@@ -16,7 +16,7 @@ public class EventPublisher {
     private var queue: DispatchQueue
 
     public init () {
-        queue = DispatchQueue(label: "EventPublisherSerialQueue",
+        queue = DispatchQueue(label: "io.gnosis.safe.EventPublisherSerialQueue",
                               qos: .userInitiated,
                               attributes: [])
     }

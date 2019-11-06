@@ -32,6 +32,7 @@ class DBAddressBookRepositoryTests: XCTestCase {
     func test_All() throws {
         let entry1 = AddressBookEntry(name: "Test Account 1", address: Address.testAccount1.value, type: .regular)
         repo.save(entry1)
+
         let saved = repo.find(id: entry1.id)
         XCTAssertEqual(saved, entry1)
 
@@ -41,23 +42,22 @@ class DBAddressBookRepositoryTests: XCTestCase {
         repo.save(entry0)
 
         let foundByAddress = repo.find(address: Address.testAccount2.value, types: [.regular, .wallet])
-        XCTAssertEqual(foundByAddress.count, 2)
-        XCTAssertEqual(foundByAddress[0], entry0)
-        XCTAssertEqual(foundByAddress[1], entry2)
+        XCTAssertEqual(foundByAddress, [entry0, entry2])
+
         let foundByAddress1 = repo.find(address: Address.testAccount2.value, types: [.regular])
-        XCTAssertEqual(foundByAddress1.count, 1)
-        XCTAssertEqual(foundByAddress1[0], entry0)
+        XCTAssertEqual(foundByAddress1, [entry0])
 
         let all = repo.all()
-        XCTAssertEqual(all.count, 3)
-        XCTAssertEqual(all[0], entry0)
-        XCTAssertEqual(all[1], entry1)
-        XCTAssertEqual(all[2], entry2)
+        XCTAssertEqual(all, [entry0, entry1, entry2])
 
         repo.remove(entry1)
+        
         XCTAssertTrue(repo.find(address: entry1.address, types: [.regular, .wallet]).isEmpty)
         XCTAssertNil(repo.find(id: entry1.id))
-        XCTAssertEqual(repo.all().count, 2)
+        XCTAssertEqual(repo.all(), [entry0, entry2])
+
+        repo.remove(entry2)
+        XCTAssertEqual(repo.all(), [entry0])
     }
 
 }

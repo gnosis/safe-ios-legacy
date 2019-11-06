@@ -32,7 +32,7 @@ public final class FeedbackTooltip: BaseCustomView {
     private let labelHorizontalInset: CGFloat = 12
     private let labelVerticalInset: CGFloat = 10
 
-    private let horizontalPadding: CGFloat = 15
+    private let horizontalEdgeInset: CGFloat = 15
     private let verticalPadding: CGFloat = 12
 
     private let userReadingSpeedCharsPerSecond: TimeInterval = 10
@@ -177,36 +177,39 @@ public final class FeedbackTooltip: BaseCustomView {
         // ||           +---^---+
         // ||           |tooltip| <-- centered relative to view above
         // ||           +-------+
-        // tooltip.centerX = view.centerX
         // tooltip.leading > superview.leading + padding
         // tooltip.trailing < superview.trailing - padding
         // tooltip.width < max width
-        // tooltip.bottom = view.top + verticalPadding
+        // tooltip.centerX = view.centerX
+        // tooltip.bottom = view.top + verticalPadding // for above the target
+        // tooltip.top = view.bottom + verticalPadding // for below the target
+        // arrow.centerX = target.centerX
+        // arrow.bottom = tooltip.top or arrow.top = tooltip.bottom
+
+        // we use the superview to anchor the tooltip because if we used the target view to constraint tooltip position
+        // then the target view posiition was changed by auto-layout.
         // swiftlint:disable line_length
-        let maxTooltipWidth = superview.bounds.width - 2 * tooltip.horizontalPadding
-        let viewTopInSuperview = superview.convert(view.bounds, from: view).minY
-        let viewBottomInSuperview = superview.convert(view.bounds, from: view).maxY
-
-        let viewWidthConstraint = view.widthAnchor.constraint(equalToConstant: view.bounds.width)
-
+        let maxTooltipWidth = superview.bounds.width - 2 * tooltip.horizontalEdgeInset
+        let viewInSuperview = superview.convert(view.bounds, from: view)
         let constraints = [
-            tooltip.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: tooltip.horizontalPadding),
-            tooltip.trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -tooltip.horizontalPadding),
+            tooltip.centerXAnchor.constraint(equalTo: superview.leadingAnchor, constant: viewInSuperview.midX),
+            tooltip.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: tooltip.horizontalEdgeInset),
+            tooltip.trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -tooltip.horizontalEdgeInset),
             tooltip.widthAnchor.constraint(lessThanOrEqualToConstant: maxTooltipWidth),
-            tooltip.arrow.centerXAnchor.constraint(equalTo: tooltip.centerXAnchor),
-            viewWidthConstraint]
-        // swiftlint:enable
+            tooltip.arrow.centerXAnchor.constraint(equalTo: superview.leadingAnchor, constant: viewInSuperview.midX)
+        ]
+
+        // we reduce the priority of the tooltip centering constraint in order to be within the viewport bounds
         constraints[0].priority = .defaultHigh
         NSLayoutConstraint.activate(constraints)
 
         if tooltip.isShowingAboveTarget {
             tooltip.bottomAnchor.constraint(equalTo: superview.topAnchor,
-                                            constant: viewTopInSuperview - tooltip.verticalPadding).isActive = true
+                                            constant: viewInSuperview.minY - tooltip.verticalPadding).isActive = true
             tooltip.arrow.topAnchor.constraint(equalTo: tooltip.background.bottomAnchor).isActive = true
         } else {
             tooltip.topAnchor.constraint(equalTo: superview.topAnchor,
-                                         constant: viewBottomInSuperview + tooltip.verticalPadding).isActive = true
+                                         constant: viewInSuperview.maxY + tooltip.verticalPadding).isActive = true
             tooltip.arrow.bottomAnchor.constraint(equalTo: tooltip.background.topAnchor).isActive = true
         }
 
@@ -218,11 +221,10 @@ public final class FeedbackTooltip: BaseCustomView {
         // using asyncAfter instead of UIView.animation with delay because the latter blocks user interaction
         // even if the .allowUserInteraction passed as an option
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(Int(visibleDurationSeconds * 1_000))) {
-            tooltip.hide {
-                NSLayoutConstraint.deactivate([viewWidthConstraint])
-            }
+            tooltip.hide()
         }
         return tooltip
     }
 
 }
+// swiftlint:enable

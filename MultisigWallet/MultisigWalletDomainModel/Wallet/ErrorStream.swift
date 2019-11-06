@@ -11,32 +11,35 @@ import Common
 public class ErrorStream {
 
     private var handlers = [(handler: WeakWrapper, closure: (Error) -> Void)]()
-    private var queue: OperationQueue
+    private var queue = DispatchQueue(label: "io.gnosis.safe.ErrorStream")
 
-    public init () {
-        queue = OperationQueue()
-        queue.name = "ErrorStreamSerialQueue"
-        queue.maxConcurrentOperationCount = 1
-    }
+    public init () {}
 
     public func post(_ error: Error) {
-        removeWeakNils()
-        let snapshotHandlers = handlers
-        queue.addOperation {
-            snapshotHandlers.forEach { $0.closure(error) }
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            self.removeWeakNils()
+            self.handlers.forEach { $0.closure(error) }
         }
     }
 
     private func removeWeakNils() {
+        dispatchPrecondition(condition: .onQueue(queue))
         handlers = handlers.filter { $0.handler.ref != nil }
     }
 
     public func addHandler(_ handler: AnyObject, _ closure: @escaping (Error) -> Void) {
-        handlers.append((WeakWrapper(handler), closure))
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            self.handlers.append((WeakWrapper(handler), closure))
+        }
     }
 
     public func removeHandler(_ handler: AnyObject) {
-        handlers.removeAll { $0.handler.ref === handler }
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            self.handlers.removeAll { $0.handler.ref === handler }
+        }
     }
 
 }
