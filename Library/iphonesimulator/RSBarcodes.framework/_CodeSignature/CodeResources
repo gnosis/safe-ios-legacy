@@ -6,43 +6,43 @@
 	<dict>
 		<key>Headers/RSBarcodes-Swift.h</key>
 		<data>
-		AmWuis92RA09cjAdooOoaSuPi0s=
+		NThpu8n209FK+Xo383ycE1ynDYk=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		7idaRgVHdV4hHR/X6TVrbgjVAiA=
+		YGxwaq88O8RIWbo3Ipbt2IUx9AU=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
 		<data>
-		IMyQNbQGY2exCpLWlTNzcBXrtAI=
+		poXgUovAFQjgtklb+edJXontzQ0=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
 		<data>
-		XhjXSl4Yo5fkqWj9rW5aCE3aJdI=
+		ANEUl0pJmITYjHqXJJ2uB+i/8Lc=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftdoc</key>
 		<data>
-		IMyQNbQGY2exCpLWlTNzcBXrtAI=
+		poXgUovAFQjgtklb+edJXontzQ0=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftmodule</key>
 		<data>
-		XhjXSl4Yo5fkqWj9rW5aCE3aJdI=
+		ANEUl0pJmITYjHqXJJ2uB+i/8Lc=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		32oN1h76e6AKyyFosW28UFnN3Ys=
+		1+GqOIXm0FUTcjGctvLF9PpyBCg=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		guQN4PwfiXqEoDccG/Gf+EpoiTY=
+		rzqRU1uo28TnhLGy/BNGP9d5VUY=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		32oN1h76e6AKyyFosW28UFnN3Ys=
+		1+GqOIXm0FUTcjGctvLF9PpyBCg=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		guQN4PwfiXqEoDccG/Gf+EpoiTY=
+		rzqRU1uo28TnhLGy/BNGP9d5VUY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -55,99 +55,99 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AmWuis92RA09cjAdooOoaSuPi0s=
+			NThpu8n209FK+Xo383ycE1ynDYk=
 			</data>
 			<key>hash2</key>
 			<data>
-			z0/2YgqHkg5OPpdyuYAHjWTVevyBXfK35Oza6rFl+TY=
+			w1ncN384eNUG+ONMwoK6o7Jr7Yj/OS7Rpt2svs7ND0I=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			IMyQNbQGY2exCpLWlTNzcBXrtAI=
+			poXgUovAFQjgtklb+edJXontzQ0=
 			</data>
 			<key>hash2</key>
 			<data>
-			JxJguV3flSSsGL1OUmbOlB4Mu9DajKDTigONA9vQG+o=
+			zs2HLNZq28mjkpZcUAlMKz/vrr2Kr2AASPGIhlh+PK8=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XhjXSl4Yo5fkqWj9rW5aCE3aJdI=
+			ANEUl0pJmITYjHqXJJ2uB+i/8Lc=
 			</data>
 			<key>hash2</key>
 			<data>
-			KhxLeETlZZ7oDqI7136LX6ioz6A+3dSbfBM2+o1TVMs=
+			HQYZd610GnbUNf9Eid+tPvp4WRa1xDiajNkozp1N7sU=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			IMyQNbQGY2exCpLWlTNzcBXrtAI=
+			poXgUovAFQjgtklb+edJXontzQ0=
 			</data>
 			<key>hash2</key>
 			<data>
-			JxJguV3flSSsGL1OUmbOlB4Mu9DajKDTigONA9vQG+o=
+			zs2HLNZq28mjkpZcUAlMKz/vrr2Kr2AASPGIhlh+PK8=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XhjXSl4Yo5fkqWj9rW5aCE3aJdI=
+			ANEUl0pJmITYjHqXJJ2uB+i/8Lc=
 			</data>
 			<key>hash2</key>
 			<data>
-			KhxLeETlZZ7oDqI7136LX6ioz6A+3dSbfBM2+o1TVMs=
+			HQYZd610GnbUNf9Eid+tPvp4WRa1xDiajNkozp1N7sU=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			32oN1h76e6AKyyFosW28UFnN3Ys=
+			1+GqOIXm0FUTcjGctvLF9PpyBCg=
 			</data>
 			<key>hash2</key>
 			<data>
-			DaVRIng8QMb14nHDe3rqM4AdwNlf+uU4sVGtc5dveMM=
+			U4ZRGe7DVn2S4pcQKt2bk0Z+Lq/5n2OtcILC8R3EXyE=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			guQN4PwfiXqEoDccG/Gf+EpoiTY=
+			rzqRU1uo28TnhLGy/BNGP9d5VUY=
 			</data>
 			<key>hash2</key>
 			<data>
-			xeoIfJPe08iNkB1bxE+QTX2bHOyvZeVu6oj+so76NjE=
+			V7PyNkL5x33NuRiK14RDJV8sR0kQPIg+sF+D0znpbyA=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			32oN1h76e6AKyyFosW28UFnN3Ys=
+			1+GqOIXm0FUTcjGctvLF9PpyBCg=
 			</data>
 			<key>hash2</key>
 			<data>
-			DaVRIng8QMb14nHDe3rqM4AdwNlf+uU4sVGtc5dveMM=
+			U4ZRGe7DVn2S4pcQKt2bk0Z+Lq/5n2OtcILC8R3EXyE=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			guQN4PwfiXqEoDccG/Gf+EpoiTY=
+			rzqRU1uo28TnhLGy/BNGP9d5VUY=
 			</data>
 			<key>hash2</key>
 			<data>
-			xeoIfJPe08iNkB1bxE+QTX2bHOyvZeVu6oj+so76NjE=
+			V7PyNkL5x33NuRiK14RDJV8sR0kQPIg+sF+D0znpbyA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

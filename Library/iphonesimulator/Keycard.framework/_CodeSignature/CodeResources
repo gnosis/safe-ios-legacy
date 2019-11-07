@@ -6,27 +6,27 @@
 	<dict>
 		<key>Headers/Keycard-Swift.h</key>
 		<data>
-		ZnKp7HS7jYfGrb+XfNLXAxDGbjA=
+		3V5bUMzjfZCpn1YPFbwHkW63Xz0=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		11M5RRkjyIDSC+1dzFDk2VqZyRA=
+		wawfiVYK53ykALdsyWXYtAY6AHQ=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Et/x81TnSbqyYSJLRnE+LB4JcYY=
+		XLL4y3lij+t4V67OJT1QZgPpUI4=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		bbosVC3ATxaQEOvFY+g3k/hfa8k=
+		GUa8yWpXrw5EO6VLphba7saL27I=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		Et/x81TnSbqyYSJLRnE+LB4JcYY=
+		XLL4y3lij+t4V67OJT1QZgPpUI4=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		bbosVC3ATxaQEOvFY+g3k/hfa8k=
+		GUa8yWpXrw5EO6VLphba7saL27I=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -35,35 +35,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Tp2a09XlBos8IteEV69dcPzTO0gvw6InsQVFKCHnPdI=
+			7h4FpQKd3/2ofVF1Amvr/fVVLz1nl1jf7xwSJsDunvc=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			i7XjmkQIoVQGWYz0v25Hh/QYIOcrja10iz2eQJ+riXA=
+			f8AZ9MwJyOo5/7fvR7fzkNDKnG8qsY2JpJ4bUdXUdBw=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ASc392Rr9Op4NXpIBmp9M/7NhTa3vp3WY/lbEh36hFE=
+			TrIIwxeWrsD+pbFXEt5rJkYmztpcZ5Vd/MSttCXsMTU=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			i7XjmkQIoVQGWYz0v25Hh/QYIOcrja10iz2eQJ+riXA=
+			f8AZ9MwJyOo5/7fvR7fzkNDKnG8qsY2JpJ4bUdXUdBw=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ASc392Rr9Op4NXpIBmp9M/7NhTa3vp3WY/lbEh36hFE=
+			TrIIwxeWrsD+pbFXEt5rJkYmztpcZ5Vd/MSttCXsMTU=
 			</data>
 		</dict>
 	</dict>
