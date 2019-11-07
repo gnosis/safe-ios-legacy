@@ -35,8 +35,9 @@ platform :ios do
     ENV["GYM_WORKSPACE"] = workspace
     ENV["SCAN_WORKSPACE"] = workspace
     PROJECT = "safe/safe.xcodeproj"
-    KEYCHAIN_NAME="CI"
-    KEYCHAIN_PASSWORD=ENV["KEYCHAIN_PASSWORD"]
+    KEYCHAIN_NAME = "CI"
+    KEYCHAIN_PASSWORD = ENV["KEYCHAIN_PASSWORD"]
+    SIMULATOR_DEVICE = "iPhone 11 Pro"
     if is_ci
       if File.exist?(File.join(ENV["HOME"], "Library/Keychains/CI-db"))
         delete_keychain(name: KEYCHAIN_NAME)
@@ -72,8 +73,8 @@ platform :ios do
 
   def do_run_tests(params)
     set_bundle_id DEV_APP_ID
-    system("xcrun simctl shutdown 'iPhone Xs'")
-    system("xcrun simctl erase 'iPhone Xs'")
+    system("xcrun simctl shutdown '#{SIMULATOR_DEVICE}'")
+    system("xcrun simctl erase '#{SIMULATOR_DEVICE}'")
     run_tests({configuration: "Debug", 
       skip_build: true, 
       slack_only_on_failure: true, 
@@ -82,7 +83,7 @@ platform :ios do
       buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH,
       xcargs: "'SWIFT_ENABLE_BATCH_MODE=NO'",
-      devices: ['iPhone Xs']}.merge(params))
+      devices: [SIMULATOR_DEVICE]}.merge(params))
   end
 
   desc "Runs all tests"
