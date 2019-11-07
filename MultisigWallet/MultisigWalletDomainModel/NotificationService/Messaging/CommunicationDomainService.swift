@@ -29,7 +29,8 @@ public class CommunicationDomainService {
             let recipient = wallet.owner(role: .browserExtension)?.address,
             let owner = wallet.owner(role: .thisDevice)?.address,
             let eoa = DomainRegistry.externallyOwnedAccountRepository.find(by: owner) else { return }
-        let message = DomainRegistry.notificationService.safeCreatedMessage(at: sender.value)
+        let owners = wallet.allOwners().map { $0.address.value }
+        let message = DomainRegistry.notificationService.safeCreatedMessage(at: sender.value, owners: owners)
         let signedAddress = DomainRegistry.encryptionService.sign(message: "GNO" + message, privateKey: eoa.privateKey)
         let request = SendNotificationRequest(message: message, to: recipient.value, from: signedAddress)
         try DomainRegistry.notificationService.send(notificationRequest: request)

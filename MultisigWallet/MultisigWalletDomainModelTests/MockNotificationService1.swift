@@ -41,7 +41,7 @@ class MockNotificationService1: NotificationDomainService {
         expected_safeCreatedMessage.append((address, message))
     }
 
-    func safeCreatedMessage(at address: String) -> String {
+    func safeCreatedMessage(at address: String, owners: [String]) -> String {
         actual_safeCreatedMessage.append(address)
         return expected_safeCreatedMessage[actual_safeCreatedMessage.count - 1].message
     }

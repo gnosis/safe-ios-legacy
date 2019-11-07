@@ -201,7 +201,6 @@
 		0AAE7DAA2304544A00E7EB07 /* PairingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D3B2304544800E7EB07 /* PairingRequest.swift */; };
 		0AAE7DAB2304544A00E7EB07 /* DeletePairRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D3C2304544800E7EB07 /* DeletePairRequest.swift */; };
 		0AAE7DAC2304544A00E7EB07 /* SendNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D3D2304544800E7EB07 /* SendNotificationRequest.swift */; };
-		0AAE7DAD2304544A00E7EB07 /* SafeCreatedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D3F2304544800E7EB07 /* SafeCreatedMessage.swift */; };
 		0AAE7DAE2304544A00E7EB07 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D402304544800E7EB07 /* Message.swift */; };
 		0AAE7DAF2304544A00E7EB07 /* CommunicationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D412304544800E7EB07 /* CommunicationDomainService.swift */; };
 		0AAE7DB02304544A00E7EB07 /* MessageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D422304544800E7EB07 /* MessageRepository.swift */; };
@@ -664,7 +663,6 @@
 		0AAE7D3B2304544800E7EB07 /* PairingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingRequest.swift; sourceTree = "<group>"; };
 		0AAE7D3C2304544800E7EB07 /* DeletePairRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePairRequest.swift; sourceTree = "<group>"; };
 		0AAE7D3D2304544800E7EB07 /* SendNotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendNotificationRequest.swift; sourceTree = "<group>"; };
-		0AAE7D3F2304544800E7EB07 /* SafeCreatedMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeCreatedMessage.swift; sourceTree = "<group>"; };
 		0AAE7D402304544800E7EB07 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0AAE7D412304544800E7EB07 /* CommunicationDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationDomainService.swift; sourceTree = "<group>"; };
 		0AAE7D422304544800E7EB07 /* MessageRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRepository.swift; sourceTree = "<group>"; };
@@ -1269,7 +1267,6 @@
 		0AAE7D3E2304544800E7EB07 /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
-				0AAE7D3F2304544800E7EB07 /* SafeCreatedMessage.swift */,
 				0AAE7D402304544800E7EB07 /* Message.swift */,
 				0AAE7D412304544800E7EB07 /* CommunicationDomainService.swift */,
 				0AAE7D422304544800E7EB07 /* MessageRepository.swift */,
@@ -1931,7 +1928,6 @@
 				0A2ACBDD2328FFFE0054D1D1 /* KeycardPairing.swift in Sources */,
 				5542B4DE231E770800835F89 /* ContractUpgradeDomainService.swift in Sources */,
 				0AAE7D912304544A00E7EB07 /* RBETransactionMonitorEntry.swift in Sources */,
-				0AAE7DAD2304544A00E7EB07 /* SafeCreatedMessage.swift in Sources */,
 				0AAE7DA62304544A00E7EB07 /* EthereumContractProxy.swift in Sources */,
 				0AAE7D8D2304544A00E7EB07 /* EventPublisher.swift in Sources */,
 				0AAE7D882304544A00E7EB07 /* WalletIDList.swift in Sources */,

@@ -52,7 +52,8 @@ class HTTPNotificatonServiceTests: XCTestCase {
 
     func test_notifySafeCreated() throws {
         try makePair()
-        let message = notificationService.safeCreatedMessage(at: "0xFF")
+        let message = notificationService.safeCreatedMessage(at: "0xFF",
+                                                             owners: ["0x092CC1854399ADc38Dad4f846E369C40D0a40307"])
         try send(message)
     }
 

@@ -54,13 +54,15 @@ final public class HTTPNotificationService: NotificationDomainService {
         try httpClient.execute(request: notificationRequest)
     }
 
-    public func safeCreatedMessage(at address: String) -> String {
+    public func safeCreatedMessage(at address: String, owners: [String]) -> String {
         struct Message: Encodable {
             var type = "safeCreation"
             var safe: String
-            init(_ safe: String) { self.safe = safe }
+            var owners: String
         }
-        return String(data: try! JSONEncoder().encode(Message(address)), encoding: .utf8)!
+        // comma-separated because Firebase Cloud Messaging allows only string values
+        let message = Message(safe: address, owners: owners.joined(separator: ","))
+        return String(data: try! JSONEncoder().encode(message), encoding: .utf8)!
     }
 
     public func requestConfirmationMessage(for transaction: Transaction, hash: Data) -> String {
