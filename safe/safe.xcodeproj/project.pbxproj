@@ -31,6 +31,7 @@
 		0A364B4222688891002E80B7 /* Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A364B4122688891002E80B7 /* Safe.swift */; };
 		0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
+		0A5F4085237477C900E5ECBE /* M0009_MigrateSafesNamesToAddressBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F4084237477C900E5ECBE /* M0009_MigrateSafesNamesToAddressBookTests.swift */; };
 		0A814EEB225369C90099C45E /* NewSafeGuidelinesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */; };
 		0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84BBDE21060F6100708DE5 /* AppConfig.swift */; };
 		0A84BBF42106168600708DE5 /* AppConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A84BBE82106168600708DE5 /* AppConfig.json */; };
@@ -418,6 +419,7 @@
 		0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A5DC58A209CA2E500BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A5F4084237477C900E5ECBE /* M0009_MigrateSafesNamesToAddressBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0009_MigrateSafesNamesToAddressBookTests.swift; sourceTree = "<group>"; };
 		0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewSafeGuidelinesScreen.swift; path = safeUITests/screens/OnboardingFlow/NewSafeGuidelinesScreen.swift; sourceTree = SOURCE_ROOT; };
 		0A84BBDE21060F6100708DE5 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		0A84BBE82106168600708DE5 /* AppConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AppConfig.json; path = ../AppConfig.json; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 				55329FD022F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift */,
 				5590F1B3234360F2002F120B /* M0008_AddWalletNameField.swift */,
 				558D3EA023699E7200183322 /* M0009_MigrateSafesNamesToAddressBook.swift */,
+				0A5F4084237477C900E5ECBE /* M0009_MigrateSafesNamesToAddressBookTests.swift */,
 				55B5DF97227C567D001A32F4 /* Migrations.swift */,
 			);
 			path = Migrations;
@@ -1470,6 +1473,7 @@
 				0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */,
 				55A7B2A320ECD2D90035EF38 /* HTTPGnosisTransactionRelayServiceTests.swift in Sources */,
 				0A04A8C5225F505300305F79 /* PushLocalizationStringsTests.swift in Sources */,
+				0A5F4085237477C900E5ECBE /* M0009_MigrateSafesNamesToAddressBookTests.swift in Sources */,
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */,
 				0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */,
