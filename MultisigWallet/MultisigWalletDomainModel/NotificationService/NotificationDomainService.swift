@@ -44,7 +44,7 @@ public protocol NotificationDomainService {
     ///
     /// - Parameter address: address of created wallet
     /// - Returns: message as string
-    func safeCreatedMessage(at address: String) -> String
+    func safeCreatedMessage(at address: String, owners: [String]) -> String
 
     /// Notifies recipient of a new transaction to be confirmed.
     ///

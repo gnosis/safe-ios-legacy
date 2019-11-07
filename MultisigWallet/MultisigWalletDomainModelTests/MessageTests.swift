@@ -41,17 +41,6 @@ class MessageTests: XCTestCase {
             ])
     }
 
-    func test_safeCreatedMessage() {
-        let message = SafeCreatedMessage(to: Address.extensionAddress,
-                                         from: Address.deviceAddress,
-                                         safeAddress: Address.safeAddress)
-        assert(message: message, equalToJSON:
-            [
-                "type": "safeCreation",
-                "safe": Address.safeAddress.value
-            ])
-    }
-
     func test_sendTransactionMessage() {
         let userInfo = Fixture.sendTransactionAPNSPayload
         guard let message = Message.create(userInfo: userInfo) as? SendTransactionMessage else {

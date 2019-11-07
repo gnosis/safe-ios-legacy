@@ -48,7 +48,7 @@ public final class MockNotificationService: NotificationDomainService {
         sentMessages.append("to:\(notificationRequest.devices.first!) msg:\(notificationRequest.message)")
     }
 
-    public func safeCreatedMessage(at address: String) -> String {
+    public func safeCreatedMessage(at address: String, owners: [String]) -> String {
         return "SafeCreatedMessage_\(address)"
     }
 
