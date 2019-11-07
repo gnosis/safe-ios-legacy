@@ -35,7 +35,7 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
     public init(id: PortfolioID, wallets: WalletIDList, selectedWallet: WalletID?) {
         super.init(id: id)
         wallets.forEach { addWallet($0) }
-        if let selectedWallet = selectedWallet {
+        if let selectedWallet = selectedWallet, hasWallet(selectedWallet) {
             selectWallet(selectedWallet)
         }
     }

@@ -63,4 +63,11 @@ class PortfolioTests: XCTestCase {
         XCTAssertEqual(portfolio.selectedWallet, wallets[1])
     }
 
+    func test_whenCreatingPortfolioWithWrongSelectedWallet_thenIgnoresTheSelectedWallet() {
+        let wallets = WalletIDList([WalletID(), WalletID(), WalletID()])
+        let selected = WalletID()
+        portfolio = Portfolio(id: PortfolioID(), wallets: wallets, selectedWallet: selected)
+        XCTAssertNotEqual(portfolio.selectedWallet, selected)
+    }
+
 }
