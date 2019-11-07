@@ -58,9 +58,11 @@ final public class HTTPNotificationService: NotificationDomainService {
         struct Message: Encodable {
             var type = "safeCreation"
             var safe: String
-            var owners: [String]
+            var owners: String
         }
-        return String(data: try! JSONEncoder().encode(Message(safe: address, owners: owners)), encoding: .utf8)!
+        // comma-separated because Firebase Cloud Messaging allows only string values
+        let message = Message(safe: address, owners: owners.joined(separator: ","))
+        return String(data: try! JSONEncoder().encode(message), encoding: .utf8)!
     }
 
     public func requestConfirmationMessage(for transaction: Transaction, hash: Data) -> String {
