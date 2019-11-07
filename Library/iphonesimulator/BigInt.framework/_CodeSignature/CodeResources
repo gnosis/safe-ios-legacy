@@ -6,43 +6,43 @@
 	<dict>
 		<key>Headers/BigInt-Swift.h</key>
 		<data>
-		OrQkcsveE5Y65t1nVO/VVZaEziU=
+		O+o1JQC3IWj63o1F74m5kl6CSC0=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		uMXcgAr+4jEDXgHbOg5SUUfkW/k=
+		UYLZl8Kx+1OeqxY1OUenPWbWuwM=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
 		<data>
-		hIcDhzVupNWodv0TvYdvv1GiRHo=
+		NNeMlh1rmeR8/DvRdQENJ4AKK2E=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Ja499N9jUFZGJPNbKk6HDb/kukA=
+		bhj5zGpd5WnKhgfabFF+d0CXr+8=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386.swiftdoc</key>
 		<data>
-		hIcDhzVupNWodv0TvYdvv1GiRHo=
+		NNeMlh1rmeR8/DvRdQENJ4AKK2E=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386.swiftmodule</key>
 		<data>
-		Ja499N9jUFZGJPNbKk6HDb/kukA=
+		bhj5zGpd5WnKhgfabFF+d0CXr+8=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Qwcz+NBQquJ7X/WtDztu2cLMC2I=
+		q8Mbsq0oSbPLDz3g8FVJVJISv8o=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		YOO5lFyWnny4W5aBbZ4QsOGW8Gk=
+		IfLr/z/VH3prcRUJXfUtrUPaDUA=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		Qwcz+NBQquJ7X/WtDztu2cLMC2I=
+		q8Mbsq0oSbPLDz3g8FVJVJISv8o=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		YOO5lFyWnny4W5aBbZ4QsOGW8Gk=
+		IfLr/z/VH3prcRUJXfUtrUPaDUA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -55,99 +55,99 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OrQkcsveE5Y65t1nVO/VVZaEziU=
+			O+o1JQC3IWj63o1F74m5kl6CSC0=
 			</data>
 			<key>hash2</key>
 			<data>
-			rgXZLZzQSBxVENVf7J840w6nKou4FeBYwKBHCyLheBc=
+			jym5jmKKvSH04ycTz5UdzT0rwC3qHmituhcFn49/gjo=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			hIcDhzVupNWodv0TvYdvv1GiRHo=
+			NNeMlh1rmeR8/DvRdQENJ4AKK2E=
 			</data>
 			<key>hash2</key>
 			<data>
-			OK9WfSE0XAEMs20nSKAQGFi5gfKWTvMlurGzAmrDMP8=
+			hye7R5O5Z5BtNeK4cXYNT0veQ14mbv3cE4e34zlDkAw=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Ja499N9jUFZGJPNbKk6HDb/kukA=
+			bhj5zGpd5WnKhgfabFF+d0CXr+8=
 			</data>
 			<key>hash2</key>
 			<data>
-			MC9L6VNsL2U05P3nr2H7tSpAWFUyF7gj0I8F6eQnrq0=
+			IObzMdpxv9DT2jf5hobToLFKya7UxAFT/fKtTZ6CG0k=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			hIcDhzVupNWodv0TvYdvv1GiRHo=
+			NNeMlh1rmeR8/DvRdQENJ4AKK2E=
 			</data>
 			<key>hash2</key>
 			<data>
-			OK9WfSE0XAEMs20nSKAQGFi5gfKWTvMlurGzAmrDMP8=
+			hye7R5O5Z5BtNeK4cXYNT0veQ14mbv3cE4e34zlDkAw=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Ja499N9jUFZGJPNbKk6HDb/kukA=
+			bhj5zGpd5WnKhgfabFF+d0CXr+8=
 			</data>
 			<key>hash2</key>
 			<data>
-			MC9L6VNsL2U05P3nr2H7tSpAWFUyF7gj0I8F6eQnrq0=
+			IObzMdpxv9DT2jf5hobToLFKya7UxAFT/fKtTZ6CG0k=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Qwcz+NBQquJ7X/WtDztu2cLMC2I=
+			q8Mbsq0oSbPLDz3g8FVJVJISv8o=
 			</data>
 			<key>hash2</key>
 			<data>
-			lNTIoE4yo4xxwMbhIiFQlFxbz0uoUDfFKTeLfqJYht4=
+			iWMxVs7QJawTpmcWIAWufR0YrsQ0FH9xebBhpv5DgKY=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			YOO5lFyWnny4W5aBbZ4QsOGW8Gk=
+			IfLr/z/VH3prcRUJXfUtrUPaDUA=
 			</data>
 			<key>hash2</key>
 			<data>
-			YtlghBAswqTOgSHJdxnUxtB4QhZN2AL4ak8NbNpcg8g=
+			gq++twkxBClifIG67Ixcqa3XC3HKzEyZTA65aQXyMyI=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Qwcz+NBQquJ7X/WtDztu2cLMC2I=
+			q8Mbsq0oSbPLDz3g8FVJVJISv8o=
 			</data>
 			<key>hash2</key>
 			<data>
-			lNTIoE4yo4xxwMbhIiFQlFxbz0uoUDfFKTeLfqJYht4=
+			iWMxVs7QJawTpmcWIAWufR0YrsQ0FH9xebBhpv5DgKY=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			YOO5lFyWnny4W5aBbZ4QsOGW8Gk=
+			IfLr/z/VH3prcRUJXfUtrUPaDUA=
 			</data>
 			<key>hash2</key>
 			<data>
-			YtlghBAswqTOgSHJdxnUxtB4QhZN2AL4ak8NbNpcg8g=
+			gq++twkxBClifIG67Ixcqa3XC3HKzEyZTA65aQXyMyI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

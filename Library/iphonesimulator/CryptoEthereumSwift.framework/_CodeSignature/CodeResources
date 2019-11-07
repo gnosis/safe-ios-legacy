@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/CryptoEthereumSwift-Swift.h</key>
 		<data>
-		2JyMLbGyVcIv72zRJrsnw3fwFrI=
+		gfIgsrBMz8K0y2IIbuvshtOAIBs=
 		</data>
 		<key>Headers/CryptoEthereumSwift.h</key>
 		<data>
@@ -14,39 +14,39 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		XzG9fjfkopseBStxsVOtQsGFsFU=
+		jt/efjPKW7CSUhngaAkp9R9HfNA=
 		</data>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/i386-apple-ios-simulator.swiftdoc</key>
 		<data>
-		JNib9xvmqGZM16xe7ZdPMbrdyU8=
+		iKLWf6kEJfM7BYK5oPfQ93G1GWg=
 		</data>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
 		<data>
-		h3E3Ef/lTFCnoyHTan1hEHO6dLo=
+		giHFhsf0i6J/Txph6C0cZdcwDWE=
 		</data>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/i386.swiftdoc</key>
 		<data>
-		JNib9xvmqGZM16xe7ZdPMbrdyU8=
+		iKLWf6kEJfM7BYK5oPfQ93G1GWg=
 		</data>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/i386.swiftmodule</key>
 		<data>
-		h3E3Ef/lTFCnoyHTan1hEHO6dLo=
+		giHFhsf0i6J/Txph6C0cZdcwDWE=
 		</data>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		UEix9hnXqwcboGiqL2eLdYfasGo=
+		kxwYri3owmCc9celbHv+FyHLy5A=
 		</data>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		8AdV/2ez/arWgkufp/znwPzV/qI=
+		OcCvR23g+FnEviCSHlub+sNUr1M=
 		</data>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		UEix9hnXqwcboGiqL2eLdYfasGo=
+		kxwYri3owmCc9celbHv+FyHLy5A=
 		</data>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		8AdV/2ez/arWgkufp/znwPzV/qI=
+		OcCvR23g+FnEviCSHlub+sNUr1M=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -63,11 +63,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2JyMLbGyVcIv72zRJrsnw3fwFrI=
+			gfIgsrBMz8K0y2IIbuvshtOAIBs=
 			</data>
 			<key>hash2</key>
 			<data>
-			FYbB87u2HmQkN/FAJaEwQgjzrjN0nkNl+ekujlY4VhI=
+			Iiucwv/5of7T0LIzFT0Sbl+88xpDAahVYccBjJSF1m4=
 			</data>
 		</dict>
 		<key>Headers/CryptoEthereumSwift.h</key>
@@ -85,88 +85,88 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			JNib9xvmqGZM16xe7ZdPMbrdyU8=
+			iKLWf6kEJfM7BYK5oPfQ93G1GWg=
 			</data>
 			<key>hash2</key>
 			<data>
-			I5X1VXcdIe82F6IReMFBfocf8PXVOP1YxGPg/Ix/rTs=
+			LWTShicYfodg9H7B3/sm5qI3TQWlwIta3xU212x2iog=
 			</data>
 		</dict>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/i386-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			h3E3Ef/lTFCnoyHTan1hEHO6dLo=
+			giHFhsf0i6J/Txph6C0cZdcwDWE=
 			</data>
 			<key>hash2</key>
 			<data>
-			Yb9BEYVyv8BxA4yAFFdnnJL0v8Yf36asfEbEGcL7w8M=
+			H1BQwkIXY2ZFzmmpow6bctyMie1NNjRMBXrsdkny950=
 			</data>
 		</dict>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JNib9xvmqGZM16xe7ZdPMbrdyU8=
+			iKLWf6kEJfM7BYK5oPfQ93G1GWg=
 			</data>
 			<key>hash2</key>
 			<data>
-			I5X1VXcdIe82F6IReMFBfocf8PXVOP1YxGPg/Ix/rTs=
+			LWTShicYfodg9H7B3/sm5qI3TQWlwIta3xU212x2iog=
 			</data>
 		</dict>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			h3E3Ef/lTFCnoyHTan1hEHO6dLo=
+			giHFhsf0i6J/Txph6C0cZdcwDWE=
 			</data>
 			<key>hash2</key>
 			<data>
-			Yb9BEYVyv8BxA4yAFFdnnJL0v8Yf36asfEbEGcL7w8M=
+			H1BQwkIXY2ZFzmmpow6bctyMie1NNjRMBXrsdkny950=
 			</data>
 		</dict>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UEix9hnXqwcboGiqL2eLdYfasGo=
+			kxwYri3owmCc9celbHv+FyHLy5A=
 			</data>
 			<key>hash2</key>
 			<data>
-			wc8M+Fsy/fi8i7+cW8Zhtk1c3MnSvjglaSBN2GW3WRQ=
+			JdZiKqcddnRD3NXb9u7iFg+ZqSNGcmmQXiinz1cv7vQ=
 			</data>
 		</dict>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8AdV/2ez/arWgkufp/znwPzV/qI=
+			OcCvR23g+FnEviCSHlub+sNUr1M=
 			</data>
 			<key>hash2</key>
 			<data>
-			FCZBxg/smbOFwCI1N/b5j522XfOUkKIm+iWwXfYSXVQ=
+			6KJJWgnwgu4LYJCsbaDA9VrUZFhHcx47l71FAahRPv0=
 			</data>
 		</dict>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UEix9hnXqwcboGiqL2eLdYfasGo=
+			kxwYri3owmCc9celbHv+FyHLy5A=
 			</data>
 			<key>hash2</key>
 			<data>
-			wc8M+Fsy/fi8i7+cW8Zhtk1c3MnSvjglaSBN2GW3WRQ=
+			JdZiKqcddnRD3NXb9u7iFg+ZqSNGcmmQXiinz1cv7vQ=
 			</data>
 		</dict>
 		<key>Modules/CryptoEthereumSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8AdV/2ez/arWgkufp/znwPzV/qI=
+			OcCvR23g+FnEviCSHlub+sNUr1M=
 			</data>
 			<key>hash2</key>
 			<data>
-			FCZBxg/smbOFwCI1N/b5j522XfOUkKIm+iWwXfYSXVQ=
+			6KJJWgnwgu4LYJCsbaDA9VrUZFhHcx47l71FAahRPv0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -22,7 +22,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		CMDclRe858y4LazvfokrCNXGEbQ=
+		Jq8xResrernoaLRyrouNmUw/CDU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -33,10 +33,6 @@
 	<dict>
 		<key>Headers/secp256k1.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			bLDx7rlVN/7Qc99eQR21tN8X9QE=
-			</data>
 			<key>hash2</key>
 			<data>
 			X5zkbNMzpLt78m6OolCQyy4fdKitKWzNMc6gic+w7T4=
@@ -44,10 +40,6 @@
 		</dict>
 		<key>Headers/secp256k1_ecdh.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			91JyxMH6hutTPWr7feUtO0DJVJU=
-			</data>
 			<key>hash2</key>
 			<data>
 			GOBItuU/P4HMXQ/SA47KjvwTGFPR8tzcCGDAV4kqG/c=
@@ -55,10 +47,6 @@
 		</dict>
 		<key>Headers/secp256k1_preallocated.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			jfCJHbg9PAQT4ijefrGpq3tulys=
-			</data>
 			<key>hash2</key>
 			<data>
 			o5jPPutNgEGCXoeYdwRH780xGHcfT1jBR3h34BVV7Q0=
@@ -66,10 +54,6 @@
 		</dict>
 		<key>Headers/secp256k1_recovery.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			6Wy22XhoK9tjSlZ2tVy3anNUqRk=
-			</data>
 			<key>hash2</key>
 			<data>
 			Hm9zdIrs3LV89PX7pA+Vg6ku+ptu0fkTQOr2UbjW6Q8=
@@ -77,10 +61,6 @@
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			3b/ATau1nHvCHTL98uP/5dZ2vhc=
-			</data>
 			<key>hash2</key>
 			<data>
 			xiAQxQm8UMlIfUqCRW8bS2FXRvZoOe5yB5BBPWrH0dA=

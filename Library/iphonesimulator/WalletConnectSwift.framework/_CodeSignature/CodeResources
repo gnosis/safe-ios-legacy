@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/WalletConnectSwift-Swift.h</key>
 		<data>
-		WaI/rmj9ii9bw2k3ZyTJ17HBKZ0=
+		Rr7Gqlzz/qMG3oh1W/dHEcwhCM4=
 		</data>
 		<key>Headers/WalletConnectSwift.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		VNTuvK7UdB9uw1aZb5NJGQGXGGc=
+		IShY9LWvV6rW3zzKMExdGmRGYpk=
 		</data>
 		<key>Modules/WalletConnectSwift.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		hQKQb6z6kLNegdaYlmV1/A/Wbcw=
+		EPY+1XpwRsBlrt5lrujkmt5rJi0=
 		</data>
 		<key>Modules/WalletConnectSwift.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		WyFzg1Ch0I2CwFGCxpJxMai6mMs=
+		aNRklMprVP4Z1176TC25E9n4srA=
 		</data>
 		<key>Modules/WalletConnectSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		hQKQb6z6kLNegdaYlmV1/A/Wbcw=
+		EPY+1XpwRsBlrt5lrujkmt5rJi0=
 		</data>
 		<key>Modules/WalletConnectSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		WyFzg1Ch0I2CwFGCxpJxMai6mMs=
+		aNRklMprVP4Z1176TC25E9n4srA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,7 +43,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AljOwYcQtvIMCxz4GFUNS9cNXrqK2omxyKFlTNpqut8=
+			m0BzJ6fyBKKxnGFXkI+528Yg5r9KUD/GUAuOH+vs1E0=
 			</data>
 		</dict>
 		<key>Headers/WalletConnectSwift.h</key>
@@ -57,28 +57,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8r0csN3CrrFG+0gCrvC/ktMpt1vOhidosS1rhuOAuic=
+			VvTEuSkyxma/c+NbmPFZVGBHNBQ/lPrYVxt0NFMaTzs=
 			</data>
 		</dict>
 		<key>Modules/WalletConnectSwift.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JCqQxTccKy02nrPFGAjqK+Uub/XNjipDO8jR81UOqQY=
+			k+2MJ+le3NCkgwIQHBgJXBWhr9WQ2Mu5sARVHwJUwpE=
 			</data>
 		</dict>
 		<key>Modules/WalletConnectSwift.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8r0csN3CrrFG+0gCrvC/ktMpt1vOhidosS1rhuOAuic=
+			VvTEuSkyxma/c+NbmPFZVGBHNBQ/lPrYVxt0NFMaTzs=
 			</data>
 		</dict>
 		<key>Modules/WalletConnectSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JCqQxTccKy02nrPFGAjqK+Uub/XNjipDO8jR81UOqQY=
+			k+2MJ+le3NCkgwIQHBgJXBWhr9WQ2Mu5sARVHwJUwpE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
