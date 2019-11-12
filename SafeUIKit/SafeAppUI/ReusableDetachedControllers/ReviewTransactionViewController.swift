@@ -152,7 +152,9 @@ public class ReviewTransactionViewController: UITableViewController {
             ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
             doRequest()
         default:
-            showResendAlert(action: scheduleConfirmationRequest)
+            showResendAlert { [weak self] in
+                self?.scheduleConfirmationRequest()
+            }
         }
     }
 
@@ -170,11 +172,16 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     func openSignWithKeycard() {
-        let signController = SKSignWithPinViewController.create(transactionID: tx.id) {
-            self.tx = self.fetchTransaction(self.tx.id)
-            self.postProcessing()
+        doAfterEstimateTransaction { [weak self] in
+            guard let `self` = self else { return TransactionData.empty }
+            let signController = SKSignWithPinViewController.create(transactionID: self.tx.id) { [weak self] in
+                guard let `self` = self else { return }
+                self.tx = self.fetchTransaction(self.tx.id)
+                self.postProcessing()
+            }
+            self.show(signController, sender: self)
+            return self.fetchTransaction(self.tx.id)
         }
-        show(signController, sender: self)
     }
 
     /// Supposed to be called from flow coordinator when the screen is already shown, but new transaction data
@@ -214,7 +221,7 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func doSubmit() {
-        doAfterEstimateTransaction { [weak self] in  
+        doAfterEstimateTransaction { [weak self] in
             guard let `self` = self else { return TransactionData.empty }
             return try ApplicationServiceRegistry.walletService.submitTransaction(self.tx.id)
         }
