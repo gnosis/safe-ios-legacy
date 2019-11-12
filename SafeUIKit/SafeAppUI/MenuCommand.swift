@@ -26,10 +26,10 @@ class MenuCommand {
 
     func run() {
         MainFlowCoordinator.shared.saveCheckpoint()
-        MainFlowCoordinator.shared.enter(flow: childFlowCoordinator) { [unowned self] in
-            DispatchQueue.main.async {
+        MainFlowCoordinator.shared.enter(flow: childFlowCoordinator) { [weak self] in
+            DispatchQueue.main.async { [weak self] in
                 MainFlowCoordinator.shared.popToLastCheckpoint()
-                self.didExitToMenu()
+                self?.didExitToMenu()
             }
         }
     }
