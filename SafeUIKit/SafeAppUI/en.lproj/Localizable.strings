@@ -1052,7 +1052,7 @@ We recommend using a password manager or writing the phrase down and storing the
 "wallet_recovery_in_progress" = "Wallet recovery in progress";
 
 /* Transaction is submitted */
-"wallet_transaction_submitted" = "wallet_transaction_submitted";
+"wallet_transaction_submitted" = "Transaction submitted to the blockchain";
 
 /* WalletConnect */
 "walletconnect" = "WalletConnect";
@@ -1093,7 +1093,7 @@ Use two-factor authentication to further increase the security of your wallet.";
 
 /* New Safe onboarding 3 description */
 "with_walletconnect_you_can_connect" = "With WalletConnect you can connect to Dapps securely within seconds.\
-Gnosis Safe allows you to safe your ETH and pay network fees with ERC-20 tokens.";
+Gnosis Safe allows you to save your ETH and pay network fees with ERC-20 tokens.";
 
 /* You are disconnecting from... */
 "you_are_disconnecting_from" = "You are disconnecting from %@";

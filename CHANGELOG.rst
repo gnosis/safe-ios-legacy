@@ -8,6 +8,14 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.9.1`_ - 2019-11-07
+======================
+Changed
+--------
+- Fix for the Authenticator: safeCreation with owner list
+- Fix for crash on startup due to wrong migration
+- Fix for crash on startup due to inconsistent data (Portfolio table)
+
 `1.9.0`_ - 2019-11-01
 ======================
 Added
@@ -430,6 +438,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.9.1: https://github.com/gnosis/safe-ios/tree/1.9.1
 .. _1.9.0: https://github.com/gnosis/safe-ios/tree/1.9.0
 .. _1.8.1: https://github.com/gnosis/safe-ios/tree/1.8.1
 .. _1.8.0: https://github.com/gnosis/safe-ios/tree/1.8.0
