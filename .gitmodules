@@ -38,3 +38,9 @@
 [submodule "libsecp256k1"]
 	path = Dependencies/secp256k1.swift
 	url = https://github.com/gnosis/secp256k1.swift.git
+[submodule "unistring"]
+	path = Dependencies/libunistring
+	url = git@github.com:gnosis/libunistring.git
+[submodule "idn2"]
+	path = Dependencies/libidn2
+	url = git@github.com:gnosis/libidn2.git
