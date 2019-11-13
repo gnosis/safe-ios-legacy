@@ -17,10 +17,10 @@ class QRCodeViewTests: XCTestCase {
     func test_whenChangingValue_thenImageChanges() {
         view.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
         view.value = "a"
-        delay()
+        delay(0.2)
         let imageA = view.imageView.image
         view.value = "b"
-        delay()
+        delay(0.2)
         let imageB = view.imageView.image
         XCTAssertNotEqual(imageA, imageB)
     }

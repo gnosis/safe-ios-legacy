@@ -25,6 +25,7 @@ struct AppConfig: Codable {
     var safeContractMetadata: SafeContractMetadata
     var featureFlags: [String: Bool]?
     var walletConnectChainId: Int
+    var ensRegistryContractAddress: String
 
     enum CodingKeys: String, CodingKey {
         case encryptionServiceChainId = "encryption_service_chain_id"
@@ -43,6 +44,7 @@ struct AppConfig: Codable {
         case featureFlags = "feature_flags"
         case safeContractMetadata = "safe_contract_metadata"
         case walletConnectChainId = "wallet_connect_chain_id"
+        case ensRegistryContractAddress = "ens_registry_contract_address"
     }
 
 }

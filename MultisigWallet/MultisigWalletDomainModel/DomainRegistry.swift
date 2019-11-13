@@ -148,6 +148,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: KeycardDomainService.self)
     }
 
+    public static var ensService: ENSDomainService {
+        return service(for: ENSDomainService.self)
+    }
+
     public static var logger: Logger {
         return service(for: Logger.self)
     }

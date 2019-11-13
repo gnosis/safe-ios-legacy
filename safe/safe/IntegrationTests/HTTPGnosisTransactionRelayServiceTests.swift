@@ -17,7 +17,6 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
     let ethService = EthereumKitEthereumService()
     let walletRepo = InMemoryWalletRepository()
     var metadataRepo: InMemorySafeContractMetadataRepository!
-    var config: AppConfig!
 
     enum Error: String, LocalizedError, Hashable {
         case errorWhileWaitingForCreationTransactionHash
