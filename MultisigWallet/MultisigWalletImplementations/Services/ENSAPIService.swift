@@ -67,9 +67,10 @@ public final class ENSAPIService: ENSDomainService {
         }
 
         // resolve the name
-        guard let resolvedName = try resolverContract.name(node: node) else {
+        guard let resolvedASCIIName = try resolverContract.name(node: node) else {
             return nil
         }
+        let resolvedName = try IDN.asciiToUTF8(resolvedASCIIName)
         let resolvedAddress = try self.address(for: resolvedName)
         guard address.value.caseInsensitiveCompare(resolvedAddress.value) == .orderedSame else {
             throw ENSAPIServiceError.resolvedNameNotMatchingOriginalAddress
