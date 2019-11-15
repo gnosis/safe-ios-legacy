@@ -265,28 +265,28 @@ fileprivate extension OnboardingViewController {
                        finish: @escaping () -> Void) -> OnboardingViewController {
         let nextActionTitle = LocalizedString("next", comment: "Next")
         var steps = [OnboardingStepInfo]()
-        steps.append(.init(image: Asset.CreateSafe.whatIsSafe.image,
+        steps.append(.init(image: Asset.whatIsSafe.image,
                            title: LocalizedString("what_is_the_gnosis_safe", comment: "New Safe onboarding 1 title"),
                            description: LocalizedString("your_safe_is_a_smart_contract",
                                                         comment: "New Safe onboarding 1 description"),
                            actionTitle: nextActionTitle,
                            trackingEvent: CreateSafeTrackingEvent.onboarding1,
                            action: next))
-        steps.append(.init(image: Asset.ContractUpgrade.upgrade1.image,
+        steps.append(.init(image: Asset.upgrade1.image,
                            title: LocalizedString("secure_by_design", comment: "New Safe onboarding 2 title"),
                            description: LocalizedString("while_our_code_is_always_audited",
                                                         comment: "New Safe onboarding 2 description"),
                            actionTitle: nextActionTitle,
                            trackingEvent:  CreateSafeTrackingEvent.onboarding2,
                            action: next))
-        steps.append(.init(image: Asset.CreateSafe.cryptoWithoutHassle.image,
+        steps.append(.init(image: Asset.cryptoWithoutHassle.image,
                            title: LocalizedString("crypto_without_the_hassle", comment: "New Safe onboarding 3 title"),
                            description: LocalizedString("with_walletconnect_you_can_connect",
                                                         comment: "New Safe onboarding 3 description"),
                            actionTitle: nextActionTitle,
                            trackingEvent:  CreateSafeTrackingEvent.onboarding3,
                            action: next))
-        steps.append(.init(image: Asset.CreateSafe.youAreInControl.image,
+        steps.append(.init(image: Asset.youAreInControl.image,
                            title: LocalizedString("you_are_in_control", comment: "New Safe onboarding 4 title"),
                            description: LocalizedString("your_funds_are_held_securely",
                                                         comment: "New Safe onboarding 4 description"),

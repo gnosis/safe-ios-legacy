@@ -56,14 +56,14 @@ public class TransactionConfirmationView: BaseCustomView {
                 static let title = LocalizedString("confirmed", comment: "Confirmed by browser extension.")
                 static let detail = LocalizedString("browser_extension_approved", comment: "Approved by extension")
                 static let submit = LocalizedString("submit", comment: "Submit transaction")
-                static let image = Asset.Confirmation.confirmed.image
+                static let image = Asset.confirmed.image
             }
 
             enum Rejected {
                 static let title = LocalizedString("rejected", comment: "Rejected by browser extension.")
                 static let detail = LocalizedString("rejected_by_extension", comment: "Rejected by extension")
                 static let resend = LocalizedString("resend", comment: "Resend")
-                static let image = Asset.Confirmation.rejected.image
+                static let image = Asset.rejected.image
             }
 
         }
@@ -90,13 +90,13 @@ public class TransactionConfirmationView: BaseCustomView {
             enum Confirmed {
                 static let title = LocalizedString("confirmed_keycard", comment: "Confirmed with Keycard")
                 static let submit = LocalizedString("submit_transaction", comment: "Submit Transaction")
-                static let image = Asset.KeycardConfirmation.confirmed.image
+                static let image = Asset.confirmed.image
             }
 
             enum Rejected {
                 static let title = LocalizedString("rejected_keycard", comment: "Rejected by Keycard")
                 static let retry = LocalizedString("retry", comment: "Retry")
-                static let image = Asset.KeycardConfirmation.rejected.image
+                static let image = Asset.rejected.image
             }
 
         }

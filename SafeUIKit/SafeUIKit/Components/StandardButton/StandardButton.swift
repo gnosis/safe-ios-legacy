@@ -43,17 +43,17 @@ final public class StandardButton: BaseCustomButton {
                                 highlighted: ColorName.darkBlue70.color,
                                 disabled: ColorName.darkBlue50.color),
 
-                       images: (normal: Asset.BorderedButton.borderedNormal.image,
-                                highlighted: Asset.BorderedButton.borderedPressed.image,
-                                disabled: Asset.BorderedButton.borderedInactive.image)),
+                       images: (normal: Asset.borderedNormal.image,
+                                highlighted: Asset.borderedPressed.image,
+                                disabled: Asset.borderedInactive.image)),
 
             filled: (colors: (normal: ColorName.snowwhite.color,
                               highlighted: ColorName.snowwhite.color,
                               disabled: ColorName.snowwhite50.color),
 
-                     images: (normal: Asset.FilledButton.filledNormal.image,
-                              highlighted: Asset.FilledButton.filledPressed.image,
-                              disabled: Asset.FilledButton.filledInactive.image)),
+                     images: (normal: Asset.filledNormal.image,
+                              highlighted: Asset.filledPressed.image,
+                              disabled: Asset.filledInactive.image)),
 
             text: (colors: (normal: ColorName.darkGrey.color,
                             highlighted: ColorName.darkGrey.color,

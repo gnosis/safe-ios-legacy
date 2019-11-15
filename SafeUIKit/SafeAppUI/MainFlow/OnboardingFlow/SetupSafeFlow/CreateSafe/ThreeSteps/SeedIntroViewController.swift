@@ -12,7 +12,7 @@ class SeedIntroViewController: HeaderImageTextStepController {
             title: LocalizedString("recovery_phrase", comment: "Recovery phrase"),
             threeStepsState: state,
             header: LocalizedString("backup_recovery", comment: "Backup your recovery phrase"),
-            image: Asset.CreateSafe.backupPhrase.image,
+            image: Asset.backupPhrase.image,
             text: LocalizedString("use_the_phrase_on_the_next_screen", comment: "Recovery phrase description"),
             trackingEvent: CreateSafeTrackingEvent.seedIntro,
             onNext: onNext)

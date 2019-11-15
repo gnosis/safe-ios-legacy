@@ -37,7 +37,7 @@ extension IntroContentView.Content {
     static let pairTwoFAContent =
         IntroContentView
             .Content(body: ConnectTwoFAFlowCoordinator.Strings.pairDescription,
-                     icon: Asset.CreateSafe.setup2FA.image)
+                     icon: Asset.setup2FA.image)
 
 }
 
@@ -166,7 +166,7 @@ extension SuccessViewController {
 
     static func connect2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
         return .congratulations(text: LocalizedString("connecting_in_progress", comment: "Explanation text"),
-                                image: Asset.CreateSafe.setup2FA.image,
+                                image: Asset.setup2FA.image,
                                 tracking: ConnectTwoFATrackingEvent.success,
                                 action: action)
     }

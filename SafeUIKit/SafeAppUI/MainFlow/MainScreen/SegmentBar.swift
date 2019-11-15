@@ -108,11 +108,11 @@ public class SegmentBar: UIControl {
         let rightIndex = buttons.count - 1
         switch index {
         case leftIndex:
-            selectionMarker.image = Asset.SegmentBar.left.image
+            selectionMarker.image = Asset.left.image
         case rightIndex:
-            selectionMarker.image = Asset.SegmentBar.right.image
+            selectionMarker.image = Asset.right.image
         default:
-            selectionMarker.image = Asset.SegmentBar.middle.image
+            selectionMarker.image = Asset.middle.image
         }
         addSubview(selectionMarker)
         NSLayoutConstraint.activate(

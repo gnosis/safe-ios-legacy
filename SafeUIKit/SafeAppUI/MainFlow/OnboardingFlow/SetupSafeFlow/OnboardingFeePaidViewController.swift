@@ -34,7 +34,7 @@ class OnboardingFeePaidViewController: FeePaidViewController {
         super.viewDidLoad()
         setHeader(Strings.header)
         setBody(Strings.body)
-        setImage(Asset.Onboarding.creatingSafe.image)
+        setImage(Asset.creatingSafe.image)
         button.isEnabled = false
         walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
 

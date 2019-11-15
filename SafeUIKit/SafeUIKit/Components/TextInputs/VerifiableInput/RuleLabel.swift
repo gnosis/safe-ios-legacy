@@ -108,11 +108,11 @@ final class RuleLabel: UIView {
         guard imageView != nil else { return }
         switch status {
         case .error:
-            imageView.image = Asset.TextInputs.errorIcon.image
+            imageView.image = Asset.errorIcon.image
         case .inactive:
-            imageView.image = Asset.TextInputs.defaultIcon.image
+            imageView.image = Asset.defaultIcon.image
         case .success:
-            imageView.image = Asset.TextInputs.successIcon.image
+            imageView.image = Asset.successIcon.image
         }
     }
 

@@ -180,7 +180,7 @@ public final class AddressInput: VerifiableInput {
 
     private func dotsRightView() -> UIView {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 14))
-        imageView.image = Asset.AddressInput.dots.image
+        imageView.image = Asset.dots.image
         imageView.contentMode = .right
         return imageView
     }

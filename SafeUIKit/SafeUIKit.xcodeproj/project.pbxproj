@@ -2951,7 +2951,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../scripts/run_swiftgen_per_target.sh;
+			shellScript = "../scripts/run_swiftgen_per_target.sh\n";
 			showEnvVarsInLog = 0;
 		};
 		0A334DCC209C6F9F00ABC6AE /* Lint */ = {

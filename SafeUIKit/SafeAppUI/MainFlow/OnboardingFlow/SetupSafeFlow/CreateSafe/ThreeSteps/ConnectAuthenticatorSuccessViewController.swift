@@ -11,7 +11,7 @@ class ConnectAuthenticatorSuccessViewController: HeaderImageTextStepController {
             title: LocalizedString("pair_2FA_device", comment: "Pair 2FA device"),
             threeStepsState: .pair2FA_paired,
             header: LocalizedString("safe_authenticator_paired", comment: "Authenticator successfully paired"),
-            image: Asset.CreateSafe.connectBrowserExtension.image,
+            image: Asset.connectBrowserExtension.image,
             text: LocalizedString("authenticator_paired_description", comment: "Authenticator paired description"),
             trackingEvent: CreateSafeTrackingEvent.connectAuthenticatorSuccess,
             onNext: onNext)

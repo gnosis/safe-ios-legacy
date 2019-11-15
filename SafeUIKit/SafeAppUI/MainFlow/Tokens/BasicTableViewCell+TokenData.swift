@@ -16,11 +16,11 @@ extension BasicTableViewCell {
         accessibilityIdentifier = tokenData.name
         self.accessoryType = accessoryType
         if tokenData.code == "ETH" {
-            leftImageView.image = Asset.TokenIcons.eth.image
+            leftImageView.image = Asset.eth.image
         } else if let url = tokenData.logoURL {
-            leftImageView.kf.setImage(with: url, placeholder: Asset.TokenIcons.defaultToken.image)
+            leftImageView.kf.setImage(with: url, placeholder: Asset.defaultToken.image)
         } else {
-            leftImageView.image = Asset.TokenIcons.defaultToken.image
+            leftImageView.image = Asset.defaultToken.image
         }
         if displayFullName {
             splitLeftTextLabel(title: tokenData.code, subtitle: tokenData.name)

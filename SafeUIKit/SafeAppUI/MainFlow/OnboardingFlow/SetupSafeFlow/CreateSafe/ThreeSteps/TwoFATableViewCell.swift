@@ -76,12 +76,12 @@ class TwoFATableViewCell: UITableViewCell {
     private func update() {
         switch option {
         case .gnosisAuthenticator:
-            twoFAImageView.image = Asset.Select2fa.authenticatorSmall.image
+            twoFAImageView.image = Asset.authenticatorSmall.image
             titleLabel.text = Strings.gnosisAuthenticator
             descriptionLabel.text = Strings.gnosisAuthenticatorDescription
             disabledReasonLabel.text = nil
         case .statusKeycard:
-            twoFAImageView.image = Asset.Select2fa.statusKeycard.image
+            twoFAImageView.image = Asset.statusKeycard.image
             titleLabel.text = Strings.statusKeycard
             descriptionLabel.text = Strings.statusKeycardDescription
             disabledReasonLabel.text = Strings.requiresNFCSupport

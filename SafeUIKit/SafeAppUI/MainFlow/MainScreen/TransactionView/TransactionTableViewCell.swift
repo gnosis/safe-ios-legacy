@@ -53,7 +53,7 @@ class TransactionTableViewCell: UITableViewCell {
     func configure(transaction: TransactionData) {
         (_, identiconView.seed) = recipient(transaction)
         if transaction.status == .failed {
-            identiconView.imageView.image = Asset.TransactionOverviewIcons.error.image
+            identiconView.imageView.image = Asset.error.image
         }
 
         addressLabel.showsBothNameAndAddress = false
@@ -166,12 +166,12 @@ class TransactionTableViewCell: UITableViewCell {
 
     private func typeImage(_ transaction: TransactionData) -> UIImage {
         switch transaction.type {
-        case .outgoing: return Asset.TransactionOverviewIcons.iconOutgoing.image
-        case .incoming: return Asset.TransactionOverviewIcons.iconIncoming.image
+        case .outgoing: return Asset.iconOutgoing.image
+        case .incoming: return Asset.iconIncoming.image
         case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
              .disconnectStatusKeycard:
-            return Asset.TransactionOverviewIcons.iconSettings.image
+            return Asset.iconSettings.image
         }
     }
 

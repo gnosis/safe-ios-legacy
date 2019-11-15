@@ -22,7 +22,7 @@ class PairWith2FAController: HeaderImageTextStepController {
         threeStepsView.state = .pair2FA_initial
         headerImageTextView.titleLabel.text = LocalizedString("pair_safe_with_two_fa",
                                                               comment: "Pair the Safe with a 2FA device")
-        headerImageTextView.imageView.image = Asset.CreateSafe.setup2FA.image
+        headerImageTextView.imageView.image = Asset.setup2FA.image
         headerImageTextView.textLabel.text = LocalizedString("pair_safe_with_two_fa_description",
                                                              comment: "Pair with 2FA description")
         trackingEvent = CreateSafeTrackingEvent.setup2FA

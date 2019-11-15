@@ -153,12 +153,12 @@ public class TextInput: UITextField {
         clearButton.accessibilityIdentifier = "Clear text"
         clearButton.frame = TextInput.smallAccessoryRect
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
-        clearButton.setImage(Asset.TextInputs.clearIcon.image, for: .normal)
+        clearButton.setImage(Asset.clearIcon.image, for: .normal)
     }
 
     private func setupCustomSuccessImage() {
         successImageView.frame = TextInput.smallAccessoryRect
-        successImageView.image = Asset.TextInputs.successIcon.image
+        successImageView.image = Asset.successIcon.image
         successImageView.contentMode = .scaleAspectFit
     }
 
