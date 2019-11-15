@@ -53,6 +53,8 @@ class MultisigWalletConfigurator {
                            for: SafeContractMetadataRepository.self)
         DomainRegistry.put(service: UserDefaultsAppSettingsRepository(), for: AppSettingsRepository.self)
         DomainRegistry.put(service: WalletDiagnosticDomainService(), for: WalletDiagnosticService.self)
+        DomainRegistry.put(service: ENSAPIService(registryAddress: Address(config.ensRegistryContractAddress)),
+                           for: ENSDomainService.self)
 
         if #available(iOS 13.1, *) {
             DomainRegistry.put(service: KeycardHardwareService(), for: KeycardDomainService.self)

@@ -101,6 +101,10 @@ public class EthereumContractProxy {
         return decodeUInt(value) == 0 ? false : true
     }
 
+    func encodeFixedBytes(_ value: Data) -> Data {
+        return value.rightPadded(to: 32).prefix(32)
+    }
+
     func encodeBytes(_ value: Data) -> Data {
         let byteLength = value.count % 32 == 0 ? value.count :
             (value.count + 32 - value.count % 32)

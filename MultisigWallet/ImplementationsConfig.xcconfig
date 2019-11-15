@@ -3,4 +3,4 @@
 //
 
 #include "CommonConfig.xcconfig"
-OTHER_LDFLAGS = $(inherited) -framework "MultisigWalletDomainModel" -framework "MultisigWalletApplication" -lsqlite3 -framework "CommonImplementations" -lcrypto -framework "Keycard" -framework "secp256k1"
+OTHER_LDFLAGS = $(inherited) -framework "MultisigWalletDomainModel" -framework "MultisigWalletApplication" -lsqlite3 -framework "CommonImplementations" -lcrypto -framework "Keycard" -framework "secp256k1" -lunistring -lidn2

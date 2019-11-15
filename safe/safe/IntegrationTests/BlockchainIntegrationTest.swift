@@ -14,10 +14,11 @@ class BlockchainIntegrationTest: XCTestCase {
 
     var infuraService: InfuraEthereumNodeService!
     var encryptionService: EncryptionService!
+    var config: AppConfig!
 
     override func setUp() {
         super.setUp()
-        let config = try! AppConfig.loadFromBundle()!
+        config = try! AppConfig.loadFromBundle()!
         infuraService = InfuraEthereumNodeService(url: config.nodeServiceConfig.url,
                                                   chainId: config.nodeServiceConfig.chainId)
         encryptionService = EncryptionService(chainId: EIP155ChainId(rawValue: config.encryptionServiceChainId)!)

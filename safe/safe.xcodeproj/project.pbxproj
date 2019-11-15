@@ -80,6 +80,7 @@
 		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; };
 		0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */; };
+		0AC8A542237C577600518C65 /* ENSAPIServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC8A541237C577600518C65 /* ENSAPIServiceIntegrationTests.swift */; };
 		0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */; };
@@ -472,6 +473,7 @@
 		0AC17576207B719A0016320A /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC17578207B719A0016320A /* libIdentityAccessPortAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainIntegrationTest.swift; sourceTree = "<group>"; };
+		0AC8A541237C577600518C65 /* ENSAPIServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENSAPIServiceIntegrationTests.swift; sourceTree = "<group>"; };
 		0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationArguments.swift; sourceTree = "<group>"; };
 		0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenUITests.swift; sourceTree = "<group>"; };
 		0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordScreenUITests.swift; sourceTree = "<group>"; };
@@ -874,6 +876,7 @@
 				0A364B4122688891002E80B7 /* Safe.swift */,
 				0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */,
 				55FB25C0212582EC00E81666 /* HTTPTokenListServiceTests.swift */,
+				0AC8A541237C577600518C65 /* ENSAPIServiceIntegrationTests.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -1476,6 +1479,7 @@
 				0A5F4085237477C900E5ECBE /* M0009_MigrateSafesNamesToAddressBookTests.swift in Sources */,
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */,
+				0AC8A542237C577600518C65 /* ENSAPIServiceIntegrationTests.swift in Sources */,
 				0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */,
 				55FB25C1212582EC00E81666 /* HTTPTokenListServiceTests.swift in Sources */,
 				0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
