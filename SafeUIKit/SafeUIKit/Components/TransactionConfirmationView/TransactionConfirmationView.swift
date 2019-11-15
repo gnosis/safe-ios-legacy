@@ -90,13 +90,13 @@ public class TransactionConfirmationView: BaseCustomView {
             enum Confirmed {
                 static let title = LocalizedString("confirmed_keycard", comment: "Confirmed with Keycard")
                 static let submit = LocalizedString("submit_transaction", comment: "Submit Transaction")
-                static let image = Asset.confirmed.image
+                static let image = Asset.keycardConfirmed.image
             }
 
             enum Rejected {
                 static let title = LocalizedString("rejected_keycard", comment: "Rejected by Keycard")
                 static let retry = LocalizedString("retry", comment: "Retry")
-                static let image = Asset.rejected.image
+                static let image = Asset.keycardRejected.image
             }
 
         }
