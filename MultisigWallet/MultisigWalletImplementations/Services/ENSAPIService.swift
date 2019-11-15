@@ -6,11 +6,26 @@ import Foundation
 import MultisigWalletDomainModel
 import EthereumKit
 
-public enum ENSAPIServiceError: Error {
+public enum ENSAPIServiceError: LocalizedError {
     case resolverNotFound
     case addressResolutionNotSupported
     case addressNotFound
     case resolvedNameNotMatchingOriginalAddress
+
+    public var errorDescription: String? {
+        switch self {
+        case .resolverNotFound:
+            return LocalizedString("resolver_not_found", comment: "No resolver set for the record")
+        case .addressResolutionNotSupported:
+            return LocalizedString("resolution_not_supported", comment: "Resolution not supported")
+        case .addressNotFound:
+            return LocalizedString("address_not_found", comment: "Address not found in the resolver")
+        case .resolvedNameNotMatchingOriginalAddress:
+            return LocalizedString("unauthentic_reverse_name",
+                                   comment: "Resolved to the name which is not resolving to the address")
+        }
+    }
+
 }
 
 public final class ENSAPIService: ENSDomainService {

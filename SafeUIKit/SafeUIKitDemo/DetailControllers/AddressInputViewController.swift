@@ -42,5 +42,6 @@ extension AddressInputViewController: AddressInputDelegate {
     }
 
     func didRequestAddressBook() {}
+    func didRequestENSName() {}
     
 }

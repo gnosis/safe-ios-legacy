@@ -180,6 +180,11 @@ open class VerifiableInput: UIView {
     }
 
     private func removeRule(_ rule: RuleLabel) {
+        // remove spacing view
+        if let ruleIndex = stackView.arrangedSubviews.firstIndex(of: rule),
+            ruleIndex > 0 && !(stackView.arrangedSubviews[ruleIndex - 1] is RuleLabel) {
+            stackView.arrangedSubviews[ruleIndex - 1].removeFromSuperview()
+        }
         rule.removeFromSuperview()
     }
 

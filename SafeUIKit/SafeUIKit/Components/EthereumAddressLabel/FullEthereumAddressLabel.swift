@@ -15,9 +15,9 @@ public class FullEthereumAddressLabel: EthereumAddressLabel {
         set { tooltipSource.isActive = newValue }
     }
 
-    private let defaultBodyAttributes: [NSAttributedString.Key: Any] =
+    private var defaultBodyAttributes: [NSAttributedString.Key: Any] =
         [.foregroundColor: ColorName.mediumGrey.color]
-    private let selectedBodyAttributes: [NSAttributedString.Key: Any] =
+    private var selectedBodyAttributes: [NSAttributedString.Key: Any] =
         [.foregroundColor: ColorName.mediumGrey.color,
          .backgroundColor: ColorName.systemBlue20.color]
 
@@ -48,6 +48,12 @@ public class FullEthereumAddressLabel: EthereumAddressLabel {
     public override func update() {
         attributedText = formattedText()
         tooltipSource.message = Strings.copiedMessage
+    }
+
+    public func makeBold() {
+        defaultBodyAttributes[.font] = UIFont.systemFont(ofSize: 17, weight: .medium)
+        selectedBodyAttributes[.font] = defaultBodyAttributes[.font]
+        attributedText = formattedText()
     }
 
     private func formattedText() -> NSAttributedString? {

@@ -223,6 +223,11 @@ extension SendInputViewController: AddressInputDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    public func didRequestENSName() {
+        let vc = ENSInputViewController.create(delegate: self)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
 }
 
 extension SendInputViewController: VerifiableInputDelegate {
@@ -261,6 +266,16 @@ extension SendInputViewController: AddressBookViewControllerDelegate {
 
     func addressBookViewControllerCreateNewEntry(controller: AddressBookViewController) {
         // no-op
+    }
+
+}
+
+extension SendInputViewController: ENSInputViewControllerDelegate {
+
+    func ensInputViewControllerDidConfirm(_ controller: ENSInputViewController, address: String) {
+        navigationController?.popViewController(animated: true)
+        addressInput.text = address
+        model.change(recipient: address)
     }
 
 }

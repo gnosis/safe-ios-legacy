@@ -17,6 +17,7 @@ enum MainTrackingEvent: String, ScreenTrackingEvent {
     case addressBookViewEntry = "AddressBook_ViewEntry"
     case addressBookEditEntry = "AddressBook_EditEntry"
     case addressBookNewEntry  = "AddressBook_NewEntry"
+    case enterENSName = "EnterENSName"
 
 }
 

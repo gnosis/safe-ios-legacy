@@ -62,5 +62,36 @@ extension NSError {
                   code: Int(idn2Code),
                   userInfo: [NSLocalizedDescriptionKey: errorMessage])
     }
-
 }
+
+//// argument errors
+//* @IDN2_PUNYCODE_BAD_INPUT: Punycode invalid input.
+//* @IDN2_TOO_BIG_DOMAIN: Domain name longer than 255 characters.
+//* @IDN2_TOO_BIG_LABEL: Domain label longer than 63 characters.
+//* @IDN2_INVALID_ALABEL: Input A-label is not valid.
+//* @IDN2_UALABEL_MISMATCH: Input A-label and U-label does not match.
+//* @IDN2_NOT_NFC: String is not NFC.
+//* @IDN2_2HYPHEN: String has forbidden two hyphens.
+//* @IDN2_HYPHEN_STARTEND: String has forbidden starting/ending hyphen.
+//* @IDN2_LEADING_COMBINING: String has forbidden leading combining character.
+//* @IDN2_DISALLOWED: String has disallowed character.
+//* @IDN2_CONTEXTJ: String has forbidden context-j character.
+//* @IDN2_CONTEXTJ_NO_RULE: String has context-j character with no rule.
+//* @IDN2_CONTEXTO: String has forbidden context-o character.
+//* @IDN2_CONTEXTO_NO_RULE: String has context-o character with no rule.
+//* @IDN2_UNASSIGNED: String has forbidden unassigned character.
+//* @IDN2_BIDI: String has forbidden bi-directional properties.
+//* @IDN2_DOT_IN_LABEL: Label has forbidden dot (TR46).
+//* @IDN2_INVALID_TRANSITIONAL: Label has character forbidden in transitional mode (TR46).
+//* @IDN2_INVALID_NONTRANSITIONAL: Label has character forbidden in non-transitional mode (TR46).
+//* @IDN2_ALABEL_ROUNDTRIP_FAILED: ALabel -> Ulabel -> ALabel result differs from input.
+//
+//// internal errors:
+//* @IDN2_MALLOC: Memory allocation error.
+//* @IDN2_NO_CODESET: Could not determine locale string encoding format.
+//* @IDN2_ICONV_FAIL: Could not transcode locale string to UTF-8.
+//* @IDN2_ENCODING_ERROR: Unicode data encoding error.
+//* @IDN2_PUNYCODE_BIG_OUTPUT: Punycode output buffer too small.
+//* @IDN2_PUNYCODE_OVERFLOW: Punycode conversion would overflow.
+//* @IDN2_INVALID_FLAGS: Invalid combination of flags.
+//* @IDN2_NFC: Error normalizing string.

@@ -48,6 +48,7 @@ enum Asset {
   static let chevron = ImageAsset(name: "Chevron")
   static let addTokenGetInTouch = ImageAsset(name: "add-token-get-in-touch")
   static let add = ImageAsset(name: "add")
+  static let checkGreen = ImageAsset(name: "checkGreen")
   static let checkmark = ImageAsset(name: "checkmark")
   static let congratulations = ImageAsset(name: "congratulations")
   enum ContractUpgrade {
@@ -192,6 +193,7 @@ enum Asset {
     chevron,
     addTokenGetInTouch,
     add,
+    checkGreen,
     checkmark,
     congratulations,
     ContractUpgrade.contractUpgrade,
