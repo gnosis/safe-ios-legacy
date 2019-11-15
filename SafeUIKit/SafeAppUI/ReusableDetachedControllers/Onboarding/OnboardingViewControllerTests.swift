@@ -41,7 +41,7 @@ class OnboardingViewControllerTests: XCTestCase {
         let (nav, vc) = createEmptyControllerInNavigationStack()
         vc.viewWillAppear(false)
         vc.viewWillDisappear(false)
-        XCTAssertEqual(nav.navigationBar.shadowImage?.pngData(), Asset.image.pngData())
+        XCTAssertEqual(nav.navigationBar.shadowImage?.pngData(), Asset.shadow.image.pngData())
     }
 
     func test_transitionToNextPage() {
