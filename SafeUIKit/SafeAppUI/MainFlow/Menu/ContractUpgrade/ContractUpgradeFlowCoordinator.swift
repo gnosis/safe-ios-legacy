@@ -90,7 +90,7 @@ fileprivate extension SuccessViewController {
 
     static func contractUpgrade(action: @escaping () -> Void) -> SuccessViewController {
         return .congratulations(text: LocalizedString("contract_upgrade_in_progress", comment: "Explanation text"),
-                                image: Asset.ContractUpgrade.contractUpgrade.image,
+                                image: Asset.contractUpgrade.image,
                                 tracking: ContractUpgradeTrackingEvent.success,
                                 action: action)
     }
@@ -102,7 +102,7 @@ fileprivate extension IntroContentView.Content {
     static let contractUpgrade =
         IntroContentView.Content(body: String(format: LocalizedString("this_will_upgrade", comment: "Contract Upgrade"),
                                               "Safe"),
-                                 icon: Asset.ContractUpgrade.contractUpgrade.image)
+                                 icon: Asset.contractUpgrade.image)
 }
 
 fileprivate extension OnboardingViewController {
@@ -118,7 +118,7 @@ fileprivate extension OnboardingViewController {
             let blog = LocalizedString("ios_blog", comment: "blog.")
             let textRange = infoText.mutableString.range(of: blog)
             infoText.addAttribute(.foregroundColor, value: ColorName.hold.color, range: textRange)
-            steps.append(.init(image: Asset.ContractUpgrade.upgrade1.image,
+            steps.append(.init(image: Asset.upgrade1.image,
                                title: LocalizedString("what_is_this_about", comment: "Onboarding 1 title"),
                                description: LocalizedString("we_performed_formal_verification",
                                                             comment: "Onboarding 1 description"),
@@ -128,13 +128,13 @@ fileprivate extension OnboardingViewController {
                                trackingEvent: ContractUpgradeTrackingEvent._1_0_0_onboarding1,
                                action: next))
         }
-        steps.append(.init(image: Asset.ContractUpgrade.upgrade2.image,
+        steps.append(.init(image: Asset.upgrade2.image,
                            title: LocalizedString("why_upgrade", comment: "Onboarding 2 title"),
                            description: LocalizedString("current_version", comment: "Onboarding 2 description"),
                            actionTitle: nextActionTitle,
                            trackingEvent: ContractUpgradeTrackingEvent.onboarding2,
                            action: next))
-        steps.append(.init(image: Asset.ContractUpgrade.upgrade3.image,
+        steps.append(.init(image: Asset.upgrade3.image,
                            title: LocalizedString("lets_get_started", comment: "Onboarding 3 title"),
                            description: LocalizedString("need_confirm_upgrade", comment: "Onboarding 3 description"),
                            actionTitle: LocalizedString("get_started", comment: "Start button title"),

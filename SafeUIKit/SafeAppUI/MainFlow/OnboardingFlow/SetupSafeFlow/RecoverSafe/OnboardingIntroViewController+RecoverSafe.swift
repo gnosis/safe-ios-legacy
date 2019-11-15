@@ -18,7 +18,7 @@ public extension OnboardingIntroViewController {
             let controller = OnboardingIntroViewController.create(delegate: delegate)
             controller.titleText = Strings.title
             controller.headerText = Strings.header
-            controller.headerImage = Asset.Onboarding.safeInprogress.image
+            controller.headerImage = Asset.safeInprogress.image
             controller.bodyText = Strings.body
             controller.nextActionText = Strings.start
             return controller

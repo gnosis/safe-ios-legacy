@@ -91,7 +91,7 @@ class UnlockViewControllerTests: SafeTestCase {
         authenticationService.enableFaceIDSupport()
         vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
-        XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.UnlockScreen.faceIdIcon.image)
+        XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.faceIdIcon.image)
     }
 
     func test_whenAccountIsBlocked_thenShowsCountdown() throws {

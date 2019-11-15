@@ -38,7 +38,7 @@ class RecoverFeePaidViewController: FeePaidViewController {
         super.viewDidLoad()
         setHeader(Strings.header)
         setBody(Strings.body)
-        setImage(Asset.Onboarding.safeInprogress.image)
+        setImage(Asset.safeInprogress.image)
         button.isEnabled = false
 
         retryItem = UIBarButtonItem.refreshButton(target: self, action: #selector(retry))

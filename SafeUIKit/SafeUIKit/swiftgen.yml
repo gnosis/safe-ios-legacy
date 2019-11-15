@@ -1,11 +1,13 @@
 # config for SafeUIKit.xcodeproj
 xcassets:
-  paths:
-   - SafeUIKitMedia.xcassets
-  templateName: swift4
-  output: generated/Assets.swift
+  inputs:
+    - SafeUIKitMedia.xcassets
+  outputs:
+    - templateName: swift4
+      output: generated/Assets.swift
 colors:
-  paths:
+  inputs:
     - ../Colors.txt
-  templateName: swift4
-  output: generated/Colors.swift
+  outputs:
+    - templateName: swift4
+      output: generated/Colors.swift

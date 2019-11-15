@@ -51,7 +51,7 @@ public final class UnlockViewController: UIViewController {
         verifiableInput.textInput.placeholder = Strings.passwordPlaceholder
 
         let isFaceID = authenticationService.isAuthenticationMethodSupported(.faceID)
-        let biometryIcon = isFaceID ? Asset.UnlockScreen.faceIdIcon.image : Asset.UnlockScreen.touchIdIcon.image
+        let biometryIcon = isFaceID ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         loginWithBiometryButton.tintColor = ColorName.darkBlue.color
 
