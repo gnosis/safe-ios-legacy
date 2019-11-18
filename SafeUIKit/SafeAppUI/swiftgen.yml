@@ -1,16 +1,19 @@
 # config for SafeUIKit.xcodeproj
 xcassets:
-  paths:
-   - SafeAppUIMedia.xcassets
-  templateName: swift4
-  output: generated/Assets.swift
-storyboards:
-  paths:
+  inputs:
+    - SafeAppUIMedia.xcassets
+  outputs:
+    - templateName: swift4
+      output: generated/Assets.swift
+ib:
+  inputs:
     - .
-  templateName: swift4
-  output: generated/Sotryboards.swift
+  outputs:
+    - templateName: scenes-swift4
+      output: generated/Sotryboards.swift
 colors:
-  paths:
+  inputs:
     - ../Colors.txt
-  templateName: swift4
-  output: generated/Colors.swift
+  outputs:
+    - templateName: swift4
+      output: generated/Colors.swift

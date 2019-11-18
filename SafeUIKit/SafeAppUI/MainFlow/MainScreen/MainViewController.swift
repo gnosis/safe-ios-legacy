@@ -25,7 +25,7 @@ extension AssetViewViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
         return SegmentBarItem(title: LocalizedString("assets", comment: "Assets tab title").uppercased(),
-                              image: Asset.MainScreenHeader.coins.image)
+                              image: Asset.coins.image)
     }
 
 }
@@ -34,7 +34,7 @@ extension TransactionViewViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
         return SegmentBarItem(title: LocalizedString("transactions", comment: "Transactions tab title").uppercased(),
-                              image: Asset.MainScreenHeader.arrows.image)
+                              image: Asset.arrows.image)
     }
 
 }

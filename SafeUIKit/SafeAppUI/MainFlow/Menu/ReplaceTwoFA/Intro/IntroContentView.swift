@@ -25,7 +25,7 @@ public class IntroContentView: NibUIView {
 
     struct Content {
         var body = LocalizedString("once_process_is_complete", comment: "Intro body text")
-        var icon = Asset.ReplaceBrowserExtension.introIcon.image
+        var icon = Asset.introIcon.image
     }
 
     var style = Style()

@@ -37,7 +37,7 @@ extension IntroContentView.Content {
     static let disconnectExtension =
         IntroContentView
             .Content(body: DisconnectTwoFAFlowCoordinator.Strings.disconnectDescription,
-                     icon: Asset.Manage2fa._2FaDisable.image)
+                     icon: Asset._2FaDisable.image)
 
 }
 
@@ -128,7 +128,7 @@ extension SuccessViewController {
 
     static func disconnect2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
         return .congratulations(text: LocalizedString("disconnecting_in_progress", comment: "Explanation text"),
-                                image: Asset.Manage2fa._2FaDisable.image,
+                                image: Asset._2FaDisable.image,
                                 tracking: DisconnectTwoFATrackingEvent.success,
                                 action: action)
     }

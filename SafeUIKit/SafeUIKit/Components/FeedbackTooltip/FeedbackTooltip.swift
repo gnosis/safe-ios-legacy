@@ -20,9 +20,9 @@ public final class FeedbackTooltip: BaseCustomView {
     private let buttonSize: CGFloat = 27
     private let labelButtonSpace: CGFloat = 8
 
-    private let arrowUp = Asset.Tooltip.greenTooltipArrow.image
-    private let arrowDown = UIImage(cgImage: Asset.Tooltip.greenTooltipArrow.image.cgImage!,
-                                    scale: Asset.Tooltip.greenTooltipArrow.image.scale,
+    private let arrowUp = Asset.greenTooltipArrow.image
+    private let arrowDown = UIImage(cgImage: Asset.greenTooltipArrow.image.cgImage!,
+                                    scale: Asset.greenTooltipArrow.image.scale,
                                     orientation: .downMirrored)
     private let arrow = UIImageView()
     private let arrowSize = CGSize(width: 16, height: 9)
@@ -43,7 +43,7 @@ public final class FeedbackTooltip: BaseCustomView {
     public weak var delegate: FeedbackTooltipDelegate?
 
     public override func commonInit() {
-        background.image = Asset.Tooltip.whiteTooltipBackground.image
+        background.image = Asset.whiteTooltipBackground.image
         addSubview(background)
 
         label.font = UIFont.systemFont(ofSize: 14)
@@ -53,7 +53,7 @@ public final class FeedbackTooltip: BaseCustomView {
         label.isUserInteractionEnabled = true
         addSubview(label)
 
-        button.setImage(Asset.Tooltip.greenTooltipCross.image, for: .normal)
+        button.setImage(Asset.greenTooltipCross.image, for: .normal)
         button.addTarget(self, action: #selector(dismissTooltip), for: .touchUpInside)
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissTooltip))
@@ -86,7 +86,7 @@ public final class FeedbackTooltip: BaseCustomView {
     public func setGreenStyle(aboveTarget: Bool = true) {
         isShowingAboveTarget = aboveTarget
 
-        background.image = Asset.Tooltip.greenTooltipBackground.image
+        background.image = Asset.greenTooltipBackground.image
 
         label.textColor = ColorName.snowwhite.color
         label.font = UIFont.systemFont(ofSize: 16)

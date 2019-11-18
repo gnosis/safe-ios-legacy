@@ -12,7 +12,7 @@ class SeedSuccessViewController: HeaderImageTextStepController {
             title: LocalizedString("recovery_phrase", comment: "Recovery phrase"),
             threeStepsState: state,
             header: LocalizedString("recovery_phrase_backed_up", comment: "Recovery phrase backed up"),
-            image: Asset.CreateSafe.backupPhrase.image,
+            image: Asset.backupPhrase.image,
             text: LocalizedString("you_can_replace_phrase_anytime", comment: "You can replace your phrase"),
             trackingEvent: CreateSafeTrackingEvent.seedIntro,
             onNext: onNext)

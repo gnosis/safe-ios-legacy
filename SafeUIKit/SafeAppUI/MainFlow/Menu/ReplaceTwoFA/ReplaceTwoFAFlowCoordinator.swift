@@ -41,7 +41,7 @@ extension IntroContentView.Content {
     static let replaceTwoFAContent =
         IntroContentView
             .Content(body: ReplaceTwoFAFlowCoordinator.Strings.replaceTwoFADescription,
-                     icon: Asset.Manage2fa._2FaReplace.image)
+                     icon: Asset._2FaReplace.image)
 
 }
 
@@ -190,7 +190,7 @@ extension SuccessViewController {
 
     static func replace2FASuccess(action: @escaping () -> Void) -> SuccessViewController {
         return .congratulations(text: LocalizedString("tx_submitted_replace_be", comment: "Replacing"),
-                                image: Asset.ReplaceBrowserExtension.inProgressIcon.image,
+                                image: Asset.inProgressIcon.image,
                                 tracking: ReplaceTwoFATrackingEvent.success,
                                 action: action)
     }

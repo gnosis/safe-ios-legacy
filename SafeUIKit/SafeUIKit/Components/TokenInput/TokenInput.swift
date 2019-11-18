@@ -33,9 +33,9 @@ public final class TokenInput: VerifiableInput {
     public var imageURL: URL? {
         didSet {
             if usesEthDefaultImage && imageURL == nil {
-                textInput.leftImage = Asset.TokenIcons.eth.image
+                textInput.leftImage = Asset.eth.image
             } else {
-                textInput.leftPlaceholderImage = Asset.TokenIcons.defaultToken.image
+                textInput.leftPlaceholderImage = Asset.defaultToken.image
                 textInput.leftImageURL = imageURL
             }
         }
@@ -77,7 +77,7 @@ public final class TokenInput: VerifiableInput {
 
     private func commonInit() {
         textInput.placeholder = Strings.amount
-        textInput.leftImage = Asset.TokenIcons.defaultToken.image
+        textInput.leftImage = Asset.defaultToken.image
         textInput.keyboardType = .decimalPad
         textInput.delegate = self
         textInput.textInputHeight = textInputHeight
