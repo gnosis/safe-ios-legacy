@@ -50,48 +50,92 @@ final class IDN {
 extension NSError {
 
     convenience init(idn2Code: Int32) {
-        let errorMessage: String
-        if let namePtr = idn2_strerror_name(idn2Code), let messagePtr = idn2_strerror(idn2Code) {
-            let name = String(cString: namePtr)
-            let message = String(cString: messagePtr)
-            errorMessage = "\(name): \(message)"
-        } else {
-            errorMessage = "unknown error code"
-        }
         self.init(domain: "idn2Swift",
                   code: Int(idn2Code),
-                  userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                  userInfo: [NSLocalizedDescriptionKey: NSError.localizedString(from: idn2_rc(idn2Code))])
     }
-}
 
-//// argument errors
-//* @IDN2_PUNYCODE_BAD_INPUT: Punycode invalid input.
-//* @IDN2_TOO_BIG_DOMAIN: Domain name longer than 255 characters.
-//* @IDN2_TOO_BIG_LABEL: Domain label longer than 63 characters.
-//* @IDN2_INVALID_ALABEL: Input A-label is not valid.
-//* @IDN2_UALABEL_MISMATCH: Input A-label and U-label does not match.
-//* @IDN2_NOT_NFC: String is not NFC.
-//* @IDN2_2HYPHEN: String has forbidden two hyphens.
-//* @IDN2_HYPHEN_STARTEND: String has forbidden starting/ending hyphen.
-//* @IDN2_LEADING_COMBINING: String has forbidden leading combining character.
-//* @IDN2_DISALLOWED: String has disallowed character.
-//* @IDN2_CONTEXTJ: String has forbidden context-j character.
-//* @IDN2_CONTEXTJ_NO_RULE: String has context-j character with no rule.
-//* @IDN2_CONTEXTO: String has forbidden context-o character.
-//* @IDN2_CONTEXTO_NO_RULE: String has context-o character with no rule.
-//* @IDN2_UNASSIGNED: String has forbidden unassigned character.
-//* @IDN2_BIDI: String has forbidden bi-directional properties.
-//* @IDN2_DOT_IN_LABEL: Label has forbidden dot (TR46).
-//* @IDN2_INVALID_TRANSITIONAL: Label has character forbidden in transitional mode (TR46).
-//* @IDN2_INVALID_NONTRANSITIONAL: Label has character forbidden in non-transitional mode (TR46).
-//* @IDN2_ALABEL_ROUNDTRIP_FAILED: ALabel -> Ulabel -> ALabel result differs from input.
-//
-//// internal errors:
-//* @IDN2_MALLOC: Memory allocation error.
-//* @IDN2_NO_CODESET: Could not determine locale string encoding format.
-//* @IDN2_ICONV_FAIL: Could not transcode locale string to UTF-8.
-//* @IDN2_ENCODING_ERROR: Unicode data encoding error.
-//* @IDN2_PUNYCODE_BIG_OUTPUT: Punycode output buffer too small.
-//* @IDN2_PUNYCODE_OVERFLOW: Punycode conversion would overflow.
-//* @IDN2_INVALID_FLAGS: Invalid combination of flags.
-//* @IDN2_NFC: Error normalizing string.
+    // this is based on the libidn2 documentation.
+    static func localizedString(from idn2Code: idn2_rc) -> String {
+        switch idn2Code {
+        case IDN2_OK:
+            assertionFailure("OK is not an error")
+            fallthrough
+        case IDN2_MALLOC,
+             IDN2_NO_CODESET,
+             IDN2_ICONV_FAIL,
+             IDN2_ENCODING_ERROR,
+             IDN2_NFC,
+             IDN2_PUNYCODE_BIG_OUTPUT,
+             IDN2_PUNYCODE_OVERFLOW,
+             IDN2_INVALID_FLAGS:
+            let format = LocalizedString("ios_idn_error_internal_format", comment: "Internal error %s")
+            return String(format: format, Int(idn2Code.rawValue))
+
+        case IDN2_PUNYCODE_BAD_INPUT:
+            return LocalizedString("ios_error_idn_invalid_punycode", comment: "Punycode")
+
+        case IDN2_TOO_BIG_DOMAIN:
+            return LocalizedString("ios_error_idn_domain_too_big", comment: "Domain too big")
+
+        case IDN2_TOO_BIG_LABEL:
+            return LocalizedString("ios_error_idn_label_too_big", comment: "Label too big")
+
+        case IDN2_INVALID_ALABEL:
+            return LocalizedString("ios_error_idn_invalid_alabel", comment: "Invalid a-label")
+
+        case IDN2_UALABEL_MISMATCH:
+            return LocalizedString("ios_error_idn_ualabel_mismatch", comment: "Label mismatch")
+
+        case IDN2_NOT_NFC:
+            return LocalizedString("ios_error_idn_not_nfc", comment: "Invalid normalization")
+
+        case IDN2_2HYPHEN:
+            return LocalizedString("ios_error_idn_2hyphen", comment: "Forbidden two hyphens")
+
+        case IDN2_HYPHEN_STARTEND:
+            return LocalizedString("ios_error_idn_hyphen_startend", comment: "Forbidden hyphen at start or end")
+
+        case IDN2_LEADING_COMBINING:
+            return LocalizedString("ios_error_idn_leading_combining", comment: "Forbidden symbol")
+
+        case IDN2_DISALLOWED:
+            return LocalizedString("ios_error_idn_disallowed", comment: "Disallowed symbol")
+
+        case IDN2_CONTEXTJ:
+            return LocalizedString("ios_error_idn_contextj", comment: "Forbidden context-j symbol")
+
+        case IDN2_CONTEXTJ_NO_RULE:
+            return LocalizedString("ios_error_idn_contextj_no_rule", comment: "Forbidden context-j without rule")
+
+        case IDN2_CONTEXTO:
+            return LocalizedString("ios_error_idn_contexto", comment: "Forbiden context-o symbol")
+
+        case IDN2_CONTEXTO_NO_RULE:
+            return LocalizedString("ios_error_idn_contexto_no_rule", comment: "Forbidden context-o without rule")
+
+        case IDN2_UNASSIGNED:
+            return LocalizedString("ios_error_idn_unassigned", comment: "Forbidden unassigned symbol")
+
+        case IDN2_BIDI:
+            return LocalizedString("ios_error_idn_bidi", comment: "Forbidden bi-directional symbol")
+
+        case IDN2_DOT_IN_LABEL:
+            return LocalizedString("ios_error_idn_dot_in_label", comment: "Forbidden type of dot symbol")
+
+        case IDN2_INVALID_TRANSITIONAL:
+            return LocalizedString("ios_error_idn_invalid_transitional", comment: "Invalid transitional symbols")
+
+        case IDN2_INVALID_NONTRANSITIONAL:
+            return LocalizedString("ios_error_idn_invalid_nontransitional", comment: "Invalid non-transitional symbol")
+
+        case IDN2_ALABEL_ROUNDTRIP_FAILED:
+            return LocalizedString("ios_error_idn_alabel_roundtrip_failed", comment: "A-U label roundtrip failed")
+
+        default:
+            let format = LocalizedString("ios_idn_error_internal_format", comment: "Internal error %s")
+            return String(format: format, Int(idn2Code.rawValue))
+        }
+    }
+
+}
