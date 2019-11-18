@@ -303,6 +303,7 @@
 		0ACD3F00232BE890000E9274 /* KeycardFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3EFF232BE890000E9274 /* KeycardFacade.swift */; };
 		0ACD3F02232BE8B2000E9274 /* KeycardInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3F01232BE8B2000E9274 /* KeycardInitializer.swift */; };
 		0ACD3F05232BEB8C000E9274 /* KeycardInitializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3F04232BEB8C000E9274 /* KeycardInitializerTests.swift */; };
+		0AF50D9D2382DF1D006307AB /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF50D982382DF1D006307AB /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55158EFC232004FE00CE70B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A364B2522676C7E002E80B7 /* Localizable.strings */; };
 		55158F3323200C5900CE70B8 /* MockSafeContractMetadataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55158F2E23200C5900CE70B8 /* MockSafeContractMetadataRepository.swift */; };
 		552D42EB233A107D00C57B5C /* WalletApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42E6233A107D00C57B5C /* WalletApplicationServiceTests.swift */; };
@@ -778,6 +779,7 @@
 		0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecoveryApplicationService.swift; sourceTree = "<group>"; };
 		0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0AEF8AF620A08F7D006A1265 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
+		0AF50D982382DF1D006307AB /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		55158F2E23200C5900CE70B8 /* MockSafeContractMetadataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSafeContractMetadataRepository.swift; sourceTree = "<group>"; };
 		552D42E6233A107D00C57B5C /* WalletApplicationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceTests.swift; sourceTree = "<group>"; };
 		552D42E7233A107D00C57B5C /* SendTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTransactionTests.swift; sourceTree = "<group>"; };
@@ -849,6 +851,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF50D9D2382DF1D006307AB /* CoreNFC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1464,6 +1467,7 @@
 		0AEF8ADF20A08A61006A1265 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AF50D982382DF1D006307AB /* CoreNFC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

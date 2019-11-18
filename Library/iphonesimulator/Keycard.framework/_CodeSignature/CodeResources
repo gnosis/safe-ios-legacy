@@ -4,13 +4,21 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>.DS_Store</key>
+		<data>
+		IwjO0iT17U54LtQWzASVNVGlNo8=
+		</data>
 		<key>Headers/Keycard-Swift.h</key>
 		<data>
 		3V5bUMzjfZCpn1YPFbwHkW63Xz0=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		uImLnZT/mexOn68bnIAYDy+hjZQ=
+		7Y5qw09FnsQQ28JbKNPIpCEkVrs=
+		</data>
+		<key>Modules/.DS_Store</key>
+		<data>
+		5uL68GJ3Xay0YyOGK2Y1mqmA8OA=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -18,7 +26,7 @@
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		kZvBV9wvqmk2Upr5DhmufU2ud30=
+		HtQRrxolQE9Wa0XBdVuhZLVTicM=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -26,7 +34,7 @@
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		kZvBV9wvqmk2Upr5DhmufU2ud30=
+		HtQRrxolQE9Wa0XBdVuhZLVTicM=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -49,7 +57,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9HZ/h0OpfC1K6E7gJhJqS315ZVI4kflMopJiITHZG7g=
+			MaIREI2eAa1ZrGiLQiOTdhyCbfyZaw8IXsdxZSuF9/M=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftdoc</key>
@@ -63,7 +71,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9HZ/h0OpfC1K6E7gJhJqS315ZVI4kflMopJiITHZG7g=
+			MaIREI2eAa1ZrGiLQiOTdhyCbfyZaw8IXsdxZSuF9/M=
 			</data>
 		</dict>
 	</dict>

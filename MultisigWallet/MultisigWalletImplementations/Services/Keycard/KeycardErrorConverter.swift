@@ -3,9 +3,12 @@
 //
 
 import Foundation
-import CoreNFC
 import MultisigWalletApplication
 import Keycard
+
+#if canImport(CoreNFC)
+import CoreNFC
+#endif
 
 // General
 //

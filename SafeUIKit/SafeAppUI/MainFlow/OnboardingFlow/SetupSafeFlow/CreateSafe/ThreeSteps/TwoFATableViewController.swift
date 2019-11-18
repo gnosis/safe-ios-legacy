@@ -4,7 +4,7 @@
 
 import UIKit
 import SafeUIKit
-import CoreNFC
+import MultisigWalletApplication
 
 protocol TwoFATableViewControllerDelegate: class {
     func didSelectTwoFAOption(_ option: TwoFAOption)
@@ -36,7 +36,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
 
         title = Strings.pick2FA
-        selectedOption = NFCNDEFReaderSession.readingAvailable ? 0 : 1
+        selectedOption = ApplicationServiceRegistry.keycardService.isAvailable ? 0 : 1
 
         let tableView = UITableView()
         tableView.dataSource = self
@@ -100,7 +100,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
         case .gnosisAuthenticator:
             break
         case .statusKeycard:
-            guard NFCNDEFReaderSession.readingAvailable else {
+            guard ApplicationServiceRegistry.keycardService.isAvailable else {
                 return .inactive
             }
         }

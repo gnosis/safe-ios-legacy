@@ -5,7 +5,6 @@
 import Foundation
 import MultisigWalletDomainModel
 import MultisigWalletApplication
-import CoreNFC
 import Keycard
 
 typealias KeycardDomainServiceError = KeycardApplicationService.Error
