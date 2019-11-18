@@ -15,13 +15,13 @@ public enum ENSAPIServiceError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .resolverNotFound:
-            return LocalizedString("resolver_not_found", comment: "No resolver set for the record")
+            return LocalizedString("ios_error_ens_resolver_not_found", comment: "No resolver set for the record")
         case .addressResolutionNotSupported:
-            return LocalizedString("resolution_not_supported", comment: "Resolution not supported")
+            return LocalizedString("ios_error_ens_not_supported", comment: "Resolution not supported")
         case .addressNotFound:
-            return LocalizedString("address_not_found", comment: "Address not found in the resolver")
+            return LocalizedString("ios_error_ens_address_not_found", comment: "Address not found in the resolver")
         case .resolvedNameNotMatchingOriginalAddress:
-            return LocalizedString("unauthentic_reverse_name",
+            return LocalizedString("ios_error_ens_unauthentic_reverse_name",
                                    comment: "Resolved to the name which is not resolving to the address")
         }
     }

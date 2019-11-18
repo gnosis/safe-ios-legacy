@@ -24,9 +24,9 @@ class ENSInputViewController: UIViewController {
     private var inputReactionTimer: Timer?
 
     enum Strings {
-        static let title = "Enter ENS Name"
-        static let confirm = "Confirm"
-        static let placeholder = "Enter ENS Name"
+        static let title = LocalizedString("enter_ens_name", comment: "Enter ENS Name")
+        static let confirm = LocalizedString("confirm", comment: "Confirm")
+        static let placeholder = LocalizedString("enter_ens_name", comment: "Enter ENS Name")
     }
 
     static func create(delegate: ENSInputViewControllerDelegate) -> ENSInputViewController {
@@ -163,7 +163,7 @@ class ENSAddressView: UIView {
     @IBOutlet weak var addressLabel: FullEthereumAddressLabel!
 
     enum Strings {
-        static let title = "Address Found"
+        static let title = LocalizedString("address_found", comment: "Address found")
     }
 
     override func awakeFromNib() {

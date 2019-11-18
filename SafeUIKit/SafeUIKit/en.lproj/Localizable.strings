@@ -4,6 +4,9 @@
 /* Address Book */
 "address_book" = "Address Book";
 
+/* ENS Name */
+"address_input_ens" = "ENS name";
+
 /* Error to display if address is invalid. */
 "address_invalid" = "Address is invalid";
 
@@ -46,9 +49,6 @@
 
 /* Copied to clipboard */
 "copied_to_clipboard" = "Copied to clipboard";
-
-/* ENS Name */
-"ens_name" = "ens_name";
 
 /* Error */
 "error" = "Error";

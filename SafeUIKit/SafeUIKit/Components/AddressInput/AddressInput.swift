@@ -117,7 +117,7 @@ public final class AddressInput: VerifiableInput {
             static let addressBook = LocalizedString("address_book", comment: "Address Book")
             static let paste = LocalizedString("paste_from_clipboard", comment: "Paste from clipboard alert item.")
             static let scan = LocalizedString("scan_qr_code", comment: "Scan QR code alert item.")
-            static let ens = LocalizedString("ens_name", comment: "ENS Name")
+            static let ens = LocalizedString("address_input_ens", comment: "ENS Name")
             static let cancel = LocalizedString("cancel", comment: "Cancel alert item.")
         }
     }
