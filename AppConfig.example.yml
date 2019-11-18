@@ -11,10 +11,15 @@ default: &default
   transaction_web_url_format: "https://rinkeby.etherscan.io/tx/%@"
   relay_service_url: https://STAGING_RELAY_SERVICE_URL
   notification_service_url: https://STAGING_NOTIFICATION_SERVICE_URL
+  ens_registry_contract_address: "0xe7410170f87102DF0055eB195163A03B7F2Bff4A"
   chrome_extension_url: https://chrome.google.com/webstore/detail/gnosis-safe-rinkeby/onhbkfhncfcgjenedjnbhdjggnnbflbe
+  app_store_review_url: https://itunes.apple.com/app/id1447390375?action=write-review
   terms_of_use_url: https://safe.gnosis.io/terms
   privacy_policy_url: https://safe.gnosis.io/privacy
   licenses_url: https://safe.gnosis.io/licenses#ios
+  telegram_url: https://t.me/GnosisSafe
+  gitter_url: https://gitter.im/gnosis/
+  support_mail: "safe@gnosis.io"
   safe_contract_metadata:
     multi_send_contract_address: "0xe74d6af1670fb6560dd61ee29eb57c7bc027ce4e"
     proxy_factory_address: "0x12302fE9c02ff50939BaAaaf415fc226C078613C"
@@ -65,6 +70,7 @@ Release:
     url: https://mainnet.infura.io/v3/YOUR_INFURA_API_KEY
     chain_id: 0 # mainnet
   wallet_connect_chain_id: 1
+  ens_registry_contract_address: "0x314159265dD8dbb310642f98f50C066173C1259b"
   transaction_web_url_format: "https://etherscan.io/tx/%@"
   relay_service_url: https://PRODUCTION_RELAY_SERVICE_URL
   notification_service_url: https://PRODUCTION_NOTIFICATION_SERVICE_URL
