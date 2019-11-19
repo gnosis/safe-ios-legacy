@@ -74,15 +74,9 @@ public final class ENSAPIService: ENSDomainService {
             throw ENSAPIServiceError.resolverNotFound
         }
 
-        // check supports name
-        let resolverContract = ENSResolverContractProxy(resolverAddress)
-        let isResolvingSupported = try resolverContract.supportsInterface(ENSResolverContractProxy.Selectors.name)
-        guard isResolvingSupported else {
-            throw ENSAPIServiceError.addressResolutionNotSupported
-        }
-
+        let reverseResolverContract = ENSReverseResolverContractProxy(resolverAddress)
         // resolve the name
-        guard let resolvedASCIIName = try resolverContract.name(node: node) else {
+        guard let resolvedASCIIName = try reverseResolverContract.name(node: node) else {
             return nil
         }
         let resolvedName = try IDN.asciiToUTF8(resolvedASCIIName)

@@ -37,3 +37,11 @@ public class ENSResolverContractProxy: EthereumContractProxy {
     }
 
 }
+
+public class ENSReverseResolverContractProxy: EthereumContractProxy {
+
+    public func name(node: Data) throws -> String? {
+        return try decodeString(invoke("name(bytes32)", encodeFixedBytes(node)))
+    }
+
+}

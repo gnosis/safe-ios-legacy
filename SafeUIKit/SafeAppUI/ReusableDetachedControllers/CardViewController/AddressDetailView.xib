@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +15,7 @@
                 <outlet property="contentStackView" destination="RVH-jg-2qj" id="XvT-W6-sxG"/>
                 <outlet property="footnoteLabel" destination="AX0-gz-hkj" id="b8u-mz-TtD"/>
                 <outlet property="identiconView" destination="dic-6K-GoA" id="S8X-KG-B6d"/>
+                <outlet property="nameLabel" destination="tj4-cF-Qo9" id="1SQ-Mb-U6g"/>
                 <outlet property="qrCodeView" destination="dPv-au-iTA" id="qXC-QH-9fY"/>
                 <outlet property="shareButton" destination="5Fu-kX-OlZ" id="Bpj-mf-eD2"/>
                 <outlet property="wrapperView" destination="iN0-l3-epB" id="tRB-ks-5PL"/>
@@ -24,8 +26,8 @@
             <rect key="frame" x="0.0" y="0.0" width="311" height="412"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="RVH-jg-2qj">
-                    <rect key="frame" x="0.0" y="0.0" width="311" height="242.5"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="RVH-jg-2qj">
+                    <rect key="frame" x="0.0" y="0.0" width="311" height="283.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wln-qg-ys6">
                             <rect key="frame" x="0.0" y="0.0" width="311" height="44"/>
@@ -54,8 +56,17 @@
                                 </button>
                             </subviews>
                         </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj4-cF-Qo9">
+                            <rect key="frame" x="135.5" y="62" width="40.5" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="jmq-sa-ZtV"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPv-au-iTA" customClass="QRCodeView" customModule="SafeUIKit">
-                            <rect key="frame" x="88" y="66" width="135" height="135"/>
+                            <rect key="frame" x="88" y="111" width="135" height="135"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="135" id="pJi-Q8-fNO"/>
@@ -63,7 +74,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Please only send OWL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AX0-gz-hkj">
-                            <rect key="frame" x="74.5" y="223" width="162" height="19.5"/>
+                            <rect key="frame" x="74.5" y="264" width="162" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

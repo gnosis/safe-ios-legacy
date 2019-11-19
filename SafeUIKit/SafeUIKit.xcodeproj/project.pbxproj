@@ -206,6 +206,7 @@
 		0AB20142229848520071510A /* LongProcessTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB20141229848520071510A /* LongProcessTracker.swift */; };
 		0AB3F13921F73A5200D351C7 /* CollectionUIModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */; };
 		0AB3F13A21F73A5500D351C7 /* CollectionUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */; };
+		0AB63AED2383F36800A142AD /* AddressResolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB63AEC2383F36800A142AD /* AddressResolvingViewController.swift */; };
 		0ABA591821AC07D0009D249F /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591721AC07D0009D249F /* AmountLabel.swift */; };
 		0ABA591A21AC07E8009D249F /* EthereumAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */; };
 		0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591E21AC0856009D249F /* AmountLabelTests.swift */; };
@@ -873,6 +874,7 @@
 		0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModelTests.swift; sourceTree = "<group>"; };
 		0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModel.swift; sourceTree = "<group>"; };
 		0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AB63AEC2383F36800A142AD /* AddressResolvingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResolvingViewController.swift; sourceTree = "<group>"; };
 		0ABA591721AC07D0009D249F /* AmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabel.swift; sourceTree = "<group>"; };
 		0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressLabel.swift; sourceTree = "<group>"; };
 		0ABA591E21AC0856009D249F /* AmountLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabelTests.swift; sourceTree = "<group>"; };
@@ -1844,6 +1846,7 @@
 				0A4DF82520CE701E0095C00D /* MainFlow */,
 				0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */,
 				0A334E69209C8F8500ABC6AE /* ErrorHandlerTests.swift */,
+				0AB63AEC2383F36800A142AD /* AddressResolvingViewController.swift */,
 				0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */,
 				0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */,
 				0A9C0BA02369AFF30042035A /* TooltipControlCenter.swift */,
@@ -3222,6 +3225,7 @@
 				55BDA83F23267A7C005C9E6A /* HeaderImageTextView.swift in Sources */,
 				0A3FB8D4228B1A8E00270573 /* ReplaceRecoveryPhraseFlowCoordinator.swift in Sources */,
 				0A2ACBFD2329482C0054D1D1 /* SKKeycardFlowCoordinator.swift in Sources */,
+				0AB63AED2383F36800A142AD /* AddressResolvingViewController.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0AE0FE68229D674400ABC552 /* UIViewController+Back.swift in Sources */,
 				0AA21E74233CD4AC004A4A62 /* BaseAddSafeCommand.swift in Sources */,
