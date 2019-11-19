@@ -12,7 +12,7 @@ protocol AddressBookEntryViewControllerDelegate: class {
 
 }
 
-class AddressBookEntryViewController: CardViewController {
+class AddressBookEntryViewController: CardViewController, AddressResolvingViewController {
 
     weak var delegate: AddressBookEntryViewControllerDelegate?
     let addressDetailView = AddressDetailView()
@@ -62,6 +62,7 @@ class AddressBookEntryViewController: CardViewController {
             DispatchQueue.main.async {
                 self.nameLabel.attributedText = NSAttributedString(string: self.entry.name, style: HeaderStyle())
                 self.addressDetailView.address = self.entry.address
+                self.reverseResolveAddress(self.entry.address)
             }
         }
     }

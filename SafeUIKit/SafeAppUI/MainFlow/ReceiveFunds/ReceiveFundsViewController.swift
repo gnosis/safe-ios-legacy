@@ -6,7 +6,7 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 
-class ReceiveFundsViewController: CardViewController {
+class ReceiveFundsViewController: CardViewController, AddressResolvingViewController {
 
     let addressDetailView = AddressDetailView()
 
@@ -63,6 +63,11 @@ class ReceiveFundsViewController: CardViewController {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(descriptionLabel)
         return stackView
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reverseResolveAddress(address)
     }
 
     override func viewDidAppear(_ animated: Bool) {

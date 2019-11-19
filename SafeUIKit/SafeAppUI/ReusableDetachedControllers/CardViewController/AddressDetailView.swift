@@ -15,6 +15,9 @@ class AddressDetailView: BaseCustomView {
     @IBOutlet weak var addressLabel: FullEthereumAddressLabel!
     @IBOutlet weak var shareButton: UIButton!
 
+    @IBOutlet weak var nameLabel: UILabel!
+    var nameTooltip: TooltipSource!
+
     @IBOutlet weak var qrCodeView: QRCodeView!
     @IBOutlet weak var footnoteLabel: UILabel!
 
@@ -28,6 +31,20 @@ class AddressDetailView: BaseCustomView {
         }
     }
 
+    var name: String? {
+        didSet {
+            setName(name, attributes: defaultNameAttributes)
+        }
+    }
+
+    private var defaultNameAttributes: [NSAttributedString.Key: Any] =
+        [.foregroundColor: ColorName.darkBlue.color,
+         .font: UIFont.systemFont(ofSize: 16, weight: .medium)]
+    private var selectedNameAttributes: [NSAttributedString.Key: Any] =
+        [.foregroundColor: ColorName.darkBlue.color,
+         .backgroundColor: ColorName.systemBlue20.color,
+         .font: UIFont.systemFont(ofSize: 16, weight: .medium)]
+
     override func commonInit() {
         safeUIKit_loadFromNib(forClass: AddressDetailView.self)
 
@@ -37,6 +54,18 @@ class AddressDetailView: BaseCustomView {
 
         addressLabel.hasCopyAddressTooltip = true
         footnoteLabel.textColor = ColorName.tomato.color
+
+        // swiftlint:disable:next multiline_arguments
+        nameTooltip = TooltipSource(target: nameLabel, onTap: { [weak self] in
+            guard let `self` = self, let name = self.name else { return }
+            UIPasteboard.general.string = name
+        }, onAppear: { [weak self] in
+            self?.formatNameSelected()
+        }, onDisappear: { [weak self] in
+            self?.formatNameNormal()
+        })
+        nameTooltip.message = LocalizedString("copied_to_clipboard", comment: "Copied to clipboard")
+        formatNameNormal()
 
         qrCodeView.padding = 12
         qrCodeView.backgroundColor = ColorName.snowwhite.color
@@ -48,6 +77,26 @@ class AddressDetailView: BaseCustomView {
         addressLabel.lineBreakMode = .byClipping
 
         shareButton.setImage(Asset.shareIcon.image, for: .normal)
+    }
+
+    private func setName(_ value: String?, attributes: [NSAttributedString.Key: Any]) {
+        guard let value = value else {
+            nameLabel.attributedText = nil
+            nameLabel.isHidden = true
+            nameTooltip.isActive = false
+            return
+        }
+        nameTooltip.isActive = true
+        nameLabel.isHidden = false
+        nameLabel.attributedText = NSAttributedString(string: value, attributes: attributes)
+    }
+
+    private func formatNameSelected() {
+        setName(name, attributes: selectedNameAttributes)
+    }
+
+    private func formatNameNormal() {
+        setName(name, attributes: defaultNameAttributes)
     }
 
 }
