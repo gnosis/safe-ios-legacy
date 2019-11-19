@@ -209,7 +209,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     func test_tracking() {
         let fc = ReplaceRecoveryPhraseFlowCoordinator(rootViewController: UINavigationController())
-        let vc = fc.saveMnemonicViewController()
+        let vc = fc.showSeedViewController()
         vc.recoveryModeEnabled = true
         ethereumService.prepareToGenerateExternallyOwnedAccount(address: "some", mnemonic: ["one", "two"])
         vc.loadViewIfNeeded()

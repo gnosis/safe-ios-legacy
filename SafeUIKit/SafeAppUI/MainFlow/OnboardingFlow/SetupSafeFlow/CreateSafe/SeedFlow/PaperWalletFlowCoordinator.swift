@@ -11,20 +11,19 @@ final class PaperWalletFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        push(SaveMnemonicViewController.create(delegate: self))
+        push(ShowSeedViewController.create(delegate: self))
     }
 
 }
 
-extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
+extension PaperWalletFlowCoordinator: ShowSeedViewControllerDelegate {
 
-    func saveMnemonicViewControllerDidPressContinue(_ vc: SaveMnemonicViewController) {
+    func showSeedViewControllerDidPressContinue(_ controller: ShowSeedViewController) {
         guard !ApplicationServiceRegistry.walletService.isOwnerExists(.paperWallet) else {
             exitFlow()
             return
         }
-        let mnemonicController = navigationController.topViewController as! SaveMnemonicViewController
-        push(ConfirmMnemonicViewController.create(delegate: self, account: mnemonicController.account))
+        push(ConfirmMnemonicViewController.create(delegate: self, account: controller.account!))
     }
 
 }

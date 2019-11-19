@@ -493,18 +493,6 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Affirmative response button title */
 "ios_replaceseed_confirm_yes" = "Yes";
 
-/* Make a copy button */
-"ios_showSeed_copy" = "Make a copy";
-
-/* Description for setup recovery phrase screen. */
-"ios_showSeed_description" = "If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address.";
-
-/* Header for setup recovery phrase screen. */
-"ios_showSeed_header" = "Stay secure.\nSave this recovery phrase.";
-
-/* Warning for setup recovery phrase screen. */
-"ios_showSeed_warning" = "Without these, you won’t be able to recover your Safe and its assets.";
-
 /* Bulleted list */
 "ios_terms_contents" = "* We do not collect demographic data such as age and gender.\n* We collect anonymized app usage data and crash reports to ensure the quality of our app.";
 
@@ -543,6 +531,12 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Detail for the header in review screen */
 "layout_replace_recovery_phrase_transaction_info_description" = "The old recovery phrase will become invalid and will be replaced by the new one.";
+
+/* Tip */
+"layout_setup_recovery_phrase_description" = "Tip: write it down and store safely";
+
+/* Header for setup recovery phrase screen. */
+"layout_setup_recovery_phrase_title" = "This is your recovery phrase.";
 
 /* Learn more */
 "learn_more" = "Learn more";
@@ -608,8 +602,7 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Next
    Next button
    Next button for confirm recovery screen.
-   Next button title
-   Next button. */
+   Next button title */
 "next" = "Next";
 
 /* No active sessions */
