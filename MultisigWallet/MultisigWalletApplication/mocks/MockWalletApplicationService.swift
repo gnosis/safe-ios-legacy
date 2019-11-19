@@ -454,4 +454,12 @@ public class MockWalletApplicationService: WalletApplicationService {
         // empty
     }
 
+    public override func resolve(ensName: String) throws -> String {
+        return "address"
+    }
+
+    public override func reverseResolve(address: String) throws -> String? {
+        return nil
+    }
+
 }

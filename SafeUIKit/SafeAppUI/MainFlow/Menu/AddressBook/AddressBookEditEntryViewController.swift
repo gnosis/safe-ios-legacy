@@ -209,4 +209,8 @@ extension AddressBookEditEntryViewController: AddressInputDelegate {
         // no-op
     }
 
+    func didRequestENSName() {
+        // todo
+    }
+
 }

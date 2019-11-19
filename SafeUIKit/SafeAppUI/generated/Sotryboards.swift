@@ -41,6 +41,8 @@ internal enum StoryboardScene {
 
     internal static let addTokenTableViewController = SceneType<SafeAppUI.AddTokenTableViewController>(storyboard: Main.self, identifier: "AddTokenTableViewController")
 
+    internal static let ensInputViewController = SceneType<SafeAppUI.ENSInputViewController>(storyboard: Main.self, identifier: "ENSInputViewController")
+
     internal static let mainNavigationController = SceneType<UIKit.UINavigationController>(storyboard: Main.self, identifier: "MainNavigationController")
 
     internal static let mainViewController = SceneType<SafeAppUI.MainViewController>(storyboard: Main.self, identifier: "MainViewController")

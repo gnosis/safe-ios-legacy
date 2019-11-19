@@ -130,5 +130,6 @@ class MockAddressInputDelegate: AddressInputDelegate {
     }
 
     func didRequestAddressBook() {}
-
+    func didRequestENSName() {}
+    
 }

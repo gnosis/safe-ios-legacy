@@ -231,6 +231,7 @@
 		0AD1D1E621A8710500941EA1 /* BaseCustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1D1E521A8710500941EA1 /* BaseCustomLabel.swift */; };
 		0AD5091C211091E4008507CB /* SendInputViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091B211091E4008507CB /* SendInputViewModelTests.swift */; };
 		0AD5091F2110AABD008507CB /* SendInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091E2110AABD008507CB /* SendInputViewModel.swift */; };
+		0AD7D2FE237D94E100106B71 /* ENSInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7D2FD237D94E000106B71 /* ENSInputViewController.swift */; };
 		0AD89976228031D0008AE325 /* FeeCalculationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8996D228031D0008AE325 /* FeeCalculationView.swift */; };
 		0AD89977228031D0008AE325 /* FeeCalculationAssetLine+TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8996E228031D0008AE325 /* FeeCalculationAssetLine+TextStyle.swift */; };
 		0AD89978228031D0008AE325 /* FeeCalculationErrorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8996F228031D0008AE325 /* FeeCalculationErrorLine.swift */; };
@@ -912,6 +913,7 @@
 		0AD1D1E521A8710500941EA1 /* BaseCustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomLabel.swift; sourceTree = "<group>"; };
 		0AD5091B211091E4008507CB /* SendInputViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputViewModelTests.swift; sourceTree = "<group>"; };
 		0AD5091E2110AABD008507CB /* SendInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputViewModel.swift; sourceTree = "<group>"; };
+		0AD7D2FD237D94E000106B71 /* ENSInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENSInputViewController.swift; sourceTree = "<group>"; };
 		0AD8996D228031D0008AE325 /* FeeCalculationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeeCalculationView.swift; sourceTree = "<group>"; };
 		0AD8996E228031D0008AE325 /* FeeCalculationAssetLine+TextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeeCalculationAssetLine+TextStyle.swift"; sourceTree = "<group>"; };
 		0AD8996F228031D0008AE325 /* FeeCalculationErrorLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeeCalculationErrorLine.swift; sourceTree = "<group>"; };
@@ -1499,6 +1501,7 @@
 			isa = PBXGroup;
 			children = (
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
+				0AD7D2FD237D94E000106B71 /* ENSInputViewController.swift */,
 				0A3FB8D5228B1CF000270573 /* IncomingTransactionFlowCoordinator.swift */,
 				554D17EF22E0B13100B90A70 /* IncomingTransactionsManager.swift */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
@@ -3306,6 +3309,7 @@
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
+				0AD7D2FE237D94E100106B71 /* ENSInputViewController.swift in Sources */,
 				55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */,
 				55BDA84323268E3C005C9E6A /* PairWith2FAController.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* OnboardingCreateOrRestoreViewController.swift in Sources */,

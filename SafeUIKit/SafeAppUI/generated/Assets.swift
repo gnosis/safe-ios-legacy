@@ -22,6 +22,7 @@ internal enum Asset {
   internal static let chevron = ImageAsset(name: "Chevron")
   internal static let addTokenGetInTouch = ImageAsset(name: "add-token-get-in-touch")
   internal static let add = ImageAsset(name: "add")
+  internal static let checkGreen = ImageAsset(name: "checkGreen")
   internal static let checkmark = ImageAsset(name: "checkmark")
   internal static let congratulations = ImageAsset(name: "congratulations")
   internal static let contractUpgrade = ImageAsset(name: "contractUpgrade")

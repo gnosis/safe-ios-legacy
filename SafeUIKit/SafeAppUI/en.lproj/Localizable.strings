@@ -13,6 +13,9 @@
 /* Address Book */
 "address_book" = "Address Book";
 
+/* Address found */
+"address_found" = "Address found";
+
 /* Enter address */
 "address_hint" = "Enter Address";
 
@@ -209,6 +212,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Enter current password */
 "enter_current_password" = "Enter current password";
+
+/* Enter ENS Name */
+"enter_ens_name" = "Enter ENS Name";
 
 /* Enter name */
 "enter_name" = "Enter name";

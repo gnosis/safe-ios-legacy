@@ -1138,4 +1138,14 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    // MARK: - ENS Names
+
+    public func resolve(ensName: String) throws -> String {
+        try DomainRegistry.ensService.address(for: ensName).value
+    }
+
+    public func reverseResolve(address: String) throws -> String? {
+        try DomainRegistry.ensService.name(for: Address(address))
+    }
+
 }

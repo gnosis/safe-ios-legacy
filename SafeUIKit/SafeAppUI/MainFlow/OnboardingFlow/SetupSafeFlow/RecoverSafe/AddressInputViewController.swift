@@ -92,6 +92,10 @@ extension AddressInputViewController: AddressInputDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    func didRequestENSName() {
+        // todo
+    }
+
 }
 
 extension AddressInputViewController: AddressBookViewControllerDelegate {

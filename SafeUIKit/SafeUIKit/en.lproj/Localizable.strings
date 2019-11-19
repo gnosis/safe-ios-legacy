@@ -4,6 +4,9 @@
 /* Address Book */
 "address_book" = "Address Book";
 
+/* ENS Name */
+"address_input_ens" = "ENS name";
+
 /* Error to display if address is invalid. */
 "address_invalid" = "Address is invalid";
 
