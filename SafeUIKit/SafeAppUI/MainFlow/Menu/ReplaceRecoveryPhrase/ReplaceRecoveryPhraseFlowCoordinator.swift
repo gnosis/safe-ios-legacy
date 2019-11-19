@@ -50,15 +50,15 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
         return controller
     }
 
-    func saveMnemonicViewController() -> SaveMnemonicViewController {
-        let controller = SaveMnemonicViewController.create(delegate: self, isRecoveryMode: true)
+    func showSeedViewController() -> ShowSeedViewController {
+        let controller = ShowSeedViewController.create(delegate: self, isRecoveryMode: true)
         controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.showSeed
         return controller
     }
 
-    func confirmMnemonicViewController(_ vc: SaveMnemonicViewController) -> ConfirmMnemonicViewController {
+    func confirmMnemonicViewController(account: ExternallyOwnedAccountData) -> ConfirmMnemonicViewController {
         let controller = ConfirmMnemonicViewController.create(delegate: self,
-                                                              account: vc.account,
+                                                              account: account,
                                                               isRecoveryMode: true)
         controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.enterSeed
         return controller
@@ -80,7 +80,7 @@ extension ReplaceRecoveryPhraseFlowCoordinator: RBEIntroViewControllerDelegate {
 
     func rbeIntroViewControllerDidStart() {
         transactionID = introVC.transactionID
-        let controller = saveMnemonicViewController()
+        let controller = showSeedViewController()
         push(controller) {
             controller.willBeDismissed()
         }
@@ -88,10 +88,10 @@ extension ReplaceRecoveryPhraseFlowCoordinator: RBEIntroViewControllerDelegate {
 
 }
 
-extension ReplaceRecoveryPhraseFlowCoordinator: SaveMnemonicDelegate {
+extension ReplaceRecoveryPhraseFlowCoordinator: ShowSeedViewControllerDelegate {
 
-    func saveMnemonicViewControllerDidPressContinue(_ vc: SaveMnemonicViewController) {
-        push(confirmMnemonicViewController(vc))
+    func showSeedViewControllerDidPressContinue(_ controller: ShowSeedViewController) {
+        push(confirmMnemonicViewController(account: controller.account!))
     }
 
 }
