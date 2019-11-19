@@ -210,7 +210,18 @@ extension AddressBookEditEntryViewController: AddressInputDelegate {
     }
 
     func didRequestENSName() {
-        // todo
+        let vc = ENSInputViewController.create(delegate: self)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+}
+
+extension AddressBookEditEntryViewController: ENSInputViewControllerDelegate {
+
+    func ensInputViewControllerDidConfirm(_ controller: ENSInputViewController, address: String) {
+        navigationController?.popViewController(animated: true)
+        addressInput.text = address
+        didRecieveValidAddress(address)
     }
 
 }
