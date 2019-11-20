@@ -8,6 +8,18 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.10.1`_ - 2019-11-20
+======================
+Added
+--------
+- ENS name option for address input on send, recover, and address book entry screens
+- ENS reverse resolution of the address book entry's address
+
+Changed
+--------
+- Fixed crash for devices running iOS 12.4.3
+- Fixed bugs and crashes
+
 `1.9.1`_ - 2019-11-07
 ======================
 Changed
@@ -438,6 +450,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.10.0: https://github.com/gnosis/safe-ios/tree/1.10.0
 .. _1.9.1: https://github.com/gnosis/safe-ios/tree/1.9.1
 .. _1.9.0: https://github.com/gnosis/safe-ios/tree/1.9.0
 .. _1.8.1: https://github.com/gnosis/safe-ios/tree/1.8.1
