@@ -54,15 +54,6 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
         assert(topViewController, is: AuthenticatorViewController.self)
     }
 
-    func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
-        let testFC = TestFlowCoordinator()
-        testFC.enter(flow: PaperWalletFlowCoordinator())
-        let expectedViewController = testFC.topViewController
-        newSafeFlowCoordinator.showSeed(paired: false)
-        let finalTransitionedViewController = newSafeFlowCoordinator.navigationController.topViewController
-        XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
-    }
-
     func test_showPayment_presentsOnboardingCreationFeeIntro() {
         newSafeFlowCoordinator.showPayment()
         delay()
@@ -88,13 +79,7 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_paperWalletSetupCompletion_showsPayment() {
-        newSafeFlowCoordinator.showSeed(paired: false)
-        delay()
-        newSafeFlowCoordinator.paperWalletFlowCoordinator.exitFlow()
-        delay()
-        let controller = topViewController as? HeaderImageTextStepController
-        XCTAssertNotNil(controller)
-        controller?.navigateNext()
+        newSafeFlowCoordinator.seedFlowControllerDidFinish(SeedFlowController())
         delay()
         assert(topViewController, is: OnboardingCreationFeeIntroViewController.self)
     }

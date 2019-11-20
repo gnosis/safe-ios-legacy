@@ -37,6 +37,7 @@
 		0A1E1FE32385801F00BBCBDF /* SeedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FE22385801F00BBCBDF /* SeedWord.swift */; };
 		0A1E1FF02385884E00BBCBDF /* SeedPhrasePuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */; };
 		0A1E200623858CC100BBCBDF /* ReplaceSeedIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E200523858CC100BBCBDF /* ReplaceSeedIntroViewController.swift */; };
+		0A1E200823859D8A00BBCBDF /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E200723859D8A00BBCBDF /* FlowController.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */; };
 		0A2ACBE1232934590054D1D1 /* SKActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */; };
@@ -87,7 +88,7 @@
 		0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */; };
 		0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */; };
 		0A334E2F209C8E3800ABC6AE /* CreateSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E00209C8E3800ABC6AE /* CreateSafe.storyboard */; };
-		0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */; };
+		0A334E34209C8E3800ABC6AE /* SeedFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E06209C8E3800ABC6AE /* SeedFlowController.swift */; };
 		0A334E3B209C8E3800ABC6AE /* AuthenticatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E0E209C8E3800ABC6AE /* AuthenticatorViewController.swift */; };
 		0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E12209C8E3800ABC6AE /* MasterPassword.storyboard */; };
 		0A334E3F209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E13209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift */; };
@@ -100,7 +101,6 @@
 		0A334E52209C8E6800ABC6AE /* UnlockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */; };
 		0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */; };
 		0A334E55209C8E6800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */; };
-		0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */; };
 		0A334E5B209C8E6800ABC6AE /* CreateSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E0A209C8E3800ABC6AE /* CreateSafeFlowCoordinatorTests.swift */; };
 		0A334E5D209C8E6800ABC6AE /* AuthenticatorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E0F209C8E3800ABC6AE /* AuthenticatorViewControllerTests.swift */; };
 		0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E11209C8E3800ABC6AE /* PasswordValidatorTests.swift */; };
@@ -712,6 +712,7 @@
 		0A1E1FE22385801F00BBCBDF /* SeedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedWord.swift; sourceTree = "<group>"; };
 		0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhrasePuzzleTests.swift; sourceTree = "<group>"; };
 		0A1E200523858CC100BBCBDF /* ReplaceSeedIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceSeedIntroViewController.swift; sourceTree = "<group>"; };
+		0A1E200723859D8A00BBCBDF /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPairViewController.swift; sourceTree = "<group>"; };
 		0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKActivateViewController.swift; sourceTree = "<group>"; };
@@ -764,8 +765,7 @@
 		0A334DF9209C8E3800ABC6AE /* MainFlowCoordinatorOnboardingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorOnboardingTests.swift; sourceTree = "<group>"; };
 		0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334E00209C8E3800ABC6AE /* CreateSafe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateSafe.storyboard; sourceTree = "<group>"; };
-		0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A334E06209C8E3800ABC6AE /* SeedFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeedFlowController.swift; sourceTree = "<group>"; };
 		0A334E0A209C8E3800ABC6AE /* CreateSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334E0E209C8E3800ABC6AE /* AuthenticatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatorViewController.swift; sourceTree = "<group>"; };
 		0A334E0F209C8E3800ABC6AE /* AuthenticatorViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatorViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1413,9 +1413,8 @@
 		0A334E02209C8E3800ABC6AE /* SeedFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */,
-				0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */,
 				0AB63B1E23841FBD00A142AD /* SeedPhrase.storyboard */,
+				0A334E06209C8E3800ABC6AE /* SeedFlowController.swift */,
 				0A1E200523858CC100BBCBDF /* ReplaceSeedIntroViewController.swift */,
 				0A1E1FE123857FCC00BBCBDF /* ShowSeed */,
 				0A1E1FE023857FBF00BBCBDF /* EnterSeed */,
@@ -1889,6 +1888,7 @@
 				0A4DF82520CE701E0095C00D /* MainFlow */,
 				0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */,
 				0A334E69209C8F8500ABC6AE /* ErrorHandlerTests.swift */,
+				0A1E200723859D8A00BBCBDF /* FlowController.swift */,
 				0AB63AEC2383F36800A142AD /* AddressResolvingViewController.swift */,
 				0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */,
 				0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */,
@@ -3282,7 +3282,8 @@
 				0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */,
 				55980003225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift in Sources */,
 				0A10712D23605756002DBA36 /* AddressBookFlowCoordinator.swift in Sources */,
-				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
+				0A334E34209C8E3800ABC6AE /* SeedFlowController.swift in Sources */,
+				0A1E200823859D8A00BBCBDF /* FlowController.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
 				0A2D588222575435001B8BF4 /* ReplaceTwoFATrackingEvent.swift in Sources */,
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
@@ -3534,7 +3535,6 @@
 				0ADE040522DF357300CA4705 /* OnboardingViewControllerTests.swift in Sources */,
 				0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */,
 				0A5DC575209C9AB600BA7A06 /* MainFlowCoordinatorAppTests.swift in Sources */,
-				0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				0A334DC2209C6D8D00ABC6AE /* OnboardingCreateOrRestoreViewControllerTests.swift in Sources */,
 				0A3D14E8220B163500E340DB /* ReplaceTwoFAFlowCoordinatorTests.swift in Sources */,
 				0A334E5B209C8E6800ABC6AE /* CreateSafeFlowCoordinatorTests.swift in Sources */,
