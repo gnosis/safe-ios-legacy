@@ -1088,6 +1088,15 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    public func canMakeTransactions(walletID id: String) -> Bool {
+        do {
+            try DomainRegistry.diagnosticService.runDiagnostics(for: WalletID(id))
+            return true
+        } catch {
+            return false
+        }
+    }
+
     // MARK: - Address Book
 
     public func addressName(for address: String) -> String? {
