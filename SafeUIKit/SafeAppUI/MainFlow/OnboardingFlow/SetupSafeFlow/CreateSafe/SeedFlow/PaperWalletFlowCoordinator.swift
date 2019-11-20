@@ -23,14 +23,14 @@ extension PaperWalletFlowCoordinator: ShowSeedViewControllerDelegate {
             exitFlow()
             return
         }
-        push(ConfirmMnemonicViewController.create(delegate: self, account: controller.account!))
+        push(EnterSeedViewController.create(delegate: self, account: controller.account!))
     }
 
 }
 
-extension PaperWalletFlowCoordinator: ConfirmMnemonicDelegate {
+extension PaperWalletFlowCoordinator: EnterSeedViewControllerDelegate {
 
-    func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController) {
+    func enterSeedViewControllerDidSubmit(_ vc: EnterSeedViewController) {
         exitFlow()
     }
 

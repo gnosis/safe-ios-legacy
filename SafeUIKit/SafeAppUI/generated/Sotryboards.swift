@@ -22,8 +22,6 @@ internal enum StoryboardScene {
   internal enum CreateSafe: StoryboardType {
     internal static let storyboardName = "CreateSafe"
 
-    internal static let confirmMnemonicViewController = SceneType<SafeAppUI.ConfirmMnemonicViewController>(storyboard: CreateSafe.self, identifier: "ConfirmMnemonicViewController")
-
     internal static let onboardingIntroViewController = SceneType<SafeAppUI.OnboardingIntroViewController>(storyboard: CreateSafe.self, identifier: "OnboardingIntroViewController")
 
     internal static let skActivateViewController = SceneType<SafeAppUI.SKActivateViewController>(storyboard: CreateSafe.self, identifier: "SKActivateViewController")
@@ -71,6 +69,8 @@ internal enum StoryboardScene {
   }
   internal enum SeedPhrase: StoryboardType {
     internal static let storyboardName = "SeedPhrase"
+
+    internal static let enterSeedViewController = SceneType<SafeAppUI.EnterSeedViewController>(storyboard: SeedPhrase.self, identifier: "EnterSeedViewController")
 
     internal static let showSeedViewController = SceneType<SafeAppUI.ShowSeedViewController>(storyboard: SeedPhrase.self, identifier: "ShowSeedViewController")
   }

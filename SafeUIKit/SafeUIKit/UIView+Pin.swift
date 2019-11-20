@@ -31,4 +31,11 @@ public extension UIView {
             heightAnchor.constraint(equalToConstant: CGFloat(height))])
     }
 
+    func wrapAroundView(_ contentView: UIView) {
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor)])
+    }
 }

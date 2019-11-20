@@ -4,31 +4,18 @@
 
 import UIKit
 
-class SeedWordCollectionViewCell: UICollectionViewCell {
 
-    enum CellStyle {
-        case normal
-        case filled
-        case empty
-        case entered
-        case error
-    }
+class SeedWordCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var backgroundButton: UIButton!
 
-    var cellStyle: CellStyle = .normal {
-        didSet {
-            update()
-        }
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
         clipsToBounds = false
-        
+
         numberLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         numberLabel.textAlignment = .center
 
@@ -39,15 +26,21 @@ class SeedWordCollectionViewCell: UICollectionViewCell {
         update()
     }
 
-    func setWord(_ word: String?, number: Int?, style: CellStyle) {
-        wordLabel.text = word
-        numberLabel.text = number != nil ? String(number!) : nil
-        cellStyle = style
+    var word: SeedWord? {
+        didSet {
+            update()
+        }
     }
 
     // swiftlint:disable operator_usage_whitespace
     func update() {
-        switch cellStyle {
+        wordLabel.text = word?.value
+        numberLabel.text = word?.number
+        guard let word = word else { return }
+        switch word.style {
+        case .focused:
+            wordLabel.text = nil
+            fallthrough
         case .normal:
             numberLabel.textColor = ColorName.darkBlue.color
             badgeImageView.image = Asset.seedBadgeNormal.image
@@ -59,6 +52,7 @@ class SeedWordCollectionViewCell: UICollectionViewCell {
             wordLabel.textColor = ColorName.hold.color
             backgroundImage = Asset.seedBgFilled.image
         case .empty:
+            wordLabel.text = nil
             numberLabel.textColor = ColorName.darkBlue.color
             badgeImageView.image = Asset.seedBadgeNormal.image
             wordLabel.textColor = ColorName.hold.color
@@ -81,4 +75,5 @@ class SeedWordCollectionViewCell: UICollectionViewCell {
             backgroundButton.setBackgroundImage(backgroundImage, for: .normal)
         }
     }
+
 }
