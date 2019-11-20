@@ -97,7 +97,7 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ReplaceSeedIntroViewControllerDe
             controller.willBeDismissed()
         }
     }
-    
+
 }
 
 extension ReplaceRecoveryPhraseFlowCoordinator: ShowSeedViewControllerDelegate {

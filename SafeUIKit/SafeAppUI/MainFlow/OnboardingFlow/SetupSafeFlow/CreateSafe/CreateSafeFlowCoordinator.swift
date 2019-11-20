@@ -9,7 +9,6 @@ import Common
 
 class CreateSafeFlowCoordinator: FlowCoordinator {
 
-    var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
     weak var onboardingController: OnboardingViewController?
     var keycardFlowCoordinator = SKKeycardFlowCoordinator()
 
@@ -66,19 +65,10 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
     }
 
     func showSeedIntro(paired: Bool) {
-        let pairingState = paired ? ThreeStepsView.State.backup_paired : .backup_notPaired
-        let controller = SeedIntroViewController.create(state: pairingState) { [unowned self] in
-            self.showSeed(paired: paired)
-        }
-        self.push(controller)
-    }
-
-    func showSeed(paired: Bool) {
-        enter(flow: paperWalletFlowCoordinator) { [unowned self] in
-            let pairingState = paired ? ThreeStepsView.State.backupDone_paired : .backupDone_notPaired
-            let controller = SeedSuccessViewController.create(state: pairingState, onNext: self.showPayment)
-            self.push(controller)
-        }
+        let vc = SeedFlowController()
+        vc.delegate = self
+        vc.isPaired = paired
+        push(vc)
     }
 
     func showPayment() {
@@ -115,9 +105,16 @@ class CreateSafeFlowCoordinator: FlowCoordinator {
     override func setRoot(_ controller: UIViewController) {
         guard rootViewController !== controller else { return }
         super.setRoot(controller)
-        [paperWalletFlowCoordinator,
-         keycardFlowCoordinator,
+        [keycardFlowCoordinator,
          MainFlowCoordinator.shared].forEach { $0?.setRoot(controller) }
+    }
+
+}
+
+extension CreateSafeFlowCoordinator: SeedFlowControllerDelegate {
+
+    func seedFlowControllerDidFinish(_ vc: SeedFlowController) {
+        showPayment()
     }
 
 }
