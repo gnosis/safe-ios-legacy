@@ -72,6 +72,8 @@ internal enum StoryboardScene {
 
     internal static let enterSeedViewController = SceneType<SafeAppUI.EnterSeedViewController>(storyboard: SeedPhrase.self, identifier: "EnterSeedViewController")
 
+    internal static let replaceSeedIntroViewController = SceneType<SafeAppUI.ReplaceSeedIntroViewController>(storyboard: SeedPhrase.self, identifier: "ReplaceSeedIntroViewController")
+
     internal static let showSeedViewController = SceneType<SafeAppUI.ShowSeedViewController>(storyboard: SeedPhrase.self, identifier: "ShowSeedViewController")
   }
   internal enum SetupSafe: StoryboardType {

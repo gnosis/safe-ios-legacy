@@ -50,6 +50,10 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
         return controller
     }
 
+    func replaceIntroController() -> ReplaceSeedIntroViewController {
+        ReplaceSeedIntroViewController.create(delegate: self)
+    }
+
     func showSeedViewController() -> ShowSeedViewController {
         let controller = ShowSeedViewController.create(delegate: self, isRecoveryMode: true)
         controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.showSeed
@@ -80,12 +84,20 @@ extension ReplaceRecoveryPhraseFlowCoordinator: RBEIntroViewControllerDelegate {
 
     func rbeIntroViewControllerDidStart() {
         transactionID = introVC.transactionID
+        push(replaceIntroController())
+    }
+
+}
+
+extension ReplaceRecoveryPhraseFlowCoordinator: ReplaceSeedIntroViewControllerDelegate {
+
+    func replaceSeedIntroViewControllerDidTapNext(_ controller: ReplaceSeedIntroViewController) {
         let controller = showSeedViewController()
         push(controller) {
             controller.willBeDismissed()
         }
     }
-
+    
 }
 
 extension ReplaceRecoveryPhraseFlowCoordinator: ShowSeedViewControllerDelegate {
