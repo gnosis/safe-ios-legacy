@@ -19,47 +19,59 @@ class SeedPhrasePuzzle {
     struct Slot {
         var actualWord: SeedWord
         var enteredWord: SeedWord?
+
+        var actualValue: String { actualWord.value }
+        var enteredValue: String? { enteredWord?.value }
+
+        var style: SeedWordStyle {
+            get { actualWord.style }
+            set { actualWord.style = newValue }
+        }
+
+        init(index: Int, value: String) {
+            actualWord = SeedWord(index: index, value: value, style: .filled)
+            enteredWord = nil
+        }
+
     }
 
-    private(set) var slots: [Slot] = []
+    private var slots: [Slot] = []
 
-    let optionCount: Int
+    let puzzleWordCount: Int
 
-    init(words: [String], optionCount: Int) {
-        self.optionCount = optionCount
-        slots = words.enumerated().map {
-            Slot(actualWord: SeedWord(index: $0.offset, value: $0.element, style: .filled),
-                 enteredWord: nil)
-        }
+    init(words: [String], puzzleWordCount: Int) {
+        self.puzzleWordCount = puzzleWordCount
+        slots = words.enumerated().map { Slot(index: $0.offset, value: $0.element) }
     }
 
     /// Unknown, "puzzle" words
-    var wordOptions: [SeedWord] {
-        slots.map { $0.actualWord }.filter { $0.style != .filled }
+    var puzzleWords: [SeedWord] {
+        puzzleSlots.map { $0.actualWord }
     }
 
     /// Current state of the puzzle
     var seedPhrase: [SeedWord] {
-        slots.map {
-            SeedWord(index: $0.actualWord.index,
-                     value: $0.enteredWord?.value ?? $0.actualWord.value,
-                     style: $0.actualWord.style)
-        }
+        slots.map { SeedWord(index: $0.actualWord.index, value: $0.enteredValue ?? $0.actualValue, style: $0.style) }
     }
 
     /// Whether we have left something to enter or not
     var isAllSlotsEntered: Bool {
-        return slots.filter { $0.actualWord.style != .filled }.allSatisfy { $0.enteredWord != nil }
+        puzzleSlots.allSatisfy { $0.enteredValue != nil }
+    }
+
+    private var puzzleSlots: [Slot] {
+        slots.filter { $0.style != .filled }
     }
 
     /// Resets the puzzle state and regenerate options at random
     func reset() {
         for i in (0..<slots.count) {
-            slots[i].actualWord.style = .filled
+            slots[i].style = .filled
             slots[i].enteredWord = nil
+
         }
-        for i in randomSlotIndices(optionCount) {
-            slots[i].actualWord.style = .empty
+        for i in randomSlotIndices(puzzleWordCount) {
+            slots[i].style = .empty
         }
         updateFocus()
     }
@@ -79,32 +91,31 @@ class SeedPhrasePuzzle {
     }
 
     private func updateFocus() {
-        guard let index = slots.firstIndex(where: { $0.actualWord.style == .empty }) else { return }
-        slots[index].actualWord.style = .focused
-        assert(slots.filter { $0.actualWord.style == .focused }.count == 1)
+        guard let index = slots.firstIndex(where: { $0.style == .empty }) else { return }
+        slots[index].style = .focused
+        assert(slots.filter { $0.style == .focused }.count == 1)
     }
 
     /// Enters a word in a focused slot
     func enter(word: SeedWord) {
-        guard let index = slots.firstIndex(where: { $0.actualWord.style == .focused }) else {
+        guard let index = slots.firstIndex(where: { $0.style == .focused }) else {
             assertionFailure()
             return
         }
-        slots[index].actualWord.style = .entered
         slots[index].enteredWord = word
+        slots[index].style = .entered
         updateFocus()
     }
 
     /// Checks wheter all slots are entered and have words matching with actual seed phrase words
     func validate() -> Bool {
-        let isValid = slots.filter { $0.actualWord.style != .filled }
-            .allSatisfy { $0.actualWord.value == $0.enteredWord?.value }
+        let isValid = puzzleSlots.allSatisfy { $0.actualValue == $0.enteredValue }
         for i in (0..<slots.count) {
-            guard slots[i].actualWord.style != .filled else { continue }
-            if slots[i].actualWord.value == slots[i].enteredWord?.value {
-                slots[i].actualWord.style = .filled
+            guard slots[i].style != .filled else { continue }
+            if slots[i].actualValue == slots[i].enteredValue {
+                slots[i].style = .filled
             } else {
-                slots[i].actualWord.style = .error
+                slots[i].style = .error
             }
         }
         return isValid

@@ -35,6 +35,7 @@
 		0A1E1FDD23857DE300BBCBDF /* SeedPhrasePuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FDC23857DE300BBCBDF /* SeedPhrasePuzzle.swift */; };
 		0A1E1FDF23857DF900BBCBDF /* InputSeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FDE23857DF900BBCBDF /* InputSeedView.swift */; };
 		0A1E1FE32385801F00BBCBDF /* SeedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FE22385801F00BBCBDF /* SeedWord.swift */; };
+		0A1E1FF02385884E00BBCBDF /* SeedPhrasePuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */; };
 		0A2ACBE1232934590054D1D1 /* SKActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */; };
@@ -708,6 +709,7 @@
 		0A1E1FDC23857DE300BBCBDF /* SeedPhrasePuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhrasePuzzle.swift; sourceTree = "<group>"; };
 		0A1E1FDE23857DF900BBCBDF /* InputSeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSeedView.swift; sourceTree = "<group>"; };
 		0A1E1FE22385801F00BBCBDF /* SeedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedWord.swift; sourceTree = "<group>"; };
+		0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhrasePuzzleTests.swift; sourceTree = "<group>"; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPairViewController.swift; sourceTree = "<group>"; };
 		0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKActivateViewController.swift; sourceTree = "<group>"; };
@@ -1266,6 +1268,7 @@
 				0A1E1FD8238551C000BBCBDF /* SeedInputCollectionViewCell.swift */,
 				0A1E1FD9238551C000BBCBDF /* SeedInputCollectionViewCell.xib */,
 				0A1E1FDC23857DE300BBCBDF /* SeedPhrasePuzzle.swift */,
+				0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */,
 			);
 			path = EnterSeed;
 			sourceTree = "<group>";
@@ -3479,6 +3482,7 @@
 				0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */,
 				0A2D589922576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift in Sources */,
 				553AEB18229EA43500EA3248 /* RBEIntroViewControllerStartingStateTests.swift in Sources */,
+				0A1E1FF02385884E00BBCBDF /* SeedPhrasePuzzleTests.swift in Sources */,
 				55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */,
 				553AEB1A229EA44E00EA3248 /* RBEStarterMock.swift in Sources */,
 				552D4308233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift in Sources */,

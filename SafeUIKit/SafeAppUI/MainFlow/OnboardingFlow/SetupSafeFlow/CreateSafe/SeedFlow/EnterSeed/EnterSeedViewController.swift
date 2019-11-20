@@ -71,7 +71,7 @@ class EnterSeedViewController: UIViewController, InputSeedViewDelegate {
 
         bottomSeedView.inputSeedView.delegate = self
 
-        puzzle = SeedPhrasePuzzle(words: account.mnemonicWords, optionCount: 4)
+        puzzle = SeedPhrasePuzzle(words: account.mnemonicWords, puzzleWordCount: 4)
         reset()
     }
 
@@ -94,7 +94,7 @@ class EnterSeedViewController: UIViewController, InputSeedViewDelegate {
     func reset() {
         puzzle.reset()
         seedPhraseView.words = puzzle.seedPhrase
-        bottomSeedView.inputSeedView.words = puzzle.wordOptions.shuffled().map {
+        bottomSeedView.inputSeedView.words = puzzle.puzzleWords.shuffled().map {
             SeedWord(index: $0.index, value: $0.value, style: .normal)
         }
         bottomSeedView.submitButton.isEnabled = puzzle.isAllSlotsEntered
