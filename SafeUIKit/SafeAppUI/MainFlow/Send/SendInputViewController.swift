@@ -65,7 +65,7 @@ public class SendInputViewController: UIViewController {
         addressInput.text = initialAddress
 
         tokenInput.addRule("", identifier: "notEnoughFunds") { [weak self] in
-            guard let `self` = self, self.model.feeEstimatedAmountTokenData.balance != nil else { return true }
+            guard let `self` = self else { return true }
             let number = self.tokenInput.formatter.number(from: $0,
                                                           precision: self.model.accountBalanceTokenData.decimals)
             guard let amount = number else { return true }
