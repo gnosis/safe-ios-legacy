@@ -905,6 +905,9 @@ Pairing password: %@";
 /* 'Success' status */
 "status_success" = "Success";
 
+/* Stay secure */
+"stay_secure" = "Stay secure with your new recovery phrase";
+
 /* Submit
    Submit transaction */
 "submit" = "Submit";

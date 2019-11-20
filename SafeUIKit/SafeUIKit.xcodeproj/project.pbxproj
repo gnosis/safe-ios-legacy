@@ -36,6 +36,7 @@
 		0A1E1FDF23857DF900BBCBDF /* InputSeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FDE23857DF900BBCBDF /* InputSeedView.swift */; };
 		0A1E1FE32385801F00BBCBDF /* SeedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FE22385801F00BBCBDF /* SeedWord.swift */; };
 		0A1E1FF02385884E00BBCBDF /* SeedPhrasePuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */; };
+		0A1E200623858CC100BBCBDF /* ReplaceSeedIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E200523858CC100BBCBDF /* ReplaceSeedIntroViewController.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */; };
 		0A2ACBE1232934590054D1D1 /* SKActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */; };
@@ -710,6 +711,7 @@
 		0A1E1FDE23857DF900BBCBDF /* InputSeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSeedView.swift; sourceTree = "<group>"; };
 		0A1E1FE22385801F00BBCBDF /* SeedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedWord.swift; sourceTree = "<group>"; };
 		0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhrasePuzzleTests.swift; sourceTree = "<group>"; };
+		0A1E200523858CC100BBCBDF /* ReplaceSeedIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceSeedIntroViewController.swift; sourceTree = "<group>"; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPairViewController.swift; sourceTree = "<group>"; };
 		0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKActivateViewController.swift; sourceTree = "<group>"; };
@@ -1414,6 +1416,7 @@
 				0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */,
 				0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */,
 				0AB63B1E23841FBD00A142AD /* SeedPhrase.storyboard */,
+				0A1E200523858CC100BBCBDF /* ReplaceSeedIntroViewController.swift */,
 				0A1E1FE123857FCC00BBCBDF /* ShowSeed */,
 				0A1E1FE023857FBF00BBCBDF /* EnterSeed */,
 			);
@@ -3382,6 +3385,7 @@
 				0AFD05F822A6906000888956 /* ChangePasswordTrackingEvent.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
 				0A2D58862257557B001B8BF4 /* ReplaceRecoveryPhraseTrackingEvent.swift in Sources */,
+				0A1E200623858CC100BBCBDF /* ReplaceSeedIntroViewController.swift in Sources */,
 				552D42DC233A024E00C57B5C /* SwitchSafesTableViewController.swift in Sources */,
 				0A9C0BA12369AFF30042035A /* TooltipControlCenter.swift in Sources */,
 				0AB20142229848520071510A /* LongProcessTracker.swift in Sources */,
