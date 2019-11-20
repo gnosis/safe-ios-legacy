@@ -365,8 +365,9 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
     func upgradeContract() {
         saveCheckpoint()
-        enter(flow: contractUpgradeFlowCoordinator) { [unowned self] in
-            DispatchQueue.main.async {
+        enter(flow: contractUpgradeFlowCoordinator) { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
                 self.popToLastCheckpoint()
                 self.showTransactionList()
             }
