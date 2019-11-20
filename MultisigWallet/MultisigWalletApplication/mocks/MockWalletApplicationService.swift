@@ -462,4 +462,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         return nil
     }
 
+    public override func canMakeTransactions(walletID id: String) -> Bool {
+        return true
+    }
+
 }

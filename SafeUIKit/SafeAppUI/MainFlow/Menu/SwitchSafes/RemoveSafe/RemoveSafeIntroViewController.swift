@@ -52,7 +52,7 @@ class RemoveSafeIntroViewController: CardViewController {
         embed(view: addressDetailView, inCardSubview: cardBodyView, insets: addressDetailInsets)
 
         footerButton.setTitle(Strings.iHaveBackup, for: .normal)
-        footerButton.addTarget(self, action: #selector(star), for: .touchUpInside)
+        footerButton.addTarget(self, action: #selector(start), for: .touchUpInside)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -66,8 +66,14 @@ class RemoveSafeIntroViewController: CardViewController {
         present(activityController, animated: true)
     }
 
-    @objc private func star() {
-        onNext()
+    @objc private func start() {
+        navigationItem.titleView = LoadingTitleView()
+        DispatchQueue.global().async { [weak self] in
+            self?.onNext()
+            DispatchQueue.main.async { [weak self] in
+                self?.navigationItem.titleView = nil
+            }
+        }
     }
 
 }

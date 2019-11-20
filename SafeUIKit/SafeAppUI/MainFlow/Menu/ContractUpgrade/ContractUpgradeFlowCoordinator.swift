@@ -76,11 +76,12 @@ extension ContractUpgradeFlowCoordinator: ReviewTransactionViewControllerDelegat
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        DispatchQueue.global.async { [unowned self] in
-            ApplicationServiceRegistry.contractUpgradeService.startMonitoring(transaction: self.transactionID)
+        let transactionID = self.transactionID!
+        DispatchQueue.global.async {
+            ApplicationServiceRegistry.contractUpgradeService.startMonitoring(transaction: transactionID)
         }
-        push(SuccessViewController.contractUpgrade { [unowned self] in
-            self.exitFlow()
+        push(SuccessViewController.contractUpgrade { [weak self] in
+            self?.exitFlow()
         })
     }
 

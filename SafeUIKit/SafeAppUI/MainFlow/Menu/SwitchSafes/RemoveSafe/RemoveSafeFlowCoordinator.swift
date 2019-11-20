@@ -17,11 +17,18 @@ final class RemoveSafeFlowCoordinator: FlowCoordinator {
     }
 
     private func removeSafeIntro() -> UIViewController {
-        return RemoveSafeIntroViewController.create(walletID: walletID) { [unowned self] in
-            if self.requiresRecoveryPhrase {
-                self.push(self.removeSafeEnterSeed())
-            } else {
-                self.removeWallet()
+        let id = walletID!
+        return RemoveSafeIntroViewController.create(walletID: id) { [weak self] in
+            guard let `self` = self else { return }
+            let shouldRequestPhrase = self.requiresRecoveryPhrase &&
+                ApplicationServiceRegistry.walletService.canMakeTransactions(walletID: id)
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                if shouldRequestPhrase {
+                    self.push(self.removeSafeEnterSeed())
+                } else {
+                    self.removeWallet()
+                }
             }
         }
     }

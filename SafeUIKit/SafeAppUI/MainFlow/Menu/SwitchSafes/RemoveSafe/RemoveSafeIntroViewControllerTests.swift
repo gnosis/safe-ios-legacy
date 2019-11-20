@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
+import MultisigWalletApplication
 
 class RemoveSafeIntroViewControllerTests: XCTestCase {
 
@@ -12,6 +13,8 @@ class RemoveSafeIntroViewControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        ApplicationServiceRegistry.put(service: MockWalletApplicationService(),
+                                       for: WalletApplicationService.self)
         controller = RemoveSafeIntroViewController.create(walletID: "") { [unowned self] in
             self.didPressNext = true
         }

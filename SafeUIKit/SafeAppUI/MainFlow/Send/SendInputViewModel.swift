@@ -117,7 +117,9 @@ class SendInputViewModel {
         if Thread.isMainThread {
             updateBlock()
         } else {
-            DispatchQueue.main.sync(execute: updateBlock)
+            DispatchQueue.main.sync { [unowned self] in
+                self.updateBlock()
+            }
         }
     }
 
