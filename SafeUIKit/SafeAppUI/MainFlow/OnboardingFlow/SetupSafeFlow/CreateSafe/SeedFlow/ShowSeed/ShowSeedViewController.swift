@@ -12,7 +12,7 @@ protocol ShowSeedViewControllerDelegate: class {
     func showSeedViewControllerDidPressContinue(_ controller: ShowSeedViewController)
 }
 
-class ShowSeedViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class ShowSeedViewController: UIViewController {
 
     enum Strings {
         static let title = LocalizedString("recovery_phrase", comment: "Title for setup recovery phrase screen.")
@@ -26,30 +26,15 @@ class ShowSeedViewController: UIViewController, UICollectionViewDelegateFlowLayo
         static let header = LocalizedString("new_seed", comment: "New recovery phrase")
     }
 
-    struct CellMetrics {
-        var size: CGSize = CGSize(width: 88, height: 54)
-        var hSpace: CGFloat = 11
-        var vSpace: CGFloat = 10
-        var columnCount: Int = 3
-
-        mutating func calculate(basedOn container: UIView) {
-            size.width = floor((container.frame.width - CGFloat(columnCount - 1) * hSpace) / CGFloat(columnCount))
-        }
-
-    }
-
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var subheaderLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionViewLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var seedPhraseView: SeedPhraseView!
     @IBOutlet weak var actionButton: StandardButton!
 
     weak var delegate: ShowSeedViewControllerDelegate?
     var screenTrackingEvent: Trackable?
     var recoveryModeEnabled = false
     private(set) var account: ExternallyOwnedAccountData?
-
-    private var metrics = CellMetrics()
 
     static func create(delegate: ShowSeedViewControllerDelegate,
                        isRecoveryMode: Bool = false) -> ShowSeedViewController {
@@ -72,27 +57,12 @@ class ShowSeedViewController: UIViewController, UICollectionViewDelegateFlowLayo
         actionButton.style = .filled
         actionButton.setTitle(Strings.copy, for: .normal)
 
-        let nib = UINib(nibName: "SeedWordCollectionViewCell", bundle: Bundle(for: SeedWordCollectionViewCell.self))
-        collectionView.register(nib, forCellWithReuseIdentifier: "SeedWordCollectionViewCell")
-        collectionView.allowsSelection = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.clipsToBounds = false
-
         setUpAccount()
-
-        if account == nil || account!.mnemonicWords.isEmpty {
-            dismiss(animated: true)
-        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        metrics.calculate(basedOn: collectionView)
-        collectionViewLayout.itemSize = metrics.size
-        collectionViewLayout.minimumInteritemSpacing = metrics.hSpace
-        collectionViewLayout.minimumLineSpacing = metrics.vSpace
-        collectionViewLayout.invalidateLayout()
+        seedPhraseView.update()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -129,23 +99,17 @@ class ShowSeedViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 account = ApplicationServiceRegistry.ethereumService.generateExternallyOwnedAccount()
             }
         }
+        guard let mnemonic = account?.mnemonicWords, !mnemonic.isEmpty else {
+            dismiss(animated: true)
+            return
+        }
+        seedPhraseView.words = mnemonic.enumerated().map {
+            SeedWord(index: $0.offset, value: $0.element, style: .normal)
+        }
     }
 
     @IBAction func didTapActionButton(_ sender: Any) {
         delegate?.showSeedViewControllerDidPressContinue(self)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return account?.mnemonicWords.count ?? 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let words = account?.mnemonicWords, indexPath.item < words.count else { return UICollectionViewCell() }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeedWordCollectionViewCell",
-                                                      for: indexPath) as! SeedWordCollectionViewCell
-        cell.setWord(words[indexPath.item], number: indexPath.item + 1, style: .normal)
-        return cell
     }
 
 }

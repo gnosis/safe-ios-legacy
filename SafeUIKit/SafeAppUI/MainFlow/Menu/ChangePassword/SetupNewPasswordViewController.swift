@@ -147,3 +147,19 @@ extension SetupNewPasswordViewController: VerifiableInputDelegate {
     }
 
 }
+
+extension VerifiableInput {
+
+    func avoidKeyboard() {
+        textInput.keyboardTargetView = self
+    }
+
+}
+
+extension TextInput: KeyboardAvoidingTargetProvider {
+
+    func targetViewToAvoid() -> UIView? {
+        return keyboardTargetView
+    }
+
+}

@@ -43,7 +43,7 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
         testFC.enter(flow: coordinator) {
             self.completionCalled = true
         }
-        coordinator.confirmMnemonicViewControllerDidConfirm(ConfirmMnemonicViewController())
+        coordinator.enterSeedViewControllerDidSubmit(EnterSeedViewController())
         XCTAssertTrue(completionCalled)
     }
 
@@ -58,9 +58,9 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
         let startVC = topViewController as! ShowSeedViewController
         coordinator.showSeedViewControllerDidPressContinue(startVC)
         delay()
-        XCTAssertTrue(topViewController is ConfirmMnemonicViewController)
-        let confirmMnemonicController = topViewController as! ConfirmMnemonicViewController
-        XCTAssertTrue(confirmMnemonicController.delegate === coordinator)
+        XCTAssertTrue(topViewController is EnterSeedViewController)
+        let enterSeedController = topViewController as! EnterSeedViewController
+        XCTAssertTrue(enterSeedController.delegate === coordinator)
     }
 
 }

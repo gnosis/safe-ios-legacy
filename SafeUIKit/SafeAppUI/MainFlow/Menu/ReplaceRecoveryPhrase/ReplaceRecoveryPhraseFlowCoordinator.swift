@@ -56,10 +56,10 @@ extension ReplaceRecoveryPhraseFlowCoordinator {
         return controller
     }
 
-    func confirmMnemonicViewController(account: ExternallyOwnedAccountData) -> ConfirmMnemonicViewController {
-        let controller = ConfirmMnemonicViewController.create(delegate: self,
-                                                              account: account,
-                                                              isRecoveryMode: true)
+    func enterSeedViewController(account: ExternallyOwnedAccountData) -> EnterSeedViewController {
+        let controller = EnterSeedViewController.create(delegate: self,
+                                                        account: account,
+                                                        isRecoveryMode: true)
         controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.enterSeed
         return controller
     }
@@ -91,14 +91,14 @@ extension ReplaceRecoveryPhraseFlowCoordinator: RBEIntroViewControllerDelegate {
 extension ReplaceRecoveryPhraseFlowCoordinator: ShowSeedViewControllerDelegate {
 
     func showSeedViewControllerDidPressContinue(_ controller: ShowSeedViewController) {
-        push(confirmMnemonicViewController(account: controller.account!))
+        push(enterSeedViewController(account: controller.account!))
     }
 
 }
 
-extension ReplaceRecoveryPhraseFlowCoordinator: ConfirmMnemonicDelegate {
+extension ReplaceRecoveryPhraseFlowCoordinator: EnterSeedViewControllerDelegate {
 
-    func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController) {
+    func enterSeedViewControllerDidSubmit(_ vc: EnterSeedViewController) {
         let address = vc.account.address
         ApplicationServiceRegistry.replacePhraseService.update(transaction: transactionID, newAddress: address)
         push(reviewViewController())

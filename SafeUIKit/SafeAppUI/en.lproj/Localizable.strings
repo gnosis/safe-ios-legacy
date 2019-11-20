@@ -102,6 +102,12 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Confirmation screen description */
 "confirm_password_info" = "Please enter your password again to confirm.";
 
+/* Tap the words */
+"confirm_recovery_phrase_description" = "Tap the missing words in order.";
+
+/* Do you have it? */
+"confirm_recovery_phrase_title" = "Do you have it?";
+
 /* Congratulations! */
 "congratulations" = "Congratulations!";
 
@@ -366,13 +372,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "ios_creationFee_failed_error" = "Error: %@ Please try again later.";
 
 /* Title for confirm recovery screen. */
-"ios_enterSeed_header" = "Enter the following words from your recovery phrase.";
-
-/* Title for confirm recovery screen. */
 "ios_enterSeed_title" = "Confirm Recovery Phrase";
-
-/* Word #%@ */
-"ios_enterSeed_word" = "Word #%@";
 
 /* Generic error message. Try again. */
 "ios_error_description" = "Operation failed because of an error. Please try again.";
@@ -601,7 +601,6 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* Next
    Next button
-   Next button for confirm recovery screen.
    Next button title */
 "next" = "Next";
 
@@ -906,7 +905,8 @@ Pairing password: %@";
 /* 'Success' status */
 "status_success" = "Success";
 
-/* Submit transaction */
+/* Submit
+   Submit transaction */
 "submit" = "Submit";
 
 /* Switch Safes */
@@ -991,6 +991,9 @@ Pairing password: %@";
 
 /* Transactions tab title */
 "transactions" = "Transactions";
+
+/* Try again */
+"try_again" = "Try again";
 
 /* Try again in */
 "try_again_in" = "Try again in";

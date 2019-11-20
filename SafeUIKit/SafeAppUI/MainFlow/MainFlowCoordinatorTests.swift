@@ -217,7 +217,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         let enterPhraseEvent = vc.screenTrackingEvent as? ReplaceRecoveryPhraseTrackingEvent
         XCTAssertEqual(enterPhraseEvent, .showSeed)
 
-        let confirmPhraseEvent = fc.confirmMnemonicViewController(vc).screenTrackingEvent
+        let confirmPhraseEvent = fc.enterSeedViewController(vc).screenTrackingEvent
             as? ReplaceRecoveryPhraseTrackingEvent
         XCTAssertEqual(confirmPhraseEvent, .enterSeed)
     }

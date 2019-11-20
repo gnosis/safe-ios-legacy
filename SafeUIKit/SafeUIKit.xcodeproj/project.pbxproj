@@ -28,6 +28,14 @@
 		0A1940572226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940562226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift */; };
 		0A19405B2226D030005B7440 /* DisconnectTwoFACommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19405A2226D030005B7440 /* DisconnectTwoFACommand.swift */; };
 		0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */; };
+		0A1E1FC123854C7E00BBCBDF /* SeedPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FC023854C7E00BBCBDF /* SeedPhraseView.swift */; };
+		0A1E1FD723854FE900BBCBDF /* EnterSeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FD623854FE900BBCBDF /* EnterSeedViewController.swift */; };
+		0A1E1FDA238551C000BBCBDF /* SeedInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FD8238551C000BBCBDF /* SeedInputCollectionViewCell.swift */; };
+		0A1E1FDB238551C000BBCBDF /* SeedInputCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1E1FD9238551C000BBCBDF /* SeedInputCollectionViewCell.xib */; };
+		0A1E1FDD23857DE300BBCBDF /* SeedPhrasePuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FDC23857DE300BBCBDF /* SeedPhrasePuzzle.swift */; };
+		0A1E1FDF23857DF900BBCBDF /* InputSeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FDE23857DF900BBCBDF /* InputSeedView.swift */; };
+		0A1E1FE32385801F00BBCBDF /* SeedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FE22385801F00BBCBDF /* SeedWord.swift */; };
+		0A1E1FF02385884E00BBCBDF /* SeedPhrasePuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A2ACBB42327891E0054D1D1 /* SKPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */; };
 		0A2ACBE1232934590054D1D1 /* SKActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */; };
@@ -79,7 +87,6 @@
 		0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */; };
 		0A334E2F209C8E3800ABC6AE /* CreateSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E00209C8E3800ABC6AE /* CreateSafe.storyboard */; };
 		0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */; };
-		0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */; };
 		0A334E3B209C8E3800ABC6AE /* AuthenticatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E0E209C8E3800ABC6AE /* AuthenticatorViewController.swift */; };
 		0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E12209C8E3800ABC6AE /* MasterPassword.storyboard */; };
 		0A334E3F209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E13209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift */; };
@@ -227,7 +234,6 @@
 		0ACCA8C6221C11E700D37594 /* LoadingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8C4221C11E700D37594 /* LoadingTitleView.swift */; };
 		0ACCA8C7221C11E700D37594 /* LoadingTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACCA8C5221C11E700D37594 /* LoadingTitleView.xib */; };
 		0ACCA8C9221C125C00D37594 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8C8221C125C00D37594 /* AttributedStringStyle.swift */; };
-		0ACD3F1A232C0269000E9274 /* ConfirmMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E05209C8E3800ABC6AE /* ConfirmMnemonicViewControllerTests.swift */; };
 		0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */; };
 		0AD1D1E021A8430300941EA1 /* EthereumAddressFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1D1DF21A8430300941EA1 /* EthereumAddressFormatter.swift */; };
 		0AD1D1E221A8432800941EA1 /* EthereumAddressFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1D1E121A8432800941EA1 /* EthereumAddressFormatterTests.swift */; };
@@ -696,6 +702,14 @@
 		0A1940562226CF46005B7440 /* DisconnectTwoFAFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFAFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A19405A2226D030005B7440 /* DisconnectTwoFACommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectTwoFACommand.swift; sourceTree = "<group>"; };
 		0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResyncWithBrowserExtensionCommand.swift; sourceTree = "<group>"; };
+		0A1E1FC023854C7E00BBCBDF /* SeedPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhraseView.swift; sourceTree = "<group>"; };
+		0A1E1FD623854FE900BBCBDF /* EnterSeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterSeedViewController.swift; sourceTree = "<group>"; };
+		0A1E1FD8238551C000BBCBDF /* SeedInputCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedInputCollectionViewCell.swift; sourceTree = "<group>"; };
+		0A1E1FD9238551C000BBCBDF /* SeedInputCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeedInputCollectionViewCell.xib; sourceTree = "<group>"; };
+		0A1E1FDC23857DE300BBCBDF /* SeedPhrasePuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhrasePuzzle.swift; sourceTree = "<group>"; };
+		0A1E1FDE23857DF900BBCBDF /* InputSeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSeedView.swift; sourceTree = "<group>"; };
+		0A1E1FE22385801F00BBCBDF /* SeedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedWord.swift; sourceTree = "<group>"; };
+		0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhrasePuzzleTests.swift; sourceTree = "<group>"; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A2ACBB32327891E0054D1D1 /* SKPairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPairViewController.swift; sourceTree = "<group>"; };
 		0A2ACBE0232934590054D1D1 /* SKActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKActivateViewController.swift; sourceTree = "<group>"; };
@@ -749,9 +763,7 @@
 		0A334DFD209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334E00209C8E3800ABC6AE /* CreateSafe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateSafe.storyboard; sourceTree = "<group>"; };
 		0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		0A334E05209C8E3800ABC6AE /* ConfirmMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicViewController.swift; sourceTree = "<group>"; };
 		0A334E0A209C8E3800ABC6AE /* CreateSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334E0E209C8E3800ABC6AE /* AuthenticatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatorViewController.swift; sourceTree = "<group>"; };
 		0A334E0F209C8E3800ABC6AE /* AuthenticatorViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatorViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1248,6 +1260,31 @@
 			path = ResyncBrowserExtension;
 			sourceTree = "<group>";
 		};
+		0A1E1FE023857FBF00BBCBDF /* EnterSeed */ = {
+			isa = PBXGroup;
+			children = (
+				0A1E1FD623854FE900BBCBDF /* EnterSeedViewController.swift */,
+				0A1E1FDE23857DF900BBCBDF /* InputSeedView.swift */,
+				0A1E1FD8238551C000BBCBDF /* SeedInputCollectionViewCell.swift */,
+				0A1E1FD9238551C000BBCBDF /* SeedInputCollectionViewCell.xib */,
+				0A1E1FDC23857DE300BBCBDF /* SeedPhrasePuzzle.swift */,
+				0A1E1FEF2385884E00BBCBDF /* SeedPhrasePuzzleTests.swift */,
+			);
+			path = EnterSeed;
+			sourceTree = "<group>";
+		};
+		0A1E1FE123857FCC00BBCBDF /* ShowSeed */ = {
+			isa = PBXGroup;
+			children = (
+				0A1E1FE22385801F00BBCBDF /* SeedWord.swift */,
+				0A1E1FC023854C7E00BBCBDF /* SeedPhraseView.swift */,
+				0AB63B22238422B200A142AD /* SeedWordCollectionViewCell.swift */,
+				0AB63B23238422B200A142AD /* SeedWordCollectionViewCell.xib */,
+				0AB63B2023841FD600A142AD /* ShowSeedViewController.swift */,
+			);
+			path = ShowSeed;
+			sourceTree = "<group>";
+		};
 		0A2ACBFE23294A360054D1D1 /* StatusKeycard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1374,14 +1411,11 @@
 		0A334E02209C8E3800ABC6AE /* SeedFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */,
-				0A334E05209C8E3800ABC6AE /* ConfirmMnemonicViewControllerTests.swift */,
 				0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */,
 				0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */,
 				0AB63B1E23841FBD00A142AD /* SeedPhrase.storyboard */,
-				0AB63B2023841FD600A142AD /* ShowSeedViewController.swift */,
-				0AB63B22238422B200A142AD /* SeedWordCollectionViewCell.swift */,
-				0AB63B23238422B200A142AD /* SeedWordCollectionViewCell.xib */,
+				0A1E1FE123857FCC00BBCBDF /* ShowSeed */,
+				0A1E1FE023857FBF00BBCBDF /* EnterSeed */,
 			);
 			path = SeedFlow;
 			sourceTree = "<group>";
@@ -2920,6 +2954,7 @@
 				0A2C0E1B2296F2E3008A30AC /* FeeRequestView.xib in Resources */,
 				0AB63B25238422B200A142AD /* SeedWordCollectionViewCell.xib in Resources */,
 				0AB63B1F23841FBD00A142AD /* SeedPhrase.storyboard in Resources */,
+				0A1E1FDB238551C000BBCBDF /* SeedInputCollectionViewCell.xib in Resources */,
 				0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */,
 				55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */,
 				553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */,
@@ -3236,6 +3271,7 @@
 				0AB63AED2383F36800A142AD /* AddressResolvingViewController.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0AE0FE68229D674400ABC552 /* UIViewController+Back.swift in Sources */,
+				0A1E1FD723854FE900BBCBDF /* EnterSeedViewController.swift in Sources */,
 				0AA21E74233CD4AC004A4A62 /* BaseAddSafeCommand.swift in Sources */,
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				0AE0FEE8229EC2AF00ABC552 /* RecoverFeePaidViewController.swift in Sources */,
@@ -3292,6 +3328,7 @@
 				554CACD5221F08CD0086D303 /* RBEReviewTransactionViewController.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
+				0A1E1FE32385801F00BBCBDF /* SeedWord.swift in Sources */,
 				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionViewViewController.swift in Sources */,
 				55CE9CFA23055EE500CB414D /* ContractUpgradeFlowCoordinator.swift in Sources */,
@@ -3310,6 +3347,7 @@
 				0A4776ED230A8FC6006DA635 /* MainBannerView.swift in Sources */,
 				0AD899AA2281C74B008AE325 /* SuccessViewController.swift in Sources */,
 				0A4B8F3E2361980C00CDAEB5 /* AddressBookEditEntryViewController.swift in Sources */,
+				0A1E1FDD23857DE300BBCBDF /* SeedPhrasePuzzle.swift in Sources */,
 				55CA30A3222934DC00E7AEA7 /* MainTrackingEvents.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
 				55329FFA22F982E300E40B06 /* GetInTouchTableViewController.swift in Sources */,
@@ -3351,6 +3389,7 @@
 				0A4DF82020CE6FC70095C00D /* AssetViewViewController.swift in Sources */,
 				0A80D192232F6D8300E45BD3 /* SKIntroViewController.swift in Sources */,
 				0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */,
+				0A1E1FDF23857DF900BBCBDF /* InputSeedView.swift in Sources */,
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
 				0A2ACBF7232943300054D1D1 /* SKPairingSuccessViewController.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
@@ -3366,6 +3405,7 @@
 				5545970622689A63009B4A0B /* LicensesCommand.swift in Sources */,
 				55CE9CEE23040FB000CB414D /* ContractUpgradeHeaderView.swift in Sources */,
 				552D1010232A644D00127223 /* SeedIntroViewController.swift in Sources */,
+				0A1E1FDA238551C000BBCBDF /* SeedInputCollectionViewCell.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectTwoFAFlowCoordinator.swift in Sources */,
@@ -3384,11 +3424,11 @@
 				552D42FC233A37E900C57B5C /* SwitchSafesTableViewCell.swift in Sources */,
 				0A107112236046F2002DBA36 /* AddressBookEntryTableViewCell.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
+				0A1E1FC123854C7E00BBCBDF /* SeedPhraseView.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
 				55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */,
 				0ACCA8C0221C0D0100D37594 /* AuthenticatorViewController+RBE.swift in Sources */,
 				0A334E3F209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift in Sources */,
-				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,
 				0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */,
 				0A3D14F4220B1D2800E340DB /* ReplaceTwoFACommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
@@ -3442,9 +3482,9 @@
 				0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */,
 				0A2D589922576CAA001B8BF4 /* RBEReviewTransactionViewControllerTests.swift in Sources */,
 				553AEB18229EA43500EA3248 /* RBEIntroViewControllerStartingStateTests.swift in Sources */,
+				0A1E1FF02385884E00BBCBDF /* SeedPhrasePuzzleTests.swift in Sources */,
 				55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */,
 				553AEB1A229EA44E00EA3248 /* RBEStarterMock.swift in Sources */,
-				0ACD3F1A232C0269000E9274 /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				552D4308233B96FA00C57B5C /* SwitchSafesTableViewControllerTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
