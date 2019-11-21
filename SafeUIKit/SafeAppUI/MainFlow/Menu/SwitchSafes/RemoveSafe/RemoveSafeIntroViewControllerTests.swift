@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
+import CommonTestSupport
 import MultisigWalletApplication
 
 class RemoveSafeIntroViewControllerTests: XCTestCase {
@@ -30,6 +31,7 @@ class RemoveSafeIntroViewControllerTests: XCTestCase {
         controller.viewDidLoad()
         XCTAssertFalse(didPressNext)
         controller.footerButton.sendActions(for: .touchUpInside)
+        delay()
         XCTAssertTrue(didPressNext)
     }
 
