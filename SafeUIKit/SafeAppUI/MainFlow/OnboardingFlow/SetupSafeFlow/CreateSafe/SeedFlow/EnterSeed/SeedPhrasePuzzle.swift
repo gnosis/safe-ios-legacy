@@ -79,15 +79,7 @@ class SeedPhrasePuzzle {
     /// Returns n random slot indeces
     private func randomSlotIndices(_ n: Int) -> [Int] {
         guard n > 0 && n <= slots.count else { return [] }
-        var indices = Array(0..<slots.count)
-        var result = [Int]()
-        for _ in (0..<n) {
-            let index = indices.randomElement()!
-            indices.removeAll { $0 == index }
-            result.append(index)
-        }
-        assert(result.count == n)
-        return result
+        return Array(Array(0..<slots.count).shuffled().prefix(n))
     }
 
     private func updateFocus() {
