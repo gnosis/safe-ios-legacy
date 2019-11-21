@@ -27,12 +27,4 @@ class RemoveSafeIntroViewControllerTests: XCTestCase {
         XCTAssertTracksAppearance(in: controller, SafesTrackingEvent.removeSafeIntro)
     }
 
-    func test_whenPressingButton_thenCallsCompletion() {
-        controller.viewDidLoad()
-        XCTAssertFalse(didPressNext)
-        controller.footerButton.sendActions(for: .touchUpInside)
-        delay()
-        XCTAssertTrue(didPressNext)
-    }
-
 }
