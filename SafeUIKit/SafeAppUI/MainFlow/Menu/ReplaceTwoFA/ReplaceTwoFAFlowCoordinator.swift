@@ -176,11 +176,12 @@ extension ReplaceTwoFAFlowCoordinator: ReviewTransactionViewControllerDelegate {
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
+        let txID = self.transactionID!
         DispatchQueue.global.async {
-            self.applicationService.startMonitoring(transaction: self.transactionID)
+            ApplicationServiceRegistry.replaceTwoFAService.startMonitoring(transaction: txID)
         }
-        push(SuccessViewController.replace2FASuccess { [unowned self] in
-            self.exitFlow()
+        push(SuccessViewController.replace2FASuccess { [weak self] in
+            self?.exitFlow()
         })
     }
 

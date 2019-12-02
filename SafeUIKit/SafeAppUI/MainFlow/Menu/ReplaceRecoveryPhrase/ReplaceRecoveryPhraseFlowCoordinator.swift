@@ -126,11 +126,12 @@ extension ReplaceRecoveryPhraseFlowCoordinator: ReviewTransactionViewControllerD
     }
 
     public func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
+        let txID = self.transactionID!
         DispatchQueue.global.async {
-            ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: self.transactionID)
+            ApplicationServiceRegistry.replacePhraseService.startMonitoring(transaction: txID)
         }
-        push(SuccessViewController.replaceSeedSuccess { [unowned self] in
-            self.exitFlow()
+        push(SuccessViewController.replaceSeedSuccess { [weak self] in
+            self?.exitFlow()
         })
     }
 

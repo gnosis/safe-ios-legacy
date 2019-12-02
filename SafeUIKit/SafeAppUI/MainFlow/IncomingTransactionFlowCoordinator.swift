@@ -56,8 +56,8 @@ extension IncomingTransactionFlowCoordinator: ReviewTransactionViewControllerDel
     }
 
     public func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
-        push(SuccessViewController.sendSuccess(token: controller.tx.amountTokenData) { [unowned self] in
-            self.exitFlow()
+        push(SuccessViewController.sendSuccess(token: controller.tx.amountTokenData) { [weak self] in
+            self?.exitFlow()
         })
     }
 

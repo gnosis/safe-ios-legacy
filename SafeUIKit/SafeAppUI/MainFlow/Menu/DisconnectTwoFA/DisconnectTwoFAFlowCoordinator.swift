@@ -114,11 +114,12 @@ extension DisconnectTwoFAFlowCoordinator: ReviewTransactionViewControllerDelegat
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
+        let txID = self.transactionID!
         DispatchQueue.global.async {
-            self.applicationService.startMonitoring(transaction: self.transactionID)
+            self.applicationService.startMonitoring(transaction: txID)
         }
-        push(SuccessViewController.disconnect2FASuccess { [unowned self] in
-            self.exitFlow()
+        push(SuccessViewController.disconnect2FASuccess { [weak self] in
+            self?.exitFlow()
         })
     }
 
