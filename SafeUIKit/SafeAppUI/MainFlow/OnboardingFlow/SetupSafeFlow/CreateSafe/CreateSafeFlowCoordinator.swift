@@ -162,8 +162,8 @@ extension CreateSafeFlowCoordinator: AuthenticatorViewControllerDelegate {
     }
 
     func authenticatorViewControllerDidFinish() {
-        let controller = ConnectAuthenticatorSuccessViewController.create { [unowned self] in
-            self.showSeedIntro(paired: true)
+        let controller = ConnectAuthenticatorSuccessViewController.create { [weak self] in
+            self?.showSeedIntro(paired: true)
         }
         push(controller)
     }

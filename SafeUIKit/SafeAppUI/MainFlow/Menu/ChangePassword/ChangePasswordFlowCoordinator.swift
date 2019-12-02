@@ -29,8 +29,8 @@ extension ChangePasswordFlowCoordinator: SetupNewPasswordViewControllerDelegate 
     func didEnterNewPassword(_ password: String) {
         do {
             try Authenticator.instance.updateUserPassword(with: password)
-            push(SuccessViewController.changePasswordSuccess { [unowned self] in
-                self.exitFlow()
+            push(SuccessViewController.changePasswordSuccess { [weak self] in
+                self?.exitFlow()
             })
         } catch {
             ErrorHandler.showFatalError(log: "Failed to update password",
