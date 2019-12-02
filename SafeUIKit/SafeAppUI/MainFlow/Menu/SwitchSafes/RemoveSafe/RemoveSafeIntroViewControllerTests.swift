@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
+import CommonTestSupport
 import MultisigWalletApplication
 
 class RemoveSafeIntroViewControllerTests: XCTestCase {
@@ -24,13 +25,6 @@ class RemoveSafeIntroViewControllerTests: XCTestCase {
     func test_tracking() {
         controller.viewDidAppear(false)
         XCTAssertTracksAppearance(in: controller, SafesTrackingEvent.removeSafeIntro)
-    }
-
-    func test_whenPressingButton_thenCallsCompletion() {
-        controller.viewDidLoad()
-        XCTAssertFalse(didPressNext)
-        controller.footerButton.sendActions(for: .touchUpInside)
-        XCTAssertTrue(didPressNext)
     }
 
 }

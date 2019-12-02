@@ -65,6 +65,7 @@ public class RecoveryDomainService: Assertable {
     public func change(address: Address) {
         do {
             try validate(address: address)
+            removeOldAddressBookEntry()
             changeWallet(address: address)
             let name = portfolio().wallets.count == 1 ? "Safe" : "Safe \(address.value.suffix(4))"
             createWalletEntryInAddressBook(name: name)
@@ -72,6 +73,15 @@ public class RecoveryDomainService: Assertable {
             DomainRegistry.eventPublisher.publish(WalletAddressChanged())
         } catch let error {
             DomainRegistry.errorStream.post(serviceError(from: error))
+        }
+    }
+
+    private func removeOldAddressBookEntry() {
+        if let wallet = DomainRegistry.walletRepository.selectedWallet(),
+            let existingAddress = wallet.address {
+            for entry in DomainRegistry.addressBookRepository.find(address: existingAddress.value, types: [.wallet]) {
+                DomainRegistry.addressBookRepository.remove(entry)
+            }
         }
     }
 

@@ -161,27 +161,33 @@ public class ReviewTransactionViewController: UITableViewController {
     func submitWithKeycard() {
         switch tx.status {
         case .waitingForConfirmation:
-            openSignWithKeycard()
+            signWithKeycard()
         case .readyToSubmit:
             submitWithUserPermission()
         case .rejected:
             ApplicationServiceRegistry.walletService.resetTransaction(tx.id)
-            openSignWithKeycard()
+            signWithKeycard()
         default: break
         }
     }
 
-    func openSignWithKeycard() {
+    func signWithKeycard() {
         doAfterEstimateTransaction { [weak self] in
             guard let `self` = self else { return TransactionData.empty }
-            let signController = SKSignWithPinViewController.create(transactionID: self.tx.id) { [weak self] in
-                guard let `self` = self else { return }
-                self.tx = self.fetchTransaction(self.tx.id)
-                self.postProcessing()
+            DispatchQueue.main.sync { [weak self] in
+                self?.openKeycardScreen()
             }
-            self.show(signController, sender: self)
             return self.fetchTransaction(self.tx.id)
         }
+    }
+
+    func openKeycardScreen() {
+        let signController = SKSignWithPinViewController.create(transactionID: self.tx.id) { [weak self] in
+            guard let `self` = self else { return }
+            self.tx = self.fetchTransaction(self.tx.id)
+            self.postProcessing()
+        }
+        self.show(signController, sender: self)
     }
 
     /// Supposed to be called from flow coordinator when the screen is already shown, but new transaction data
