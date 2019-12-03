@@ -59,7 +59,8 @@ class AddressBookEntryViewController: CardViewController, AddressResolvingViewCo
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             self.entry = ApplicationServiceRegistry.walletService.addressBookEntry(id: self.entryID)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self, self.entry != nil else { return }
                 self.nameLabel.attributedText = NSAttributedString(string: self.entry.name, style: HeaderStyle())
                 self.addressDetailView.address = self.entry.address
                 self.reverseResolveAddress(self.entry.address)
