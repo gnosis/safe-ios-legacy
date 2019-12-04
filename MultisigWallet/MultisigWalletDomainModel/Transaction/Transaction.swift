@@ -105,6 +105,10 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         signatures = []
     }
 
+    public var hasData: Bool {
+         data != nil && !data!.isEmpty
+    }
+
     @discardableResult
     public func proceed() -> Transaction {
         state.proceed(self)

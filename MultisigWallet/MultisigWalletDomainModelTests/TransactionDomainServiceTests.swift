@@ -231,6 +231,24 @@ class TransactionDomainServiceTests: XCTestCase {
         return tx
     }
 
+    // batch transaction:
+    //   - tx.type == .recovery -> nil
+    //   - tx.type == .transfer, non-multi-send -> nil
+    //   - multi-send with 1 transaction (eth)
+    //   - multi-send with 1 tx (token)
+    //   - multi-send with 3 txes
+    //      1) create a multi-send transaction
+    //      2) save it in the repository, also this will need a wallet
+    //      3) call the domain service
+    //      4) check that return array of transactions have correct data (equal to step 1).
+
+    // isDangerous
+    //  - multi-send
+    //      - contains multi-send - dangerous
+    //      - contains swapOwner - dangerous
+    //      - contains any random data addressed to the safe - dangerous
+    //  - contains any data to the safe - dangerous
+    //  - contains delegate call - dangerous
 }
 
 extension TransactionReceipt {

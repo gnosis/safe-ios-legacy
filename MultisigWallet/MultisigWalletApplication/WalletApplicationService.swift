@@ -956,7 +956,7 @@ public class WalletApplicationService: Assertable {
         update(transaction: transaction, with: message)
         // We don't allow dangerous transactions initiated by Authenticator.
         // Malicious dapp could try to modifying safe owners or make a delegateCall.
-        guard !transaction.isDangerous(walletAddress: wallet.address) else { throw WalletApplicationServiceError.validationFailed }
+        guard !DomainRegistry.transactionService.isDangerous(transaction.id) else { throw WalletApplicationServiceError.validationFailed }
 
         let hash = DomainRegistry.encryptionService.hash(of: transaction)
         guard hash == message.hash else {
@@ -1015,35 +1015,11 @@ public class WalletApplicationService: Assertable {
             .change(recipient: data.to)
             .change(data: data.data)
             .change(amount: TokenAmount.ether(data.value))
-        let tokenProxy = ERC20TokenContractProxy(data.to)
-        if let erc20Transfer = tokenProxy.decodedTransfer(from: data.data) {
-            let amountToken = self.token(for: data.to)
-            transaction
-                .change(recipient: erc20Transfer.recipient)
-                .change(amount: TokenAmount(amount: erc20Transfer.amount, token: amountToken))
-        }
-    }
-
-    private func token(for address: Address) -> Token {
-        let tokenProxy = ERC20TokenContractProxy(address)
-        if let token = self.token(id: address.value) {
-            return token
-        } else {
-            let token: Token
-            if let name = try? tokenProxy.name(),
-                let code = try? tokenProxy.symbol(),
-                let decimals = try? tokenProxy.decimals() {
-                token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: "")
-            } else {
-                token = Token(code: "---", name: address.value, decimals: 18, address: address, logoUrl: "")
-            }
-            try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
-            return token
-        }
+        DomainRegistry.transactionService.enhanceWithERC20Data(transaction: transaction, to: data.to, data: data.data)
     }
 
     private func estimation(_ message: SendTransactionMessage) -> TransactionFeeEstimate {
-        let feeToken = self.token(for: message.gasToken)
+        let feeToken = DomainRegistry.transactionService.token(for: message.gasToken)
         return TransactionFeeEstimate(gas: message.txGas,
                                       dataGas: message.dataGas,
                                       operationalGas: message.operationalGas,
