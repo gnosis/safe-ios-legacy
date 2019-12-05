@@ -83,8 +83,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     // MARK: - Validating transaction
 
     public func isDangerous(walletAddress: Address) -> Bool {
-        return ![nil, .call].contains(operation) ||
-            (recipient == walletAddress && !(data?.isEmpty ?? true))
+        return ![nil, .call].contains(operation) || (recipient == walletAddress && hasData)
     }
 
     // MARK: - Changing transaction's status
@@ -103,6 +102,10 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         submittedDate = nil
         processedDate = nil
         signatures = []
+    }
+
+    public var hasData: Bool {
+         data != nil && !data!.isEmpty
     }
 
     @discardableResult
@@ -330,6 +333,7 @@ public enum TransactionType: Int {
     case replaceTwoFAWithStatusKeycard = 7
     case connectStatusKeycard = 8
     case disconnectStatusKeycard = 9
+    case batched = 10
 
 }
 

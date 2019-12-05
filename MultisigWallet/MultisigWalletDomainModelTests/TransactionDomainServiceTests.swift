@@ -233,6 +233,207 @@ class TransactionDomainServiceTests: XCTestCase {
 
 }
 
+class TransactionDomainServiceBatchedTransactionsTests: XCTestCase {
+
+    let multiSendAddress = Address.testAccount4
+    let transactionService = TransactionDomainService()
+    let transactionRepo = InMemoryTransactionRepository()
+    let walletRepo = InMemoryWalletRepository()
+    lazy var metadataRepo = InMemorySafeContractMetadataRepository(metadata:
+        SafeContractMetadata(multiSendContractAddress: multiSendAddress,
+                             proxyFactoryAddress: Address.testAccount1,
+                             safeFunderAddress: Address.testAccount1,
+                             metadata: []))
+    let nodeService = MockEthereumNodeService()
+    let ethereumService = EthereumKitEthereumService()
+    lazy var encryptionService = EncryptionService(chainId: .any, ethereumService: ethereumService)
+    let tokenRepo = InMemoryTokenListItemRepository()
+    let accountUpdateService = MockAccountUpdateService()
+    lazy var multiSendContract = MultiSendContractProxy(multiSendAddress)
+    let portfolioRepo = InMemorySinglePortfolioRepository()
+
+    let walletAddress = Address.testAccount2
+    lazy var wallet = Wallet(id: WalletID(), // important for test
+        state: .readyToUse,
+        owners: OwnerList(),
+        address: walletAddress, // important for test
+        feePaymentTokenAddress: nil,
+        minimumDeploymentTransactionAmount: 0,
+        creationTransactionHash: nil,
+        confirmationCount: 1,
+        masterCopyAddress: nil,
+        contractVersion: nil)
+
+    override func setUp() {
+        super.setUp()
+        DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
+        DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
+        DomainRegistry.put(service: metadataRepo, for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+        DomainRegistry.put(service: tokenRepo, for: TokenListItemRepository.self)
+        DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
+        DomainRegistry.put(service: accountUpdateService, for: AccountUpdateDomainService.self)
+        DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
+
+        walletRepo.save(wallet)
+    }
+
+    func batchedTx(type: TransactionType, operation: WalletOperation, data: Data?, recipient: Address)
+        -> TransactionID {
+            let tx = Transaction(id: TransactionID(),
+                                 type: type,
+                                 accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
+                .change(operation: operation)
+                .change(data: data)
+                .change(recipient: recipient)
+            transactionRepo.save(tx)
+            return tx.id
+    }
+
+    func test_whenNonMultiSendTransactionParameters_thenNilBatchedTransactions() {
+        XCTAssertNil(transactionService.batchedTransactions(in:
+            batchedTx(type: .transfer, operation: .delegateCall, data: nil, recipient: multiSendAddress)),
+                     "wrong tx type")
+
+        XCTAssertNil(transactionService.batchedTransactions(in:
+            batchedTx(type: .batched, operation: .call, data: nil, recipient: multiSendAddress)),
+                     "wrong tx operation")
+
+        XCTAssertNil(transactionService.batchedTransactions(in:
+            batchedTx(type: .batched, operation: .delegateCall, data: nil, recipient: multiSendAddress)),
+                     "nil data")
+
+        XCTAssertNil(transactionService.batchedTransactions(in:
+            batchedTx(type: .batched, operation: .delegateCall, data: Data(), recipient: Address.testAccount1)),
+                     "wrong tx recipient")
+
+        XCTAssertNil(transactionService.batchedTransactions(in:
+            batchedTx(type: .batched, operation: .delegateCall, data: Data(), recipient: multiSendAddress)),
+                     "wrong tx data")
+    }
+
+    func test_whenMultiSendEmpty_thenEmptyBatchedTransactions() {
+        XCTAssertEqual(transactionService.batchedTransactions(in:
+            batchedTx(type: .batched,
+                      operation: .delegateCall,
+                      data: multiSendContract.multiSend([/* empty */]),
+                      recipient: multiSendAddress)),
+                       [/* empty */])
+    }
+
+    func test_whenMultiSendOne_thenOneSubtransaction() {
+        guard let subtransactions = transactionService.batchedTransactions(in:
+            batchedTx(type: .batched,
+                      operation: .delegateCall,
+                      data: multiSendContract.multiSend([
+                        (operation: .call, to: walletAddress, value: 1, data: Data())]),
+                      recipient: multiSendAddress)),
+            subtransactions.count == 1 else {
+                        XCTFail()
+                        return
+        }
+        XCTAssertEqual(subtransactions[0].operation, .call)
+        XCTAssertEqual(subtransactions[0].recipient, Address.testAccount2)
+        XCTAssertEqual(subtransactions[0].amount, TokenAmount(amount: 1, token: Token.Ether))
+        XCTAssertEqual(subtransactions[0].data, Data())
+    }
+
+    func test_whenMultiSendERC20_thenFetchesToken() {
+        let erc20Contract = ERC20TokenContractProxy(Address.testAccount3)
+        let erc20Data =  erc20Contract.transfer(to: Address.testAccount4, amount: 2)
+        let subtransaction: MultiSendTransaction =
+            (operation: .call, to: erc20Contract.contract, value: 0, data: erc20Data)
+        guard let subtransactions = transactionService.batchedTransactions(in:
+            batchedTx(type: .batched,
+                      operation: .delegateCall,
+                      data: multiSendContract.multiSend([subtransaction]),
+                      recipient: multiSendAddress)),
+            subtransactions.count == 1 else {
+                XCTFail()
+                return
+        }
+        XCTAssertEqual(subtransactions[0].recipient?.value.lowercased(), Address.testAccount4.value.lowercased())
+        XCTAssertEqual(subtransactions[0].amount,
+                       TokenAmount(amount: 2, token: transactionService.token(for: erc20Contract.contract)))
+        XCTAssertEqual(subtransactions[0].data, erc20Data)
+    }
+
+    func test_whenMultiSendMultiple_thenMultipleSubtransactions() {
+        guard let subtransactions = transactionService.batchedTransactions(in:
+            batchedTx(type: .batched,
+                      operation: .delegateCall,
+                      data: multiSendContract.multiSend([
+                        (operation: .call, to: walletAddress, value: 1, data: Data()),
+                        (operation: .call, to: walletAddress, value: 1, data: Data()),
+                        (operation: .call, to: walletAddress, value: 1, data: Data())]),
+                      recipient: multiSendAddress)) else {
+                        XCTFail()
+                        return
+        }
+        XCTAssertEqual(subtransactions.count, 3)
+    }
+
+    func test_whenSafeSubtransactions_thenMultiSendIsSafe() {
+        // empty is safe
+        XCTAssertFalse(transactionService.isDangerous(
+            batchedTx(type: .batched,
+                      operation: .delegateCall,
+                      data: multiSendContract.multiSend([
+                        /* empty */
+                      ]),
+                      recipient: multiSendAddress)))
+
+        // when call to non-safe address with non-empty data and 0 value
+        XCTAssertFalse(transactionService.isDangerous(
+        batchedTx(type: .batched,
+                  operation: .delegateCall,
+                  data: multiSendContract.multiSend([
+                    (operation: .call, to: Address.testAccount3, value: 0, data: Data([1, 2, 3, 4])),
+                  ]),
+                  recipient: multiSendAddress)))
+
+        // when call to safe address with value and empty data
+        XCTAssertFalse(transactionService.isDangerous(
+        batchedTx(type: .batched,
+                  operation: .delegateCall,
+                  data: multiSendContract.multiSend([
+                    (operation: .call, to: walletAddress, value: 1, data: Data()),
+                  ]),
+                  recipient: multiSendAddress)))
+
+    }
+
+    func test_whenDangerousSubtransactions_thenMultiSendIsDangerous() {
+        // if delegate call
+        XCTAssertTrue(transactionService.isDangerous(
+        batchedTx(type: .batched,
+                  operation: .delegateCall,
+                  data: multiSendContract.multiSend([
+                    (operation: .delegateCall, to: Address.testAccount3, value: 0, data: Data([1, 2, 3, 4])),
+                  ]),
+                  recipient: multiSendAddress)))
+
+        // if call to the safe address and non-empty data
+        XCTAssertTrue(transactionService.isDangerous(
+        batchedTx(type: .batched,
+                  operation: .delegateCall,
+                  data: multiSendContract.multiSend([
+                    (operation: .call, to: walletAddress, value: 0, data: Data([1, 2, 3, 4])),
+                  ]),
+                  recipient: multiSendAddress)))
+    }
+
+    func test_whenSafeTransactionParameters_thenItIsNotDangerous() {
+        // non-batch
+        XCTAssertFalse(transactionService.isDangerous(
+        batchedTx(type: .transfer,
+                  operation: .call,
+                  data: ERC20TokenContractProxy(Address.testAccount4).transfer(to: walletAddress, amount: 1),
+                  recipient: Address.testAccount4)))
+    }
+
+}
+
 extension TransactionReceipt {
 
     static let success = TransactionReceipt(hash: TransactionHash.test1, status: .success, blockHash: "0x1")

@@ -125,63 +125,88 @@ extension WalletConnectService: RequestHandler {
     // swiftlint:disable:next function_body_length
     public func handle(request: Request) {
         if request.method == "eth_sendTransaction" {
-            do {                
+            do {
                 var wcRequest = try request.parameter(of: WCSendTransactionRequest.self, at: 0)
                 wcRequest.url = request.url.wcURL
-                delegate.handleSendTransactionRequest(wcRequest) { [weak self] result in
-                    guard let `self` = self else { return }
-                    var response: Response
-                    switch result {
-                    case .success(let hash):
-                        response = try! Response(url: request.url, value: hash, id: request.id!)
-                    case .failure(let error):
-                        let errorMessage = "Transaction was declined. Error: \(error.localizedDescription)"
-                        response = try! Response(url: request.url,
-                                                 errorCode: ErrorCode.declinedSendTransactionRequest.rawValue,
+                let completion = createSendTransactionCompletionBlock(with: request)
+                delegate.handleSendTransactionRequest(wcRequest, completion: completion)
+            } catch {
+                handleSendTransactionFailure(request, error)
+            }
+        } else if request.method == "gs_multi_send" {
+            do {
+                let subtransactions = try (0..<request.parameterCount).map { index in
+                    try request.parameter(of: WCMultiSendSubTransaction.self, at: index)
+                }
+                let wcRequest = WCMultiSendRequest(subtransactions: subtransactions, url: request.url.wcURL)
+                let completion = createSendTransactionCompletionBlock(with: request)
+                delegate.handleMultiSendTransactionRequest(wcRequest, completion: completion)
+            } catch {
+                handleSendTransactionFailure(request, error)
+            }
+        } else {
+            let completion = createEthereumNodeRequestCompletionBlock(with: request)
+            delegate.handleEthereumNodeRequest(request.wcRequest, completion: completion)
+        }
+    }
+
+    private func createSendTransactionCompletionBlock(with request: Request) -> (Result<String, Error>) -> Void {
+        { [weak self] result in
+            guard let `self` = self else { return }
+            var response: Response
+            switch result {
+            case .success(let hash):
+                response = try! Response(url: request.url, value: hash, id: request.id!)
+            case .failure(let error):
+                let errorMessage = "Transaction was declined. Error: \(error.localizedDescription)"
+                response = try! Response(url: request.url,
+                                         errorCode: ErrorCode.declinedSendTransactionRequest.rawValue,
+                                         message: errorMessage,
+                                         id: request.id)
+            }
+            self.server.send(response)
+        }
+    }
+
+    private func handleSendTransactionFailure(_ request: Request, _ error: Error) {
+        DomainRegistry.logger.error("WC: failed \(request.method)", error: error)
+        let errorMessage = "Wrong request. Error: \(error.localizedDescription)."
+        let response = try! Response(url: request.url,
+                                     errorCode: ErrorCode.wrongSendTransactionRequest.rawValue,
+                                     message: errorMessage,
+                                     id: request.id)
+        self.server.send(response)
+    }
+
+    private func createEthereumNodeRequestCompletionBlock(with request: Request) -> (Result<WCMessage, Error>) -> Void {
+        { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let wcResponse):
+                do {
+                    let response = try Response(wcResponse: wcResponse)
+                    self.server.send(response)
+                } catch {
+                    let message = "WC: Could not create a WalletConnect Response from: \(wcResponse.payload)"
+                    DomainRegistry.logger.error(message, error: error)
+                    let errorMessage = "Wrong RPC response. Error: \(error.localizedDescription)"
+                    let response = try! Response(url: request.url,
+                                                 errorCode: ErrorCode.wrongNodeRPCResponse.rawValue,
                                                  message: errorMessage,
                                                  id: request.id)
-                    }
                     self.server.send(response)
                 }
-            } catch {
-                DomainRegistry.logger.error("WC: failed eth_sendTransaction", error: error)
-                let errorMessage = "Wrong send transaction request. Error: \(error.localizedDescription)."
+            case .failure(let error):
+                let internalMessage = """
+                WC: Could not send a WalletConnect request: \(request.method). Error: \(error.localizedDescription)
+                """
+                DomainRegistry.logger.error(internalMessage, error: error)
+                let errorMessage = "RPC request failed. Error: \(error.localizedDescription)"
                 let response = try! Response(url: request.url,
-                                             errorCode: ErrorCode.wrongSendTransactionRequest.rawValue,
+                                             errorCode: ErrorCode.failedToExecuteNodeRPCRequest.rawValue,
                                              message: errorMessage,
                                              id: request.id)
                 self.server.send(response)
-            }
-        } else {
-            delegate.handleEthereumNodeRequest(request.wcRequest) { [weak self] result in
-                guard let `self` = self else { return }
-                switch result {
-                case .success(let wcResponse):
-                    do {
-                        let response = try Response(wcResponse: wcResponse)
-                        self.server.send(response)
-                    } catch {
-                        let message = "WC: Could not create a WalletConnect Response from: \(wcResponse.payload)"
-                        DomainRegistry.logger.error(message, error: error)
-                        let errorMessage = "Wrong RPC response. Error: \(error.localizedDescription)"
-                        let response = try! Response(url: request.url,
-                                                     errorCode: ErrorCode.wrongNodeRPCResponse.rawValue,
-                                                     message: errorMessage,
-                                                     id: request.id)
-                        self.server.send(response)
-                    }
-                case .failure(let error):
-                    let internalMessage = """
-                    WC: Could not send a WalletConnect request: \(request.method). Error: \(error.localizedDescription)
-                    """
-                    DomainRegistry.logger.error(internalMessage, error: error)
-                    let errorMessage = "RPC request failed. Error: \(error.localizedDescription)"
-                    let response = try! Response(url: request.url,
-                                                 errorCode: ErrorCode.failedToExecuteNodeRPCRequest.rawValue,
-                                                 message: errorMessage,
-                                                 id: request.id)
-                    self.server.send(response)
-                }
             }
         }
     }

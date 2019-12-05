@@ -140,7 +140,7 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
             let walletAddress = wcSession.walletInfo?.accounts.first,
             let wallet = walletRepository.find(address: Address(walletAddress)) else { return }
         let txID = walletService.createDraftTransaction(in: wallet, sendTransactionData: request)
-        guard let tx = transactionsRepository.find(id: txID), !tx.isDangerous(walletAddress: wallet.address) else {
+        guard transactionsRepository.find(id: txID) != nil, !DomainRegistry.transactionService.isDangerous(txID) else {
             let error = NSError(domain: "io.gnosis.safe",
                                 code: -501,
                                 userInfo: [NSLocalizedDescriptionKey: "Attempt to perform a restricted transaction."])
@@ -149,6 +149,49 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
         }
         let sessionData = WCSessionData(wcSession: wcSession)
         let transaction = WCPendingTransaction(transactionID: txID, sessionData: sessionData, completion: completion)
+        pendingTransactionsRepository.add(transaction)
+        eventPublisher.publish(SendTransactionRequested())
+    }
+
+    public func handleMultiSendTransactionRequest(_ request: WCMultiSendRequest,
+                                                  completion: @escaping (Result<String, Error>) -> Void) {
+        guard let wcSession = sessionRepo.find(url: request.url),
+            let walletAddress = wcSession.walletInfo?.accounts.first,
+            let wallet = walletRepository.find(address: Address(walletAddress)) else { return }
+
+        // create a multi-send transaction
+        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+        let multiSendContract = MultiSendContractProxy(multiSendAddress)
+        let multiSendData = multiSendContract.multiSend(request.subtransactions.map { tx in
+            (operation: MultiSendTransactionOperation(rawValue: tx.operation) ?? .call,
+             to: tx.to,
+             value: tx.value,
+             data: tx.data)
+        })
+        let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
+        let accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
+        let tx = Transaction(id: DomainRegistry.transactionRepository.nextID(),
+                             type: .batched,
+                             accountID: accountID)
+            .change(sender: wallet.address)
+            .change(recipient: multiSendAddress)
+            .change(amount: .ether(0))
+            .change(operation: .delegateCall)
+            .change(data: multiSendData)
+        DomainRegistry.transactionRepository.save(tx)
+
+        // double-check it is not dangerous
+        guard !DomainRegistry.transactionService.isDangerous(tx.id) else {
+            let error = NSError(domain: "io.gnosis.safe",
+                                code: -501,
+                                userInfo: [NSLocalizedDescriptionKey: "Attempt to perform a restricted transaction."])
+            completion(.failure(error))
+            return
+        }
+
+        // send for review
+        let sessionData = WCSessionData(wcSession: wcSession)
+        let transaction = WCPendingTransaction(transactionID: tx.id, sessionData: sessionData, completion: completion)
         pendingTransactionsRepository.add(transaction)
         eventPublisher.publish(SendTransactionRequested())
     }

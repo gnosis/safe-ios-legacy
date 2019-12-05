@@ -288,6 +288,13 @@ fileprivate class MockWalletConnectDelegate: WalletConnectDomainServiceDelegate 
         }
     }
 
+    func handleMultiSendTransactionRequest(_ request: WCMultiSendRequest,
+                                           completion: @escaping (Result<String, Error>) -> Void) {
+        if let response = sendTransactionRequest_response {
+            completion(response)
+        }
+    }
+
     var ethereumNodeRequest: WCMessage?
     func handleEthereumNodeRequest(_ request: WCMessage, completion: (Result<WCMessage, Error>) -> Void) {
         ethereumNodeRequest = request

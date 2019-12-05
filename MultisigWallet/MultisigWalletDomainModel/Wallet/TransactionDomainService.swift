@@ -131,6 +131,82 @@ public class TransactionDomainService {
         DomainRegistry.transactionRepository.save(transaction)
     }
 
+    public func isDangerous(_ transactionID: TransactionID) -> Bool {
+        guard let transaction = DomainRegistry.transactionRepository.find(id: transactionID),
+            let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID),
+            let walletAddress = wallet.address else { return false }
+
+        if let subtransactions = batchedTransactions(from: transaction, walletID: wallet.id),
+            subtransactions.allSatisfy({ !$0.isDangerous(walletAddress: walletAddress) }) {
+            return false
+        }
+        // if transaction is multiSend, it'll be dangerous
+        return transaction.isDangerous(walletAddress: walletAddress)
+    }
+
+    public func batchedTransactions(in transactionID: TransactionID) -> [Transaction]? {
+        guard let transaction = DomainRegistry.transactionRepository.find(id: transactionID),
+            let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID) else { return nil }
+        return batchedTransactions(from: transaction, walletID: wallet.id)
+    }
+
+    private func batchedTransactions(from transaction: Transaction, walletID: WalletID) -> [Transaction]? {
+        let multiSendContract = MultiSendContractProxy(DomainRegistry.safeContractMetadataRepository.multiSendContractAddress)
+        let isMultiSend =
+            transaction.type == .batched &&
+            transaction.operation == .delegateCall &&
+            transaction.data != nil &&
+            transaction.recipient == multiSendContract.contract
+        if isMultiSend, let arguments = multiSendContract.decodeMultiSendArguments(from: transaction.data!) {
+            return arguments.map { self.subTransaction(from: $0, in: walletID) }
+        }
+        return nil
+    }
+
+    private func subTransaction(from multiSend: MultiSendTransaction, in walletID: WalletID) -> Transaction {
+        let result = Transaction(id: DomainRegistry.transactionRepository.nextID(),
+                                 type: .transfer,
+                                 accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
+        let formattedRecipient = DomainRegistry.encryptionService.address(from: multiSend.to.value)!
+
+        result.change(recipient: formattedRecipient)
+            .change(data: multiSend.data)
+            .change(operation: WalletOperation(rawValue: multiSend.operation.rawValue))
+            .change(amount: TokenAmount.ether(multiSend.value))
+
+        enhanceWithERC20Data(transaction: result, to: formattedRecipient, data: multiSend.data)
+
+        return result
+    }
+
+    public func enhanceWithERC20Data(transaction: Transaction, to address: Address, data: Data) {
+        let tokenProxy = ERC20TokenContractProxy(address)
+        if let erc20Transfer = tokenProxy.decodedTransfer(from: data) {
+            let amountToken = self.token(for: address)
+            transaction
+                .change(recipient: erc20Transfer.recipient)
+                .change(amount: TokenAmount(amount: erc20Transfer.amount, token: amountToken))
+        }
+    }
+
+    public func token(for address: Address) -> Token {
+        let tokenProxy = ERC20TokenContractProxy(address)
+        if let token = WalletDomainService.token(id: address.value) {
+            return token
+        } else {
+            let token: Token
+            if let name = try? tokenProxy.name(),
+                let code = try? tokenProxy.symbol(),
+                let decimals = try? tokenProxy.decimals() {
+                token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: "")
+            } else {
+                token = Token(code: "---", name: address.value, decimals: 18, address: address, logoUrl: "")
+            }
+            try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
+            return token
+        }
+    }
+
 }
 
 public class TransactionStatusUpdated: DomainEvent {}
