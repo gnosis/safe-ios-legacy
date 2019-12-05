@@ -140,7 +140,7 @@ extension WalletConnectService: RequestHandler {
                 }
                 let wcRequest = WCMultiSendRequest(subtransactions: subtransactions, url: request.url.wcURL)
                 delegate.handleMultiSendTransactionRequest(wcRequest,
-                                                      completion: sendTransactionCompletion(request: request))
+                                                           completion: sendTransactionCompletion(request: request))
             } catch {
                 handleSendTransactionFailure(request, error)
             }
