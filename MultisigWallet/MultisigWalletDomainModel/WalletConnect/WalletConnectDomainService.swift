@@ -46,6 +46,14 @@ public protocol WalletConnectDomainServiceDelegate: class {
     func handleSendTransactionRequest(_ request: WCSendTransactionRequest,
                                       completion: @escaping (Result<String, Error>) -> Void)
 
+    /// Handle `gs_multi_send` request with batched transactions
+    ///
+    /// - Parameters:
+    ///   - request: multi send request with sub transactions data
+    ///   - completion: result with submitted transaction hash or error
+    func handleMultiSendTransactionRequest(_ request: WCMultiSendRequest,
+                                           completion: @escaping (Result<String, Error>) -> Void)
+
     /// Handle WalletConnect Ethereum Node request.
     ///
     /// - Parameters:

@@ -42,7 +42,7 @@ public class ReviewTransactionViewController: UITableViewController {
 
     private(set) var tx: TransactionData! // wallet by transaction id
 
-    private(set) weak var delegate: ReviewTransactionViewControllerDelegate!
+    private(set) weak var delegate: ReviewTransactionViewControllerDelegate?
     private var submitBarButton: UIBarButtonItem!
     /// To control how frequent a user can send confirmation requests
     private let scheduler = OneOperationWaitingScheduler(interval: 1)
@@ -219,7 +219,7 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     func submitWithUserPermission() {
-        delegate.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [weak self] allowed in
+        delegate?.reviewTransactionViewControllerWantsToSubmitTransaction(self) { [weak self] allowed in
             if allowed {
                 self?.doSubmit()
             }
@@ -315,7 +315,7 @@ public class ReviewTransactionViewController: UITableViewController {
             didReject()
         case .success, .pending, .failed:
             didSubmit()
-            delegate.reviewTransactionViewControllerDidFinishReview(self)
+            delegate?.reviewTransactionViewControllerDidFinishReview(self)
         default: break
         }
     }
