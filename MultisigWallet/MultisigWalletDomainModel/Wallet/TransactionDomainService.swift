@@ -140,7 +140,7 @@ public class TransactionDomainService {
             subtransactions.allSatisfy({ !$0.isDangerous(walletAddress: walletAddress) }) {
             return false
         }
-
+        // if transaction is multiSend, it'll be dangerous
         return transaction.isDangerous(walletAddress: walletAddress)
     }
 
