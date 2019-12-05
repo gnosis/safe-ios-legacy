@@ -146,24 +146,24 @@ public class TransactionDomainService {
 
     public func batchedTransactions(in transactionID: TransactionID) -> [Transaction]? {
         guard let transaction = DomainRegistry.transactionRepository.find(id: transactionID),
-            let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID),
-            transaction.type == .transfer else { return nil }
+            let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID) else { return nil }
         return batchedTransactions(from: transaction, walletID: wallet.id)
     }
 
     private func batchedTransactions(from transaction: Transaction, walletID: WalletID) -> [Transaction]? {
-        let isMultiSend = transaction.operation == .delegateCall &&
-            transaction.recipient == DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-
-        if isMultiSend,
-            let data = transaction.data,
-            let arguments = MultiSendContractProxy(transaction.recipient!).decodeMultiSendArguments(from: data) {
-            return arguments.map { self.transaction(from: $0, in: walletID) }
+        let multiSendContract = MultiSendContractProxy(DomainRegistry.safeContractMetadataRepository.multiSendContractAddress)
+        let isMultiSend =
+            transaction.type == .batched &&
+            transaction.operation == .delegateCall &&
+            transaction.data != nil &&
+            transaction.recipient == multiSendContract.contract
+        if isMultiSend, let arguments = multiSendContract.decodeMultiSendArguments(from: transaction.data!) {
+            return arguments.map { self.subTransaction(from: $0, in: walletID) }
         }
         return nil
     }
 
-    private func transaction(from multiSend: MultiSendTransaction, in walletID: WalletID) -> Transaction {
+    private func subTransaction(from multiSend: MultiSendTransaction, in walletID: WalletID) -> Transaction {
         let result = Transaction(id: DomainRegistry.transactionRepository.nextID(),
                                  type: .transfer,
                                  accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
@@ -172,6 +172,7 @@ public class TransactionDomainService {
         result.change(recipient: formattedRecipient)
             .change(data: multiSend.data)
             .change(operation: WalletOperation(rawValue: multiSend.operation.rawValue))
+            .change(amount: TokenAmount.ether(multiSend.value))
 
         enhanceWithERC20Data(transaction: result, to: formattedRecipient, data: multiSend.data)
 

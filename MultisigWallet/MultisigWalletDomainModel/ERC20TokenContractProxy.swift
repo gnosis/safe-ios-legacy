@@ -21,7 +21,8 @@ public class ERC20TokenContractProxy: EthereumContractProxy {
     public func decodedTransfer(from data: Data) -> (recipient: Address, amount: TokenInt)? {
         let head = invocation(transferMethodSignature)
         guard data.prefix(head.count) == head else { return nil }
-        var argumentsData = data.suffix(from: head.count)
+        var argumentsData = data
+        argumentsData.removeFirst(head.count)
         let recipient = decodeAddress(argumentsData)
         argumentsData.removeFirst(32)
         let amount = decodeUInt(argumentsData)

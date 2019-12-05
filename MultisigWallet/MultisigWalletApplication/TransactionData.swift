@@ -173,6 +173,8 @@ extension TransactionType {
         case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
         case .connectStatusKeycard: return .connectStatusKeycard
         case .disconnectStatusKeycard: return .disconnectStatusKeycard
+        case .batched:
+            return .outgoing
         }
     }
 

@@ -334,6 +334,7 @@ public enum TransactionType: Int {
     case replaceTwoFAWithStatusKeycard = 7
     case connectStatusKeycard = 8
     case disconnectStatusKeycard = 9
+    case batched = 10
 
 }
 
