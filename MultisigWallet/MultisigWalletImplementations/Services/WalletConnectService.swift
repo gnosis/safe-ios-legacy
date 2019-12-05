@@ -128,8 +128,8 @@ extension WalletConnectService: RequestHandler {
             do {
                 var wcRequest = try request.parameter(of: WCSendTransactionRequest.self, at: 0)
                 wcRequest.url = request.url.wcURL
-                delegate.handleSendTransactionRequest(wcRequest,
-                                                      completion: sendTransactionCompletion(request: request))
+                let completion = createSendTransactionCompletionBlock(with: request)
+                delegate.handleSendTransactionRequest(wcRequest, completion: completion)
             } catch {
                 handleSendTransactionFailure(request, error)
             }
@@ -139,18 +139,18 @@ extension WalletConnectService: RequestHandler {
                     try request.parameter(of: WCMultiSendSubTransaction.self, at: index)
                 }
                 let wcRequest = WCMultiSendRequest(subtransactions: subtransactions, url: request.url.wcURL)
-                delegate.handleMultiSendTransactionRequest(wcRequest,
-                                                           completion: sendTransactionCompletion(request: request))
+                let completion = createSendTransactionCompletionBlock(with: request)
+                delegate.handleMultiSendTransactionRequest(wcRequest, completion: completion)
             } catch {
                 handleSendTransactionFailure(request, error)
             }
         } else {
-            delegate.handleEthereumNodeRequest(request.wcRequest,
-                                               completion: ethereumNodeRequestCompletion(request: request))
+            let completion = createEthereumNodeRequestCompletionBlock(with: request)
+            delegate.handleEthereumNodeRequest(request.wcRequest, completion: completion)
         }
     }
 
-    private func sendTransactionCompletion(request: Request) -> (Result<String, Error>) -> Void {
+    private func createSendTransactionCompletionBlock(with request: Request) -> (Result<String, Error>) -> Void {
         { [weak self] result in
             guard let `self` = self else { return }
             var response: Response
@@ -178,7 +178,7 @@ extension WalletConnectService: RequestHandler {
         self.server.send(response)
     }
 
-    private func ethereumNodeRequestCompletion(request: Request) -> (Result<WCMessage, Error>) -> Void {
+    private func createEthereumNodeRequestCompletionBlock(with request: Request) -> (Result<WCMessage, Error>) -> Void {
         { [weak self] result in
             guard let `self` = self else { return }
             switch result {
