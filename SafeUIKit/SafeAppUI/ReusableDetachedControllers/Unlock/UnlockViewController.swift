@@ -45,7 +45,7 @@ public final class UnlockViewController: UIViewController {
         super.viewDidLoad()
 
         verifiableInput.delegate = self
-        verifiableInput.isSecure = true
+        verifiableInput.isPassword = true
         verifiableInput.style = .opaqueWhite
         verifiableInput.accessibilityIdentifier = "unlock.password"
         verifiableInput.textInput.placeholder = Strings.passwordPlaceholder
