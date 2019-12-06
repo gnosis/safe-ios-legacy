@@ -18,13 +18,16 @@ enum TwoFAOption {
 
 class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var selectedOption: Int!
+    /// temporary veriable to support Authenticator in Safe recovery flow
+    var showAuthenticator = false
+
+    var selectedOption: Int?
     weak var tableView: UITableView!
     weak var delegate: TwoFATableViewControllerDelegate?
 
     let twoFAOptionsMap: [Int: TwoFAOption] = [
         0: .statusKeycard,
-        1: .gnosisAuthenticator
+        1: .gnosisAuthenticator // should be always the last in the list while we keep it here
     ]
 
     enum Strings {
@@ -36,7 +39,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
 
         title = Strings.pick2FA
-        selectedOption = ApplicationServiceRegistry.keycardService.isAvailable ? 0 : 1
+        selectedOption = ApplicationServiceRegistry.keycardService.isAvailable ? 0 : (showAuthenticator ? 1 : nil)
 
         let tableView = UITableView()
         tableView.dataSource = self
@@ -59,6 +62,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
         button.setTitle(Strings.useSelectedDevice, for: .normal)
         button.addTarget(self, action: #selector(selecteTwoFAOption), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isEnabled = selectedOption != nil
         view.addSubview(button)
         let height: CGFloat = 56
         let padding: CGFloat = 16
@@ -70,7 +74,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     @objc private func selecteTwoFAOption() {
-        delegate?.didSelectTwoFAOption(twoFAOptionsMap[selectedOption]!)
+        delegate?.didSelectTwoFAOption(twoFAOptionsMap[selectedOption!]!)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -81,7 +85,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return twoFAOptionsMap.count
+        return showAuthenticator ? twoFAOptionsMap.count : twoFAOptionsMap.count - 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
