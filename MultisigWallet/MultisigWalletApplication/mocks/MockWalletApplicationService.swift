@@ -339,6 +339,8 @@ public class MockWalletApplicationService: WalletApplicationService {
                         recipientName: nil,
                         amountTokenData: TokenData(token: Token.Ether, balance: 0),
                         feeTokenData: TokenData(token: Token.Ether, balance: 0),
+                        subtransactions: nil,
+                        dataByteCount: nil,
                         status: .waitingForConfirmation,
                         type: .outgoing,
                         created: nil,

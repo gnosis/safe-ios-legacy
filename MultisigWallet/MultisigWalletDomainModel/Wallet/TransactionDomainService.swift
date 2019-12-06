@@ -158,7 +158,22 @@ public class TransactionDomainService {
             transaction.data != nil &&
             transaction.recipient == multiSendContract.contract
         if isMultiSend, let arguments = multiSendContract.decodeMultiSendArguments(from: transaction.data!) {
-            return arguments.map { self.subTransaction(from: $0, in: walletID) }
+            return arguments.map {
+                let tx = subTransaction(from: $0, in: walletID)
+                tx.timestampCreated(at: transaction.createdDate)
+                tx.timestampUpdated(at: transaction.updatedDate)
+                if let date = transaction.rejectedDate {
+                    tx.timestampRejected(at: date)
+                }
+                if let date = transaction.processedDate {
+                    tx.timestampProcessed(at: date)
+                }
+                if let date = transaction.submittedDate {
+                    tx.timestampSubmitted(at: date)
+                }
+                tx.change(status: transaction.status)
+                return tx
+            }
         }
         return nil
     }

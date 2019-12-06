@@ -51,10 +51,12 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
     }
 
     func reloadData() {
-        dispatch.asynchronous(updateQueue) {
+        dispatch.asynchronous(updateQueue) { [weak self] in
             let sections = ApplicationServiceRegistry.walletService.grouppedTransactions()
-            self.model = CollectionUIModel(sections)
-        }.then(.main, closure: displayUpdatedData)
+            self?.model = CollectionUIModel(sections)
+        }.then(.main) { [weak self] in
+            self?.displayUpdatedData()
+        }
     }
 
     func displayUpdatedData() {

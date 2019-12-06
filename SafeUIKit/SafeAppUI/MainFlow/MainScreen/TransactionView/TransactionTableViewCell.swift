@@ -35,6 +35,8 @@ class TransactionTableViewCell: UITableViewCell {
         static let contractUpgrade = LocalizedString("ios_contract_upgrade", comment: "Contract upgrade")
         static let statusFailed = LocalizedString("status_failed", comment: "Failed status")
         static let timeJustNow = LocalizedString("just_now", comment: "Time indication of 'Just now'")
+        static let batched = LocalizedString("batched_transaction", comment: "Batched")
+            .replacingOccurrences(of: " ", with: "\n")
     }
 
     override func awakeFromNib() {
@@ -109,7 +111,11 @@ class TransactionTableViewCell: UITableViewCell {
     private func setDetailText(transaction tx: TransactionData) {
         switch tx.type {
         case .incoming, .outgoing:
-            tokenAmountLabel.amount = tx.amountTokenData
+            if let byteCount = tx.byteCount {
+                tokenAmountLabel.text = String(format: LocalizedString("x_data_bytes", comment: "bytes"), byteCount)
+            } else {
+                tokenAmountLabel.amount = tx.amountTokenData
+            }
         case .walletRecovery:
             tokenAmountLabel.text = Strings.recoveredSafe
         case .replaceRecoveryPhrase:
@@ -122,6 +128,8 @@ class TransactionTableViewCell: UITableViewCell {
             tokenAmountLabel.text = Strings.disconnectTwoFA
         case .contractUpgrade:
             tokenAmountLabel.text = Strings.contractUpgrade
+        case .batched:
+            tokenAmountLabel.text = Strings.batched
         }
     }
 
@@ -129,7 +137,7 @@ class TransactionTableViewCell: UITableViewCell {
         switch transaction.type {
         case .incoming, .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
-             .disconnectStatusKeycard:
+             .disconnectStatusKeycard, .batched:
             return (transaction.senderName, transaction.sender)
         case .outgoing:
             return (transaction.recipientName, transaction.recipient)
@@ -159,14 +167,14 @@ class TransactionTableViewCell: UITableViewCell {
         case .incoming: return ColorName.hold.color
         case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
-             .disconnectStatusKeycard:
+             .disconnectStatusKeycard, .batched:
             return ColorName.darkBlue.color
         }
     }
 
     private func typeImage(_ transaction: TransactionData) -> UIImage {
         switch transaction.type {
-        case .outgoing: return Asset.iconOutgoing.image
+        case .outgoing, .batched: return Asset.iconOutgoing.image
         case .incoming: return Asset.iconIncoming.image
         case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,

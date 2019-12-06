@@ -189,21 +189,28 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWt-wh-dqY" customClass="TransferView" customModule="SafeUIKit">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="155" placeholder="YES" id="wvt-zm-xjd"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpO-Eo-QR6" customClass="SettingsTransactionHeaderView" customModule="SafeUIKit">
                                                 <rect key="frame" x="0.0" y="170" width="375" height="120"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" placeholder="YES" id="n5l-Wh-s9d"/>
                                                 </constraints>
                                             </view>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbT-l6-tQH" customClass="StandardButton" customModule="SafeUIKit">
+                                                <rect key="frame" x="0.0" y="297.66666666666669" width="375" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="QYt-5D-Akq"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="didTapViewButton:" destination="hMI-YP-Is6" eventType="touchUpInside" id="G5e-Zw-j9L"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="305" width="375" height="2"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="v16-w0-tcx"/>
                                                 </constraints>
@@ -291,6 +298,7 @@
                         <outlet property="transactionStatusView" destination="gQu-Qj-qJQ" id="5MI-ZJ-7oB"/>
                         <outlet property="transactionTypeView" destination="DPa-hP-BFi" id="FeQ-vO-qkK"/>
                         <outlet property="transferView" destination="pWt-wh-dqY" id="oaA-OP-CJK"/>
+                        <outlet property="viewButton" destination="SbT-l6-tQH" id="glX-Aa-LM2"/>
                         <outlet property="viewInExternalAppButton" destination="maA-2G-VbL" id="sKL-O9-pkY"/>
                         <outlet property="wrapperView" destination="vch-j3-Csj" id="hVb-gM-q9Q"/>
                     </connections>

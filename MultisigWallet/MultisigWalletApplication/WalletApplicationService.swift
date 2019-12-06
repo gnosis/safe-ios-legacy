@@ -666,6 +666,9 @@ public class WalletApplicationService: Assertable {
         let senderName = sender.isEmpty ? nil : addressName(for: sender)
         let recipient = tx.recipient?.value ?? ""
         let recipientName = recipient.isEmpty ? nil : addressName(for: recipient)
+        let subtransactions = DomainRegistry.transactionService.batchedTransactions(in: tx.id)?.map {
+            transactionData($0)
+        }
         return TransactionData(id: tx.id.id,
                                walletID: tx.accountID.walletID.id,
                                sender: sender,
@@ -674,6 +677,8 @@ public class WalletApplicationService: Assertable {
                                recipientName: recipientName,
                                amountTokenData: amountTokenData,
                                feeTokenData: feeTokenData,
+                               subtransactions: subtransactions,
+                               dataByteCount: tx.data?.count,
                                status: status(of: tx),
                                type: type,
                                created: tx.createdDate,

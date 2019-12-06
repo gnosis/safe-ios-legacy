@@ -50,5 +50,6 @@ enum TransactionDetailType: String {
     case replaceTwoFAWithStatusKeycard              = "replace_2fa_with_status_keycard"
     case connectStatusKeycard                       = "connect_status_keycard"
     case disconnectStatusKeycard                    = "disconnect_status_keycard"
+    case batched                                    = "batched"
 
 }
