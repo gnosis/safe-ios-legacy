@@ -121,6 +121,8 @@ internal enum Asset {
   internal static let clearIcon = ImageAsset(name: "clear-icon")
   internal static let defaultIcon = ImageAsset(name: "default-icon")
   internal static let errorIcon = ImageAsset(name: "error-icon")
+  internal static let passwordHideIcon = ImageAsset(name: "password-hide-icon")
+  internal static let passwordRevealIcon = ImageAsset(name: "password-reveal-icon")
   internal static let successIcon = ImageAsset(name: "success-icon")
   internal static let _2InCircleActive = ImageAsset(name: "2_in_circle_active")
   internal static let _2InCircleInactive = ImageAsset(name: "2_in_circle_inactive")

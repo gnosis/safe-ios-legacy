@@ -38,7 +38,7 @@ extension VerifiableInput {
     }
 
     func configurePasswordAppearance() {
-        isSecure = true
+        isPassword = true
         returnKeyType = .next
         style = .white
         returnKeyType = .next

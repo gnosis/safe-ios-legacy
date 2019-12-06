@@ -59,7 +59,7 @@ class SKSignWithPinViewController: UIViewController {
 
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
 
-        pinField.isSecure = true
+        pinField.isPassword = true
         pinField.style = .white
         pinField.textInput.placeholder = Strings.placeholder
         pinField.textInput.keyboardType = .numberPad
