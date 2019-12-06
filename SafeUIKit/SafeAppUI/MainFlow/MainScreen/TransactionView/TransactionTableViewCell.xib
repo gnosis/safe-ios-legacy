@@ -32,14 +32,14 @@
                             <constraint firstAttribute="width" constant="18" id="4oL-NT-Xuz"/>
                         </constraints>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUy-zn-EE4">
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="sUy-zn-EE4">
                         <rect key="frame" x="72" y="14" width="264" height="40"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Avk-Gg-Q4o">
-                                <rect key="frame" x="0.0" y="0.0" width="80.5" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="121.5" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johny Cash" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPf-3q-iMU" customClass="EthereumAddressLabel" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="0.0" width="80.5" height="19"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="121.5" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="T6e-nX-MCZ"/>
                                         </constraints>
@@ -48,20 +48,29 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 secs ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikF-Qg-Pb1">
-                                        <rect key="frame" x="0.0" y="27" width="80.5" height="13"/>
+                                        <rect key="frame" x="0.0" y="27" width="121.5" height="13"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="t1Z-cr-t4Y">
-                                <rect key="frame" x="80.5" y="0.0" width="183.5" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="t1Z-cr-t4Y">
+                                <rect key="frame" x="121.5" y="0.0" width="142.5" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="-2.42453 ETH" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48B-Hr-CC6" customClass="AmountLabel" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="0.0" width="183.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="142.5" height="40"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                         <color key="textColor" red="0.94117647059999998" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vZ-4F-1mq">
+                                        <rect key="frame" x="0.0" y="44" width="142.5" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="I8V-fZ-UHR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -105,6 +114,7 @@
             </constraints>
             <connections>
                 <outlet property="addressLabel" destination="LPf-3q-iMU" id="cKk-dM-Seb"/>
+                <outlet property="amountDetailLabel" destination="2vZ-4F-1mq" id="fMN-cU-k9q"/>
                 <outlet property="identiconView" destination="A1z-59-9YF" id="hVu-Zk-0P9"/>
                 <outlet property="progressView" destination="gr5-wm-5zn" id="hhY-KR-FcK"/>
                 <outlet property="separatorView" destination="vIy-uT-h8J" id="x4g-df-yoJ"/>
@@ -112,7 +122,7 @@
                 <outlet property="transactionDateLabel" destination="ikF-Qg-Pb1" id="DZ3-UJ-aWB"/>
                 <outlet property="transactionTypeImageView" destination="u6l-HB-meM" id="2fA-em-233"/>
             </connections>
-            <point key="canvasLocation" x="140" y="154"/>
+            <point key="canvasLocation" x="139.85507246376812" y="153.34821428571428"/>
         </tableViewCell>
     </objects>
 </document>

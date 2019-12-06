@@ -84,7 +84,10 @@ public class TransactionDetailsViewController: UIViewController {
         }
         enum Batched {
             static let title = LocalizedString("batched_transaction", comment: "Batched")
-            static let detail = LocalizedString("batched_description", comment: "Description")
+            static func batchedDescription(_ txCount: Int) -> String {
+                if txCount < 1 { return LocalizedString("empty_batch", comment: "No transactions") }
+                return String(format: LocalizedString("perform_n_transactions", comment: "N transactions"), txCount)
+            }
             static let viewDetails = LocalizedString("view_details", comment: "View Details")
         }
         enum AddressEntryActions {
@@ -227,10 +230,13 @@ public class TransactionDetailsViewController: UIViewController {
             settingsHeaderView.detailText = String(format: Strings.DisableTwoFA.detail, Strings.statusKeyacard)
         case .batched:
             settingsHeaderView.titleText = Strings.Batched.title
-            settingsHeaderView.detailText = Strings.Batched.detail
-            viewButton.isHidden = false
-            viewButton.style = .plain
-            viewButton.setTitle(Strings.Batched.viewDetails, for: .normal)
+            let txCount = transaction.subtransactions?.count ?? 0
+            settingsHeaderView.detailText = Strings.Batched.batchedDescription(txCount)
+            if txCount > 0 {
+                viewButton.isHidden = false
+                viewButton.style = .plain
+                viewButton.setTitle(Strings.Batched.viewDetails, for: .normal)
+            }
         }
         if transaction.status == .failed {
             settingsHeaderView.setFailed()

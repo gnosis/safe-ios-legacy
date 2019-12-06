@@ -16,6 +16,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var transactionTypeImageView: UIImageView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var amountDetailLabel: UILabel!
 
     private static let timeFormatter: DateFormatter = {
         let f = DateFormatter()
@@ -74,6 +75,17 @@ class TransactionTableViewCell: UITableViewCell {
         tokenAmountLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         tokenAmountLabel.textAlignment = .right
 
+        amountDetailLabel.textColor = ColorName.darkGrey.color
+        amountDetailLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        amountDetailLabel.isHidden = true
+        if transaction.type == .outgoing,
+            transaction.amountTokenData.isEther,
+            let byteCount = transaction.dataByteCount,
+            byteCount > 0 {
+            amountDetailLabel.text = String(format: LocalizedString("x_data_bytes", comment: "bytes"), byteCount)
+            amountDetailLabel.isHidden = false
+        }
+
         transactionTypeImageView.image = typeImage(transaction)
 
         progressView.progress = 0
@@ -111,11 +123,7 @@ class TransactionTableViewCell: UITableViewCell {
     private func setDetailText(transaction tx: TransactionData) {
         switch tx.type {
         case .incoming, .outgoing:
-            if let byteCount = tx.byteCount {
-                tokenAmountLabel.text = String(format: LocalizedString("x_data_bytes", comment: "bytes"), byteCount)
-            } else {
-                tokenAmountLabel.amount = tx.amountTokenData
-            }
+            tokenAmountLabel.amount = tx.amountTokenData
         case .walletRecovery:
             tokenAmountLabel.text = Strings.recoveredSafe
         case .replaceRecoveryPhrase:

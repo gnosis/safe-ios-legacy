@@ -36,6 +36,9 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
         emptyView.text = Strings.noTransactions
         tableView.register(TransactionsGroupHeaderView.self,
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
+        tableView.register(UINib(nibName: "TransactionTableViewCell",
+                                 bundle: Bundle(for: TransactionTableViewCell.self)),
+                           forCellReuseIdentifier: "TransactionTableViewCell")
         tableView.sectionHeaderHeight = TransactionsGroupHeaderView.height
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
         tableView.rowHeight = rowHeight

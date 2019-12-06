@@ -70,6 +70,7 @@ public struct TransactionData: Equatable {
     public let amountTokenData: TokenData
     public let feeTokenData: TokenData
     public let subtransactions: [TransactionData]?
+    public let dataByteCount: Int?
     public let status: Status
     public let type: TransactionType
     public let created: Date?
@@ -77,8 +78,6 @@ public struct TransactionData: Equatable {
     public let submitted: Date?
     public let rejected: Date?
     public let processed: Date?
-
-    private let dataByteCount: Int?
 
     public var displayDate: Date? {
         return [processed, rejected, submitted, updated, created].compactMap { $0 }.first
@@ -145,16 +144,6 @@ public struct TransactionData: Equatable {
         case pending
         case failed
         case success
-    }
-
-    /// non-nil only if transaction is a non-token-transfer transaction
-    public var byteCount: Int? {
-        if amountTokenData.isEther && (amountTokenData.balance ?? 0) == 0,
-            let byteCount = dataByteCount, byteCount > 0 {
-            return byteCount
-        } else {
-            return nil
-        }
     }
 
 }

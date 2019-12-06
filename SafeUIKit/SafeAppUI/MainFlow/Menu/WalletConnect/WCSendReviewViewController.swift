@@ -14,11 +14,10 @@ final class WCSendReviewViewController: SendReviewViewController {
         static let request = LocalizedString("transaction_request", comment: "Transaction Request")
         static let reject = LocalizedString("reject", comment: "Reject")
         static let batchedTransaction = LocalizedString("batched_transaction", comment: "Batched")
-        static let batchedDetails = LocalizedString("batched_description", comment: "Description")
         static let viewDetails = LocalizedString("view_details", comment: "View Details")
-
-        static func viewTransactions(_ count: Int) -> String {
-            String(format: LocalizedString("view_n_internal_transactions", comment: "N transactions"), count)
+        static func batchedDescription(_ txCount: Int) -> String {
+            if txCount < 1 { return LocalizedString("empty_batch", comment: "No transactions") }
+            return String(format: LocalizedString("perform_n_transactions", comment: "N transactions"), txCount)
         }
     }
 
@@ -51,8 +50,12 @@ final class WCSendReviewViewController: SendReviewViewController {
         cells[indexPath.next()] = dappCell()
 
         if tx?.type == .batched {
-            cells[indexPath.next()] = settingsCell(title: Strings.batchedTransaction, details: Strings.batchedDetails)
-            cells[indexPath.next()] = buttonCell()
+            let txCount = tx.subtransactions?.count ?? 0
+            cells[indexPath.next()] = settingsCell(title: Strings.batchedTransaction,
+                                                   details: Strings.batchedDescription(txCount))
+            if txCount > 0 {
+                cells[indexPath.next()] = buttonCell()
+            }
         } else {
             cells[indexPath.next()] = transferViewCell()
         }
@@ -70,9 +73,7 @@ final class WCSendReviewViewController: SendReviewViewController {
     private func buttonCell() -> UITableViewCell {
         assert(tx.type == .batched)
         let cell = tableView.dequeueReusableCell(withIdentifier: "WCMultiSendCell") as! WCMultiSendCell
-        let title = tx.subtransactions?.isEmpty == false ?
-            Strings.viewTransactions(tx.subtransactions!.count) : Strings.viewDetails
-        cell.configure(title: title, target: self, action: #selector(openBatchDetails))
+        cell.configure(title: Strings.viewDetails, target: self, action: #selector(openBatchDetails))
         return cell
     }
 
