@@ -119,12 +119,12 @@ open class VerifiableInput: UIView {
                 button.addTarget(self, action: #selector(toggleRevealPassword), for: .touchUpInside)
                 button.setImage(Asset.passwordRevealIcon.image, for: .normal)
                 button.setImage(Asset.passwordHideIcon.image, for: .selected)
-                self.rigthView = button
-                self.togglePasswordButton = button
+                rigthView = button
+                togglePasswordButton = button
             }
             else {
-                if let toggleButton = self.togglePasswordButton {
-                    self.rigthView = nil
+                if let toggleButton = togglePasswordButton {
+                    rigthView = nil
                 }
             }
         }
@@ -243,10 +243,10 @@ open class VerifiableInput: UIView {
     }
     
     @objc private func toggleRevealPassword(_ sender: Any) {
-        guard let togglePasswordButton = self.togglePasswordButton else {return}
+        guard let togglePasswordButton = togglePasswordButton else { return }
         
-        self.isSecure = !self.isSecure
-        togglePasswordButton.isSelected = !self.isSecure
+        isSecure = !isSecure
+        togglePasswordButton.isSelected = !isSecure
     }
 
     // triggered on every text change
