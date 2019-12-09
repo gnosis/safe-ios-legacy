@@ -180,7 +180,7 @@ public class WalletApplicationService: Assertable {
 
     public func walletCreationURL(_ id: String) -> URL {
         let wallet = DomainRegistry.walletRepository.find(id: WalletID(id))!
-        return configuration.transactionURL(for: wallet.creationTransactionHash)
+        return configuration.transactionURL(for: wallet.creationTransactionHash!)
     }
 
     public func wallets() -> [WalletData] {

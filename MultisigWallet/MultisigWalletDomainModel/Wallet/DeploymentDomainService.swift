@@ -131,7 +131,8 @@ public class DeploymentDomainService {
 
     func checkHasMinedTransaction(_ wallet: Wallet) throws -> Bool {
         guard wallet.isFinalizingDeployment else { return false }
-        guard let receipt = try self.receipt(of: TransactionHash(wallet.creationTransactionHash)) else { return false }
+        guard let creationTransactionHash = wallet.creationTransactionHash else { return false }
+        guard let receipt = try self.receipt(of: TransactionHash(creationTransactionHash)) else { return false }
         if receipt.status == .success {
             wallet.proceed()
         } else {
