@@ -5,9 +5,10 @@
 import UIKit
 import SafeUIKit
 
-class MissingTokenFooterView: UITableViewHeaderFooterView {
+class NFCSupportRequiredFooterView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var getInTouchButton: StandardButton!
 
     var onGetInTouch: (() -> Void)?
@@ -16,18 +17,18 @@ class MissingTokenFooterView: UITableViewHeaderFooterView {
         onGetInTouch?()
     }
 
-    static let estimatedHeight: CGFloat = 170
+    static let estimatedHeight: CGFloat = 225
 
     enum Strings {
-        static let title = LocalizedString("missing_token_get_in_touch",
-                                           comment: "Missing a token description.")
+        static let title = LocalizedString("nfc_support_required", comment: "NFC Support required")
+        static let description = LocalizedString("nfc_required_description", comment: "NFC required description")
         static let getInTouch = LocalizedString("get_in_touch", comment: "Get In Touch")
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        titleLabel.text = Strings.title
-        titleLabel.textColor = ColorName.darkGrey.color
+        titleLabel.attributedText = NSAttributedString(string: Strings.title, style: HeaderStyle())
+        descriptionLabel.attributedText = NSAttributedString(string: Strings.description, style: DescriptionStyle())
         getInTouchButton.setTitle(Strings.getInTouch, for: .normal)
         getInTouchButton.style = .plain
     }

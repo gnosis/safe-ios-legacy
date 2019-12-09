@@ -61,6 +61,7 @@ extension RecoverSafeFlowCoordinator {
         let controller = PairWith2FAController.create(onNext: { [unowned self] in
             let controller = TwoFATableViewController()
             controller.delegate = self
+            controller.showAuthenticator = true
             self.push(controller)
         }, onSkip: { [unowned self] in
             self.showPaymentIntro()
