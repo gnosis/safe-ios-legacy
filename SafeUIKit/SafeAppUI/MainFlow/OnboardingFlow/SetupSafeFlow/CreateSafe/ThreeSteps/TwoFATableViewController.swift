@@ -18,7 +18,7 @@ enum TwoFAOption {
 
 class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    /// temporary veriable to support Authenticator in Safe recovery flow
+    /// temporary variable to support Authenticator in Safe recovery flow
     var showAuthenticator = false
 
     var selectedOption: Int?
@@ -27,7 +27,7 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
 
     let twoFAOptionsMap: [Int: TwoFAOption] = [
         0: .statusKeycard,
-        1: .gnosisAuthenticator // should be always the last in the list while we keep it here
+        1: .gnosisAuthenticator // should be always the last in the list while we support Authenticator
     ]
 
     enum Strings {
