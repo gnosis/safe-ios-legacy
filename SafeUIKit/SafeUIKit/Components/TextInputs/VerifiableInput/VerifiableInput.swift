@@ -33,6 +33,7 @@ open class VerifiableInput: UIView {
     @IBOutlet weak var stackView: UIStackView!
     private var spacingConstraint: NSLayoutConstraint!
     private var spacingView: UIView!
+    private weak var togglePasswordButton: UIButton?
     private weak var lastAddedRule: RuleLabel?
 
     /// Indicates whether the view has user input focus
@@ -107,6 +108,26 @@ open class VerifiableInput: UIView {
     public var isEnabled: Bool {
         get { return textInput.isEnabled }
         set { textInput.isEnabled = newValue }
+    }
+    
+    public var isPassword: Bool = false {
+        didSet {
+            isSecure = isPassword
+            if isPassword {
+                let button = UIButton(type: .custom)
+                button.frame = TextInput.normalAccessoryRect
+                button.addTarget(self, action: #selector(toggleRevealPassword), for: .touchUpInside)
+                button.setImage(Asset.passwordRevealIcon.image, for: .normal)
+                button.setImage(Asset.passwordHideIcon.image, for: .selected)
+                rigthView = button
+                togglePasswordButton = button
+            }
+            else {
+                if let toggleButton = togglePasswordButton {
+                    rigthView = nil
+                }
+            }
+        }
     }
 
     public var isSecure: Bool {
@@ -219,6 +240,13 @@ open class VerifiableInput: UIView {
 
     @objc private func textChanged(_ sender: Any) {
         text = textInput.text // validation
+    }
+    
+    @objc private func toggleRevealPassword(_ sender: Any) {
+        guard let togglePasswordButton = togglePasswordButton else { return }
+        
+        isSecure = !isSecure
+        togglePasswordButton.isSelected = !isSecure
     }
 
     // triggered on every text change

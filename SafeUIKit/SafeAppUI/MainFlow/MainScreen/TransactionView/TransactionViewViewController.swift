@@ -36,6 +36,9 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
         emptyView.text = Strings.noTransactions
         tableView.register(TransactionsGroupHeaderView.self,
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
+        tableView.register(UINib(nibName: "TransactionTableViewCell",
+                                 bundle: Bundle(for: TransactionTableViewCell.self)),
+                           forCellReuseIdentifier: "TransactionTableViewCell")
         tableView.sectionHeaderHeight = TransactionsGroupHeaderView.height
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
         tableView.rowHeight = rowHeight
@@ -51,10 +54,12 @@ public class TransactionViewViewController: UITableViewController, EventSubscrib
     }
 
     func reloadData() {
-        dispatch.asynchronous(updateQueue) {
+        dispatch.asynchronous(updateQueue) { [weak self] in
             let sections = ApplicationServiceRegistry.walletService.grouppedTransactions()
-            self.model = CollectionUIModel(sections)
-        }.then(.main, closure: displayUpdatedData)
+            self?.model = CollectionUIModel(sections)
+        }.then(.main) { [weak self] in
+            self?.displayUpdatedData()
+        }
     }
 
     func displayUpdatedData() {

@@ -10,21 +10,6 @@ class QRCodeViewTests: XCTestCase {
 
     let view = QRCodeView()
 
-    override func setUp() {
-        super.setUp()
-    }
-
-    func test_whenChangingValue_thenImageChanges() {
-        view.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
-        view.value = "a"
-        delay(0.2)
-        let imageA = view.imageView.image
-        view.value = "b"
-        delay(0.2)
-        let imageB = view.imageView.image
-        XCTAssertNotEqual(imageA, imageB)
-    }
-
     func test_whenPaddingIsSet_thenFrameIsAdjusted() {
         view.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
         XCTAssertEqual(view.imageView.frame, view.bounds)

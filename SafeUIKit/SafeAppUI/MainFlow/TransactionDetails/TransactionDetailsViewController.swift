@@ -82,6 +82,14 @@ public class TransactionDetailsViewController: UIViewController {
                 return String(format: detailFormat, safeName)
             }
         }
+        enum Batched {
+            static let title = LocalizedString("batched_transaction", comment: "Batched")
+            static func batchedDescription(_ txCount: Int) -> String {
+                if txCount < 1 { return LocalizedString("empty_batch", comment: "No transactions") }
+                return String(format: LocalizedString("perform_n_transactions", comment: "N transactions"), txCount)
+            }
+            static let viewDetails = LocalizedString("view_details", comment: "View Details")
+        }
         enum AddressEntryActions {
             static let editDetails = LocalizedString("edit_entry_details", comment: "Edit entry details")
             static let addToAddressBook = LocalizedString("add_to_address_book", comment: "Add to address book")
@@ -89,6 +97,7 @@ public class TransactionDetailsViewController: UIViewController {
             static let cancel = LocalizedString("cancel", comment: "Cancel")
         }
     }
+    @IBOutlet weak var viewButton: StandardButton!
     @IBOutlet weak var separatorLineView: HorizontalSeparatorView!
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
     @IBOutlet weak var transferView: TransferView!
@@ -148,6 +157,7 @@ public class TransactionDetailsViewController: UIViewController {
         case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
         case .connectStatusKeycard: return .connectStatusKeycard
         case .disconnectStatusKeycard: return .disconnectStatusKeycard
+        case .batched: return .batched
         }
 
     }
@@ -218,6 +228,15 @@ public class TransactionDetailsViewController: UIViewController {
         case .disconnectStatusKeycard:
             settingsHeaderView.titleText = Strings.DisableTwoFA.title
             settingsHeaderView.detailText = String(format: Strings.DisableTwoFA.detail, Strings.statusKeyacard)
+        case .batched:
+            settingsHeaderView.titleText = Strings.Batched.title
+            let txCount = transaction.subtransactions?.count ?? 0
+            settingsHeaderView.detailText = Strings.Batched.batchedDescription(txCount)
+            if txCount > 0 {
+                viewButton.isHidden = false
+                viewButton.style = .plain
+                viewButton.setTitle(Strings.Batched.viewDetails, for: .normal)
+            }
         }
         if transaction.status == .failed {
             settingsHeaderView.setFailed()
@@ -228,7 +247,7 @@ public class TransactionDetailsViewController: UIViewController {
     private func configureType() {
         transactionTypeView.name = Strings.type
         switch transaction.type {
-        case .outgoing: transactionTypeView.value = Strings.outgoingType
+        case .outgoing, .batched: transactionTypeView.value = Strings.outgoingType
         case .incoming: transactionTypeView.value = "" // we do not have incomming transactions yet
         case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
@@ -287,6 +306,12 @@ public class TransactionDetailsViewController: UIViewController {
 
     func string(from date: Date) -> String {
         return "\(dateFormatter.string(from: date)) (\(date.timeAgo(since: clock.currentTime)))"
+    }
+
+    @IBAction func didTapViewButton(_ sender: Any) {
+        let vc = WCBatchTransactionsTableViewController()
+        vc.transactions = transaction.subtransactions ?? []
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

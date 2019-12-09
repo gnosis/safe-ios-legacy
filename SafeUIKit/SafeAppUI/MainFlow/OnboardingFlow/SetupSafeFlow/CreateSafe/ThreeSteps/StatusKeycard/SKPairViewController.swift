@@ -65,7 +65,7 @@ class SKPairViewController: UIViewController {
 
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
 
-        pairingPasswordField.isSecure = true
+        pairingPasswordField.isPassword = true
         pairingPasswordField.style = .white
         pairingPasswordField.textInput.placeholder = Strings.passwordPlaceholder
         pairingPasswordField.showErrorsOnly = true

@@ -42,7 +42,7 @@ class VerifiableInputViewController: UIViewController {
         verifiableInput.accessibilityIdentifier = "testVerifiableInput"
         verifiableInput.style = .white
         verifiableInput.textInput.placeholder = "Password"
-        verifiableInput.isSecure = true
+        verifiableInput.isPassword = true
     }
 
 }

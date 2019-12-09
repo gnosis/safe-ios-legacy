@@ -39,7 +39,7 @@ final class VerifyCurrentPasswordViewController: UIViewController {
         super.viewDidLoad()
         title = Strings.title
         headerLabel.text = Strings.header
-        passwordInput.isSecure = true
+        passwordInput.isPassword = true
         passwordInput.delegate = self
         passwordInput.textInput.placeholder = Strings.currentPasswordPlaceholder
         passwordInput.showErrorsOnly = true

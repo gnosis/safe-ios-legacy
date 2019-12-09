@@ -58,6 +58,7 @@ public struct TransactionData: Equatable {
         case replaceTwoFAWithStatusKeycard
         case connectStatusKeycard
         case disconnectStatusKeycard
+        case batched
     }
 
     public let id: String
@@ -68,6 +69,8 @@ public struct TransactionData: Equatable {
     public let recipientName: String?
     public let amountTokenData: TokenData
     public let feeTokenData: TokenData
+    public let subtransactions: [TransactionData]?
+    public let dataByteCount: Int?
     public let status: Status
     public let type: TransactionType
     public let created: Date?
@@ -88,6 +91,8 @@ public struct TransactionData: Equatable {
                                               recipientName: nil,
                                               amountTokenData: .empty(),
                                               feeTokenData: .empty(),
+                                              subtransactions: nil,
+                                              dataByteCount: nil,
                                               status: .rejected,
                                               type: .incoming,
                                               created: nil,
@@ -104,6 +109,8 @@ public struct TransactionData: Equatable {
                 recipientName: String?,
                 amountTokenData: TokenData,
                 feeTokenData: TokenData,
+                subtransactions: [TransactionData]?,
+                dataByteCount: Int?,
                 status: Status,
                 type: TransactionType,
                 created: Date?,
@@ -119,6 +126,8 @@ public struct TransactionData: Equatable {
         self.recipientName = recipientName
         self.amountTokenData = amountTokenData
         self.feeTokenData = feeTokenData
+        self.subtransactions = subtransactions
+        self.dataByteCount = dataByteCount
         self.status = status
         self.type = type
         self.created = created
@@ -154,6 +163,7 @@ extension TransactionData.TransactionType {
         case .contractUpgrade: return .contractUpgrade
         case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
         case .disconnectStatusKeycard: return .disconnectStatusKeycard
+        case .batched: return .batched
         }
     }
 
@@ -173,8 +183,7 @@ extension TransactionType {
         case .replaceTwoFAWithStatusKeycard: return .replaceTwoFAWithStatusKeycard
         case .connectStatusKeycard: return .connectStatusKeycard
         case .disconnectStatusKeycard: return .disconnectStatusKeycard
-        case .batched:
-            return .outgoing
+        case .batched: return .batched
         }
     }
 

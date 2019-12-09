@@ -106,6 +106,8 @@ extension TransactionData {
                                          recipientName: nil,
                                          amountTokenData: TokenData.gno.withBalance(10_001),
                                          feeTokenData: TokenData.gno.withBalance(101),
+                                         subtransactions: nil,
+                                         dataByteCount: nil,
                                          status: .pending,
                                          type: .outgoing,
                                          created: Date(),

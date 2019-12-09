@@ -105,6 +105,8 @@ public class RecoveryApplicationService {
                                recipientName: recipientName,
                                amountTokenData: amountTokenData,
                                feeTokenData: feeTokenData,
+                               subtransactions: nil,
+                               dataByteCount: nil,
                                status: tx.status.transactionDataStatus,
                                type: tx.type.transactionDataType,
                                created: tx.createdDate,
