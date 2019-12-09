@@ -8,7 +8,19 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
-`1.10.1`_ - 2019-11-20
+`1.11.0`_ - 2019-12-09
+======================
+Added
+------
+- Batch Transactions from WalletConnect (`gs_multi_send`)
+
+Changed
+--------
+- Reveal password button on password inputs
+- Gnosis Authenticator usage is restricted only to the receovery of the safe.
+- Fixed crashing when safe creation transaction hash is not available during safe creation.
+
+`1.10.0`_ - 2019-11-20
 ======================
 Added
 --------
@@ -450,6 +462,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.11.0: https://github.com/gnosis/safe-ios/tree/1.11.0
 .. _1.10.0: https://github.com/gnosis/safe-ios/tree/1.10.0
 .. _1.9.1: https://github.com/gnosis/safe-ios/tree/1.9.1
 .. _1.9.0: https://github.com/gnosis/safe-ios/tree/1.9.0
