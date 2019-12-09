@@ -18,11 +18,6 @@ class MissingTokenFooterView: UITableViewHeaderFooterView {
 
     static let estimatedHeight: CGFloat = 170
 
-    static func create() -> MissingTokenFooterView {
-        return Bundle(for: MissingTokenFooterView.self)
-            .loadNibNamed("MissingTokenFooterView", owner: nil, options: nil)!.first! as! MissingTokenFooterView
-    }
-
     enum Strings {
         static let title = LocalizedString("missing_token_get_in_touch",
                                            comment: "Missing a token description.")

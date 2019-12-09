@@ -25,12 +25,6 @@ class NFCSupportRequiredFooterView: UITableViewHeaderFooterView {
         static let getInTouch = LocalizedString("get_in_touch", comment: "Get In Touch")
     }
 
-    static func create() -> NFCSupportRequiredFooterView {
-        return Bundle(for: NFCSupportRequiredFooterView.self)
-            .loadNibNamed("NFCSupportRequiredFooterView", owner: nil, options: nil)!.first!
-            as! NFCSupportRequiredFooterView
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.attributedText = NSAttributedString(string: Strings.title, style: HeaderStyle())
