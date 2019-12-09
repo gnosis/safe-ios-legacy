@@ -33,7 +33,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     /// nil is treated as ETH by default
     public private(set) var feePaymentTokenAddress: Address?
 
-    public private(set) var creationTransactionHash: String!
+    public private(set) var creationTransactionHash: String?
     public private(set) var minimumDeploymentTransactionAmount: TokenInt!
     public private(set) var confirmationCount: Int = 1
     public private(set) var deploymentFee: BigInt!
