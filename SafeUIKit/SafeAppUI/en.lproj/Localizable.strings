@@ -59,6 +59,12 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Balance after transfer */
 "balance_after_transfer" = "Balance after transfer";
 
+/* Batched */
+"batched_transaction" = "Batched Transaction";
+
+/* Transactions */
+"batched_transactions" = "Batched Transactions";
+
 /* Title for add browser extension screen */
 "browser_extension" = "Authenticator";
 
@@ -206,6 +212,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* E-mail */
 "email" = "E-mail";
+
+/* No transactions */
+"empty_batch" = "0 transactions inside.";
 
 /* No transactions yet */
 "empty_safe_transactions_message" = "No transactions yet";
@@ -699,6 +708,9 @@ Please have your recovery phrase ready to disable 2FA.";
 /* Pending transactions group header */
 "pending" = "Pending";
 
+/* N transactions */
+"perform_n_transactions" = "This will perform %li transactions.";
+
 /* Pick 2FA device */
 "pick_2fa_device" = "Pick 2FA device";
 
@@ -1026,6 +1038,9 @@ We recommend using a password manager or writing the phrase down and storing the
 /* Touch ID button explanation */
 "use_touchid_to_unlock" = "Use Touch ID to unlock";
 
+/* View Details */
+"view_details" = "Show details";
+
 /* View Entry */
 "view_entry" = "View Entry";
 
@@ -1099,6 +1114,9 @@ Use two-factor authentication to further increase the security of your wallet.";
 /* New Safe onboarding 3 description */
 "with_walletconnect_you_can_connect" = "With WalletConnect you can connect to Dapps securely within seconds.\
 Gnosis Safe allows you to save your ETH and pay network fees with ERC-20 tokens.";
+
+/* bytes */
+"x_data_bytes" = "%li bytes included";
 
 /* You are disconnecting from... */
 "you_are_disconnecting_from" = "You are disconnecting from %@";

@@ -16,6 +16,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var transactionTypeImageView: UIImageView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var amountDetailLabel: UILabel!
 
     private static let timeFormatter: DateFormatter = {
         let f = DateFormatter()
@@ -35,6 +36,8 @@ class TransactionTableViewCell: UITableViewCell {
         static let contractUpgrade = LocalizedString("ios_contract_upgrade", comment: "Contract upgrade")
         static let statusFailed = LocalizedString("status_failed", comment: "Failed status")
         static let timeJustNow = LocalizedString("just_now", comment: "Time indication of 'Just now'")
+        static let batched = LocalizedString("batched_transaction", comment: "Batched")
+            .replacingOccurrences(of: " ", with: "\n")
     }
 
     override func awakeFromNib() {
@@ -71,6 +74,17 @@ class TransactionTableViewCell: UITableViewCell {
         tokenAmountLabel.numberOfLines = 0
         tokenAmountLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         tokenAmountLabel.textAlignment = .right
+
+        amountDetailLabel.textColor = ColorName.darkGrey.color
+        amountDetailLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        amountDetailLabel.isHidden = true
+        if transaction.type == .outgoing,
+            transaction.amountTokenData.isEther,
+            let byteCount = transaction.dataByteCount,
+            byteCount > 0 {
+            amountDetailLabel.text = String(format: LocalizedString("x_data_bytes", comment: "bytes"), byteCount)
+            amountDetailLabel.isHidden = false
+        }
 
         transactionTypeImageView.image = typeImage(transaction)
 
@@ -122,6 +136,8 @@ class TransactionTableViewCell: UITableViewCell {
             tokenAmountLabel.text = Strings.disconnectTwoFA
         case .contractUpgrade:
             tokenAmountLabel.text = Strings.contractUpgrade
+        case .batched:
+            tokenAmountLabel.text = Strings.batched
         }
     }
 
@@ -129,7 +145,7 @@ class TransactionTableViewCell: UITableViewCell {
         switch transaction.type {
         case .incoming, .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
-             .disconnectStatusKeycard:
+             .disconnectStatusKeycard, .batched:
             return (transaction.senderName, transaction.sender)
         case .outgoing:
             return (transaction.recipientName, transaction.recipient)
@@ -159,14 +175,14 @@ class TransactionTableViewCell: UITableViewCell {
         case .incoming: return ColorName.hold.color
         case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
-             .disconnectStatusKeycard:
+             .disconnectStatusKeycard, .batched:
             return ColorName.darkBlue.color
         }
     }
 
     private func typeImage(_ transaction: TransactionData) -> UIImage {
         switch transaction.type {
-        case .outgoing: return Asset.iconOutgoing.image
+        case .outgoing, .batched: return Asset.iconOutgoing.image
         case .incoming: return Asset.iconIncoming.image
         case .walletRecovery, .replaceRecoveryPhrase, .replaceTwoFAWithAuthenticator, .connectAuthenticator,
              .disconnectAuthenticator, .contractUpgrade, .replaceTwoFAWithStatusKeycard, .connectStatusKeycard,
