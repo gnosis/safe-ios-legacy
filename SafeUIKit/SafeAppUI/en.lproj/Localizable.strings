@@ -604,6 +604,13 @@ Please have your recovery phrase ready to disable 2FA.";
    Next button title */
 "next" = "Next";
 
+/* NFC required description */
+"nfc_required_description" = "Pairing with two-factor authentication (2FA) device is not possible because your phone does not support NFC. \
+Would you prefer a different 2FA option?";
+
+/* NFC Support required */
+"nfc_support_required" = "NFC Support required";
+
 /* No active sessions */
 "no_active_sessions" = "No active sessions";
 

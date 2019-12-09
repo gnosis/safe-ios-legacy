@@ -46,6 +46,10 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.register(UINib(nibName: "TwoFATableViewCell", bundle: Bundle(for: TwoFATableViewCell.self)),
                            forCellReuseIdentifier: "TwoFATableViewCell")
+        tableView.register(UINib(nibName: "NFCSupportRequiredFooterView",
+                                 bundle: Bundle(for: NFCSupportRequiredFooterView.self)),
+                           forHeaderFooterViewReuseIdentifier: "NFCSupportRequiredFooterView")
+        tableView.estimatedSectionFooterHeight = NFCSupportRequiredFooterView.estimatedHeight
         tableView.separatorStyle = .none
         tableView.backgroundColor = ColorName.white.color
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,6 +123,19 @@ class TwoFATableViewController: UIViewController, UITableViewDelegate, UITableVi
         guard cell.state != .inactive  else { return }
         selectedOption = indexPath.row
         tableView.reloadData()
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "NFCSupportRequiredFooterView")
+            as! NFCSupportRequiredFooterView
+        view.onGetInTouch = { [unowned self] in
+            self.present(GetInTouchTableViewController.inNavigationController(), animated: true)
+        }
+        return view
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return selectedOption == nil ? UITableView.automaticDimension : 0
     }
 
 }

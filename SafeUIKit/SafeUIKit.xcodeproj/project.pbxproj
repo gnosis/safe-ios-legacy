@@ -361,6 +361,8 @@
 		55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55329FF722F9759100E40B06 /* GetInTouchCommand.swift */; };
 		55329FFA22F982E300E40B06 /* GetInTouchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55329FF922F982E300E40B06 /* GetInTouchTableViewController.swift */; };
 		5532A00E22F9B07A00E40B06 /* GetInTouchTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5532A00D22F9B07A00E40B06 /* GetInTouchTableViewControllerTests.swift */; };
+		55330566239E4A2E0037BC6F /* NFCSupportRequiredFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55330565239E4A2E0037BC6F /* NFCSupportRequiredFooterView.swift */; };
+		5533057C239E4A5C0037BC6F /* NFCSupportRequiredFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5533057B239E4A5C0037BC6F /* NFCSupportRequiredFooterView.xib */; };
 		5539C13A21A55C74006BF834 /* TransferViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13921A55C74006BF834 /* TransferViewCell.swift */; };
 		5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */; };
 		553AEB11229EA41400EA3248 /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
@@ -1061,6 +1063,8 @@
 		55329FF722F9759100E40B06 /* GetInTouchCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInTouchCommand.swift; sourceTree = "<group>"; };
 		55329FF922F982E300E40B06 /* GetInTouchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInTouchTableViewController.swift; sourceTree = "<group>"; };
 		5532A00D22F9B07A00E40B06 /* GetInTouchTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInTouchTableViewControllerTests.swift; sourceTree = "<group>"; };
+		55330565239E4A2E0037BC6F /* NFCSupportRequiredFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCSupportRequiredFooterView.swift; sourceTree = "<group>"; };
+		5533057B239E4A5C0037BC6F /* NFCSupportRequiredFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NFCSupportRequiredFooterView.xib; sourceTree = "<group>"; };
 		5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		5539C13921A55C74006BF834 /* TransferViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCell.swift; sourceTree = "<group>"; };
 		5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCellTests.swift; sourceTree = "<group>"; };
@@ -2423,6 +2427,8 @@
 				552D0FDF2327CD8F00127223 /* TwoFATableViewController.swift */,
 				0A2ACBFE23294A360054D1D1 /* StatusKeycard */,
 				0ADF99F1233B9B2800F14B93 /* CreateSafeCommand.swift */,
+				55330565239E4A2E0037BC6F /* NFCSupportRequiredFooterView.swift */,
+				5533057B239E4A5C0037BC6F /* NFCSupportRequiredFooterView.xib */,
 			);
 			path = ThreeSteps;
 			sourceTree = "<group>";
@@ -2958,6 +2964,7 @@
 				0AB63B25238422B200A142AD /* SeedWordCollectionViewCell.xib in Resources */,
 				0AB63B1F23841FBD00A142AD /* SeedPhrase.storyboard in Resources */,
 				0A1E1FDB238551C000BBCBDF /* SeedInputCollectionViewCell.xib in Resources */,
+				5533057C239E4A5C0037BC6F /* NFCSupportRequiredFooterView.xib in Resources */,
 				0AAF69B32265D19400F06616 /* PasswordViewController.xib in Resources */,
 				55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */,
 				553B9DF022969E8F006E93C9 /* CreationFeeIntroHeaderView.xib in Resources */,
@@ -3322,6 +3329,7 @@
 				55CA308F2227DB0900E7AEA7 /* UIViewController+Tracking.swift in Sources */,
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
 				55329FF622F9752900E40B06 /* RateAppCommand.swift in Sources */,
+				55330566239E4A2E0037BC6F /* NFCSupportRequiredFooterView.swift in Sources */,
 				0A2C0E182296F2E3008A30AC /* AddressDetailView.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				0A9CDD9323608CD700A6CC4E /* AddressBookEntryViewController.swift in Sources */,

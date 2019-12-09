@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NFCSupportRequiredFooterView" customModule="SafeAppUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="473" height="219"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NFC Support required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zi-Wu-iWR">
+                    <rect key="frame" x="149" y="26" width="175" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Kn3-g6-vpL">
+                    <rect key="frame" x="124" y="28.5" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="8V2-BA-uBd"/>
+                        <constraint firstAttribute="width" secondItem="Kn3-g6-vpL" secondAttribute="height" multiplier="1:1" id="dfU-ak-XwD"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4CZ-v7-fj4">
+                    <rect key="frame" x="16" y="63" width="441" height="61"/>
+                    <string key="text">Pairing with two-factor authentication (2FA) device is not possible because your phone does not support NFC. 
+Would you prefer a different 2FA option?</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdo-Ek-nHd" customClass="StandardButton" customModule="SafeUIKit">
+                    <rect key="frame" x="16" y="124" width="441" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="7vv-s9-m5q"/>
+                    </constraints>
+                    <state key="normal" title="Get in touch"/>
+                    <connections>
+                        <action selector="getInTouch:" destination="-2" eventType="touchUpInside" id="0MY-AV-cgz"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="4Zi-Wu-iWR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="2U1-sI-PFC"/>
+                <constraint firstItem="4Zi-Wu-iWR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HcD-KG-SxC"/>
+                <constraint firstItem="4Zi-Wu-iWR" firstAttribute="leading" secondItem="Kn3-g6-vpL" secondAttribute="trailing" constant="9" id="L1O-3M-23D"/>
+                <constraint firstItem="Xdo-Ek-nHd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="OVd-EA-IGr"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xdo-Ek-nHd" secondAttribute="trailing" constant="16" id="PvF-Ua-h3S"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xdo-Ek-nHd" secondAttribute="bottom" constant="24" id="XWC-Gw-HFn"/>
+                <constraint firstAttribute="trailing" secondItem="4CZ-v7-fj4" secondAttribute="trailing" constant="16" id="bi9-yu-WQH"/>
+                <constraint firstItem="4CZ-v7-fj4" firstAttribute="top" secondItem="4Zi-Wu-iWR" secondAttribute="bottom" constant="16" id="ewE-Zf-1hF"/>
+                <constraint firstItem="4CZ-v7-fj4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="kMw-Hk-NNl"/>
+                <constraint firstItem="Xdo-Ek-nHd" firstAttribute="top" secondItem="4CZ-v7-fj4" secondAttribute="bottom" id="uq7-Sm-LbJ"/>
+                <constraint firstItem="Kn3-g6-vpL" firstAttribute="centerY" secondItem="4Zi-Wu-iWR" secondAttribute="centerY" id="y0z-df-4ja"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="4CZ-v7-fj4" id="27J-zz-DfN"/>
+                <outlet property="getInTouchButton" destination="Xdo-Ek-nHd" id="WlF-ea-7ke"/>
+                <outlet property="titleLabel" destination="4Zi-Wu-iWR" id="sdH-Uf-HVf"/>
+            </connections>
+            <point key="canvasLocation" x="65.94202898550725" y="-99.441964285714278"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="error-icon" width="16" height="16"/>
+    </resources>
+</document>
