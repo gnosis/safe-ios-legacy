@@ -136,7 +136,14 @@ public final class TokenInput: VerifiableInput {
     }
 
     private func stringValue() -> String {
-        return formatter.localizedString(from: BigDecimal(value, decimals), locale: locale, shortFormat: false)
+        // do not insert thousand separators in the input because it will mess up the decimal point conversion
+        let decimalValue = BigDecimal(value, decimals)
+        return formatter.string(from: decimalValue,
+                                decimalSeparator: locale.decimalSeparator ?? ".",
+                                thousandSeparator: "",
+                                literals: TokenFormatter.defaultLocalizedLiterals,
+                                forcePlusSign: false,
+                                shortFormat: false)
     }
 
     public override func becomeFirstResponder() -> Bool {

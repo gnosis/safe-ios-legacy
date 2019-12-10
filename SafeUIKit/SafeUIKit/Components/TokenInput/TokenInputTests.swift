@@ -100,6 +100,26 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.text, invalidValue)
     }
 
+    func test_whenEnteringAnyPoint_thenTreatsItLikeDecimalPoint() {
+        tokenInput.setUp(value: 0, decimals: 3)
+
+        tokenInput.endEditing("1000,000")
+        XCTAssertEqual(tokenInput.value, 1_000_000)
+        XCTAssertEqual(tokenInput.text, "1000")
+
+        tokenInput.endEditing("1000.000")
+        XCTAssertEqual(tokenInput.value, 1_000_000)
+        XCTAssertEqual(tokenInput.text, "1000")
+
+        tokenInput.endEditing("1000٫000") // this is actually a different Unicode symbol than dot
+        XCTAssertEqual(tokenInput.value, 1_000_000)
+        XCTAssertEqual(tokenInput.text, "1000")
+
+        tokenInput.endEditing("1000")
+        XCTAssertEqual(tokenInput.value, 1_000_000)
+        XCTAssertEqual(tokenInput.text, "1000")
+    }
+
 }
 
 private extension TokenInput {
