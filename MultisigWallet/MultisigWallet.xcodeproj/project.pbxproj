@@ -304,6 +304,7 @@
 		0ACD3F00232BE890000E9274 /* KeycardFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3EFF232BE890000E9274 /* KeycardFacade.swift */; };
 		0ACD3F02232BE8B2000E9274 /* KeycardInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3F01232BE8B2000E9274 /* KeycardInitializer.swift */; };
 		0ACD3F05232BEB8C000E9274 /* KeycardInitializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD3F04232BEB8C000E9274 /* KeycardInitializerTests.swift */; };
+		0ADE05EC23A00A3400045D04 /* MultiSendV2ContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE05EB23A00A3300045D04 /* MultiSendV2ContractProxy.swift */; };
 		0AF50D9D2382DF1D006307AB /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF50D982382DF1D006307AB /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55158EFC232004FE00CE70B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A364B2522676C7E002E80B7 /* Localizable.strings */; };
 		55158F3323200C5900CE70B8 /* MockSafeContractMetadataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55158F2E23200C5900CE70B8 /* MockSafeContractMetadataRepository.swift */; };
@@ -778,6 +779,7 @@
 		0ACD3EFF232BE890000E9274 /* KeycardFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardFacade.swift; sourceTree = "<group>"; };
 		0ACD3F01232BE8B2000E9274 /* KeycardInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardInitializer.swift; sourceTree = "<group>"; };
 		0ACD3F04232BEB8C000E9274 /* KeycardInitializerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycardInitializerTests.swift; sourceTree = "<group>"; };
+		0ADE05EB23A00A3300045D04 /* MultiSendV2ContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSendV2ContractProxy.swift; sourceTree = "<group>"; };
 		0AE0FE0C229BEEB100ABC552 /* MockRecoveryApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecoveryApplicationService.swift; sourceTree = "<group>"; };
 		0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0AEF8AF620A08F7D006A1265 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
@@ -1017,6 +1019,7 @@
 				0AC8A543237C616E00518C65 /* ENSDomainService.swift */,
 				0AAE7CFA2304544800E7EB07 /* GnosisSafeContractProxy.swift */,
 				0AAE7D6E2304544900E7EB07 /* MultiSendContractProxy.swift */,
+				0ADE05EB23A00A3300045D04 /* MultiSendV2ContractProxy.swift */,
 				0AAE7D362304544800E7EB07 /* NotificationService */,
 				0AAE7D5C2304544900E7EB07 /* Portfolio */,
 				0AAE7D6D2304544900E7EB07 /* SafeOwnerManagerContractProxy.swift */,
@@ -1955,6 +1958,7 @@
 				0AAE7DA92304544A00E7EB07 /* AuthRequest.swift in Sources */,
 				0AC8A544237C616E00518C65 /* ENSDomainService.swift in Sources */,
 				5542B4E1231E772C00835F89 /* WalletDiagnosticService.swift in Sources */,
+				0ADE05EC23A00A3400045D04 /* MultiSendV2ContractProxy.swift in Sources */,
 				0A2ACBDD2328FFFE0054D1D1 /* KeycardPairing.swift in Sources */,
 				5542B4DE231E770800835F89 /* ContractUpgradeDomainService.swift in Sources */,
 				0AAE7D912304544A00E7EB07 /* RBETransactionMonitorEntry.swift in Sources */,
