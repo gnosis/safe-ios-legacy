@@ -131,6 +131,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 /* Contract Upgrade */
 "contract_upgrade" = "Contract upgrade";
 
+/* Contract upgrade available */
+"contract_upgrade_available" = "Contract upgrade available";
+
 /* Explanation text */
 "contract_upgrade_in_progress" = "The contract upgrade is now in progress. The transaction has been submitted and should take a couple of minutes.";
 
@@ -1028,9 +1031,6 @@ Pairing password: %@";
 
 /* Upgrade now */
 "upgrade_now" = "Upgrade now";
-
-/* Security upgrade required */
-"upgrade_required" = "Security upgrade required";
 
 /* Face ID button explanation */
 "use_faceid_to_unlock" = "Use Face ID to unlock";

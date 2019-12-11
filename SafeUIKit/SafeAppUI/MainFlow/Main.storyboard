@@ -3,7 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -417,7 +417,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error-icon" translatesAutoresizingMaskIntoConstraints="NO" id="iwo-z1-d8O">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info-icon" translatesAutoresizingMaskIntoConstraints="NO" id="iwo-z1-d8O">
                                                 <rect key="frame" x="70" y="26" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="eIk-RE-Nmz"/>
@@ -729,8 +729,8 @@
     <resources>
         <image name="checkGreen" width="16" height="16"/>
         <image name="congratulations" width="110" height="110"/>
-        <image name="error-icon" width="16" height="16"/>
         <image name="external_link" width="12" height="12"/>
+        <image name="info-icon" width="20" height="20"/>
         <image name="qrIcon" width="38" height="38"/>
     </resources>
 </document>
