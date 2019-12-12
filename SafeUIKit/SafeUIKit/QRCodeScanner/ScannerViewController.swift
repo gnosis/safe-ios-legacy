@@ -24,6 +24,8 @@ class ScannerViewController: UIViewController {
 
     weak var delegate: ScannerDelegate?
 
+    @IBOutlet weak var headerLabelContainerView: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var debugButtonsStackView: UIStackView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var buttonEffectView: UIVisualEffectView!
@@ -31,10 +33,11 @@ class ScannerViewController: UIViewController {
     private var debugButtonReturnCodes = [String]()
     private var debugButtons = [UIButton]()
     private var shouldStopHandling: Bool = false
-
+    var header: String?
     static func create(delegate: ScannerDelegate) -> ScannerViewController {
         let bundle = Bundle(for: ScannerViewController.self)
         let controller = ScannerViewController(nibName: "ScannerViewController", bundle: bundle)
+        controller.modalPresentationStyle = .fullScreen
         controller.delegate = delegate
         return controller
     }
@@ -71,9 +74,11 @@ class ScannerViewController: UIViewController {
         codeReaderVC.view.frame = view.frame
         view.insertSubview(codeReaderVC.view, at: 0)
         codeReaderVC.didMove(toParent: self)
-
+        
         closeButton.accessibilityLabel = LocalizedString("close", comment: "Close button on camera")
         buttonEffectView.mask = CircleMask(frame: buttonEffectView.bounds)
+        headerLabel.text = header
+        headerLabelContainerView.isHidden = header == nil
     }
 
     func barcodesHandler(_ barcodes: [AVMetadataMachineReadableCodeObject]) {
@@ -144,5 +149,4 @@ fileprivate class CircleMask: BaseCustomView {
         shapeLayer.path = path
         shapeLayer.fillColor = ColorName.black.color.cgColor
     }
-
 }

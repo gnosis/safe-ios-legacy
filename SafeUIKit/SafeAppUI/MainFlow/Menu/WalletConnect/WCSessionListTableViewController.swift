@@ -65,6 +65,7 @@ import MultisigWalletApplication
             guard code.starts(with: "wc:") else { return nil }
             return code
         }
+        scanButtonItem.scanHeader = LocalizedString("scan_wallet_connect", comment: "Scan WalletConnect QR code")
         navigationItem.rightBarButtonItem = scanButtonItem
     }
 

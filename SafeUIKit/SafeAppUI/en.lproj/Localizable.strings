@@ -855,6 +855,9 @@ Pairing password: %@";
 /* Scan QR code */
 "scan_qr_code" = "Scan QR Code";
 
+/* Scan WalletConnect QR code */
+"scan_wallet_connect" = "scan_wallet_connect";
+
 /* New Safe onboarding 2 title */
 "secure_by_design" = "Secure by design";
 

@@ -38,7 +38,14 @@ public final class AddressInput: VerifiableInput {
     private let hexPrefix: String = "0x"
 
     private var leadingInputConstraint: NSLayoutConstraint!
-
+    public var scanHeader: String? {
+        set {
+            scanHandler.header = newValue
+        }
+        get {
+            return scanHandler.header
+        }
+    }
     public override var isEnabled: Bool {
         get {
             return textInput.isEnabled
