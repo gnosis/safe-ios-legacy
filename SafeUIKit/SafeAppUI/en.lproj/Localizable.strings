@@ -856,8 +856,7 @@ Pairing password: %@";
 "scan_qr_code" = "Scan QR Code";
 
 /* Scan WalletConnect QR code */
-"scan_wallet_connect" = "Scan the QR code of a desktop Dapp to connect your Safe using WalletConnect\
-";
+"scan_wallet_connect" = "Scan the QR code of a desktop Dapp to connect your Safe using WalletConnect";
 
 /* New Safe onboarding 2 title */
 "secure_by_design" = "Secure by design";
