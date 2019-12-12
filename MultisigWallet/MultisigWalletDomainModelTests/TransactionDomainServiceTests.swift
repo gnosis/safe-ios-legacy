@@ -241,8 +241,10 @@ class TransactionDomainServiceBatchedTransactionsTests: XCTestCase {
     let walletRepo = InMemoryWalletRepository()
     lazy var metadataRepo = InMemorySafeContractMetadataRepository(metadata:
         SafeContractMetadata(multiSendContractAddress: multiSendAddress,
-                             proxyFactoryAddress: Address.testAccount1,
-                             safeFunderAddress: Address.testAccount1,
+                             proxyFactoryAddress: .testAccount1,
+                             proxyCode: Data(),
+                             defaultFallbackHandlerAddress: .testAccount2,
+                             safeFunderAddress: .testAccount1,
                              metadata: []))
     let nodeService = MockEthereumNodeService()
     let ethereumService = EthereumKitEthereumService()
