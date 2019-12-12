@@ -15,7 +15,8 @@ final class ContractUpgradeHeaderView: UITableViewHeaderFooterView {
 
     enum Strings {
         static let title = LocalizedString("contract_upgrade_available", comment: "Contract upgrade available")
-        static let description = LocalizedString("security_upgrade_required", comment: "Update required description")
+        static let description = LocalizedString("in_the_new_version_we_added_support_of_erc1155",
+                                                 comment: "Upgrade description")
         static let upgradeNow = LocalizedString("upgrade_now", comment: "Upgrade now")
     }
 
