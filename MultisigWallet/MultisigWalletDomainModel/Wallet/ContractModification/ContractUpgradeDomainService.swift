@@ -6,7 +6,7 @@ import Foundation
 
 public class ContractUpgraded: DomainEvent {}
 
-/// latest upgrade is to 1.1.1 version
+/// the latest upgrade is to version 1.1.1
 open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
 
     lazy var multiSendProxy: MultiSendContractProxy = {
