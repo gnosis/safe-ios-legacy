@@ -14,6 +14,8 @@ class ContractUpgradeDomainServiceTests: BaseBrowserExtensionModificationTestCas
         let mockRepo = MockSafeContractMetadataRepository()
         DomainRegistry.put(service: mockRepo, for: SafeContractMetadataRepository.self)
 
+        DomainRegistry.put(service: MockEventPublisher(), for: EventPublisher.self)
+
         provisionWallet(owners: [.thisDevice, .paperWallet, .paperWalletDerived], threshold: 1)
         wallet.changeMasterCopy(Address.testAccount1)
         DomainRegistry.walletRepository.save(wallet)
@@ -85,12 +87,13 @@ fileprivate extension SafeContractMetadata {
     static func metadataWithMasterCopy(_ address: Address) -> SafeContractMetadata {
         return SafeContractMetadata(multiSendContractAddress: .testAccount1,
                                     proxyFactoryAddress: .testAccount1,
+                                    proxyCode: Data(),
+                                    defaultFallbackHandlerAddress: Address.testAccount1,
                                     safeFunderAddress: .testAccount1,
                                     metadata: [MasterCopyMetadata(address: address,
                                                                   version: "1",
                                                                   txTypeHash: Data(),
-                                                                  domainSeparatorHash: Data(),
-                                                                  proxyCode: Data())])
+                                                                  domainSeparatorHash: Data())])
     }
 
 }

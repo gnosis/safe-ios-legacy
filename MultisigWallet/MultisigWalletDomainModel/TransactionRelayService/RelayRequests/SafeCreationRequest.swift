@@ -91,6 +91,7 @@ public struct SafeCreationRequest: Codable {
             return Address(paymentReceiver)
         }
 
+        // TODO: update
         // swiftlint:disable line_length
         /// The part of the init_data of the safe creation transaction.
         ///

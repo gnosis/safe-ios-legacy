@@ -99,7 +99,6 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
             return (owners, threshold, to, data, fallbackHandler, paymentToken, payment, paymentReceiver)
     }
 
-    
     public func onERC1155Received(_operator: Address,
                                   _from: Address,
                                   _id: BigInt,
