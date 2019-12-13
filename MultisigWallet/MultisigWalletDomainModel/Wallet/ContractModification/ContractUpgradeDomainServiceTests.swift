@@ -36,7 +36,7 @@ class ContractUpgradeDomainServiceTests: BaseBrowserExtensionModificationTestCas
         DomainRegistry.put(service: repo, for: SafeContractMetadataRepository.self)
 
         let data = service.realTransactionData()
-        let expectedData = WalletProxyContractProxy(.testAccount1).changeMasterCopy(.testAccount2)
+        let expectedData = GnosisSafeContractProxy(.testAccount1).changeMasterCopy(.testAccount2)
 
         XCTAssertEqual(data, expectedData, "data: \(data.toHexString()) expected: \(expectedData.toHexString())")
     }
@@ -62,7 +62,7 @@ class ContractUpgradeDomainServiceTests: BaseBrowserExtensionModificationTestCas
         let tx = Transaction(id: TransactionID(),
                              type: .contractUpgrade,
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
-        tx.change(data: WalletProxyContractProxy(.testAccount1).changeMasterCopy(.testAccount2))
+        tx.change(data: GnosisSafeContractProxy(.testAccount1).changeMasterCopy(.testAccount2))
         tx.change(status: .success)
         txRepo.save(tx)
 

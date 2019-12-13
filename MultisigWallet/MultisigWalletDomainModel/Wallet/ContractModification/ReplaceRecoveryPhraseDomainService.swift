@@ -12,10 +12,10 @@ public enum ReplaceRecoveryPhraseDomainServiceError: String, Error {
 
 public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
 
-    var multiSendProxy: MultiSendContractProxy {
+    lazy var multiSendProxy: MultiSendContractProxy = {
         let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
         return MultiSendContractProxy(multiSendAddress)
-    }
+    }()
 
     public override var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
@@ -74,8 +74,6 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
             list.replace(old[index], with: new[index])
             transactions.append((.call, walletAddress, 0, data))
         }
-        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-        let multiSendProxy = MultiSendContractProxy(multiSendAddress)
         return multiSendProxy.multiSend(transactions)
     }
 

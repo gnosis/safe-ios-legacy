@@ -12,6 +12,8 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
     // be aware to properly change 'setup' method for offsets when changing signature
     private static let setupSignature = "setup(address[],uint256,address,bytes,address,address,uint256,address)"
     private static let onERC1155ReceivedSignature = "onERC1155Received(address,address,uint256,uint256,bytes)"
+    private static let setFallbackHandlerSignature = "setFallbackHandler(address)"
+    private static let changeMasterCopySignature = "changeMasterCopy(address)"
 
     public func setup(owners: [Address],
                       threshold: Int,
@@ -97,6 +99,31 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
             let data = dataArgumentData.prefix(dataArgumentLength)
 
             return (owners, threshold, to, data, fallbackHandler, paymentToken, payment, paymentReceiver)
+    }
+
+    public func setFallbackHandler(address: Address) -> Data {
+        return invocation(GnosisSafeContractProxy.setFallbackHandlerSignature, encodeAddress(address))
+    }
+
+    /// Returns address of the masterCopy contract
+    public func masterCopyAddress() throws -> Address? {
+        // masterCopy is a 1st variable of the contract, so we can fetch its value directly from contract's storage.
+        // https://github.com/gnosis/gnosis-py/blob/a7bb8865dc5424c44bcb7ad5f11dee4f491acffb/gnosis/safe/safe.py#L445
+        let data = try nodeService.eth_getStorageAt(address: contract, position: 0)
+        return decodeAddress(data)
+    }
+
+    public func changeMasterCopy(_ address: Address) -> Data {
+        return invocation(GnosisSafeContractProxy.changeMasterCopySignature, encodeAddress(address))
+    }
+
+    public func decodeChangeMasterCopyArguments(from data: Data) -> Address? {
+        let selector = method(GnosisSafeContractProxy.changeMasterCopySignature)
+        guard data.starts(with: selector) else { return nil }
+        var input = data
+        input.removeFirst(selector.count)
+        let newAddress = decodeAddress(input)
+        return newAddress
     }
 
     public func onERC1155Received(_operator: Address,
