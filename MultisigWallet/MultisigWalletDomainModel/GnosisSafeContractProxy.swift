@@ -11,6 +11,7 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
     public let encodesEmptyDataAsZero = true
     // be aware to properly change 'setup' method for offsets when changing signature
     private static let setupSignature = "setup(address[],uint256,address,bytes,address,address,uint256,address)"
+    private static let onERC1155ReceivedSignature = "onERC1155Received(address,address,uint256,uint256,bytes)"
 
     public func setup(owners: [Address],
                       threshold: Int,
@@ -40,7 +41,6 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
         return invocation(GnosisSafeContractProxy.setupSignature, args: items)
     }
 
-    // TODO: update with a new parameter
     public func decodeSetup(from data: Data) ->
         (owners: [Address],
         threshold: Int,
@@ -98,4 +98,24 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
 
             return (owners, threshold, to, data, fallbackHandler, paymentToken, payment, paymentReceiver)
     }
+
+    
+    public func onERC1155Received(_operator: Address,
+                                  _from: Address,
+                                  _id: BigInt,
+                                  _value: BigInt,
+                                  _calldata: Data) -> Data? {
+        let items: [Data] = [
+            encodeAddress(_operator),
+            encodeAddress(_from),
+            encodeUInt(_id),
+            encodeUInt(_value),
+            encodeUInt(5 * 32), // offset including this arg
+            encodeBytes(_calldata)]
+        if let data = try? invoke(GnosisSafeContractProxy.onERC1155ReceivedSignature, args: items) {
+            return decodeFixedBytes(value: data, size: 4)
+        }
+        return nil
+    }
+
 }

@@ -106,7 +106,7 @@ extension SafeContractMetadata: Codable {
         case multiSendContractAddress = "multi_send_contract_address"
         case proxyFactoryAddress = "proxy_factory_address"
         case proxyCode = "proxy_code"
-        case defaultFallbackHandlerAddress = "default_fallback_handler_address"
+        case defaultCallbackHandlerAddress = "default_callback_handler_address"
         case safeFunderAddress = "safe_funder_address"
         case metadata = "contract_metadata"
     }
@@ -117,7 +117,7 @@ extension SafeContractMetadata: Codable {
                       proxyFactoryAddress: Address(values.decode(String.self, forKey: .proxyFactoryAddress)),
                       proxyCode: Data(ethHex: values.decode(String.self, forKey: .proxyCode)),
                       defaultFallbackHandlerAddress: Address(values.decode(String.self,
-                                                                           forKey: .defaultFallbackHandlerAddress)),
+                                                                           forKey: .defaultCallbackHandlerAddress)),
                       safeFunderAddress: Address(values.decode(String.self, forKey: .safeFunderAddress)),
                       metadata: values.decode([MasterCopyMetadata].self, forKey: .metadata))
     }
@@ -127,7 +127,7 @@ extension SafeContractMetadata: Codable {
         try container.encode(multiSendContractAddress.value, forKey: .multiSendContractAddress)
         try container.encode(proxyFactoryAddress.value, forKey: .proxyFactoryAddress)
         try container.encode(proxyCode.toHexString().addHexPrefix(), forKey: .proxyCode)
-        try container.encode(defaultFallbackHandlerAddress.value, forKey: .defaultFallbackHandlerAddress)
+        try container.encode(defaultFallbackHandlerAddress.value, forKey: .defaultCallbackHandlerAddress)
         try container.encode(safeFunderAddress.value, forKey: .safeFunderAddress)
         try container.encode(metadata, forKey: .metadata)
     }
