@@ -6,10 +6,6 @@ import Foundation
 import MultisigWalletDomainModel
 
 public class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
-    public func version(multiSendAddress: Address) -> Int? {
-        return nil
-    }
-
 
     public var multiSendContractAddress: Address
     public var proxyFactoryAddress: Address
@@ -57,6 +53,10 @@ public class MockSafeContractMetadataRepository: SafeContractMetadataRepository 
     }
 
     public func EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: Address) -> Data? {
+        return nil
+    }
+
+    public func version(multiSendAddress: Address) -> Int? {
         return nil
     }
 

@@ -23,6 +23,5 @@ public protocol SafeContractMetadataRepository {
     /// Default multi send contract address
     var multiSendContractAddress: Address { get }
     func version(multiSendAddress: Address) -> Int?
-//    func isValidMultiSend(address: Address) -> Bool
 
 }
