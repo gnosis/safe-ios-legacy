@@ -383,7 +383,10 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         return safe
     }
 
-    private func pay(from sender: ExternallyOwnedAccount, to recipient: Address, amount: TokenInt, data: Data? = nil) throws {
+    private func pay(from sender: ExternallyOwnedAccount,
+                     to recipient: Address,
+                     amount: TokenInt,
+                     data: Data? = nil) throws {
         let gasPrice = try infuraService.eth_gasPrice()
         let callTx = TransactionCall(sender: sender.address,
                                      recipient: recipient,

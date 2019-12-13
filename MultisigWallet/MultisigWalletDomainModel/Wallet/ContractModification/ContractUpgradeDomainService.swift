@@ -6,7 +6,13 @@ import Foundation
 
 public class ContractUpgraded: DomainEvent {}
 
+/// latest upgrade is to 1.1.1 version
 open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
+
+    lazy var multiSendProxy: MultiSendContractProxy = {
+        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
+        return MultiSendContractProxy(multiSendAddress)
+    }()
 
     open override var isAvailable: Bool {
         guard let wallet = self.wallet, wallet.isReadyToUse else { return false }
@@ -33,9 +39,17 @@ open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
 
     public func realTransactionData() -> Data {
         guard let currentAddress = DomainRegistry.walletRepository.selectedWallet()?.address else { return Data() }
-        let proxy = WalletProxyContractProxy(currentAddress)
+        let proxy = GnosisSafeContractProxy(currentAddress)
+
         let newAddress = DomainRegistry.safeContractMetadataRepository.latestMasterCopyAddress
-        return proxy.changeMasterCopy(newAddress)
+        let changeMasterCopyData = proxy.changeMasterCopy(newAddress)
+
+        let fallbackHandler = DomainRegistry.safeContractMetadataRepository.fallbackHandlerAddress
+        let setFallbackHandlerData = proxy.setFallbackHandler(address: fallbackHandler)
+
+        return multiSendProxy.multiSend([
+            (operation: .call, to: currentAddress, value: 0, data: changeMasterCopyData),
+            (operation: .call, to: currentAddress, value: 0, data: setFallbackHandlerData)])
     }
 
     override func validateOwners() throws {
@@ -58,11 +72,10 @@ open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
             let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
         guard let data = tx.data, let walletAddress = wallet.address else { return }
 
-        let proxy = WalletProxyContractProxy(walletAddress)
-
-        guard let newMasterCopy = proxy.decodeChangeMasterCopyArguments(from: data) else {
-            return
-        }
+        let proxy = GnosisSafeContractProxy(walletAddress)
+        guard let multisendTransactions = multiSendProxy.decodeMultiSendArguments(from: data),
+            let changeMasterCopyData = multisendTransactions.first?.data,
+            let newMasterCopy = proxy.decodeChangeMasterCopyArguments(from: changeMasterCopyData) else { return }
 
         if tx.status == .success {
             wallet.changeMasterCopy(newMasterCopy)
