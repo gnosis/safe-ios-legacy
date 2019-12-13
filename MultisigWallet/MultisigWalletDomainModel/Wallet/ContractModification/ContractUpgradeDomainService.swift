@@ -23,21 +23,22 @@ open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
         return DomainRegistry.safeContractMetadataRepository.isOldMasterCopy(address: masterCopy)
     }
 
+    // all data is known upfront.
     public override func createTransaction() -> TransactionID {
         let txID = super.createTransaction()
-        updateTransaction(txID, with: .contractUpgrade)
+        let tx = transaction(txID)
+        let checksumedRecepient = DomainRegistry.encryptionService.address(from: multiSendProxy.contract.value)!
+        tx.change(type: .contractUpgrade)
+            .change(recipient: checksumedRecepient)
+            .change(operation: .delegateCall)
+            .change(data: realTransactionData())
+        repository.save(tx)
         return txID
     }
 
-    override func dummyTransactionData() -> Data {
-        return realTransactionData()
-    }
+    public override func addDummyData(to transactionID: TransactionID) { /* do nothing */ }
 
-    override func realTransactionData(with newAddress: String) -> Data? {
-        return realTransactionData()
-    }
-
-    public func realTransactionData() -> Data {
+    func realTransactionData() -> Data {
         guard let currentAddress = DomainRegistry.walletRepository.selectedWallet()?.address else { return Data() }
         let proxy = GnosisSafeContractProxy(currentAddress)
 
@@ -52,14 +53,11 @@ open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
             (operation: .call, to: currentAddress, value: 0, data: setFallbackHandlerData)])
     }
 
-    override func validateOwners() throws {
-        // no owner changes - empty
-    }
+    override func validateOwners() throws { /* no owner changes - empty */ }
 
     open override func update(transaction: TransactionID, newOwnerAddress: String) {
-        stepBackToDraft(transaction)
+        stepBackToDraft(transaction) // changes status only
         let tx = self.transaction(transaction)
-        tx.change(data: realTransactionData(with: newOwnerAddress))
         tx.change(hash: DomainRegistry.encryptionService.hash(of: tx))
         tx.proceed()
         repository.save(tx)

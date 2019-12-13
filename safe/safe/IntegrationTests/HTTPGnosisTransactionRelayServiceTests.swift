@@ -35,6 +35,17 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         let (_, _) = try createNewSafe()
     }
 
+    func test_safeIs_1_1_1() throws {
+        let proxy = GnosisSafeContractProxy(Address("0x46F228b5eFD19Be20952152c549ee478Bf1bf36b"))
+        XCTAssertEqual(proxy.onERC1155Received(_operator: .zero,
+                                               _from: .zero,
+                                               _id: 0,
+                                               _value: 0,
+                                               _calldata: Data()),
+                       Data(hex: "0xf23a6e61"))
+        XCTAssertEqual(try proxy.masterCopyAddress(), Address("0x34cfac646f301356faa8b21e94227e3583fe3f5f"))
+    }
+
     func test_whenGettingGasPrice_thenReturnsIt() throws {
         let response = try relayService.gasPrice()
         let stringInts = [response.fast, response.fastest, response.standard, response.safeLow]

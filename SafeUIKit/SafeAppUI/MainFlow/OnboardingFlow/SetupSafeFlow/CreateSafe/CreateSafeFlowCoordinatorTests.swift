@@ -41,18 +41,19 @@ class CreateSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(topViewController is HeaderImageTextStepController)
     }
 
-    func test_whenWalletServiceThrowsDuringPairing_thenAlertIsHandled() {
-        walletService.shouldThrow = true
-        let navController = UINavigationController()
-        createWindow(navController)
-        walletService.expect_walletState(.draft)
-        newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: navController)
-        newSafeFlowCoordinator.setUp()
-        pairWithBrowserExtension()
-        delay(0.5)
-        XCTAssertAlertShown(message: WalletApplicationServiceError.networkError.localizedDescription)
-        assert(topViewController, is: AuthenticatorViewController.self)
-    }
+// TODO: revisit this place when we remove Authenticator completely
+//    func test_whenWalletServiceThrowsDuringPairing_thenAlertIsHandled() {
+//        walletService.shouldThrow = true
+//        let navController = UINavigationController()
+//        createWindow(navController)
+//        walletService.expect_walletState(.draft)
+//        newSafeFlowCoordinator = CreateSafeFlowCoordinator(rootViewController: navController)
+//        newSafeFlowCoordinator.setUp()
+//        pairWithBrowserExtension()
+//        delay(0.5)
+//        XCTAssertAlertShown(message: WalletApplicationServiceError.networkError.localizedDescription)
+//        assert(topViewController, is: AuthenticatorViewController.self)
+//    }
 
     func test_showPayment_presentsOnboardingCreationFeeIntro() {
         newSafeFlowCoordinator.showPayment()

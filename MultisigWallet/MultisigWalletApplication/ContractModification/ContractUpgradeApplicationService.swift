@@ -28,7 +28,7 @@ open class ContractUpgradeApplicationService: OwnerModificationApplicationServic
     }
 
     public func update(transaction: String) {
-        domainService.update(transaction: TransactionID(transaction), newOwnerAddress: "")
+        domainService.update(transaction: TransactionID(transaction), newOwnerAddress: "will be ignored")
     }
 
     public func subscribeForContractUpgrade(_ handler: @escaping () -> Void) {
