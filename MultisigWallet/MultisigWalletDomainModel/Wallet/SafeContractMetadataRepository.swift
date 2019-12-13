@@ -6,7 +6,6 @@ import Foundation
 
 public protocol SafeContractMetadataRepository {
 
-    var multiSendContractAddress: Address { get }
     var proxyFactoryAddress: Address { get }
 
     var latestMasterCopyAddress: Address { get }
@@ -20,5 +19,10 @@ public protocol SafeContractMetadataRepository {
     func deploymentCode(masterCopyAddress: Address) -> Data?
     func EIP712SafeAppTxTypeHash(masterCopyAddress: Address) -> Data?
     func EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: Address) -> Data?
+
+    /// Default multi send contract address
+    var multiSendContractAddress: Address { get }
+    func version(multiSendAddress: Address) -> Int?
+//    func isValidMultiSend(address: Address) -> Bool
 
 }

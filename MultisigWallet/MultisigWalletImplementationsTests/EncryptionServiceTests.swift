@@ -458,6 +458,11 @@ typealias mAddress = MultisigWalletDomainModel.Address
 // TODO: should we delete it as duplicate of SafeContractMetadataRepository.swift ?
 class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
 
+    func version(multiSendAddress: MultisigWalletDomainModel.Address) -> Int? {
+        nil
+    }
+
+
     var multiSendContractAddress: mAddress { return .zero }
     var latestMasterCopyAddress: mAddress { return .zero }
 

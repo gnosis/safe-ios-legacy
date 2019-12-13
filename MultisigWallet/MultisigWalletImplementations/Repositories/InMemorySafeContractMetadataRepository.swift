@@ -6,6 +6,10 @@ import Foundation
 import MultisigWalletDomainModel
 
 public class InMemorySafeContractMetadataRepository: SafeContractMetadataRepository {
+    public func version(multiSendAddress: Address) -> Int? {
+        return nil
+    }
+
 
     private let metadata: SafeContractMetadata
 

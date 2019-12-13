@@ -102,8 +102,15 @@
 		0A84C2EE230549E60006DA50 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1617F82304593B00F6E501 /* ExternallyOwnedAccount+TestFixture.swift */; };
 		0A84C2EF230549E60006DA50 /* WCTestStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D612304544900E7EB07 /* WCTestStubs.swift */; };
 		0A8822F42399350B00093B53 /* WCMultiSendSubTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8822F32399350B00093B53 /* WCMultiSendSubTransaction.swift */; };
+		0A8931F723A287E800183EE6 /* ABITypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8931F623A287E800183EE6 /* ABITypes.swift */; };
+		0A8931FD23A288BC00183EE6 /* StandardABICoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8931FC23A288BC00183EE6 /* StandardABICoder.swift */; };
+		0A8931FF23A2A0B400183EE6 /* MultiSendContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8931FE23A2A0B400183EE6 /* MultiSendContract.swift */; };
+		0A89320123A2B22F00183EE6 /* PackedABICoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A89320023A2B22F00183EE6 /* PackedABICoder.swift */; };
+		0A89320323A2B24100183EE6 /* ABICoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A89320223A2B24100183EE6 /* ABICoding.swift */; };
 		0AA21E7D233CD739004A4A62 /* InMemoryTransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA21E7B233CD70B004A4A62 /* InMemoryTransactionMonitorRepository.swift */; };
 		0AA52701232A6F9E00B2825F /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA52700232A6F9E00B2825F /* LocalizedString.swift */; };
+		0AAA741723A3CF84000799C2 /* StandardABICoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA741623A3CF84000799C2 /* StandardABICoderTests.swift */; };
+		0AAA741D23A3EB34000799C2 /* MultiSendTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA741C23A3EB34000799C2 /* MultiSendTx.swift */; };
 		0AAE7C42230450A600E7EB07 /* MultisigWalletDomainModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAE7C39230450A600E7EB07 /* MultisigWalletDomainModel.framework */; };
 		0AAE7C49230450A600E7EB07 /* MultisigWalletDomainModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAE7C3B230450A600E7EB07 /* MultisigWalletDomainModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AAE7C62230450B300E7EB07 /* MultisigWalletApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAE7C59230450B300E7EB07 /* MultisigWalletApplication.framework */; };
@@ -596,12 +603,19 @@
 		0A77D0C3211AD952003582DD /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		0A8586D622A17D85003BE36E /* ReplaceRecoveryPhraseApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseApplicationService.swift; sourceTree = "<group>"; };
 		0A8822F32399350B00093B53 /* WCMultiSendSubTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCMultiSendSubTransaction.swift; sourceTree = "<group>"; };
+		0A8931F623A287E800183EE6 /* ABITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABITypes.swift; sourceTree = "<group>"; };
+		0A8931FC23A288BC00183EE6 /* StandardABICoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardABICoder.swift; sourceTree = "<group>"; };
+		0A8931FE23A2A0B400183EE6 /* MultiSendContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSendContract.swift; sourceTree = "<group>"; };
+		0A89320023A2B22F00183EE6 /* PackedABICoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackedABICoder.swift; sourceTree = "<group>"; };
+		0A89320223A2B24100183EE6 /* ABICoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABICoding.swift; sourceTree = "<group>"; };
 		0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFixture.swift; sourceTree = "<group>"; };
 		0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumApplicationService.swift; sourceTree = "<group>"; };
 		0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationTestCase.swift; sourceTree = "<group>"; };
 		0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationService.swift; sourceTree = "<group>"; };
 		0AA21E7B233CD70B004A4A62 /* InMemoryTransactionMonitorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionMonitorRepository.swift; sourceTree = "<group>"; };
 		0AA52700232A6F9E00B2825F /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		0AAA741623A3CF84000799C2 /* StandardABICoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardABICoderTests.swift; sourceTree = "<group>"; };
+		0AAA741C23A3EB34000799C2 /* MultiSendTx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSendTx.swift; sourceTree = "<group>"; };
 		0AAAE3E6219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceConfiguration.swift; sourceTree = "<group>"; };
 		0AAE7C39230450A600E7EB07 /* MultisigWalletDomainModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MultisigWalletDomainModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AAE7C3B230450A600E7EB07 /* MultisigWalletDomainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultisigWalletDomainModel.h; sourceTree = "<group>"; };
@@ -1017,6 +1031,12 @@
 				0AC8A543237C616E00518C65 /* ENSDomainService.swift */,
 				0AAE7CFA2304544800E7EB07 /* GnosisSafeContractProxy.swift */,
 				0AAE7D6E2304544900E7EB07 /* MultiSendContractProxy.swift */,
+				0A8931FE23A2A0B400183EE6 /* MultiSendContract.swift */,
+				0AAA741C23A3EB34000799C2 /* MultiSendTx.swift */,
+				0A89320223A2B24100183EE6 /* ABICoding.swift */,
+				0A8931F623A287E800183EE6 /* ABITypes.swift */,
+				0A8931FC23A288BC00183EE6 /* StandardABICoder.swift */,
+				0A89320023A2B22F00183EE6 /* PackedABICoder.swift */,
 				0AAE7D362304544800E7EB07 /* NotificationService */,
 				0AAE7D5C2304544900E7EB07 /* Portfolio */,
 				0AAE7D6D2304544900E7EB07 /* SafeOwnerManagerContractProxy.swift */,
@@ -1086,6 +1106,7 @@
 				0AAE7E072304569A00E7EB07 /* WalletTests.swift */,
 				0AAE7E0F2304569B00E7EB07 /* WorkerTests.swift */,
 				0AAE7C48230450A600E7EB07 /* Info.plist */,
+				0AAA741623A3CF84000799C2 /* StandardABICoderTests.swift */,
 			);
 			path = MultisigWalletDomainModelTests;
 			sourceTree = "<group>";
@@ -1920,6 +1941,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A89320123A2B22F00183EE6 /* PackedABICoder.swift in Sources */,
 				0AAE7D852304544A00E7EB07 /* ErrorStream.swift in Sources */,
 				559C2EB3231FC1FA0071B14C /* GetSafeStatusRequest.swift in Sources */,
 				0AAE7DA32304544A00E7EB07 /* Worker.swift in Sources */,
@@ -1928,8 +1950,10 @@
 				0AAE7DC92304544A00E7EB07 /* SinglePortfolioRepository.swift in Sources */,
 				0AAE7D792304544A00E7EB07 /* WalletDomainService.swift in Sources */,
 				0AAE7DB02304544A00E7EB07 /* MessageRepository.swift in Sources */,
+				0A8931FF23A2A0B400183EE6 /* MultiSendContract.swift in Sources */,
 				0AAE7DD72304544A00E7EB07 /* BigInt+Hex.swift in Sources */,
 				0AAE7DD22304544A00E7EB07 /* TransactionStatus.swift in Sources */,
+				0A8931FD23A288BC00183EE6 /* StandardABICoder.swift in Sources */,
 				0AAE7DCB2304544A00E7EB07 /* WCSession.swift in Sources */,
 				0AAE7D8A2304544A00E7EB07 /* Owner.swift in Sources */,
 				0AC8A520237C4A9B00518C65 /* ENSContractProxy.swift in Sources */,
@@ -1948,6 +1972,7 @@
 				0A2ACBDF2329005F0054D1D1 /* KeycardKey.swift in Sources */,
 				0AAE7DBB2304544A00E7EB07 /* Account.swift in Sources */,
 				0AAE7DA02304544A00E7EB07 /* EthereumNodeDomainService.swift in Sources */,
+				0AAA741D23A3EB34000799C2 /* MultiSendTx.swift in Sources */,
 				0AAE7D9A2304544A00E7EB07 /* Token.swift in Sources */,
 				0AAE7D712304544A00E7EB07 /* DomainRegistry.swift in Sources */,
 				0AAE7D772304544A00E7EB07 /* DeploymentDomainService.swift in Sources */,
@@ -1977,6 +2002,7 @@
 				0AAE7DA12304544A00E7EB07 /* EthSignature.swift in Sources */,
 				0AAE7DA52304544A00E7EB07 /* ERC20TokenContractProxy.swift in Sources */,
 				0AAE7DD32304544A00E7EB07 /* AppSettingsRepository.swift in Sources */,
+				0A89320323A2B24100183EE6 /* ABICoding.swift in Sources */,
 				0AAE7D922304544A00E7EB07 /* DisconnectTwoFADomainService.swift in Sources */,
 				0AAE7DB52304544A00E7EB07 /* OutgoingMessage.swift in Sources */,
 				0AAE7DCD2304544A00E7EB07 /* WalletConnectDomainService.swift in Sources */,
@@ -2007,6 +2033,7 @@
 				0AAE7DB22304544A00E7EB07 /* TransactionDecisionMessage.swift in Sources */,
 				0AAE7D742304544A00E7EB07 /* WalletRepository.swift in Sources */,
 				0AAE7D752304544A00E7EB07 /* TokenData+Token.swift in Sources */,
+				0A8931F723A287E800183EE6 /* ABITypes.swift in Sources */,
 				0AAE7D822304544A00E7EB07 /* SafeContractMetadata.swift in Sources */,
 				0AAE7DC62304544A00E7EB07 /* TransactionRelayDomainService.swift in Sources */,
 				0A8822F42399350B00093B53 /* WCMultiSendSubTransaction.swift in Sources */,
@@ -2050,6 +2077,7 @@
 				0AAE7E452304569F00E7EB07 /* MockEthereumNodeService1.swift in Sources */,
 				0AAE7E442304569F00E7EB07 /* SubmitTransactionRequestTests.swift in Sources */,
 				0AAE7E402304569F00E7EB07 /* ReplaceTwoFADomainServiceTests.swift in Sources */,
+				0AAA741723A3CF84000799C2 /* StandardABICoderTests.swift in Sources */,
 				0AAE7E3E2304569F00E7EB07 /* ConnectTwoFADomainServiceTests.swift in Sources */,
 				0AAE7E312304569F00E7EB07 /* EthSignatureTests.swift in Sources */,
 				0AAE7E432304569F00E7EB07 /* ReplaceTwoFADomainServiceBaseTestCase.swift in Sources */,
