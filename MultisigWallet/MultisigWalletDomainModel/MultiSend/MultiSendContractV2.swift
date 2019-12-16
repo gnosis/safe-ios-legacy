@@ -5,9 +5,9 @@
 import Foundation
 import BigInt
 
-public class MultiSendV2ContractProxy: MultiSendContractProxy {
+class MultiSendContractV2: EthereumContractProxy, MultiSendContract {
 
-    public override func multiSend(_ transactions: [MultiSendTransaction]) -> Data {
+    func multiSend(_ transactions: [MultiSendTransaction]) -> Data {
         let argumentData = transactions.reduce(into: Data()) { result, tx in
             result.append(encodeUInt8(UInt8(tx.operation.rawValue)))
             result.append(encodeAddress(tx.to))
@@ -22,7 +22,7 @@ public class MultiSendV2ContractProxy: MultiSendContractProxy {
                           encodeUInt(bytesOffsetInInvocation) + super.encodeBytes(argumentData))
     }
 
-    public override func decodeMultiSendArguments(from data: Data) -> [MultiSendTransaction]? {
+    func decodeMultiSendArguments(from data: Data) -> [MultiSendTransaction]? {
         let selector = method(MultiSendContractProxy.multiSendSignature)
         guard data.starts(with: selector) else { return nil }
         var input = data
@@ -51,7 +51,7 @@ public class MultiSendV2ContractProxy: MultiSendContractProxy {
         return result
     }
 
-    public override func encodeAddress(_ value: Address) -> Data {
+    override func encodeAddress(_ value: Address) -> Data {
         Data(ethHex: value.value).leftPadded(to: 20).suffix(20)
     }
 
@@ -88,4 +88,5 @@ public class MultiSendV2ContractProxy: MultiSendContractProxy {
     func decodeBytes(_ value: Data, count: Int) -> Data {
         return value.prefix(Int(count))
     }
+
 }

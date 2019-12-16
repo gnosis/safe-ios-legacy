@@ -200,13 +200,14 @@ extension SafeContractMetadata {
         return SafeContractMetadata(multiSendContractAddress: .testAccount1,
                                     proxyFactoryAddress: .testAccount2,
                                     safeFunderAddress: .testAccount3,
-                                    metadata: [MasterCopyMetadata(address: .testAccount4,
-                                                                  version: "1.0.0",
-                                                                  txTypeHash: txTypeHash,
-                                                                  domainSeparatorHash: domainTypeHash,
-                                                                  proxyCode: proxyCode)])
+                                    masterCopy: [MasterCopyMetadata(address: .testAccount4,
+                                                                    version: "1.0.0",
+                                                                    txTypeHash: txTypeHash,
+                                                                    domainSeparatorHash: domainTypeHash,
+                                                                    proxyCode: proxyCode)],
+                                    multiSend: [])
     }
-
+    
 }
 
 extension SafeCreationRequest {

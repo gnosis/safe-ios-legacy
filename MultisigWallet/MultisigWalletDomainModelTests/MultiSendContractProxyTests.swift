@@ -8,12 +8,12 @@ import MultisigWalletImplementations
 
 class MultiSendContractProxyTests: XCTestCase {
 
-    func test_decode() {
+    func test_decode_v1() {
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
         let ownerProxy = SafeOwnerManagerContractProxy(.safeAddress)
         let data1 = ownerProxy.swapOwner(prevOwner: .one, old: .two, new: .three)
         let data2 = ownerProxy.swapOwner(prevOwner: .two, old: .three, new: .one)
-        let multiSendProxy = MultiSendContractProxy(.zero)
+        let multiSendProxy = MultiSendContractV1(.zero)
         let encoded = multiSendProxy.multiSend([(.call, .safeAddress, 0, data1),
                                                 (.call, .safeAddress, 0, data2)])
         let decoded: [MultiSendTransaction]! = multiSendProxy.decodeMultiSendArguments(from: encoded)
@@ -34,7 +34,7 @@ class MultiSendContractProxyTests: XCTestCase {
         let ownerProxy = SafeOwnerManagerContractProxy(.safeAddress)
         let data1 = ownerProxy.swapOwner(prevOwner: .one, old: .two, new: .three)
         let data2 = ownerProxy.swapOwner(prevOwner: .two, old: .three, new: .one)
-        let multiSendProxy = MultiSendV2ContractProxy(.zero)
+        let multiSendProxy = MultiSendContractV2(.zero)
         let encoded = multiSendProxy.multiSend([(.call, .safeAddress, 0, data1),
                                                 (.call, .safeAddress, 0, data2)])
         let decoded: [MultiSendTransaction]! = multiSendProxy.decodeMultiSendArguments(from: encoded)

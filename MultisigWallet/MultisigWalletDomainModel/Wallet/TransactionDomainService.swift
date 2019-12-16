@@ -156,7 +156,8 @@ public class TransactionDomainService {
             transaction.type == .batched &&
             transaction.operation == .delegateCall &&
             transaction.data != nil &&
-            transaction.recipient == multiSendContract.contract
+            transaction.recipient != nil &&
+            MultiSendContractProxy.isMultiSend(transaction.recipient!)
         if isMultiSend, let arguments = multiSendContract.decodeMultiSendArguments(from: transaction.data!) {
             return arguments.map {
                 let tx = subTransaction(from: $0, in: walletID)

@@ -20,40 +20,48 @@ public class MockSafeContractMetadataRepository: SafeContractMetadataRepository 
     public var isOldMasterCopy_result: Bool = false
 
     public func isOldMasterCopy(address: Address) -> Bool {
-        return isOldMasterCopy_result
+        isOldMasterCopy_result
     }
 
     public func isValidMasterCopy(address: Address) -> Bool {
-        return false
+        false
     }
 
     public func isValidProxyFactory(address: Address) -> Bool {
-        return false
+        false
     }
 
     public func isValidPaymentRecevier(address: Address) -> Bool {
-        return false
+        false
     }
 
     public func version(masterCopyAddress: Address) -> String? {
-        return nil
+        nil
     }
 
     public var contractVersion = ""
     public func latestContractVersion() -> String {
-        return contractVersion
+        contractVersion
     }
 
     public func deploymentCode(masterCopyAddress: Address) -> Data? {
-        return nil
+        nil
     }
 
     public func EIP712SafeAppTxTypeHash(masterCopyAddress: Address) -> Data? {
-        return nil
+        nil
     }
 
     public func EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: Address) -> Data? {
-        return nil
+        nil
+    }
+
+    public func version(multiSendAddress: Address) -> Int? {
+        nil
+    }
+
+    public func isValidMultiSend(address: Address) -> Bool {
+        false
     }
 
 }
