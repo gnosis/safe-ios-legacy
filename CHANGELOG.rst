@@ -13,6 +13,8 @@ and this project adheres to `Semantic Versioning`_.
 Changed
 --------
 - Using new MultiSend contract instead of old one because it had a bug (self-destruct).
+- Process push notifications on app startup if the notification was not opened manually.
+- Fix crash in resuming recovery for some user.
 
 `1.11.0`_ - 2019-12-09
 ======================
