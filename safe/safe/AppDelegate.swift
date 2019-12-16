@@ -53,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         #endif
 
         createWindow()
-        UIApplication.shared.applicationIconBadgeNumber = 0
         cleanUp()
         sync()
 
@@ -65,6 +64,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         #endif
 
         return true
+    }
+
+    func processDeliveredNotifications() {
+        UNUserNotificationCenter.current().getDeliveredNotifications { [weak self] notifications in
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+
+            DispatchQueue.main.async { [weak self] in
+                guard let userInfo = notifications.last?.request.content.userInfo else { return }
+                self?.receiveNotification(userInfo: userInfo)
+            }
+        }
     }
 
     func configureDependencyInjection() {
@@ -100,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         coordinator.appEntersForeground()
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        processDeliveredNotifications()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -150,6 +160,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         return true
     }
 
+    private func receiveNotification(userInfo: [AnyHashable: Any]) {
+        assert(Thread.isMainThread)
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        coordinator.receive(message: userInfo)
+    }
+
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -160,8 +176,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         LogService.shared.debug("willPresent notification with userInfo: \(userInfo)")
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        coordinator.receive(message: userInfo)
+        receiveNotification(userInfo: userInfo)
         completionHandler([])
     }
 
@@ -170,7 +185,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         LogService.shared.debug("didReceive notification with userInfo: \(userInfo)")
-        coordinator.receive(message: userInfo)
+        receiveNotification(userInfo: userInfo)
         completionHandler()
     }
 
