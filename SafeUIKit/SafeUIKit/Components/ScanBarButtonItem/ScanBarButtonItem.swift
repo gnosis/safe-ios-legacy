@@ -46,11 +46,11 @@ public final class ScanBarButtonItem: UIBarButtonItem {
 
 extension ScanBarButtonItem: ScanQRCodeHandlerDelegate {
 
-    func presentController(_ controller: UIViewController) {
+    public func presentController(_ controller: UIViewController) {
         delegate?.scanBarButtonItemWantsToPresentController(controller)
     }
 
-    func didScanCode(raw: String, converted: String?) {
+    public func didScanCode(raw: String, converted: String?) {
         self.delegate?.scanBarButtonItemDidScanValidCode(raw)
     }
 

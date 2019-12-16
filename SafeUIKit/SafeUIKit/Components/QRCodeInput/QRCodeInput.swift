@@ -80,11 +80,11 @@ public final class QRCodeInput: UITextField {
 
 extension QRCodeInput: ScanQRCodeHandlerDelegate {
 
-    func presentController(_ controller: UIViewController) {
+    public func presentController(_ controller: UIViewController) {
         qrCodeDelegate?.presentController(controller)
     }
 
-    func didScanCode(raw: String, converted: String?) {
+    public func didScanCode(raw: String, converted: String?) {
         DispatchQueue.main.async {
             self.text = converted
             self.qrCodeDelegate?.didScanValidCode(raw)

@@ -271,11 +271,11 @@ public extension AddressInput {
 
 extension AddressInput: ScanQRCodeHandlerDelegate {
 
-    func presentController(_ controller: UIViewController) {
+    public func presentController(_ controller: UIViewController) {
         addressInputDelegate?.presentController(controller)
     }
 
-    func didScanCode(raw: String, converted: String?) {
+    public func didScanCode(raw: String, converted: String?) {
         DispatchQueue.main.async { [unowned self] in
             self.text = converted
         }
