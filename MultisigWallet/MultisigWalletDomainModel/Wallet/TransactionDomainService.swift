@@ -151,32 +151,35 @@ public class TransactionDomainService {
     }
 
     private func batchedTransactions(from transaction: Transaction, walletID: WalletID) -> [Transaction]? {
-        let multiSendContract = MultiSendContractProxy(DomainRegistry.safeContractMetadataRepository.multiSendContractAddress)
-        let isMultiSend =
-            transaction.type == .batched &&
-            transaction.operation == .delegateCall &&
-            transaction.data != nil &&
-            transaction.recipient != nil &&
-            MultiSendContractProxy.isMultiSend(transaction.recipient!)
-        if isMultiSend, let arguments = multiSendContract.decodeMultiSendArguments(from: transaction.data!) {
-            return arguments.map {
-                let tx = subTransaction(from: $0, in: walletID)
-                tx.timestampCreated(at: transaction.createdDate)
-                tx.timestampUpdated(at: transaction.updatedDate)
-                if let date = transaction.rejectedDate {
-                    tx.timestampRejected(at: date)
-                }
-                if let date = transaction.processedDate {
-                    tx.timestampProcessed(at: date)
-                }
-                if let date = transaction.submittedDate {
-                    tx.timestampSubmitted(at: date)
-                }
-                tx.change(status: transaction.status)
-                return tx
-            }
+        guard isMultiSend(transaction), let address = transaction.recipient, let data = transaction.data else {
+            return nil
         }
-        return nil
+        let multiSendContract = MultiSendContractProxy(address)
+        guard let arguments = multiSendContract.decodeMultiSendArguments(from: data) else { return nil }
+        return arguments.map {
+            let tx = subTransaction(from: $0, in: walletID)
+            tx.timestampCreated(at: transaction.createdDate)
+            tx.timestampUpdated(at: transaction.updatedDate)
+            if let date = transaction.rejectedDate {
+                tx.timestampRejected(at: date)
+            }
+            if let date = transaction.processedDate {
+                tx.timestampProcessed(at: date)
+            }
+            if let date = transaction.submittedDate {
+                tx.timestampSubmitted(at: date)
+            }
+            tx.change(status: transaction.status)
+            return tx
+        }
+    }
+
+    private func isMultiSend(_ transaction: Transaction) -> Bool {
+        transaction.type == .batched &&
+        transaction.operation == .delegateCall &&
+        transaction.data != nil &&
+        transaction.recipient != nil &&
+        MultiSendContractProxy.isMultiSend(transaction.recipient!)
     }
 
     private func subTransaction(from multiSend: MultiSendTransaction, in walletID: WalletID) -> Transaction {
