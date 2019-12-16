@@ -60,17 +60,6 @@ class ReplaceTwoFADomainServiceTests: ReplaceTwoFADomainServiceBaseTestCase {
         XCTAssertEqual(tx.recipient, wallet.address)
     }
 
-    func test_whenRemovesDummyData_thenRemovesFields() {
-        setUpWallet()
-        let txID = service.createTransaction()
-        service.addDummyData(to: txID)
-        service.removeDummyData(from: txID)
-        let tx = transaction(from: txID)!
-        XCTAssertNil(tx.operation)
-        XCTAssertNil(tx.data)
-        XCTAssertNil(tx.recipient)
-    }
-
     func test_whenEstimatingNetworkFees_thenDoesSo() {
         let expectedFee = TokenAmount.ether(30)
         setNetworkFee(safeGas: 1, dataGas: 1, operationGas: 1, gasPrice: 10)

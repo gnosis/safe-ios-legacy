@@ -105,6 +105,8 @@ extension SafeContractMetadata: Codable {
     enum CodingKeys: String, CodingKey {
         case multiSendContractAddress = "multi_send_contract_address"
         case proxyFactoryAddress = "proxy_factory_address"
+        case proxyCode = "proxy_code"
+        case defaultCallbackHandlerAddress = "default_callback_handler_address"
         case safeFunderAddress = "safe_funder_address"
         case metadata = "contract_metadata"
     }
@@ -113,6 +115,9 @@ extension SafeContractMetadata: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         try self.init(multiSendContractAddress: Address(values.decode(String.self, forKey: .multiSendContractAddress)),
                       proxyFactoryAddress: Address(values.decode(String.self, forKey: .proxyFactoryAddress)),
+                      proxyCode: Data(ethHex: values.decode(String.self, forKey: .proxyCode)),
+                      defaultFallbackHandlerAddress: Address(values.decode(String.self,
+                                                                           forKey: .defaultCallbackHandlerAddress)),
                       safeFunderAddress: Address(values.decode(String.self, forKey: .safeFunderAddress)),
                       metadata: values.decode([MasterCopyMetadata].self, forKey: .metadata))
     }
@@ -121,6 +126,8 @@ extension SafeContractMetadata: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(multiSendContractAddress.value, forKey: .multiSendContractAddress)
         try container.encode(proxyFactoryAddress.value, forKey: .proxyFactoryAddress)
+        try container.encode(proxyCode.toHexString().addHexPrefix(), forKey: .proxyCode)
+        try container.encode(defaultFallbackHandlerAddress.value, forKey: .defaultCallbackHandlerAddress)
         try container.encode(safeFunderAddress.value, forKey: .safeFunderAddress)
         try container.encode(metadata, forKey: .metadata)
     }
@@ -134,7 +141,6 @@ extension MasterCopyMetadata: Codable {
         case version = "version"
         case txTypeHash = "tx_type_hash"
         case domainSeparatorHash = "domain_separator_type_hash"
-        case proxyCode = "proxy_code"
     }
 
     public init(from decoder: Decoder) throws {
@@ -142,8 +148,7 @@ extension MasterCopyMetadata: Codable {
         try self.init(address: Address(values.decode(String.self, forKey: .address)),
                       version: values.decode(String.self, forKey: .version),
                       txTypeHash: Data(ethHex: values.decode(String.self, forKey: .txTypeHash)),
-                      domainSeparatorHash: Data(ethHex: values.decode(String.self, forKey: .domainSeparatorHash)),
-                      proxyCode: Data(ethHex: values.decode(String.self, forKey: .proxyCode)))
+                      domainSeparatorHash: Data(ethHex: values.decode(String.self, forKey: .domainSeparatorHash)))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -152,7 +157,6 @@ extension MasterCopyMetadata: Codable {
         try container.encode(version, forKey: .version)
         try container.encode(txTypeHash.toHexString().addHexPrefix(), forKey: .txTypeHash)
         try container.encode(domainSeparatorHash.toHexString().addHexPrefix(), forKey: .domainSeparatorHash)
-        try container.encode(proxyCode.toHexString().addHexPrefix(), forKey: .proxyCode)
     }
 
 }

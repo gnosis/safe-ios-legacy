@@ -10,6 +10,9 @@
 /* Title for Add Token screen. */
 "add_token" = "Add Token";
 
+/* Onboarding 1 description */
+"added_support_for_erc1155" = "In this version of the smart contract we added support for ERC1155 tokens and secure token transfer of NFTs (ERC721). Upgrade now to take advantage of the highest security standards available. ";
+
 /* Address Book */
 "address_book" = "Address Book";
 
@@ -130,6 +133,9 @@ You can replace or remove your 2FA device in the Safe menu at any time.";
 
 /* Contract Upgrade */
 "contract_upgrade" = "Contract upgrade";
+
+/* Contract upgrade available */
+"contract_upgrade_available" = "Contract upgrade available";
 
 /* Explanation text */
 "contract_upgrade_in_progress" = "The contract upgrade is now in progress. The transaction has been submitted and should take a couple of minutes.";
@@ -346,6 +352,9 @@ Please have your recovery phrase ready to disable 2FA.";
 
 /* I have a copy */
 "i_have_a_copy" = "I have a copy";
+
+/* Upgrade description */
+"in_the_new_version_we_added_support_of_erc1155" = "In the new version we added support for ERC1155 tokens and secure token transfer of NFTs (ERC721).";
 
 /* Incorrect password */
 "incorrect_password" = "Incorrect password";
@@ -614,7 +623,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "next" = "Next";
 
 /* NFC required description */
-"nfc_required_description" = "Pairing with two-factor authentication (2FA) device is not possible because your phone does not support NFC. \
+"nfc_required_description" = "Pairing with a two-factor authentication (2FA) device is not possible because your phone does not support NFC. \
 Would you prefer a different 2FA option?";
 
 /* NFC Support required */
@@ -861,9 +870,6 @@ Pairing password: %@";
 /* Step 3 description */
 "securely_store_your_recovery" = "Securely store your recovery phrase to restore your Safe in case you lose access to this device";
 
-/* Update required description */
-"security_upgrade_required" = "Upgrade to the latest audited smart contract version and make your funds even more secure!";
-
 /* Send token again */
 "send_again" = "Send %@ again";
 
@@ -1029,9 +1035,6 @@ Pairing password: %@";
 /* Upgrade now */
 "upgrade_now" = "Upgrade now";
 
-/* Security upgrade required */
-"upgrade_required" = "Security upgrade required";
-
 /* Face ID button explanation */
 "use_faceid_to_unlock" = "Use Face ID to unlock";
 
@@ -1092,9 +1095,6 @@ We recommend using a password manager or writing the phrase down and storing the
 
 /* Do you want to do it? */
 "want_to_initialize" = "Would you like to initialize it now?";
-
-/* Onboarding 1 description */
-"we_performed_formal_verification" = "We performed formal verification of our smart contract. Upgrade now to take advantage of the highest security standards available.";
 
 /* Onboarding 1 title */
 "welcome_to_walletconnect" = "Welcome to WalletConnect";

@@ -237,7 +237,6 @@
 		0AAE7DD12304544A00E7EB07 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D692304544900E7EB07 /* Transaction.swift */; };
 		0AAE7DD22304544A00E7EB07 /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D6A2304544900E7EB07 /* TransactionStatus.swift */; };
 		0AAE7DD32304544A00E7EB07 /* AppSettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D6B2304544900E7EB07 /* AppSettingsRepository.swift */; };
-		0AAE7DD42304544A00E7EB07 /* WalletProxyContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D6C2304544900E7EB07 /* WalletProxyContractProxy.swift */; };
 		0AAE7DD52304544A00E7EB07 /* SafeOwnerManagerContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D6D2304544900E7EB07 /* SafeOwnerManagerContractProxy.swift */; };
 		0AAE7DD62304544A00E7EB07 /* MultiSendContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D6E2304544900E7EB07 /* MultiSendContractProxy.swift */; };
 		0AAE7DD72304544A00E7EB07 /* BigInt+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7D6F2304544900E7EB07 /* BigInt+Hex.swift */; };
@@ -712,7 +711,6 @@
 		0AAE7D692304544900E7EB07 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		0AAE7D6A2304544900E7EB07 /* TransactionStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
 		0AAE7D6B2304544900E7EB07 /* AppSettingsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsRepository.swift; sourceTree = "<group>"; };
-		0AAE7D6C2304544900E7EB07 /* WalletProxyContractProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletProxyContractProxy.swift; sourceTree = "<group>"; };
 		0AAE7D6D2304544900E7EB07 /* SafeOwnerManagerContractProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeOwnerManagerContractProxy.swift; sourceTree = "<group>"; };
 		0AAE7D6E2304544900E7EB07 /* MultiSendContractProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSendContractProxy.swift; sourceTree = "<group>"; };
 		0AAE7D6F2304544900E7EB07 /* BigInt+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BigInt+Hex.swift"; sourceTree = "<group>"; };
@@ -1025,7 +1023,6 @@
 				0AAE7D4F2304544900E7EB07 /* TransactionRelayService */,
 				0AAE7CFC2304544800E7EB07 /* Wallet */,
 				0AAE7D602304544900E7EB07 /* WalletConnect */,
-				0AAE7D6C2304544900E7EB07 /* WalletProxyContractProxy.swift */,
 				0AAE7D322304544800E7EB07 /* Worker.swift */,
 				0AAE7C3B230450A600E7EB07 /* MultisigWalletDomainModel.h */,
 				0AAE7C3C230450A600E7EB07 /* Info.plist */,
@@ -1944,7 +1941,6 @@
 				0AAE7D762304544A00E7EB07 /* RecoveryDomainService.swift in Sources */,
 				0AAE7DB42304544A00E7EB07 /* TransactionSentMessage.swift in Sources */,
 				0AAE7DC22304544A00E7EB07 /* StartSafeCreationRequest.swift in Sources */,
-				0AAE7DD42304544A00E7EB07 /* WalletProxyContractProxy.swift in Sources */,
 				0A2ACBDF2329005F0054D1D1 /* KeycardKey.swift in Sources */,
 				0AAE7DBB2304544A00E7EB07 /* Account.swift in Sources */,
 				0AAE7DA02304544A00E7EB07 /* EthereumNodeDomainService.swift in Sources */,

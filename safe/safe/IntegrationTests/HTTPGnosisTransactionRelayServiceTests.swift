@@ -35,36 +35,15 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         let (_, _) = try createNewSafe()
     }
 
-    private func createNewSafe() throws -> (address: Address, recoveryKey: ExternallyOwnedAccount)! {
-        let deviceKey = encryptionService.generateExternallyOwnedAccount()
-        let browserExtensionKey = encryptionService.generateExternallyOwnedAccount()
-        let recoveryKey = encryptionService.generateExternallyOwnedAccount()
-        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccount(from: recoveryKey, at: 1)
-
-        let owners = [deviceKey, browserExtensionKey, recoveryKey, derivedKeyFromRecovery].map { $0.address }
-        // 0xd0Dab4E640D95E9E8A47545598c33e31bDb53C7c GNO
-        // 0x62f25065BA60CA3A2044344955A3B2530e355111 DAI
-        // 0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d LOVE
-        // 0xc778417E063141139Fce010982780140Aa0cD5Ab WETH
-        // 0x0 - ETH
-        let paymentToken = Address.zero
-        let request = SafeCreationRequest(saltNonce: 1,
-                                          owners: owners,
-                                          confirmationCount: 2,
-                                          paymentToken: paymentToken)
-        let response = try relayService.createSafeCreationTransaction(request: request)
-
-        let validator = SafeCreationResponseValidator()
-        XCTAssertNoThrow(try validator.validate(response, request: request))
-
-        try transfer(to: response.safe, amount: String(response.payment.value))
-
-        try relayService.startSafeCreation(address: response.safeAddress)
-        let txHash = try waitForSafeCreationTransaction(response.safeAddress)
-        XCTAssertFalse(txHash.value.isEmpty)
-        let receipt = try waitForTransaction(txHash)!
-        XCTAssertEqual(receipt.status, .success)
-        return (response.safeAddress, recoveryKey)
+    func test_safeIs_1_1_1() throws {
+        let proxy = GnosisSafeContractProxy(Address("0x46F228b5eFD19Be20952152c549ee478Bf1bf36b"))
+        XCTAssertEqual(proxy.onERC1155Received(operator: .zero,
+                                               from: .zero,
+                                               id: 0,
+                                               value: 0,
+                                               calldata: Data()),
+                       Data(hex: "0xf23a6e61"))
+        XCTAssertEqual(try proxy.masterCopyAddress(), Address("0x34cfac646f301356faa8b21e94227e3583fe3f5f"))
     }
 
     func test_whenGettingGasPrice_thenReturnsIt() throws {
@@ -88,52 +67,6 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         ints.forEach { XCTAssertNotEqual($0, 0, "Response: \(response)") }
         let address = EthAddress(hex: response.gasToken)
         XCTAssertEqual(address, .zero)
-    }
-
-    func waitForSafeCreationTransaction(_ address: Address) throws -> TransactionHash {
-        var result: TransactionHash!
-        let exp = expectation(description: "Safe creation")
-        Worker.start(repeating: 5) {
-            do {
-                guard let hash = try self.relayService.safeCreationTransactionHash(address: address) else {
-                    return false
-                }
-                result = hash
-                exp.fulfill()
-                return true
-            } catch let error {
-                print("Error: \(error)")
-                exp.fulfill()
-                return true
-            }
-        }
-        waitForExpectations(timeout: 5 * 60)
-        guard let hash = result else { throw Error.errorWhileWaitingForCreationTransactionHash }
-        return hash
-    }
-
-    private func testPrint(funder: ExternallyOwnedAccount, owners: [ExternallyOwnedAccount], safe: Safe) {
-        print()
-        print("Funder:")
-        let addressLength = funder.address.value.count
-        let privateKeyLength = funder.privateKey.data.toHexString().count
-        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Private Key")
-        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: privateKeyLength))
-        print(funder.address.value, funder.privateKey.data.toHexString())
-        print()
-        print("Safe Owners:")
-        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Private Key")
-        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: privateKeyLength))
-        for owner in owners {
-            print(owner.address.value, owner.privateKey.data.toHexString())
-        }
-        print()
-        let feeLength = String(safe.creationFee).count
-        print("Safe:")
-        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Fee")
-        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: feeLength))
-        print(safe.address.value, String(safe.creationFee))
-        print()
     }
 
     func test_whenAddingOwner_thenNewOwnerExists() throws {
@@ -266,88 +199,6 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         }
     }
 
-    typealias SafeContext = (funder: ExternallyOwnedAccount, owners: [ExternallyOwnedAccount], safe: Safe)
-
-    private func deployNewSafe(owners: Int = 3, confirmations: Int = 2) throws -> SafeContext {
-            let fundingEOA = provisionFundingAccount()
-            let owners = createEOA(count: owners)
-            let safe = try prepareSafeCreation(owners, confirmations: confirmations)
-            testPrint(funder: fundingEOA, owners: owners, safe: safe)
-            try pay(from: fundingEOA, to: safe.address, amount: safe.creationFee)
-            try safe.deploy()
-            return (fundingEOA, owners, safe)
-    }
-
-    private func execute(transaction tx: Transaction, context: SafeContext, confirmations: Int = 2) throws {
-        sign(transaction: tx, context: context, signatureCount: confirmations)
-        try pay(from: context.funder, to: context.safe.address, amount: tx.fee!.amount + tx.ethValue)
-        try context.safe.executeTransaction(tx)
-    }
-
-    private func sign(transaction tx: Transaction, context: SafeContext, signatureCount: Int = 2) {
-        context.owners[0..<signatureCount].forEach { context.safe.sign(tx, by: $0) }
-    }
-
-    func provisionFundingAccount() -> ExternallyOwnedAccount {
-        // funder address: 0x2333b4CC1F89a0B4C43e9e733123C124aAE977EE
-        return createEOA(from: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40")
-    }
-
-    func createEOA(from privateKey: String) -> ExternallyOwnedAccount {
-        let privateKey =
-            PrivateKey(data: Data(ethHex: privateKey))
-        let publicKey = PublicKey(data: ethService.createPublicKey(privateKey: privateKey.data))
-        return ExternallyOwnedAccount(address: encryptionService.address(privateKey: privateKey),
-                                      mnemonic: Mnemonic(words: []),
-                                      privateKey: privateKey,
-                                      publicKey: publicKey)
-    }
-
-    func createEOA(count: Int = 1) -> [ExternallyOwnedAccount] {
-        return (0..<count).map { _ in encryptionService.generateExternallyOwnedAccount() }
-    }
-
-    func prepareSafeCreation(_ owners: [ExternallyOwnedAccount], confirmations: Int = 2) throws -> Safe {
-        let saltNonce = encryptionService.randomSaltNonce()
-        let request = SafeCreationRequest(saltNonce: saltNonce,
-                                          owners: owners.map { $0.address },
-                                          confirmationCount: confirmations,
-                                          paymentToken: .zero)
-        let response = try relayService.createSafeCreationTransaction(request: request)
-        var safe = Safe(owners: owners, confirmations: confirmations)
-        safe._test = self
-        safe.address = response.safeAddress
-        safe.creationFee = response.deploymentFee
-        return safe
-    }
-
-    func pay(from sender: ExternallyOwnedAccount, to recipient: Address, amount: TokenInt, data: Data? = nil) throws {
-        let gasPrice = try infuraService.eth_gasPrice()
-        let callTx = TransactionCall(sender: sender.address,
-                                     recipient: recipient,
-                                     gasPrice: gasPrice,
-                                     amount: amount,
-                                     data: data)
-        let gas = try infuraService.eth_estimateGas(transaction: callTx)
-        let balance = try infuraService.eth_getBalance(account: sender.address)
-        assert(balance >= gas * gasPrice + amount, "Not enough balance \(sender.address)")
-        let nonce = try infuraService.eth_getTransactionCount(address: callTx.from!, blockNumber: .latest)
-        let tx = ethRawTx(callTx: callTx, gas: gas, nonce: nonce)
-        let rawTx = try encryptionService.sign(transaction: tx, privateKey: sender.privateKey)
-        let txHash = try infuraService.eth_sendRawTransaction(rawTransaction: rawTx)
-        let receipt = try waitForTransaction(txHash)!
-        assert(receipt.status == .success)
-    }
-
-    func ethRawTx(callTx: TransactionCall, gas: BigInt, nonce: BigInt) -> EthRawTransaction {
-        return EthRawTransaction(to: callTx.to!.hexString,
-                                 value: Int(callTx.value!.value),
-                                 data: callTx.data?.hexString ?? "",
-                                 gas: String(gas),
-                                 gasPrice: String(callTx.gasPrice!.value),
-                                 nonce: Int(nonce))
-    }
-
     func test_tokenTransfer() throws {
         let context = try deployNewSafe()
 
@@ -390,6 +241,189 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         }
     }
 
+    func test_whenMultipleTransactionsPerformed_thenOk() throws {
+        var context = try deployNewSafe()
+        context.safe.gasAdjustment = 16_250 // find your own with the test_searchForGasAdjustment()
+        let tx = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
+        try execute(transaction: tx, context: context)
+        let tx2 = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
+        try execute(transaction: tx2, context: context)
+    }
+
+    // MARK: - Private functions
+
+    typealias SafeContext = (funder: ExternallyOwnedAccount, owners: [ExternallyOwnedAccount], safe: Safe)
+
+    private func createNewSafe() throws -> (address: Address, recoveryKey: ExternallyOwnedAccount)! {
+        let deviceKey = encryptionService.generateExternallyOwnedAccount()
+        let twoFAKey = encryptionService.generateExternallyOwnedAccount()
+        let recoveryKey = encryptionService.generateExternallyOwnedAccount()
+        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccount(from: recoveryKey, at: 1)
+
+        let owners = [deviceKey, twoFAKey, recoveryKey, derivedKeyFromRecovery].map { $0.address }
+        // 0xd0Dab4E640D95E9E8A47545598c33e31bDb53C7c GNO
+        // 0x62f25065BA60CA3A2044344955A3B2530e355111 DAI
+        // 0xb3a4Bc89d8517E0e2C9B66703d09D3029ffa1e6d LOVE
+        // 0xc778417E063141139Fce010982780140Aa0cD5Ab WETH
+        // 0x0 - ETH
+        let paymentToken = Address.zero
+        let request = SafeCreationRequest(saltNonce: 1,
+                                          owners: owners,
+                                          confirmationCount: 2,
+                                          paymentToken: paymentToken)
+        let response = try relayService.createSafeCreationTransaction(request: request)
+
+        let validator = SafeCreationResponseValidator()
+        XCTAssertNoThrow(try validator.validate(response, request: request))
+
+        try transfer(to: response.safe, amount: String(response.payment.value))
+
+        try relayService.startSafeCreation(address: response.safeAddress)
+        let txHash = try waitForSafeCreationTransaction(response.safeAddress)
+        XCTAssertFalse(txHash.value.isEmpty)
+        let receipt = try waitForTransaction(txHash)!
+        XCTAssertEqual(receipt.status, .success)
+
+        let proxy = GnosisSafeContractProxy(response.safeAddress)
+        XCTAssertEqual(proxy.onERC1155Received(operator: .zero,
+                                               from: .zero,
+                                               id: 0,
+                                               value: 0,
+                                               calldata: Data()),
+                       Data(hex: "0xf23a6e61"))
+
+        return (response.safeAddress, recoveryKey)
+    }
+
+    internal func waitForSafeCreationTransaction(_ address: Address) throws -> TransactionHash {
+        var result: TransactionHash!
+        let exp = expectation(description: "Safe creation")
+        Worker.start(repeating: 5) {
+            do {
+                guard let hash = try self.relayService.safeCreationTransactionHash(address: address) else {
+                    return false
+                }
+                result = hash
+                exp.fulfill()
+                return true
+            } catch let error {
+                print("Error: \(error)")
+                exp.fulfill()
+                return true
+            }
+        }
+        waitForExpectations(timeout: 5 * 60)
+        guard let hash = result else { throw Error.errorWhileWaitingForCreationTransactionHash }
+        return hash
+    }
+
+    private func testPrint(funder: ExternallyOwnedAccount, owners: [ExternallyOwnedAccount], safe: Safe) {
+        print()
+        print("Funder:")
+        let addressLength = funder.address.value.count
+        let privateKeyLength = funder.privateKey.data.toHexString().count
+        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Private Key")
+        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: privateKeyLength))
+        print(funder.address.value, funder.privateKey.data.toHexString())
+        print()
+        print("Safe Owners:")
+        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Private Key")
+        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: privateKeyLength))
+        for owner in owners {
+            print(owner.address.value, owner.privateKey.data.toHexString())
+        }
+        print()
+        let feeLength = String(safe.creationFee).count
+        print("Safe:")
+        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Fee")
+        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: feeLength))
+        print(safe.address.value, String(safe.creationFee))
+        print()
+    }
+
+    private func deployNewSafe(owners: Int = 3, confirmations: Int = 2) throws -> SafeContext {
+            let fundingEOA = provisionFundingAccount()
+            let owners = createEOA(count: owners)
+            let safe = try prepareSafeCreation(owners, confirmations: confirmations)
+            testPrint(funder: fundingEOA, owners: owners, safe: safe)
+            try pay(from: fundingEOA, to: safe.address, amount: safe.creationFee)
+            try safe.deploy()
+            return (fundingEOA, owners, safe)
+    }
+
+    private func execute(transaction tx: Transaction, context: SafeContext, confirmations: Int = 2) throws {
+        sign(transaction: tx, context: context, signatureCount: confirmations)
+        try pay(from: context.funder, to: context.safe.address, amount: tx.fee!.amount + tx.ethValue)
+        try context.safe.executeTransaction(tx)
+    }
+
+    private func sign(transaction tx: Transaction, context: SafeContext, signatureCount: Int = 2) {
+        context.owners[0..<signatureCount].forEach { context.safe.sign(tx, by: $0) }
+    }
+
+    private func provisionFundingAccount() -> ExternallyOwnedAccount {
+        // funder address: 0x2333b4CC1F89a0B4C43e9e733123C124aAE977EE
+        return createEOA(from: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40")
+    }
+
+    private func createEOA(from privateKey: String) -> ExternallyOwnedAccount {
+        let privateKey =
+            PrivateKey(data: Data(ethHex: privateKey))
+        let publicKey = PublicKey(data: ethService.createPublicKey(privateKey: privateKey.data))
+        return ExternallyOwnedAccount(address: encryptionService.address(privateKey: privateKey),
+                                      mnemonic: Mnemonic(words: []),
+                                      privateKey: privateKey,
+                                      publicKey: publicKey)
+    }
+
+    private func createEOA(count: Int = 1) -> [ExternallyOwnedAccount] {
+        return (0..<count).map { _ in encryptionService.generateExternallyOwnedAccount() }
+    }
+
+    private func prepareSafeCreation(_ owners: [ExternallyOwnedAccount], confirmations: Int = 2) throws -> Safe {
+        let saltNonce = encryptionService.randomSaltNonce()
+        let request = SafeCreationRequest(saltNonce: saltNonce,
+                                          owners: owners.map { $0.address },
+                                          confirmationCount: confirmations,
+                                          paymentToken: .zero)
+        let response = try relayService.createSafeCreationTransaction(request: request)
+        var safe = Safe(owners: owners, confirmations: confirmations)
+        safe._test = self
+        safe.address = response.safeAddress
+        safe.creationFee = response.deploymentFee
+        return safe
+    }
+
+    private func pay(from sender: ExternallyOwnedAccount,
+                     to recipient: Address,
+                     amount: TokenInt,
+                     data: Data? = nil) throws {
+        let gasPrice = try infuraService.eth_gasPrice()
+        let callTx = TransactionCall(sender: sender.address,
+                                     recipient: recipient,
+                                     gasPrice: gasPrice,
+                                     amount: amount,
+                                     data: data)
+        let gas = try infuraService.eth_estimateGas(transaction: callTx)
+        let balance = try infuraService.eth_getBalance(account: sender.address)
+        assert(balance >= gas * gasPrice + amount, "Not enough balance \(sender.address)")
+        let nonce = try infuraService.eth_getTransactionCount(address: callTx.from!, blockNumber: .latest)
+        let tx = ethRawTx(callTx: callTx, gas: gas, nonce: nonce)
+        let rawTx = try encryptionService.sign(transaction: tx, privateKey: sender.privateKey)
+        let txHash = try infuraService.eth_sendRawTransaction(rawTransaction: rawTx)
+        let receipt = try waitForTransaction(txHash)!
+        assert(receipt.status == .success)
+    }
+
+    private func ethRawTx(callTx: TransactionCall, gas: BigInt, nonce: BigInt) -> EthRawTransaction {
+        return EthRawTransaction(to: callTx.to!.hexString,
+                                 value: Int(callTx.value!.value),
+                                 data: callTx.data?.hexString ?? "",
+                                 gas: String(gas),
+                                 gasPrice: String(callTx.gasPrice!.value),
+                                 nonce: Int(nonce))
+    }
+
     private func do_test_send_transaction(gasAdjustment: BigInt) -> Bool {
         print("Trying \(gasAdjustment)")
         do {
@@ -401,15 +435,6 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         } catch {
             return false
         }
-    }
-
-    func test_whenMultipleTransactionsPerformed_thenOk() throws {
-        var context = try deployNewSafe()
-        context.safe.gasAdjustment = 16_250 // find your own with the test_searchForGasAdjustment()
-        let tx = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
-        try execute(transaction: tx, context: context)
-        let tx2 = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
-        try execute(transaction: tx2, context: context)
     }
 
 }

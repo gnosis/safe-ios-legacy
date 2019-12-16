@@ -25,7 +25,7 @@ class BlockchainIntegrationTest: XCTestCase {
     }
 
     func waitForTransaction(_ transactionHash: TransactionHash) throws -> TransactionReceipt? {
-        var result: TransactionReceipt? = nil
+        var result: TransactionReceipt?
         let exp = expectation(description: "Transaction Mining")
         Worker.start(repeating: 3) {
             do {

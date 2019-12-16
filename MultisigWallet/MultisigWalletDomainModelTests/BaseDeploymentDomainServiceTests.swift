@@ -199,12 +199,13 @@ extension SafeContractMetadata {
         let proxyCode = Data(repeating: 3, count: 180)
         return SafeContractMetadata(multiSendContractAddress: .testAccount1,
                                     proxyFactoryAddress: .testAccount2,
-                                    safeFunderAddress: .testAccount3,
+                                    proxyCode: proxyCode,
+                                    defaultFallbackHandlerAddress: .testAccount3,
+                                    safeFunderAddress: .testAccount4,
                                     metadata: [MasterCopyMetadata(address: .testAccount4,
-                                                                  version: "1.0.0",
+                                                                  version: "1.1.1",
                                                                   txTypeHash: txTypeHash,
-                                                                  domainSeparatorHash: domainTypeHash,
-                                                                  proxyCode: proxyCode)])
+                                                                  domainSeparatorHash: domainTypeHash)])
     }
 
 }
@@ -222,10 +223,12 @@ extension SafeCreationRequest {
 
     static func setupData(payment: TokenInt, receiver: Address = .zero) -> String {
         let request = testRequest()
+        let metadataRepo = DomainRegistry.safeContractMetadataRepository
         return GnosisSafeContractProxy().setup(owners: request.owners.map { Address($0) },
                                                threshold: request.threshold,
                                                to: .zero,
                                                data: Data(),
+                                               fallbackHandler: metadataRepo.fallbackHandlerAddress,
                                                paymentToken: Address(request.paymentToken),
                                                payment: payment,
                                                paymentReceiver: receiver).toHexString().addHexPrefix()
@@ -261,7 +264,7 @@ extension SafeCreationRequest.Response {
                 Data([0xff]) +
                     contract.encodeAddress(response.proxyFactoryAddress).suffix(20) +
                     hash(hash(response.setupDataValue) + contract.encodeUInt(TokenInt(request.saltNonce)!)) +
-                    hash(metadataRepo.deploymentCode(masterCopyAddress: response.masterCopyAddress)!)
+                    hash(metadataRepo.deploymentCode(masterCopyAddress: response.masterCopyAddress))
                 ).advanced(by: 12).prefix(20).toHexString())
             return .init(safe: address.value,
                          masterCopy: response.masterCopy,

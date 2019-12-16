@@ -43,7 +43,7 @@ final class ContractUpgradeFlowCoordinator: FlowCoordinator {
     }
 
     func showBlogArticle() {
-        SupportFlowCoordinator(from: self).openBlogPostForContractUpgrade_1_0_0()
+        SupportFlowCoordinator(from: self).openBlogPostForContractUpgrade_1_1_1()
     }
 
     func showReview() {
@@ -113,7 +113,7 @@ fileprivate extension OnboardingViewController {
                        showBlogArticle: @escaping () -> Void) -> OnboardingViewController {
         let nextActionTitle = LocalizedString("next", comment: "Next")
         var steps = [OnboardingStepInfo]()
-        if ApplicationServiceRegistry.contractUpgradeService.isUpgradingTo_v1_0_0() {
+        if ApplicationServiceRegistry.contractUpgradeService.isUpgradingTo_v1_1_1() {
             let infoText = NSMutableAttributedString(string: LocalizedString("more_info_in_our_blog",
                                                                              comment: "More info in our blog."))
             let blog = LocalizedString("ios_blog", comment: "blog.")
@@ -121,12 +121,12 @@ fileprivate extension OnboardingViewController {
             infoText.addAttribute(.foregroundColor, value: ColorName.hold.color, range: textRange)
             steps.append(.init(image: Asset.upgrade1.image,
                                title: LocalizedString("what_is_this_about", comment: "Onboarding 1 title"),
-                               description: LocalizedString("we_performed_formal_verification",
+                               description: LocalizedString("added_support_for_erc1155",
                                                             comment: "Onboarding 1 description"),
                                infoButtonText: infoText,
                                infoButtonAction: showBlogArticle,
                                actionTitle: nextActionTitle,
-                               trackingEvent: ContractUpgradeTrackingEvent._1_0_0_onboarding1,
+                               trackingEvent: ContractUpgradeTrackingEvent._1_1_1_onboarding1,
                                action: next))
         }
         steps.append(.init(image: Asset.upgrade2.image,

@@ -99,7 +99,7 @@ public struct SafeCreationRequest: Codable {
         ///
         /// See Also:
         /// - `GnosisSafeContractProxy.setup()`
-        /// - https://github.com/gnosis/safe-contracts/blob/703dde2ea9882a35762146844d5cfbeeec73e36f/contracts/GnosisSafe.sol#L52
+        /// - https://github.com/gnosis/safe-contracts/blob/f7c68bee9d24c0610dfb2e16097bbe53d3715042/contracts/GnosisSafe.sol#L76
         public var setupDataValue: Data {
             return Data(hex: setupData)
         }

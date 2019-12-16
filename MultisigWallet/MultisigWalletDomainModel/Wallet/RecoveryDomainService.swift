@@ -93,7 +93,7 @@ public class RecoveryDomainService: Assertable {
         }
         try assertTrue(walletsWithAddress.isEmpty, RecoveryServiceError.walletAlreadyExists)
 
-        let contract = WalletProxyContractProxy(address)
+        let contract = GnosisSafeContractProxy(address)
         let masterCopyAddress = try contract.masterCopyAddress()
         try assertNotNil(masterCopyAddress, RecoveryServiceError.invalidContractAddress)
         try assertTrue(DomainRegistry.safeContractMetadataRepository.isValidMasterCopy(address: masterCopyAddress!),
@@ -131,7 +131,7 @@ public class RecoveryDomainService: Assertable {
             wallet.addOwner(Owner(address: address, role: .unknown))
         }
         wallet.changeConfirmationCount(confirmationCount)
-        let proxyContract = WalletProxyContractProxy(wallet.address)
+        let proxyContract = GnosisSafeContractProxy(wallet.address)
         guard let masterCopy = try proxyContract.masterCopyAddress() else {
             throw RecoveryServiceError.invalidContractAddress
         }

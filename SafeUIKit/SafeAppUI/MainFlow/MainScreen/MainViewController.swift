@@ -91,7 +91,7 @@ class MainViewController: UIViewController {
         bannerView.onTap = { [weak self] in
             self?.didTapBanner()
         }
-        bannerView.text = LocalizedString("upgrade_required", comment: "Security upgrade required")
+        bannerView.text = LocalizedString("contract_upgrade_available", comment: "Contract upgrade available")
 
         if !shouldShowBanner {
             bannerView.height = 0

@@ -82,12 +82,6 @@ open class ReplaceTwoFADomainService: Assertable {
         return contractProxy.swapOwner(prevOwner: remoteList.addressBefore(.zero), old: .zero, new: .zero)
     }
 
-    public func removeDummyData(from transactionID: TransactionID) {
-        let tx = transaction(transactionID)
-        tx.change(recipient: nil).change(operation: nil).change(data: nil)
-        repository.save(tx)
-    }
-
     open func stepBackToDraft(_ transactionID: TransactionID) {
         let tx = DomainRegistry.transactionRepository.find(id: transactionID)!
         if tx.status == .signing {
