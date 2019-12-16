@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0472735723A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */; };
 		0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00292B20CFC118009A4BFE /* SegmentBar.swift */; };
 		0A028ECA21AD52EA00431D25 /* SendInputDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EC921AD52EA00431D25 /* SendInputDemoViewController.swift */; };
 		0A028ECC21AD534000431D25 /* BaseDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */; };
@@ -688,6 +689,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalScanFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A00292B20CFC118009A4BFE /* SegmentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBar.swift; sourceTree = "<group>"; };
 		0A028EC921AD52EA00431D25 /* SendInputDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputDemoViewController.swift; sourceTree = "<group>"; };
 		0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDemoViewController.swift; sourceTree = "<group>"; };
@@ -1255,6 +1257,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0472735523A3DBBE009458E6 /* Universal */ = {
+			isa = PBXGroup;
+			children = (
+				0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */,
+			);
+			path = Universal;
+			sourceTree = "<group>";
+		};
 		0A1940472226CF27005B7440 /* DisconnectTwoFA */ = {
 			isa = PBXGroup;
 			children = (
@@ -1570,6 +1580,7 @@
 				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
 				0A3FB8D1228B16F100270573 /* UIBarButtonItem+Items.swift */,
 				0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */,
+				0472735523A3DBBE009458E6 /* Universal */,
 				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
 				0ABD142A2292BF9A00922964 /* MainScreen */,
 				0A4EEA6B20D11109005CDAC0 /* Menu */,
@@ -3474,6 +3485,7 @@
 				0A4178E6239A6CC1006172F3 /* WCMultiSendCell.swift in Sources */,
 				0A4178E9239A73A2006172F3 /* WCBatchTransactionsTableViewController.swift in Sources */,
 				0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */,
+				0472735723A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift in Sources */,
 				0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */,
 				0A05951D22E99F050001D7D5 /* Colors.swift in Sources */,
 				552D0FC923279C2000127223 /* TwoFATableViewCell.swift in Sources */,
