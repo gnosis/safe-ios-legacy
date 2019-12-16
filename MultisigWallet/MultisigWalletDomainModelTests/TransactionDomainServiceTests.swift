@@ -244,7 +244,7 @@ class TransactionDomainServiceBatchedTransactionsTests: XCTestCase {
                              proxyFactoryAddress: Address.testAccount1,
                              safeFunderAddress: Address.testAccount1,
                              masterCopy: [],
-                             multiSend: []))
+                             multiSend: [MultiSendMetadata(address: multiSendAddress, version: 2)]))
     let nodeService = MockEthereumNodeService()
     let ethereumService = EthereumKitEthereumService()
     lazy var encryptionService = EncryptionService(chainId: .any, ethereumService: ethereumService)
