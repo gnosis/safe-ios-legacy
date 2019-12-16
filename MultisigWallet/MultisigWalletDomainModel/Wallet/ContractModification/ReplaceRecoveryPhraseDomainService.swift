@@ -12,11 +12,6 @@ public enum ReplaceRecoveryPhraseDomainServiceError: String, Error {
 
 public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
 
-    var multiSendProxy: MultiSendContractProxy {
-        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-        return MultiSendContractProxy(multiSendAddress)
-    }
-
     public override var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
         return wallet.isReadyToUse && wallet.owner(role: .paperWallet) != nil
@@ -74,9 +69,7 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
             list.replace(old[index], with: new[index])
             transactions.append((.call, walletAddress, 0, data))
         }
-        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-        let multiSendProxy = MultiSendContractProxy(multiSendAddress)
-        return multiSendProxy.multiSend(transactions)
+        return MultiSendContractProxy().multiSend(transactions)
     }
 
     public override func update(transaction: TransactionID, newOwnerAddress: String) {
@@ -119,9 +112,11 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
         guard let tx = repository.find(id: transactionID),
             tx.type == .replaceRecoveryPhrase,
             tx.status == .success || tx.status == .failed,
+            let recipient = tx.recipient,
             let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
+        let multiSendContract = MultiSendContractProxy(recipient)
         guard let data = tx.data,
-            let transactions = multiSendProxy.decodeMultiSendArguments(from: data),
+            let transactions = multiSendContract.decodeMultiSendArguments(from: data),
             transactions.count >= 2,
             let swap1 = contractProxy.decodeSwapOwnerArguments(from: transactions[0].data),
             let swap2 = contractProxy.decodeSwapOwnerArguments(from: transactions[1].data),

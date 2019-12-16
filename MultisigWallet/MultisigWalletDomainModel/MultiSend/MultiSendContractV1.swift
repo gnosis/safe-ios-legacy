@@ -1,21 +1,12 @@
 //
-//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//  Copyright © 2019 Gnosis Ltd. All rights reserved.
 //
 
 import Foundation
 import BigInt
 
-public enum MultiSendTransactionOperation: Int {
-    case call = 0
-    case delegateCall = 1
-}
+class MultiSendContractV1: EthereumContractProxy, MultiSendContract {
 
-public typealias MultiSendTransaction =
-    (operation: MultiSendTransactionOperation, to: Address, value: BigInt, data: Data)
-
-public class MultiSendContractProxy: EthereumContractProxy {
-
-    static let multiSendSignature = "multiSend(bytes)"
     public func multiSend(_ transactions: [MultiSendTransaction]) -> Data {
         let bytesOffsetInTransaction = 4 * 32
         let argumentData = transactions.reduce(into: Data()) { result, tx in
