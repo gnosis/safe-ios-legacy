@@ -230,8 +230,8 @@ public class RecoveryDomainService: Assertable {
     }
 
     public func resume(walletID: WalletID) {
-        guard let wallet = DomainRegistry.walletRepository.find(id: walletID) else { return }
-        let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: walletID)!
+        guard let wallet = DomainRegistry.walletRepository.find(id: walletID),
+            let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: walletID) else { return }
 
         if !wallet.isReadyToUse && !wallet.isRecoveryInProgress && tx.status == .signing {
             submitRecoveryTransaction(walletID: walletID)
