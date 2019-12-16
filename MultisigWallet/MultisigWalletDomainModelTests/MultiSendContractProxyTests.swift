@@ -50,4 +50,22 @@ class MultiSendContractProxyTests: XCTestCase {
         XCTAssertEqual(decoded[1].data, data2)
     }
 
+    func test_whenAddressZero_thenInitsFromMetadata() {
+        let metadata = SafeContractMetadata(multiSendContractAddress: .testAccount1,
+                                            proxyFactoryAddress: .testAccount1,
+                                            safeFunderAddress: .testAccount1,
+                                            masterCopy: [MasterCopyMetadata(address: .testAccount2,
+                                                                            version: "1",
+                                                                            txTypeHash: Data(),
+                                                                            domainSeparatorHash: Data(),
+                                                                            proxyCode: Data())],
+                                            multiSend: [])
+
+        DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: metadata),
+                           for: SafeContractMetadataRepository.self)
+        DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
+        let proxy = MultiSendContractProxy()
+        XCTAssertEqual(proxy.contract, .testAccount1)
+    }
+
 }

@@ -151,11 +151,10 @@ public class TransactionDomainService {
     }
 
     private func batchedTransactions(from transaction: Transaction, walletID: WalletID) -> [Transaction]? {
-        guard isMultiSend(transaction), let address = transaction.recipient, let data = transaction.data else {
-            return nil
-        }
-        let multiSendContract = MultiSendContractProxy(address)
-        guard let arguments = multiSendContract.decodeMultiSendArguments(from: data) else { return nil }
+        guard isMultiSend(transaction),
+            let recipient = transaction.recipient,
+            let data = transaction.data,
+            let arguments = MultiSendContractProxy(recipient).decodeMultiSendArguments(from: data) else { return nil }
         return arguments.map {
             let tx = subTransaction(from: $0, in: walletID)
             tx.timestampCreated(at: transaction.createdDate)

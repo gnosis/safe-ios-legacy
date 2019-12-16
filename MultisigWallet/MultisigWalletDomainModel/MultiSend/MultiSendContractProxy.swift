@@ -23,14 +23,16 @@ public class MultiSendContractProxy: EthereumContractProxy {
     }
 
     public override init(_ contract: Address) {
-        let version = DomainRegistry.safeContractMetadataRepository.version(multiSendAddress: contract)
+        let address = contract == .zero ?
+            DomainRegistry.safeContractMetadataRepository.multiSendContractAddress : contract
+        let version = DomainRegistry.safeContractMetadataRepository.version(multiSendAddress: address)
         switch version {
         case 1:
-            implementation = MultiSendContractV1(contract)
+            implementation = MultiSendContractV1(address)
         default:
-            implementation = MultiSendContractV2(contract)
+            implementation = MultiSendContractV2(address)
         }
-        super.init(contract)
+        super.init(address)
     }
 
     public func multiSend(_ transactions: [MultiSendTransaction]) -> Data {

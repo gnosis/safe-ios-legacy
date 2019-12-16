@@ -517,8 +517,6 @@ class RecoveryTransactionBuilder: Assertable {
     var ownerList: OwnerLinkedList!
     var modifiableOwners: [Owner]!
 
-    var multiSendContractAddress: Address!
-
     var ownerContractProxy: SafeOwnerManagerContractProxy!
     var multiSendContractProxy: MultiSendContractProxy!
 
@@ -529,17 +527,14 @@ class RecoveryTransactionBuilder: Assertable {
 
     var transaction: Transaction!
 
-    init(multiSendContractAddress: Address? = nil) {
-        self.multiSendContractAddress = multiSendContractAddress ??
-            DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-
+    init() {
         wallet = DomainRegistry.walletRepository.selectedWallet()!
 
         let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
         accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
 
         ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address)
-        multiSendContractProxy = MultiSendContractProxy(self.multiSendContractAddress)
+        multiSendContractProxy = MultiSendContractProxy()
 
         print("Wallet \(wallet.id), address \(wallet.address?.value ?? "<null>")")
 
