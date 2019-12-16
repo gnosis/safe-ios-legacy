@@ -37,11 +37,11 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
 
     func test_safeIs_1_1_1() throws {
         let proxy = GnosisSafeContractProxy(Address("0x46F228b5eFD19Be20952152c549ee478Bf1bf36b"))
-        XCTAssertEqual(proxy.onERC1155Received(_operator: .zero,
-                                               _from: .zero,
-                                               _id: 0,
-                                               _value: 0,
-                                               _calldata: Data()),
+        XCTAssertEqual(proxy.onERC1155Received(operator: .zero,
+                                               from: .zero,
+                                               id: 0,
+                                               value: 0,
+                                               calldata: Data()),
                        Data(hex: "0xf23a6e61"))
         XCTAssertEqual(try proxy.masterCopyAddress(), Address("0x34cfac646f301356faa8b21e94227e3583fe3f5f"))
     }
@@ -285,11 +285,11 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         XCTAssertEqual(receipt.status, .success)
 
         let proxy = GnosisSafeContractProxy(response.safeAddress)
-        XCTAssertEqual(proxy.onERC1155Received(_operator: .zero,
-                                               _from: .zero,
-                                               _id: 0,
-                                               _value: 0,
-                                               _calldata: Data()),
+        XCTAssertEqual(proxy.onERC1155Received(operator: .zero,
+                                               from: .zero,
+                                               id: 0,
+                                               value: 0,
+                                               calldata: Data()),
                        Data(hex: "0xf23a6e61"))
 
         return (response.safeAddress, recoveryKey)

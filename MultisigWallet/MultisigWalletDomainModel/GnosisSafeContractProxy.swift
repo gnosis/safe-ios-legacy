@@ -126,18 +126,18 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
         return newAddress
     }
 
-    public func onERC1155Received(_operator: Address,
-                                  _from: Address,
-                                  _id: BigInt,
-                                  _value: BigInt,
-                                  _calldata: Data) -> Data? {
+    public func onERC1155Received(operator: Address,
+                                  from: Address,
+                                  id: BigInt,
+                                  value: BigInt,
+                                  calldata: Data) -> Data? {
         let items: [Data] = [
-            encodeAddress(_operator),
-            encodeAddress(_from),
-            encodeUInt(_id),
-            encodeUInt(_value),
+            encodeAddress(`operator`),
+            encodeAddress(from),
+            encodeUInt(id),
+            encodeUInt(value),
             encodeUInt(5 * 32), // offset including this arg
-            encodeBytes(_calldata)]
+            encodeBytes(calldata)]
         if let data = try? invoke(GnosisSafeContractProxy.onERC1155ReceivedSignature, args: items) {
             return decodeFixedBytes(value: data, size: 4)
         }
