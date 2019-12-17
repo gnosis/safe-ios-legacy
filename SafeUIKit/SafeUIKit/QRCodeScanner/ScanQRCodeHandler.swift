@@ -24,6 +24,7 @@ class ScanQRCodeHandler {
     private var scannerController: ScannerViewController?
     private var debugButtons = [DebugButton]()
     private var didFinishScanning = false
+    var header: String?
 
     enum Strings {
         static let cameraAlertTitle = LocalizedString("ios_camera_title",
@@ -41,7 +42,6 @@ class ScanQRCodeHandler {
             dispatch.onMainThread { self.handleCameraAvailability(success: success) }
         }
     }
-
     private func handleCameraAvailability(success: Bool) {
         if success {
             self.scannerController = self.createScannerController()
@@ -56,6 +56,7 @@ class ScanQRCodeHandler {
         debugButtons.forEach {
             controller.addDebugButton(title: $0.title, scanValue: $0.scanValue)
         }
+        controller.header = header
         return controller
     }
 

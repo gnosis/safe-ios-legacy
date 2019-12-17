@@ -116,6 +116,7 @@ internal enum Asset {
   internal static let keycardConfirmed = ImageAsset(name: "keycard-confirmed")
   internal static let keycardRejected = ImageAsset(name: "keycard-rejected")
   internal static let qrCode = ImageAsset(name: "qr-code")
+  internal static let scannerFrameIcon = ImageAsset(name: "scanner-frame-icon")
   internal static let settings = ImageAsset(name: "settings")
   internal static let shareLink = ImageAsset(name: "share-link")
   internal static let clearIcon = ImageAsset(name: "clear-icon")

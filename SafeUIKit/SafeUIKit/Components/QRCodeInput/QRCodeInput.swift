@@ -21,7 +21,14 @@ public final class QRCodeInput: UITextField {
         }
     }
     var scanHandler = ScanQRCodeHandler()
-
+    public var scanHeader: String? {
+        set {
+            scanHandler.header = newValue
+        }
+        get {
+            return scanHandler.header
+        }
+    }
     public enum EditingMode {
         case scanOnly
         case scanAndType
