@@ -21,6 +21,7 @@ import MultisigWalletApplication
         static let activeSessions = LocalizedString("active_sessions", comment: "Active sessions").uppercased()
         static let disconnect = LocalizedString("disconnect", comment: "Disconnect")
         static let noActiveSessions = LocalizedString("no_active_sessions", comment: "No active sessions")
+        static let qrScannerHeader = LocalizedString("scan_wallet_connect", comment: "Scan WalletConnect QR code")
     }
 
     private var sessions = [WCSessionData]()
@@ -65,7 +66,7 @@ import MultisigWalletApplication
             guard code.starts(with: "wc:") else { return nil }
             return code
         }
-        scanButtonItem.scanHeader = LocalizedString("scan_wallet_connect", comment: "Scan WalletConnect QR code")
+        scanButtonItem.scanHeader = Strings.qrScannerHeader
         navigationItem.rightBarButtonItem = scanButtonItem
     }
 

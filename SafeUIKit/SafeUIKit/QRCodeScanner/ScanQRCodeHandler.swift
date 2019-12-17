@@ -25,6 +25,7 @@ class ScanQRCodeHandler {
     private var debugButtons = [DebugButton]()
     private var didFinishScanning = false
     var header: String?
+
     enum Strings {
         static let cameraAlertTitle = LocalizedString("ios_camera_title",
                                                       comment: "Title for alert if camera is not accessable.")

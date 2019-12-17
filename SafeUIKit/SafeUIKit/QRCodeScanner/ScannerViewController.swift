@@ -34,6 +34,7 @@ class ScannerViewController: UIViewController {
     private var debugButtons = [UIButton]()
     private var shouldStopHandling: Bool = false
     var header: String?
+
     static func create(delegate: ScannerDelegate) -> ScannerViewController {
         let bundle = Bundle(for: ScannerViewController.self)
         let controller = ScannerViewController(nibName: "ScannerViewController", bundle: bundle)
@@ -74,7 +75,7 @@ class ScannerViewController: UIViewController {
         codeReaderVC.view.frame = view.frame
         view.insertSubview(codeReaderVC.view, at: 0)
         codeReaderVC.didMove(toParent: self)
-        
+
         closeButton.accessibilityLabel = LocalizedString("close", comment: "Close button on camera")
         buttonEffectView.mask = CircleMask(frame: buttonEffectView.bounds)
         headerLabel.text = header
@@ -117,7 +118,6 @@ class ScannerViewController: UIViewController {
         }
     }
 
-
     func addDebugButton(title: String, scanValue: String) {
         let button = UIButton()
         button.tag = debugButtonReturnCodes.count
@@ -133,6 +133,12 @@ class ScannerViewController: UIViewController {
         _ = handle(code)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if isBeingDismissed {
+            return super.preferredStatusBarStyle
+        }
+        return .lightContent
+    }
 }
 
 fileprivate class CircleMask: BaseCustomView {
@@ -149,4 +155,5 @@ fileprivate class CircleMask: BaseCustomView {
         shapeLayer.path = path
         shapeLayer.fillColor = ColorName.black.color.cgColor
     }
+
 }
