@@ -614,7 +614,7 @@ Please have your recovery phrase ready to disable 2FA.";
 "next" = "Next";
 
 /* NFC required description */
-"nfc_required_description" = "Pairing with two-factor authentication (2FA) device is not possible because your phone does not support NFC. \
+"nfc_required_description" = "Pairing with a two-factor authentication (2FA) device is not possible because your phone does not support NFC. \
 Would you prefer a different 2FA option?";
 
 /* NFC Support required */
@@ -854,6 +854,9 @@ Pairing password: %@";
 
 /* Scan QR code */
 "scan_qr_code" = "Scan QR Code";
+
+/* Scan WalletConnect QR code */
+"scan_wallet_connect" = "Scan the QR code of a desktop Dapp to connect your Safe using WalletConnect";
 
 /* New Safe onboarding 2 title */
 "secure_by_design" = "Secure by design";

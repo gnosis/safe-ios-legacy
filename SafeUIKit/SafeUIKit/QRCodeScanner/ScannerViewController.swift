@@ -24,6 +24,8 @@ class ScannerViewController: UIViewController {
 
     weak var delegate: ScannerDelegate?
 
+    @IBOutlet weak var headerLabelContainerView: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var debugButtonsStackView: UIStackView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var buttonEffectView: UIVisualEffectView!
@@ -31,10 +33,12 @@ class ScannerViewController: UIViewController {
     private var debugButtonReturnCodes = [String]()
     private var debugButtons = [UIButton]()
     private var shouldStopHandling: Bool = false
+    var header: String?
 
     static func create(delegate: ScannerDelegate) -> ScannerViewController {
         let bundle = Bundle(for: ScannerViewController.self)
         let controller = ScannerViewController(nibName: "ScannerViewController", bundle: bundle)
+        controller.modalPresentationStyle = .fullScreen
         controller.delegate = delegate
         return controller
     }
@@ -74,6 +78,8 @@ class ScannerViewController: UIViewController {
 
         closeButton.accessibilityLabel = LocalizedString("close", comment: "Close button on camera")
         buttonEffectView.mask = CircleMask(frame: buttonEffectView.bounds)
+        headerLabel.text = header
+        headerLabelContainerView.isHidden = header == nil
     }
 
     func barcodesHandler(_ barcodes: [AVMetadataMachineReadableCodeObject]) {
@@ -112,7 +118,6 @@ class ScannerViewController: UIViewController {
         }
     }
 
-
     func addDebugButton(title: String, scanValue: String) {
         let button = UIButton()
         button.tag = debugButtonReturnCodes.count
@@ -128,6 +133,12 @@ class ScannerViewController: UIViewController {
         _ = handle(code)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if isBeingDismissed {
+            return super.preferredStatusBarStyle
+        }
+        return .lightContent
+    }
 }
 
 fileprivate class CircleMask: BaseCustomView {
