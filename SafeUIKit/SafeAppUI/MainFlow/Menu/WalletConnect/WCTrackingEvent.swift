@@ -13,5 +13,5 @@ enum WCTrackingEvent: String, ScreenTrackingEvent {
     case scan               = "WalletConnect_Scan"
     case sessionList        = "WalletConnect_SessionList"
     case batched            = "WalletConnect_BatchTransactions"
-
+    case completed          = "WalletConnect_MobileRequestCompleted"
 }
