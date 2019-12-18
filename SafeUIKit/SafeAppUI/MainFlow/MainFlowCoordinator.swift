@@ -262,6 +262,7 @@ open class MainFlowCoordinator: FlowCoordinator {
     }
 
     open func receive(url: URL) {
+        guard walletConnectFlowCoordinator.canHandle(url) else { return }
         walletConnectFlowCoordinator.connectionURL = url
         self.enter(flow: walletConnectFlowCoordinator)
     }

@@ -43,7 +43,7 @@ public struct WCDAppInfo {
     public let peerMeta: WCClientMeta
     public let isMobile: Bool
 
-    public init(peerId: String, peerMeta: WCClientMeta, isMobile: Bool) {
+    public init(peerId: String, peerMeta: WCClientMeta, isMobile: Bool = false) {
         self.peerId = peerId
         self.peerMeta = peerMeta
         self.isMobile = isMobile

@@ -45,6 +45,10 @@ public class WalletConnectApplicationService {
         return walletService.hasReadyToUseWallet
     }
 
+    public func canHandle(_ url: String) -> Bool {
+        return service.canHandle(url)
+    }
+
     public func connect(url: String) throws {
         try service.connect(url: url)
         eventPublisher.publish(SessionUpdated())
