@@ -62,9 +62,9 @@ class UniversalScanFlowCoordinator: FlowCoordinator {
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
             let vc = WCSessionListTableViewController(connectionURL: URL(string: connectionURL))
-            `self`.sessionListController = vc
+            self.sessionListController = vc
             MainFlowCoordinator.shared.popToLastCheckpoint()
-            `self`.push(`self`.sessionListController!)
+            self.push(self.sessionListController!)
         }
 
     }
