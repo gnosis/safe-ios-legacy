@@ -59,8 +59,9 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
         if connectionURL != nil { // requested to connect via universal link or deep link
             let selectSafeVC = WCSelectSafeViewController(style: .grouped)
             selectSafeVC.onNext = { [unowned self] in
+                MainFlowCoordinator.shared.switchToRootController()
+                self.setRoot(MainFlowCoordinator.shared.rootViewController)
                 self.presentSessionList()
-                self.removeViewControllerFromNavigationStack(selectSafeVC)
             }
             push(selectSafeVC)
         } else {
