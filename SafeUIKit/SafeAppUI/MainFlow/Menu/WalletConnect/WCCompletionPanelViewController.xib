@@ -32,7 +32,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="220" height="250"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="congratulations" translatesAutoresizingMaskIntoConstraints="NO" id="atr-7w-q5Y">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wc-completed" translatesAutoresizingMaskIntoConstraints="NO" id="atr-7w-q5Y">
                                             <rect key="frame" x="45" y="16" width="130" height="130"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="130" id="Leg-8X-Jz1"/>
@@ -90,6 +90,6 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="congratulations" width="110" height="110"/>
+        <image name="wc-completed" width="300" height="185"/>
     </resources>
 </document>

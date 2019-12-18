@@ -14,7 +14,7 @@ class WCCompletionPanelViewController: UIViewController {
 
     static func create() -> WCCompletionPanelViewController {
         WCCompletionPanelViewController(nibName: "WCCompletionPanelViewController",
-                                  bundle: Bundle(for: WCCompletionPanelViewController.self))
+                                        bundle: Bundle(for: WCCompletionPanelViewController.self))
     }
 
     override func viewDidLoad() {
