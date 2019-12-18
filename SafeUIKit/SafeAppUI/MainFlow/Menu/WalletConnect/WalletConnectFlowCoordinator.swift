@@ -60,6 +60,7 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
             let selectSafeVC = WCSelectSafeViewController(style: .grouped)
             selectSafeVC.onNext = { [unowned self] in
                 self.presentSessionList()
+                self.removeViewControllerFromNavigationStack(selectSafeVC)
             }
             push(selectSafeVC)
         } else {
@@ -71,6 +72,7 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
         let vc = WCSessionListTableViewController(connectionURL: connectionURL)
         push(vc)
         sessionListController = vc
+        connectionURL = nil
     }
 
 }

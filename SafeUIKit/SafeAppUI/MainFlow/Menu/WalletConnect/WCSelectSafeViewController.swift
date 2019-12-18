@@ -17,9 +17,9 @@ class WCSelectSafeViewController: UITableViewController {
     }
 
     enum Strings {
-        static let title = "Select Safe"
-        static let header = "Please select Safe for WalletConnect session."
-        static let next = "Next"
+        static let title = "WalletConnect"
+        static let header = LocalizedString("select_safe_to_connect", comment: "Select Safe to connect")
+        static let next = LocalizedString("next", comment: "Next")
     }
 
     override func viewDidLoad() {
