@@ -12,10 +12,14 @@ class WalletConnectFlowCoordinatorTests: XCTestCase {
     let nav = UINavigationController()
     var fc: WalletConnectFlowCoordinator!
     let service = MockWalletConnectApplicationService(chainId: 1)
+    let walletService = MockWalletApplicationService()
+    let recoveryService = MockRecoveryApplicationService()
 
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: service, for: WalletConnectApplicationService.self)
+        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
+        ApplicationServiceRegistry.put(service: recoveryService, for: RecoveryApplicationService.self)
         fc = WalletConnectFlowCoordinator(rootViewController: nav)
     }
 
