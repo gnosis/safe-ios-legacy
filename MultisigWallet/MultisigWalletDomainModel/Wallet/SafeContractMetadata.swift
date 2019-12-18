@@ -9,16 +9,19 @@ public struct SafeContractMetadata: Equatable {
     public var multiSendContractAddress: Address
     public var proxyFactoryAddress: Address
     public var safeFunderAddress: Address
-    public var metadata: [MasterCopyMetadata]
+    public var masterCopy: [MasterCopyMetadata]
+    public var multiSend: [MultiSendMetadata]
 
     public init(multiSendContractAddress: Address,
                 proxyFactoryAddress: Address,
                 safeFunderAddress: Address,
-                metadata: [MasterCopyMetadata]) {
+                masterCopy: [MasterCopyMetadata],
+                multiSend: [MultiSendMetadata]) {
         self.multiSendContractAddress = multiSendContractAddress
         self.proxyFactoryAddress = proxyFactoryAddress
         self.safeFunderAddress = safeFunderAddress
-        self.metadata = metadata
+        self.masterCopy = masterCopy
+        self.multiSend = multiSend
     }
 }
 
@@ -40,6 +43,18 @@ public struct MasterCopyMetadata: Equatable {
         self.txTypeHash = txTypeHash
         self.domainSeparatorHash = domainSeparatorHash
         self.proxyCode = proxyCode
+    }
+
+}
+
+public struct MultiSendMetadata: Equatable {
+
+    public var address: Address
+    public var version: Int
+
+    public init(address: Address, version: Int) {
+        self.address = address
+        self.version = version
     }
 
 }

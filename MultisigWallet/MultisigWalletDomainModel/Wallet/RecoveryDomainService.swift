@@ -230,8 +230,8 @@ public class RecoveryDomainService: Assertable {
     }
 
     public func resume(walletID: WalletID) {
-        guard let wallet = DomainRegistry.walletRepository.find(id: walletID) else { return }
-        let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: walletID)!
+        guard let wallet = DomainRegistry.walletRepository.find(id: walletID),
+            let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: walletID) else { return }
 
         if !wallet.isReadyToUse && !wallet.isRecoveryInProgress && tx.status == .signing {
             submitRecoveryTransaction(walletID: walletID)
@@ -517,8 +517,6 @@ class RecoveryTransactionBuilder: Assertable {
     var ownerList: OwnerLinkedList!
     var modifiableOwners: [Owner]!
 
-    var multiSendContractAddress: Address!
-
     var ownerContractProxy: SafeOwnerManagerContractProxy!
     var multiSendContractProxy: MultiSendContractProxy!
 
@@ -529,17 +527,14 @@ class RecoveryTransactionBuilder: Assertable {
 
     var transaction: Transaction!
 
-    init(multiSendContractAddress: Address? = nil) {
-        self.multiSendContractAddress = multiSendContractAddress ??
-            DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-
+    init() {
         wallet = DomainRegistry.walletRepository.selectedWallet()!
 
         let token = wallet.feePaymentTokenAddress ?? Token.Ether.address
         accountID = AccountID(tokenID: TokenID(token.value), walletID: wallet.id)
 
         ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address)
-        multiSendContractProxy = MultiSendContractProxy(self.multiSendContractAddress)
+        multiSendContractProxy = MultiSendContractProxy()
 
         print("Wallet \(wallet.id), address \(wallet.address?.value ?? "<null>")")
 
