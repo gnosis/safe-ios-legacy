@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044ABE6223AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044ABE6123AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift */; };
 		0472735723A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */; };
 		0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00292B20CFC118009A4BFE /* SegmentBar.swift */; };
 		0A028ECA21AD52EA00431D25 /* SendInputDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EC921AD52EA00431D25 /* SendInputDemoViewController.swift */; };
@@ -689,6 +690,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		044ABE6123AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalScanFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalScanFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A00292B20CFC118009A4BFE /* SegmentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBar.swift; sourceTree = "<group>"; };
 		0A028EC921AD52EA00431D25 /* SendInputDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputDemoViewController.swift; sourceTree = "<group>"; };
@@ -1261,6 +1263,7 @@
 			isa = PBXGroup;
 			children = (
 				0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */,
+				044ABE6123AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift */,
 			);
 			path = Universal;
 			sourceTree = "<group>";
@@ -3175,6 +3178,7 @@
 				0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */,
 				0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
+				044ABE6223AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
