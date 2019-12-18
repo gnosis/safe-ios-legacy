@@ -35,8 +35,9 @@ public class WalletConnectService: WalletConnectDomainService {
             // Stub data will be updated with real data once the connection is established.
             let stubURL = URL(string: "https://safe.gnosis.io")!
             let stubMeta = WCClientMeta(name: "", description: "", icons: [], url: stubURL)
+            let isMobile = url.contains("&isMobile=true")
             let newSession = WCSession(url: wcurl.wcURL,
-                                       dAppInfo: WCDAppInfo(peerId: "", peerMeta: stubMeta),
+                                       dAppInfo: WCDAppInfo(peerId: "", peerMeta: stubMeta, isMobile: isMobile),
                                        walletInfo: nil,
                                        status: .connecting)
             DomainRegistry.walletConnectSessionRepository.save(newSession)
@@ -62,7 +63,6 @@ public class WalletConnectService: WalletConnectDomainService {
 
     public func disconnect(session: WCSession) throws {
         guard session.walletInfo != nil else {
-            // Trying to disconnect connecting session.
             DomainRegistry.walletConnectSessionRepository.remove(session)
             return
         }
@@ -88,14 +88,17 @@ extension WalletConnectService: ServerDelegate {
     public func server(_ server: Server, shouldStart session: Session, completion: (Session.WalletInfo) -> Void) {
         guard let existingSession = findExistingWCSession(for: session) else { return }
         delegate.shouldStart(session: session.wcSession(status: .connecting,
-                                                        created: existingSession.created)) { wcWalletInfo in
+                                                        created: existingSession.created,
+                                                        isMobile: existingSession.isMobile)) { wcWalletInfo in
             completion(Session.WalletInfo(wcWalletInfo: wcWalletInfo))
         }
     }
 
     public func server(_ server: Server, didConnect session: Session) {
         guard let existingSession = findExistingWCSession(for: session) else { return }
-        let updatedSession = session.wcSession(status: .connected, created: existingSession.created)
+        let updatedSession = session.wcSession(status: .connected,
+                                               created: existingSession.created,
+                                               isMobile: existingSession.isMobile)
         DomainRegistry.walletConnectSessionRepository.save(updatedSession)
         delegate.didConnect(session: updatedSession)
     }
@@ -103,7 +106,9 @@ extension WalletConnectService: ServerDelegate {
     public func server(_ server: Server, didDisconnect session: Session) {
         guard let existingSession = findExistingWCSession(for: session) else { return }
         DomainRegistry.walletConnectSessionRepository.remove(existingSession)
-        delegate.didDisconnect(session: session.wcSession(status: .disconnected, created: existingSession.created))
+        delegate.didDisconnect(session: session.wcSession(status: .disconnected,
+                                                          created: existingSession.created,
+                                                          isMobile: existingSession.isMobile))
     }
 
     private func findExistingWCSession(for session: Session) -> WCSession? {
@@ -246,10 +251,6 @@ extension Session.DAppInfo {
         self.init(peerId: wcDAppInfo.peerId, peerMeta: Session.ClientMeta(wcClientMeta: wcDAppInfo.peerMeta))
     }
 
-    var wcDAppInfo: WCDAppInfo {
-        return WCDAppInfo(peerId: peerId, peerMeta: peerMeta.wcClientMeta)
-    }
-
 }
 
 extension Session.WalletInfo {
@@ -280,9 +281,12 @@ extension Session {
                   walletInfo: Session.WalletInfo(wcWalletInfo: wcSession.walletInfo!))
     }
 
-    func wcSession(status: WCSessionStatus, created: Date) -> WCSession {
+    func wcSession(status: WCSessionStatus, created: Date, isMobile: Bool) -> WCSession {
+        let dappInfo = WCDAppInfo(peerId: dAppInfo.peerId,
+                                  peerMeta: dAppInfo.peerMeta.wcClientMeta,
+                                  isMobile: isMobile)
         return WCSession(url: url.wcURL,
-                         dAppInfo: dAppInfo.wcDAppInfo,
+                         dAppInfo: dappInfo,
                          walletInfo: walletInfo?.wcWalletInfo,
                          status: status,
                          created: created)

@@ -41,9 +41,16 @@ class IncomingTransactionFlowCoordinator: FlowCoordinator {
                 guard let `self` = self else { return }
                 self.onBackButton?()
                 self.pop()
+                self.showWCCompletion()
             }
             push(reviewVC)
         }
+    }
+
+    private func showWCCompletion() {
+        guard source == .walletConnect, let session = sourceMeta as? WCSessionData, session.isMobile else { return }
+        let vc = WCCompletionPanelViewController.create()
+        vc.present(from: rootViewController)
     }
 
 }
@@ -57,7 +64,9 @@ extension IncomingTransactionFlowCoordinator: ReviewTransactionViewControllerDel
 
     public func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
         push(SuccessViewController.sendSuccess(token: controller.tx.amountTokenData) { [weak self] in
-            self?.exitFlow()
+            guard let `self` = self else { return }
+            self.showWCCompletion()
+            self.exitFlow()
         })
     }
 

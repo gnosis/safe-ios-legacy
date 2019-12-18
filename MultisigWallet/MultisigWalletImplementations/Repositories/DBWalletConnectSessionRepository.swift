@@ -59,15 +59,41 @@ extension MultisigWalletDomainModel.WCURL {
 
 }
 
-extension WCDAppInfo {
+extension WCDAppInfo: Codable {
 
     init?(data: Data) {
-        guard let info = try? JSONDecoder().decode(WCDAppInfo.self, from: data) else { return nil }
-        self = info
+        do {
+            self = try JSONDecoder().decode(WCDAppInfo.self, from: data)
+        } catch {
+            assertionFailure("Failed to decode: \(error)")
+            return nil
+        }
     }
 
     var data: Data {
         return try! JSONEncoder().encode(self)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case peerId
+        case peerMeta
+        case isMobile
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let peerId = try container.decode(String.self, forKey: .peerId)
+        let peerMeta = try container.decode(WCClientMeta.self, forKey: .peerMeta)
+        // this is a new field, so it can be absent in encoded data of the previous versions
+        let isMobile = try container.decodeIfPresent(Bool.self, forKey: .isMobile) ?? false
+        self.init(peerId: peerId, peerMeta: peerMeta, isMobile: isMobile)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(peerId, forKey: .peerId)
+        try container.encode(peerMeta, forKey: .peerMeta)
+        try container.encode(isMobile, forKey: .isMobile)
     }
 
 }
