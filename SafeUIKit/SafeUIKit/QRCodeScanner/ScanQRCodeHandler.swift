@@ -36,9 +36,8 @@ public final class ScanQRCodeHandler {
         static let invalidCode = LocalizedString(("ios_camera_invalid_qr"), comment: "Invalid code")
     }
 
-    public init() {
-        
-    }
+    public init() { }
+
     public func scan() {
         didFinishScanning = false
         checkCameraAvailability { [unowned self] success in

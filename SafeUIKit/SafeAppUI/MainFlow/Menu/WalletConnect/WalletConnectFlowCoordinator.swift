@@ -32,7 +32,7 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     }
 
     func showOnboarding() {
-        let vc = OnboardingViewController.create(next: { [weak self] in
+        let vc = OnboardingViewController.createWalletConnectOnboarding(next: { [weak self] in
             self?.onboardingController?.transitionToNextPage()
         }, finish: { [weak self] in
             self?.finishOnboarding()
@@ -63,9 +63,9 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
 
 }
 
-fileprivate extension OnboardingViewController {
+extension OnboardingViewController {
 
-    static func create(next: @escaping () -> Void, finish: @escaping () -> Void) -> OnboardingViewController {
+    static func createWalletConnectOnboarding(next: @escaping () -> Void, finish: @escaping () -> Void) -> OnboardingViewController {
         let nextActionTitle = LocalizedString("next", comment: "Next")
         return .create(steps: [
             .init(image: Asset._1.image,
