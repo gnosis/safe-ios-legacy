@@ -34,9 +34,11 @@ open class BackgroundHeaderFooterView: UITableViewHeaderFooterView {
         backgroundView = UIView()
         backgroundView!.backgroundColor = ColorName.transparent.color
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         addSubview(label)
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 16),
             label.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)])
     }

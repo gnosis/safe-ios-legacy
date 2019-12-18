@@ -56,6 +56,18 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     }
 
     func showSessionList() {
+        if connectionURL != nil { // requested to connect via universal link or deep link
+            let selectSafeVC = WCSelectSafeViewController(style: .grouped)
+            selectSafeVC.onNext = { [unowned self] in
+                self.presentSessionList()
+            }
+            push(selectSafeVC)
+        } else {
+            presentSessionList()
+        }
+    }
+
+    private func presentSessionList() {
         let vc = WCSessionListTableViewController(connectionURL: connectionURL)
         push(vc)
         sessionListController = vc

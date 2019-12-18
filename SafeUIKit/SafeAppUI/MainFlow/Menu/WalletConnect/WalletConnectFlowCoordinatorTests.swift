@@ -75,7 +75,10 @@ class WalletConnectFlowCoordinatorTests: XCTestCase {
         fc = WalletConnectFlowCoordinator(rootViewController: nav)
         fc.connectionURL = url
         fc.showSessionList()
-        XCTAssertEqual(fc.sessionListController!.connectionURL, url)
+        XCTAssertTrue(fc.topViewController is WCSelectSafeViewController)
+        let vc = fc.topViewController as? WCSelectSafeViewController
+        vc?.onNext?()
+        XCTAssertEqual(fc.sessionListController?.connectionURL, url)
     }
 
 }
