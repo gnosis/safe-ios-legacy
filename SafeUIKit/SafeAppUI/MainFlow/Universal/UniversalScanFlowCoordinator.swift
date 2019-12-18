@@ -15,6 +15,10 @@ class UniversalScanFlowCoordinator: FlowCoordinator {
     weak var sessionListController: WCSessionListTableViewController?
     var scanHandler = ScanQRCodeHandler()
 
+    enum Strings {
+        static let qrScannerHeader = LocalizedString("scan_wallet_connect", comment: "Scan WalletConnect QR code")
+    }
+
     override func setUp() {
         super.setUp()
         guard ApplicationServiceRegistry.walletConnectService.isAvaliable else {
@@ -23,6 +27,7 @@ class UniversalScanFlowCoordinator: FlowCoordinator {
             return
         }
         scanHandler.delegate = self
+        scanHandler.header = Strings.qrScannerHeader
         if ApplicationServiceRegistry.walletConnectService.isOnboardingDone() {
             showScan()
         } else {

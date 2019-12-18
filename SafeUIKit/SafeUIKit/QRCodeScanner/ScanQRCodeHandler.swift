@@ -24,7 +24,7 @@ public final class ScanQRCodeHandler {
     private var scannerController: ScannerViewController?
     private var debugButtons = [DebugButton]()
     private var didFinishScanning = false
-    var header: String?
+    public var header: String?
 
     enum Strings {
         static let cameraAlertTitle = LocalizedString("ios_camera_title",
