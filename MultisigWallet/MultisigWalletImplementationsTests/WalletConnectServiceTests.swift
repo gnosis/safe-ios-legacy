@@ -44,6 +44,16 @@ class WalletConnectServiceTests: XCTestCase {
         XCTAssertNotNil(sessionRepo.find(id: WCSessionID("id1")))
     }
 
+    func test_whenConnectingViaMobile_thenSavesParameter() throws {
+        let url = self.url + "&isMobile=true"
+        try service.connect(url: url)
+        guard let session = sessionRepo.find(id: WCSessionID("id1")) else {
+            XCTFail("Session not found")
+            return
+        }
+        XCTAssertTrue(session.isMobile)
+    }
+
     func test_whenConnectingWithWrongURL_thenProperErrorIsThrown() {
         XCTAssertThrowsError(try service.connect(url: "some")) {
             XCTAssertTrue($0 as? WCError == WCError.wrongURLFormat)
