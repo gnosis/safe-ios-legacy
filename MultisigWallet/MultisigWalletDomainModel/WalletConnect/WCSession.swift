@@ -37,16 +37,14 @@ public struct WCClientMeta: Codable {
 
 }
 
-public struct WCDAppInfo {
+public struct WCDAppInfo: Codable {
 
     public let peerId: String
     public let peerMeta: WCClientMeta
-    public let isMobile: Bool
 
-    public init(peerId: String, peerMeta: WCClientMeta, isMobile: Bool = false) {
+    public init(peerId: String, peerMeta: WCClientMeta) {
         self.peerId = peerId
         self.peerMeta = peerMeta
-        self.isMobile = isMobile
     }
 
 }
@@ -87,7 +85,6 @@ public class WCSession: IdentifiableEntity<WCSessionID> {
     public let walletInfo: WCWalletInfo?
     public let status: WCSessionStatus
     public let created: Date
-    public var isMobile: Bool { dAppInfo.isMobile }
 
     public init(url: WCURL,
                 dAppInfo: WCDAppInfo,

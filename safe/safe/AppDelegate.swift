@@ -145,7 +145,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             return false
         }
         components.scheme = "wc"
-        components.queryItems?.append(URLQueryItem(name: "isMobile", value: "true"))
         let walletConnectURL = components.url!
         coordinator.receive(url: walletConnectURL)
         return true

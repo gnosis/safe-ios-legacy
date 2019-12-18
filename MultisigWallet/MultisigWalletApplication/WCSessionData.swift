@@ -12,7 +12,6 @@ public struct WCSessionData {
     public var imageURL: URL?
     public var title: String
     public var subtitle: String
-    public var isMobile: Bool
 
     public var isConnecting: Bool {
         return title == Strings.pleaseWait
@@ -23,12 +22,11 @@ public struct WCSessionData {
         static let connecting = LocalizedString("connecting", comment: "Connecting...")
     }
 
-    public init(id: BaseID, imageURL: URL?, title: String, subtitle: String, isMobile: Bool) {
+    public init(id: BaseID, imageURL: URL?, title: String, subtitle: String) {
         self.id = id
         self.imageURL = imageURL
         self.title = title
         self.subtitle = subtitle
-        self.isMobile = isMobile
     }
 
     init(wcSession: WCSession) {
@@ -36,8 +34,7 @@ public struct WCSessionData {
         self.init(id: wcSession.id,
                   imageURL: meta.icons.isEmpty ? nil : meta.icons[0],
                   title: wcSession.status == .connecting ? Strings.pleaseWait : meta.name,
-                  subtitle: wcSession.status == .connecting ? Strings.connecting : meta.url.absoluteString,
-                  isMobile: wcSession.isMobile)
+                  subtitle: wcSession.status == .connecting ? Strings.connecting : meta.url.absoluteString)
     }
 
 }
