@@ -6,25 +6,25 @@ import Foundation
 import AVFoundation
 import Common
 
-protocol ScanQRCodeHandlerDelegate: class {
+public protocol ScanQRCodeHandlerDelegate: class {
     func presentController(_ controller: UIViewController)
     func didScanCode(raw: String, converted: String?)
 }
 
 public typealias ScanValidatedConverter = (String) -> String?
 
-class ScanQRCodeHandler {
+public final class ScanQRCodeHandler {
 
     typealias CameraAvailabilityCompletion = (_ available: Bool) -> Void
     typealias DebugButton = (title: String, scanValue: String)
 
-    weak var delegate: ScanQRCodeHandlerDelegate!
+    public weak var delegate: ScanQRCodeHandlerDelegate!
     var captureDevice: AVCaptureDevice.Type = AVCaptureDevice.self
-    var scanValidatedConverter: ScanValidatedConverter?
+    public var scanValidatedConverter: ScanValidatedConverter?
     private var scannerController: ScannerViewController?
     private var debugButtons = [DebugButton]()
     private var didFinishScanning = false
-    var header: String?
+    public var header: String?
 
     enum Strings {
         static let cameraAlertTitle = LocalizedString("ios_camera_title",
@@ -36,7 +36,9 @@ class ScanQRCodeHandler {
         static let invalidCode = LocalizedString(("ios_camera_invalid_qr"), comment: "Invalid code")
     }
 
-    func scan() {
+    public init() {}
+
+    public func scan() {
         didFinishScanning = false
         checkCameraAvailability { [unowned self] success in
             dispatch.onMainThread { self.handleCameraAvailability(success: success) }

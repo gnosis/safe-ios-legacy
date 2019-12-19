@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -450,6 +450,17 @@
                                     <outlet property="textLabel" destination="Xx0-ac-bAC" id="l8G-8a-dt6"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOo-Eb-qBR">
+                                <rect key="frame" x="294" y="697" width="65" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="3DD-PY-2ck"/>
+                                    <constraint firstAttribute="width" secondItem="bOo-Eb-qBR" secondAttribute="height" id="RWk-vp-Mku"/>
+                                </constraints>
+                                <state key="normal" image="wallet-connect-universal-scan"/>
+                                <connections>
+                                    <action selector="universalScanButtonTapped:" destination="qYZ-mk-YHC" eventType="touchUpInside" id="lC2-3g-tCJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -465,10 +476,12 @@
                             <constraint firstItem="0cb-Nd-Kbl" firstAttribute="trailing" secondItem="ogX-1U-oiO" secondAttribute="trailing" id="SDX-XC-n7H"/>
                             <constraint firstItem="0N2-eT-BJM" firstAttribute="trailing" secondItem="0cb-Nd-Kbl" secondAttribute="trailing" id="US3-fF-weJ"/>
                             <constraint firstItem="0N2-eT-BJM" firstAttribute="top" secondItem="yzy-CG-7UQ" secondAttribute="bottom" id="XdJ-9u-b1K"/>
+                            <constraint firstItem="0cb-Nd-Kbl" firstAttribute="trailing" secondItem="bOo-Eb-qBR" secondAttribute="trailing" constant="16" id="ab2-d0-0iu"/>
                             <constraint firstItem="ogX-1U-oiO" firstAttribute="leading" secondItem="0cb-Nd-Kbl" secondAttribute="leading" id="ghG-ah-nwR"/>
                             <constraint firstItem="JKv-4m-0lA" firstAttribute="trailing" secondItem="0cb-Nd-Kbl" secondAttribute="trailing" id="k9g-kY-sng"/>
                             <constraint firstItem="yzy-CG-7UQ" firstAttribute="leading" secondItem="KcG-O7-BaJ" secondAttribute="leading" id="vgV-HW-ulG"/>
                             <constraint firstItem="3kT-vV-Qeg" firstAttribute="top" secondItem="0N2-eT-BJM" secondAttribute="bottom" id="vt2-XZ-k7Q"/>
+                            <constraint firstItem="0cb-Nd-Kbl" firstAttribute="bottom" secondItem="bOo-Eb-qBR" secondAttribute="bottom" constant="16" id="xkb-xE-Xp2"/>
                             <constraint firstItem="JKv-4m-0lA" firstAttribute="leading" secondItem="0cb-Nd-Kbl" secondAttribute="leading" id="zbY-hK-mke"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0cb-Nd-Kbl"/>
@@ -732,5 +745,6 @@
         <image name="error-icon" width="16" height="16"/>
         <image name="external_link" width="12" height="12"/>
         <image name="qrIcon" width="38" height="38"/>
+        <image name="wallet-connect-universal-scan" width="56" height="57"/>
     </resources>
 </document>

@@ -139,6 +139,7 @@ class ScannerViewController: UIViewController {
         }
         return .lightContent
     }
+
 }
 
 fileprivate class CircleMask: BaseCustomView {
