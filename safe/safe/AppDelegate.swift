@@ -160,6 +160,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         return true
     }
 
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        return userActivity.activityType == NSUserActivityTypeBrowsingWeb
+    }
+
     private func receiveNotification(userInfo: [AnyHashable: Any]) {
         assert(Thread.isMainThread)
         UIApplication.shared.applicationIconBadgeNumber = 0
