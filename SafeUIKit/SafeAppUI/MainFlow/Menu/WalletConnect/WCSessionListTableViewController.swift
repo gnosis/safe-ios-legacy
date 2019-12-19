@@ -92,12 +92,23 @@ import MultisigWalletApplication
     }
 
     private func update() {
-        sessions = wcService.sessions()
+        let newSessions = wcService.sessions()
+        let hasNewConnections = didConnectNewSessions(in: newSessions)
+        sessions = newSessions
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
             self.tableView.backgroundView = self.sessions.isEmpty ? self.noSessionsView : nil
             self.tableView.reloadData()
+            if hasNewConnections {
+                let vc = WCCompletionPanelViewController.create()
+                vc.present(from: self)
+            }
         }
+    }
+
+    private func didConnectNewSessions(in newSessions: [WCSessionData]) -> Bool {
+        let oldIDs = sessions.map { $0.id }
+        return newSessions.contains { !oldIDs.contains($0.id) && !$0.isConnecting }
     }
 
     // MARK: - UITableViewDataSource

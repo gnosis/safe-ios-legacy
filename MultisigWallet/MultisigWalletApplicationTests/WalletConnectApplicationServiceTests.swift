@@ -252,4 +252,8 @@ class MockWalletConnectDomainService: WalletConnectDomainService {
         return sessionsArray
     }
 
+    func canHandle(_ url: String) -> Bool {
+        return true
+    }
+
 }

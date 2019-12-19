@@ -17,6 +17,10 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     /// the UI is not properly intiialized to show error or other information.
     var connectionURL: URL?
 
+    func canHandle(_ url: URL) -> Bool {
+        ApplicationServiceRegistry.walletConnectService.canHandle(url.absoluteString)
+    }
+
     override func setUp() {
         super.setUp()
         guard ApplicationServiceRegistry.walletConnectService.isAvaliable else {

@@ -33,4 +33,8 @@ public class MockWalletConnectApplicationService: WalletConnectApplicationServic
         isOnboardingFinished = false
     }
 
+    public override func canHandle(_ url: String) -> Bool {
+        return true
+    }
+
 }

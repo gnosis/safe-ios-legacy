@@ -818,6 +818,9 @@ Pairing password: %@";
 /* Description for transaction confirmation alert. */
 "resend_to_refresh" = "Resend to refresh the connection.";
 
+/* Go back */
+"return_to_dapp" = "Done!\nYou can now return to your browser.";
+
 /* Review button for Send screen
    Review transaction title */
 "review" = "Review";

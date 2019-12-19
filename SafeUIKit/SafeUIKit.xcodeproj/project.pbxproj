@@ -288,6 +288,8 @@
 		0AE0FECE229EA7DD00ABC552 /* EmptyResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FECD229EA7DD00ABC552 /* EmptyResultsView.swift */; };
 		0AE0FEE8229EC2AF00ABC552 /* RecoverFeePaidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FEE7229EC2AF00ABC552 /* RecoverFeePaidViewController.swift */; };
 		0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FEE9229EC7BC00ABC552 /* RecoverReviewViewController.swift */; };
+		0AE6056B23A931DD001E4F98 /* WCCompletionPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6056923A931DD001E4F98 /* WCCompletionPanelViewController.swift */; };
+		0AE6056C23A931DD001E4F98 /* WCCompletionPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE6056A23A931DD001E4F98 /* WCCompletionPanelViewController.xib */; };
 		0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950BD20D29C910099B79D /* TransactionValueView.swift */; };
 		0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C220D29C920099B79D /* TransactionParameterView.swift */; };
 		0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C320D29C920099B79D /* TransactionParticipantView.swift */; };
@@ -990,6 +992,8 @@
 		0AE0FECD229EA7DD00ABC552 /* EmptyResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResultsView.swift; sourceTree = "<group>"; };
 		0AE0FEE7229EC2AF00ABC552 /* RecoverFeePaidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverFeePaidViewController.swift; sourceTree = "<group>"; };
 		0AE0FEE9229EC7BC00ABC552 /* RecoverReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverReviewViewController.swift; sourceTree = "<group>"; };
+		0AE6056923A931DD001E4F98 /* WCCompletionPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCCompletionPanelViewController.swift; sourceTree = "<group>"; };
+		0AE6056A23A931DD001E4F98 /* WCCompletionPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCCompletionPanelViewController.xib; sourceTree = "<group>"; };
 		0AE950BD20D29C910099B79D /* TransactionValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionValueView.swift; sourceTree = "<group>"; };
 		0AE950C220D29C920099B79D /* TransactionParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParameterView.swift; sourceTree = "<group>"; };
 		0AE950C320D29C920099B79D /* TransactionParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParticipantView.swift; sourceTree = "<group>"; };
@@ -2341,6 +2345,8 @@
 				5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */,
 				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
 				5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */,
+				0AE6056923A931DD001E4F98 /* WCCompletionPanelViewController.swift */,
+				0AE6056A23A931DD001E4F98 /* WCCompletionPanelViewController.xib */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -2966,6 +2972,7 @@
 				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				552D42FD233A37E900C57B5C /* SwitchSafesTableViewCell.xib in Resources */,
+				0AE6056C23A931DD001E4F98 /* WCCompletionPanelViewController.xib in Resources */,
 				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
 				5568A25E22D78583007C9E0C /* WCSessionListCell.xib in Resources */,
 				0A3BD90422254833007039B4 /* IntroContentView.xib in Resources */,
@@ -3475,6 +3482,7 @@
 				55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */,
 				0ACCA8C0221C0D0100D37594 /* AuthenticatorViewController+RBE.swift in Sources */,
 				0A334E3F209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift in Sources */,
+				0AE6056B23A931DD001E4F98 /* WCCompletionPanelViewController.swift in Sources */,
 				0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */,
 				0A3D14F4220B1D2800E340DB /* ReplaceTwoFACommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
