@@ -57,12 +57,6 @@ class AppDelegateTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.gatekeeperRepository.gatekeeper())
     }
 
-    func test_whenAppEnteresForeground_thenItInvalidatesAppIconBadge() {
-        UIApplication.shared.applicationIconBadgeNumber = 1
-        appDelegate.applicationWillEnterForeground(UIApplication.shared)
-        XCTAssertEqual(UIApplication.shared.applicationIconBadgeNumber, 0)
-    }
-
     func test_defaultIdentifier() {
         // DO NOT CHANGE BECAUSE DEFAULT DATABASE LOCATION MIGHT CHANGE
         XCTAssertEqual(appDelegate.defaultBundleIdentifier, "io.gnosis.safe")

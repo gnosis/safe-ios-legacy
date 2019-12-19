@@ -13,25 +13,21 @@ public class InMemorySafeContractMetadataRepository: SafeContractMetadataReposit
         self.metadata = metadata
     }
 
-    public var multiSendContractAddress: Address {
-        return metadata.multiSendContractAddress
-    }
-
     public var proxyFactoryAddress: Address {
         return metadata.proxyFactoryAddress
     }
 
     public var latestMasterCopyAddress: Address {
-        precondition(!metadata.metadata.isEmpty, "Metadata is empty")
-        return metadata.metadata.last!.address
+        precondition(!metadata.masterCopy.isEmpty, "Metadata is empty")
+        return metadata.masterCopy.last!.address
     }
 
     public func isOldMasterCopy(address: Address) -> Bool {
-        return metadata.metadata.dropLast().contains { $0.address.value.lowercased() == address.value.lowercased() }
+        return metadata.masterCopy.dropLast().contains { $0.address.value.lowercased() == address.value.lowercased() }
     }
 
     public func isValidMasterCopy(address: Address) -> Bool {
-        return metadata.metadata.contains { $0.address.value.lowercased() == address.value.lowercased() }
+        return metadata.masterCopy.contains { $0.address.value.lowercased() == address.value.lowercased() }
     }
 
     public func isValidProxyFactory(address: Address) -> Bool {
@@ -61,7 +57,19 @@ public class InMemorySafeContractMetadataRepository: SafeContractMetadataReposit
     }
 
     private subscript(_ address: Address) -> MasterCopyMetadata? {
-        return metadata.metadata.first { $0.address.value.lowercased() == address.value.lowercased() }
+        return metadata.masterCopy.first { $0.address.value.lowercased() == address.value.lowercased() }
+    }
+
+    public var multiSendContractAddress: Address {
+        metadata.multiSendContractAddress
+    }
+
+    public func version(multiSendAddress: Address) -> Int? {
+        metadata.multiSend.first { $0.address.value.lowercased() == multiSendAddress.value.lowercased() }?.version
+    }
+
+    public func isValidMultiSend(address: Address) -> Bool {
+        metadata.multiSend.contains { $0.address.value.lowercased() == address.value.lowercased() }
     }
 
 }

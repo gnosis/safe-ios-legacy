@@ -12,7 +12,7 @@ final class PlaceholderCreator {
                 font: UIFont,
                 textColor: UIColor,
                 backgroundColor: UIColor) -> UIImage? {
-        return UIGraphicsImageRenderer(size: size).image { context in
+        return UIGraphicsImageRenderer(size: size).image { _ in
             let rect = CGRect(origin: .zero, size: size)
 
             backgroundColor.setFill()

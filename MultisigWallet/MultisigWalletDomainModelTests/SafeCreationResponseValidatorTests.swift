@@ -161,16 +161,17 @@ class SafeCreationResponseValidatorTests: XCTestCase {
         let metadata = SafeContractMetadata(multiSendContractAddress: Address("0xe74d6af1670fb6560dd61ee29eb57c7bc027ce4e"),
                                             proxyFactoryAddress: Address("0x12302fE9c02ff50939BaAaaf415fc226C078613C"),
                                             safeFunderAddress: Address("0xd9e09beaEb338d81a7c5688358df0071d4988115"),
-                                            metadata: [MasterCopyMetadata(address: Address("0xb6029EA3B2c51D09a50B53CA8012FeEB05bDa35A"),
-                                                                          version: "1.0.0",
-                                                                          txTypeHash: Data(ethHex: "0xbb8310d486368db6bd6f849402fdd73ad53d316b5a4b2644ad6efe0f941286d8"),
-                                                                          domainSeparatorHash: Data(ethHex: "0x035aff83d86937d35b32e04f0ddc6ff469290eef2f1b692d8a815c89404d4749"),
-                                                                          proxyCode: Data(ethHex: "0x608060405234801561001057600080fd5b506040516020806101a88339810180604052602081101561003057600080fd5b8101908080519060200190929190505050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100c7576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260248152602001806101846024913960400191505060405180910390fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050606e806101166000396000f3fe608060405273ffffffffffffffffffffffffffffffffffffffff600054163660008037600080366000845af43d6000803e6000811415603d573d6000fd5b3d6000f3fea165627a7a723058201e7d648b83cfac072cbccefc2ffc62a6999d4a050ee87a721942de1da9670db80029496e76616c6964206d617374657220636f707920616464726573732070726f7669646564"))])
+                                            masterCopy: [MasterCopyMetadata(address: Address("0xb6029EA3B2c51D09a50B53CA8012FeEB05bDa35A"),
+                                                                            version: "1.0.0",
+                                                                            txTypeHash: Data(ethHex: "0xbb8310d486368db6bd6f849402fdd73ad53d316b5a4b2644ad6efe0f941286d8"),
+                                                                            domainSeparatorHash: Data(ethHex: "0x035aff83d86937d35b32e04f0ddc6ff469290eef2f1b692d8a815c89404d4749"),
+                                                                            proxyCode: Data(ethHex: "0x608060405234801561001057600080fd5b506040516020806101a88339810180604052602081101561003057600080fd5b8101908080519060200190929190505050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100c7576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260248152602001806101846024913960400191505060405180910390fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050606e806101166000396000f3fe608060405273ffffffffffffffffffffffffffffffffffffffff600054163660008037600080366000845af43d6000803e6000811415603d573d6000fd5b3d6000f3fea165627a7a723058201e7d648b83cfac072cbccefc2ffc62a6999d4a050ee87a721942de1da9670db80029496e76616c6964206d617374657220636f707920616464726573732070726f7669646564"))],
+                                            multiSend: [])
         // swiftlint:enable line_length
-
+        
         let repo = InMemorySafeContractMetadataRepository(metadata: metadata)
         DomainRegistry.put(service: repo, for: SafeContractMetadataRepository.self)
-
+        
         let request = try JSONDecoder().decode(SafeCreationRequest.self,
                                                from: requestJSON.data(using: .utf8)!)
         let response = try JSONDecoder().decode(SafeCreationRequest.Response.self,

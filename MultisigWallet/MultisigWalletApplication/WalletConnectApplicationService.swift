@@ -164,8 +164,7 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
             let wallet = walletRepository.find(address: Address(walletAddress)) else { return }
 
         // create a multi-send transaction
-        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-        let multiSendContract = MultiSendContractProxy(multiSendAddress)
+        let multiSendContract = MultiSendContractProxy()
         let multiSendData = multiSendContract.multiSend(request.subtransactions.map { tx in
             (operation: MultiSendTransactionOperation(rawValue: tx.operation) ?? .call,
              to: tx.to,
@@ -178,7 +177,7 @@ extension WalletConnectApplicationService: WalletConnectDomainServiceDelegate {
                              type: .batched,
                              accountID: accountID)
             .change(sender: wallet.address)
-            .change(recipient: multiSendAddress)
+            .change(recipient: multiSendContract.contract)
             .change(amount: .ether(0))
             .change(operation: .delegateCall)
             .change(data: multiSendData)

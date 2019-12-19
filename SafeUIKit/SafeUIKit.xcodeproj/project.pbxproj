@@ -433,6 +433,7 @@
 		5579C57C22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */; };
 		5579C57E22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */; };
 		5579C58022C3739400BB93CA /* WCSessionListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */; };
+		558BC69023AA2687007A143F /* WCSelectSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC68F23AA2687007A143F /* WCSelectSafeViewController.swift */; };
 		5590F1AE2343447A002F120B /* EditSafeNameCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590F1AD2343447A002F120B /* EditSafeNameCommand.swift */; };
 		5590F1B12343465C002F120B /* EditSafeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590F1AF2343465C002F120B /* EditSafeNameViewController.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
@@ -1133,6 +1134,7 @@
 		5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectMenuCommandTests.swift; sourceTree = "<group>"; };
 		5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListTableViewControllerTests.swift; sourceTree = "<group>"; };
+		558BC68F23AA2687007A143F /* WCSelectSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSelectSafeViewController.swift; sourceTree = "<group>"; };
 		5590F1AD2343447A002F120B /* EditSafeNameCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSafeNameCommand.swift; sourceTree = "<group>"; };
 		5590F1AF2343465C002F120B /* EditSafeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSafeNameViewController.swift; sourceTree = "<group>"; };
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
@@ -2314,17 +2316,18 @@
 		5579C56622C3662500BB93CA /* WalletConnect */ = {
 			isa = PBXGroup;
 			children = (
+				0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */,
 				5579C57722C367C400BB93CA /* WalletConnectFlowCoordinator.swift */,
 				5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */,
 				5579C57522C3664300BB93CA /* WalletConnectMenuCommand.swift */,
 				5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */,
-				5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */,
 				0A4178E8239A73A2006172F3 /* WCBatchTransactionsTableViewController.swift */,
 				0A4178E4239A6CC1006172F3 /* WCMultiSendCell.swift */,
 				0A4178E5239A6CC1006172F3 /* WCMultiSendCell.xib */,
+				558BC68F23AA2687007A143F /* WCSelectSafeViewController.swift */,
+				5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */,
 				5568A25B22D7854D007C9E0C /* WCSessionListCell.swift */,
 				5568A25D22D78583007C9E0C /* WCSessionListCell.xib */,
-				0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */,
 				5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */,
 				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
 				5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */,
@@ -3351,6 +3354,7 @@
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
 				55329FF622F9752900E40B06 /* RateAppCommand.swift in Sources */,
 				55330566239E4A2E0037BC6F /* NFCSupportRequiredFooterView.swift in Sources */,
+				558BC69023AA2687007A143F /* WCSelectSafeViewController.swift in Sources */,
 				0A2C0E182296F2E3008A30AC /* AddressDetailView.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				0A9CDD9323608CD700A6CC4E /* AddressBookEntryViewController.swift in Sources */,

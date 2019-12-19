@@ -25,7 +25,7 @@ public struct WCMultiSendSubTransaction: Decodable, Equatable {
         let data = try container.decodeIfPresent(String.self, forKey: .data)
         let operation = try container.decodeIfPresent(Int.self, forKey: .operation)
 
-        guard let toAddress = DomainRegistry.encryptionService.address(from: to), !toAddress.isZero else {
+        guard let toAddress = DomainRegistry.encryptionService.address(from: to) else {
             throw WCSendTransactionRequest.decodingError(from: decoder)
         }
         self.to = toAddress

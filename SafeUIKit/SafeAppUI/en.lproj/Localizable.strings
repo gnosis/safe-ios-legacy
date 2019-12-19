@@ -870,6 +870,9 @@ Pairing password: %@";
 /* Update required description */
 "security_upgrade_required" = "Upgrade to the latest audited smart contract version and make your funds even more secure!";
 
+/* Select Safe to connect */
+"select_safe_to_connect" = "Select a Safe to connect";
+
 /* Send token again */
 "send_again" = "Send %@ again";
 
