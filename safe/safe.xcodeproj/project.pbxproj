@@ -495,7 +495,7 @@
 		551D76F1227C7A30003B7910 /* M0002_AddFeeTokenToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0002_AddFeeTokenToWallet.swift; sourceTree = "<group>"; };
 		551D770C227CA18E003B7910 /* M0003_AddCanPayTransactionFeeToTokenListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0003_AddCanPayTransactionFeeToTokenListItem.swift; sourceTree = "<group>"; };
 		55329FD022F83CDB00E40B06 /* M0007_RemoveDiscardedTransactionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M0007_RemoveDiscardedTransactionState.swift; sourceTree = "<group>"; };
-		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5540A4EB203C3054009C9BE3 /* safe-debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "safe-debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F5203C3054009C9BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5540A4FA203C3054009C9BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -819,7 +819,7 @@
 		5540A4EC203C3054009C9BE3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5540A4EB203C3054009C9BE3 /* safe.app */,
+				5540A4EB203C3054009C9BE3 /* safe-debug.app */,
 				5540A4FF203C3054009C9BE3 /* safeTests.xctest */,
 				5540A50A203C3054009C9BE3 /* SafeUITests.xctest */,
 				0A028EEA21AEE3FE00431D25 /* remoteNotificationHandler.appex */,
@@ -970,7 +970,7 @@
 			);
 			name = safe;
 			productName = safe;
-			productReference = 5540A4EB203C3054009C9BE3 /* safe.app */;
+			productReference = 5540A4EB203C3054009C9BE3 /* safe-debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5540A4FE203C3054009C9BE3 /* safeTests */ = {
@@ -1758,7 +1758,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)-prerelease";
 				PROVISIONING_PROFILE = "5f5d2866-6c2f-4972-b03b-b441785533bc";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.gnosis.safe.prerelease";
 				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
@@ -1949,7 +1949,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)-debug";
 				PROVISIONING_PROFILE = "d84b5606-5087-4f32-8480-2bf1207b0897";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development io.gnosis.safe.dev";
 				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
@@ -1979,7 +1979,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)-release";
 				PROVISIONING_PROFILE = "5f5d2866-6c2f-4972-b03b-b441785533bc";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.gnosis.safe";
 				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
@@ -2165,7 +2165,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)-adhoc";
 				PROVISIONING_PROFILE = "0ace297f-3081-47d4-81fa-74065d7a8761";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc io.gnosis.safe.adhoc";
 				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
