@@ -100,7 +100,7 @@ import MultisigWalletApplication
         }
     }
 
-    private func showCompletionPanel() {
+    private func showCompletionPanelOnNewSessionConnection() {
         let shouldShowPanel = didConnectNewSessions(in: wcService.sessions())
         guard shouldShowPanel else { return }
         DispatchQueue.main.async { [weak self] in
@@ -196,7 +196,7 @@ extension WCSessionListTableViewController: EventSubscriber {
 
     // FailedToConnectSession, SessionUpdated (connected/disconnected)
     func notify() {
-        showCompletionPanel()
+        showCompletionPanelOnNewSessionConnection()
         update()
     }
 
