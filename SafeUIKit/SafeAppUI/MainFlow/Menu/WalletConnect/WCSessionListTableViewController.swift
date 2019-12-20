@@ -92,23 +92,29 @@ import MultisigWalletApplication
     }
 
     private func update() {
-        let newSessions = wcService.sessions()
-        let hasNewConnections = didConnectNewSessions(in: newSessions)
-        sessions = newSessions
+        sessions = wcService.sessions()
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
             self.tableView.backgroundView = self.sessions.isEmpty ? self.noSessionsView : nil
             self.tableView.reloadData()
-            if hasNewConnections {
-                let vc = WCCompletionPanelViewController.create()
-                vc.present(from: self)
-            }
+        }
+    }
+
+    private func showCompletionPanelOnNewSessionConnection() {
+        let shouldShowPanel = didConnectNewSessions(in: wcService.sessions())
+        guard shouldShowPanel else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+            let vc = WCCompletionPanelViewController.create()
+            vc.present(from: self)
         }
     }
 
     private func didConnectNewSessions(in newSessions: [WCSessionData]) -> Bool {
-        let oldIDs = sessions.map { $0.id }
-        return newSessions.contains { !oldIDs.contains($0.id) && !$0.isConnecting }
+        let oldIDs = sessions.filter { !$0.isConnecting }.map { $0.id }
+        let newIDs = newSessions.filter { !$0.isConnecting }.map { $0.id }
+        let hasNewIDs = !Set(newIDs).subtracting(oldIDs).isEmpty
+        return hasNewIDs
     }
 
     // MARK: - UITableViewDataSource
@@ -190,6 +196,7 @@ extension WCSessionListTableViewController: EventSubscriber {
 
     // FailedToConnectSession, SessionUpdated (connected/disconnected)
     func notify() {
+        showCompletionPanelOnNewSessionConnection()
         update()
     }
 

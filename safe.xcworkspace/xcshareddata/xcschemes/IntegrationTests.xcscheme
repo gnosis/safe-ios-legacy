@@ -15,7 +15,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "5540A4EA203C3054009C9BE3"
-                     BuildableName = "safe.app"
+                     BuildableName = "safe-release.app"
                      BlueprintName = "safe"
                      ReferencedContainer = "container:safe/safe.xcodeproj">
                   </BuildableReference>
@@ -45,6 +45,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5540A509203C3054009C9BE3"
+            BuildableName = "SafeUITests.xctest"
+            BlueprintName = "SafeUITests"
+            ReferencedContainer = "container:safe/safe.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -110,17 +119,6 @@
             </SkippedTests>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5540A509203C3054009C9BE3"
-            BuildableName = "SafeUITests.xctest"
-            BlueprintName = "SafeUITests"
-            ReferencedContainer = "container:safe/safe.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -141,8 +139,6 @@
             ReferencedContainer = "container:safe/safe.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
