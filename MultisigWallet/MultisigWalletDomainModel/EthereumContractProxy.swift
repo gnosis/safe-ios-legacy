@@ -105,6 +105,10 @@ public class EthereumContractProxy {
         return value.rightPadded(to: 32).prefix(32)
     }
 
+    func decodeFixedBytes(value: Data, size: Int) -> Data {
+        return value.prefix(size)
+    }
+
     func encodeBytes(_ value: Data) -> Data {
         let byteLength = value.count % 32 == 0 ? value.count :
             (value.count + 32 - value.count % 32)
@@ -129,6 +133,10 @@ public class EthereumContractProxy {
     }
 
     func invoke(_ selector: String, _ args: Data ...) throws -> Data {
+        return try nodeService.eth_call(to: contract, data: invocation(selector, args: args))
+    }
+
+    func invoke(_ selector: String, args: [Data]) throws -> Data {
         return try nodeService.eth_call(to: contract, data: invocation(selector, args: args))
     }
 

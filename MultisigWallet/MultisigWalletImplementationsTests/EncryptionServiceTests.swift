@@ -462,6 +462,7 @@ class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
     var latestMasterCopyAddress: mAddress { return .zero }
 
     var proxyFactoryAddress: mAddress { return .one }
+    var fallbackHandlerAddress: mAddress { return .two }
 
     func isValidMasterCopy(address: mAddress) -> Bool {
         return true
@@ -483,8 +484,8 @@ class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
         return nil
     }
 
-    func deploymentCode(masterCopyAddress: mAddress) -> Data? {
-        return nil
+    func deploymentCode(masterCopyAddress: mAddress) -> Data {
+        return Data()
     }
 
     func latestContractVersion() -> String {

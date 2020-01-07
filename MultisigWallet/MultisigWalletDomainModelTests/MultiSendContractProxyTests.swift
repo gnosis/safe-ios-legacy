@@ -53,12 +53,13 @@ class MultiSendContractProxyTests: XCTestCase {
     func test_whenAddressZero_thenInitsFromMetadata() {
         let metadata = SafeContractMetadata(multiSendContractAddress: .testAccount1,
                                             proxyFactoryAddress: .testAccount1,
+                                            proxyCode: Data(),
+                                            defaultFallbackHandlerAddress: .testAccount4,
                                             safeFunderAddress: .testAccount1,
                                             masterCopy: [MasterCopyMetadata(address: .testAccount2,
                                                                             version: "1",
                                                                             txTypeHash: Data(),
-                                                                            domainSeparatorHash: Data(),
-                                                                            proxyCode: Data())],
+                                                                            domainSeparatorHash: Data())],
                                             multiSend: [])
 
         DomainRegistry.put(service: InMemorySafeContractMetadataRepository(metadata: metadata),

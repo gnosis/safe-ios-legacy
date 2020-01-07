@@ -85,7 +85,7 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
 extension EstimateSafeCreationRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
-    public var urlPath: String { return "/api/v2/safes/estimates/" }
+    public var urlPath: String { return "/api/v3/safes/estimates/" }
 
     public typealias ResponseType = [Estimation]
 
@@ -94,7 +94,7 @@ extension EstimateSafeCreationRequest: JSONRequest {
 extension SafeCreationRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
-    public var urlPath: String { return "/api/v2/safes/" }
+    public var urlPath: String { return "/api/v3/safes/" }
 
     public typealias ResponseType = Response
 

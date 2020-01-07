@@ -103,7 +103,7 @@ struct Safe {
         let tx = try _test.waitForSafeCreationTransaction(address)
         let reciept = try _test.waitForTransaction(tx)!
         assert(reciept.status == .success)
-        let proxy = WalletProxyContractProxy(address)
+        let proxy = GnosisSafeContractProxy(address)
         let wallet = DomainRegistry.walletRepository.find(id: walletID)!
         wallet.changeAddress(address)
         try wallet.changeMasterCopy(proxy.masterCopyAddress())

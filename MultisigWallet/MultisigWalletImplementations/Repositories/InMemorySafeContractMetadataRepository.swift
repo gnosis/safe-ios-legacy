@@ -17,6 +17,10 @@ public class InMemorySafeContractMetadataRepository: SafeContractMetadataReposit
         return metadata.proxyFactoryAddress
     }
 
+    public var fallbackHandlerAddress: Address {
+        return metadata.defaultFallbackHandlerAddress
+    }
+
     public var latestMasterCopyAddress: Address {
         precondition(!metadata.masterCopy.isEmpty, "Metadata is empty")
         return metadata.masterCopy.last!.address
@@ -42,10 +46,9 @@ public class InMemorySafeContractMetadataRepository: SafeContractMetadataReposit
         return self[masterCopyAddress]?.version
     }
 
-    public func deploymentCode(masterCopyAddress: Address) -> Data? {
-        guard let code = self[masterCopyAddress]?.proxyCode else { return nil }
+    public func deploymentCode(masterCopyAddress: Address) -> Data {
         let contract = EthereumContractProxy()
-        return code + contract.encodeAddress(masterCopyAddress)
+        return metadata.proxyCode + contract.encodeAddress(masterCopyAddress)
     }
 
     public func EIP712SafeAppTxTypeHash(masterCopyAddress: Address) -> Data? {

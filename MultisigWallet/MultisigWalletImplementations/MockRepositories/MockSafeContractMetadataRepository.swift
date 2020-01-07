@@ -9,12 +9,14 @@ public class MockSafeContractMetadataRepository: SafeContractMetadataRepository 
 
     public var multiSendContractAddress: Address
     public var proxyFactoryAddress: Address
+    public var fallbackHandlerAddress: Address
     public var latestMasterCopyAddress: Address
 
     public init() {
         multiSendContractAddress = Address("0x0000000000000000000000000000000000000001")
         proxyFactoryAddress = Address("0x0000000000000000000000000000000000000002")
-        latestMasterCopyAddress = Address("0x0000000000000000000000000000000000000003")
+        fallbackHandlerAddress = Address("0x0000000000000000000000000000000000000003")
+        latestMasterCopyAddress = Address("0x0000000000000000000000000000000000000004")
     }
 
     public var isOldMasterCopy_result: Bool = false
@@ -44,8 +46,8 @@ public class MockSafeContractMetadataRepository: SafeContractMetadataRepository 
         contractVersion
     }
 
-    public func deploymentCode(masterCopyAddress: Address) -> Data? {
-        nil
+    public func deploymentCode(masterCopyAddress: Address) -> Data {
+        return Data()
     }
 
     public func EIP712SafeAppTxTypeHash(masterCopyAddress: Address) -> Data? {

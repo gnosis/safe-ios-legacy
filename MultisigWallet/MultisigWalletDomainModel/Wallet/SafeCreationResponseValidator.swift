@@ -49,6 +49,7 @@ public class SafeCreationResponseValidator: Assertable {
                               threshold: request.threshold,
                               to: .zero,
                               data: Data(),
+                              fallbackHandler: repository.fallbackHandlerAddress,
                               paymentToken: Address(request.paymentToken),
                               payment: response.payment.value,
                               paymentReceiver: response.paymentReceiverAddress)
@@ -65,9 +66,7 @@ public class SafeCreationResponseValidator: Assertable {
         let salt = hash(hash(response.setupDataValue) + contract.encodeUInt(BigUInt(request.saltNonce)!))
         precondition(salt.count == 32, "Salt must be always 32 bytes")
 
-        // Force unwrapping because there has to be always deployment code for a verified master copy address,
-        // otherwise it is a programmer error (wrong configuration)
-        let initCode = repository.deploymentCode(masterCopyAddress: response.masterCopyAddress)!
+        let initCode = repository.deploymentCode(masterCopyAddress: response.masterCopyAddress)
         let initAddress = Data(hex: repository.proxyFactoryAddress.value)
         precondition(initAddress.count == 20, "Init address must always be 20 bytes")
 

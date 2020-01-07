@@ -58,10 +58,11 @@ final class SupportFlowCoordinator: FlowCoordinator {
         openInSafari(ApplicationServiceRegistry.walletService.configuration.appStoreReviewUrl)
     }
 
-    func openBlogPostForContractUpgrade_1_0_0() {
-        Tracker.shared.track(event: ContractUpgradeTrackingEvent._1_0_0_openBlogArticle)
+    func openBlogPostForContractUpgrade_1_1_1() {
+        Tracker.shared.track(event: ContractUpgradeTrackingEvent._1_1_1_openBlogArticle)
+        // TODO: there should be a separate blog article for 1.1.1
         // swiftlint:disable:next line_length
-        openInSafari(URL(string: "https://blog.gnosis.pm/formal-verification-a-journey-deep-into-the-gnosis-safe-smart-contracts-b00daf354a9c")!)
+        openInSafari(URL(string: "https://blog.gnosis.pm/announcing-the-gnosis-safe-contract-update-1-1-0-bug-bounty-fd2850204963")!)
     }
 
     func openAuthenticatorInfo() {

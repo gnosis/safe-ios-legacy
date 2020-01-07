@@ -28,7 +28,7 @@ open class ContractUpgradeApplicationService: OwnerModificationApplicationServic
     }
 
     public func update(transaction: String) {
-        domainService.update(transaction: TransactionID(transaction), newOwnerAddress: "")
+        domainService.update(transaction: TransactionID(transaction), newOwnerAddress: "will be ignored")
     }
 
     public func subscribeForContractUpgrade(_ handler: @escaping () -> Void) {
@@ -36,10 +36,10 @@ open class ContractUpgradeApplicationService: OwnerModificationApplicationServic
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: ContractUpgraded.self)
     }
 
-    public func isUpgradingTo_v1_0_0() -> Bool {
+    public func isUpgradingTo_v1_1_1() -> Bool {
         let masterCopy = DomainRegistry.safeContractMetadataRepository.latestMasterCopyAddress
         let version = DomainRegistry.safeContractMetadataRepository.version(masterCopyAddress: masterCopy)
-        return version == "1.0.0"
+        return version == "1.1.1"
     }
 
 }
