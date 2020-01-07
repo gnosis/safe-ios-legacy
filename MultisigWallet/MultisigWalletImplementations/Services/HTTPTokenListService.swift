@@ -15,7 +15,7 @@ public final class HTTPTokenListService: TokenListDomainService {
 
         var httpMethod: String { return "GET" }
         var urlPath: String { return "/api/v1/tokens/" }
-        var query: String? { return "limit=1000" }
+        var query: String? { return "limit=5000" }
     }
 
     public init(url: URL, logger: Logger) {
