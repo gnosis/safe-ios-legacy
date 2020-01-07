@@ -109,6 +109,7 @@ extension SafeContractMetadata: Codable {
         case defaultCallbackHandlerAddress = "default_callback_handler_address"
         case safeFunderAddress = "safe_funder_address"
         case metadata = "contract_metadata"
+        case multiSend = "multi_send"
     }
 
     public init(from decoder: Decoder) throws {
@@ -119,7 +120,8 @@ extension SafeContractMetadata: Codable {
                       defaultFallbackHandlerAddress: Address(values.decode(String.self,
                                                                            forKey: .defaultCallbackHandlerAddress)),
                       safeFunderAddress: Address(values.decode(String.self, forKey: .safeFunderAddress)),
-                      metadata: values.decode([MasterCopyMetadata].self, forKey: .metadata))
+                      masterCopy: values.decode([MasterCopyMetadata].self, forKey: .metadata),
+                      multiSend: values.decode([MultiSendMetadata].self, forKey: .multiSend))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -129,7 +131,8 @@ extension SafeContractMetadata: Codable {
         try container.encode(proxyCode.toHexString().addHexPrefix(), forKey: .proxyCode)
         try container.encode(defaultFallbackHandlerAddress.value, forKey: .defaultCallbackHandlerAddress)
         try container.encode(safeFunderAddress.value, forKey: .safeFunderAddress)
-        try container.encode(metadata, forKey: .metadata)
+        try container.encode(masterCopy, forKey: .metadata)
+        try container.encode(multiSend, forKey: .multiSend)
     }
 
 }
@@ -157,6 +160,27 @@ extension MasterCopyMetadata: Codable {
         try container.encode(version, forKey: .version)
         try container.encode(txTypeHash.toHexString().addHexPrefix(), forKey: .txTypeHash)
         try container.encode(domainSeparatorHash.toHexString().addHexPrefix(), forKey: .domainSeparatorHash)
+    }
+
+}
+
+extension MultiSendMetadata: Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case address = "address"
+        case version = "version"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        try self.init(address: Address(values.decode(String.self, forKey: .address)),
+                      version: values.decode(Int.self, forKey: .version))
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(address.value, forKey: .address)
+        try container.encode(version, forKey: .version)
     }
 
 }

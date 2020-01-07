@@ -158,6 +158,14 @@ class MainViewController: UIViewController {
         assetViewController.delegate?.openAddressDetails()
     }
 
+    @IBAction func universalScanButtonTapped(_ sender: Any) {
+        MainFlowCoordinator.shared.saveCheckpoint()
+        MainFlowCoordinator.shared.enter(flow: UniversalScanFlowCoordinator.shared) { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                MainFlowCoordinator.shared.popToLastCheckpoint()
+            }
+        }
+    }
     private var isRunningDiagnostics = false
 
     // don't run diagnostics if the app is not in foreground or diagnostics is already running

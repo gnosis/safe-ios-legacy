@@ -146,8 +146,7 @@ class HTTPGnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         let addOwnerData = context.safe.proxy.addOwner(newOwnerEOA.address, newThreshold: newThreshold)
         linkedList.add(newOwnerEOA.address)
 
-        let multiSendAddress = DomainRegistry.safeContractMetadataRepository.multiSendContractAddress
-        let multiSendContract = MultiSendContractProxy(multiSendAddress)
+        let multiSendContract = MultiSendContractProxy()
 
         let txData = multiSendContract.multiSend([
             (operation: .call, to: context.safe.address, value: 0, data: removeOwnerData),

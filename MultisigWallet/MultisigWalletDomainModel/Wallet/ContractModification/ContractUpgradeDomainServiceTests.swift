@@ -90,17 +90,18 @@ class ContractUpgradeDomainServiceTests: BaseBrowserExtensionModificationTestCas
 }
 
 fileprivate extension SafeContractMetadata {
-
+    
     static func metadataWithMasterCopy(_ address: Address) -> SafeContractMetadata {
         return SafeContractMetadata(multiSendContractAddress: .testAccount1,
                                     proxyFactoryAddress: .testAccount1,
                                     proxyCode: Data(),
                                     defaultFallbackHandlerAddress: .testAccount1,
                                     safeFunderAddress: .testAccount1,
-                                    metadata: [MasterCopyMetadata(address: address,
+                                    masterCopy: [MasterCopyMetadata(address: address,
                                                                   version: "1.1.1",
                                                                   txTypeHash: Data(),
-                                                                  domainSeparatorHash: Data())])
+                                                                  domainSeparatorHash: Data())],
+                                    multiSend: [])
     }
-
+    
 }

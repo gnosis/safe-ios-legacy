@@ -21,6 +21,7 @@ import MultisigWalletApplication
         static let activeSessions = LocalizedString("active_sessions", comment: "Active sessions").uppercased()
         static let disconnect = LocalizedString("disconnect", comment: "Disconnect")
         static let noActiveSessions = LocalizedString("no_active_sessions", comment: "No active sessions")
+        static let qrScannerHeader = LocalizedString("scan_wallet_connect", comment: "Scan WalletConnect QR code")
     }
 
     private var sessions = [WCSessionData]()
@@ -65,6 +66,7 @@ import MultisigWalletApplication
             guard code.starts(with: "wc:") else { return nil }
             return code
         }
+        scanButtonItem.scanHeader = Strings.qrScannerHeader
         navigationItem.rightBarButtonItem = scanButtonItem
     }
 
@@ -96,6 +98,23 @@ import MultisigWalletApplication
             self.tableView.backgroundView = self.sessions.isEmpty ? self.noSessionsView : nil
             self.tableView.reloadData()
         }
+    }
+
+    private func showCompletionPanelOnNewSessionConnection() {
+        let shouldShowPanel = didConnectNewSessions(in: wcService.sessions())
+        guard shouldShowPanel else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+            let vc = WCCompletionPanelViewController.create()
+            vc.present(from: self)
+        }
+    }
+
+    private func didConnectNewSessions(in newSessions: [WCSessionData]) -> Bool {
+        let oldIDs = sessions.filter { !$0.isConnecting }.map { $0.id }
+        let newIDs = newSessions.filter { !$0.isConnecting }.map { $0.id }
+        let hasNewIDs = !Set(newIDs).subtracting(oldIDs).isEmpty
+        return hasNewIDs
     }
 
     // MARK: - UITableViewDataSource
@@ -177,6 +196,7 @@ extension WCSessionListTableViewController: EventSubscriber {
 
     // FailedToConnectSession, SessionUpdated (connected/disconnected)
     func notify() {
+        showCompletionPanelOnNewSessionConnection()
         update()
     }
 

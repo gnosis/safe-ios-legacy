@@ -17,6 +17,10 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     /// the UI is not properly intiialized to show error or other information.
     var connectionURL: URL?
 
+    func canHandle(_ url: URL) -> Bool {
+        ApplicationServiceRegistry.walletConnectService.canHandle(url.absoluteString)
+    }
+
     override func setUp() {
         super.setUp()
         guard ApplicationServiceRegistry.walletConnectService.isAvaliable else {
@@ -32,7 +36,7 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     }
 
     func showOnboarding() {
-        let vc = OnboardingViewController.create(next: { [weak self] in
+        let vc = OnboardingViewController.createWalletConnectOnboarding(next: { [weak self] in
             self?.onboardingController?.transitionToNextPage()
         }, finish: { [weak self] in
             self?.finishOnboarding()
@@ -56,16 +60,31 @@ final class WalletConnectFlowCoordinator: FlowCoordinator {
     }
 
     func showSessionList() {
+        if connectionURL != nil { // requested to connect via universal link or deep link
+            let selectSafeVC = WCSelectSafeViewController(style: .grouped)
+            selectSafeVC.onNext = { [unowned self] in
+                MainFlowCoordinator.shared.switchToRootController()
+                self.setRoot(MainFlowCoordinator.shared.rootViewController)
+                self.presentSessionList()
+            }
+            push(selectSafeVC)
+        } else {
+            presentSessionList()
+        }
+    }
+
+    private func presentSessionList() {
         let vc = WCSessionListTableViewController(connectionURL: connectionURL)
         push(vc)
         sessionListController = vc
+        connectionURL = nil
     }
 
 }
 
-fileprivate extension OnboardingViewController {
+extension OnboardingViewController {
 
-    static func create(next: @escaping () -> Void, finish: @escaping () -> Void) -> OnboardingViewController {
+    static func createWalletConnectOnboarding(next: @escaping () -> Void, finish: @escaping () -> Void) -> OnboardingViewController {
         let nextActionTitle = LocalizedString("next", comment: "Next")
         return .create(steps: [
             .init(image: Asset._1.image,

@@ -500,4 +500,12 @@ class MockSafeContractMetadataRepository: SafeContractMetadataRepository {
         return nil
     }
 
+    func version(multiSendAddress: mAddress) -> Int? {
+        return nil
+    }
+
+    func isValidMultiSend(address: mAddress) -> Bool {
+        return false
+    }
+
 }

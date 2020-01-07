@@ -12,10 +12,14 @@ class WalletConnectFlowCoordinatorTests: XCTestCase {
     let nav = UINavigationController()
     var fc: WalletConnectFlowCoordinator!
     let service = MockWalletConnectApplicationService(chainId: 1)
+    let walletService = MockWalletApplicationService()
+    let recoveryService = MockRecoveryApplicationService()
 
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: service, for: WalletConnectApplicationService.self)
+        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
+        ApplicationServiceRegistry.put(service: recoveryService, for: RecoveryApplicationService.self)
         fc = WalletConnectFlowCoordinator(rootViewController: nav)
     }
 
@@ -75,7 +79,10 @@ class WalletConnectFlowCoordinatorTests: XCTestCase {
         fc = WalletConnectFlowCoordinator(rootViewController: nav)
         fc.connectionURL = url
         fc.showSessionList()
-        XCTAssertEqual(fc.sessionListController!.connectionURL, url)
+        XCTAssertTrue(fc.topViewController is WCSelectSafeViewController)
+        let vc = fc.topViewController as? WCSelectSafeViewController
+        vc?.onNext?()
+        XCTAssertEqual(fc.sessionListController?.connectionURL, url)
     }
 
 }

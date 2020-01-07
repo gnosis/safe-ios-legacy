@@ -202,12 +202,13 @@ extension SafeContractMetadata {
                                     proxyCode: proxyCode,
                                     defaultFallbackHandlerAddress: .testAccount3,
                                     safeFunderAddress: .testAccount4,
-                                    metadata: [MasterCopyMetadata(address: .testAccount4,
+                                    masterCopy: [MasterCopyMetadata(address: .testAccount4,
                                                                   version: "1.1.1",
                                                                   txTypeHash: txTypeHash,
-                                                                  domainSeparatorHash: domainTypeHash)])
+                                                                  domainSeparatorHash: domainTypeHash)],
+                                    multiSend: [])
     }
-
+    
 }
 
 extension SafeCreationRequest {

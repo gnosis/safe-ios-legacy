@@ -70,6 +70,10 @@ public protocol WalletConnectDomainService {
     /// - Parameter delegate: WalletConnectDomainServiceDelegate object.
     func updateDelegate(_ delegate: WalletConnectDomainServiceDelegate)
 
+    /// Checks whether the service can connect using the provided url
+    /// - Parameter url: url for connection
+    func canHandle(_ url: String) -> Bool
+
     /// Connect to WalletConnect URL. Should not be called if WalletConnect session exists for this url.
     ///
     /// - Parameter url: URL string

@@ -22,4 +22,7 @@ public protocol SafeContractMetadataRepository {
     func EIP712SafeAppTxTypeHash(masterCopyAddress: Address) -> Data?
     func EIP712SafeAppDomainSeparatorTypeHash(masterCopyAddress: Address) -> Data?
 
+    func version(multiSendAddress: Address) -> Int?
+    func isValidMultiSend(address: Address) -> Bool
+
 }

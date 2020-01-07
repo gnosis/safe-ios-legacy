@@ -163,15 +163,16 @@ class SafeCreationResponseValidatorTests: XCTestCase {
                                             proxyCode: Data(ethHex: "0x608060405234801561001057600080fd5b506040516101e73803806101e78339818101604052602081101561003357600080fd5b8101908080519060200190929190505050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100ca576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260248152602001806101c36024913960400191505060405180910390fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505060aa806101196000396000f3fe608060405273ffffffffffffffffffffffffffffffffffffffff600054167fa619486e0000000000000000000000000000000000000000000000000000000060003514156050578060005260206000f35b3660008037600080366000845af43d6000803e60008114156070573d6000fd5b3d6000f3fea265627a7a72315820d8a00dc4fe6bf675a9d7416fc2d00bb3433362aa8186b750f76c4027269667ff64736f6c634300050e0032496e76616c6964206d617374657220636f707920616464726573732070726f7669646564"),
                                             defaultFallbackHandlerAddress: Address("0xd5D82B6aDDc9027B22dCA772Aa68D5d74cdBdF44"),
                                             safeFunderAddress: Address("0xd9e09beaEb338d81a7c5688358df0071d4988115"),
-                                            metadata: [MasterCopyMetadata(address: Address("0x34CfAC646f301356fAa8B21e94227e3583Fe3F5F"),
+                                            masterCopy: [MasterCopyMetadata(address: Address("0x34CfAC646f301356fAa8B21e94227e3583Fe3F5F"),
                                                                           version: "1.1.1",
                                                                           txTypeHash: Data(ethHex: "0xbb8310d486368db6bd6f849402fdd73ad53d316b5a4b2644ad6efe0f941286d8"),
-                                                                          domainSeparatorHash: Data(ethHex: "0x035aff83d86937d35b32e04f0ddc6ff469290eef2f1b692d8a815c89404d4749"))])
+                                                                          domainSeparatorHash: Data(ethHex: "0x035aff83d86937d35b32e04f0ddc6ff469290eef2f1b692d8a815c89404d4749"))],
+                                            multiSend: [])
         // swiftlint:enable line_length
-
+        
         let repo = InMemorySafeContractMetadataRepository(metadata: metadata)
         DomainRegistry.put(service: repo, for: SafeContractMetadataRepository.self)
-
+        
         let request = try JSONDecoder().decode(SafeCreationRequest.self,
                                                from: requestJSON.data(using: .utf8)!)
         let response = try JSONDecoder().decode(SafeCreationRequest.Response.self,

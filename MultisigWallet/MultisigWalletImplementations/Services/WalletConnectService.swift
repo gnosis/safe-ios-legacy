@@ -29,6 +29,10 @@ public class WalletConnectService: WalletConnectDomainService {
         self.delegate = delegate
     }
 
+    public func canHandle(_ url: String) -> Bool {
+        WCURL(url) != nil
+    }
+
     public func connect(url: String) throws {
         guard let wcurl = WCURL(url) else { throw WCError.wrongURLFormat }
         do {

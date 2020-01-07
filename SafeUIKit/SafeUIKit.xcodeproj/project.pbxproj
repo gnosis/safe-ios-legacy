@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044ABE6223AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044ABE6123AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift */; };
+		0472735723A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */; };
 		0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00292B20CFC118009A4BFE /* SegmentBar.swift */; };
 		0A028ECA21AD52EA00431D25 /* SendInputDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EC921AD52EA00431D25 /* SendInputDemoViewController.swift */; };
 		0A028ECC21AD534000431D25 /* BaseDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */; };
@@ -286,6 +288,8 @@
 		0AE0FECE229EA7DD00ABC552 /* EmptyResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FECD229EA7DD00ABC552 /* EmptyResultsView.swift */; };
 		0AE0FEE8229EC2AF00ABC552 /* RecoverFeePaidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FEE7229EC2AF00ABC552 /* RecoverFeePaidViewController.swift */; };
 		0AE0FEEA229EC7BC00ABC552 /* RecoverReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0FEE9229EC7BC00ABC552 /* RecoverReviewViewController.swift */; };
+		0AE6056B23A931DD001E4F98 /* WCCompletionPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6056923A931DD001E4F98 /* WCCompletionPanelViewController.swift */; };
+		0AE6056C23A931DD001E4F98 /* WCCompletionPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE6056A23A931DD001E4F98 /* WCCompletionPanelViewController.xib */; };
 		0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950BD20D29C910099B79D /* TransactionValueView.swift */; };
 		0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C220D29C920099B79D /* TransactionParameterView.swift */; };
 		0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C320D29C920099B79D /* TransactionParticipantView.swift */; };
@@ -431,6 +435,7 @@
 		5579C57C22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */; };
 		5579C57E22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */; };
 		5579C58022C3739400BB93CA /* WCSessionListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */; };
+		558BC69023AA2687007A143F /* WCSelectSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC68F23AA2687007A143F /* WCSelectSafeViewController.swift */; };
 		5590F1AE2343447A002F120B /* EditSafeNameCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590F1AD2343447A002F120B /* EditSafeNameCommand.swift */; };
 		5590F1B12343465C002F120B /* EditSafeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5590F1AF2343465C002F120B /* EditSafeNameViewController.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
@@ -441,7 +446,6 @@
 		55980009225B73E6006D5792 /* ChangePasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */; };
 		5598000B225B74A4006D5792 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598000A225B74A4006D5792 /* Authenticator.swift */; };
 		5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */; };
-		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55AA3C2F229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C2E229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift */; };
 		55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C3022956E01007B3105 /* BasePaymentMethodViewController.swift */; };
 		55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA3C4722959131007B3105 /* PaymentMethodFooterView.swift */; };
@@ -490,8 +494,6 @@
 		55E8AFE5219B353C002930A1 /* TransferViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8AFE4219B353C002930A1 /* TransferViewTests.swift */; };
 		55E8AFE7219B37F8002930A1 /* TransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E8AFE6219B37F8002930A1 /* TransferView.xib */; };
 		55E8AFE9219B41A7002930A1 /* TransferViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */; };
-		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
-		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -688,6 +690,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		044ABE6123AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalScanFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalScanFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A00292B20CFC118009A4BFE /* SegmentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBar.swift; sourceTree = "<group>"; };
 		0A028EC921AD52EA00431D25 /* SendInputDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInputDemoViewController.swift; sourceTree = "<group>"; };
 		0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDemoViewController.swift; sourceTree = "<group>"; };
@@ -985,6 +989,8 @@
 		0AE0FECD229EA7DD00ABC552 /* EmptyResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResultsView.swift; sourceTree = "<group>"; };
 		0AE0FEE7229EC2AF00ABC552 /* RecoverFeePaidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverFeePaidViewController.swift; sourceTree = "<group>"; };
 		0AE0FEE9229EC7BC00ABC552 /* RecoverReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverReviewViewController.swift; sourceTree = "<group>"; };
+		0AE6056923A931DD001E4F98 /* WCCompletionPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCCompletionPanelViewController.swift; sourceTree = "<group>"; };
+		0AE6056A23A931DD001E4F98 /* WCCompletionPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCCompletionPanelViewController.xib; sourceTree = "<group>"; };
 		0AE950BD20D29C910099B79D /* TransactionValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionValueView.swift; sourceTree = "<group>"; };
 		0AE950C220D29C920099B79D /* TransactionParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParameterView.swift; sourceTree = "<group>"; };
 		0AE950C320D29C920099B79D /* TransactionParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParticipantView.swift; sourceTree = "<group>"; };
@@ -1129,6 +1135,7 @@
 		5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectMenuCommandTests.swift; sourceTree = "<group>"; };
 		5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionListTableViewControllerTests.swift; sourceTree = "<group>"; };
+		558BC68F23AA2687007A143F /* WCSelectSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSelectSafeViewController.swift; sourceTree = "<group>"; };
 		5590F1AD2343447A002F120B /* EditSafeNameCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSafeNameCommand.swift; sourceTree = "<group>"; };
 		5590F1AF2343465C002F120B /* EditSafeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSafeNameViewController.swift; sourceTree = "<group>"; };
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
@@ -1139,7 +1146,6 @@
 		5598FFEB225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCurrentPasswordViewController.swift; sourceTree = "<group>"; };
 		5598FFEC225B73B3006D5792 /* ChangePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
 		5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55AA3C2E229546AB007B3105 /* OnboardingCreationFeeIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreationFeeIntroViewControllerTests.swift; sourceTree = "<group>"; };
 		55AA3C3022956E01007B3105 /* BasePaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -1190,8 +1196,6 @@
 		55E8AFE4219B353C002930A1 /* TransferViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewTests.swift; sourceTree = "<group>"; };
 		55E8AFE6219B37F8002930A1 /* TransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferView.xib; sourceTree = "<group>"; };
 		55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewViewController.swift; sourceTree = "<group>"; };
-		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
-		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1255,6 +1259,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0472735523A3DBBE009458E6 /* Universal */ = {
+			isa = PBXGroup;
+			children = (
+				0472735623A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift */,
+				044ABE6123AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift */,
+			);
+			path = Universal;
+			sourceTree = "<group>";
+		};
 		0A1940472226CF27005B7440 /* DisconnectTwoFA */ = {
 			isa = PBXGroup;
 			children = (
@@ -1570,6 +1583,7 @@
 				0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */,
 				0A3FB8D1228B16F100270573 /* UIBarButtonItem+Items.swift */,
 				0AE0FE41229C484000ABC552 /* CustomNavigationController.swift */,
+				0472735523A3DBBE009458E6 /* Universal */,
 				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
 				0ABD142A2292BF9A00922964 /* MainScreen */,
 				0A4EEA6B20D11109005CDAC0 /* Menu */,
@@ -1982,7 +1996,6 @@
 				5524735F214293D500A77557 /* IdenticonViewController.swift */,
 				0ABA592221AC0B6E009D249F /* LabelsViewController.swift */,
 				0A60B515211333620066821A /* ProgressViewController.swift */,
-				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
 				556251FA2149135F00F569EE /* QRCodeViewController.swift */,
 				55DE530A217B467900613B90 /* ScanButtonViewController.swift */,
 				555EB6EB216CA42100E06553 /* TextInputViewController.swift */,
@@ -2079,7 +2092,6 @@
 				5549B2BA2285C60200F3B5B7 /* InfoLabel */,
 				0ACCA8C3221C11E700D37594 /* LoadingTitleView */,
 				55126B6221AC37FC00A9F810 /* ProgressView */,
-				5524735421428E7600A77557 /* QRCodeInput */,
 				556251F72149119200F569EE /* QRCodeView */,
 				0A2C0E3C2297E194008A30AC /* SafeLabelTitleView */,
 				55C428F8217B424C00BF8922 /* ScanBarButtonItem */,
@@ -2091,15 +2103,6 @@
 				55E8AFE1219B34D9002930A1 /* TransferView */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		5524735421428E7600A77557 /* QRCodeInput */ = {
-			isa = PBXGroup;
-			children = (
-				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
-				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
-			);
-			path = QRCodeInput;
 			sourceTree = "<group>";
 		};
 		5524735621428EC400A77557 /* QRCodeScanner */ = {
@@ -2310,20 +2313,23 @@
 		5579C56622C3662500BB93CA /* WalletConnect */ = {
 			isa = PBXGroup;
 			children = (
+				0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */,
 				5579C57722C367C400BB93CA /* WalletConnectFlowCoordinator.swift */,
 				5579C57D22C36AFF00BB93CA /* WalletConnectFlowCoordinatorTests.swift */,
 				5579C57522C3664300BB93CA /* WalletConnectMenuCommand.swift */,
 				5579C57B22C36A7A00BB93CA /* WalletConnectMenuCommandTests.swift */,
-				5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */,
 				0A4178E8239A73A2006172F3 /* WCBatchTransactionsTableViewController.swift */,
 				0A4178E4239A6CC1006172F3 /* WCMultiSendCell.swift */,
 				0A4178E5239A6CC1006172F3 /* WCMultiSendCell.xib */,
+				558BC68F23AA2687007A143F /* WCSelectSafeViewController.swift */,
+				5568A23F22D7284B007C9E0C /* WCSendReviewViewController.swift */,
 				5568A25B22D7854D007C9E0C /* WCSessionListCell.swift */,
 				5568A25D22D78583007C9E0C /* WCSessionListCell.xib */,
-				0ADE046722E5F15D00CA4705 /* PlaceholderCreator.swift */,
 				5579C57922C3687500BB93CA /* WCSessionListTableViewController.swift */,
 				5579C57F22C3739400BB93CA /* WCSessionListTableViewControllerTests.swift */,
 				5549194A22C3C94E003E63E0 /* WCTrackingEvent.swift */,
+				0AE6056923A931DD001E4F98 /* WCCompletionPanelViewController.swift */,
+				0AE6056A23A931DD001E4F98 /* WCCompletionPanelViewController.xib */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -2949,6 +2955,7 @@
 				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				552D42FD233A37E900C57B5C /* SwitchSafesTableViewCell.xib in Resources */,
+				0AE6056C23A931DD001E4F98 /* WCCompletionPanelViewController.xib in Resources */,
 				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
 				5568A25E22D78583007C9E0C /* WCSessionListCell.xib in Resources */,
 				0A3BD90422254833007039B4 /* IntroContentView.xib in Resources */,
@@ -3138,7 +3145,6 @@
 				555EB6EC216CA42100E06553 /* TextInputViewController.swift in Sources */,
 				55126B6921AC38A900A9F810 /* TransactionConfirmationViewController.swift in Sources */,
 				55E8AFE9219B41A7002930A1 /* TransferViewViewController.swift in Sources */,
-				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
 				5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */,
 				555EB71D216DF23700E06553 /* VerifiableInputViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* UnlockDemoViewController.swift in Sources */,
@@ -3164,6 +3170,7 @@
 				0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */,
 				0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
+				044ABE6223AA303D002CD92E /* UniversalScanFlowCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3239,7 +3246,6 @@
 				550E7CDC21708E1F0032DE6C /* String+Extensions.swift in Sources */,
 				55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */,
 				0ACCA8C6221C11E700D37594 /* LoadingTitleView.swift in Sources */,
-				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
 				55C3C6232174CB6E00FA5B4F /* ScanQRCodeHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3275,7 +3281,6 @@
 				555EB6F2216CA5E900E06553 /* TextInputTests.swift in Sources */,
 				0A2D589722576A98001B8BF4 /* XCTest+Tracking.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
-				55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3344,6 +3349,7 @@
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
 				55329FF622F9752900E40B06 /* RateAppCommand.swift in Sources */,
 				55330566239E4A2E0037BC6F /* NFCSupportRequiredFooterView.swift in Sources */,
+				558BC69023AA2687007A143F /* WCSelectSafeViewController.swift in Sources */,
 				0A2C0E182296F2E3008A30AC /* AddressDetailView.swift in Sources */,
 				0A2D588822575765001B8BF4 /* RecoverSafeTrackingEvent.swift in Sources */,
 				0A9CDD9323608CD700A6CC4E /* AddressBookEntryViewController.swift in Sources */,
@@ -3456,6 +3462,7 @@
 				55329FF822F9759100E40B06 /* GetInTouchCommand.swift in Sources */,
 				0ACCA8C0221C0D0100D37594 /* AuthenticatorViewController+RBE.swift in Sources */,
 				0A334E3F209C8E3800ABC6AE /* OnboardingWelcomeViewController.swift in Sources */,
+				0AE6056B23A931DD001E4F98 /* WCCompletionPanelViewController.swift in Sources */,
 				0A2D587C22574F7A001B8BF4 /* SupportFlowCoordinator.swift in Sources */,
 				0A3D14F4220B1D2800E340DB /* ReplaceTwoFACommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
@@ -3474,6 +3481,7 @@
 				0A4178E6239A6CC1006172F3 /* WCMultiSendCell.swift in Sources */,
 				0A4178E9239A73A2006172F3 /* WCBatchTransactionsTableViewController.swift in Sources */,
 				0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */,
+				0472735723A3DBBE009458E6 /* UniversalScanFlowCoordinator.swift in Sources */,
 				0A179C8D2256611F00C60138 /* SendTrackingEvent.swift in Sources */,
 				0A05951D22E99F050001D7D5 /* Colors.swift in Sources */,
 				552D0FC923279C2000127223 /* TwoFATableViewCell.swift in Sources */,

@@ -827,6 +827,9 @@ Pairing password: %@";
 /* Description for transaction confirmation alert. */
 "resend_to_refresh" = "Resend to refresh the connection.";
 
+/* Go back */
+"return_to_dapp" = "Done!\nYou can now return to your browser.";
+
 /* Review button for Send screen
    Review transaction title */
 "review" = "Review";
@@ -864,11 +867,17 @@ Pairing password: %@";
 /* Scan QR code */
 "scan_qr_code" = "Scan QR Code";
 
+/* Scan WalletConnect QR code */
+"scan_wallet_connect" = "Scan the QR code of a desktop Dapp to connect your Safe using WalletConnect";
+
 /* New Safe onboarding 2 title */
 "secure_by_design" = "Secure by design";
 
 /* Step 3 description */
 "securely_store_your_recovery" = "Securely store your recovery phrase to restore your Safe in case you lose access to this device";
+
+/* Select Safe to connect */
+"select_safe_to_connect" = "Select a Safe to connect";
 
 /* Send token again */
 "send_again" = "Send %@ again";
