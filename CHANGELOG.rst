@@ -8,6 +8,16 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.13.0`_ - 2020-01-08
+======================
+Changed
+--------
+- Updated max limit of loaded tokens.
+
+Added
+------
+- Safe contract upgrade to version 1.1.1
+
 `1.12.0`_ - 2019-12-20
 ======================
 Changed
@@ -483,6 +493,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.13.0: https://github.com/gnosis/safe-ios/tree/1.13.0
 .. _1.12.0: https://github.com/gnosis/safe-ios/tree/1.12.0
 .. _1.11.1: https://github.com/gnosis/safe-ios/tree/1.11.1
 .. _1.11.0: https://github.com/gnosis/safe-ios/tree/1.11.0
