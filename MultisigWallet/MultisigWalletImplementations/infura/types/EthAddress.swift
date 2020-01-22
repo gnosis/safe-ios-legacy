@@ -5,6 +5,7 @@
 import Foundation
 import EthereumKit
 import CryptoSwift
+import MultisigWalletDomainModel
 
 public struct EthAddress: Equatable, CustomStringConvertible {
 
@@ -53,6 +54,14 @@ extension EthAddress: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(mixedCaseChecksumEncoded)
+    }
+
+}
+
+public extension EthAddress {
+
+    public var address: MultisigWalletDomainModel.Address {
+        Address(mixedCaseChecksumEncoded)
     }
 
 }

@@ -8,7 +8,7 @@ import CryptoSwift
 
 public struct EthInt {
 
-    public let value: BigInt
+    public var value: BigInt
 
     public init(_ value: BigInt) {
         self.value = value
@@ -29,10 +29,12 @@ extension EthInt: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
-        guard let value = BigInt(string.stripHexPrefix(), radix: 16) else {
+        let value: BigInt? = string.hasPrefix("0x") ?
+            BigInt(string.stripHexPrefix(), radix: 16) : BigInt(string, radix: 10)
+        guard value != nil else {
             throw CodableError.invalidStringValue(string)
         }
-        self.init(value)
+        self.init(value!)
     }
 
     public func encode(to encoder: Encoder) throws {
