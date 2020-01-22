@@ -268,6 +268,23 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    public func findMultisigSafesForSelectedSafe() -> [WalletData] {
+        do {
+            let safes = try DomainRegistry.transactionHistoryService.safes(by: selectedWallet!.address!)
+            return safes.map { address in
+                WalletData(id: address,
+                           address: address,
+                           name: "Unknown",
+                           state: .readyToUse,
+                           canRemove: false,
+                           isSelected: false,
+                           requiresBackupToRemove: false)
+            }
+        } catch {
+            return []
+        }
+    }
+
     // MARK: - Owners
 
     public func isOwnerExists(_ type: OwnerType) -> Bool {

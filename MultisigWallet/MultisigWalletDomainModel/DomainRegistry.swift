@@ -72,6 +72,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: TransactionRelayDomainService.self)
     }
 
+    public static var transactionHistoryService: TransactionHistoryDomainService {
+        return service(for: TransactionHistoryDomainService.self)
+    }
+
     public static var ethereumNodeService: EthereumNodeDomainService {
         return service(for: EthereumNodeDomainService.self)
     }

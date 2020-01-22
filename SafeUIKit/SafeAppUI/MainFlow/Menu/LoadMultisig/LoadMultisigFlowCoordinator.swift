@@ -8,8 +8,16 @@ final class LoadMultisigFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        let controller = LoadMultisigIntroViewController.create()
+        let controller = LoadMultisigIntroViewController.create(delegate: self)
         push(controller)
+    }
+
+}
+
+extension LoadMultisigFlowCoordinator: LoadMultisigIntroViewControllerDelegate {
+
+    func loadMultisigIntroViewControllerDidSelectLoad(_ controller: LoadMultisigIntroViewController) {
+        push(LoadMultisigSelectTableViewController())
     }
 
 }

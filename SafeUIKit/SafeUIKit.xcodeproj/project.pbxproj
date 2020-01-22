@@ -337,6 +337,7 @@
 		552443B923D7413C007C2044 /* LoadMultisigFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443B823D7413C007C2044 /* LoadMultisigFlowCoordinator.swift */; };
 		552443BB23D7599D007C2044 /* LoadMultisigIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443BA23D7599D007C2044 /* LoadMultisigIntroViewController.swift */; };
 		552443BD23D75B3E007C2044 /* LoadMultisigIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552443BC23D75B3E007C2044 /* LoadMultisigIntroViewController.xib */; };
+		552443BF23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443BE23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
 		5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735A21428FDD00A77557 /* IdenticonView.swift */; };
 		55247360214293D500A77557 /* IdenticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735F214293D500A77557 /* IdenticonViewController.swift */; };
@@ -1050,6 +1051,7 @@
 		552443B823D7413C007C2044 /* LoadMultisigFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMultisigFlowCoordinator.swift; sourceTree = "<group>"; };
 		552443BA23D7599D007C2044 /* LoadMultisigIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMultisigIntroViewController.swift; sourceTree = "<group>"; };
 		552443BC23D75B3E007C2044 /* LoadMultisigIntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadMultisigIntroViewController.xib; sourceTree = "<group>"; };
+		552443BE23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMultisigSelectTableViewController.swift; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		5524735A21428FDD00A77557 /* IdenticonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonView.swift; sourceTree = "<group>"; };
 		5524735F214293D500A77557 /* IdenticonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonViewController.swift; sourceTree = "<group>"; };
@@ -2090,6 +2092,7 @@
 				552443B823D7413C007C2044 /* LoadMultisigFlowCoordinator.swift */,
 				552443BA23D7599D007C2044 /* LoadMultisigIntroViewController.swift */,
 				552443BC23D75B3E007C2044 /* LoadMultisigIntroViewController.xib */,
+				552443BE23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift */,
 			);
 			path = LoadMultisig;
 			sourceTree = "<group>";
@@ -3333,6 +3336,7 @@
 				0A1E200823859D8A00BBCBDF /* FlowController.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
 				0A2D588222575435001B8BF4 /* ReplaceTwoFATrackingEvent.swift in Sources */,
+				552443BF23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift in Sources */,
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
 				553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */,
 				0A3BD95B22255C40007039B4 /* ConnectTwoFACommand.swift in Sources */,

@@ -26,7 +26,7 @@ public class HTTPTransactionHistoryService: TransactionHistoryDomainService {
 extension GetSafesByOwnerRequest: JSONRequest {
 
     public var httpMethod: String { return "GET" }
-    public var urlPath: String { return "/owners/\(owner)/" }
+    public var urlPath: String { return "/api/v1/owners/\(owner)/" }
 
     public typealias ResponseType = Response
 
