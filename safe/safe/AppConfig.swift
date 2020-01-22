@@ -12,6 +12,7 @@ struct AppConfig: Codable {
     var encryptionServiceChainId: Int
     var nodeServiceConfig: NodeServiceConfig
     var relayServiceURL: URL
+    var transactionHistoryServiceURL: URL
     var notificationServiceURL: URL
     var transactionWebURLFormat: String
     var chromeExtensionURL: URL
@@ -31,6 +32,7 @@ struct AppConfig: Codable {
         case encryptionServiceChainId = "encryption_service_chain_id"
         case nodeServiceConfig = "node_service"
         case relayServiceURL = "relay_service_url"
+        case transactionHistoryServiceURL = "transaction_history_service_url"
         case notificationServiceURL = "notification_service_url"
         case transactionWebURLFormat = "transaction_web_url_format"
         case chromeExtensionURL = "chrome_extension_url"
