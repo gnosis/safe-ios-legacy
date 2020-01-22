@@ -225,6 +225,11 @@ public class TransactionDomainService {
         }
     }
 
+    public func syncTransactionsFromTheTransactionService() {
+        let syncer = TransactionSyncDomainService()
+        syncer.sync()
+    }
+
 }
 
 public class TransactionStatusUpdated: DomainEvent {}

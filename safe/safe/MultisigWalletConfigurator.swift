@@ -27,9 +27,15 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: config.notificationServiceURL,
                                                           logger: LogService.shared)
+
         DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+
         let tokenService = HTTPTokenListService(url: config.relayServiceURL, logger: LogService.shared)
         DomainRegistry.put( service: tokenService, for: TokenListDomainService.self)
+
+        let safeTxService = HTTPGnosisTransactionService(url: config.safeTxServiceURL)
+        DomainRegistry.put(service: safeTxService, for: SafeTransactionDomainService.self)
+
         DomainRegistry.put(service: AccountUpdateDomainService(), for: AccountUpdateDomainService.self)
         DomainRegistry.put(service: SynchronisationService(), for: SynchronisationDomainService.self)
         DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)

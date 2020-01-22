@@ -293,6 +293,9 @@
 		0AAE7E532304569F00E7EB07 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E252304569E00E7EB07 /* DomainRegistryTests.swift */; };
 		0AAE7E542304569F00E7EB07 /* BaseInMemoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7E262304569E00E7EB07 /* BaseInMemoryRepositoryTests.swift */; };
 		0AB30E852366FF7100E3AC7C /* AddressBookEntryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB30E802366FF7100E3AC7C /* AddressBookEntryData.swift */; };
+		0AC079D623D70AEB00402715 /* HTTPGnosisTransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC079D523D70AEB00402715 /* HTTPGnosisTransactionService.swift */; };
+		0AC079DC23D70B8D00402715 /* SafeTransactionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC079DB23D70B8D00402715 /* SafeTransactionDomainService.swift */; };
+		0AC079DE23D70BB700402715 /* TransactionSyncDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC079DD23D70BB700402715 /* TransactionSyncDomainService.swift */; };
 		0AC8A50B237C1F4900518C65 /* ENSAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC8A50A237C1F4900518C65 /* ENSAPIServiceTests.swift */; };
 		0AC8A511237C1F7000518C65 /* IDN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC8A510237C1F7000518C65 /* IDN.swift */; };
 		0AC8A513237C3E9300518C65 /* IDNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC8A512237C3E9300518C65 /* IDNTests.swift */; };
@@ -767,6 +770,9 @@
 		0AB08751212D9851002F969C /* MockEventRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventRelay.swift; sourceTree = "<group>"; };
 		0AB0B5692163881300FB2435 /* TestDependencies.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = TestDependencies.xcfilelist; sourceTree = "<group>"; };
 		0AB30E802366FF7100E3AC7C /* AddressBookEntryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookEntryData.swift; sourceTree = "<group>"; };
+		0AC079D523D70AEB00402715 /* HTTPGnosisTransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPGnosisTransactionService.swift; sourceTree = "<group>"; };
+		0AC079DB23D70B8D00402715 /* SafeTransactionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTransactionDomainService.swift; sourceTree = "<group>"; };
+		0AC079DD23D70BB700402715 /* TransactionSyncDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSyncDomainService.swift; sourceTree = "<group>"; };
 		0AC8A50A237C1F4900518C65 /* ENSAPIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENSAPIServiceTests.swift; sourceTree = "<group>"; };
 		0AC8A510237C1F7000518C65 /* IDN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDN.swift; sourceTree = "<group>"; };
 		0AC8A512237C3E9300518C65 /* IDNTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDNTests.swift; sourceTree = "<group>"; };
@@ -889,6 +895,7 @@
 				0A1617EF2304593B00F6E501 /* HTTPTokenListService.swift */,
 				0A1617F02304593B00F6E501 /* DemoEthereumNodeService.swift */,
 				0A1617F12304593B00F6E501 /* HTTPGnosisTransactionRelayService.swift */,
+				0AC079D523D70AEB00402715 /* HTTPGnosisTransactionService.swift */,
 				0A1617F22304593B00F6E501 /* HTTPNotificatonService.swift */,
 				0A1617F32304593B00F6E501 /* MockEthereumNodeService.swift */,
 				0ACD3F03232BE925000E9274 /* Keycard */,
@@ -1028,6 +1035,8 @@
 				0AC8A51F237C4A9B00518C65 /* ENSContractProxy.swift */,
 				0AC8A543237C616E00518C65 /* ENSDomainService.swift */,
 				0AAE7CFA2304544800E7EB07 /* GnosisSafeContractProxy.swift */,
+				0AC079DB23D70B8D00402715 /* SafeTransactionDomainService.swift */,
+				0AC079DD23D70BB700402715 /* TransactionSyncDomainService.swift */,
 				0AAC16F123A789F00054F6B5 /* MultiSend */,
 				0AAE7D362304544800E7EB07 /* NotificationService */,
 				0AAE7D5C2304544900E7EB07 /* Portfolio */,
@@ -1978,6 +1987,7 @@
 				0AAE7DAC2304544A00E7EB07 /* SendNotificationRequest.swift in Sources */,
 				0A2ACBD92327FD1B0054D1D1 /* KeycardDomainService.swift in Sources */,
 				0AAE7D932304544A00E7EB07 /* ConnectTwoFADomainService.swift in Sources */,
+				0AC079DC23D70B8D00402715 /* SafeTransactionDomainService.swift in Sources */,
 				0AAE7D9C2304544A00E7EB07 /* ExternallyOwnedAccountRepository.swift in Sources */,
 				0AAE7DD62304544A00E7EB07 /* MultiSendContractProxy.swift in Sources */,
 				0AAE7DAA2304544A00E7EB07 /* PairingRequest.swift in Sources */,
@@ -1995,6 +2005,7 @@
 				0AAE7DBD2304544A00E7EB07 /* GetSafeCreationStatusRequest.swift in Sources */,
 				0AAE7DAB2304544A00E7EB07 /* DeletePairRequest.swift in Sources */,
 				0AAE7DC42304544A00E7EB07 /* SafeGasPriceResponse.swift in Sources */,
+				0AC079DE23D70BB700402715 /* TransactionSyncDomainService.swift in Sources */,
 				0AAE7D982304544A00E7EB07 /* TokenListDomainService.swift in Sources */,
 				0AAE7D942304544A00E7EB07 /* MockEventPublisher.swift in Sources */,
 				0AAE7DBE2304544A00E7EB07 /* EstimateTransactionRequest.swift in Sources */,
@@ -2164,6 +2175,7 @@
 				0A1618572304593B00F6E501 /* InfuraEthereumNodeService.swift in Sources */,
 				0A16183D2304593B00F6E501 /* Token+DBSerializable.swift in Sources */,
 				55E9D3A22361A46900D2959A /* DBAddressBookRepository.swift in Sources */,
+				0AC079D623D70AEB00402715 /* HTTPGnosisTransactionService.swift in Sources */,
 				0A16183E2304593B00F6E501 /* WalletIDList+DBSerializable.swift in Sources */,
 				0A1618582304593B00F6E501 /* InMemoryTokenListItemRepository.swift in Sources */,
 				0A16181F2304593B00F6E501 /* SynchronisationService.swift in Sources */,

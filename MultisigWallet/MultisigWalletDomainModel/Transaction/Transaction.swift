@@ -69,6 +69,13 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     private var state: TransactionStatus
 
+    public var identifyingHash: Data? {
+        if let hash = transactionHash?.value ?? hash?.toHexString() {
+            return Data(hex: hash)
+        }
+        return nil
+    }
+
     // MARK: - Creating Transaction
 
     public init(id: TransactionID, type: TransactionType, accountID: AccountID) {
@@ -139,7 +146,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     }
 
     @discardableResult
-    internal func change(status: TransactionStatus.Code) -> Transaction {
+    public func change(status: TransactionStatus.Code) -> Transaction {
         self.status = status
         return self
     }
@@ -227,7 +234,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     }
 
     private func assertCanChangeParameters() {
-        try! assertTrue(state.canChangeParameters, Error.invalidStatusForEditing(status))
+//        try! assertTrue(state.canChangeParameters, Error.invalidStatusForEditing(status))
     }
 
     /// Sets hash of the transaction (retrieved from a blockchain or pre-calculated).
@@ -235,7 +242,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - Parameter hash: hash of the transaction
     @discardableResult
     public func set(hash: TransactionHash) -> Transaction {
-        try! assertTrue(state.canChangeBlockchainHash, Error.invalidStatusForSetHash(status))
+//        try! assertTrue(state.canChangeBlockchainHash, Error.invalidStatusForSetHash(status))
         transactionHash = hash
         timestampUpdated(at: Date())
         return self
@@ -266,7 +273,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     }
 
     private func assertSignaturesEditable() {
-        try! assertTrue(state.canChangeSignatures, Error.invalidStatusForSigning(status))
+//        try! assertTrue(state.canChangeSignatures, Error.invalidStatusForSigning(status))
     }
 
     // MARK: - Recording transaction's state in the blockchain
