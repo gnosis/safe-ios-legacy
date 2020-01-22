@@ -84,6 +84,7 @@ public class SynchronisationService: SynchronisationDomainService {
     private func syncTransactions() {
         guard hasAccessToFilesystem else { return }
         do {
+            DomainRegistry.transactionService.syncTransactionsFromTheTransactionService()
             try DomainRegistry.transactionService.updatePendingTransactions()
         } catch {
             if isNetworkError(error) { return }

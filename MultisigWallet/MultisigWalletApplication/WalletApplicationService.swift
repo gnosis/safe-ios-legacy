@@ -670,7 +670,13 @@ public class WalletApplicationService: Assertable {
         if tx.type.isReplaceOrDisconnectTwoFA {
             return ApplicationServiceRegistry.recoveryService.transactionData(tx)
         }
-        let type = tx.type.transactionDataType
+
+        var type: TransactionData.TransactionType = tx.type.transactionDataType
+        let walletAddress = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)?.address
+        if tx.sender != walletAddress && tx.recipient == walletAddress && type == .outgoing {
+            type = .incoming
+        }
+
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
                       balance: (type == .outgoing ? -1 : 1) * (tx.amount?.amount ?? 0)) :

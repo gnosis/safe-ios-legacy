@@ -97,6 +97,12 @@ public class RecoveryApplicationService {
         let senderName = ApplicationServiceRegistry.walletService.addressName(for: sender)
         let recipient = tx.recipient!.value
         let recipientName = ApplicationServiceRegistry.walletService.addressName(for: recipient)
+
+        var type: TransactionData.TransactionType = tx.type.transactionDataType
+        let walletAddress = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)?.address
+        if tx.sender != walletAddress && tx.recipient == walletAddress && type == .outgoing {
+            type = .incoming
+        }
         return TransactionData(id: tx.id.id,
                                walletID: tx.accountID.walletID.id,
                                sender: sender,
@@ -108,7 +114,7 @@ public class RecoveryApplicationService {
                                subtransactions: nil,
                                dataByteCount: nil,
                                status: tx.status.transactionDataStatus,
-                               type: tx.type.transactionDataType,
+                               type: type,
                                created: tx.createdDate,
                                updated: tx.updatedDate,
                                submitted: tx.submittedDate,
