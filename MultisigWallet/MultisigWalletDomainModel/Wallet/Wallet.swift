@@ -8,6 +8,13 @@ import BigInt
 
 public class WalletID: BaseID {}
 
+// NOTE: If you change old enum values, then you'll need to run a DB migration.
+// Adding new ones is OK as long as you don't change old values.
+public enum WalletType: Int {
+    case personal = 0
+    case multisig = 1
+}
+
 public class Wallet: IdentifiableEntity<WalletID> {
 
     public enum Error: String, LocalizedError, Hashable {
@@ -40,6 +47,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var owners = OwnerList()
     public private(set) var masterCopyAddress: Address!
     public private(set) var contractVersion: String!
+    public private(set) var type: WalletType = .personal
 
     public var isDeployable: Bool {
         return state.isDeployable
@@ -82,7 +90,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
                             creationTransactionHash: String?,
                             confirmationCount: Int = 1,
                             masterCopyAddress: Address? = nil,
-                            contractVersion: String? = nil) {
+                            contractVersion: String? = nil,
+                            type: WalletType = .personal) {
         self.init(id: id)
         initStates()
         self.state = newDraftState
@@ -95,6 +104,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         self.confirmationCount = confirmationCount
         self.masterCopyAddress = masterCopyAddress
         self.contractVersion = contractVersion
+        self.type = .personal
     }
 
     private func state(from walletState: WalletState.State) -> WalletState {

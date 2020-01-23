@@ -17,7 +17,7 @@ final class LoadMultisigFlowCoordinator: FlowCoordinator {
 extension LoadMultisigFlowCoordinator: LoadMultisigIntroViewControllerDelegate {
 
     func loadMultisigIntroViewControllerDidSelectLoad(_ controller: LoadMultisigIntroViewController) {
-        push(LoadMultisigSelectTableViewController())
+        push(LoadMultisigSelectTableViewController(style: .grouped))
     }
 
 }
