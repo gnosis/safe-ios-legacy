@@ -230,6 +230,12 @@ public class TransactionDomainService {
         syncer.sync()
     }
 
+    public func updateTokensFromTheTransactionService() {
+        let allWallets = DomainRegistry.walletRepository.all().filter { $0.address != nil && $0.isReadyToUse }
+        for wallet in allWallets {
+            DomainRegistry.safeTransactionService.updateTokens(safe: wallet.address)
+        }
+    }
 }
 
 public class TransactionStatusUpdated: DomainEvent {}

@@ -66,6 +66,7 @@ public class SynchronisationService: SynchronisationDomainService {
     private func syncAccounts() {
         guard hasAccessToFilesystem else { return }
         do {
+            DomainRegistry.transactionService.updateTokensFromTheTransactionService()
             try DomainRegistry.accountUpdateService.updateAccountsBalances()
         } catch {
             if isNetworkError(error) { return }

@@ -42,7 +42,6 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
         var result = [Transaction]()
         do {
             let responseTransactions = try httpClient.execute(request: GetSafeTransactionsRequest(safe: safe.value))
-            print(responseTransactions)
             result += responseTransactions.results.map { $0.transaction(in: safe) }
         } catch {
             print("Error: \(error)")
@@ -54,6 +53,26 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
             print("Error: \(error)")
         }
         return result
+    }
+
+    public func updateTokens(safe: Address) {
+        do {
+            let response = try httpClient.execute(request: GetSafeBalancesRequest(safe: safe.value))
+            let tokens = response.map { $0.modelToken }
+            for token in tokens {
+                let existing = DomainRegistry.tokenListItemRepository.find(id: token.id)
+                if existing?.status == .blacklisted || token.id == Token.Ether.id { continue }
+                else if existing == nil {
+                    let listItem = TokenListItem(token: token,
+                                                 status: .whitelisted,
+                                                 canPayTransactionFee: false)
+                    DomainRegistry.tokenListItemRepository.save(listItem)
+                }
+                DomainRegistry.tokenListItemRepository.whitelist(token)
+            }
+        } catch {
+            print("Error: \(error)")
+        }
     }
 
 }
@@ -306,301 +325,44 @@ extension GetSafeTransactionsRequest.MultisigTransaction.Confirmation {
 
 }
 
+struct GetSafeBalancesRequest: Encodable, JSONRequest {
 
-/*
-This is a paged data source.
+    typealias ResponseType = [TokenBalance]
 
- "/safes/{address}/transactions/": {
- "get": {
-     "operationId": "safes_transactions_list",
-     "description": "Returns the history of a multisig tx (safe)",
-     "parameters": [
-         {
-             "name": "executed",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "string"
-         },
-         {
-             "name": "nonce__lt",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "number"
-         },
-         {
-             "name": "nonce__gt",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "number"
-         },
-         {
-             "name": "nonce",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "number"
-         },
-         {
-             "name": "safe_tx_hash",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "string"
-         },
-         {
-             "name": "value__lt",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "number"
-         },
-         {
-             "name": "value__gt",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "number"
-         },
-         {
-             "name": "value",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "number"
-         },
-         {
-             "name": "execution_date__gte",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "string"
-         },
-         {
-             "name": "execution_date__lte",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "string"
-         },
-         {
-             "name": "submission_date__gte",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "string"
-         },
-         {
-             "name": "submission_date__lte",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "string"
-         },
-         {
-             "name": "transaction_hash",
-             "in": "query",
-             "description": "",
-             "required": false,
-             "type": "string"
-         },
-         {
-             "name": "limit",
-             "in": "query",
-             "description": "Number of results to return per page.",
-             "required": false,
-             "type": "integer"
-         },
-         {
-             "name": "offset",
-             "in": "query",
-             "description": "The initial index from which to return the results.",
-             "required": false,
-             "type": "integer"
-         }
-     ],
-     "responses": {
-         "200": {
-             "description": "",
-             "schema": {
-                 "required": [
-                     "count",
-                     "results"
-                 ],
-                 "type": "object",
-                 "properties": {
-                     "count": {
-                         "type": "integer"
-                     },
-                     "next": {
-                         "type": "string",
-                         "format": "uri",
-                         "x-nullable": true
-                     },
-                     "previous": {
-                         "type": "string",
-                         "format": "uri",
-                         "x-nullable": true
-                     },
-                     "results": {
-                         "type": "array",
-                         "items": {
-                             "$ref": "#/definitions/SafeMultisigTransactionResponse"
-                         }
-                     }
-                 }
-             }
-         },
-         "400": {
-             "description": "Invalid data"
-         },
-         "404": {
-             "description": "Not found"
-         },
-         "422": {
-             "description": "Invalid ethereum address"
-         }
-     },
-     "tags": [
-         "safes"
-     ]
- },
+    var httpMethod: String { "GET" }
+    var urlPath: String { "/api/v1/safes/\(safe)/balances/" }
 
- "SafeMultisigTransactionResponse": {
-     "required": [
-         "safe",
-         "value",
-         "operation",
-         "safeTxGas",
-         "baseGas",
-         "gasPrice",
-         "nonce",
-         "safeTxHash",
-         "transactionHash",
-         "submissionDate",
-         "isExecuted",
-         "executionDate",
-         "signatures"
-     ],
-     "type": "object",
-     "properties": {
-         "safe": {                          // sender
-             "title": "Safe",
-             "type": "string"
-         },
-         "to": {                            // recipient
-             "title": "To",
-             "type": "string",
-             "x-nullable": true
-         },
-         "value": {                       // eth amount
-             "title": "Value",
-             "type": "string",
-             "minLength": 1
-         },
-         "data": {                          // data
-             "title": "Data",
-             "type": "string",
-             "x-nullable": true
-         },
-         "operation": {                    // operation
-             "title": "Operation",
-             "type": "integer",
-             "minimum": 0
-         },
-         "gasToken": {                     // feeEstimate.gasPrice.token
-             "title": "Gas token",
-             "type": "string",
-             "x-nullable": true
-         },
-         "safeTxGas": {                     // feeEstimate.gas
-             "title": "Safe tx gas",
-             "type": "integer",
-             "minimum": 0
-         },
-         "baseGas": {                      // feeEstimate.baseGas
-             "title": "Base gas",
-             "type": "integer",
-             "minimum": 0
-         },
-         "gasPrice": {                      // feeEstimate.gasPrice.amount
-             "title": "Gas price",
-             "type": "string",
-             "minLength": 1
-         },
-         "refundReceiver": {                //  this is used for the transaction hash. Needs to be added. By default is 'false'
-             "title": "Refund receiver",    // but when it is present - is it address of the receiver?
-             "type": "string",
-             "x-nullable": true
-         },
-         "nonce": {                         // nonce
-             "title": "Nonce",
-             "type": "integer",
-             "minimum": 0
-         },
-         "safeTxHash": {                    //  hash
-             "title": "Safe tx hash",
-             "type": "string"
-         },
-         "blockNumber": {                  // No such field yet.
-             "title": "Block number",
-             "type": "integer",
-             "readOnly": true
-         },
-         "transactionHash": {               // transactionHash
-             "title": "Transaction hash",
-             "type": "string"
-         },
-         "submissionDate": {                // submittedDate -- is it submission to blockchain?
-             "title": "Submission date",
-             "type": "string",
-             "format": "date-time"
-         },
-         "isExecuted": {                    // !isExecuted && not submitted (no date) --> status = .signing
-             "title": "Is executed",        // isExecuted && isSuccessful --> status = .success
-             "type": "boolean"              // isExecuted && !isSuccessful --> status = .failed
-         },                                 // !isExecuted && submitted  --> status = .pending
-         "isSuccessful": {
-             "title": "Is successful",
-             "type": "boolean",
-             "readOnly": true
-         },
-         "executionDate": {                 // processedDate
-             "title": "Execution date",
-             "type": "string",
-             "format": "date-time"
-         },
-         "executor": {                      // No such field yet. address of the executor?
-             "title": "Executor",
-             "type": "string",
-             "readOnly": true
-         },
-         "gasUsed": {                       // No such field yet. actual gas, not estimated?
-             "title": "Gas used",
-             "type": "string",
-             "readOnly": true
-         },
-         "confirmations": {                // signatures.
-             "title": "Confirmations",
-             "type": "string",
-             "readOnly": true
-         },
+    var safe: String
 
- "confirmations": [
-   {
-     "owner": "0xb899bE62dB3C948225Bc0f059EF683E27C01cc95", // signature.address
-     "submissionDate": "2019-12-17T11:59:29.405298Z",       // signing date
-     "transactionHash": null,
-     "confirmationType": "CONFIRMATION",
-     "signature":                                           // signature.data "0x36bb6122804c4f7f17907b08381832d9ef6a23513d201d7219e36f7b3e102f546514303e61b3b0ce4173dd9fe56a31a65d1a520820d53e12bb793a5a1e92d6c11b"
-   },
+    struct TokenBalance: Decodable {
 
-         "signatures": {
-             "title": "Signatures",         // No such field yet. Encoded signatures byte string. signatures.
-             "type": "string"
-         }
-     }
- },
- */
+        struct Token: Decodable {
+            var name: String
+            var symbol: String
+            var decimals: Int
+        }
+
+        var tokenAddress: EthAddress?
+        var token: TokenBalance.Token?
+        var balance: EthInt
+    }
+
+}
+
+extension GetSafeBalancesRequest.TokenBalance {
+
+    var modelToken: MultisigWalletDomainModel.Token {
+        if let address = tokenAddress, let token = token {
+            return .init(code: token.symbol,
+                         name: token.name,
+                         decimals: token.decimals,
+                         address: address.address,
+                         logoUrl: "")
+        } else if let address = tokenAddress {
+            return DomainRegistry.transactionService.token(for: address.address)
+        } else {
+            return .Ether
+        }
+    }
+
+}

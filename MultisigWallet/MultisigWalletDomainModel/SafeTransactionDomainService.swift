@@ -9,5 +9,6 @@ import Foundation
 public protocol SafeTransactionDomainService {
 
     func transactions(safe: Address) -> [Transaction]
+    func updateTokens(safe: Address)
 
 }
