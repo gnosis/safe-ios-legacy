@@ -121,7 +121,8 @@ fileprivate extension WalletData {
                           state: self.state,
                           canRemove: self.canRemove,
                           isSelected: selected,
-                          requiresBackupToRemove: self.requiresBackupToRemove)
+                          requiresBackupToRemove: self.requiresBackupToRemove,
+                          isMultisig: self.isMultisig)
     }
 
 }

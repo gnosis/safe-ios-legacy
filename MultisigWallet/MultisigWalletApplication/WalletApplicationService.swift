@@ -210,7 +210,8 @@ public class WalletApplicationService: Assertable {
                           state: state,
                           canRemove: removableStates.contains(state),
                           isSelected: isSelected,
-                          requiresBackupToRemove: state == .readyToUse)
+                          requiresBackupToRemove: state == .readyToUse,
+                          isMultisig: wallet.type == .multisig)
     }
 
     public func removeWallet(id: String) {
@@ -278,7 +279,8 @@ public class WalletApplicationService: Assertable {
                            state: .readyToUse,
                            canRemove: false,
                            isSelected: false,
-                           requiresBackupToRemove: false)
+                           requiresBackupToRemove: false,
+                           isMultisig: true)
             }
         } catch {
             return []

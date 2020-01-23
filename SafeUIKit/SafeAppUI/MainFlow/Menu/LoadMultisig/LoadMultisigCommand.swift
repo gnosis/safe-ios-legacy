@@ -12,7 +12,7 @@ final class LoadMultisigCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return ApplicationServiceRegistry.walletService.wallets().isEmpty
+        return !ApplicationServiceRegistry.walletService.selectedWalletData.isMultisig
     }
 
     override init() {

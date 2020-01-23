@@ -13,6 +13,7 @@ public struct WalletData: Equatable {
     public let canRemove: Bool
     public let isSelected: Bool
     public let requiresBackupToRemove: Bool
+    public let isMultisig: Bool
 
     public init(id: String,
                 address: String?,
@@ -20,7 +21,8 @@ public struct WalletData: Equatable {
                 state: WalletStateId,
                 canRemove: Bool,
                 isSelected: Bool,
-                requiresBackupToRemove: Bool) {
+                requiresBackupToRemove: Bool,
+                isMultisig: Bool) {
         self.id = id
         self.address = address
         self.name = name
@@ -28,6 +30,7 @@ public struct WalletData: Equatable {
         self.canRemove = canRemove
         self.isSelected = isSelected
         self.requiresBackupToRemove = requiresBackupToRemove
+        self.isMultisig = isMultisig
     }
 
 }

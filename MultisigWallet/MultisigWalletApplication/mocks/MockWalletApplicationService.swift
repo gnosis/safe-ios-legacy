@@ -70,7 +70,8 @@ public class MockWalletApplicationService: WalletApplicationService {
                                     state: .readyToUse,
                                     canRemove: false,
                                     isSelected: true,
-                                    requiresBackupToRemove: false)]
+                                    requiresBackupToRemove: false,
+                                    isMultisig: false)]
     }
 
     // MARK: - Wallet
@@ -430,7 +431,8 @@ public class MockWalletApplicationService: WalletApplicationService {
                    state: .readyToUse,
                    canRemove: true,
                    isSelected: true,
-                   requiresBackupToRemove: true)
+                   requiresBackupToRemove: true,
+                   isMultisig: false)
     }
 
     // MARK: - Address Book
