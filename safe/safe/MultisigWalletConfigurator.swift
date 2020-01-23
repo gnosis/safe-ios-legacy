@@ -190,9 +190,6 @@ class MultisigWalletConfigurator {
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
         let relayService = HTTPGnosisTransactionRelayService(url: appConfig.relayServiceURL, logger: LogService.shared)
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
-        let transactionHistoryService = HTTPTransactionHistoryService(url: appConfig.transactionHistoryServiceURL,
-                                                                      logger: LogService.shared)
-        DomainRegistry.put(service: transactionHistoryService, for: TransactionHistoryDomainService.self)
 
         appDelegate.secureStore = KeychainService(identifier: appDelegate.defaultBundleIdentifier)
         DomainRegistry.put(service: SecureExternallyOwnedAccountRepository(store: appDelegate.secureStore!),

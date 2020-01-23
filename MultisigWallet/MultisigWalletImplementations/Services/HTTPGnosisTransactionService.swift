@@ -56,6 +56,26 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
         return result
     }
 
+    public func safes(by owner: Address) throws -> [String] {
+        let response = try httpClient.execute(request: GetSafesByOwnerRequest(owner: owner.value))
+        return response.safes
+    }
+
+}
+
+struct GetSafesByOwnerRequest: Encodable, JSONRequest {
+
+    let owner: String
+
+    var httpMethod: String { return "GET" }
+    var urlPath: String { return "/api/v1/owners/\(owner)/" }
+
+    typealias ResponseType = Response
+
+    struct Response: Decodable {
+        let safes: [String]
+    }
+
 }
 
 struct SafeTransactionServiceResponse<T>: Decodable where T: Decodable {

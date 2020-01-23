@@ -9,5 +9,6 @@ import Foundation
 public protocol SafeTransactionDomainService {
 
     func transactions(safe: Address) -> [Transaction]
+    func safes(by owner: Address) throws -> [String]
 
 }

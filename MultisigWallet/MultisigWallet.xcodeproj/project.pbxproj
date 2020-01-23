@@ -311,9 +311,6 @@
 		0AF50D9D2382DF1D006307AB /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF50D982382DF1D006307AB /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55158EFC232004FE00CE70B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A364B2522676C7E002E80B7 /* Localizable.strings */; };
 		55158F3323200C5900CE70B8 /* MockSafeContractMetadataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55158F2E23200C5900CE70B8 /* MockSafeContractMetadataRepository.swift */; };
-		552443C623D86656007C2044 /* TransactionHistoryDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443C523D86656007C2044 /* TransactionHistoryDomainService.swift */; };
-		552443C823D867E3007C2044 /* HTTPTransactionHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443C723D867E3007C2044 /* HTTPTransactionHistoryService.swift */; };
-		552443CB23D868CA007C2044 /* GetSafesByOwnerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443CA23D868CA007C2044 /* GetSafesByOwnerRequest.swift */; };
 		552D42EB233A107D00C57B5C /* WalletApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42E6233A107D00C57B5C /* WalletApplicationServiceTests.swift */; };
 		552D42EC233A107D00C57B5C /* SendTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42E7233A107D00C57B5C /* SendTransactionTests.swift */; };
 		552D42ED233A107D00C57B5C /* TokenListItemApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42E8233A107D00C57B5C /* TokenListItemApplicationTests.swift */; };
@@ -794,9 +791,6 @@
 		0AEF8AF620A08F7D006A1265 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0AF50D982382DF1D006307AB /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		55158F2E23200C5900CE70B8 /* MockSafeContractMetadataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSafeContractMetadataRepository.swift; sourceTree = "<group>"; };
-		552443C523D86656007C2044 /* TransactionHistoryDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryDomainService.swift; sourceTree = "<group>"; };
-		552443C723D867E3007C2044 /* HTTPTransactionHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTransactionHistoryService.swift; sourceTree = "<group>"; };
-		552443CA23D868CA007C2044 /* GetSafesByOwnerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSafesByOwnerRequest.swift; sourceTree = "<group>"; };
 		552D42E6233A107D00C57B5C /* WalletApplicationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceTests.swift; sourceTree = "<group>"; };
 		552D42E7233A107D00C57B5C /* SendTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTransactionTests.swift; sourceTree = "<group>"; };
 		552D42E8233A107D00C57B5C /* TokenListItemApplicationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenListItemApplicationTests.swift; sourceTree = "<group>"; };
@@ -902,7 +896,6 @@
 				0A1617F02304593B00F6E501 /* DemoEthereumNodeService.swift */,
 				0A1617F12304593B00F6E501 /* HTTPGnosisTransactionRelayService.swift */,
 				0AC079D523D70AEB00402715 /* HTTPGnosisTransactionService.swift */,
-				552443C723D867E3007C2044 /* HTTPTransactionHistoryService.swift */,
 				0A1617F22304593B00F6E501 /* HTTPNotificatonService.swift */,
 				0A1617F32304593B00F6E501 /* MockEthereumNodeService.swift */,
 				0ACD3F03232BE925000E9274 /* Keycard */,
@@ -1051,7 +1044,6 @@
 				0AAE7D302304544800E7EB07 /* SynchronisationService */,
 				0AAE7D662304544900E7EB07 /* Transaction */,
 				0AAE7D4F2304544900E7EB07 /* TransactionRelayService */,
-				552443C023D86622007C2044 /* TransactionHistoryService */,
 				0AAE7CFC2304544800E7EB07 /* Wallet */,
 				0AAE7D602304544900E7EB07 /* WalletConnect */,
 				0AAE7D322304544800E7EB07 /* Worker.swift */,
@@ -1501,23 +1493,6 @@
 				0AF50D982382DF1D006307AB /* CoreNFC.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		552443C023D86622007C2044 /* TransactionHistoryService */ = {
-			isa = PBXGroup;
-			children = (
-				552443C923D86886007C2044 /* HistoryServiceRequests */,
-				552443C523D86656007C2044 /* TransactionHistoryDomainService.swift */,
-			);
-			path = TransactionHistoryService;
-			sourceTree = "<group>";
-		};
-		552443C923D86886007C2044 /* HistoryServiceRequests */ = {
-			isa = PBXGroup;
-			children = (
-				552443CA23D868CA007C2044 /* GetSafesByOwnerRequest.swift */,
-			);
-			path = HistoryServiceRequests;
 			sourceTree = "<group>";
 		};
 		552D42E5233A107D00C57B5C /* WalletApplicationServiceTests */ = {
@@ -2060,7 +2035,6 @@
 				0A8822F42399350B00093B53 /* WCMultiSendSubTransaction.swift in Sources */,
 				0AAE7DA42304544A00E7EB07 /* BaseInMemoryRepository.swift in Sources */,
 				0AAE7D9D2304544A00E7EB07 /* ExternallyOwnedAccount.swift in Sources */,
-				552443C623D86656007C2044 /* TransactionHistoryDomainService.swift in Sources */,
 				0AAE7DA82304544A00E7EB07 /* BrowserExtensionCode.swift in Sources */,
 				0AAE7D9B2304544A00E7EB07 /* EncryptionDomainService.swift in Sources */,
 				0AAE7D8B2304544A00E7EB07 /* RetryWithIncreasingDelay.swift in Sources */,
@@ -2222,7 +2196,6 @@
 				0AA21E7D233CD739004A4A62 /* InMemoryTransactionMonitorRepository.swift in Sources */,
 				0A1618472304593B00F6E501 /* DBRBETransactionMonitorRepository.swift in Sources */,
 				0A711E132334E697008F1124 /* WalletDiagnosticDomainService.swift in Sources */,
-				552443C823D867E3007C2044 /* HTTPTransactionHistoryService.swift in Sources */,
 				0A1618212304593B00F6E501 /* EthereumKitEthereumService.swift in Sources */,
 				0A1618492304593B00F6E501 /* EthAddress.swift in Sources */,
 				0A1618302304593B00F6E501 /* MockTransactionRelayService.swift in Sources */,
@@ -2266,7 +2239,6 @@
 				0ACD3F00232BE890000E9274 /* KeycardFacade.swift in Sources */,
 				0A03C187237AE52C0096B9A3 /* ENSAPIService.swift in Sources */,
 				0A1618512304593B00F6E501 /* GetBlockByHashRequest.swift in Sources */,
-				552443CB23D868CA007C2044 /* GetSafesByOwnerRequest.swift in Sources */,
 				0A1618332304593B00F6E501 /* HTTPGnosisTransactionRelayService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

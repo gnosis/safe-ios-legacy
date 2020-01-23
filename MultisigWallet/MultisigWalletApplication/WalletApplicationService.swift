@@ -270,7 +270,7 @@ public class WalletApplicationService: Assertable {
 
     public func findMultisigSafesForSelectedSafe() -> [WalletData] {
         do {
-            let safes = try DomainRegistry.transactionHistoryService.safes(by: selectedWallet!.address!)
+            let safes = try DomainRegistry.safeTransactionService.safes(by: selectedWallet!.address!)
             return safes.map { address in
                 WalletData(id: address,
                            address: address,
