@@ -30,6 +30,7 @@ class EmptyResultsView: BaseCustomView {
         textLabel.font = UIFont.systemFont(ofSize: 17)
         textLabel.textColor = ColorName.mediumGrey.color
         textLabel.textAlignment = .center
+        textLabel.numberOfLines = 0
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
         addSubview(textLabel)
@@ -40,7 +41,9 @@ class EmptyResultsView: BaseCustomView {
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageViewCenterConstraint,
             textLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 22)])
+            textLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 22),
+            textLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)])
         update()
     }
 

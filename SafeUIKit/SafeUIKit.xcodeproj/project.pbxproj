@@ -333,6 +333,11 @@
 		55126B6921AC38A900A9F810 /* TransactionConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */; };
 		551D778D22819B10003B7910 /* FeePaymentMethodCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */; };
 		551D778F22819D2A003B7910 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D778E22819D2A003B7910 /* PaymentMethodViewController.swift */; };
+		552443B723D740BF007C2044 /* LoadMultisigCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443B623D740BF007C2044 /* LoadMultisigCommand.swift */; };
+		552443B923D7413C007C2044 /* LoadMultisigFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443B823D7413C007C2044 /* LoadMultisigFlowCoordinator.swift */; };
+		552443BB23D7599D007C2044 /* LoadMultisigIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443BA23D7599D007C2044 /* LoadMultisigIntroViewController.swift */; };
+		552443BD23D75B3E007C2044 /* LoadMultisigIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552443BC23D75B3E007C2044 /* LoadMultisigIntroViewController.xib */; };
+		552443BF23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552443BE23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
 		5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735A21428FDD00A77557 /* IdenticonView.swift */; };
 		55247360214293D500A77557 /* IdenticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735F214293D500A77557 /* IdenticonViewController.swift */; };
@@ -1042,6 +1047,11 @@
 		55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationViewController.swift; sourceTree = "<group>"; };
 		551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeePaymentMethodCommand.swift; sourceTree = "<group>"; };
 		551D778E22819D2A003B7910 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
+		552443B623D740BF007C2044 /* LoadMultisigCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMultisigCommand.swift; sourceTree = "<group>"; };
+		552443B823D7413C007C2044 /* LoadMultisigFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMultisigFlowCoordinator.swift; sourceTree = "<group>"; };
+		552443BA23D7599D007C2044 /* LoadMultisigIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMultisigIntroViewController.swift; sourceTree = "<group>"; };
+		552443BC23D75B3E007C2044 /* LoadMultisigIntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadMultisigIntroViewController.xib; sourceTree = "<group>"; };
+		552443BE23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMultisigSelectTableViewController.swift; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		5524735A21428FDD00A77557 /* IdenticonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonView.swift; sourceTree = "<group>"; };
 		5524735F214293D500A77557 /* IdenticonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonViewController.swift; sourceTree = "<group>"; };
@@ -1601,6 +1611,7 @@
 			children = (
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
+				0A8A743F235F2DD000748E1B /* AddressBook */,
 				5598FFE3225B73B3006D5792 /* ChangePassword */,
 				0AF5BB35222420A6006856E0 /* ConnectTwoFA */,
 				55CE9CDC2304039E00CB414D /* ContractUpgrade */,
@@ -1608,6 +1619,7 @@
 				5590F19823434453002F120B /* EditSafeName */,
 				551D777D22819AD8003B7910 /* FeePaymentMethod */,
 				55329FE522F9750800E40B06 /* GetInTouch */,
+				552443A123D74093007C2044 /* LoadMultisig */,
 				55B5DF6222782BF6001A32F4 /* Portfolio */,
 				55329FF422F9751300E40B06 /* RateApp */,
 				0A2D58832257554E001B8BF4 /* ReplaceRecoveryPhrase */,
@@ -1616,7 +1628,6 @@
 				554596F622689A45009B4A0B /* Support */,
 				552D42C22339FFD500C57B5C /* SwitchSafes */,
 				5579C56622C3662500BB93CA /* WalletConnect */,
-				0A8A743F235F2DD000748E1B /* AddressBook */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -2072,6 +2083,18 @@
 				551D778C22819B10003B7910 /* FeePaymentMethodCommand.swift */,
 			);
 			path = FeePaymentMethod;
+			sourceTree = "<group>";
+		};
+		552443A123D74093007C2044 /* LoadMultisig */ = {
+			isa = PBXGroup;
+			children = (
+				552443B623D740BF007C2044 /* LoadMultisigCommand.swift */,
+				552443B823D7413C007C2044 /* LoadMultisigFlowCoordinator.swift */,
+				552443BA23D7599D007C2044 /* LoadMultisigIntroViewController.swift */,
+				552443BC23D75B3E007C2044 /* LoadMultisigIntroViewController.xib */,
+				552443BE23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift */,
+			);
+			path = LoadMultisig;
 			sourceTree = "<group>";
 		};
 		5524734F21428E4C00A77557 /* Components */ = {
@@ -2955,6 +2978,7 @@
 				0AE0FE5C229D2CF700ABC552 /* TwoFAView.xib in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				552D42FD233A37E900C57B5C /* SwitchSafesTableViewCell.xib in Resources */,
+				552443BD23D75B3E007C2044 /* LoadMultisigIntroViewController.xib in Resources */,
 				0AE6056C23A931DD001E4F98 /* WCCompletionPanelViewController.xib in Resources */,
 				55AA3C4A22959151007B3105 /* PaymentMethodFooterView.xib in Resources */,
 				5568A25E22D78583007C9E0C /* WCSessionListCell.xib in Resources */,
@@ -3312,6 +3336,7 @@
 				0A1E200823859D8A00BBCBDF /* FlowController.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
 				0A2D588222575435001B8BF4 /* ReplaceTwoFATrackingEvent.swift in Sources */,
+				552443BF23D85E37007C2044 /* LoadMultisigSelectTableViewController.swift in Sources */,
 				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
 				553B9E0022969F87006E93C9 /* CreationFeeIntroHeaderView.swift in Sources */,
 				0A3BD95B22255C40007039B4 /* ConnectTwoFACommand.swift in Sources */,
@@ -3333,6 +3358,7 @@
 				0AC3F16E21830BD500DAADC9 /* OnboardingTermsViewController.swift in Sources */,
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
 				55AA3C3122956E01007B3105 /* BasePaymentMethodViewController.swift in Sources */,
+				552443B723D740BF007C2044 /* LoadMultisigCommand.swift in Sources */,
 				5590F1B12343465C002F120B /* EditSafeNameViewController.swift in Sources */,
 				0AB63B2123841FD600A142AD /* ShowSeedViewController.swift in Sources */,
 				0AB63B24238422B200A142AD /* SeedWordCollectionViewCell.swift in Sources */,
@@ -3392,6 +3418,7 @@
 				0ADE046822E5F15D00CA4705 /* PlaceholderCreator.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
+				552443BB23D7599D007C2044 /* LoadMultisigIntroViewController.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
 				0AD7D2FE237D94E100106B71 /* ENSInputViewController.swift in Sources */,
 				55AA3C4822959131007B3105 /* PaymentMethodFooterView.swift in Sources */,
@@ -3445,6 +3472,7 @@
 				5579C57622C3664300BB93CA /* WalletConnectMenuCommand.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* CreateSafeFlowCoordinator.swift in Sources */,
 				55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */,
+				552443B923D7413C007C2044 /* LoadMultisigFlowCoordinator.swift in Sources */,
 				0A10712B2360570F002DBA36 /* AddressBookMenuCommand.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				5549194B22C3C94E003E63E0 /* WCTrackingEvent.swift in Sources */,

@@ -17,7 +17,8 @@ struct WalletMigrations {
         M0006_RemoveWalletIDFromTransactions(),
         M0007_RemoveDiscardedTransactionState(),
         M0008_AddWalletNameField(),
-        M0009_MigrateSafesNamesToAddressBook()
+        M0009_MigrateSafesNamesToAddressBook(),
+        M0010_AddWalletTypeField()
     ]
 
     static let latest = all.last!

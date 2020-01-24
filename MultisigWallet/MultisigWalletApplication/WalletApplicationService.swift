@@ -215,7 +215,8 @@ public class WalletApplicationService: Assertable {
                           state: state,
                           canRemove: removableStates.contains(state),
                           isSelected: isSelected,
-                          requiresBackupToRemove: state == .readyToUse)
+                          requiresBackupToRemove: state == .readyToUse,
+                          isMultisig: wallet.type == .multisig)
     }
 
     public func removeWallet(id: String) {
@@ -270,6 +271,24 @@ public class WalletApplicationService: Assertable {
         // repair selection
         if selectedWallet == nil, let first = DomainRegistry.walletRepository.all().first {
             selectWallet(first.id.id)
+        }
+    }
+
+    public func findMultisigSafesForSelectedSafe() -> [WalletData] {
+        do {
+            let safes = try DomainRegistry.safeTransactionService.safes(by: selectedWallet!.address!)
+            return safes.map { address in
+                WalletData(id: address,
+                           address: address,
+                           name: "Unknown",
+                           state: .readyToUse,
+                           canRemove: false,
+                           isSelected: false,
+                           requiresBackupToRemove: false,
+                           isMultisig: true)
+            }
+        } catch {
+            return []
         }
     }
 

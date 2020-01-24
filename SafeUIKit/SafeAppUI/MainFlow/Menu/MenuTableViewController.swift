@@ -77,7 +77,8 @@ final class MenuTableViewController: UITableViewController {
 
     lazy var manageSafesCommands = [SwitchSafesCommand(),
                                     RecoverSafeCommand(),
-                                    CreateSafeCommand()]
+                                    CreateSafeCommand(),
+                                    LoadMultisigCommand()]
 
     lazy var appSettingsCommands = [ManageTokensCommand(),
                                     AddressBookMenuCommand(),
