@@ -18,7 +18,7 @@ open class ReplaceTwoFADomainService: Assertable {
 
     open var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
-        return wallet.isReadyToUse && wallet.hasAuthenticator
+        return wallet.isReadyToUse && wallet.hasAuthenticator && wallet.type == .personal
     }
 
     public var ownerContractProxy: SafeOwnerManagerContractProxy?

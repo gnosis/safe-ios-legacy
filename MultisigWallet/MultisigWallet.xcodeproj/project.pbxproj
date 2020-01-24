@@ -1168,8 +1168,8 @@
 				0A16181B2304593B00F6E501 /* MockRepositories */,
 				0A1617F52304593B00F6E501 /* Repositories */,
 				0A1617DA2304593B00F6E501 /* Services */,
-				0AAE7C7B230450BC00E7EB07 /* MultisigWalletImplementations.h */,
 				0AA52700232A6F9E00B2825F /* LocalizedString.swift */,
+				0AAE7C7B230450BC00E7EB07 /* MultisigWalletImplementations.h */,
 				0A70D9D5232A912E00FC04D4 /* Localizable.strings */,
 				0AAE7C7C230450BC00E7EB07 /* Info.plist */,
 			);

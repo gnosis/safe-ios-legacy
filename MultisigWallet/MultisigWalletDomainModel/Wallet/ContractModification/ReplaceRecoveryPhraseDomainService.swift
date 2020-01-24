@@ -14,7 +14,7 @@ public class ReplaceRecoveryPhraseDomainService: ReplaceTwoFADomainService {
 
     public override var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
-        return wallet.isReadyToUse && wallet.owner(role: .paperWallet) != nil
+        return wallet.isReadyToUse && wallet.owner(role: .paperWallet) != nil && wallet.type == .personal
     }
 
     public override func createTransaction() -> TransactionID {
