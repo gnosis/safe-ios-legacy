@@ -217,6 +217,9 @@ open class MainFlowCoordinator: FlowCoordinator {
                                           transactionID: String? = nil,
                                           completion: (() -> Void)? = nil) {
         dismissModal()
+        guard let id = ApplicationServiceRegistry.walletService.selectedWalletID(),
+            ApplicationServiceRegistry.walletService.hasWritePermission(walletID: id) else { return }
+
         saveCheckpoint()
         enter(flow: flow) { [unowned self] in
             DispatchQueue.main.async {
@@ -365,6 +368,8 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     }
 
     func upgradeContract() {
+        guard let id = ApplicationServiceRegistry.walletService.selectedWalletID(),
+            ApplicationServiceRegistry.walletService.hasWritePermission(walletID: id) else { return }
         saveCheckpoint()
         enter(flow: contractUpgradeFlowCoordinator) { [weak self] in
             DispatchQueue.main.async { [weak self] in

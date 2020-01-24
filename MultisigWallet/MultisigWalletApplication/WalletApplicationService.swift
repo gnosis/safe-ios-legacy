@@ -67,6 +67,11 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Wallet
 
+    public func hasWritePermission(walletID: String) -> Bool {
+        guard let wallet = DomainRegistry.walletRepository.find(id: WalletID(walletID)) else { return true }
+        return wallet.hasWritePermission
+    }
+
     public func createNewDraftWallet() {
         DomainRegistry.deploymentService.createNewDraftWallet()
     }
@@ -908,7 +913,7 @@ public class WalletApplicationService: Assertable {
         let wallets = DomainRegistry.walletRepository.all().filter { walletIDs.contains($0.id) }
 
         let owners = wallets.compactMap { $0.owner(role: .thisDevice)?.address.value }
-        assert(owners.count == wallets.count, "Not all 'ready to use' wallets have device owners!")
+//        assert(owners.count == wallets.count, "Not all 'ready to use' wallets have device owners!")
 
         let signatures = owners.compactMap { owner -> (address: String, signature: EthSignature)? in
             // it may happen that the device key is missing (after restoring from iCloud, for example).
