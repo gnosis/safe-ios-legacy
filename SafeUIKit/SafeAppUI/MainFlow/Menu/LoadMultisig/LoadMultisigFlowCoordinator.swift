@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import MultisigWalletApplication
 
 final class LoadMultisigFlowCoordinator: FlowCoordinator {
 
@@ -17,7 +18,21 @@ final class LoadMultisigFlowCoordinator: FlowCoordinator {
 extension LoadMultisigFlowCoordinator: LoadMultisigIntroViewControllerDelegate {
 
     func loadMultisigIntroViewControllerDidSelectLoad(_ controller: LoadMultisigIntroViewController) {
-        push(LoadMultisigSelectTableViewController(style: .grouped))
+        let controller = LoadMultisigSelectTableViewController(style: .grouped)
+        controller.delegate = self
+        push(controller)
+    }
+
+}
+
+extension LoadMultisigFlowCoordinator: LoadMultisigSelectTableViewControllerDelegate {
+
+    func loadMultisigSelectTableViewController(controller: LoadMultisigSelectTableViewController,
+                                               didSelectSafes safes: [WalletData]) {
+        safes.forEach { walletData in
+            ApplicationServiceRegistry.walletService.createAndSelectMultisigWallet(walletData: walletData)
+        }
+        exitFlow()
     }
 
 }

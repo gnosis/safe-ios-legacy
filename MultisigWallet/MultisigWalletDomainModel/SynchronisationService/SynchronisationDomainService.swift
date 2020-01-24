@@ -13,6 +13,8 @@ public protocol SynchronisationDomainService {
     /// Request available tokens and account balances once.
     func syncTokensAndAccountsOnce()
 
+    func syncTransactionsOnce()
+
     /// Update periodically account balances, pending transactions.
     /// Make post-processing for transactions.
     func startSyncLoop()

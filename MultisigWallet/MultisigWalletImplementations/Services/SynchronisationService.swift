@@ -81,6 +81,11 @@ public class SynchronisationService: SynchronisationDomainService {
             error.domain == kCFErrorDomainCFNetwork as String
     }
 
+    public func syncTransactionsOnce() {
+        precondition(!Thread.isMainThread)
+        syncTransactions()        
+    }
+
     /// Synchronizes statuses of pending transactions. Errors are logged but not thrown.
     private func syncTransactions() {
         guard hasAccessToFilesystem else { return }

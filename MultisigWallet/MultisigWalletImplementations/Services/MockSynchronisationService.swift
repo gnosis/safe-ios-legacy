@@ -31,4 +31,6 @@ public final class MockSynchronisationService: SynchronisationDomainService {
         didStop = true
     }
 
+    public func syncTransactionsOnce() {}
+
 }
