@@ -30,6 +30,48 @@ public class WalletDomainService {
         }
     }
 
+    public static func updateWalletWithOnchainData(_ id: String) -> Bool {
+        guard let wallet = DomainRegistry.walletRepository.find(id: WalletID(id)) else {
+            return false
+        }
+        do {
+            let ownerManagerContractProxy = SafeOwnerManagerContractProxy(wallet.address)
+            let safeContractProxy = GnosisSafeContractProxy(wallet.address)
+
+            let existingOwnerAddresses = try ownerManagerContractProxy.getOwners().map{ $0.value.lowercased() }
+            let confirmationCount = try ownerManagerContractProxy.getThreshold()
+            guard let masterCopy = try safeContractProxy.masterCopyAddress() else { return false }
+            let version = DomainRegistry.safeContractMetadataRepository.version(masterCopyAddress: masterCopy)
+
+            // remove all owners that do not exist in remote
+            let removedOwners = wallet.owners.sortedOwners()
+                .filter { !existingOwnerAddresses.contains($0.address.value.lowercased()) }
+            removedOwners.forEach { wallet.owners.remove($0) }
+
+            // add new owners that are only in remote
+            let addedOwnersAddresses = existingOwnerAddresses.filter { addr in
+                !wallet.owners.contains(where: {
+                    $0.address.value.lowercased() == addr
+                })
+            }
+            addedOwnersAddresses.forEach { addr in
+                let checksummedAddress = DomainRegistry.encryptionService.address(from: addr)!
+                let isPersonalSafe = DomainRegistry.walletRepository.all()
+                    .contains { $0.address.value.lowercased() == addr.lowercased() }
+                wallet.addOwner(Owner(address: checksummedAddress, role: isPersonalSafe ? .personalSafe : .unknown))
+            }
+
+            wallet.changeMasterCopy(masterCopy)
+            wallet.changeConfirmationCount(confirmationCount)
+            wallet.changeContractVersion(version)
+
+            DomainRegistry.walletRepository.save(wallet)
+        } catch {
+            return false
+        }
+        return true
+    }
+
     public static func removeWallet(_ id: String) {
         let walletID = WalletID(id)
 

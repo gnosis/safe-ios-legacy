@@ -24,6 +24,7 @@ public enum OwnerRole: String, Codable {
     case paperWalletDerived
     case keycard
     case unknown
+    case personalSafe
 }
 
 public struct OwnerList: Equatable {

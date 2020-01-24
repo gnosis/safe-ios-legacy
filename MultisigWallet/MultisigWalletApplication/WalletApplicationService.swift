@@ -312,12 +312,9 @@ public class WalletApplicationService: Assertable {
                             type: .multisig)
         DomainRegistry.walletRepository.save(wallet)
 
-        DomainRegistry.transactionRelayService.updateSafeInfo(safe: wallet.address)
-
-        guard let updatedWallet = DomainRegistry.walletRepository.find(id: wallet.id),
-            updatedWallet.masterCopyAddress != nil else {
-                DomainRegistry.walletRepository.remove(wallet)
-                return false
+        guard WalletDomainService.updateWalletWithOnchainData(wallet.id.id) else {
+            DomainRegistry.walletRepository.remove(wallet)
+            return false
         }
 
         let portfolio = WalletDomainService.fetchOrCreatePortfolio()

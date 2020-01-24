@@ -21,7 +21,7 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
                      "fee_payment_token_address TEXT",
                      "master_copy_address TEXT",
                      "contract_version TEXT",
-                     "type INTEGER NOT NULL DEFAULT 0")
+                     "type INTEGER NOT NULL")
     }
 
     public override func insertionBindings(_ object: Wallet) -> [SQLBindable?] {
