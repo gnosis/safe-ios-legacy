@@ -31,6 +31,7 @@ class LoadMultisigSelectTableViewController: UITableViewController {
         super.viewDidLoad()
         title = Strings.title
         emptyView.text = Strings.noSafesFound
+        emptyView.centerPadding = 120
         configureNavigationBar()
         configureTableView()
         loadData()

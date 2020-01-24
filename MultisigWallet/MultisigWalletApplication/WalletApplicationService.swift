@@ -277,7 +277,8 @@ public class WalletApplicationService: Assertable {
     public func findMultisigSafesForSelectedSafe() -> [WalletData] {
         do {
             let safes = try DomainRegistry.safeTransactionService.safes(by: selectedWallet!.address!)
-            return safes.map { address in
+            return safes.compactMap { address in
+                guard DomainRegistry.walletRepository.find(address: Address(address)) == nil else { return nil }
                 var name = "Unknown"
                 if let foundAddressBookEntry =
                     DomainRegistry.addressBookRepository.find(address: address, types: [.regular]).first {

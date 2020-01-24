@@ -10,7 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadMultisigIntroViewController" customModule="SafeAppUI" customModuleProvider="target">
             <connections>
+                <outlet property="descriptionLabel" destination="An9-fW-9K0" id="8qC-3x-fXc"/>
                 <outlet property="loadMultisigButton" destination="Yo7-yX-dvA" id="P9R-3I-IPR"/>
+                <outlet property="referenceLabel" destination="3vO-lS-5if" id="jTM-AL-CHz"/>
                 <outlet property="view" destination="iN0-l3-epB" id="pkQ-Uy-7wF"/>
             </connections>
         </placeholder>
@@ -20,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An9-fW-9K0">
-                    <rect key="frame" x="16" y="108" width="382" height="122"/>
+                    <rect key="frame" x="16" y="237" width="382" height="122"/>
                     <string key="text">You can load a Gnosis Safe Multisig where your personal Gnosis Safe is an owner.
 
 After a Multisig is loaded you can initiate, confirm, execute Multisig Safe transactions with your Personal Safe.</string>
@@ -29,7 +31,7 @@ After a Multisig is loaded you can initiate, confirm, execute Multisig Safe tran
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To create and manage a Multisig Safe you can use our web-interface at https://gnosis-safe.io" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vO-lS-5if">
-                    <rect key="frame" x="16" y="260" width="382" height="41"/>
+                    <rect key="frame" x="16" y="389" width="382" height="41"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -44,22 +46,34 @@ After a Multisig is loaded you can initiate, confirm, execute Multisig Safe tran
                         <action selector="loadMultisig:" destination="-1" eventType="touchUpInside" id="i7g-gG-L43"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gnosis-multisig" translatesAutoresizingMaskIntoConstraints="NO" id="6Ej-jo-X6N">
+                    <rect key="frame" x="103.5" y="128" width="207" height="69"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="6Ej-jo-X6N" secondAttribute="height" multiplier="3:1" id="WsS-ry-wdJ"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="3vO-lS-5if" firstAttribute="leading" secondItem="An9-fW-9K0" secondAttribute="leading" id="0vp-P4-1Rn"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="An9-fW-9K0" secondAttribute="trailing" constant="16" id="7i4-WE-SLa"/>
+                <constraint firstItem="An9-fW-9K0" firstAttribute="top" secondItem="6Ej-jo-X6N" secondAttribute="bottom" constant="40" id="9G8-wu-wEm"/>
                 <constraint firstItem="Yo7-yX-dvA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="FPn-UJ-cGz"/>
+                <constraint firstItem="6Ej-jo-X6N" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Kwa-UO-Qhv"/>
                 <constraint firstItem="An9-fW-9K0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="QLL-Ug-BDU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Yo7-yX-dvA" secondAttribute="trailing" constant="16" id="YsN-si-jnO"/>
                 <constraint firstItem="3vO-lS-5if" firstAttribute="trailing" secondItem="An9-fW-9K0" secondAttribute="trailing" id="aw2-t9-46X"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Yo7-yX-dvA" secondAttribute="bottom" constant="20" id="bFW-fp-R3d"/>
-                <constraint firstItem="An9-fW-9K0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="d0c-4q-s3Q"/>
+                <constraint firstItem="6Ej-jo-X6N" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="cEO-Mr-Ger"/>
+                <constraint firstItem="6Ej-jo-X6N" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="mgs-tq-UP6"/>
                 <constraint firstItem="3vO-lS-5if" firstAttribute="top" secondItem="An9-fW-9K0" secondAttribute="bottom" constant="30" id="w9R-5v-uoc"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="141" y="154"/>
+            <point key="canvasLocation" x="140.57971014492756" y="153.34821428571428"/>
         </view>
     </objects>
+    <resources>
+        <image name="gnosis-multisig" width="114" height="36"/>
+    </resources>
 </document>

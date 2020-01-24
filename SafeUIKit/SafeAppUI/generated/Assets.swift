@@ -40,6 +40,7 @@ internal enum Asset {
   internal static let gitter = ImageAsset(name: "gitter")
   internal static let mail = ImageAsset(name: "mail")
   internal static let telegram = ImageAsset(name: "telegram")
+  internal static let gnosisMultisig = ImageAsset(name: "gnosis-multisig")
   internal static let infoIcon = ImageAsset(name: "info-icon")
   internal static let arrows = ImageAsset(name: "arrows")
   internal static let coins = ImageAsset(name: "coins")

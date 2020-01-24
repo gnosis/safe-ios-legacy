@@ -104,7 +104,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         self.confirmationCount = confirmationCount
         self.masterCopyAddress = masterCopyAddress
         self.contractVersion = contractVersion
-        self.type = .personal
+        self.type = type
     }
 
     private func state(from walletState: WalletState.State) -> WalletState {

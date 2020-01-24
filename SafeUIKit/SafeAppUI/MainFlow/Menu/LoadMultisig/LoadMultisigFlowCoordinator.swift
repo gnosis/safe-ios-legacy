@@ -13,6 +13,12 @@ final class LoadMultisigFlowCoordinator: FlowCoordinator {
         push(controller)
     }
 
+    func switchToRoot() {
+        MainFlowCoordinator.shared.switchToRootController()
+        // preventing memory leak due to retained view controllers
+        self.setRoot(MainFlowCoordinator.shared.rootViewController)
+    }
+
 }
 
 extension LoadMultisigFlowCoordinator: LoadMultisigIntroViewControllerDelegate {
@@ -30,9 +36,11 @@ extension LoadMultisigFlowCoordinator: LoadMultisigSelectTableViewControllerDele
     func loadMultisigSelectTableViewController(controller: LoadMultisigSelectTableViewController,
                                                didSelectSafes safes: [WalletData]) {
         safes.forEach { walletData in
-            ApplicationServiceRegistry.walletService.createAndSelectMultisigWallet(walletData: walletData)
+            if !ApplicationServiceRegistry.walletService.createAndSelectMultisigWallet(walletData: walletData) {
+                print("error: Could not import wallet with data: \(walletData)")
+            }
         }
-        exitFlow()
+        self.switchToRoot()
     }
 
 }
