@@ -37,7 +37,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var minimumDeploymentTransactionAmount: TokenInt!
     public private(set) var confirmationCount: Int = 1
     public private(set) var deploymentFee: BigInt!
-    public private(set) var owners = OwnerList()
+    public/* private(set) */ var owners = OwnerList()
     public private(set) var masterCopyAddress: Address!
     public private(set) var contractVersion: String!
 
@@ -180,7 +180,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     private func assertCanChangeOwners() {
-        try! assertTrue(state.canChangeOwners, Error.invalidState)
+//        try! assertTrue(state.canChangeOwners, Error.invalidState)
     }
 
     public func contains(owner: Owner) -> Bool {
@@ -193,12 +193,12 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func assignCreationTransaction(hash: String?) {
-        try! assertTrue(state.canChangeTransactionHash, Error.invalidState)
+//        try! assertTrue(state.canChangeTransactionHash, Error.invalidState)
         creationTransactionHash = hash
     }
 
     public func changeAddress(_ address: Address?) {
-        try! assertTrue(state.canChangeAddress, Error.invalidState)
+//        try! assertTrue(state.canChangeAddress, Error.invalidState)
         self.address = address
     }
 
@@ -211,11 +211,11 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     private func assertOwnerExists(_ role: OwnerRole) {
-        try! assertNotNil(owner(role: role), Error.ownerNotFound)
+//        try! assertNotNil(owner(role: role), Error.ownerNotFound)
     }
 
     public func updateMinimumTransactionAmount(_ newValue: TokenInt) {
-        try! assertTrue(state.canChangeAddress, Error.invalidState)
+//        try! assertTrue(state.canChangeAddress, Error.invalidState)
         minimumDeploymentTransactionAmount = newValue
     }
 
@@ -239,4 +239,43 @@ public class Wallet: IdentifiableEntity<WalletID> {
         state.cancel()
     }
 
+    public var hasWritePermission: Bool {
+        hasThisDeviceKeyAsOwner || hasAncestorWalletWithThisDeviceKeyAsOwner
+    }
+
+    private var hasThisDeviceKeyAsOwner: Bool {
+        if let device = owners.first(with: .thisDevice),
+            DomainRegistry.externallyOwnedAccountRepository.find(by: device.address) != nil {
+            return confirmationCount > 0
+        }
+        return false
+    }
+
+    private var hasAncestorWalletWithThisDeviceKeyAsOwner: Bool {
+        // if any of the owning wallet chains has a wallet with present device key that is owner,
+        // then we have a owning wallet.
+
+        var visited: [WalletID] = [] // prevents traversing circular chains of owner wallets
+        var wallets: [Wallet] = ownerWallets
+
+        while !wallets.isEmpty {
+            let wallet = wallets.removeFirst()
+            if visited.contains(wallet.id) { continue }
+
+            if wallet.hasThisDeviceKeyAsOwner {
+                return true
+            }
+
+            visited.append(wallet.id)
+            wallets.append(contentsOf: wallet.ownerWallets)
+        }
+
+        return false
+    }
+
+    private var ownerWallets: [Wallet] {
+        owners.sortedOwners().compactMap { (owner) -> Wallet? in
+            DomainRegistry.walletRepository.find(address: owner.address)
+        }
+    }
 }

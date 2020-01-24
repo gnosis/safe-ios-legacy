@@ -80,6 +80,29 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
         return true
     }
 
+    public func updateSafeInfo(safe: Address) {
+        do {
+            let info = try httpClient.execute(request: GetSafeRequest(safe: safe.value))
+            guard let wallet = DomainRegistry.walletRepository.find(address: safe), wallet.isReadyToUse else { return }
+            wallet.changeAddress(info.address.address)
+            wallet.changeMasterCopy(info.masterCopy.address)
+            wallet.changeConfirmationCount(info.threshold)
+            wallet.changeContractVersion(info.version)
+
+            // remove all owners that do not exist in remote
+            let remote = info.owners.map { $0.address.value.lowercased() }
+            let removedOwners = wallet.owners.sortedOwners().filter { !remote.contains($0.address.value.lowercased()) }
+            removedOwners.forEach { wallet.owners.remove($0) }
+
+            // add new owners that are only in remote
+            let addedOwners = remote.filter { r in  !wallet.owners.contains(where: { $0.address.value.lowercased() == r })}
+            addedOwners.forEach { wallet.addOwner(Owner(address: EthAddress(hex: $0).address, role: .unknown))}
+
+            DomainRegistry.walletRepository.save(wallet)
+        } catch {
+            print("error: \(error)")
+        }
+    }
 }
 
 extension EstimateSafeCreationRequest: JSONRequest {
@@ -162,4 +185,24 @@ extension GetSafeStatusRequest: JSONRequest {
 
     public typealias ResponseType = Response
 
+}
+
+struct GetSafeRequest: Encodable, JSONRequest {
+
+    typealias ResponseType = SafeInfo
+
+    public var httpMethod: String { return "GET" }
+    public var urlPath: String { return "/api/v1/safes/\(safe)/" }
+
+    var safe: String
+
+    struct SafeInfo: Decodable {
+        var address: EthAddress
+        var masterCopy: EthAddress
+        var fallbackHandler: EthAddress
+        var nonce: Int
+        var threshold: Int
+        var owners: [EthAddress]
+        var version: String
+    }
 }

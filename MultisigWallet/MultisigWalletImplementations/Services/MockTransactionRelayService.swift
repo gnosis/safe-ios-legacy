@@ -8,6 +8,11 @@ import Common
 import CommonTestSupport
 
 public class MockTransactionRelayService: TransactionRelayDomainService {
+    
+    public func updateSafeInfo(safe: Address) {
+        //nothing
+    }
+
 
     public let averageDelay: Double
     public let maxDeviation: Double

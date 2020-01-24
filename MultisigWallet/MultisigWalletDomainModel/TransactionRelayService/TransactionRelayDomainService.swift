@@ -72,4 +72,5 @@ public protocol TransactionRelayDomainService {
 
     func safeExists(at address: Address) throws -> Bool
 
+    func updateSafeInfo(safe: Address)
 }
