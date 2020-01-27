@@ -82,8 +82,8 @@ public class HTTPGnosisTransactionRelayService: TransactionRelayDomainService {
 
     public func updateSafeInfo(safe: Address) {
         do {
-            let info = try httpClient.execute(request: GetSafeRequest(safe: safe.value))
             guard let wallet = DomainRegistry.walletRepository.find(address: safe), wallet.isReadyToUse else { return }
+            let info = try httpClient.execute(request: GetSafeRequest(safe: safe.value))
             wallet.changeAddress(info.address.address)
             wallet.changeMasterCopy(info.masterCopy.address)
             wallet.changeConfirmationCount(info.threshold)

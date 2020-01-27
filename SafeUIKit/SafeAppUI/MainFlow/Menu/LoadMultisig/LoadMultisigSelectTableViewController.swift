@@ -6,11 +6,17 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 
+protocol LoadMultisigSelectTableViewControllerDelegate: class {
+    func loadMultisigSelectTableViewController(controller: LoadMultisigSelectTableViewController,
+                                               didSelectSafes safes: [WalletData])
+}
+
 class LoadMultisigSelectTableViewController: UITableViewController {
 
     var safes = [WalletData]()
     var nextButton: UIBarButtonItem!
-    var onNext: (() -> Void)?
+
+    weak var delegate: LoadMultisigSelectTableViewControllerDelegate?
 
     private let emptyView = EmptyResultsView()
 
@@ -25,6 +31,7 @@ class LoadMultisigSelectTableViewController: UITableViewController {
         super.viewDidLoad()
         title = Strings.title
         emptyView.text = Strings.noSafesFound
+        emptyView.centerPadding = 120
         configureNavigationBar()
         configureTableView()
         loadData()
@@ -69,7 +76,7 @@ class LoadMultisigSelectTableViewController: UITableViewController {
     }
 
     @objc private func onNextPressed() {
-        onNext?()
+        delegate?.loadMultisigSelectTableViewController(controller: self, didSelectSafes: safes)
     }
 
     // MARK: - Table view data source
