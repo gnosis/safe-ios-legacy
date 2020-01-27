@@ -50,7 +50,10 @@ class RecoverRecoveryFeeViewController: CardViewController {
         embed(view: addressDetailView, inCardSubview: cardBodyView)
         footerButton.isHidden = true
         scrollView.isHidden = true
-
+        addressDetailView.confirmationCount = nil
+        addressDetailView.owners = nil
+        addressDetailView.contractVersion = nil
+        addressDetailView.masterCopyAddress = nil
         retryItem = .refreshButton(target: self, action: #selector(retry))
 
         navigationItem.leftBarButtonItem = .cancelButton(target: self, action: #selector(cancel))

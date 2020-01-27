@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import MultisigWalletApplication
 
 class AddressDetailView: BaseCustomView {
 
@@ -18,9 +19,19 @@ class AddressDetailView: BaseCustomView {
     @IBOutlet weak var nameLabel: UILabel!
     var nameTooltip: TooltipSource!
 
+    @IBOutlet weak var ownersTableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var ownersTableView: UITableView!
+    @IBOutlet weak var ownersContainerView: UIView!
+    @IBOutlet weak var masterCopyAddressContainerView: UIView!
+    @IBOutlet weak var confirmationCountContainerView: TransactionParameterView!
+    @IBOutlet weak var contractVersionContainerView: TransactionParameterView!
     @IBOutlet weak var qrCodeView: QRCodeView!
     @IBOutlet weak var footnoteLabel: UILabel!
-
+    
+    @IBOutlet weak var masterCopyAddressIdneticonView: IdenticonView!
+    @IBOutlet weak var masterCopyAddressLabel: FullEthereumAddressLabel!
+    
+    private let cellClass = AddressBookEntryTableViewCell.self
     var address: String? {
         didSet {
             if let address = address {
@@ -34,6 +45,57 @@ class AddressDetailView: BaseCustomView {
     var name: String? {
         didSet {
             setName(name, attributes: defaultNameAttributes)
+        }
+    }
+
+    var confirmationCount: String? {
+        didSet {
+            if confirmationCount?.isEmpty ?? true {
+                contentStackView.removeArrangedSubview(confirmationCountContainerView)
+                confirmationCountContainerView.removeFromSuperview()
+            } else {
+                confirmationCountContainerView.value = confirmationCount!
+                confirmationCountContainerView.name = "Confirmation Count:"
+            }
+        }
+    }
+
+    var contractVersion: String? {
+        didSet {
+            if contractVersion?.isEmpty ?? true {
+                contentStackView.removeArrangedSubview(contractVersionContainerView)
+                contractVersionContainerView.removeFromSuperview()
+            } else {
+                contractVersionContainerView.value = contractVersion!
+                contractVersionContainerView.name = "Contract Version:"
+            }
+        }
+    }
+
+    var masterCopyAddress: String? {
+        didSet {
+            if masterCopyAddress?.isEmpty ?? true {
+                contentStackView.removeArrangedSubview(masterCopyAddressContainerView)
+                masterCopyAddressContainerView.removeFromSuperview()
+            } else {
+                masterCopyAddressLabel.text = masterCopyAddress!
+                masterCopyAddressIdneticonView.seed = masterCopyAddress!
+            }
+        }
+    }
+
+    var owners: [AddressBookEntryData]? {
+        didSet {
+            if owners?.isEmpty ?? true {
+                contentStackView.removeArrangedSubview(ownersContainerView)
+                ownersContainerView.removeFromSuperview()
+            } else {
+                let nib = UINib(nibName: "\(cellClass)", bundle: Bundle(for: cellClass))
+                ownersTableView.register(nib, forCellReuseIdentifier: "\(cellClass)")
+                ownersTableView.rowHeight = 70
+                ownersTableViewHeightConstraint.constant = CGFloat(owners?.count ?? 0) * ownersTableView.rowHeight
+                ownersTableView.reloadData()
+            }
         }
     }
 
@@ -77,6 +139,7 @@ class AddressDetailView: BaseCustomView {
         addressLabel.lineBreakMode = .byClipping
 
         shareButton.setImage(Asset.shareIcon.image, for: .normal)
+        
     }
 
     private func setName(_ value: String?, attributes: [NSAttributedString.Key: Any]) {
@@ -99,4 +162,24 @@ class AddressDetailView: BaseCustomView {
         setName(name, attributes: defaultNameAttributes)
     }
 
+}
+
+extension AddressDetailView: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return owners?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(cellClass)", for: indexPath) as! AddressBookEntryTableViewCell
+        
+        cell.configure(entry: owners![indexPath.row])
+        
+        cell.selectionStyle = .none
+        
+        return cell
+    }
 }

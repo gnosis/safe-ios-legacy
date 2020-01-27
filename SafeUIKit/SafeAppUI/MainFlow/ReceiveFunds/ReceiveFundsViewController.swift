@@ -5,6 +5,7 @@
 import UIKit
 import SafeUIKit
 import MultisigWalletApplication
+import MultisigWalletDomainModel
 
 class ReceiveFundsViewController: CardViewController, AddressResolvingViewController {
 
@@ -41,6 +42,12 @@ class ReceiveFundsViewController: CardViewController, AddressResolvingViewContro
         addressDetailView.footnoteLabel.isHidden = true
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
         addressDetailView.address = address
+        
+        let wallet = DomainRegistry.walletRepository.find(address: Address(address))
+        addressDetailView.owners = wallet?.owners.map { AddressBookEntryData(id: $0.address.value, name: $0.role.rawValue, address: $0.address.value, isWallet: false)  }
+        addressDetailView.masterCopyAddress = wallet?.masterCopyAddress?.value
+        addressDetailView.contractVersion = wallet?.contractVersion
+        addressDetailView.confirmationCount = wallet?.confirmationCount == nil ? nil : "\(wallet!.confirmationCount)"
     }
 
     private func headerView() -> UIView {

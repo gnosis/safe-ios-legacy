@@ -49,7 +49,10 @@ class AddressBookEntryViewController: CardViewController, AddressResolvingViewCo
 
         addressDetailView.footnoteLabel.isHidden = true
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
-
+        addressDetailView.confirmationCount = nil
+        addressDetailView.owners = nil
+        addressDetailView.contractVersion = nil
+        addressDetailView.masterCopyAddress = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
                                                             target: self,
                                                             action: #selector(editEntry))

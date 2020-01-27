@@ -73,7 +73,10 @@ class OnboardingCreationFeeViewController: CardViewController {
 
         addressDetailView.footnoteLabel.isHidden = true
         addressDetailView.isHidden = true
-
+        addressDetailView.confirmationCount = nil
+        addressDetailView.owners = nil
+        addressDetailView.contractVersion = nil
+        addressDetailView.masterCopyAddress = nil
         footerButton.isHidden = true
 
         walletID = ApplicationServiceRegistry.walletService.selectedWalletID()
