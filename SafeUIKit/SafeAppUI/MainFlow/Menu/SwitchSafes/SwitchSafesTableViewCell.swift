@@ -41,6 +41,9 @@ class SwitchSafesTableViewCell: UITableViewCell {
 
     func configure(walletData: WalletData) {
         nameLabel.text = walletData.name
+        if walletData.isMultisig {
+            nameLabel.text = nameLabel.text! + "(MultiSig)"
+        }
         switch walletData.state {
         case .readyToUse:
             identiconView.seed = walletData.address!
