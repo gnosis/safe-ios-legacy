@@ -93,7 +93,7 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
                 safeTxGas: Int(transaction.feeEstimate!.gas),
                 baseGas: Int(transaction.feeEstimate!.dataGas),
                 gasPrice: transaction.feeEstimate!.gasPrice.amount,
-                refundReceiver: nil,
+                refundReceiver: Address.zero,
                 nonce: Int(transaction.nonce!)!,
                 contractTransactionHash: transaction.hash!,
                 owner: sender,

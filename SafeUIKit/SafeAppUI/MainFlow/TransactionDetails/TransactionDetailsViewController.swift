@@ -15,6 +15,9 @@ public protocol TransactionDetailsViewControllerDelegate: class {
     func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
                                           didSelectToSendToken token: TokenData,
                                           forAddress address: String)
+    func transactionDetailsViewControllerDidSelectApprove(_ controller: TransactionDetailsViewController)
+    func transactionDetailsViewControllerDidSelectExecute(_ controller: TransactionDetailsViewController)
+
 }
 
 internal class ClockService {
@@ -97,6 +100,7 @@ public class TransactionDetailsViewController: UIViewController {
             static let cancel = LocalizedString("cancel", comment: "Cancel")
         }
     }
+    @IBOutlet weak var transactionActionsView: TransactionActionsView!
     @IBOutlet weak var viewButton: StandardButton!
     @IBOutlet weak var separatorLineView: HorizontalSeparatorView!
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
@@ -170,6 +174,7 @@ public class TransactionDetailsViewController: UIViewController {
         configureStatus()
         configureFee()
         configureViewInOtherApp()
+        configureActions()
     }
 
     // swiftlint:disable:next function_body_length cyclomatic_complexity
@@ -272,6 +277,7 @@ public class TransactionDetailsViewController: UIViewController {
         case .rejected: return .rejected
         case .failed: return .failed
         case .success: return .success
+        case .waitingForConfirmation: return .signing
         default: return .pending
         }
     }
@@ -312,6 +318,23 @@ public class TransactionDetailsViewController: UIViewController {
         let vc = WCBatchTransactionsTableViewController()
         vc.transactions = transaction.subtransactions ?? []
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    private func configureActions() {
+        guard transaction.status == .waitingForConfirmation else {
+            transactionActionsView.isHidden = true
+            return
+        }
+        transactionActionsView.approveButton.style = .filled
+        transactionActionsView.executeButton.style = .filled
+    }
+
+    @IBAction func didTapApproveButton(_ sender: Any) {
+        delegate?.transactionDetailsViewControllerDidSelectApprove(self)
+    }
+
+    @IBAction func didTapExecuteButton(_ sender: Any) {
+        delegate?.transactionDetailsViewControllerDidSelectExecute(self)
     }
 
 }
@@ -363,5 +386,15 @@ extension TransactionDetailsViewController: TransferViewDelegate {
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
+
+}
+
+
+
+public class TransactionActionsView: UIView {
+
+    @IBOutlet weak var approveButton: StandardButton!
+    @IBOutlet weak var executeButton: StandardButton!
+
 
 }
