@@ -304,7 +304,8 @@ public class TransactionDomainService {
     public func updateWalletInfoFromRelay() {
         let allWallets = DomainRegistry.walletRepository.all().filter { $0.address != nil && $0.isReadyToUse }
         for wallet in allWallets {
-            DomainRegistry.transactionRelayService.updateSafeInfo(safe: wallet.address)
+            _ = WalletDomainService.updateWalletWithOnchainData(wallet.id.id)
+
             DomainRegistry.eventPublisher.publish(WalletInfoUpdated())
         }
     }

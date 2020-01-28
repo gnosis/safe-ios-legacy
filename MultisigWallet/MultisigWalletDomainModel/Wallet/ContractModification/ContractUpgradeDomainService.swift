@@ -15,7 +15,7 @@ open class ContractUpgradeDomainService: ReplaceTwoFADomainService {
     }()
 
     open override var isAvailable: Bool {
-        guard let wallet = self.wallet, wallet.isReadyToUse else { return false }
+        guard let wallet = self.wallet, wallet.isReadyToUse, wallet.hasWritePermission else { return false }
         guard let masterCopy = wallet.masterCopyAddress else {
             // old safes created long time ago don't have the masterCopy property set, so we want to upgrade them.
             return true
