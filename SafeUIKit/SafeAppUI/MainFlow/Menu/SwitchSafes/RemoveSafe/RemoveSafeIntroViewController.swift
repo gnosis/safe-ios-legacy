@@ -45,6 +45,11 @@ class RemoveSafeIntroViewController: CardViewController {
         embed(view: headerView, inCardSubview: cardHeaderView, insets: headerViewInsets)
 
         addressDetailView.address = address
+        addressDetailView.contractVersion = nil
+        addressDetailView.owners = nil
+        addressDetailView.masterCopyAddress = nil
+        addressDetailView.confirmationCount = nil
+        
         addressDetailView.shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
         addressDetailView.qrCodeView.isHidden = true
         addressDetailView.footnoteLabel.isHidden = true
