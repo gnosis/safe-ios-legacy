@@ -12,6 +12,7 @@ class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
         static let pending = LocalizedString("pending", comment: "Pending transactions group header")
         static let today = DateToolsLocalized("Today")
         static let yesterday = DateToolsLocalized("Yesterday")
+        static let signing = "Signing"
     }
 
     static let thisYearDateFormatter: DateFormatter = {
@@ -30,6 +31,7 @@ class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
 
     private func name(from group: TransactionGroupData) -> String? {
         if group.type == .pending { return Strings.pending }
+        if group.type == .signing { return Strings.signing }
         guard let date = group.date else { return nil }
         if date.isToday || date.isLater(than: Date()) {
             return Strings.today

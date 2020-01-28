@@ -12,6 +12,7 @@ public struct TransactionGroupData: Collection {
     public enum GroupType: String {
         case pending
         case processed
+        case signing
     }
 
     public let type: GroupType
@@ -211,6 +212,7 @@ extension TransactionGroupData.GroupType {
         switch type {
         case .pending: self = .pending
         case .processed: self = .processed
+        case .signing: self = .signing
         }
     }
 

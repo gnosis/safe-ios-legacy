@@ -80,6 +80,44 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
         return response.safes
     }
 
+    public func createMultisigTransaction(_ transaction: Transaction, sender: Address) {
+        do {
+            let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID)!
+            let request = CreateMultisigTransactionRequest(
+                safe: wallet.address!,
+                to: transaction.recipient,
+                value: transaction.ethValue,
+                data: Data(hex: transaction.ethData),
+                operation: transaction.operation!.rawValue,
+                gasToken: transaction.feeEstimate!.gasPrice.token.address,
+                safeTxGas: Int(transaction.feeEstimate!.gas),
+                baseGas: Int(transaction.feeEstimate!.dataGas),
+                gasPrice: transaction.feeEstimate!.gasPrice.amount,
+                refundReceiver: nil,
+                nonce: Int(transaction.nonce!)!,
+                contractTransactionHash: transaction.hash!,
+                owner: sender,
+                signature: transaction.encodedSignatures)
+            try httpClient.execute(request: request)
+        } catch {
+            switch error {
+            case let HTTPClient.Error.networkRequestFailed(request, response, data):
+                var string = ""
+                if let data = data, let body = String(data: data, encoding: .utf8) {
+                    string = body
+                }
+                var responseString = ""
+                if let response = response {
+                    responseString = String(describing: response)
+                }
+                print("REQUEST FAILED: \(request), response: \(responseString), data: \(string)")
+            default:
+                print("Error: \(error)")
+            }
+
+        }
+    }
+
 }
 
 struct GetSafesByOwnerRequest: Encodable, JSONRequest {
@@ -252,7 +290,7 @@ struct GetSafeTransactionsRequest: Encodable, JSONRequest {
             var confirmationType: String
 
             // 32-byte hex
-            var signature: EthData
+            var signature: EthData?
         }
     }
 
@@ -340,7 +378,7 @@ extension GetSafeTransactionsRequest.MultisigTransaction {
 extension GetSafeTransactionsRequest.MultisigTransaction.Confirmation {
 
     var modelSignature: Signature {
-        Signature(data: signature.data, address: owner.address)
+        Signature(data: signature?.data ?? Data(), address: owner.address)
     }
 
 }
@@ -383,6 +421,88 @@ extension GetSafeBalancesRequest.TokenBalance {
         } else {
             return .Ether
         }
+    }
+
+}
+
+struct CreateMultisigTransactionRequest: Encodable, JSONRequest {
+
+    typealias ResponseType = EmptyResponse
+
+    var httpMethod: String { "POST" }
+    var urlPath: String { "/api/v1/safes/\(safe.mixedCaseChecksumEncoded)/transactions/" }
+
+    var safe: EthAddress
+    var to: EthAddress?
+    var value: EthInt
+    var data: EthData?
+    var operation: Int
+    var gasToken: EthAddress?
+    var safeTxGas: Int
+    var baseGas: Int
+    var gasPrice: EthInt
+    var refundReceiver: EthAddress?
+    var nonce: Int
+    var contractTransactionHash: EthData
+    var sender: EthAddress
+    var signature: EthData?
+
+    struct EmptyResponse: Decodable {}
+}
+
+extension CreateMultisigTransactionRequest {
+
+    init(safe: Address,
+         to: Address?,
+         value: TokenInt,
+         data: Data?,
+         operation: Int,
+         gasToken: Address?,
+         safeTxGas: Int,
+         baseGas: Int,
+         gasPrice: TokenInt,
+         refundReceiver: Address?,
+         nonce: Int,
+         contractTransactionHash: Data,
+         owner: Address,
+         signature: Data?) {
+        self.safe = EthAddress(hex: safe.value)
+        if let to = to {
+            self.to = EthAddress(hex: to.value)
+        }
+        self.value = EthInt(value, encodingRadix: 10)
+        if let data = data {
+            self.data = EthData(data)
+        }
+        self.operation = operation
+        if let gasToken = gasToken {
+            self.gasToken = EthAddress(hex: gasToken.value)
+        }
+        self.safeTxGas = safeTxGas
+        self.baseGas = baseGas
+        self.gasPrice = EthInt(gasPrice, encodingRadix: 10)
+        if let refundReceiver = refundReceiver {
+            self.refundReceiver = EthAddress(hex: refundReceiver.value)
+        }
+        self.nonce = nonce
+        self.contractTransactionHash = EthData(contractTransactionHash)
+        self.sender = EthAddress(hex: owner.value)
+        if let signature = signature {
+            self.signature = EthData(signature)
+        }
+    }
+
+}
+
+extension Transaction {
+
+    var encodedSignatures: Data? {
+        if signatures.isEmpty { return nil }
+        return Data(signatures.sorted { (a, b) -> Bool in
+            a.address.value.lowercased() < b.address.value.lowercased()
+        }.map { (signature) -> Data in
+            signature.data
+        }.joined())
     }
 
 }
