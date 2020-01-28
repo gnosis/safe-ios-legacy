@@ -12,7 +12,8 @@ final class AssetViewViewController: UITableViewController {
     weak var delegate: MainViewControllerDelegate?
     weak var scrollDelegate: ScrollDelegate?
     private var tokens = [TokenData]()
-
+    private var wallet: WalletData!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +30,9 @@ final class AssetViewViewController: UITableViewController {
         tableView.tableFooterView = (UINib(nibName: "AddTokenFooterView",
                                            bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as! UIView)
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
-
+        wallet = ApplicationServiceRegistry.walletService.selectedWalletData
+        tableView.allowsSelection = !wallet.isReadOnly
+        
         notify()
     }
 
@@ -59,7 +62,10 @@ final class AssetViewViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BasicTableViewCell",
                                                  for: indexPath) as! BasicTableViewCell
-        cell.configure(tokenData: tokenData(for: indexPath), displayBalance: true, displayFullName: false)
+        
+        let accessoryType: UITableViewCell.AccessoryType = wallet.isReadOnly ? .none : .disclosureIndicator
+        
+        cell.configure(tokenData: tokenData(for: indexPath), displayBalance: true, displayFullName: false, accessoryType: accessoryType)
         return cell
     }
 
