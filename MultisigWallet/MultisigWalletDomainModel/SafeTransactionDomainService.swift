@@ -11,5 +11,5 @@ public protocol SafeTransactionDomainService {
     func transactions(safe: Address) -> [Transaction]
     func updateTokens(safe: Address)
     func safes(by owner: Address) throws -> [String]
-
+    func createMultisigTransaction(_ transaction: Transaction, sender: Address)
 }

@@ -11,8 +11,8 @@ public class TransactionSyncDomainService {
 //
 // Then, it will merge transactions, enhancing local model with remote data and updating local transaction
 // status information based on the remote status. (The source of truth is the remote).
-    func sync() {
-        guard let wallet = DomainRegistry.walletRepository.selectedWallet(),
+    func sync(walletID: WalletID) {
+        guard let wallet = DomainRegistry.walletRepository.find(id: walletID),
             wallet.isReadyToUse,
             let safeAddress = wallet.address else { return }
 
@@ -22,7 +22,7 @@ public class TransactionSyncDomainService {
             }.sorted { (a, b) -> Bool in
                 a.identifyingHash!.toHexString() < b.identifyingHash!.toHexString()
             }
-        var localTransactions = DomainRegistry.transactionRepository.all()
+        var localTransactions = DomainRegistry.transactionRepository.find(wallet: wallet.id)
             .compactMap { (tx) -> Transaction? in
                 tx.identifyingHash == nil ? nil : tx
             }.sorted { (a, b) -> Bool in

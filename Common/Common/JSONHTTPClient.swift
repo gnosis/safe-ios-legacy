@@ -82,6 +82,9 @@ public class JSONHTTPClient {
     @discardableResult
     public func execute<T: JSONRequest>(request jsonRequest: T) throws -> T.ResponseType {
         let request = try self.request(from: jsonRequest)
+        if let data = request.body, let string = String(data: data, encoding: .utf8) {
+            print("Request: \(request), body: \(string)")
+        }
         let data = try client.execute(request: request)
         return try response(from: data)
     }

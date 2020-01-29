@@ -23,10 +23,11 @@ open class WalletDiagnosticDomainService: WalletDiagnosticService {
         guard isFileAccessPossible() else { return }
         guard let wallet = DomainRegistry.walletRepository.find(id: id), wallet.isReadyToUse else { return }
 
-        guard let deviceOwner = wallet.owner(role: .thisDevice),
-            DomainRegistry.externallyOwnedAccountRepository.find(by: deviceOwner.address) != nil else {
-                throw WalletDiagnosticServiceError.deviceKeyNotFound
-        }
+        // if wallet has no key, it will now be read-only
+//        guard let deviceOwner = wallet.owner(role: .thisDevice),
+//            DomainRegistry.externallyOwnedAccountRepository.find(by: deviceOwner.address) != nil else {
+//                throw WalletDiagnosticServiceError.deviceKeyNotFound
+//        }
 
         let proxy = SafeOwnerManagerContractProxy(wallet.address)
         guard let remoteOwners = try? proxy.getOwners() else { return }

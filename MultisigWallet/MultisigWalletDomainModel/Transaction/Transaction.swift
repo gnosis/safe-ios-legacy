@@ -477,6 +477,7 @@ public struct TransactionGroup: Equatable {
     public enum GroupType: Int, Equatable {
         case pending = 0
         case processed = 1
+        case signing = 2
     }
 
     public let type: GroupType

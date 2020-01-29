@@ -14,6 +14,7 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
     private static let onERC1155ReceivedSignature = "onERC1155Received(address,address,uint256,uint256,bytes)"
     private static let setFallbackHandlerSignature = "setFallbackHandler(address)"
     private static let changeMasterCopySignature = "changeMasterCopy(address)"
+    private static let approveHashSignature = "approveHash(bytes32)"
 
     public func setup(owners: [Address],
                       threshold: Int,
@@ -142,6 +143,19 @@ public class GnosisSafeContractProxy: EthereumContractProxy {
             return decodeFixedBytes(value: data, size: 4)
         }
         return nil
+    }
+
+    public func approveHash(_ hash: Data) -> Data {
+        return invocation(Self.approveHashSignature, encodeFixedBytes(hash))
+    }
+
+    public func decodeApproveHash(from data: Data) -> Data? {
+        let selector = method(Self.approveHashSignature)
+        guard data.starts(with: selector) else { return nil }
+        var input = data
+        input.removeFirst(selector.count)
+        let hash = decodeFixedBytes(value: input, size: 32)
+        return hash
     }
 
 }
