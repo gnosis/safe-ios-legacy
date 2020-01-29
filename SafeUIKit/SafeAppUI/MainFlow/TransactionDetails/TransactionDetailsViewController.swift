@@ -97,6 +97,8 @@ public class TransactionDetailsViewController: UIViewController {
             static let cancel = LocalizedString("cancel", comment: "Cancel")
         }
     }
+    @IBOutlet weak var signatureTableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var viewButton: StandardButton!
     @IBOutlet weak var separatorLineView: HorizontalSeparatorView!
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
@@ -107,13 +109,18 @@ public class TransactionDetailsViewController: UIViewController {
     @IBOutlet weak var transactionFeeView: TokenAmountTransactionParameterView!
     @IBOutlet weak var viewInExternalAppButton: UIButton!
     @IBOutlet weak var wrapperView: UIView!
+    @IBOutlet weak var dataView: TransactionParameterView!
+    @IBOutlet weak var signaturesContainerView: UIView!
+    @IBOutlet weak var signaturesTableView: UITableView!
+    @IBOutlet weak var transactionHashView: TransactionParameterView!
+    @IBOutlet weak var safeHashView: TransactionParameterView!
+    @IBOutlet weak var nonceView: TransactionParameterView!
     public weak var delegate: TransactionDetailsViewControllerDelegate?
     public private(set) var transactionID: String!
     private var transaction: TransactionData!
     internal var clock = ClockService()
-
+    
     private let dateFormatter = DateFormatter()
-
     public static func create(transactionID: String) -> TransactionDetailsViewController {
         let controller = StoryboardScene.Main.transactionDetailsViewController.instantiate()
         controller.transactionID = transactionID
@@ -170,6 +177,11 @@ public class TransactionDetailsViewController: UIViewController {
         configureStatus()
         configureFee()
         configureViewInOtherApp()
+        configureNonce()
+        configureSafeHash()
+        configureSignatures()
+        configureTransactionHash()
+        configureData()
     }
 
     // swiftlint:disable:next function_body_length cyclomatic_complexity
@@ -254,6 +266,60 @@ public class TransactionDetailsViewController: UIViewController {
              .disconnectStatusKeycard:
             transactionTypeView.value = Strings.settingsChangeType
         }
+    }
+
+    private func configureSignatures() {
+        if let signatures = transaction.signatures {
+            signaturesTableView.delegate = self
+            signaturesTableView.dataSource = self
+            signaturesTableView.rowHeight = 60
+            signatureTableViewHeightConstraint.constant = CGFloat(signatures.count * 60)
+            signaturesTableView.reloadData()
+        } else {
+            signaturesContainerView.removeFromSuperview()
+            contentStackView.removeArrangedSubview(signaturesContainerView)
+        }
+    }
+
+    private func configureNonce() {
+        nonceView.name = "Nonce"
+        if let nonce = transaction.nonce {
+            nonceView.value = nonce
+        } else {
+            nonceView.removeFromSuperview()
+            contentStackView.removeArrangedSubview(nonceView)
+        }
+    }
+
+    private func configureTransactionHash() {
+        transactionHashView.name = "Transaction Hash"
+        if let hash = transaction.transactionHash {
+            transactionHashView.value = hash
+        } else {
+            transactionHashView.removeFromSuperview()
+            contentStackView.removeArrangedSubview(transactionHashView)
+        }
+    }
+
+    private func configureSafeHash() {
+        safeHashView.name = "Safe Hash"
+        if let hash = transaction.safeHash {
+            safeHashView.value = hash.toHexString()
+        } else {
+            safeHashView.removeFromSuperview()
+            contentStackView.removeArrangedSubview(safeHashView)
+        }
+    }
+
+    private func configureData() {
+        dataView.name = "Data"
+        if let data = transaction.data {
+            dataView.value = data.toHexString()
+        } else {
+            dataView.removeFromSuperview()
+            contentStackView.removeArrangedSubview(dataView)
+        }
+        
     }
 
     private func configureSubmitted() {
@@ -364,4 +430,31 @@ extension TransactionDetailsViewController: TransferViewDelegate {
         present(alertController, animated: true)
     }
 
+}
+
+extension TransactionDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return transaction.signatures?.count ?? 0
+    }
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddressTableViewCell", for: indexPath) as! AddressTableViewCell
+
+        let signature = transaction.signatures![indexPath.row]
+        cell.addressLabel.text = signature
+        cell.identiconView.seed = signature
+        cell.selectionStyle = .none
+
+        return cell
+    }
+}
+
+
+class AddressTableViewCell: UITableViewCell {
+    @IBOutlet weak var identiconView: IdenticonView!
+    @IBOutlet weak var addressLabel: UILabel!
 }

@@ -348,7 +348,12 @@ public class MockWalletApplicationService: WalletApplicationService {
                         updated: nil,
                         submitted: nil,
                         rejected: nil,
-                        processed: nil)
+                        processed: nil,
+                        data: nil,
+                        transactionHash: nil,
+                        safeHash: nil,
+                        nonce: nil,
+                        signatures: nil)
     public var requestTransactionConfirmation_throws = false
     public override func requestTransactionConfirmationIfNeeded(_ id: String) throws -> TransactionData {
         requestTransactionConfirmation_input = id

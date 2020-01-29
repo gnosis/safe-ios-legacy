@@ -78,7 +78,12 @@ public struct TransactionData: Equatable {
     public let submitted: Date?
     public let rejected: Date?
     public let processed: Date?
-
+    public let safeHash: Data?
+    public let transactionHash: String?
+    public let signatures: [String]?
+    public let nonce: String?
+    public let data: Data?
+    
     public var displayDate: Date? {
         return [processed, rejected, submitted, updated, created].compactMap { $0 }.first
     }
@@ -99,7 +104,12 @@ public struct TransactionData: Equatable {
                                               updated: nil,
                                               submitted: nil,
                                               rejected: nil,
-                                              processed: nil)
+                                              processed: nil,
+                                              data: nil,
+                                              transactionHash: nil,
+                                              safeHash: nil,
+                                              nonce: nil,
+                                              signatures: nil)
 
     public init(id: String,
                 walletID: String,
@@ -117,7 +127,12 @@ public struct TransactionData: Equatable {
                 updated: Date?,
                 submitted: Date?,
                 rejected: Date?,
-                processed: Date?) {
+                processed: Date?,
+                data: Data?,
+                transactionHash: String?,
+                safeHash: Data?,
+                nonce: String?,
+                signatures: [String]?) {
         self.id = id
         self.walletID = walletID
         self.sender = sender
@@ -135,6 +150,11 @@ public struct TransactionData: Equatable {
         self.submitted = submitted
         self.rejected = rejected
         self.processed = processed
+        self.data = data
+        self.transactionHash = transactionHash
+        self.safeHash = safeHash
+        self.nonce = nonce
+        self.signatures = signatures
     }
 
     public enum Status {

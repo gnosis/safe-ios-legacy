@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -73,72 +73,72 @@
             <objects>
                 <viewController storyboardIdentifier="TransactionDetailsViewController" id="hMI-YP-Is6" customClass="TransactionDetailsViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="coI-KM-0GS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vch-j3-Csj">
-                                <rect key="frame" x="0.0" y="88" width="375" height="646"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPG-b4-rjS">
+                                <rect key="frame" x="0.0" y="88" width="375" height="1378"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2bG-5h-PCA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="636"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vch-j3-Csj">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1035.3333333333333"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWt-wh-dqY" customClass="TransferView" customModule="SafeUIKit">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="155" placeholder="YES" id="wvt-zm-xjd"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpO-Eo-QR6" customClass="SettingsTransactionHeaderView" customModule="SafeUIKit">
-                                                <rect key="frame" x="0.0" y="170" width="375" height="120"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="120" placeholder="YES" id="n5l-Wh-s9d"/>
-                                                </constraints>
-                                            </view>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbT-l6-tQH" customClass="StandardButton" customModule="SafeUIKit">
-                                                <rect key="frame" x="0.0" y="297.66666666666669" width="375" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="QYt-5D-Akq"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <connections>
-                                                    <action selector="didTapViewButton:" destination="hMI-YP-Is6" eventType="touchUpInside" id="G5e-Zw-j9L"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="305" width="375" height="2"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="v16-w0-tcx"/>
-                                                </constraints>
-                                            </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-8Y-uAW">
-                                                <rect key="frame" x="0.0" y="322" width="375" height="314"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2bG-5h-PCA">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1035.3333333333333"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWt-wh-dqY" customClass="TransferView" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="155" placeholder="YES" id="wvt-zm-xjd"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpO-Eo-QR6" customClass="SettingsTransactionHeaderView" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="170" width="375" height="120"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="120" placeholder="YES" id="n5l-Wh-s9d"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbT-l6-tQH" customClass="StandardButton" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="297.66666666666669" width="375" height="44"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="44" id="QYt-5D-Akq"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didTapViewButton:" destination="hMI-YP-Is6" eventType="touchUpInside" id="G5e-Zw-j9L"/>
+                                                        </connections>
+                                                    </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="305" width="375" height="2"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="2" id="v16-w0-tcx"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-hP-BFi" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="322" width="375" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="tvG-lp-Wee"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-ed-qN7" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="66" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="387" width="375" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="QJS-Wd-6zh"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-Qj-qJQ" customClass="StatusTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="132" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="452" width="375" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="4k0-5w-yHC"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5am-MD-ipW" customClass="TokenAmountTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="198" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="517" width="375" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="uc1-HJ-uc1"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yR4-ca-bEB">
-                                                        <rect key="frame" x="0.0" y="264" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="582" width="375" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maA-2G-VbL">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="50"/>
@@ -161,35 +161,146 @@
                                                             <constraint firstItem="maA-2G-VbL" firstAttribute="leading" secondItem="yR4-ca-bEB" secondAttribute="leading" constant="16" id="w1l-42-UN7"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08C-d3-A3V">
+                                                        <rect key="frame" x="0.0" y="647" width="375" height="128.33333333333337"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Signatures" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XC-IE-xzU">
+                                                                <rect key="frame" x="8" y="8.0000000000000018" width="84.333333333333329" height="19.666666666666671"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="19.666666666666671" id="LbT-1J-kKI"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g5q-xw-XZY">
+                                                                <rect key="frame" x="8" y="36.333333333333371" width="359" height="92"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="92" id="2XQ-28-3Ze"/>
+                                                                </constraints>
+                                                                <prototypes>
+                                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddressTableViewCell" id="Ujp-S7-rL2" customClass="AddressTableViewCell" customModule="SafeAppUI" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="28" width="359" height="60.333332061767578"/>
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ujp-S7-rL2" id="MAw-uk-DvU">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="60.333332061767578"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                            <subviews>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FMg-yK-E28" customClass="IdenticonView" customModule="SafeUIKit">
+                                                                                    <rect key="frame" x="8" y="8" width="44" height="44.333333333333336"/>
+                                                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="44" id="48G-bV-Gl2"/>
+                                                                                        <constraint firstAttribute="width" constant="44" id="vj0-CY-XW3"/>
+                                                                                    </constraints>
+                                                                                </view>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0xDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" textAlignment="natural" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Coz-MW-bUi" customClass="FullEthereumAddressLabel" customModule="SafeUIKit">
+                                                                                    <rect key="frame" x="60" y="10" width="291" height="40.666666666666664"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstItem="Coz-MW-bUi" firstAttribute="centerY" secondItem="FMg-yK-E28" secondAttribute="centerY" id="8bQ-Jw-OxP"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="Coz-MW-bUi" secondAttribute="trailing" constant="8" id="JWr-0O-lES"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="FMg-yK-E28" secondAttribute="bottom" constant="8" id="Uqm-Qw-hPY"/>
+                                                                                <constraint firstItem="FMg-yK-E28" firstAttribute="top" secondItem="MAw-uk-DvU" secondAttribute="top" constant="8" id="p38-Qp-phk"/>
+                                                                                <constraint firstItem="FMg-yK-E28" firstAttribute="leading" secondItem="MAw-uk-DvU" secondAttribute="leading" constant="8" id="raZ-0V-IIe"/>
+                                                                                <constraint firstItem="Coz-MW-bUi" firstAttribute="leading" secondItem="FMg-yK-E28" secondAttribute="trailing" constant="8" id="tQt-Hm-c6h"/>
+                                                                            </constraints>
+                                                                        </tableViewCellContentView>
+                                                                        <connections>
+                                                                            <outlet property="addressLabel" destination="Coz-MW-bUi" id="OAg-q9-X42"/>
+                                                                            <outlet property="identiconView" destination="FMg-yK-E28" id="JTE-7H-inB"/>
+                                                                        </connections>
+                                                                    </tableViewCell>
+                                                                </prototypes>
+                                                            </tableView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="g5q-xw-XZY" firstAttribute="leading" secondItem="08C-d3-A3V" secondAttribute="leading" constant="8" id="A9L-5R-wbn"/>
+                                                            <constraint firstAttribute="bottom" secondItem="g5q-xw-XZY" secondAttribute="bottom" id="Sjw-Xr-DWj"/>
+                                                            <constraint firstAttribute="trailing" secondItem="g5q-xw-XZY" secondAttribute="trailing" constant="8" id="Zb6-ib-Q6G"/>
+                                                            <constraint firstItem="1XC-IE-xzU" firstAttribute="leading" secondItem="08C-d3-A3V" secondAttribute="leading" constant="8" id="eZO-4G-bSi"/>
+                                                            <constraint firstItem="g5q-xw-XZY" firstAttribute="top" secondItem="1XC-IE-xzU" secondAttribute="bottom" constant="8.5" id="mJm-wW-g45"/>
+                                                            <constraint firstItem="1XC-IE-xzU" firstAttribute="top" secondItem="08C-d3-A3V" secondAttribute="top" constant="8" id="pDe-dv-shl"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3H-oq-YTv" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="790.33333333333337" width="375" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="4CS-64-xTm"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEU-kD-vY4" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="855.33333333333337" width="375" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="Kxe-RS-vsi"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPm-n5-TF9" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="920.33333333333337" width="375" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="8UK-hA-Grz"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b0J-fs-hpW" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="985.33333333333326" width="375" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="gHE-Kz-Vdh"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="2bG-5h-PCA" secondAttribute="bottom" id="EET-TM-Jpz"/>
+                                            <constraint firstItem="2bG-5h-PCA" firstAttribute="top" secondItem="vch-j3-Csj" secondAttribute="top" id="e6d-Ah-ceI"/>
+                                            <constraint firstAttribute="trailing" secondItem="2bG-5h-PCA" secondAttribute="trailing" id="ipP-8P-iHK"/>
+                                            <constraint firstItem="2bG-5h-PCA" firstAttribute="leading" secondItem="vch-j3-Csj" secondAttribute="leading" id="rjC-SY-OhP"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" secondItem="2bG-5h-PCA" secondAttribute="height" constant="10" id="SGE-jb-drQ"/>
-                                    <constraint firstItem="2bG-5h-PCA" firstAttribute="top" secondItem="vch-j3-Csj" secondAttribute="top" id="e6d-Ah-ceI"/>
-                                    <constraint firstAttribute="trailing" secondItem="2bG-5h-PCA" secondAttribute="trailing" id="ipP-8P-iHK"/>
-                                    <constraint firstItem="2bG-5h-PCA" firstAttribute="leading" secondItem="vch-j3-Csj" secondAttribute="leading" id="rjC-SY-OhP"/>
+                                    <constraint firstItem="vch-j3-Csj" firstAttribute="width" secondItem="jPG-b4-rjS" secondAttribute="width" id="K4L-15-hNv"/>
+                                    <constraint firstAttribute="bottom" secondItem="vch-j3-Csj" secondAttribute="bottom" id="cgJ-sT-dmF"/>
+                                    <constraint firstAttribute="trailing" secondItem="vch-j3-Csj" secondAttribute="trailing" id="eew-A7-5bd"/>
+                                    <constraint firstItem="vch-j3-Csj" firstAttribute="centerX" secondItem="jPG-b4-rjS" secondAttribute="centerX" id="wyE-4q-vgC"/>
+                                    <constraint firstItem="vch-j3-Csj" firstAttribute="top" secondItem="jPG-b4-rjS" secondAttribute="top" id="xDU-oE-FyK"/>
                                 </constraints>
-                            </view>
+                                <viewLayoutGuide key="contentLayoutGuide" id="dNM-Zh-yaP"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="gN7-In-cLs"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vch-j3-Csj" firstAttribute="trailing" secondItem="m89-Zk-oYt" secondAttribute="trailing" id="8Jk-bA-Eej"/>
-                            <constraint firstItem="vch-j3-Csj" firstAttribute="leading" secondItem="m89-Zk-oYt" secondAttribute="leading" id="QZj-Ac-aoG"/>
-                            <constraint firstItem="vch-j3-Csj" firstAttribute="top" secondItem="m89-Zk-oYt" secondAttribute="top" id="usa-a4-U5C"/>
+                            <constraint firstItem="m89-Zk-oYt" firstAttribute="leading" secondItem="jPG-b4-rjS" secondAttribute="leading" id="6O0-2i-X3B"/>
+                            <constraint firstItem="m89-Zk-oYt" firstAttribute="bottom" secondItem="jPG-b4-rjS" secondAttribute="bottom" id="RCZ-iV-knH"/>
+                            <constraint firstItem="m89-Zk-oYt" firstAttribute="top" secondItem="jPG-b4-rjS" secondAttribute="top" id="fYJ-f6-idp"/>
+                            <constraint firstItem="jPG-b4-rjS" firstAttribute="trailing" secondItem="m89-Zk-oYt" secondAttribute="trailing" id="xzx-dU-YKA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m89-Zk-oYt"/>
                     </view>
                     <navigationItem key="navigationItem" title="Transaction details" id="F5R-fq-Lbi"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <size key="freeformSize" width="375" height="1500"/>
                     <connections>
+                        <outlet property="contentStackView" destination="2bG-5h-PCA" id="ine-2P-AVC"/>
+                        <outlet property="dataView" destination="b0J-fs-hpW" id="g1W-hf-eIv"/>
+                        <outlet property="nonceView" destination="V3H-oq-YTv" id="8tM-k7-Vzi"/>
+                        <outlet property="safeHashView" destination="vPm-n5-TF9" id="ffP-qP-iFW"/>
                         <outlet property="separatorLineView" destination="a3a-bg-PE7" id="dHV-d9-Pn7"/>
                         <outlet property="settingsHeaderView" destination="qpO-Eo-QR6" id="yY1-Dy-I1U"/>
+                        <outlet property="signatureTableViewHeightConstraint" destination="2XQ-28-3Ze" id="Uf7-f1-Nnd"/>
+                        <outlet property="signaturesContainerView" destination="08C-d3-A3V" id="RKb-uQ-llA"/>
+                        <outlet property="signaturesTableView" destination="g5q-xw-XZY" id="bxB-g6-zcV"/>
                         <outlet property="submittedParameterView" destination="1fJ-ed-qN7" id="81l-1z-BXr"/>
                         <outlet property="transactionFeeView" destination="5am-MD-ipW" id="hdM-2A-Gbb"/>
+                        <outlet property="transactionHashView" destination="cEU-kD-vY4" id="cyp-jm-DDJ"/>
                         <outlet property="transactionStatusView" destination="gQu-Qj-qJQ" id="5MI-ZJ-7oB"/>
                         <outlet property="transactionTypeView" destination="DPa-hP-BFi" id="FeQ-vO-qkK"/>
                         <outlet property="transferView" destination="pWt-wh-dqY" id="oaA-OP-CJK"/>
@@ -200,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HsJ-WE-Y9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-567" y="72"/>
+            <point key="canvasLocation" x="-522.39999999999998" y="-28.078817733990149"/>
         </scene>
         <!--Add Token-->
         <scene sceneID="BV9-w0-iMh">
