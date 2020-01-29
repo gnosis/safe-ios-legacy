@@ -39,6 +39,12 @@ public class TransactionSyncDomainService {
 
                 if local.status != remote.status {
                     //    update status
+                    if remote.status == .success {
+                        if let wcTransaction = DomainRegistry.wcProcessingTxRepository.find(transactionID: local.id) {
+                            DomainRegistry.wcProcessingTxRepository.remove(transactionID: local.id)
+                            wcTransaction.completion(.success(local.transactionHash!.value))
+                        }
+                    }
                     local.change(status: remote.status)
 
                     // update dates

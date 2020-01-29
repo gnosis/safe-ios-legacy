@@ -321,6 +321,7 @@
 		552D42F7233A10AA00C57B5C /* EventRelayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42F2233A10AA00C57B5C /* EventRelayTests.swift */; };
 		552D42F8233A10AA00C57B5C /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42F3233A10AA00C57B5C /* ApplicationServiceRegistryTests.swift */; };
 		552D42F9233A10AA00C57B5C /* WalletConnectApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D42F4233A10AA00C57B5C /* WalletConnectApplicationServiceTests.swift */; };
+		553406F123E1BFC200A97B15 /* InMemoryWCProcessingTransactionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553406F023E1BFC200A97B15 /* InMemoryWCProcessingTransactionsRepository.swift */; };
 		5542B4DE231E770800835F89 /* ContractUpgradeDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4DC231E770800835F89 /* ContractUpgradeDomainService.swift */; };
 		5542B4DF231E770E00835F89 /* ContractUpgradeDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4D7231E770800835F89 /* ContractUpgradeDomainServiceTests.swift */; };
 		5542B4E1231E772C00835F89 /* WalletDiagnosticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542B4E0231E772C00835F89 /* WalletDiagnosticService.swift */; };
@@ -801,6 +802,7 @@
 		552D42F2233A10AA00C57B5C /* EventRelayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRelayTests.swift; sourceTree = "<group>"; };
 		552D42F3233A10AA00C57B5C /* ApplicationServiceRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistryTests.swift; sourceTree = "<group>"; };
 		552D42F4233A10AA00C57B5C /* WalletConnectApplicationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletConnectApplicationServiceTests.swift; sourceTree = "<group>"; };
+		553406F023E1BFC200A97B15 /* InMemoryWCProcessingTransactionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryWCProcessingTransactionsRepository.swift; sourceTree = "<group>"; };
 		5542B4D7231E770800835F89 /* ContractUpgradeDomainServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractUpgradeDomainServiceTests.swift; sourceTree = "<group>"; };
 		5542B4DC231E770800835F89 /* ContractUpgradeDomainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractUpgradeDomainService.swift; sourceTree = "<group>"; };
 		5542B4E0231E772C00835F89 /* WalletDiagnosticService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDiagnosticService.swift; sourceTree = "<group>"; };
@@ -924,6 +926,7 @@
 				0A1617F92304593B00F6E501 /* SecureExternallyOwnedAccountRepository.swift */,
 				0A1618062304593B00F6E501 /* UserDefaultsAppSettingsRepository.swift */,
 				0A1617FA2304593B00F6E501 /* DBSerializable */,
+				553406F023E1BFC200A97B15 /* InMemoryWCProcessingTransactionsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -2173,6 +2176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A1618572304593B00F6E501 /* InfuraEthereumNodeService.swift in Sources */,
+				553406F123E1BFC200A97B15 /* InMemoryWCProcessingTransactionsRepository.swift in Sources */,
 				0A16183D2304593B00F6E501 /* Token+DBSerializable.swift in Sources */,
 				55E9D3A22361A46900D2959A /* DBAddressBookRepository.swift in Sources */,
 				0AC079D623D70AEB00402715 /* HTTPGnosisTransactionService.swift in Sources */,

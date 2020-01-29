@@ -70,8 +70,10 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     private var state: TransactionStatus
 
     public var identifyingHash: Data? {
-        if let hash = transactionHash?.value ?? hash?.toHexString() {
-            return Data(hex: hash)
+        if let hash = hash {
+            return hash
+        } else if let txHash = transactionHash?.value {
+             return Data(hex: txHash)
         }
         return nil
     }

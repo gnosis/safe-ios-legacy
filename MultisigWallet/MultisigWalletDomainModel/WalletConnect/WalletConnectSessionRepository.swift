@@ -21,3 +21,14 @@ public extension WalletConnectSessionRepository {
     }
 
 }
+
+public protocol WCTransaction {
+    var transactionID: TransactionID { get }
+    var completion: (Result<String, Error>) -> Void { get }
+}
+
+public protocol WCProcessingTransactionsRepository {
+    func add(transaction: WCTransaction)
+    func find(transactionID: TransactionID) -> WCTransaction?
+    func remove(transactionID: TransactionID)
+}
