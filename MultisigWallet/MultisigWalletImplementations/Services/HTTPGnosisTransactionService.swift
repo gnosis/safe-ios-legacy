@@ -46,13 +46,13 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
             let responseTransactions = try httpClient.execute(request: GetSafeTransactionsRequest(safe: safe.value))
             result += responseTransactions.results.map { $0.transaction(in: safe) }
         } catch {
-            print("Error: \(error)")
+            printError(error)
         }
         do {
             let responseIncoming = try httpClient.execute(request: GetIncomingSafeTransactionsRequest(safe: safe.value))
             result += responseIncoming.results.map { $0.transaction(in: safe) }
         } catch {
-            print("Error: \(error)")
+            printError(error)
         }
         return result
     }
@@ -73,7 +73,7 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
                 DomainRegistry.tokenListItemRepository.whitelist(token)
             }
         } catch {
-            print("Error: \(error)")
+            printError(error)
         }
     }
 
@@ -99,24 +99,27 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
                 nonce: Int(transaction.nonce!)!,
                 contractTransactionHash: transaction.hash!,
                 owner: sender,
-                signature: transaction.encodedSignatures)
+                signature: nil /*transaction.encodedSignatures*/)
             try httpClient.execute(request: request)
         } catch {
-            switch error {
-            case let HTTPClient.Error.networkRequestFailed(request, response, data):
-                var string = ""
-                if let data = data, let body = String(data: data, encoding: .utf8) {
-                    string = body
-                }
-                var responseString = ""
-                if let response = response {
-                    responseString = String(describing: response)
-                }
-                print("REQUEST FAILED: \(request), response: \(responseString), data: \(string)")
-            default:
-                print("Error: \(error)")
-            }
+            printError(error)
+        }
+    }
 
+    private func printError(_ error: Error) {
+        switch error {
+        case let HTTPClient.Error.networkRequestFailed(request, response, data):
+            var string = ""
+            if let data = data, let body = String(data: data, encoding: .utf8) {
+                string = body
+            }
+            var responseString = ""
+            if let response = response {
+                responseString = String(describing: response)
+            }
+            print("REQUEST FAILED: \(request), response: \(responseString), data: \(string)")
+        default:
+            print("Error: \(error)")
         }
     }
 
@@ -448,6 +451,7 @@ struct CreateMultisigTransactionRequest: Encodable, JSONRequest {
     var contractTransactionHash: EthData
     var sender: EthAddress
     var signature: EthData?
+    var transactionHash: EthData?
 
     struct EmptyResponse: Decodable {}
 }
@@ -492,19 +496,6 @@ extension CreateMultisigTransactionRequest {
         if let signature = signature {
             self.signature = EthData(signature)
         }
-    }
-
-}
-
-extension Transaction {
-
-    var encodedSignatures: Data? {
-        if signatures.isEmpty { return nil }
-        return Data(signatures.sorted { (a, b) -> Bool in
-            a.address.value.lowercased() < b.address.value.lowercased()
-        }.map { (signature) -> Data in
-            signature.data
-        }.joined())
     }
 
 }

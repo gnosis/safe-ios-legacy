@@ -271,7 +271,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     }
 
     public func isSignedBy(_ address: Address) -> Bool {
-        return signatures.contains { $0.address == address }
+        return signatures.contains { $0.address.value.lowercased() == address.value.lowercased() }
     }
 
     private func assertSignaturesEditable() {
@@ -512,6 +512,26 @@ public extension Transaction {
 
     var ethData: String {
         return data == nil ? "" : "0x\(data!.toHexString())"
+    }
+
+}
+
+public extension Transaction {
+
+    var encodedSignatures: Data? {
+        if signatures.isEmpty { return nil }
+        return Data(signatures.sorted { (a, b) -> Bool in
+            a.address.value.lowercased() < b.address.value.lowercased()
+        }.map { (signature) -> Data in
+            if signature.data.isEmpty {
+                // treat as pre-approved signature
+                let preValidatedSignatureType: UInt8 = 1
+                return Data(ethHex: signature.address.value).leftPadded(to: 32) + Data(repeating: 0, count: 32) + Data([preValidatedSignatureType])
+            } else {
+                assert(signature.data.count == 65)
+                return signature.data
+            }
+        }.joined())
     }
 
 }
