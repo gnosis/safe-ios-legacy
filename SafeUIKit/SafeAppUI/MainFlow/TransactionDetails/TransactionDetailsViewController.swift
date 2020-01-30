@@ -168,6 +168,10 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func reloadData() {
         transaction = ApplicationServiceRegistry.walletService.transactionData(transactionID)
+        guard transaction != nil else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
         configureTransferDetails()
         configureType()
         configureSubmitted()

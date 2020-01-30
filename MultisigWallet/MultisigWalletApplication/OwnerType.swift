@@ -10,4 +10,5 @@ public enum OwnerType: String {
     case paperWallet
     case paperWalletDerived
     case keycard
+    case personalSafe
 }

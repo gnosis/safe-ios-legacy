@@ -32,8 +32,14 @@ public class TransactionDomainService {
     public func prepareMultisigTransaction(_ tx: Transaction) {
         let multisigWallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
 
+        let proxy = GnosisSafeContractProxy(multisigWallet.address)
+        let safeTxGas = proxy.requiredTxGas(to: tx.ethTo,
+                                            value: tx.ethValue,
+                                            data: Data(hex: tx.ethData),
+                                            operation: tx.operation ?? .call) + 10000
+
         // feeEstimate = 0-s: gasPrice = 0, operationalGas = 0, dataGas = 0, gas = 0, Ether token
-        let fee = TransactionFeeEstimate(gas: 0, dataGas: 0, operationalGas: 0, gasPrice: .ether(0))
+        let fee = TransactionFeeEstimate(gas: safeTxGas, dataGas: 0, operationalGas: 0, gasPrice: .ether(0))
         tx.change(feeEstimate: fee).change(fee: fee.totalSubmittedToBlockchain)
 
         // operation = call
@@ -41,10 +47,15 @@ public class TransactionDomainService {
 
         // nonce = get latest transaction nonce (tx service -> latest tx -> nonce)
         //    get max nonce from all transactions in the wallet
-        let maxNonce = DomainRegistry.transactionRepository.find(wallet: multisigWallet.id).compactMap { $0.nonce }
-            .map { Int($0)! }.max() ?? -1 // -1 so that first nonce would be '0'
-        let nextNonce = maxNonce + 1
-        tx.change(nonce: String(nextNonce))
+        if let contractNonce = try? Int(SafeOwnerManagerContractProxy(multisigWallet.address).nonce()) {
+            tx.change(nonce: String(contractNonce))
+        } else {
+            let maxNonce = DomainRegistry.transactionRepository.find(wallet: multisigWallet.id).compactMap { $0.nonce }
+                .map { Int($0)! }.max() ?? -1 // -1 so that first nonce would be '0'
+
+            let nextNonce = maxNonce + 1
+            tx.change(nonce: String(nextNonce))
+        }
 
         // hash = service.hash()
         assert(tx.sender != nil)
@@ -56,15 +67,10 @@ public class TransactionDomainService {
         let hash = DomainRegistry.encryptionService.hash(of: tx)
         tx.change(hash: hash)
 
-        // move to the signing state if needed
-        if tx.status == .draft {
-            tx.proceed()
-        }
-
         DomainRegistry.transactionRepository.save(tx)
     }
 
-    public func createPersonalTransaction(in personalWallet: Wallet, for multisigTransactionID: TransactionID) -> TransactionID {
+    public func createApprovalTransaction(in personalWallet: Wallet, for multisigTransactionID: TransactionID) -> TransactionID {
         let multisigTransaction = DomainRegistry.transactionRepository.find(id: multisigTransactionID)!
         let multisigWallet = DomainRegistry.walletRepository.find(id: multisigTransaction.accountID.walletID)!
 
@@ -85,6 +91,41 @@ public class TransactionDomainService {
         DomainRegistry.transactionRepository.save(personalTx)
         return personalTx.id
     }
+
+    public func createExecuteTransaction(from personalWallet: Wallet, for multisigTransactionID: TransactionID) -> TransactionID {
+        let multisigTx = DomainRegistry.transactionRepository.find(id: multisigTransactionID)!
+        let multisigWallet = DomainRegistry.walletRepository.find(id: multisigTx.accountID.walletID)!
+
+        let personalTxID = newDraftTransaction(in: personalWallet)
+        let personalTx = DomainRegistry.transactionRepository.find(id: personalTxID)!
+
+        let multisigContract = GnosisSafeContractProxy(multisigWallet.address!)
+        let executeTransactionData = multisigContract.executeTransaction(
+            to: multisigTx.ethTo,
+            value: multisigTx.ethValue,
+            data: Data(hex: multisigTx.ethData),
+            operation: multisigTx.operation ?? .call,
+            safeTxGas: multisigTx.feeEstimate?.gas ?? 0,
+            baseGas: multisigTx.feeEstimate?.dataGas ?? 0,
+            gasPrice: multisigTx.feeEstimate?.gasPrice.amount ?? 0,
+            gasToken: multisigTx.feeEstimate?.gasPrice.token.address ?? .zero,
+            refundReceiver: .zero,
+            signatures: multisigTx.encodedSignatures ?? Data()
+        )
+
+        // recipient = multisig
+        personalTx.change(recipient: multisigWallet.address!)
+            // amount = 0
+            // token = ether
+            .change(amount: .ether(0))
+        // data = executeTransaction()
+            .change(data: executeTransactionData)
+
+        DomainRegistry.transactionRepository.save(personalTx)
+        return personalTx.id
+    }
+
+
 
     public func allTransactions() -> [Transaction] {
         let walletID = DomainRegistry.portfolioRepository.portfolio()?.selectedWallet
@@ -125,12 +166,20 @@ public class TransactionDomainService {
         var groups = [TransactionGroup]()
         var signingGroup = TransactionGroup(type: .signing, date: nil, transactions: [])
         var pendingGroup = TransactionGroup(type: .pending, date: nil, transactions: [])
+
+        // if nonce is < contract nonce, then the transaction can be ignored for signing becuase it will fail.
+        let wallet = DomainRegistry.walletRepository.selectedWallet()
+        let proxy = SafeOwnerManagerContractProxy(wallet!.address)
+        let contractNonce = Int((try? proxy.nonce()) ?? 0)
+
         for tx in allTransactions() {
             if tx.status == .pending {
                 pendingGroup.transactions.append(tx)
                 continue
             } else if tx.status == .signing {
-                signingGroup.transactions.append(tx)
+//                if (Int(tx.nonce ?? "0") ?? 0) > contractNonce {
+                    signingGroup.transactions.append(tx)
+//                }
                 continue
             }
             precondition(tx.allEventDates.first != nil, "Transaction must be timestamped: \(tx)")
@@ -180,8 +229,16 @@ public class TransactionDomainService {
 
     /// Remove temporary transactions from transaction repository.
     public func cleanUpStaleTransactions() {
-        let cleanUpStatuses = [TransactionStatus.Code.draft, /*.signing */]
-        let toDelete = DomainRegistry.transactionRepository.all().filter { cleanUpStatuses.contains($0.status) }
+        let toDelete = DomainRegistry.transactionRepository.all().filter { tx in
+            // for personal wallets, we'll remove both drafts and signing
+            if let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) {
+                if wallet.type == .personal && (tx.status == .draft || tx.status == .signing) ||
+                    wallet.type == .multisig && (tx.status == .draft) {
+                    return true
+                }
+            }
+            return false
+        }
         for tx in toDelete {
             DomainRegistry.transactionRepository.remove(tx)
         }

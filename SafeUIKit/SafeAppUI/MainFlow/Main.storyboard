@@ -164,11 +164,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxW-B0-TAE" userLabel="Transaction Actions" customClass="TransactionActionsView" customModule="SafeAppUI" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="330" width="375" height="50"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-ON-TJd">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-ON-TJd">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="50"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEO-0m-xIh" customClass="StandardButton" customModule="SafeUIKit">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="163.66666666666666" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="VUY-cq-ULI"/>
                                                                         </constraints>
@@ -182,7 +182,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jsU-jO-kbN" customClass="StandardButton" customModule="SafeUIKit">
-                                                                        <rect key="frame" x="171.66666666666663" y="0.0" width="171.33333333333337" height="50"/>
+                                                                        <rect key="frame" x="179.66666666666663" y="0.0" width="163.33333333333337" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="xMm-eR-PmR"/>
                                                                         </constraints>

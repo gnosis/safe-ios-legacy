@@ -7,6 +7,10 @@ import MultisigWalletDomainModel
 import BigInt
 
 public class MockEthereumNodeService: EthereumNodeDomainService {
+    public func eth_call(from: Address, to: Address, data: Data) throws -> Data {
+        Data()
+    }
+
 
     enum Error: String, LocalizedError, Hashable {
         case error

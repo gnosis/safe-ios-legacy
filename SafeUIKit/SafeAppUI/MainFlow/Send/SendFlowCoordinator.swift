@@ -40,7 +40,7 @@ extension SendFlowCoordinator: SendInputViewControllerDelegate {
 
     func didCreateDraftTransaction(id: String) {
         // For multisig, it will create a different transaction to review in personal safe
-        let txID = ApplicationServiceRegistry.walletService.createReviewTransaction(for: id)
+        let txID = ApplicationServiceRegistry.walletService.createApprovalReviewTransaction(for: id)
         openTransactionReviewScreen(txID)
     }
 

@@ -276,7 +276,7 @@ class MainHeaderView: UIView {
 
     @IBOutlet weak var isMultiSigLabel: UILabel!
     @IBOutlet weak var isReadOnlyLabel: UILabel!
-    
+
     @IBOutlet weak var bagesContainerStackView: UIStackView!
     var height: CGFloat {
         get { return heightConstraint.constant }
@@ -292,7 +292,7 @@ class MainHeaderView: UIView {
             }
         }
     }
-    
+
     var isMultiSig: Bool = false {
         didSet {
             if !isMultiSig {
@@ -301,7 +301,7 @@ class MainHeaderView: UIView {
             }
         }
     }
-    
+
     var isReadOnly: Bool = false  {
         didSet {
             if !isReadOnly {
@@ -314,7 +314,7 @@ class MainHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         addressLabel.textColor = ColorName.darkBlue.color
-        
+         
         isMultiSigLabel.layer.cornerRadius = 8.0
         isMultiSigLabel.clipsToBounds = true
         isReadOnlyLabel.layer.cornerRadius = 8.0

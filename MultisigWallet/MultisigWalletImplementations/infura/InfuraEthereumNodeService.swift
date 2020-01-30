@@ -68,6 +68,17 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
                             blockNumber: .latest)
     }
 
+    public func eth_call(from: MultisigWalletDomainModel.Address,
+                         to: MultisigWalletDomainModel.Address,
+                         data: Data) throws -> Data {
+        return try eth_call(transaction: TransactionCall(
+            from: EthAddress(hex: from.value),
+            to: EthAddress(hex: to.value),
+            data: EthData(data)),
+                            blockNumber: .latest)
+    }
+
+
     public func eth_call(transaction: TransactionCall, blockNumber: EthBlockNumber) throws -> Data {
         return try execute(request: MessageCallRequest(transaction, blockNumber))
     }

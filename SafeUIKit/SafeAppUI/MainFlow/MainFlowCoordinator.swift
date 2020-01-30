@@ -423,15 +423,18 @@ extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
     public func transactionDetailsViewControllerDidSelectApprove(_ controller: TransactionDetailsViewController) {
         // approve:
         //    we have existing multisig transaction (this)
+        let reviewTxID = ApplicationServiceRegistry.walletService.createApprovalReviewTransaction(for: controller.transactionID)
         //    we now need to create new personalSafe transaction approving this multisig transaction
         //      using the personal safe owner. // edge case - more than one local safe owner - then we need to choose
         //                                     // with which personal safe to approve.
         //    and we will trigger the review-success flow for that personal safe transaction.
         //    using the handleIncomingPushTransaction(personal transaction id)
+        handleIncomingPushTransaction(reviewTxID)
     }
 
     public func transactionDetailsViewControllerDidSelectExecute(_ controller: TransactionDetailsViewController) {
-        
+        let reviewTxID = ApplicationServiceRegistry.walletService.createExecutionReviewTransaction(for: controller.transactionID)
+        handleIncomingPushTransaction(reviewTxID)
     }
 
 }

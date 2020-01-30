@@ -8,6 +8,10 @@ import Common
 import BigInt
 
 public class DemoEthereumNodeService: EthereumNodeDomainService {
+    public func eth_call(from: Address, to: Address, data: Data) throws -> Data {
+        Data()
+    }
+
 
     public let delay: TimeInterval
 

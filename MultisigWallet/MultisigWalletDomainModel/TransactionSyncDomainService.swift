@@ -19,14 +19,10 @@ public class TransactionSyncDomainService {
         let remoteTransactions = DomainRegistry.safeTransactionService.transactions(safe: safeAddress)
             .compactMap { (tx) -> Transaction? in
                 tx.identifyingHash == nil ? nil : tx
-            }.sorted { (a, b) -> Bool in
-                a.identifyingHash!.toHexString() < b.identifyingHash!.toHexString()
             }
         var localTransactions = DomainRegistry.transactionRepository.find(wallet: wallet.id)
             .compactMap { (tx) -> Transaction? in
                 tx.identifyingHash == nil ? nil : tx
-            }.sorted { (a, b) -> Bool in
-                a.identifyingHash!.toHexString() < b.identifyingHash!.toHexString()
             }
         // for all remote tx-es that exist in local
 
@@ -71,10 +67,20 @@ public class TransactionSyncDomainService {
                 for signature in remote.signatures {
                     local.add(signature: signature)
                 }
-
             }
-
         }
+
+//         for multisig, remove all transactions not present in remote
+//        if wallet.type == .multisig {
+//            let toRemove = localTransactions.filter { local in
+//                local.status == .draft &&
+//                !remoteTransactions.contains(where: { remote in remote.identifyingHash! == local.identifyingHash })
+//            }
+//            for tx in toRemove {
+//                DomainRegistry.transactionRepository.remove(tx)
+//            }
+//            localTransactions.removeAll(where: { toRemove.contains($0) })
+//        }
 
         // add all remote tx-es that do not exist in local
         let localHashes = localTransactions.map { $0.identifyingHash! }
