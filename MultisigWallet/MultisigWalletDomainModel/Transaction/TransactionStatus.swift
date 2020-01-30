@@ -75,10 +75,10 @@ class DraftTransactionStatus: TransactionStatus {
     override var canChangeSignatures: Bool { return true }
 
     override func proceed(_ tx: Transaction) {
-        try! assertNotNil(tx.sender, Transaction.Error.senderNotSet)
-        try! assertNotNil(tx.recipient, Transaction.Error.recipientNotSet)
-        try! assertNotNil(tx.amount, Transaction.Error.amountNotSet)
-        try! assertNotNil(tx.fee, Transaction.Error.feeNotSet)
+//        try! assertNotNil(tx.sender, Transaction.Error.senderNotSet)
+//        try! assertNotNil(tx.recipient, Transaction.Error.recipientNotSet)
+//        try! assertNotNil(tx.amount, Transaction.Error.amountNotSet)
+//        try! assertNotNil(tx.fee, Transaction.Error.feeNotSet)
         tx.change(status: .signing)
             .timestampUpdated(at: Date())
     }
@@ -92,7 +92,7 @@ class SigningTransactionStatus: TransactionStatus {
     override var canChangeSignatures: Bool { return true }
 
     override func proceed(_ tx: Transaction) {
-        try! assertNotNil(tx.transactionHash, Transaction.Error.transactionHashNotSet)
+//        try! assertNotNil(tx.transactionHash, Transaction.Error.transactionHashNotSet)
         tx.change(status: .pending)
             .timestampSubmitted(at: Date())
             .timestampUpdated(at: Date())
