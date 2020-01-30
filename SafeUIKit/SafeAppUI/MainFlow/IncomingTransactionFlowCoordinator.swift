@@ -35,7 +35,8 @@ class IncomingTransactionFlowCoordinator: FlowCoordinator {
             push(reviewVC)
         case .walletConnect:
             let wcSessionData = sourceMeta as! WCSessionData
-            let reviewVC = WCSendReviewViewController(transactionID: transactionID, delegate: self)
+            let reviewTxID = ApplicationServiceRegistry.walletService.createReviewTransaction(for: transactionID)
+            let reviewVC = WCSendReviewViewController(transactionID: reviewTxID, delegate: self)
             reviewVC.wcSessionData = wcSessionData
             reviewVC.onBack = { [weak self] in
                 guard let `self` = self else { return }

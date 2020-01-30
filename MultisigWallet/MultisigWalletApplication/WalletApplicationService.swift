@@ -216,7 +216,8 @@ public class WalletApplicationService: Assertable {
                           canRemove: removableStates.contains(state),
                           isSelected: isSelected,
                           requiresBackupToRemove: state == .readyToUse,
-                          isMultisig: wallet.type == .multisig)
+                          isMultisig: wallet.type == .multisig,
+                          isReadOnly: !wallet.hasWritePermission)
     }
 
     public func removeWallet(id: String) {
@@ -291,7 +292,8 @@ public class WalletApplicationService: Assertable {
                                   canRemove: true,
                                   isSelected: false,
                                   requiresBackupToRemove: false,
-                                  isMultisig: true)
+                                  isMultisig: true,
+                                  isReadOnly: true)
             }
         } catch {
             return []
@@ -645,6 +647,9 @@ public class WalletApplicationService: Assertable {
                                     recipientAddress: String?,
                                     token: String = Token.Ether.id.id,
                                     feeToken: String = Token.Ether.id.id) -> BigInt? {
+        if let wallet = selectedWallet, wallet.type == .multisig {
+            return 0
+        }
         let placeholderAddress = Address(ownerAddress(of: .thisDevice)!)
         let formattedAddress = recipientAddress == nil || recipientAddress!.isEmpty ? placeholderAddress :
             formatted(recipientAddress)
@@ -765,16 +770,14 @@ public class WalletApplicationService: Assertable {
                                signatures: tx.signatures.map{ $0.address.value })
     }
 
-    public func transactionHash(_ id: TransactionID) -> String? {
-        return DomainRegistry.transactionRepository.find(id: id)?.transactionHash?.value
-    }
-
     private func status(of tx: Transaction) -> TransactionData.Status {
         // TODO: refactor to have similar statuses of transaction in domain model and app
         let extensionAddress = address(of: .browserExtension, in: tx.accountID.walletID.id)
         let keycardAddress = address(of: .keycard, in: tx.accountID.walletID.id)
+        let personalAddress = address(of: .personalSafe, in: tx.accountID.walletID.id)
         let hasBrowserExtension = extensionAddress != nil
         let hasKeycard = keycardAddress != nil
+        let hasPersonal = personalAddress != nil
         let defaultStatus: TransactionData.Status =
             (hasBrowserExtension || hasKeycard) ? .waitingForConfirmation : .readyToSubmit
         switch tx.status {
@@ -785,6 +788,11 @@ public class WalletApplicationService: Assertable {
             let isSignedByKeycard = hasKeycard &&
                 tx.signatures.count == 1
                 && tx.isSignedBy(Address(keycardAddress!))
+            let isSignedByPersonal = hasPersonal &&
+                tx.isSignedBy(Address(personalAddress!))
+            if isSignedByPersonal {
+                return .waitingForConfirmation
+            }
             return (isSignedByExtension || isSignedByKeycard) ? .readyToSubmit : defaultStatus
         case .rejected: return .rejected
         case .pending: return .pending
@@ -859,6 +867,52 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.transactionRepository.save(tx)
     }
 
+    // goal is to either use the 'personal' transaction or create a wrapper transaction for multisig tx
+    public func createApprovalReviewTransaction(for txID: String) -> String {
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(txID))!
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
+        if wallet.type == .personal {
+            return txID
+        } else {
+            return createApprovalUsingPersonalTx(multisigTx: tx, wallet: wallet)
+        }
+    }
+
+    func createApprovalUsingPersonalTx(multisigTx: Transaction, wallet multisigWallet: Wallet) -> String {
+        // selected wallet = multisig
+        assert(multisigWallet.type == .multisig)
+
+        // peresonal safe = multisig.owner(.safe)
+        let personalOwner = multisigWallet.owner(role: .personalSafe)!
+        let personalWallet = DomainRegistry.walletRepository.find(address: personalOwner.address)!
+
+        // create personal tx(in: personal, for: multisig tx id)
+        DomainRegistry.transactionService.prepareMultisigTransaction(multisigTx)
+        return DomainRegistry.transactionService.createApprovalTransaction(in: personalWallet, for: multisigTx.id).id
+    }
+
+    public func createExecutionReviewTransaction(for txID: String) -> String {
+        let tx = DomainRegistry.transactionRepository.find(id: TransactionID(txID))!
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
+        if wallet.type == .personal {
+            return txID
+        } else {
+            return createExecutionUsingPersonalTx(multisigTx: tx, wallet: wallet)
+        }
+    }
+
+    func createExecutionUsingPersonalTx(multisigTx: Transaction, wallet multisigWallet: Wallet) -> String {
+        // selected wallet = multisig
+        assert(multisigWallet.type == .multisig)
+
+        // peresonal safe = multisig.owner(.safe)
+        let personalOwner = multisigWallet.owner(role: .personalSafe)!
+        let personalWallet = DomainRegistry.walletRepository.find(address: personalOwner.address)!
+
+        // create personal tx(in: personal, for: multisig tx id)
+        return DomainRegistry.transactionService.createExecuteTransaction(from: personalWallet, for: multisigTx.id).id
+    }
+
     public enum TransactionError: Swift.Error {
         case unsignedTransaction
     }
@@ -878,7 +932,71 @@ public class WalletApplicationService: Assertable {
             try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx),
                                         wallet: wallet)
         }
+        updateRelatedMultisigTransaction(for: tx)
         return transactionData(id)!
+    }
+
+    func updateRelatedMultisigTransaction(for personalTx: Transaction) {
+        // if tx is submitted (pending) and
+        guard personalTx.status == .pending,
+            let data = personalTx.data,
+            let recipient = personalTx.recipient,
+            let multisig = DomainRegistry.walletRepository.find(address: recipient),
+            let personal = DomainRegistry.walletRepository.find(id: personalTx.accountID.walletID) else { return }
+        let safeContract = GnosisSafeContractProxy(multisig.address!)
+        // if it is an approveHash() or executeTransaction(), and
+        if let decodedHash = safeContract.decodeApproveHash(from: data),
+            let multisigTx = DomainRegistry.transactionRepository.find(hash: decodedHash) {
+            DomainRegistry.safeTransactionService.createMultisigTransaction(multisigTx, sender: personal.address)
+
+            if multisigTx.status == .draft {
+                multisigTx.proceed()
+                DomainRegistry.transactionRepository.save(multisigTx)
+            }
+        } else if let decoded = safeContract.decodeExecuteTransaction(from: data) {
+            print("DECODED SIGNAUTRES:", decoded.signatures.toHexString())
+            // we need to find the signing transaction with maximum nonce
+            let allTxes = DomainRegistry.transactionRepository.find(wallet: multisig.id)
+            let sameValueTransactions = allTxes.filter({ (tx) -> Bool in
+                let conditions = [
+                    tx.status == .signing,
+                    tx.ethTo.value.lowercased() == decoded.to.value.lowercased(),
+                    tx.ethValue == decoded.value,
+                    Data(hex: tx.ethData) == decoded.data,
+                    (tx.operation ?? .call) == decoded.operation,
+                    tx.feeEstimate?.gas == decoded.safeTxGas,
+                    tx.feeEstimate?.dataGas == decoded.baseGas,
+                    tx.feeEstimate?.operationalGas == 0,
+                    tx.feeEstimate?.gasPrice.amount == decoded.gasPrice,
+                    tx.feeEstimate?.gasPrice.token.address.value.lowercased() == decoded.gasToken.value.lowercased(),
+                    tx.encodedSignatures == decoded.signatures]
+                let result = conditions.allSatisfy { (c) -> Bool in
+                    c == true
+                }
+
+                print("\(result) CONDITIONS: \(conditions)")
+
+                return result
+            })
+            let multisigTx: Transaction! = sameValueTransactions.max(by: { (a, b) -> Bool in
+                switch (a.nonce, b.nonce) {
+                case (.some, .none): return false
+                case (.none, .some): return true
+                case (.none, .none): return false
+                case (.some, .some):
+                    return BigInt(a.nonce!)! < BigInt(b.nonce!)!
+                }
+            })
+            if multisigTx == nil { return }
+            assert(personalTx.transactionHash != nil)
+            DomainRegistry.safeTransactionService.createMultisigTransaction(multisigTx, sender: personal.address)
+            multisigTx.set(hash: personalTx.transactionHash!)
+            if multisigTx.status == .signing {
+                multisigTx.proceed()
+            }
+            DomainRegistry.transactionRepository.save(multisigTx)
+            DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown(multisig.id))
+        }
     }
 
     private func signTransaction(_ tx: Transaction, wallet: Wallet) throws {
@@ -921,6 +1039,18 @@ public class WalletApplicationService: Assertable {
     private func findAccount(_ tokenID: TokenID, walletID: WalletID) -> Account? {
         let accountID = AccountID(tokenID: tokenID, walletID: walletID)
         return DomainRegistry.accountRepository.find(id: accountID)
+    }
+
+    public func walletConnectTransactionSubmitted(_ wcTransaction: WCPendingTransaction) {
+        guard let tx = DomainRegistry.transactionRepository.find(id: wcTransaction.transactionID),
+            let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
+        if wallet.type == .multisig {
+            DomainRegistry.wcProcessingTxRepository.add(transaction: wcTransaction)
+            print("WC: submitted multisig transaction")
+        } else {
+            guard let hash = tx.transactionHash?.value else { return }
+            wcTransaction.completion(.success(hash))
+        }
     }
 
     // MARK: - Notifications

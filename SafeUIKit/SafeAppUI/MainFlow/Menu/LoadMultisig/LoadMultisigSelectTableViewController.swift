@@ -76,7 +76,8 @@ class LoadMultisigSelectTableViewController: UITableViewController {
     }
 
     @objc private func onNextPressed() {
-        delegate?.loadMultisigSelectTableViewController(controller: self, didSelectSafes: safes)
+        let selectedSafes = safes.filter { $0.isSelected }
+        delegate?.loadMultisigSelectTableViewController(controller: self, didSelectSafes: selectedSafes)
     }
 
     // MARK: - Table view data source
@@ -129,7 +130,8 @@ fileprivate extension WalletData {
                           canRemove: self.canRemove,
                           isSelected: selected,
                           requiresBackupToRemove: self.requiresBackupToRemove,
-                          isMultisig: self.isMultisig)
+                          isMultisig: self.isMultisig,
+                          isReadOnly: self.isReadOnly)
     }
 
 }

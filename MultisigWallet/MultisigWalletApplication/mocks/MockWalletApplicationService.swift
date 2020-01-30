@@ -71,7 +71,8 @@ public class MockWalletApplicationService: WalletApplicationService {
                                     canRemove: false,
                                     isSelected: true,
                                     requiresBackupToRemove: false,
-                                    isMultisig: false)]
+                                    isMultisig: false,
+                                    isReadOnly: false)]
     }
 
     // MARK: - Wallet
@@ -437,7 +438,8 @@ public class MockWalletApplicationService: WalletApplicationService {
                    canRemove: true,
                    isSelected: true,
                    requiresBackupToRemove: true,
-                   isMultisig: false)
+                   isMultisig: false,
+                   isReadOnly: false)
     }
 
     // MARK: - Address Book

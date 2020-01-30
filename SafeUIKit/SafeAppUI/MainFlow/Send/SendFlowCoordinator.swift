@@ -4,6 +4,7 @@
 
 import UIKit
 import Common
+import MultisigWalletApplication
 
 // Implements navigation of the send funds flow:
 // Send_Input -> Send_Review -> Send_Success
@@ -38,7 +39,9 @@ class SendFlowCoordinator: FlowCoordinator {
 extension SendFlowCoordinator: SendInputViewControllerDelegate {
 
     func didCreateDraftTransaction(id: String) {
-        openTransactionReviewScreen(id)
+        // For multisig, it will create a different transaction to review in personal safe
+        let txID = ApplicationServiceRegistry.walletService.createApprovalReviewTransaction(for: id)
+        openTransactionReviewScreen(txID)
     }
 
 }
@@ -51,6 +54,8 @@ extension SendFlowCoordinator: ReviewTransactionViewControllerDelegate {
     }
 
     func reviewTransactionViewControllerDidFinishReview(_ controller: ReviewTransactionViewController) {
+        // tracking is wrong because the tx will be always personal tx, maybe we need to make 2 trackings
+        // for personal and multisig tx-es
         push(SuccessViewController.sendSuccess(token: controller.tx.amountTokenData) { [weak self] in
             self?.exitFlow()
         })

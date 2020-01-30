@@ -11,22 +11,18 @@ public class TransactionSyncDomainService {
 //
 // Then, it will merge transactions, enhancing local model with remote data and updating local transaction
 // status information based on the remote status. (The source of truth is the remote).
-    func sync() {
-        guard let wallet = DomainRegistry.walletRepository.selectedWallet(),
+    func sync(walletID: WalletID) {
+        guard let wallet = DomainRegistry.walletRepository.find(id: walletID),
             wallet.isReadyToUse,
             let safeAddress = wallet.address else { return }
 
         let remoteTransactions = DomainRegistry.safeTransactionService.transactions(safe: safeAddress)
             .compactMap { (tx) -> Transaction? in
                 tx.identifyingHash == nil ? nil : tx
-            }.sorted { (a, b) -> Bool in
-                a.identifyingHash!.toHexString() < b.identifyingHash!.toHexString()
             }
-        var localTransactions = DomainRegistry.transactionRepository.all()
+        var localTransactions = DomainRegistry.transactionRepository.find(wallet: wallet.id)
             .compactMap { (tx) -> Transaction? in
                 tx.identifyingHash == nil ? nil : tx
-            }.sorted { (a, b) -> Bool in
-                a.identifyingHash!.toHexString() < b.identifyingHash!.toHexString()
             }
         // for all remote tx-es that exist in local
 
@@ -39,6 +35,12 @@ public class TransactionSyncDomainService {
 
                 if local.status != remote.status {
                     //    update status
+                    if remote.status == .success {
+                        if let wcTransaction = DomainRegistry.wcProcessingTxRepository.find(transactionID: local.id) {
+                            DomainRegistry.wcProcessingTxRepository.remove(transactionID: local.id)
+                            wcTransaction.completion(.success(local.transactionHash!.value))
+                        }
+                    }
                     local.change(status: remote.status)
 
                     // update dates
@@ -71,10 +73,20 @@ public class TransactionSyncDomainService {
                 for signature in remote.signatures {
                     local.add(signature: signature)
                 }
-
             }
-
         }
+
+//         for multisig, remove all transactions not present in remote
+//        if wallet.type == .multisig {
+//            let toRemove = localTransactions.filter { local in
+//                local.status == .draft &&
+//                !remoteTransactions.contains(where: { remote in remote.identifyingHash! == local.identifyingHash })
+//            }
+//            for tx in toRemove {
+//                DomainRegistry.transactionRepository.remove(tx)
+//            }
+//            localTransactions.removeAll(where: { toRemove.contains($0) })
+//        }
 
         // add all remote tx-es that do not exist in local
         let localHashes = localTransactions.map { $0.identifyingHash! }

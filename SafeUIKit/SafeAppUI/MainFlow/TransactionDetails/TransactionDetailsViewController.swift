@@ -15,6 +15,9 @@ public protocol TransactionDetailsViewControllerDelegate: class {
     func transactionDetailsViewController(_ controller: TransactionDetailsViewController,
                                           didSelectToSendToken token: TokenData,
                                           forAddress address: String)
+    func transactionDetailsViewControllerDidSelectApprove(_ controller: TransactionDetailsViewController)
+    func transactionDetailsViewControllerDidSelectExecute(_ controller: TransactionDetailsViewController)
+
 }
 
 internal class ClockService {
@@ -97,6 +100,7 @@ public class TransactionDetailsViewController: UIViewController {
             static let cancel = LocalizedString("cancel", comment: "Cancel")
         }
     }
+    @IBOutlet weak var transactionActionsView: TransactionActionsView!
     @IBOutlet weak var signatureTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var viewButton: StandardButton!
@@ -171,12 +175,17 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func reloadData() {
         transaction = ApplicationServiceRegistry.walletService.transactionData(transactionID)
+        guard transaction != nil else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
         configureTransferDetails()
         configureType()
         configureSubmitted()
         configureStatus()
         configureFee()
         configureViewInOtherApp()
+        configureActions()
         configureNonce()
         configureSafeHash()
         configureSignatures()
@@ -338,6 +347,7 @@ public class TransactionDetailsViewController: UIViewController {
         case .rejected: return .rejected
         case .failed: return .failed
         case .success: return .success
+        case .waitingForConfirmation: return .signing
         default: return .pending
         }
     }
@@ -378,6 +388,23 @@ public class TransactionDetailsViewController: UIViewController {
         let vc = WCBatchTransactionsTableViewController()
         vc.transactions = transaction.subtransactions ?? []
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    private func configureActions() {
+        guard transaction.status == .waitingForConfirmation else {
+            transactionActionsView.isHidden = true
+            return
+        }
+        transactionActionsView.approveButton.style = .filled
+        transactionActionsView.executeButton.style = .filled
+    }
+
+    @IBAction func didTapApproveButton(_ sender: Any) {
+        delegate?.transactionDetailsViewControllerDidSelectApprove(self)
+    }
+
+    @IBAction func didTapExecuteButton(_ sender: Any) {
+        delegate?.transactionDetailsViewControllerDidSelectExecute(self)
     }
 
 }
@@ -429,6 +456,16 @@ extension TransactionDetailsViewController: TransferViewDelegate {
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
+
+}
+
+
+
+public class TransactionActionsView: UIView {
+
+    @IBOutlet weak var approveButton: StandardButton!
+    @IBOutlet weak var executeButton: StandardButton!
+
 
 }
 

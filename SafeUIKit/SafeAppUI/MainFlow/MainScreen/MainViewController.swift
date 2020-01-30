@@ -85,8 +85,14 @@ class MainViewController: UIViewController {
         viewControllers = [assetViewController, transactionViewController]
         selectedViewController = assetViewController
 
-        headerView.address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+        let address = ApplicationServiceRegistry.walletService.selectedWalletAddress
+        headerView.address = address
         headerView.button.addTarget(self, action: #selector(didTapAddress), for: .touchUpInside)
+        
+        let walletData = ApplicationServiceRegistry.walletService.selectedWalletData
+        
+        headerView.isMultiSig = walletData.isMultisig
+        headerView.isReadOnly = walletData.isReadOnly
 
         bannerView.onTap = { [weak self] in
             self?.didTapBanner()
@@ -268,6 +274,10 @@ class MainHeaderView: UIView {
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var button: UIButton!
 
+    @IBOutlet weak var isMultiSigLabel: UILabel!
+    @IBOutlet weak var isReadOnlyLabel: UILabel!
+
+    @IBOutlet weak var bagesContainerStackView: UIStackView!
     var height: CGFloat {
         get { return heightConstraint.constant }
         set { heightConstraint.constant = newValue; setNeedsLayout() }
@@ -283,9 +293,32 @@ class MainHeaderView: UIView {
         }
     }
 
+    var isMultiSig: Bool = false {
+        didSet {
+            if !isMultiSig {
+                bagesContainerStackView.removeArrangedSubview(isMultiSigLabel)
+                isMultiSigLabel.removeFromSuperview()
+            }
+        }
+    }
+
+    var isReadOnly: Bool = false  {
+        didSet {
+            if !isReadOnly {
+                bagesContainerStackView.removeArrangedSubview(isReadOnlyLabel)
+                isReadOnlyLabel.removeFromSuperview()
+            }
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         addressLabel.textColor = ColorName.darkBlue.color
+         
+        isMultiSigLabel.layer.cornerRadius = 8.0
+        isMultiSigLabel.clipsToBounds = true
+        isReadOnlyLabel.layer.cornerRadius = 8.0
+        isReadOnlyLabel.clipsToBounds = true
     }
 
 }

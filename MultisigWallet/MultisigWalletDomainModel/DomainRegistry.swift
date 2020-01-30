@@ -58,6 +58,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: AddressBookRepository.self)
     }
 
+    public static var wcProcessingTxRepository: WCProcessingTransactionsRepository {
+        return service(for: WCProcessingTransactionsRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {

@@ -37,6 +37,7 @@ public protocol EthereumNodeDomainService {
     /// - Returns: contract return value
     /// - Throws: NetworkServiceError
     func eth_call(to: Address, data: Data) throws -> Data
+    func eth_call(from: Address, to: Address, data: Data) throws -> Data
 
     /// Returns the value from a storage position at a given address.
     func eth_getStorageAt(address: Address, position: Int) throws -> Data
