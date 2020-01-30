@@ -164,6 +164,10 @@ public class TransactionDomainService {
             }
             if receipt.status == .success {
                 tx.succeed()
+                if let wcTransaction = DomainRegistry.wcProcessingTxRepository.find(transactionID: tx.id) {
+                    DomainRegistry.wcProcessingTxRepository.remove(transactionID: tx.id)
+                    wcTransaction.completion(.success(hash.value))
+                }
             } else {
                 tx.fail()
             }

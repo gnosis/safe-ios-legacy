@@ -13,10 +13,12 @@ import CryptoSwift
 
 public class HTTPGnosisTransactionService: SafeTransactionDomainService {
 
+    private let logger: Logger
     private let httpClient: JSONHTTPClient
 
-    public init(url: URL) {
-        httpClient = JSONHTTPClient(url: url)
+    public init(url: URL, logger: Logger) {
+        self.logger = logger
+        httpClient = JSONHTTPClient(url: url, logger: logger)
         // 2020-01-22T13:11:59.838510Z
         let formatter1 = DateFormatter()
         formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"

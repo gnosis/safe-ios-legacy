@@ -33,7 +33,7 @@ class MultisigWalletConfigurator {
         let tokenService = HTTPTokenListService(url: config.relayServiceURL, logger: LogService.shared)
         DomainRegistry.put( service: tokenService, for: TokenListDomainService.self)
 
-        let safeTxService = HTTPGnosisTransactionService(url: config.safeTxServiceURL)
+        let safeTxService = HTTPGnosisTransactionService(url: config.safeTxServiceURL, logger: LogService.shared)
         DomainRegistry.put(service: safeTxService, for: SafeTransactionDomainService.self)
 
         DomainRegistry.put(service: AccountUpdateDomainService(), for: AccountUpdateDomainService.self)
@@ -110,6 +110,7 @@ class MultisigWalletConfigurator {
             let migrationRepo = DBMigrationRepository(db: db)
             let migrationService = DBMigrationService(repository: migrationRepo)
             let addressBookRepo = DBAddressBookRepository(db: db)
+            let wcProcessingTxRepo = InMemoryWCProcessingTransactionsRepository()
             DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
             DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
             DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
@@ -119,6 +120,7 @@ class MultisigWalletConfigurator {
             DomainRegistry.put(service: walletConnectRepo, for: WalletConnectSessionRepository.self)
             DomainRegistry.put(service: keycardRepo, for: KeycardRepository.self)
             DomainRegistry.put(service: addressBookRepo, for: AddressBookRepository.self)
+            DomainRegistry.put(service: wcProcessingTxRepo, for: WCProcessingTransactionsRepository.self)
 
             let noDatabase = !db.exists
             if noDatabase {

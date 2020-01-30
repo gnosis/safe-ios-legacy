@@ -30,6 +30,8 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 .vscode
+vendor
+.bundle
 
 ## Obj-C/Swift specific
 *.hmap

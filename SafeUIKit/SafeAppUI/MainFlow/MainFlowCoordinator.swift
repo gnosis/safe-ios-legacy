@@ -207,8 +207,7 @@ open class MainFlowCoordinator: FlowCoordinator {
         let transactionID = coordinator.transactionID
         enterTransactionFlow(coordinator, transactionID: transactionID) { [unowned self] in
             self.incomingTransactionsManager.releaseCoordinator(by: transactionID)
-            let hash = ApplicationServiceRegistry.walletService.transactionHash(transaction.transactionID) ?? "0x"
-            transaction.completion(.success(hash))
+            ApplicationServiceRegistry.walletService.walletConnectTransactionSubmitted(transaction)
         }
     }
 

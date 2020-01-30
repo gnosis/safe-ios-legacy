@@ -22,6 +22,8 @@ public struct WCPendingTransaction {
 
 }
 
+extension WCPendingTransaction: WCTransaction {}
+
 final class WCPendingTransactionsRepository {
 
     private var pendingTransactions = [WCPendingTransaction]()
@@ -40,4 +42,5 @@ final class WCPendingTransactionsRepository {
     func remove(transactionID: TransactionID) {
         pendingTransactions.removeAll { $0.transactionID == transactionID }
     }
+
 }

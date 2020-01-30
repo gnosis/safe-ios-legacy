@@ -765,10 +765,6 @@ public class WalletApplicationService: Assertable {
                                processed: tx.processedDate)
     }
 
-    public func transactionHash(_ id: TransactionID) -> String? {
-        return DomainRegistry.transactionRepository.find(id: id)?.transactionHash?.value
-    }
-
     private func status(of tx: Transaction) -> TransactionData.Status {
         // TODO: refactor to have similar statuses of transaction in domain model and app
         let extensionAddress = address(of: .browserExtension, in: tx.accountID.walletID.id)
@@ -996,6 +992,18 @@ public class WalletApplicationService: Assertable {
     private func findAccount(_ tokenID: TokenID, walletID: WalletID) -> Account? {
         let accountID = AccountID(tokenID: tokenID, walletID: walletID)
         return DomainRegistry.accountRepository.find(id: accountID)
+    }
+
+    public func walletConnectTransactionSubmitted(_ wcTransaction: WCPendingTransaction) {
+        guard let tx = DomainRegistry.transactionRepository.find(id: wcTransaction.transactionID),
+            let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID) else { return }
+        if wallet.type == .multisig {
+            DomainRegistry.wcProcessingTxRepository.add(transaction: wcTransaction)
+            print("WC: submitted multisig transaction")
+        } else {
+            guard let hash = tx.transactionHash?.value else { return }
+            wcTransaction.completion(.success(hash))
+        }
     }
 
     // MARK: - Notifications
