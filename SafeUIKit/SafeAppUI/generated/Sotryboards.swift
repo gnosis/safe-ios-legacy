@@ -53,29 +53,6 @@ internal enum StoryboardScene {
 
     internal static let transactionsTableViewController = SceneType<SafeAppUI.TransactionViewViewController>(storyboard: Main.self, identifier: "TransactionsTableViewController")
   }
-  internal enum Main1: StoryboardType {
-    internal static let storyboardName = "Main_1"
-
-    internal static let addTokenNavigationController = SceneType<UIKit.UINavigationController>(storyboard: Main1.self, identifier: "AddTokenNavigationController")
-
-    internal static let addTokenTableViewController = SceneType<SafeAppUI.AddTokenTableViewController>(storyboard: Main1.self, identifier: "AddTokenTableViewController")
-
-    internal static let ensInputViewController = SceneType<SafeAppUI.ENSInputViewController>(storyboard: Main1.self, identifier: "ENSInputViewController")
-
-    internal static let mainNavigationController = SceneType<UIKit.UINavigationController>(storyboard: Main1.self, identifier: "MainNavigationController")
-
-    internal static let mainViewController = SceneType<SafeAppUI.MainViewController>(storyboard: Main1.self, identifier: "MainViewController")
-
-    internal static let menuTableViewController = SceneType<SafeAppUI.MenuTableViewController>(storyboard: Main1.self, identifier: "MenuTableViewController")
-
-    internal static let sendInputViewController = SceneType<SafeAppUI.SendInputViewController>(storyboard: Main1.self, identifier: "SendInputViewController")
-
-    internal static let successViewController = SceneType<SafeAppUI.SuccessViewController>(storyboard: Main1.self, identifier: "SuccessViewController")
-
-    internal static let transactionDetailsViewController = SceneType<SafeAppUI.TransactionDetailsViewController>(storyboard: Main1.self, identifier: "TransactionDetailsViewController")
-
-    internal static let transactionsTableViewController = SceneType<SafeAppUI.TransactionViewViewController>(storyboard: Main1.self, identifier: "TransactionsTableViewController")
-  }
   internal enum MasterPassword: StoryboardType {
     internal static let storyboardName = "MasterPassword"
 

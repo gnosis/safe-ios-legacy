@@ -30,6 +30,9 @@ public class TransactionDomainService {
     }
 
     public func prepareMultisigTransaction(_ tx: Transaction) {
+        if tx.hash != nil  { return } // if tx hash exists then this multisig transaction was already been approved before
+                                      //  by us or some other owner
+
         let multisigWallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
 
         let proxy = GnosisSafeContractProxy(multisigWallet.address)

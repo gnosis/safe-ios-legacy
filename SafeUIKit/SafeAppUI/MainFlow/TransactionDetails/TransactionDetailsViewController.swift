@@ -123,7 +123,7 @@ public class TransactionDetailsViewController: UIViewController {
     public private(set) var transactionID: String!
     private var transaction: TransactionData!
     internal var clock = ClockService()
-    
+
     private let dateFormatter = DateFormatter()
     public static func create(transactionID: String) -> TransactionDetailsViewController {
         let controller = StoryboardScene.Main.transactionDetailsViewController.instantiate()
@@ -284,9 +284,9 @@ public class TransactionDetailsViewController: UIViewController {
             signaturesTableView.rowHeight = 60
             signatureTableViewHeightConstraint.constant = CGFloat(signatures.count * 60)
             signaturesTableView.reloadData()
+            signaturesContainerView.isHidden = false
         } else {
-            signaturesContainerView.removeFromSuperview()
-            contentStackView.removeArrangedSubview(signaturesContainerView)
+            signaturesContainerView.isHidden = true
         }
     }
 
@@ -294,9 +294,9 @@ public class TransactionDetailsViewController: UIViewController {
         nonceView.name = "Nonce"
         if let nonce = transaction.nonce {
             nonceView.value = nonce
+            nonceView.isHidden = false
         } else {
-            nonceView.removeFromSuperview()
-            contentStackView.removeArrangedSubview(nonceView)
+            nonceView.isHidden = true
         }
     }
 
@@ -304,9 +304,9 @@ public class TransactionDetailsViewController: UIViewController {
         transactionHashView.name = "Transaction Hash"
         if let hash = transaction.transactionHash {
             transactionHashView.value = hash
+            transactionHashView.isHidden = false
         } else {
-            transactionHashView.removeFromSuperview()
-            contentStackView.removeArrangedSubview(transactionHashView)
+            transactionHashView.isHidden = true
         }
     }
 
@@ -314,9 +314,9 @@ public class TransactionDetailsViewController: UIViewController {
         safeHashView.name = "Safe Hash"
         if let hash = transaction.safeHash {
             safeHashView.value = hash.toHexString()
+            safeHashView.isHidden = false
         } else {
-            safeHashView.removeFromSuperview()
-            contentStackView.removeArrangedSubview(safeHashView)
+            safeHashView.isHidden = true
         }
     }
 
@@ -324,11 +324,10 @@ public class TransactionDetailsViewController: UIViewController {
         dataView.name = "Data"
         if let data = transaction.data {
             dataView.value = data.toHexString()
+            dataView.isHidden = false
         } else {
-            dataView.removeFromSuperview()
-            contentStackView.removeArrangedSubview(dataView)
+            dataView.isHidden = true
         }
-        
     }
 
     private func configureSubmitted() {
@@ -391,9 +390,21 @@ public class TransactionDetailsViewController: UIViewController {
     }
 
     private func configureActions() {
-        guard transaction.status == .waitingForConfirmation else {
-            transactionActionsView.isHidden = true
-            return
+        if transaction.status == .readyToSubmit { // if we can execute
+            transactionActionsView.executeButton.isHidden = false // show execute
+            transactionActionsView.approveButton.isHidden = true
+        } else if transaction.status == .waitingForConfirmation, // if we signed but signatures not enough
+            let signatures = transaction.signatures,
+            let ourSigner = ApplicationServiceRegistry.walletService.ownerAddress(of: .personalSafe),
+            signatures.contains(ourSigner) {
+            transactionActionsView.executeButton.isHidden = true
+            transactionActionsView.approveButton.isHidden = true
+        } else if transaction.status == .waitingForConfirmation { // if  we have not signed, we need to approve
+            transactionActionsView.executeButton.isHidden = true
+            transactionActionsView.approveButton.isHidden = false // show approve
+        } else {
+            transactionActionsView.executeButton.isHidden = true
+            transactionActionsView.approveButton.isHidden = true
         }
         transactionActionsView.approveButton.style = .filled
         transactionActionsView.executeButton.style = .filled
