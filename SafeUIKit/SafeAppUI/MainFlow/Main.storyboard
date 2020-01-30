@@ -77,7 +77,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPG-b4-rjS">
-                                <rect key="frame" x="0.0" y="88" width="375" height="1378"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="1328"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vch-j3-Csj">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1035.3333333333333"/>
@@ -319,9 +319,9 @@
                             <constraint firstItem="qsa-YP-53w" firstAttribute="leading" secondItem="m89-Zk-oYt" secondAttribute="leading" id="1q7-T3-Y6b"/>
                             <constraint firstItem="m89-Zk-oYt" firstAttribute="leading" secondItem="jPG-b4-rjS" secondAttribute="leading" id="6O0-2i-X3B"/>
                             <constraint firstItem="m89-Zk-oYt" firstAttribute="bottom" secondItem="qsa-YP-53w" secondAttribute="bottom" id="8BG-hd-cor"/>
-                            <constraint firstItem="m89-Zk-oYt" firstAttribute="bottom" secondItem="jPG-b4-rjS" secondAttribute="bottom" id="RCZ-iV-knH"/>
                             <constraint firstItem="m89-Zk-oYt" firstAttribute="trailing" secondItem="qsa-YP-53w" secondAttribute="trailing" id="WmJ-kQ-Jxe"/>
                             <constraint firstItem="m89-Zk-oYt" firstAttribute="top" secondItem="jPG-b4-rjS" secondAttribute="top" id="fYJ-f6-idp"/>
+                            <constraint firstItem="qsa-YP-53w" firstAttribute="top" secondItem="jPG-b4-rjS" secondAttribute="bottom" id="kwV-Wc-O4H"/>
                             <constraint firstItem="jPG-b4-rjS" firstAttribute="trailing" secondItem="m89-Zk-oYt" secondAttribute="trailing" id="xzx-dU-YKA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m89-Zk-oYt"/>
