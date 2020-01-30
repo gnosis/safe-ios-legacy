@@ -119,7 +119,12 @@ public class RecoveryApplicationService {
                                updated: tx.updatedDate,
                                submitted: tx.submittedDate,
                                rejected: tx.rejectedDate,
-                               processed: tx.processedDate)
+                               processed: tx.processedDate,
+                               data: tx.data,
+                               transactionHash: tx.transactionHash?.value,
+                               safeHash: tx.hash,
+                               nonce: tx.nonce,
+                               signatures: tx.signatures.map{ $0.address.value })
     }
 
     public func isRecoveryTransactionReadyToSubmit() -> Bool {

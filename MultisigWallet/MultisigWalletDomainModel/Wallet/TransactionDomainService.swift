@@ -30,6 +30,9 @@ public class TransactionDomainService {
     }
 
     public func prepareMultisigTransaction(_ tx: Transaction) {
+        if tx.hash != nil  { return } // if tx hash exists then this multisig transaction was already been approved before
+                                      //  by us or some other owner
+
         let multisigWallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
 
         let proxy = GnosisSafeContractProxy(multisigWallet.address)
@@ -50,8 +53,12 @@ public class TransactionDomainService {
         if let contractNonce = try? Int(SafeOwnerManagerContractProxy(multisigWallet.address).nonce()) {
             tx.change(nonce: String(contractNonce))
         } else {
-            let maxNonce = DomainRegistry.transactionRepository.find(wallet: multisigWallet.id).compactMap { $0.nonce }
-                .map { Int($0)! }.max() ?? -1 // -1 so that first nonce would be '0'
+            let maxNonce = DomainRegistry.transactionRepository.find(wallet: multisigWallet.id).filter {
+                $0.status == .success
+            }.compactMap {
+                $0.nonce
+
+            }.map { Int($0)! }.max() ?? -1 // -1 so that first nonce would be '0'
 
             let nextNonce = maxNonce + 1
             tx.change(nonce: String(nextNonce))

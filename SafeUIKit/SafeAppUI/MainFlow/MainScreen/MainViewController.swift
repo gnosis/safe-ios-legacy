@@ -314,7 +314,6 @@ class MainHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         addressLabel.textColor = ColorName.darkBlue.color
-         
         isMultiSigLabel.layer.cornerRadius = 8.0
         isMultiSigLabel.clipsToBounds = true
         isReadOnlyLabel.layer.cornerRadius = 8.0

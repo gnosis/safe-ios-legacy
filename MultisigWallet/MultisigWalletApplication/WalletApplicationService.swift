@@ -762,33 +762,39 @@ public class WalletApplicationService: Assertable {
                                updated: tx.updatedDate,
                                submitted: tx.submittedDate,
                                rejected: tx.rejectedDate,
-                               processed: tx.processedDate)
+                               processed: tx.processedDate,
+                               data: tx.data,
+                               transactionHash: tx.transactionHash?.value,
+                               safeHash: tx.hash,
+                               nonce: tx.nonce,
+                               signatures: tx.signatures.map{ $0.address.value })
     }
 
     private func status(of tx: Transaction) -> TransactionData.Status {
         // TODO: refactor to have similar statuses of transaction in domain model and app
+        let wallet = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)!
+        let isMultisig = wallet.type == .multisig
         let extensionAddress = address(of: .browserExtension, in: tx.accountID.walletID.id)
         let keycardAddress = address(of: .keycard, in: tx.accountID.walletID.id)
         let personalAddress = address(of: .personalSafe, in: tx.accountID.walletID.id)
         let hasBrowserExtension = extensionAddress != nil
         let hasKeycard = keycardAddress != nil
-        let hasPersonal = personalAddress != nil
         let defaultStatus: TransactionData.Status =
             (hasBrowserExtension || hasKeycard) ? .waitingForConfirmation : .readyToSubmit
         switch tx.status {
         case .signing:
-            let isSignedByExtension = hasBrowserExtension &&
-                tx.signatures.count == 1
-                && tx.isSignedBy(Address(extensionAddress!))
-            let isSignedByKeycard = hasKeycard &&
-                tx.signatures.count == 1
-                && tx.isSignedBy(Address(keycardAddress!))
-            let isSignedByPersonal = hasPersonal &&
-                tx.isSignedBy(Address(personalAddress!))
-            if isSignedByPersonal {
-                return .waitingForConfirmation
+            if isMultisig {
+                let enoughSignatures = tx.signatures.count >= wallet.confirmationCount
+                return enoughSignatures ? .readyToSubmit : .waitingForConfirmation
+            } else {
+                let isSignedByExtension = hasBrowserExtension &&
+                    tx.signatures.count == 1
+                    && tx.isSignedBy(Address(extensionAddress!))
+                let isSignedByKeycard = hasKeycard &&
+                    tx.signatures.count == 1
+                    && tx.isSignedBy(Address(keycardAddress!))
+                return (isSignedByExtension || isSignedByKeycard) ? .readyToSubmit : defaultStatus
             }
-            return (isSignedByExtension || isSignedByKeycard) ? .readyToSubmit : defaultStatus
         case .rejected: return .rejected
         case .pending: return .pending
         case .failed: return .failed
@@ -881,8 +887,10 @@ public class WalletApplicationService: Assertable {
         let personalOwner = multisigWallet.owner(role: .personalSafe)!
         let personalWallet = DomainRegistry.walletRepository.find(address: personalOwner.address)!
 
+
         // create personal tx(in: personal, for: multisig tx id)
         DomainRegistry.transactionService.prepareMultisigTransaction(multisigTx)
+
         return DomainRegistry.transactionService.createApprovalTransaction(in: personalWallet, for: multisigTx.id).id
     }
 

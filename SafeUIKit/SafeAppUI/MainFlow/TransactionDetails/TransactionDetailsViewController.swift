@@ -101,6 +101,8 @@ public class TransactionDetailsViewController: UIViewController {
         }
     }
     @IBOutlet weak var transactionActionsView: TransactionActionsView!
+    @IBOutlet weak var signatureTableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var viewButton: StandardButton!
     @IBOutlet weak var separatorLineView: HorizontalSeparatorView!
     @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
@@ -111,13 +113,18 @@ public class TransactionDetailsViewController: UIViewController {
     @IBOutlet weak var transactionFeeView: TokenAmountTransactionParameterView!
     @IBOutlet weak var viewInExternalAppButton: UIButton!
     @IBOutlet weak var wrapperView: UIView!
+    @IBOutlet weak var dataView: TransactionParameterView!
+    @IBOutlet weak var signaturesContainerView: UIView!
+    @IBOutlet weak var signaturesTableView: UITableView!
+    @IBOutlet weak var transactionHashView: TransactionParameterView!
+    @IBOutlet weak var safeHashView: TransactionParameterView!
+    @IBOutlet weak var nonceView: TransactionParameterView!
     public weak var delegate: TransactionDetailsViewControllerDelegate?
     public private(set) var transactionID: String!
     private var transaction: TransactionData!
     internal var clock = ClockService()
 
     private let dateFormatter = DateFormatter()
-
     public static func create(transactionID: String) -> TransactionDetailsViewController {
         let controller = StoryboardScene.Main.transactionDetailsViewController.instantiate()
         controller.transactionID = transactionID
@@ -179,6 +186,11 @@ public class TransactionDetailsViewController: UIViewController {
         configureFee()
         configureViewInOtherApp()
         configureActions()
+        configureNonce()
+        configureSafeHash()
+        configureSignatures()
+        configureTransactionHash()
+        configureData()
     }
 
     // swiftlint:disable:next function_body_length cyclomatic_complexity
@@ -265,6 +277,59 @@ public class TransactionDetailsViewController: UIViewController {
         }
     }
 
+    private func configureSignatures() {
+        if let signatures = transaction.signatures {
+            signaturesTableView.delegate = self
+            signaturesTableView.dataSource = self
+            signaturesTableView.rowHeight = 60
+            signatureTableViewHeightConstraint.constant = CGFloat(signatures.count * 60)
+            signaturesTableView.reloadData()
+            signaturesContainerView.isHidden = false
+        } else {
+            signaturesContainerView.isHidden = true
+        }
+    }
+
+    private func configureNonce() {
+        nonceView.name = "Nonce"
+        if let nonce = transaction.nonce {
+            nonceView.value = nonce
+            nonceView.isHidden = false
+        } else {
+            nonceView.isHidden = true
+        }
+    }
+
+    private func configureTransactionHash() {
+        transactionHashView.name = "Transaction Hash"
+        if let hash = transaction.transactionHash {
+            transactionHashView.value = hash
+            transactionHashView.isHidden = false
+        } else {
+            transactionHashView.isHidden = true
+        }
+    }
+
+    private func configureSafeHash() {
+        safeHashView.name = "Safe Hash"
+        if let hash = transaction.safeHash {
+            safeHashView.value = hash.toHexString()
+            safeHashView.isHidden = false
+        } else {
+            safeHashView.isHidden = true
+        }
+    }
+
+    private func configureData() {
+        dataView.name = "Data"
+        if let data = transaction.data {
+            dataView.value = data.toHexString()
+            dataView.isHidden = false
+        } else {
+            dataView.isHidden = true
+        }
+    }
+
     private func configureSubmitted() {
         submittedParameterView.name = Strings.submitted
         submittedParameterView.value = transaction.submitted == nil ? "--" : string(from: transaction.submitted!)
@@ -325,9 +390,21 @@ public class TransactionDetailsViewController: UIViewController {
     }
 
     private func configureActions() {
-        guard transaction.status == .waitingForConfirmation else {
-            transactionActionsView.isHidden = true
-            return
+        if transaction.status == .readyToSubmit { // if we can execute
+            transactionActionsView.executeButton.isHidden = false // show execute
+            transactionActionsView.approveButton.isHidden = true
+        } else if transaction.status == .waitingForConfirmation, // if we signed but signatures not enough
+            let signatures = transaction.signatures,
+            let ourSigner = ApplicationServiceRegistry.walletService.ownerAddress(of: .personalSafe),
+            signatures.contains(ourSigner) {
+            transactionActionsView.executeButton.isHidden = true
+            transactionActionsView.approveButton.isHidden = true
+        } else if transaction.status == .waitingForConfirmation { // if  we have not signed, we need to approve
+            transactionActionsView.executeButton.isHidden = true
+            transactionActionsView.approveButton.isHidden = false // show approve
+        } else {
+            transactionActionsView.executeButton.isHidden = true
+            transactionActionsView.approveButton.isHidden = true
         }
         transactionActionsView.approveButton.style = .filled
         transactionActionsView.executeButton.style = .filled
@@ -401,4 +478,31 @@ public class TransactionActionsView: UIView {
     @IBOutlet weak var executeButton: StandardButton!
 
 
+}
+
+extension TransactionDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return transaction.signatures?.count ?? 0
+    }
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddressTableViewCell", for: indexPath) as! AddressTableViewCell
+
+        let signature = transaction.signatures![indexPath.row]
+        cell.addressLabel.text = signature
+        cell.identiconView.seed = signature
+        cell.selectionStyle = .none
+
+        return cell
+    }
+}
+
+
+class AddressTableViewCell: UITableViewCell {
+    @IBOutlet weak var identiconView: IdenticonView!
+    @IBOutlet weak var addressLabel: UILabel!
 }

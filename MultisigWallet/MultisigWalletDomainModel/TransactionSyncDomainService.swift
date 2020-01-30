@@ -93,6 +93,24 @@ public class TransactionSyncDomainService {
         let newTxes = remoteTransactions.filter { !localHashes.contains($0.identifyingHash!) }
         localTransactions.append(contentsOf: newTxes)
 
+
+        if let maxNonce = localTransactions.filter({ $0.status == .success }).compactMap({ $0.nonce }).compactMap({ Int($0) }).max() {
+            let toIgnore = localTransactions.filter { (tx) -> Bool in
+                if tx.status == .signing, let nonceStr  = tx.nonce, let nonce = Int(nonceStr), nonce <= maxNonce {
+                    return true
+                }
+                return false
+            }
+
+            toIgnore.forEach {
+                $0.change(status: .rejected)
+                DomainRegistry.transactionRepository.save($0)
+            }
+
+//            localTransactions = localTransactions.filter { !toIgnore.contains($0) }
+
+        }
+
         // save it all
         for tx in localTransactions {
             DomainRegistry.transactionRepository.save(tx)
