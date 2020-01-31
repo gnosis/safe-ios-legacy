@@ -42,7 +42,7 @@ class SwitchSafesTableViewCell: UITableViewCell {
     func configure(walletData: WalletData) {
         nameLabel.text = walletData.name
         if walletData.isMultisig {
-            nameLabel.text = nameLabel.text! + "(MultiSig)"
+            nameLabel.text = nameLabel.text! + " (Multisig)"
         }
         switch walletData.state {
         case .readyToUse:

@@ -7,6 +7,7 @@ import SafeUIKit
 
 protocol LoadMultisigIntroViewControllerDelegate: class {
     func loadMultisigIntroViewControllerDidSelectLoad(_ controller: LoadMultisigIntroViewController)
+    func loadMultisigIntroViewControllerDidSelectOpenSite(_ controller: LoadMultisigIntroViewController)
 }
 
 class LoadMultisigIntroViewController: UIViewController {
@@ -17,18 +18,24 @@ You can load a Gnosis Safe Multisig where your personal Gnosis Safe is an owner.
 After a Multisig is loaded you can initiate, confirm, execute Multisig Safe transactions with your Personal Safe.
 """
         static let reference = """
-To create and manage a Multisig Safe you can use our web-interface at https://gnosis-safe.io
+To create and manage a Multisig Safe you can use our web-interface at
 """
+        static let site = "https://gnosis-safe.io"
     }
 
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var referenceLabel: UILabel!
+    @IBOutlet weak var siteButton: UIButton!
 
     @IBOutlet weak var loadMultisigButton: StandardButton!
     weak var delegate: LoadMultisigIntroViewControllerDelegate?
 
     @IBAction func loadMultisig(_ sender: Any) {
         delegate?.loadMultisigIntroViewControllerDidSelectLoad(self)
+    }
+
+    @IBAction func openSite(_ sender: Any) {
+        delegate?.loadMultisigIntroViewControllerDidSelectOpenSite(self)
     }
 
     static func create(delegate: LoadMultisigIntroViewControllerDelegate) -> LoadMultisigIntroViewController {
@@ -44,6 +51,8 @@ To create and manage a Multisig Safe you can use our web-interface at https://gn
         loadMultisigButton.style = .filled
         descriptionLabel.attributedText = NSAttributedString(string: Strings.description, style: DescriptionStyle())
         referenceLabel.attributedText = NSAttributedString(string: Strings.reference, style: DescriptionStyle())
+        siteButton.setTitle(Strings.site, for: .normal)
+        siteButton.setTitleColor(ColorName.hold.color, for: .normal)
     }
 
 }

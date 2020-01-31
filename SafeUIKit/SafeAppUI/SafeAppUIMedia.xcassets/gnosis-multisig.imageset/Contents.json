@@ -2,18 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "nav.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "nav@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "nav@3x.png",
-      "scale" : "3x"
+      "filename" : "gnosis_safe_multisig_2019_logo_rgb_vertical_darkblue.pdf"
     }
   ],
   "info" : {

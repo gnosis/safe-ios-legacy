@@ -328,6 +328,14 @@ public class WalletApplicationService: Assertable {
         let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
         DomainRegistry.accountRepository.save(account)
 
+        if DomainRegistry.addressBookRepository.find(address: wallet.address.value, types: [.wallet]).isEmpty {
+            let entry = AddressBookEntry(
+                name: "Multisig \(wallet.address.value.suffix(4))",
+                address: wallet.address.value,
+                type: .wallet)
+            DomainRegistry.addressBookRepository.save(entry)
+        }
+
         DispatchQueue.global.async {
             DomainRegistry.syncService.syncTokensAndAccountsOnce()
             DomainRegistry.syncService.syncTransactionsOnce()

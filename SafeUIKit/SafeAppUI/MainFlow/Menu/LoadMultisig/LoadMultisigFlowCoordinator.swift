@@ -29,6 +29,10 @@ extension LoadMultisigFlowCoordinator: LoadMultisigIntroViewControllerDelegate {
         push(controller)
     }
 
+    func loadMultisigIntroViewControllerDidSelectOpenSite(_ controller: LoadMultisigIntroViewController) {
+        SupportFlowCoordinator(from: self).openGnosisSafeSite()
+    }
+
 }
 
 extension LoadMultisigFlowCoordinator: LoadMultisigSelectTableViewControllerDelegate {
