@@ -87,7 +87,7 @@ public class HTTPGnosisTransactionService: SafeTransactionDomainService {
             let wallet = DomainRegistry.walletRepository.find(id: transaction.accountID.walletID)!
             let request = CreateMultisigTransactionRequest(
                 safe: wallet.address!,
-                to: transaction.recipient,
+                to: transaction.ethTo,
                 value: transaction.ethValue,
                 data: Data(hex: transaction.ethData),
                 operation: transaction.operation!.rawValue,

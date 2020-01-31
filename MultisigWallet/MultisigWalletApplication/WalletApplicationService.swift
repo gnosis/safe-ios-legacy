@@ -727,7 +727,7 @@ public class WalletApplicationService: Assertable {
 
         var type: TransactionData.TransactionType = tx.type.transactionDataType
         let walletAddress = DomainRegistry.walletRepository.find(id: tx.accountID.walletID)?.address
-        if tx.sender != walletAddress && tx.recipient == walletAddress && type == .outgoing {
+        if type == .outgoing && tx.recipient == walletAddress && tx.signatures.isEmpty {
             type = .incoming
         }
 
