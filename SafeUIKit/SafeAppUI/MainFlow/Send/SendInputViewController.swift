@@ -102,6 +102,11 @@ public class SendInputViewController: UIViewController {
 
     /// If user changed payment method, the fee calculation view should be updated with new fee token data.
     private func updateFeeCalculationViewAndModel() {
+        if ApplicationServiceRegistry.walletService.selectedWalletData.isMultisig {
+            feeCalculationView.isHidden = true
+        } else {
+            feeCalculationView.isHidden = false
+        }
         guard needsEstimation else {
             return
         }

@@ -302,7 +302,7 @@ class MainHeaderView: UIView {
         }
     }
 
-    var isReadOnly: Bool = false  {
+    var isReadOnly: Bool = false {
         didSet {
             if !isReadOnly {
                 bagesContainerStackView.removeArrangedSubview(isReadOnlyLabel)

@@ -44,7 +44,7 @@ class HeaderScrollDelegate: NSObject, ScrollDelegate {
     // Header's height decreases when scrollView.contentOffset.y increases, and vice versa.
 
     let minHeaderHeight: CGFloat = 0
-    let maxHeaderHeight: CGFloat = 130
+    let maxHeaderHeight: CGFloat = 148
 
     var verticalContentInset: CGFloat = 0
 

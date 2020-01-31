@@ -75,4 +75,8 @@ final class SupportFlowCoordinator: FlowCoordinator {
         openInSafari(URL(string: "https://keycard.status.im")!)
     }
 
+    func openGnosisSafeSite() {
+        openInSafari(URL(string: "https://gnosis-safe.io")!)
+    }
+
 }
