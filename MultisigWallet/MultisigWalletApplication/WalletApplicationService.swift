@@ -215,7 +215,7 @@ public class WalletApplicationService: Assertable {
                           state: state,
                           canRemove: removableStates.contains(state),
                           isSelected: isSelected,
-                          requiresBackupToRemove: state == .readyToUse,
+                          requiresBackupToRemove: state == .readyToUse && wallet.type == .personal,
                           isMultisig: wallet.type == .multisig,
                           isReadOnly: !wallet.hasWritePermission)
     }
