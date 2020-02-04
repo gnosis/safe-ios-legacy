@@ -12,7 +12,8 @@ final class FeePaymentMethodCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return !ApplicationServiceRegistry.walletService.hasReadyToUseWallet
+        guard ApplicationServiceRegistry.walletService.hasReadyToUseWallet else { return true }
+        return ApplicationServiceRegistry.walletService.selectedWalletData.isMultisig
     }
 
     override func run() {
