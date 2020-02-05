@@ -76,6 +76,8 @@ class MockEthereumNodeService1: EthereumNodeDomainService {
         return expected_eth_call[actual_eth_call.count - 1].result
     }
 
+    func eth_call(from: Address, to: Address, data: Data) throws -> Data { return Data() }
+
     func eth_getBlockByHash(hash: String) throws -> EthBlock? {
         return EthBlock(hash: "0x1", timestamp: Date())
     }

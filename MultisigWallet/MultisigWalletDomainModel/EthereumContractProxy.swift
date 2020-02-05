@@ -127,6 +127,7 @@ public class EthereumContractProxy {
         guard value.count > 64 else { return nil } // 32 bytes for offset, 32 bytes for byte count
         var encoded = value
         let offset = decodeUInt(encoded); encoded.removeFirst(32)
+        guard offset < value.count else { return nil }
         let bytes = decodeBytes(value.advanced(by: Int(offset)))
         let result = String(data: bytes, encoding: .utf8)
         return result

@@ -1242,7 +1242,8 @@ public class WalletApplicationService: Assertable {
     }
 
     private func estimation(_ message: SendTransactionMessage) -> TransactionFeeEstimate {
-        let feeToken = DomainRegistry.transactionService.token(for: message.gasToken)
+        let feeToken = DomainRegistry.transactionService.token(for: message.gasToken,
+                                                               shouldUpdateBalanceForUnknownToken: true)
         return TransactionFeeEstimate(gas: message.txGas,
                                       dataGas: message.dataGas,
                                       operationalGas: message.operationalGas,

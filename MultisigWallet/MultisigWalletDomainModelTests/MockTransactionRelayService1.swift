@@ -7,6 +7,9 @@ import XCTest
 
 class MockTransactionRelayService1: TransactionRelayDomainService {
 
+    func updateSafeInfo(safe: Address) {
+    }
+
     private var expected_createSafeCreationTransaction:
         [(request: SafeCreationRequest, response: SafeCreationRequest.Response)] = []
     private var actual_createSafeCreationTransaction: [SafeCreationRequest] = []

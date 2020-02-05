@@ -336,10 +336,14 @@ public class TransactionDomainService {
         }
     }
 
-    public func token(for address: Address) -> Token {
+    var unknownTokensCache = [Address: Token]()
+
+    public func token(for address: Address, shouldUpdateBalanceForUnknownToken: Bool = false) -> Token {
         let tokenProxy = ERC20TokenContractProxy(address)
         if let token = WalletDomainService.token(id: address.value) {
             return token
+        } else if let cachedToken = unknownTokensCache[address] {
+            return cachedToken
         } else {
             let token: Token
             if let name = try? tokenProxy.name(),
@@ -349,7 +353,10 @@ public class TransactionDomainService {
             } else {
                 token = Token(code: "---", name: address.value, decimals: 18, address: address, logoUrl: "")
             }
-            try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
+            unknownTokensCache[address] = token
+            if shouldUpdateBalanceForUnknownToken {
+                try? DomainRegistry.accountUpdateService.updateAccountBalance(token: token)
+            }
             return token
         }
     }

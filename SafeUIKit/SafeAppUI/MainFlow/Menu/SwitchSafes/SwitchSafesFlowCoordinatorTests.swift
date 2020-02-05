@@ -36,7 +36,9 @@ class SwitchSafesFlowCoordinatorTests: SafeTestCase {
                               state: .finalizingDeployment,
                               canRemove: false,
                               isSelected: true,
-                              requiresBackupToRemove: true)
+                              requiresBackupToRemove: true,
+                              isMultisig: false,
+                              isReadOnly: false)
         switchSafesCoordinator.switchSafesTableViewController(SwitchSafesTableViewController(),
                                                               didRequestToRemove: data)
         let finalTransitionedViewController = switchSafesCoordinator.navigationController.topViewController
