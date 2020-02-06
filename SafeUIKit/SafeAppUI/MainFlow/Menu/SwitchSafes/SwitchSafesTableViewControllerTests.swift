@@ -64,7 +64,9 @@ extension WalletData {
                                      state: .finalizingDeployment,
                                      canRemove: false,
                                      isSelected: true,
-                                     requiresBackupToRemove: true)
+                                     requiresBackupToRemove: true,
+                                     isMultisig: false,
+                                     isReadOnly: false)
 
     static let created1 = WalletData(id: "id2",
                                      address: "address2",
@@ -72,6 +74,8 @@ extension WalletData {
                                      state: .readyToUse,
                                      canRemove: true,
                                      isSelected: false,
-                                     requiresBackupToRemove: true)
+                                     requiresBackupToRemove: true,
+                                     isMultisig: false,
+                                     isReadOnly: false)
 
 }

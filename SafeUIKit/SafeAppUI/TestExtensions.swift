@@ -87,7 +87,12 @@ extension TransactionData {
                                updated: nil,
                                submitted: nil,
                                rejected: nil,
-                               processed: nil)
+                               processed: nil,
+                               data: nil,
+                               transactionHash: nil,
+                               safeHash: nil,
+                               nonce: nil,
+                               signatures: nil)
     }
 
     static func tokenData(status: Status, transactionType: TransactionType = .outgoing) -> TransactionData {
@@ -107,7 +112,12 @@ extension TransactionData {
                                updated: nil,
                                submitted: nil,
                                rejected: nil,
-                               processed: nil)
+                               processed: nil,
+                               data: nil,
+                               transactionHash: nil,
+                               safeHash: nil,
+                               nonce: nil,
+                               signatures: nil)
     }
 
     static func mixedTokenData(status: Status) -> TransactionData {
@@ -127,7 +137,12 @@ extension TransactionData {
                                updated: nil,
                                submitted: nil,
                                rejected: nil,
-                               processed: nil)
+                               processed: nil,
+                               data: nil,
+                               transactionHash: nil,
+                               safeHash: nil,
+                               nonce: nil,
+                               signatures: nil)
     }
 
 }

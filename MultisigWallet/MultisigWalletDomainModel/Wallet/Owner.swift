@@ -51,6 +51,10 @@ public struct OwnerList: Equatable {
         storage.removeAll { $0.role == role }
     }
 
+    public mutating func remove(with address: Address) {
+        storage.removeAll { $0.address == address }
+    }
+
     public mutating func remove(_ item: Owner) {
         if let index = storage.firstIndex(of: item) {
             storage.remove(at: index)

@@ -202,6 +202,11 @@ public class Wallet: IdentifiableEntity<WalletID> {
         owners.remove(with: role)
     }
 
+    public func removeOwner(address: Address) {
+        assertCanChangeOwners()
+        owners.remove(with: address)
+    }
+
     public func assignCreationTransaction(hash: String?) {
 //        try! assertTrue(state.canChangeTransactionHash, Error.invalidState)
         creationTransactionHash = hash

@@ -114,10 +114,20 @@ extension TransactionData {
                                          updated: Date(),
                                          submitted: Date(),
                                          rejected: nil,
-                                         processed: nil)
+                                         processed: nil,
+                                         data: nil,
+                                         transactionHash: nil,
+                                         safeHash: nil,
+                                         nonce: nil,
+                                         signatures: nil)
 }
 
 class TestTransactionDetailsViewControllerDelegate: TransactionDetailsViewControllerDelegate {
+    func transactionDetailsViewControllerDidSelectApprove(_ controller: TransactionDetailsViewController) {
+    }
+
+    func transactionDetailsViewControllerDidSelectExecute(_ controller: TransactionDetailsViewController) {
+    }
 
     public var expected_showTransactionInExternalApp = [TransactionDetailsViewController]()
     public var actual_showTransactionInExternalApp = [TransactionDetailsViewController]()

@@ -104,7 +104,12 @@ class TransactionViewViewControllerTests: XCTestCase {
                                           updated: now - 2.seconds,
                                           submitted: now - 1.seconds,
                                           rejected: nil,
-                                          processed: now)
+                                          processed: now,
+                                          data: nil,
+                                          transactionHash: nil,
+                                          safeHash: nil,
+                                          nonce: nil,
+                                          signatures: nil)
         service.expect_grouppedTransactions(result: [TransactionGroupData(type: .pending,
                                                                           date: nil,
                                                                           transactions: [transaction])])
@@ -156,7 +161,12 @@ extension TransactionGroupData {
                             updated: nil,
                             submitted: nil,
                             rejected: nil,
-                            processed: nil)
+                            processed: nil,
+                            data: nil,
+                            transactionHash: nil,
+                            safeHash: nil,
+                            nonce: nil,
+                            signatures: nil)
         }
         return TransactionGroupData(type: type, date: date, transactions: transactions)
     }

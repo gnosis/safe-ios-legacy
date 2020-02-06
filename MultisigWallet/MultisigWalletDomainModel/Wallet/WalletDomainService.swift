@@ -61,6 +61,13 @@ public class WalletDomainService {
                 wallet.addOwner(Owner(address: checksummedAddress, role: isPersonalSafe ? .personalSafe : .unknown))
             }
 
+            wallet.allOwners().filter({ $0.role == .unknown }).forEach { owner in
+                if DomainRegistry.externallyOwnedAccountRepository.find(by: owner.address) != nil {
+                    wallet.removeOwner(address: owner.address)
+                    wallet.addOwner(Owner(address: owner.address, role: .thisDevice))
+                }
+            }
+
             wallet.changeMasterCopy(masterCopy)
             wallet.changeConfirmationCount(confirmationCount)
             wallet.changeContractVersion(version)
