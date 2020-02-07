@@ -67,11 +67,13 @@ public class TransactionSyncDomainService {
                 }
 
                 //    update confirmations (remove local sigs, add remote sigs)
-                for signature in local.signatures {
-                    local.remove(signature: signature)
-                }
+//                for signature in local.signatures {
+//                    local.remove(signature: signature)
+//                }
                 for signature in remote.signatures {
-                    local.add(signature: signature)
+                    if !local.signatures.contains(signature) {
+                        local.add(signature: signature)
+                    }
                 }
             }
         }
@@ -115,5 +117,7 @@ public class TransactionSyncDomainService {
         for tx in localTransactions {
             DomainRegistry.transactionRepository.save(tx)
         }
+
+        DomainRegistry.eventPublisher.publish(TransactionStatusUpdated())
     }
 }

@@ -223,15 +223,16 @@ open class MainFlowCoordinator: FlowCoordinator {
         enter(flow: flow) { [unowned self] in
             DispatchQueue.main.async {
                 self.popToLastCheckpoint()
-
                 // if the transaction belongs to a different wallet than selected one, then it won't be shown
                 // in the transaction list. Thus, we should skip opening the list in that case.
-                if let id = transactionID,
-                    let transaction = ApplicationServiceRegistry.walletService.transactionData(id),
-                    let selectedWalletID = ApplicationServiceRegistry.walletService.selectedWalletID(),
-                    transaction.walletID != selectedWalletID {
-                    return
-                }
+
+                // We disable it for a while.
+//                if let id = transactionID,
+//                    let transaction = ApplicationServiceRegistry.walletService.transactionData(id),
+//                    let selectedWalletID = ApplicationServiceRegistry.walletService.selectedWalletID(),
+//                    transaction.walletID != selectedWalletID {
+//                    return
+//                }
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                     self.showTransactionList()
                 }

@@ -81,6 +81,16 @@ public class TransactionDomainService {
         let multisigTransaction = DomainRegistry.transactionRepository.find(id: multisigTransactionID)!
         let multisigWallet = DomainRegistry.walletRepository.find(id: multisigTransaction.accountID.walletID)!
 
+        if (multisigTransaction.signatures.count >= multisigWallet.confirmationCount - 1) &&
+            !multisigTransaction.signatures.contains { $0.address == personalWallet.address } {
+            let sig = Signature(data: Data(), address: personalWallet.address)
+            if !multisigTransaction.signatures.contains(sig) {
+                multisigTransaction.add(signature: sig)
+                DomainRegistry.transactionRepository.save(multisigTransaction)
+            }
+            return createExecuteTransaction(from: personalWallet, for: multisigTransactionID)
+        }
+
         let personalTxID = newDraftTransaction(in: personalWallet)
         let personalTx = DomainRegistry.transactionRepository.find(id: personalTxID)!
 

@@ -952,22 +952,26 @@ public class WalletApplicationService: Assertable {
         guard personalTx.status == .pending,
             let data = personalTx.data,
             let recipient = personalTx.recipient,
-            let multisig = DomainRegistry.walletRepository.find(address: recipient),
-            let personal = DomainRegistry.walletRepository.find(id: personalTx.accountID.walletID) else { return }
-        let safeContract = GnosisSafeContractProxy(multisig.address!)
+            let multisigSafe = DomainRegistry.walletRepository.find(address: recipient),
+            let personalSafe = DomainRegistry.walletRepository.find(id: personalTx.accountID.walletID) else { return }
+        let safeContract = GnosisSafeContractProxy(multisigSafe.address!)
         // if it is an approveHash() or executeTransaction(), and
         if let decodedHash = safeContract.decodeApproveHash(from: data),
             let multisigTx = DomainRegistry.transactionRepository.find(hash: decodedHash) {
-            DomainRegistry.safeTransactionService.createMultisigTransaction(multisigTx, sender: personal.address)
+            DomainRegistry.safeTransactionService.createMultisigTransaction(multisigTx, sender: personalSafe.address)
 
+            let sig = Signature(data: Data(), address: personalSafe.address)
+            if !multisigTx.signatures.contains(sig) {
+                multisigTx.add(signature: sig)
+            }
             if multisigTx.status == .draft {
                 multisigTx.proceed()
-                DomainRegistry.transactionRepository.save(multisigTx)
             }
+            DomainRegistry.transactionRepository.save(multisigTx)
         } else if let decoded = safeContract.decodeExecuteTransaction(from: data) {
             print("DECODED SIGNAUTRES:", decoded.signatures.toHexString())
             // we need to find the signing transaction with maximum nonce
-            let allTxes = DomainRegistry.transactionRepository.find(wallet: multisig.id)
+            let allTxes = DomainRegistry.transactionRepository.find(wallet: multisigSafe.id)
             let sameValueTransactions = allTxes.filter({ (tx) -> Bool in
                 let conditions = [
                     tx.status == .signing,
@@ -1000,13 +1004,14 @@ public class WalletApplicationService: Assertable {
             })
             if multisigTx == nil { return }
             assert(personalTx.transactionHash != nil)
-            DomainRegistry.safeTransactionService.createMultisigTransaction(multisigTx, sender: personal.address)
+            DomainRegistry.safeTransactionService.createMultisigTransaction(multisigTx, sender: personalSafe.address)
             multisigTx.set(hash: personalTx.transactionHash!)
+
             if multisigTx.status == .signing {
                 multisigTx.proceed()
             }
             DomainRegistry.transactionRepository.save(multisigTx)
-            DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown(multisig.id))
+            DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown(multisigSafe.id))
         }
     }
 

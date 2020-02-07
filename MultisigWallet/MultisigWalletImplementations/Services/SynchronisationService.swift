@@ -26,7 +26,7 @@ public class SynchronisationService: SynchronisationDomainService {
         #endif
     }
 
-    public init(syncInterval: TimeInterval = 10, merger: TokenListMerger = TokenListMerger()) {
+    public init(syncInterval: TimeInterval = 3, merger: TokenListMerger = TokenListMerger()) {
         self.merger = merger
         self.syncInterval = syncInterval
     }
