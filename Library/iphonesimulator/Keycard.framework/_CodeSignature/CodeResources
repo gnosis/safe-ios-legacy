@@ -10,11 +10,11 @@
 		</data>
 		<key>Headers/Keycard-Swift.h</key>
 		<data>
-		3V5bUMzjfZCpn1YPFbwHkW63Xz0=
+		ezdFxJk8AttGfQtZynGp/jeB8Uc=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		7Y5qw09FnsQQ28JbKNPIpCEkVrs=
+		25/4HGBkC5FlCA4iEXODGt+RNG0=
 		</data>
 		<key>Modules/.DS_Store</key>
 		<data>
@@ -22,19 +22,19 @@
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		XLL4y3lij+t4V67OJT1QZgPpUI4=
+		QyfpsqCtRtrPQ1tolXSx9gzmjME=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		HtQRrxolQE9Wa0XBdVuhZLVTicM=
+		92s3sel4lzQQ5nm0AsItMytmcQI=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		XLL4y3lij+t4V67OJT1QZgPpUI4=
+		QyfpsqCtRtrPQ1tolXSx9gzmjME=
 		</data>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		HtQRrxolQE9Wa0XBdVuhZLVTicM=
+		92s3sel4lzQQ5nm0AsItMytmcQI=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -43,35 +43,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7h4FpQKd3/2ofVF1Amvr/fVVLz1nl1jf7xwSJsDunvc=
+			Q77/M7Z6iQni2edUpct4wcSAK0F10H1IcQmvWrX58gc=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			f8AZ9MwJyOo5/7fvR7fzkNDKnG8qsY2JpJ4bUdXUdBw=
+			i9hizqYXbzibcUXCo9+jNWUt0clNtxddPs8Z+8FeRXc=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MaIREI2eAa1ZrGiLQiOTdhyCbfyZaw8IXsdxZSuF9/M=
+			PQcrvS1s3c1TtxRPABsOtnGBYYJTzKM7J22rivwliKA=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			f8AZ9MwJyOo5/7fvR7fzkNDKnG8qsY2JpJ4bUdXUdBw=
+			i9hizqYXbzibcUXCo9+jNWUt0clNtxddPs8Z+8FeRXc=
 			</data>
 		</dict>
 		<key>Modules/Keycard.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MaIREI2eAa1ZrGiLQiOTdhyCbfyZaw8IXsdxZSuF9/M=
+			PQcrvS1s3c1TtxRPABsOtnGBYYJTzKM7J22rivwliKA=
 			</data>
 		</dict>
 	</dict>
