@@ -8,6 +8,12 @@ and this project adheres to `Semantic Versioning`_.
 .. copy-paste the latest version update format and remember to add URL
    at the end of this file.
 
+`1.13.2`_ - 2020-04-20
+======================
+Changed
+--------
+- Compiled with swift 5.2.2
+
 `1.13.1`_ - 2020-01-30
 ======================
 Changed
@@ -499,6 +505,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.13.2: https://github.com/gnosis/safe-ios/tree/1.13.2
 .. _1.13.1: https://github.com/gnosis/safe-ios/tree/1.13.1
 .. _1.13.0: https://github.com/gnosis/safe-ios/tree/1.13.0
 .. _1.12.0: https://github.com/gnosis/safe-ios/tree/1.12.0

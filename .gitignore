@@ -82,3 +82,4 @@ AppConfig.xcconfig
 AppConfig.json
 encrypted_files
 .idea/
+vendor

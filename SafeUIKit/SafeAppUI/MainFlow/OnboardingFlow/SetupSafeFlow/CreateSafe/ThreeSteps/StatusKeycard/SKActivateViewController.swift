@@ -142,8 +142,13 @@ class SKActivateViewController: UIViewController {
 
     class NormalCredentialsLabelStyle: TextStyle {
 
-        override var font: UIFont { return .monospacedSystemFont(ofSize: 17, weight: .semibold) }
-
+        override var font: UIFont {
+            if #available(iOS 13.0, *) {
+                return .monospacedSystemFont(ofSize: 17, weight: .semibold)
+            } else {
+                return .systemFont(ofSize: 17, weight: .semibold)
+            }
+        }
     }
 
     class SelectedCredentialsLabelStyle: NormalCredentialsLabelStyle {
